@@ -8,7 +8,7 @@ if ! docker ps | grep -q vet-dur-db; then
 fi
 
 echo "Setting up database..."
-cd ddi_engine && /workspaces/FullStackDemoPractice/.venv/bin/python db/setup.py && cd ..
+cd backend && /workspaces/FullStackDemoPractice/backend/.venv/bin/python db/setup.py && cd ..
 
 echo "Running DDI engine tests..."
-/workspaces/FullStackDemoPractice/.venv/bin/python ddi_engine/engine.py
+cd /workspaces/FullStackDemoPractice && /workspaces/FullStackDemoPractice/backend/.venv/bin/python backend/engine.py
