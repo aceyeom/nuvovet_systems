@@ -4,10 +4,10 @@
 import json
 import os
 import glob
-from openai import OpenAI
+from google import genai
 
 # OpenAI 설정
-client = OpenAI(api_key="이건 안대지 > <") # 실제 API 키로 교체하세요
+client = genai(api_key="이건 안대지 > <") # 실제 API 키로 교체하세요
 MODEL = "gpt-4o"  # 모델 업데이트해야겠음 ->  비용 최소화를 하거나, 최신 모델로 바꾸거나.
 
 def get_system_prompt():
