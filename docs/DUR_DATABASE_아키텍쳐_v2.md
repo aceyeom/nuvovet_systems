@@ -25,6 +25,7 @@
 15. [Data Sources & Coverage](#15-data-sources--coverage)
 16. [How a DUR Scan Uses the Database](#16-how-a-dur-scan-uses-the-database)
 17. [Database Scale Estimates](#17-database-scale-estimates)
+18. [Drug Resolution Pipeline](#18-drug-resolution-pipeline-input-normalization)
 
 ---
 
@@ -66,7 +67,7 @@ The DUR system uses a hierarchical relationship between products, variants, and 
 │  Engine 1: cyp_profiles, pk_parameters, pd_risk_flags,          │
 │            transporter_profiles, ddi_pairs                       │
 │  Engine 2: dosing_rules, renal_dose_adjustments                 │
-│  Engine 3: allergy_classes                                       │
+│  Engine 3: allergy_class_members, class_cross_reactivity         │
 │  Engine 4: contraindications, breed_pharmacogenomics,           │
 │            condition_synonyms                                    │
 │  Engine 5: therapeutic_classes                                   │
@@ -76,14 +77,15 @@ Supporting layers:
   Layer 4 — RAG vector store (literature_chunks with pgvector)
   Layer 5 — Runtime data (patients, prescriptions, prescription_items)
   Layer 6 — Audit & quality (data_sources, extraction_log,
-             review_queue, dur_scan_results)
+             review_queue, dur_scan_results, dur_alert_events, ddi_inference_log,
+             unmatched_drug_log)
 ```
 
 ---
 
 ## 3. Complete Table Index
 
-26 tables total. Every table listed with its purpose and primary data source.
+30 tables total. Every table listed with its purpose and primary data source.
 
 | Layer | Table | Purpose | Primary Source |
 |-------|-------|---------|---------------|
@@ -97,10 +99,11 @@ Supporting layers:
 | 3 | `pk_parameters` | PK data per species per route | PMC |
 | 3 | `pd_risk_flags` | Toxicity risk profile — route-independent | PMC |
 | 3 | `transporter_profiles` | P-gp / MDR1 data — route-independent | PMC |
-| 3 | `ddi_pairs` | Known drug-drug interactions — route-independent | PMC + manual |
+| 3 | `ddi_pairs` | Explicitly documented drug-drug interactions — route-independent | PMC + manual |
 | 3 | `dosing_rules` | Species + route specific dosing | Korean Vet DB + Plumb's |
 | 3 | `renal_dose_adjustments` | Dose reduction for renal failure | PMC + Plumb's |
-| 3 | `allergy_classes` | Allergy class + structured cross-reactivity | PMC |
+| 3 | `allergy_class_members` | Substance → allergy class membership (normalized) | PMC |
+| 3 | `class_cross_reactivity` | Class-to-class cross-reactivity rules (normalized) | PMC |
 | 3 | `contraindications` | Disease-drug contraindications — route-independent | PMC + Plumb's |
 | 3 | `breed_pharmacogenomics` | Breed-specific drug sensitivity — cross-engine modifier | PMC |
 | 3 | `condition_synonyms` | Free-text condition normalisation (KO + EN) | Manual |
@@ -112,7 +115,10 @@ Supporting layers:
 | 6 | `data_sources` | Provenance for every data point | All sources |
 | 6 | `extraction_log` | RAG pipeline run history | Pipeline |
 | 6 | `review_queue` | Pharmacist validation queue | Pipeline |
-| 6 | `dur_scan_results` | Every DUR scan stored for audit | Runtime |
+| 6 | `dur_scan_results` | Every DUR scan stored for audit — full alert JSONB | Runtime |
+| 6 | `dur_alert_events` | One row per alert per scan — structured analytics | Runtime |
+| 6 | `ddi_inference_log` | Per-scan trace of CYP-inferred interactions (not pre-stored) | Runtime |
+| 6 | `unmatched_drug_log` | Prescription items that could not be resolved to a known substance | Runtime |
 
 ---
 
@@ -194,13 +200,14 @@ One row per substance + route combination. All clinical data lives on the linked
 
 One row per Korean DB entry of the same product. Stores the physical SKU details.
 
+> **Strength representation**: The canonical triplet is `(strength_value, strength_unit, strength_per)`. `strength_value` is the numeric quantity; `strength_unit` is the unit (`mg`, `ml`, `g`, `%`, `IU`, `CFU`, `mcg`); `strength_per` is what it applies to (`per_tablet`, `per_mL`, `per_capsule`, `per_sachet`, `per_dose`). For dose calculations, always use `strength_value` as the numeric source.
+
 | Column | Type | Description | Example |
 |--------|------|-------------|---------|
 | `id` | UUID PK | Primary key | `uuid` |
 | `product_id` | UUID FK → products | Parent product | `Apoquel oral uuid` |
 | `korean_db_index` | INT | Index from scraped Korean DB | `11647` |
 | `korean_name_full` | VARCHAR | Full name as in Korean DB | `아포퀠 정 3.6 mg (오클라시티니브 말레산염)` |
-| `tablet_strength_mg` | DECIMAL | Strength of active ingredient | `3.6` |
 | `strength_value` | DECIMAL | Numeric strength in specified unit | `3.6` |
 | `strength_unit` | VARCHAR | `mg`, `ml`, `g`, `%`, `IU`, `CFU`, `mcg` | `mg` |
 | `strength_per` | VARCHAR | What the strength applies to | `per_tablet`, `per_mL`, `per_capsule`, `per_sachet`, `per_dose` |
@@ -415,7 +422,13 @@ One row per substance. Route-independent.
 
 ### `ddi_pairs` — Engine 1
 
-One row per known pairwise drug-drug interaction. Always store substance_a alphabetically before substance_b. Route-independent.
+One row per **explicitly documented** pairwise drug-drug interaction. Always store substance_a alphabetically before substance_b. Route-independent.
+
+> **Scope note**: This table covers two kinds of explicit pairs only:
+> 1. **Empirical** — pairs sourced directly from PMC literature, Plumb's, or Korean DB 상호작용 sections (`inferred = FALSE`)
+> 2. **RAG-pipeline pre-computed** — pairs where the RAG pipeline found strong mechanistic evidence and a pharmacist reviewed them (`inferred = TRUE`)
+>
+> CYP-based *transitive* inferences (e.g. "Drug A is a CYP3A4 substrate, Drug B is a CYP3A4 inhibitor → probable interaction") are **not pre-stored here**. They are computed at scan time and logged to `ddi_inference_log`. This avoids combinatorial explosion in `ddi_pairs` (600 substances × 600 = ~180,000 theoretical pairs) while keeping this table to meaningful, reviewable rows only.
 
 | Column | Type | Description | Example |
 |--------|------|-------------|---------|
@@ -433,13 +446,51 @@ One row per known pairwise drug-drug interaction. Always store substance_a alpha
 | `species` | TEXT[] | null = all species | `null` |
 | `breed_specific` | TEXT[] | Breed restriction | `null` |
 | `evidence_level` | VARCHAR | `A` RCT, `B` case series, `C` case report, `D` theoretical | `B` |
-| `inferred` | BOOLEAN | Generated by RAG pipeline vs empirical source | `false` |
-| `inferred_confidence` | DECIMAL | 0.0–1.0 — null for empirical pairs | `null` |
+| `inferred` | BOOLEAN | TRUE = pair generated by RAG pipeline (not from direct literature); FALSE = empirical source | `false` |
+| `inferred_confidence` | DECIMAL | 0.0–1.0 — null for empirical pairs; RAG pairs require ≥0.70 before storing | `null` |
 | `reviewed_by_pharmacist` | BOOLEAN | Manually validated | `true` |
 | `checked_by` | VARCHAR | Who reviewed this pair | `Dr. Kim` |
 | `checked_at` | TIMESTAMP | When reviewed | |
 | `source_refs` | TEXT[] | Citations | `{Plumb's 10th Ed}` |
 | `rag_chunk_ids` | UUID[] | Vector store chunks used | |
+
+---
+
+### `ddi_inference_log` — Engine 1 (Layer 6)
+
+Per-scan audit log of CYP-based transitive inferences computed at runtime. Records are written during Engine 1 execution and linked to the parent `dur_scan_results` row. This table is the authoritative record of *why* an inferred DDI alert was raised, replacing the need to pre-populate `ddi_pairs` with speculative combinations.
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `id` | UUID PK | | |
+| `scan_id` | UUID FK → dur_scan_results | The scan that triggered this inference | `uuid` |
+| `substance_a_id` | UUID FK → substances | Alphabetically first | `cyclosporine uuid` |
+| `substance_b_id` | UUID FK → substances | Alphabetically second | `fluconazole uuid` |
+| `inference_type` | VARCHAR | `cyp_substrate_inhibitor`, `cyp_substrate_inducer`, `protein_binding_displacement`, `pd_additive`, `transporter_pgp` | `cyp_substrate_inhibitor` |
+| `shared_cyp_isoform` | VARCHAR | CYP isoform that triggered the inference — null for non-CYP types | `CYP3A4` |
+| `substance_a_role` | VARCHAR | `substrate`, `inhibitor`, `inducer` — role of substance_a in the shared isoform | `substrate` |
+| `substance_b_role` | VARCHAR | Role of substance_b in the shared isoform | `inhibitor` |
+| `inhibition_strength` | VARCHAR | Strength of the inhibitor/inducer — from `cyp_profiles` | `strong` |
+| `inferred_severity` | VARCHAR | Derived severity estimate: `strong inhibitor + substrate → major`; `weak → minor` | `major` |
+| `inferred_severity_score` | INT | 0–100 — derived using same scale as `ddi_pairs.severity_score` | `65` |
+| `overridden_by_explicit_pair` | BOOLEAN | TRUE if a matching `ddi_pairs` row was found and used instead | `false` |
+| `explicit_pair_id` | UUID FK → ddi_pairs | The explicit pair that overrode this inference — null if not overridden | `null` |
+| `alert_suppressed` | BOOLEAN | TRUE if inferred severity was below alert threshold at scan time | `false` |
+| `created_at` | TIMESTAMP | When this inference was generated | |
+
+**Inference severity derivation rules (Engine 1):**
+
+```
+shared isoform found between substrate A and inhibitor/inducer B:
+
+  inhibition_strength = 'strong'  → inferred_severity = 'major'    (score 65)
+  inhibition_strength = 'moderate' → inferred_severity = 'moderate' (score 35)
+  inhibition_strength = 'weak'    → inferred_severity = 'minor'    (score 15)
+  inducer (any strength)          → inferred_severity = 'moderate' (score 30)
+
+  IF overridden_by_explicit_pair = TRUE
+    → use ddi_pairs row severity instead, do not fire inferred alert
+```
 
 ---
 
@@ -471,8 +522,23 @@ One row per substance per species per route. Always filter on BOTH species AND r
 | `pediatric_min_age_months` | INT | Minimum age | `12` |
 | `pediatric_min_weight_kg` | DECIMAL | Minimum weight | `3.0` |
 | `geriatric_adjustment_pct` | DECIMAL | Reduction for geriatric patients | `null` |
-| `evidence_level` | VARCHAR | `A`, `B`, `C`, `D` — propagates to alert severity | `A` |
+| `evidence_level` | VARCHAR | `A`, `B`, `C`, `D` — evidence grade; applies score modifier to Engine 2 alerts (see modifier table below) | `A` |
 | `data_source_id` | UUID FK → data_sources | | |
+
+**Engine 2 evidence_level score modifier:**
+
+| evidence_level | Score adjustment | Additional flag added to alert |
+|---|---|---|
+| A | ± 0 | — |
+| B | − 5 | — |
+| C | − 15 | `limited_evidence` |
+| D | − 25 (floor: 5) | `theoretical_basis_only`; severity capped at `minor` |
+
+Rules:
+- Applied to the per-alert `severity_score` before it feeds into the Engine 2 engine score.
+- Score floor is 5 — a D-level rule still fires as an informational alert, never silently drops.
+- Adjusted score maps to severity label: ≥ 75 → `major` | 40–74 → `moderate` | 15–39 → `minor` | < 15 → `info`
+- Applies to Engine 2 (dosage) alerts only. Does not affect Engines 1, 3, 4, or 5.
 
 ---
 
@@ -494,30 +560,48 @@ One row per substance per species per route. Always filter on BOTH species AND r
 
 ---
 
-### `allergy_classes` — Engine 3
+### `allergy_class_members` — Engine 3
 
-One row per substance. Cross-reactivity stored as structured JSONB.
+Maps substances to allergy classes. One row per substance-class membership. A substance can belong to more than one class (e.g. amoxicillin-clavulanate is both `beta-lactam` and `beta-lactamase_inhibitor`). Cross-reactivity rules live in `class_cross_reactivity`, not here.
+
+> **Design note**: This replaces the previous `allergy_classes` table which embedded `cross_reactive_with` as JSONB. The JSONB approach required updating every class member's row when a new cross-reactivity was discovered. The normalized design means adding one row to `class_cross_reactivity` is the only change needed.
 
 | Column | Type | Description | Example |
 |--------|------|-------------|---------|
 | `id` | UUID PK | | |
-| `substance_id` | UUID FK → substances | UNIQUE | `tylosin uuid` |
-| `allergy_class` | VARCHAR | `beta-lactam`, `macrolide`, `sulfonamide`, `fluoroquinolone` | `macrolide` |
-| `cross_reactive_with` | JSONB | Structured array — see format below | `[...]` |
+| `substance_id` | UUID FK → substances | | `tylosin uuid` |
+| `allergy_class` | VARCHAR | `beta-lactam`, `macrolide`, `sulfonamide`, `fluoroquinolone`, `aminoglycoside`, `lincosamide`, `tetracycline`, `opioid`, `nsaid` | `macrolide` |
 | `data_source_id` | UUID FK → data_sources | | |
 
-**`cross_reactive_with` JSONB format:**
-```json
-[
-  {
-    "class": "lincosamide",
-    "mechanism": "shared_macrocyclic_ring_structure",
-    "estimated_rate_pct": 15.0,
-    "strength": "moderate",
-    "species_data_available": false,
-    "note": "Rate extrapolated from human data"
-  }
-]
+---
+
+### `class_cross_reactivity` — Engine 3
+
+One row per class pair with a known cross-reactivity relationship. Directional: class_a reacts with class_b. Store both directions if symmetric (two rows). Engine 3 queries this table once per patient allergy class.
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `id` | UUID PK | | |
+| `class_a` | VARCHAR | The class the patient is allergic to | `macrolide` |
+| `class_b` | VARCHAR | The class of the prescribed drug that cross-reacts | `lincosamide` |
+| `mechanism` | VARCHAR | `shared_macrocyclic_ring_structure`, `shared_beta_lactam_ring`, `common_sulfonamide_moiety`, `cross_sensitization`, `unknown` | `shared_macrocyclic_ring_structure` |
+| `estimated_rate_pct` | DECIMAL | Cross-reactivity rate 0–100 | `15.0` |
+| `strength` | VARCHAR | `high`, `moderate`, `low`, `theoretical` | `moderate` |
+| `species_data_available` | BOOLEAN | Rate is from veterinary data (not extrapolated from human) | `false` |
+| `alert_on_cross_react` | BOOLEAN | FALSE = informational note only, do not block | `true` |
+| `note` | TEXT | Caveats on the estimate | `Rate extrapolated from human data` |
+| `data_source_id` | UUID FK → data_sources | | |
+
+**Engine 3 query pattern (replaces JSONB scan):**
+```sql
+-- Find all cross-reactivity alerts for a prescribed substance
+SELECT cr.*
+FROM allergy_class_members acm_prescribed
+JOIN class_cross_reactivity cr ON cr.class_b = acm_prescribed.allergy_class
+JOIN allergy_class_members acm_allergic
+    ON acm_allergic.allergy_class = cr.class_a
+    AND acm_allergic.substance_id = ANY(:patient_allergy_substance_ids)
+WHERE acm_prescribed.substance_id = :prescribed_substance_id;
 ```
 
 ---
@@ -526,13 +610,16 @@ One row per substance. Cross-reactivity stored as structured JSONB.
 
 One row per substance-condition pair. Route-independent.
 
+> **Two axes**: `contraindication_type` describes **severity** (`absolute/relative/caution`). `clinical_category` describes **what triggers the check** — disease-based entries go through the conditions text-matching pipeline; reproductive-category entries are checked directly against the structured `patients.is_pregnant`, `patients.is_lactating`, and `patients.reproductive_status` fields, bypassing free-text normalisation entirely.
+
 | Column | Type | Description | Example |
 |--------|------|-------------|---------|
 | `id` | UUID PK | | |
 | `substance_id` | UUID FK → substances | | `oclacitinib uuid` |
 | `condition_name` | VARCHAR | Normalised condition string | `Active Neoplasia` |
 | `condition_tags` | TEXT[] | Searchable tags — KO and EN variants | `{암,종양,neoplasia,cancer,tumor,lymphoma}` |
-| `contraindication_type` | VARCHAR | `absolute`, `relative`, `caution` | `relative` |
+| `clinical_category` | VARCHAR | What triggers this check: `disease` (default), `reproductive_pregnancy`, `reproductive_lactation`, `reproductive_intact_female`, `reproductive_intact_male`, `age_pediatric` | `disease` |
+| `contraindication_type` | VARCHAR | Severity: `absolute`, `relative`, `caution` | `relative` |
 | `severity` | VARCHAR | `critical`, `major`, `moderate`, `minor` | `major` |
 | `mechanism` | TEXT | Why this drug is dangerous in this condition | `JAK inhibition may promote tumor proliferation` |
 | `species` | TEXT[] | null = all species | `{dog}` |
@@ -542,6 +629,27 @@ One row per substance-condition pair. Route-independent.
 | `alternative_substance_ids` | UUID[] | Safer alternatives | `{lokivetmab-uuid}` |
 | `rag_chunk_ids` | UUID[] | Vector chunks for Engine 4 explanation generation | |
 | `data_source_id` | UUID FK → data_sources | | |
+
+**Engine 4 `clinical_category` routing:**
+```
+IF clinical_category = 'disease'
+  → conditions[] text-matching via condition_synonyms (existing path)
+
+IF clinical_category = 'reproductive_pregnancy'
+  → check patients.is_pregnant = TRUE  (structured boolean, no text matching)
+
+IF clinical_category = 'reproductive_lactation'
+  → check patients.is_lactating = TRUE
+
+IF clinical_category = 'reproductive_intact_female'
+  → check patients.reproductive_status IN ('intact_female', 'pregnant', 'lactating')
+
+IF clinical_category = 'reproductive_intact_male'
+  → check patients.reproductive_status = 'intact_male'
+
+IF clinical_category = 'age_pediatric'
+  → check patients.age_months < contraindications.min_age_months
+```
 
 ---
 
@@ -627,10 +735,13 @@ Each row is one ~500-token chunk from a scientific paper. Uses pgvector for simi
 | `weight_kg` | DECIMAL | Current weight for dose calculation |
 | `age_months` | INT | Age in months |
 | `conditions` | TEXT[] | Free-text — normalised via `condition_synonyms` at scan time |
-| `allergies` | TEXT[] | Drug/class names — matched via `allergy_classes` at scan time |
+| `allergies` | TEXT[] | Drug/class names — matched via `allergy_class_members` at scan time |
 | `lab_creatinine` | DECIMAL | mg/dL — drives `renal_dose_adjustments` |
 | `lab_alt` | DECIMAL | U/L — drives hepatic risk escalation |
 | `lab_bun` | DECIMAL | mg/dL — supplementary renal marker |
+| `reproductive_status` | VARCHAR | `intact_female`, `intact_male`, `spayed`, `neutered`, `pregnant`, `lactating`, `unknown` — structured alternative to relying on free-text `conditions` for reproductive contraindications | `spayed` |
+| `is_pregnant` | BOOLEAN | Explicit pregnancy flag — checked directly by Engine 4 for `reproductive_pregnancy` contraindications | `false` |
+| `is_lactating` | BOOLEAN | Explicit lactation flag — checked directly by Engine 4 for `reproductive_lactation` contraindications | `false` |
 | `created_at` | TIMESTAMP | |
 | `updated_at` | TIMESTAMP | |
 
@@ -651,13 +762,17 @@ Each row is one ~500-token chunk from a scientific paper. Uses pgvector for simi
 |--------|------|-------------|
 | `id` | UUID PK | |
 | `prescription_id` | UUID FK → prescriptions | |
-| `product_id` | UUID FK → products | What was ordered |
-| `variant_id` | UUID FK → product_variants | Specific strength ordered |
-| `resolved_substance_ids` | UUID[] | Populated at scan time from `product_components` |
+| `product_id` | UUID FK → products | NULL for off-label/substance-only items |
+| `variant_id` | UUID FK → product_variants | NULL for off-label/substance-only items |
+| `substance_id` | UUID FK → substances | Direct substance reference — populated when no product match; NULL for product-matched items |
+| `resolved_substance_ids` | UUID[] | Populated at scan time from `product_components` (product path) or directly from `substance_id` (substance path) |
 | `dose_mg_per_kg` | DECIMAL | Prescribed dose in mg/kg |
+| `dose_raw_input` | VARCHAR | Dose as entered by vet — audit field for substance-matched items (e.g. `5mg/kg BID`) |
 | `frequency_hr` | INT | Dosing interval in hours |
 | `duration_days` | INT | Treatment duration |
 | `route` | VARCHAR | Must match `dosing_rules.route` |
+| `match_type` | VARCHAR | How this item was resolved: `product_match`, `substance_match`, `unmatched` |
+| `match_confidence` | VARCHAR | `exact`, `fuzzy`, `manual` — null for `unmatched` items |
 
 ---
 
@@ -717,18 +832,79 @@ Every low/medium confidence RAG extraction queued for pharmacist review.
 
 ### `dur_scan_results`
 
-Every DUR scan stored permanently for audit and future model improvement.
+Every DUR scan stored permanently for audit and future model improvement. The `alerts` JSONB provides full replay fidelity. Structured per-alert analytics live in the companion `dur_alert_events` table.
 
 | Column | Type | Description |
 |--------|------|-------------|
 | `id` | UUID PK | |
 | `prescription_id` | UUID FK → prescriptions | |
-| `alerts` | JSONB | Full alert array from all 5 engines |
+| `alerts` | JSONB | Full alert array from all 5 engines — for replay and display |
 | `final_score` | INT | Composite safety score 0–100 |
 | `engine_scores` | JSONB | `{"e1": 45, "e2": 0, "e3": 100, "e4": 20, "e5": 0}` |
 | `pharmacist_action` | VARCHAR | `approved`, `modified`, `rejected` |
 | `action_notes` | TEXT | What the pharmacist changed or noted |
 | `scanned_at` | TIMESTAMP | |
+
+---
+
+### `dur_alert_events`
+
+One row per individual alert per scan. Written atomically with `dur_scan_results`. Enables aggregate analytics without parsing JSONB — query patterns that `dur_scan_results.alerts` alone cannot support efficiently.
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `id` | UUID PK | | |
+| `scan_id` | UUID FK → dur_scan_results | Parent scan | `uuid` |
+| `engine` | INT | Which engine fired: `1`–`5` | `1` |
+| `alert_type` | VARCHAR | `ddi_explicit`, `ddi_inferred`, `dose_over`, `dose_under`, `dose_route_not_approved`, `allergy_direct`, `allergy_cross_react`, `contraindication`, `breed_risk`, `therapeutic_duplicate` | `ddi_explicit` |
+| `substance_a_id` | UUID FK → substances | Primary substance involved | `cyclosporine uuid` |
+| `substance_b_id` | UUID FK → substances | Secondary substance — null for single-substance alerts | `ketoconazole uuid` |
+| `severity` | VARCHAR | `contraindicated`, `major`, `moderate`, `minor`, `info` | `major` |
+| `severity_score` | INT | 0–100 | `75` |
+| `source_row_id` | UUID | FK to the specific `ddi_pairs`, `contraindications`, etc. row that fired this alert | `uuid` |
+| `source_table` | VARCHAR | Which table `source_row_id` points to | `ddi_pairs` |
+| `pharmacist_disposition` | VARCHAR | `accepted`, `overridden`, `modified`, `pending` — updated when pharmacist acts | `accepted` |
+| `override_reason` | TEXT | Free-text if pharmacist overrides | `null` |
+| `created_at` | TIMESTAMP | |
+
+**Analytics queries this enables:**
+```sql
+-- Most commonly triggered DDI pairs
+SELECT substance_a_id, substance_b_id, COUNT(*) as trigger_count
+FROM dur_alert_events WHERE alert_type = 'ddi_explicit'
+GROUP BY substance_a_id, substance_b_id ORDER BY trigger_count DESC;
+
+-- Override rate by engine
+SELECT engine, COUNT(*) FILTER (WHERE pharmacist_disposition = 'overridden') * 100.0 / COUNT(*) as override_pct
+FROM dur_alert_events GROUP BY engine;
+
+-- Pharmacist override patterns
+SELECT p.prescribing_vet, COUNT(*) as overrides
+FROM dur_alert_events ae
+JOIN dur_scan_results dsr ON dsr.id = ae.scan_id
+JOIN prescriptions p ON p.id = dsr.prescription_id
+WHERE ae.pharmacist_disposition = 'overridden'
+GROUP BY p.prescribing_vet ORDER BY overrides DESC;
+```
+
+---
+
+### `unmatched_drug_log`
+
+Every prescription item that could not be resolved to a known substance at entry time. Written by the drug resolution pipeline (see Section 18). Permanent audit record — not purged after resolution.
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `id` | UUID PK | | |
+| `prescription_item_id` | UUID FK → prescription_items | The item that triggered this | `uuid` |
+| `raw_input` | VARCHAR | Exact text entered by the vet | `CompoundX 혼합제` |
+| `fuzzy_candidates` | JSONB | Top 3 substance matches surfaced to user, with similarity scores | `[{"substance_id": "...", "name": "metronidazole", "score": 0.42}]` |
+| `pharmacist_action` | VARCHAR | `pending`, `resolved_existing`, `added_new`, `dismissed` | `pending` |
+| `resolved_substance_id` | UUID FK → substances | Set when pharmacist links to an existing substance | `null` |
+| `new_synonym_added` | BOOLEAN | TRUE if resolution added a row to `substance_synonyms` to prevent future misses | `false` |
+| `notes` | TEXT | Free-text pharmacist notes | |
+| `created_at` | TIMESTAMP | | |
+| `resolved_at` | TIMESTAMP | | |
 
 ---
 
@@ -783,15 +959,18 @@ Duplicate — log and skip
 **Always extract (directly available):**
 ```
 products:          korean_name_base, route, dosage_form, approved_species
-product_variants:  korean_db_index, korean_name_full, tablet_strength_mg,
+product_variants:  korean_db_index, korean_name_full, strength_value, strength_unit, strength_per,
                    manufacturer, license_number, license_date, license_status,
                    is_prescription_only, package_sizes, storage_conditions,
                    shelf_life_months, split_shelf_life_days,
                    withdrawal_period_*_days
 dosing_rules:      Convert tablet count table to mg/kg. Store mg/kg, not tablet counts.
-allergy_classes:   allergy_class from Korean classification code
+allergy_class_members: allergy_class from Korean classification code
 therapeutic_classes: primary_class from drug class
-contraindications: Any explicit contraindications in 주의사항 section
+contraindications: Any explicit contraindications in 주의사항 section.
+                   임신(pregnancy)/수유(lactation)/생식(reproductive) entries
+                   → set clinical_category = 'reproductive_pregnancy' / 'reproductive_lactation'
+                   → do NOT rely on free-text conditions[] path for these
 ```
 
 **Queue for RAG pipeline (not in Korean DB):**
@@ -1030,7 +1209,8 @@ The `formulary_status` field handles scope gracefully:
 | `ddi_pairs` | PMC + manual | Plumb's | Biggest gap — start RAG here |
 | `dosing_rules` | Korean Vet DB + Plumb's | BSAVA | Dog: 80–90%, Cat: 60–70% |
 | `renal_dose_adjustments` | PMC | Plumb's | 40–60% |
-| `allergy_classes` | Korean DB class codes + PMC | Manual | ~80% |
+| `allergy_class_members` | Korean DB class codes + PMC | Manual | ~80% |
+| `class_cross_reactivity` | PMC | Manual | ~15–20 class pairs initially |
 | `contraindications` | Korean DB + PMC | Plumb's | 70–80% |
 | `breed_pharmacogenomics` | PMC | VCPL (WSU) | 85–90% (MDR1 well documented) |
 | `condition_synonyms` | Manual curation | — | 100% (small table) |
@@ -1055,6 +1235,15 @@ Human drugs used off-label in Korean vets have no product entries in the Korean 
 Exact query flow when a pharmacist clicks "Execute DUR Scan":
 
 ```
+Step 0 — Drug resolution (see Section 18 for full pipeline)
+  IF prescription_items.match_type = 'unmatched'
+    → DUR blocked for this item; prescription stays in dur_pending
+    → Row written to unmatched_drug_log; pharmacist notified
+
+  IF prescription_items.match_type = 'substance_match'
+    → resolved_substance_ids = [prescription_items.substance_id]
+    → Proceed to Step 1; Engine 2 will fire off-label dosing alert
+
 Step 1 — Resolve prescription to substances
   prescription_items
     → product_id → products → substance_id
@@ -1072,10 +1261,19 @@ Step 3 — Check substance category
 Step 4 — All engines run concurrently:
 
   Engine 1 (DDI — 35%):
-    → ddi_pairs (explicit pair lookup)
-    → cyp_profiles (inferred CYP interactions)
-    → pk_parameters + pd_risk_flags (pharmacodynamic overlap)
-    → transporter_profiles + breed_pharmacogenomics (P-gp risk)
+    Pass 1 — Explicit pair lookup (O(1)):
+      → ddi_pairs WHERE (substance_a_id, substance_b_id) matches
+      → If found: use documented severity + management text directly
+
+    Pass 2 — CYP transitive inference (only for pairs NOT in ddi_pairs):
+      → cyp_profiles: find all CYP isoforms where Drug A and Drug B share an isoform
+      → IF Drug A is substrate AND Drug B is inhibitor/inducer of same isoform:
+          derive inferred_severity from inhibition_strength (see ddi_inference_log rules)
+          write record to ddi_inference_log (NOT back to ddi_pairs)
+      → protein_binding displacement check via pk_parameters (albumin site conflict)
+      → pd_risk_flags: additive toxicity flags (e.g. both nephrotoxic)
+      → transporter_profiles: P-gp substrate + inhibitor overlap
+      → breed_pharmacogenomics: MDR1 risk escalation if patient.breed affected
 
   Engine 2 (Dosage — 25%):
     → dosing_rules (filtered: substance + species + route — ALL THREE)
@@ -1083,13 +1281,28 @@ Step 4 — All engines run concurrently:
     → breed_pharmacogenomics.risk_multiplier (if patient.breed affected)
 
   Engine 3 (Allergy — 20%):
-    → allergy_classes (match patient.allergies to allergy_class + cross_reactive_with)
+    → allergy_class_members (resolve prescribed substance → allergy class)
+    → class_cross_reactivity (JOIN: patient allergy class × prescribed drug class)
+    → Direct match: IF prescribed substance_id IN patient.allergies → fire allergy_direct alert
+    → Cross-react match: IF class_cross_reactivity row found → fire allergy_cross_react alert
 
   Engine 4 (Disease — 15%):
-    → condition_synonyms (normalise patient.conditions to canonical names)
-    → contraindications (match canonical conditions)
-    → breed_pharmacogenomics (if patient.breed in affected_breeds)
-    → literature_chunks via pgvector similarity search (RAG explanation)
+    Pass 1 — Disease-based (clinical_category = 'disease'):
+      → condition_synonyms (normalise patient.conditions to canonical names)
+      → contraindications WHERE clinical_category = 'disease' AND condition matches
+
+    Pass 2 — Reproductive (direct structured check, no text matching):
+      → IF patient.is_pregnant:    contraindications WHERE clinical_category = 'reproductive_pregnancy'
+      → IF patient.is_lactating:   contraindications WHERE clinical_category = 'reproductive_lactation'
+      → IF patient.reproductive_status IN ('intact_female','pregnant','lactating'):
+           contraindications WHERE clinical_category = 'reproductive_intact_female'
+      → IF patient.reproductive_status = 'intact_male':
+           contraindications WHERE clinical_category = 'reproductive_intact_male'
+
+    Pass 3 — Age and breed:
+      → contraindications WHERE clinical_category = 'age_pediatric' AND patient.age_months < min_age_months
+      → breed_pharmacogenomics (if patient.breed in affected_breeds)
+      → literature_chunks via pgvector similarity search (RAG explanation)
 
   Engine 5 (Duplication — 5%):
     → therapeutic_classes (compare primary_class across all substances)
@@ -1100,35 +1313,55 @@ Step 5 — Data completeness check
     → Append warning banner to all alerts
 
 Step 6 — Score aggregation and storage
-  → Weighted composite score across all engines
-  → Write to dur_scan_results with full alert JSONB
+
+  Per-engine score = highest severity_score of any alert fired by that engine
+    (0 if no alerts fired)
+    Severity → score mapping: contraindicated=100, major=75, moderate=40, minor=15, info=5
+
+  Weighted composite:
+    raw_score = (E1_score × 0.35) + (E2_score × 0.25) + (E3_score × 0.20)
+              + (E4_score × 0.15) + (E5_score × 0.05)
+    final_score = ROUND(raw_score)
+
+  Hard override rule:
+    IF any alert has severity = 'contraindicated'
+      → final_score = 100  (regardless of weighted sum)
+    engine_scores always records the actual per-engine scores for analytics,
+    even when the hard override fires.
+
+  → Write to dur_scan_results (alerts JSONB, final_score, engine_scores)
+  → Write one row per alert to dur_alert_events (atomic with above)
 ```
 
 ---
 
 ## 17. Database Scale Estimates
 
-Based on analysis of Korean Veterinary Drug Database (`dog_drugs_cleaned.jsonl` — 877 pharmaceutical products):
+Based on analysis of Korean Veterinary Drug Database (`dog_drugs_cleaned.jsonl` — 742 pharmaceutical products after 수출용 removal):
 
 | Metric | Estimate |
 |--------|----------|
-| Total tables | 27 (includes `product_multi_routes`) |
-| Products | ~1,100–1,200 rows (multi-route expansion from ~877 raw entries) |
-| Product variants | ~2,500–3,200 rows (multiple strengths per product) |
-| Product multi-routes mappings | ~600–800 rows (45.7% of products have 2+ routes) |
-| Substances | ~600–650 rows |
-| cyp_profiles rows | ~2,000–2,500 |
-| pk_parameters rows | ~2,000–2,500 |
-| pd_risk_flags rows | ~600–650 |
-| transporter_profiles rows | ~600–650 |
-| ddi_pairs rows | ~5,000–15,000 |
-| dosing_rules rows | ~4,500–6,000 (multiple routes ×  species variations) |
-| allergy_classes rows | ~600–650 |
-| contraindications rows | ~1,500–2,000 |
+| Total tables | 30 (includes `product_multi_routes`, `ddi_inference_log`, `allergy_class_members`, `class_cross_reactivity`, `dur_alert_events`, `unmatched_drug_log`) |
+| Products | ~900–1,000 rows (multi-route expansion from ~742 raw entries) |
+| Product variants | ~2,000–2,600 rows (multiple strengths per product) |
+| Product multi-routes mappings | ~500–650 rows (45.7% of products have 2+ routes) |
+| Substances | ~580–630 rows |
+| cyp_profiles rows | ~1,800–2,200 |
+| pk_parameters rows | ~1,800–2,200 |
+| pd_risk_flags rows | ~580–630 |
+| transporter_profiles rows | ~580–630 |
+| ddi_pairs rows | ~3,000–8,000 (explicit + RAG-reviewed pairs only; CYP-inferred pairs are NOT pre-stored) |
+| dosing_rules rows | ~4,000–5,500 (multiple routes × species variations) |
+| allergy_class_members rows | ~700–800 (substances × avg 1.2 classes each) |
+| class_cross_reactivity rows | ~30–60 (15–20 class pairs × 2 directions) |
+| contraindications rows | ~1,200–1,800 |
 | condition_synonyms rows | ~300–500 |
-| therapeutic_classes rows | ~600–650 |
-| literature_chunks (pgvector) | ~40,000–120,000 |
-| Vector storage (1536-dim) | ~700MB |
+| therapeutic_classes rows | ~580–630 |
+| ddi_inference_log rows | ~50–200 per scan; purge/archive after 90 days |
+| unmatched_drug_log rows | ~1–5% of prescription items; permanent record |
+| dur_alert_events rows | ~3–15 per scan; permanent audit record |
+| literature_chunks (pgvector) | ~38,000–110,000 |
+| Vector storage (1536-dim) | ~650MB |
 | Total database size | ~2–5GB including indexes |
 | DUR scan query time | <200ms all engines |
 
@@ -1138,6 +1371,71 @@ Based on analysis of Korean Veterinary Drug Database (`dog_drugs_cleaned.jsonl` 
 - 63.2% of products have ml/concentration dosing information
 - 35.1% of dataset excluded from DUR (feed-based supplements, topical procedures)
 - 93.5% products have single active ingredient; 5.8% have 2+ components
+
+---
+
+## 18. Drug Resolution Pipeline (Input Normalization)
+
+Runs **before** the DUR scan, at prescription item entry time. Converts whatever the vet typed into a resolvable substance or product. All three outcomes produce a valid `prescription_items` row — they differ in which fields are populated and what the scan can do.
+
+### Resolution Steps
+
+```
+Input: raw text entered by vet (e.g. "메트로니다졸", "metronidazole 250mg", "CompoundX 혼합제")
+          │
+          ▼
+Step 1 — Exact match (fast path)
+  substance_synonyms.synonym = input  (case-insensitive, trimmed)
+  OR substances.inn_name = normalize(input)
+  OR substances.korean_name = input
+  OR product name match → products → substance_id
+          │
+    match found → OUTCOME A (product_match or substance_match)
+          │ no match
+          ▼
+Step 2 — Fuzzy match (pg_trgm trigram similarity ≥ 0.40)
+  Run against: substance_synonyms.synonym, substances.inn_name, substances.korean_name
+  Return top 3 candidates with scores
+  Surface to vet: "Did you mean: metronidazole (0.81) / ornidazole (0.52) / tinidazole (0.44)?"
+          │
+    vet confirms → OUTCOME A (substance_match, match_confidence='fuzzy')
+    vet rejects all → OUTCOME B (unmatched)
+```
+
+### Three Outcomes
+
+**Outcome A — product_match** (Korean-licensed or human-label product found):
+- `prescription_items.product_id` populated
+- `prescription_items.substance_id` = NULL
+- `match_type = 'product_match'`
+- DUR scan: all 5 engines run, full data
+
+**Outcome A — substance_match** (substance known, no product row):
+- `prescription_items.product_id` = NULL
+- `prescription_items.substance_id` populated
+- `match_type = 'substance_match'`
+- DUR scan: Engines 1, 3, 4, 5 run normally
+- Engine 2: fires `dose_route_not_approved` alert (`info` severity): *"No approved veterinary dosing data — off-label use, manual dose review required"*
+- `dose_raw_input` stores exactly what the vet entered
+
+**Outcome B — unmatched** (nothing found after fuzzy):
+- `prescription_items.match_type = 'unmatched'`
+- `prescription_items.product_id` = NULL, `substance_id` = NULL
+- DUR scan: **blocked** for this item — engines cannot run against an unknown substance
+- Row written to `unmatched_drug_log` with `pharmacist_action = 'pending'`
+- Pharmacist is notified; prescription stays in `dur_pending` status
+
+### What the Pharmacist Does with `unmatched_drug_log`
+
+| Action | What happens |
+|--------|-------------|
+| `resolved_existing` | Links `resolved_substance_id` to an existing substance; adds synonym to `substance_synonyms` (`new_synonym_added = TRUE`); DUR scan re-runs automatically |
+| `added_new` | Creates a new `substances` row; queues it for RAG pipeline; DUR scan re-runs when data available |
+| `dismissed` | Removes the item from the prescription; scan proceeds without it |
+
+### Self-Healing Synonyms
+
+When a pharmacist resolves an unmatched entry to an existing substance, the resolution flow **always** asks: *"Add '[raw_input]' as a synonym for [substance]?"*. If confirmed, a row is inserted into `substance_synonyms`. The next vet who types the same thing gets an exact match. The `unmatched_drug_log` table is the data source for synonym gap analysis.
 
 ---
 
