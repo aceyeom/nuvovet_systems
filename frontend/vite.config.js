@@ -17,7 +17,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false,
-    minify: 'terser'
+    minify: 'esbuild'
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'lucide-react']
