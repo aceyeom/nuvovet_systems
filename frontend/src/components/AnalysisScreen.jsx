@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { CheckCircle, Loader2, Database, Shield, Beaker, BookOpen, Dna, Globe } from 'lucide-react';
+import { NuvovetLogo } from './NuvovetLogo';
+import { MolecularBackground } from './MolecularBackground';
 
 const ANALYSIS_STEPS = [
   {
@@ -52,7 +54,6 @@ export function AnalysisScreen({ onComplete, drugCount, species }) {
 
   useEffect(() => {
     let timer;
-    let elapsed = 0;
 
     const runStep = (index) => {
       if (index >= ANALYSIS_STEPS.length) {
@@ -68,34 +69,37 @@ export function AnalysisScreen({ onComplete, drugCount, species }) {
       }, ANALYSIS_STEPS[index].duration);
     };
 
-    // Small initial delay for smooth transition
     timer = setTimeout(() => runStep(0), 300);
 
     return () => clearTimeout(timer);
   }, [onComplete]);
 
   return (
-    <div className="min-h-[60vh] flex flex-col items-center justify-center px-6 py-12">
-      <div className="max-w-sm w-full">
-        {/* Pulsing indicator */}
+    <div className="relative min-h-screen flex flex-col items-center justify-center">
+      {/* Full-screen molecular background */}
+      <MolecularBackground />
+
+      {/* Content overlay */}
+      <div className="relative z-10 max-w-sm w-full px-6 py-12">
+        {/* Logo */}
         <div className="flex items-center justify-center mb-8">
           <div className="relative">
-            <div className="w-14 h-14 bg-slate-900 rounded-2xl flex items-center justify-center">
-              <Shield size={24} className="text-white" />
+            <NuvovetLogo size={56} className="text-slate-900" />
+            <div className="absolute inset-0 animate-ping opacity-20">
+              <NuvovetLogo size={56} className="text-slate-900" />
             </div>
-            <div className="absolute inset-0 w-14 h-14 bg-slate-900/20 rounded-2xl animate-ping" />
           </div>
         </div>
 
-        <h2 className="text-center text-lg font-semibold text-slate-900 mb-1">
+        <h2 className="text-center typo-page-title mb-1">
           Running DUR Analysis
         </h2>
-        <p className="text-center text-xs text-slate-400 mb-8">
+        <p className="text-center typo-label mb-8">
           Screening {drugCount} drug{drugCount !== 1 ? 's' : ''} for {species === 'dog' ? 'canine' : 'feline'} patient
         </p>
 
         {/* Steps */}
-        <div className="space-y-3">
+        <div className="space-y-3 bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-slate-200/50 shadow-sm">
           {ANALYSIS_STEPS.map((step, index) => {
             const isCompleted = completedSteps.includes(step.id);
             const isActive = activeStep === index && !isCompleted;
@@ -119,11 +123,11 @@ export function AnalysisScreen({ onComplete, drugCount, species }) {
                   )}
                 </div>
                 <div>
-                  <p className={`text-sm ${isCompleted ? 'text-slate-600' : isActive ? 'text-slate-900 font-medium' : 'text-slate-400'}`}>
+                  <p className={`text-[13px] ${isCompleted ? 'text-slate-600' : isActive ? 'text-slate-900 font-medium' : 'text-slate-400'}`}>
                     {step.label}
                   </p>
                   {isActive && (
-                    <p className="text-xs text-slate-400 mt-0.5 animate-fade-in">
+                    <p className="text-[11px] text-slate-400 mt-0.5 animate-fade-in">
                       {step.detail}
                     </p>
                   )}

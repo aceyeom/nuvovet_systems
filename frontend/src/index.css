@@ -9,8 +9,7 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', 'Roboto',
-    'Helvetica Neue', Arial, sans-serif;
+  font-family: 'DM Sans', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #ffffff;
@@ -24,6 +23,58 @@ html {
 html, body, #root {
   height: 100%;
   width: 100%;
+}
+
+/* ── Typography hierarchy ──────────────────────────────────────── */
+
+.typo-page-title {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: #0f172a;
+  line-height: 1.3;
+}
+
+.typo-section-header {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #94a3b8;
+}
+
+.typo-drug-name {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.typo-body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #334155;
+  line-height: 1.6;
+}
+
+.typo-label {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: #94a3b8;
+}
+
+.typo-score {
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 13px;
+}
+
+.typo-rec {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
 }
 
 /* ── Animations ───────────────────────────────────────────────── */
@@ -53,6 +104,25 @@ html, body, #root {
   50% { opacity: 0.7; }
 }
 
+@keyframes expandIn {
+  from { max-height: 0; opacity: 0; }
+  to { max-height: 600px; opacity: 1; }
+}
+
+@keyframes growWidth {
+  from { width: 0; }
+}
+
+@keyframes slideUpBar {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes staggerFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .animate-fade-in {
   animation: fadeIn 0.3s ease-out forwards;
 }
@@ -71,6 +141,31 @@ html, body, #root {
 
 .animate-pulse-subtle {
   animation: pulseSubtle 2s ease-in-out infinite;
+}
+
+.animate-expand-in {
+  animation: expandIn 0.3s ease-out forwards;
+  overflow: hidden;
+}
+
+.animate-grow-width {
+  animation: growWidth 0.8s ease-out forwards;
+}
+
+.animate-slide-up-bar {
+  animation: slideUpBar 0.4s ease-out forwards;
+}
+
+.animate-stagger-fade-in {
+  animation: staggerFadeIn 0.3s ease-out both;
+}
+
+/* ── Dot grid background pattern ──────────────────────────────── */
+
+.bg-dot-grid {
+  background-image: radial-gradient(circle, #0f172a 0.5px, transparent 0.5px);
+  background-size: 20px 20px;
+  opacity: 0.03;
 }
 
 /* ── Scrollbar ────────────────────────────────────────────────── */
@@ -108,4 +203,31 @@ input:focus, button:focus-visible {
 
 .transition-600 {
   transition-duration: 600ms;
+}
+
+/* ── Print styles ──────────────────────────────────────────────── */
+
+@media print {
+  body {
+    background: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-break-inside-avoid {
+    break-inside: avoid;
+  }
+
+  * {
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  .print-show {
+    display: block !important;
+  }
 }
