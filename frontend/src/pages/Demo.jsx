@@ -1,16 +1,18 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  Shield, ArrowLeft, ArrowRight, Zap, ChevronRight, ChevronDown, ChevronUp,
+  ArrowLeft, ArrowRight, Zap, ChevronRight, ChevronDown, ChevronUp,
   Heart, Thermometer, Weight, Calendar, AlertCircle,
   Plus, X, Search, Pencil, FileText, Activity
 } from 'lucide-react';
+import { NuvovetLogo, NuvovetWordmark } from '../components/NuvovetLogo';
 import { DrugInput } from '../components/DrugInput';
 import { AnalysisScreen } from '../components/AnalysisScreen';
 import { ResultsDisplay } from '../components/ResultsDisplay';
 import { getDrugById } from '../data/drugDatabase';
 import { getBreedsForSpecies, getBreedProfile } from '../data/breedProfiles';
 import { runFullDURAnalysis } from '../utils/durEngine';
+import { getBreedImage } from '../assets/breeds/index';
 
 // ── Common veterinary conditions for autocomplete ───────────────
 const COMMON_CONDITIONS = [
@@ -43,15 +45,38 @@ function StepIndicator({ current, steps }) {
   );
 }
 
+// ── Breed image helper ──────────────────────────────────────────
+function BreedPhoto({ breedId, species, size = 44, className = '' }) {
+  const src = getBreedImage(breedId);
+  if (src) {
+    return (
+      <img
+        src={src}
+        alt={breedId}
+        className={`rounded-full object-cover border-2 border-slate-200 bg-slate-50 ${className}`}
+        style={{ width: size, height: size }}
+      />
+    );
+  }
+  return (
+    <div
+      className={`rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-xl shrink-0 ${className}`}
+      style={{ width: size, height: size }}
+    >
+      {species === 'dog' ? '🐕' : '🐈'}
+    </div>
+  );
+}
+
 // ── Step 1: Species Selection ───────────────────────────────────
 function SpeciesStep({ onSelect }) {
   const [hovered, setHovered] = useState(null);
 
   return (
     <div className="flex-1 flex flex-col items-center justify-center px-5 py-10 sm:py-16 animate-slide-in">
-      <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Step 1</p>
-      <h2 className="text-xl sm:text-2xl font-bold text-slate-900 text-center mb-2">Select Species</h2>
-      <p className="text-sm text-slate-500 text-center mb-10 max-w-sm">
+      <p className="typo-section-header mb-2">Step 1</p>
+      <h2 className="typo-page-title text-center mb-2">Select Species</h2>
+      <p className="typo-body text-center mb-10 max-w-sm">
         Choose the patient species to load a sample clinical case.
       </p>
 
@@ -80,8 +105,8 @@ function SpeciesStep({ onSelect }) {
               />
             </div>
             <div>
-              <p className="text-sm font-semibold text-slate-900">{sp.label}</p>
-              <p className="text-xs text-slate-400 mt-0.5">{sp.sub}</p>
+              <p className="typo-drug-name">{sp.label}</p>
+              <p className="typo-label mt-0.5">{sp.sub}</p>
             </div>
           </button>
         ))}
@@ -101,9 +126,9 @@ function BreedStep({ species, onSelect, onBack }) {
           <ArrowLeft size={14} /> Back
         </button>
 
-        <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Step 2</p>
-        <h2 className="text-xl font-bold text-slate-900 mb-1.5">Select Breed</h2>
-        <p className="text-sm text-slate-500 mb-8">
+        <p className="typo-section-header mb-2">Step 2</p>
+        <h2 className="typo-page-title mb-1.5">Select Breed</h2>
+        <p className="typo-body mb-8">
           Each breed comes with a realistic patient profile and clinical history.
         </p>
 
@@ -114,12 +139,10 @@ function BreedStep({ species, onSelect, onBack }) {
               onClick={() => onSelect(breed.id)}
               className="w-full flex items-center gap-4 p-4 bg-white border border-slate-200 rounded-xl hover:border-slate-300 hover:shadow-sm transition-all duration-200 text-left group"
             >
-              <div className="w-11 h-11 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-xl shrink-0">
-                {species === 'dog' ? '🐕' : '🐈'}
-              </div>
+              <BreedPhoto breedId={breed.id} species={species} size={56} />
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-slate-800">{breed.breed}</p>
-                <p className="text-xs text-slate-400 mt-0.5 truncate">
+                <p className="typo-drug-name">{breed.breed}</p>
+                <p className="typo-label mt-0.5 truncate">
                   {breed.profile.name} · {breed.profile.age} · {breed.profile.conditions.join(', ')}
                 </p>
                 {breed.demonstrates && (
@@ -138,7 +161,7 @@ function BreedStep({ species, onSelect, onBack }) {
 }
 
 // ── Step 3: Patient EMR Profile (Collapsed Summary) ─────────────
-function PatientProfileStep({ profile, breed, species, onUpdateProfile, onContinue, onBack }) {
+function PatientProfileStep({ profile, breed, breedId, species, onUpdateProfile, onContinue, onBack }) {
   const p = profile;
   const [expanded, setExpanded] = useState(false);
 
@@ -191,24 +214,22 @@ function PatientProfileStep({ profile, breed, species, onUpdateProfile, onContin
         </button>
 
         <div>
-          <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Step 3</p>
-          <h2 className="text-xl font-bold text-slate-900 mb-1">Patient Chart</h2>
-          <p className="text-sm text-slate-500">Review the patient profile before prescribing.</p>
+          <p className="typo-section-header mb-2">Step 3</p>
+          <h2 className="typo-page-title mb-1">Patient Chart</h2>
+          <p className="typo-body">Review the patient profile before prescribing.</p>
         </div>
 
         {/* ── Summary Card (always visible) ── */}
-        <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+        <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
           <div className="px-4 py-3.5 bg-slate-50 border-b border-slate-100 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-lg">
-                {species === 'dog' ? '🐕' : '🐈'}
-              </div>
+              <BreedPhoto breedId={breedId} species={species} size={80} className="border-slate-200" />
               <div>
-                <h3 className="text-sm font-bold text-slate-900">{p.name}</h3>
-                <p className="text-xs text-slate-400">{breed} · {species === 'dog' ? 'Canine' : 'Feline'} · {p.sex}</p>
+                <h3 className="typo-drug-name text-[15px]">{p.name}</h3>
+                <p className="typo-label">{breed} · {species === 'dog' ? 'Canine' : 'Feline'} · {p.sex}</p>
               </div>
             </div>
-            <span className="text-xs px-2 py-1 bg-slate-200/60 text-slate-500 rounded-full font-medium">
+            <span className="typo-label px-2 py-1 bg-slate-200/60 text-slate-500 rounded-full">
               Demo Patient
             </span>
           </div>
@@ -216,11 +237,11 @@ function PatientProfileStep({ profile, breed, species, onUpdateProfile, onContin
           {/* Key facts row */}
           <div className="px-4 py-3 grid grid-cols-3 gap-3">
             <div>
-              <p className="text-[10px] text-slate-400 uppercase">Age</p>
-              <p className="text-sm font-semibold text-slate-900">{p.age}</p>
+              <p className="typo-label uppercase">Age</p>
+              <p className="typo-drug-name text-[14px]">{p.age}</p>
             </div>
             <div>
-              <p className="text-[10px] text-slate-400 uppercase">Weight</p>
+              <p className="typo-label uppercase">Weight</p>
               {editingWeight ? (
                 <input
                   type="number"
@@ -234,7 +255,7 @@ function PatientProfileStep({ profile, breed, species, onUpdateProfile, onContin
               ) : (
                 <button
                   onClick={() => setEditingWeight(true)}
-                  className="text-sm font-semibold text-slate-900 hover:text-slate-600 inline-flex items-center gap-1 group"
+                  className="typo-drug-name text-[14px] hover:text-slate-600 inline-flex items-center gap-1 group"
                 >
                   {p.weight} kg
                   <Pencil size={9} className="text-slate-300 group-hover:text-slate-500 transition-colors" />
@@ -242,14 +263,14 @@ function PatientProfileStep({ profile, breed, species, onUpdateProfile, onContin
               )}
             </div>
             <div>
-              <p className="text-[10px] text-slate-400 uppercase">BCS</p>
-              <p className="text-sm font-semibold text-slate-900">{p.bodyCondition}</p>
+              <p className="typo-label uppercase">BCS</p>
+              <p className="typo-drug-name text-[14px]">{p.bodyCondition}</p>
             </div>
           </div>
 
           {/* Active conditions */}
           <div className="px-4 pb-3">
-            <p className="text-[10px] text-slate-400 uppercase mb-1.5">Active Conditions</p>
+            <p className="typo-label uppercase mb-1.5">Active Conditions</p>
             <div className="flex flex-wrap gap-1.5">
               {p.conditions.map((cond, i) => (
                 <span key={i} className="inline-flex items-center gap-1 px-2 py-0.5 bg-amber-50 text-amber-700 text-xs font-medium rounded-full border border-amber-100">
@@ -309,7 +330,7 @@ function PatientProfileStep({ profile, breed, species, onUpdateProfile, onContin
           {/* Abnormal labs auto-surfaced */}
           {abnormalLabs.length > 0 && (
             <div className="px-4 pb-3">
-              <p className="text-[10px] text-slate-400 uppercase mb-1.5">Flagged Lab Values</p>
+              <p className="typo-label uppercase mb-1.5">Flagged Lab Values</p>
               <div className="flex flex-wrap gap-2">
                 {abnormalLabs.map((lab, i) => (
                   <span
@@ -338,9 +359,9 @@ function PatientProfileStep({ profile, breed, species, onUpdateProfile, onContin
         {expanded && (
           <div className="space-y-5 animate-fade-in">
             {/* Vitals grid */}
-            <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+            <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
               <div className="px-4 py-2.5 bg-slate-50 border-b border-slate-100">
-                <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Vitals</span>
+                <span className="typo-section-header">Vitals</span>
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-slate-100">
                 {[
@@ -351,29 +372,29 @@ function PatientProfileStep({ profile, breed, species, onUpdateProfile, onContin
                 ].map((v, i) => (
                   <div key={i} className="px-3 py-3 text-center">
                     <v.icon size={13} className="text-slate-400 mx-auto mb-1" />
-                    <p className="text-xs text-slate-400 mb-0.5">{v.label}</p>
-                    <p className="text-sm font-semibold text-slate-900">{v.value}</p>
+                    <p className="typo-label mb-0.5">{v.label}</p>
+                    <p className="typo-drug-name text-[14px]">{v.value}</p>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Body Condition */}
-            <div className="bg-white border border-slate-200 rounded-xl px-4 py-3 flex items-center justify-between">
+            <div className="bg-white border border-slate-200 rounded-xl px-4 py-3 flex items-center justify-between shadow-sm">
               <div>
-                <p className="text-xs text-slate-400 mb-0.5">Body Condition Score</p>
-                <p className="text-sm font-semibold text-slate-900">{p.bodyCondition}</p>
+                <p className="typo-label mb-0.5">Body Condition Score</p>
+                <p className="typo-drug-name text-[14px]">{p.bodyCondition}</p>
               </div>
               <div>
-                <p className="text-xs text-slate-400 mb-0.5">Resp Rate</p>
-                <p className="text-sm font-semibold text-slate-900">{p.respRate}</p>
+                <p className="typo-label mb-0.5">Resp Rate</p>
+                <p className="typo-drug-name text-[14px]">{p.respRate}</p>
               </div>
             </div>
 
             {/* Allergies */}
-            <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+            <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
               <div className="px-4 py-2.5 bg-slate-50 border-b border-slate-100 flex items-center justify-between">
-                <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Known Allergies</span>
+                <span className="typo-section-header">Known Allergies</span>
                 <button
                   onClick={() => setShowAddAllergy(true)}
                   className="text-xs text-slate-400 hover:text-slate-600 flex items-center gap-1 transition-colors"
@@ -383,7 +404,7 @@ function PatientProfileStep({ profile, breed, species, onUpdateProfile, onContin
               </div>
               <div className="px-4 py-3">
                 {p.allergies.length === 0 ? (
-                  <p className="text-xs text-slate-400 italic">No known allergies (NKDA)</p>
+                  <p className="typo-body italic">No known allergies (NKDA)</p>
                 ) : (
                   <div className="flex flex-wrap gap-2">
                     {p.allergies.map((allergy, i) => (
@@ -434,14 +455,14 @@ function PatientProfileStep({ profile, breed, species, onUpdateProfile, onContin
             </div>
 
             {/* Lab Results */}
-            <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+            <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
               <div className="px-4 py-2.5 bg-slate-50 border-b border-slate-100">
-                <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">All Lab Results</span>
+                <span className="typo-section-header">All Lab Results</span>
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-3 divide-x divide-y divide-slate-100">
                 {Object.entries(p.labResults).map(([key, lab]) => (
                   <div key={key} className="px-3 py-2.5">
-                    <p className="text-xs text-slate-400 uppercase mb-0.5">{key}</p>
+                    <p className="typo-label uppercase mb-0.5">{key}</p>
                     <p className={`text-sm font-semibold ${lab.status === 'high' ? 'text-red-600' : lab.status === 'low' ? 'text-amber-600' : 'text-slate-900'}`}>
                       {lab.value}
                       <span className="text-xs font-normal text-slate-400 ml-1">{lab.unit}</span>
@@ -457,12 +478,12 @@ function PatientProfileStep({ profile, breed, species, onUpdateProfile, onContin
             </div>
 
             {/* Clinical History */}
-            <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+            <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
               <div className="px-4 py-2.5 bg-slate-50 border-b border-slate-100">
-                <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Clinical History</span>
+                <span className="typo-section-header">Clinical History</span>
               </div>
               <div className="px-4 py-3">
-                <p className="text-xs text-slate-600 leading-relaxed">{p.history}</p>
+                <p className="typo-body leading-relaxed">{p.history}</p>
               </div>
             </div>
           </div>
@@ -491,16 +512,16 @@ function MedicationStep({ drugs, species, patientName, onAddDrug, onRemoveDrug, 
         </button>
 
         <div>
-          <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Step 4</p>
-          <h2 className="text-xl font-bold text-slate-900 mb-1">Prescriptions</h2>
-          <p className="text-sm text-slate-500">
+          <p className="typo-section-header mb-2">Step 4</p>
+          <h2 className="typo-page-title mb-1">Prescriptions</h2>
+          <p className="typo-body">
             Review current medications for <span className="font-medium text-slate-700">{patientName}</span>. Add or remove drugs, then run the DUR scan.
           </p>
         </div>
 
         {/* Drug input */}
-        <div className="bg-white border border-slate-200 rounded-xl p-4">
-          <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">
+        <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+          <h3 className="typo-section-header mb-3">
             Current Medications ({drugs.length})
           </h3>
           <DrugInput
@@ -523,7 +544,7 @@ function MedicationStep({ drugs, species, patientName, onAddDrug, onRemoveDrug, 
         </button>
 
         {drugs.length < 2 && (
-          <p className="text-xs text-slate-400 text-center">
+          <p className="typo-label text-center">
             Add at least 2 drugs to check interactions
           </p>
         )}
@@ -604,10 +625,27 @@ export default function Demo() {
     setResults(null);
   };
 
+  // Build enriched patient info for results
+  const abnormalLabs = profile ? Object.entries(profile.labResults || {})
+    .filter(([, lab]) => lab.status !== 'normal')
+    .map(([key, lab]) => ({ key, ...lab })) : [];
+
+  const patientInfo = profile ? {
+    name: profile.name,
+    species,
+    breed: breedName,
+    weight: profile.weight,
+    conditions: profile.conditions,
+    flaggedLabs: abnormalLabs,
+  } : { name: profile?.name, species };
+
   return (
-    <div className="min-h-screen bg-gray-50/50 flex flex-col">
+    <div className="min-h-screen bg-gray-50/50 flex flex-col relative">
+      {/* Dot grid background */}
+      <div className="fixed inset-0 bg-dot-grid pointer-events-none" />
+
       {/* Header */}
-      <header className="bg-white px-4 sm:px-6 py-3 flex items-center justify-between border-b border-slate-200 sticky top-0 z-20">
+      <header className="bg-white/90 backdrop-blur-sm px-4 sm:px-6 py-3 flex items-center justify-between border-b border-slate-200 sticky top-0 z-20">
         <div className="flex items-center gap-3">
           <button
             onClick={() => {
@@ -623,13 +661,11 @@ export default function Demo() {
             <ArrowLeft size={18} />
           </button>
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 bg-slate-900 rounded-lg flex items-center justify-center">
-              <Shield size={13} className="text-white" />
-            </div>
-            <span className="text-sm font-semibold text-slate-900">VetDUR</span>
+            <NuvovetLogo size={28} className="text-slate-900" />
+            <NuvovetWordmark />
           </div>
         </div>
-        <span className="text-xs px-2.5 py-1 bg-slate-100 text-slate-500 rounded-full font-medium">
+        <span className="typo-label px-2.5 py-1 bg-slate-100 text-slate-500 rounded-full">
           Demo
         </span>
       </header>
@@ -656,6 +692,7 @@ export default function Demo() {
         <PatientProfileStep
           profile={profile}
           breed={breedName}
+          breedId={breedId}
           species={species}
           onUpdateProfile={handleUpdateProfile}
           onContinue={() => setStep('medications')}
@@ -689,7 +726,7 @@ export default function Demo() {
             results={results}
             onBack={handleBackToMeds}
             onNewAnalysis={handleNewAnalysis}
-            patientInfo={{ name: profile?.name, species }}
+            patientInfo={patientInfo}
           />
         </main>
       )}

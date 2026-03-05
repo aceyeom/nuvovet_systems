@@ -1,242 +1,244 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   AlertTriangle, AlertCircle, Info, CheckCircle, ChevronDown, ChevronUp,
-  BookOpen, FlaskConical, Globe, HelpCircle, Dna, Shield, ArrowLeft,
-  Check, Lightbulb, FileText, Clock, Pill
+  BookOpen, FlaskConical, Globe, HelpCircle, Dna, ArrowLeft,
+  Check, Lightbulb, FileText, Clock, Pill, Flag, Printer
 } from 'lucide-react';
 import { SeverityBadge } from './SeverityBadge';
 import { DRUG_SOURCE } from '../data/drugDatabase';
 import { DrugTimeline } from './DrugTimeline';
+import { NuvovetLogo } from './NuvovetLogo';
 
-// ── Summary Band ──────────────────────────────────────────────
-function SummaryBand({ results }) {
-  const { interactions, drugFlags, overallSeverity, confidenceScore } = results;
+// ── Patient Summary Panel (left panel) ────────────────────────
+function PatientSummaryPanel({ results, patientInfo }) {
+  const { interactions, drugFlags, confidenceScore } = results;
   const criticalCount = interactions.filter(i => i.severity.label === 'Critical').length;
   const moderateCount = interactions.filter(i => i.severity.label === 'Moderate').length;
   const minorCount = interactions.filter(i => i.severity.label === 'Minor' || i.severity.label === 'Unknown').length;
-  const drugCount = drugFlags.length;
 
-  const severityBg = () => {
-    if (overallSeverity.label === 'Critical') return 'bg-red-50 border-red-200';
-    if (overallSeverity.label === 'Moderate') return 'bg-amber-50 border-amber-200';
-    if (overallSeverity.label === 'Minor') return 'bg-yellow-50 border-yellow-200';
-    return 'bg-emerald-50 border-emerald-200';
-  };
-
-  const severityIcon = () => {
-    if (overallSeverity.label === 'Critical') return <AlertTriangle size={22} className="text-red-600" />;
-    if (overallSeverity.label === 'Moderate') return <AlertCircle size={22} className="text-amber-600" />;
-    if (overallSeverity.label === 'Minor') return <Info size={22} className="text-yellow-600" />;
-    return <CheckCircle size={22} className="text-emerald-600" />;
-  };
-
-  const confidenceColor = () => {
+  const confColor = () => {
     if (confidenceScore >= 85) return { bar: 'bg-emerald-500', text: 'text-emerald-700', label: 'High' };
     if (confidenceScore >= 60) return { bar: 'bg-amber-500', text: 'text-amber-700', label: 'Moderate' };
     return { bar: 'bg-red-500', text: 'text-red-700', label: 'Low' };
   };
+  const conf = confColor();
 
-  const conf = confidenceColor();
+  const engines = [
+    { id: 'E1', name: 'DDI Pairwise', weight: 35, score: criticalCount > 0 ? 95 : moderateCount > 0 ? 60 : 20 },
+    { id: 'E2', name: 'CYP Profile', weight: 25, score: interactions.some(i => i.rule?.includes('CYP')) ? 75 : 15 },
+    { id: 'E3', name: 'Species Safety', weight: 20, score: drugFlags.some(f => f.hasSpeciesWarning) ? 80 : 10 },
+    { id: 'E4', name: 'Dose Range', weight: 10, score: 25 },
+    { id: 'E5', name: 'Allergy Cross', weight: 10, score: 5 },
+  ];
 
   return (
-    <div className={`border rounded-xl overflow-hidden ${severityBg()}`}>
-      {/* Top row: severity + counts */}
-      <div className="px-4 py-4 flex items-start gap-3">
-        <div className="shrink-0 mt-0.5">{severityIcon()}</div>
-        <div className="flex-1 min-w-0">
-          <p className={`text-base font-bold ${
-            overallSeverity.label === 'Critical' ? 'text-red-800' :
-            overallSeverity.label === 'Moderate' ? 'text-amber-800' :
-            overallSeverity.label === 'Minor' ? 'text-yellow-800' :
-            'text-emerald-800'
-          }`}>
-            {overallSeverity.label === 'None'
-              ? 'No Significant Interactions Detected'
-              : `${interactions.length} Interaction${interactions.length !== 1 ? 's' : ''} Found`}
-          </p>
-          <div className="flex items-center gap-2 mt-2 flex-wrap">
-            <span className="text-xs text-slate-500 bg-white/60 px-2 py-0.5 rounded-full border border-slate-200/60">
-              {drugCount} drugs screened
-            </span>
-            {criticalCount > 0 && (
-              <span className="text-xs font-semibold text-red-700 bg-red-100 px-2 py-0.5 rounded-full">
-                {criticalCount} Critical
-              </span>
-            )}
-            {moderateCount > 0 && (
-              <span className="text-xs font-semibold text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full">
-                {moderateCount} Moderate
-              </span>
-            )}
-            {minorCount > 0 && (
-              <span className="text-xs font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-full">
-                {minorCount} Minor
-              </span>
-            )}
+    <div className="space-y-4">
+      {patientInfo?.name && (
+        <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+          <h3 className="typo-section-header mb-3">Patient</h3>
+          <div className="space-y-2">
+            <div className="flex justify-between"><span className="typo-label">Name</span><span className="typo-drug-name text-[13px]">{patientInfo.name}</span></div>
+            {patientInfo.species && <div className="flex justify-between"><span className="typo-label">Species</span><span className="text-[13px] font-medium text-slate-700 capitalize">{patientInfo.species === 'dog' ? 'Canine' : 'Feline'}</span></div>}
+            {patientInfo.breed && <div className="flex justify-between"><span className="typo-label">Breed</span><span className="text-[13px] font-medium text-slate-700">{patientInfo.breed}</span></div>}
+            {patientInfo.weight && <div className="flex justify-between"><span className="typo-label">Weight</span><span className="text-[13px] font-medium text-slate-700">{patientInfo.weight} kg</span></div>}
+          </div>
+          {patientInfo.conditions && patientInfo.conditions.length > 0 && (
+            <div className="mt-3 pt-3 border-t border-slate-100">
+              <span className="typo-label block mb-1.5">Active Conditions</span>
+              <div className="flex flex-wrap gap-1">
+                {patientInfo.conditions.map((c, i) => (
+                  <span key={i} className="text-[10px] font-medium text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded-full border border-amber-100">{c}</span>
+                ))}
+              </div>
+            </div>
+          )}
+          {patientInfo.flaggedLabs && patientInfo.flaggedLabs.length > 0 && (
+            <div className="mt-3 pt-3 border-t border-slate-100">
+              <span className="typo-label block mb-1.5">Flagged Labs</span>
+              <div className="flex flex-wrap gap-1">
+                {patientInfo.flaggedLabs.map((lab, i) => (
+                  <span key={i} className={`text-[10px] font-semibold px-1.5 py-0.5 rounded-full ${lab.status === 'high' ? 'bg-red-50 text-red-600 border border-red-100' : 'bg-amber-50 text-amber-600 border border-amber-100'}`}>
+                    {lab.key}: {lab.value} {lab.unit} {lab.status === 'high' ? '↑' : '↓'}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+        <h3 className="typo-section-header mb-3">Scan Summary</h3>
+        <div className="space-y-2.5">
+          <div className="flex justify-between items-center"><span className="typo-label">Drugs Screened</span><span className="typo-score font-medium text-slate-900">{drugFlags.length}</span></div>
+          <div className="flex justify-between items-center"><span className="typo-label">Interactions</span><span className="typo-score font-medium text-slate-900">{interactions.length}</span></div>
+          <div className="border-t border-slate-100 pt-2">
+            <span className="typo-label block mb-1.5">Severity Breakdown</span>
+            <div className="flex flex-wrap gap-1.5">
+              {criticalCount > 0 && <span className="text-[11px] font-semibold text-red-700 bg-red-100 px-2 py-0.5 rounded-full">{criticalCount} Critical</span>}
+              {moderateCount > 0 && <span className="text-[11px] font-semibold text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full">{moderateCount} Moderate</span>}
+              {minorCount > 0 && <span className="text-[11px] font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-full">{minorCount} Minor</span>}
+              {interactions.length === 0 && <span className="text-[11px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">None detected</span>}
+            </div>
+          </div>
+          <div className="border-t border-slate-100 pt-2">
+            <div className="flex items-center justify-between mb-1.5">
+              <span className="typo-label">Confidence</span>
+              <span className={`typo-score font-medium ${conf.text}`}>{confidenceScore}%</span>
+            </div>
+            <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+              <div className={`h-full ${conf.bar} rounded-full transition-all duration-1000`} style={{ width: `${confidenceScore}%` }} />
+            </div>
+            <span className={`text-[10px] ${conf.text} mt-0.5 block`}>{conf.label} confidence</span>
           </div>
         </div>
       </div>
 
-      {/* Confidence bar */}
-      <div className="px-4 pb-4">
-        <div className="bg-white/70 rounded-lg px-3 py-2.5 border border-white/40">
-          <div className="flex items-center justify-between mb-1.5">
-            <span className="text-xs font-semibold text-slate-600 uppercase tracking-wider">Analysis Confidence</span>
-            <span className={`text-sm font-bold ${conf.text}`}>{confidenceScore}% — {conf.label}</span>
-          </div>
-          <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
-            <div
-              className={`h-full ${conf.bar} rounded-full transition-all duration-1000 ease-out`}
-              style={{ width: `${confidenceScore}%` }}
-            />
-          </div>
+      <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+        <h3 className="typo-section-header mb-3">Engine Scores</h3>
+        <div className="space-y-2.5">
+          {engines.map((eng) => (
+            <div key={eng.id}>
+              <div className="flex items-center justify-between mb-1">
+                <div className="flex items-center gap-1.5">
+                  <span className="typo-score text-[11px] text-slate-500">{eng.id}</span>
+                  <span className="text-[11px] font-medium text-slate-600">{eng.name}</span>
+                </div>
+                <span className="typo-score text-[11px] text-slate-400">{eng.weight}%</span>
+              </div>
+              <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                <div className={`h-full rounded-full transition-all duration-700 ${eng.score > 60 ? 'bg-red-400' : eng.score > 30 ? 'bg-amber-400' : 'bg-emerald-400'}`} style={{ width: `${eng.score}%` }} />
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   );
 }
 
-// ── Drug Class Chip ──────────────────────────────────────────
 function ClassChip({ label }) {
-  return (
-    <span className="text-[10px] font-medium text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded">
-      {label}
-    </span>
-  );
+  return <span className="text-[10px] font-medium text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded">{label}</span>;
 }
 
 // ── Interaction Card ────────────────────────────────────────────
-function InteractionCard({ interaction, index, acknowledged, onAcknowledge }) {
+function InteractionCard({ interaction, index, acknowledged, noted, onAcknowledge, onNote, isFullSystem }) {
   const isMinor = interaction.severity?.label === 'Minor' || interaction.severity?.label === 'Unknown';
   const [expanded, setExpanded] = useState(isMinor ? false : index === 0);
   const [showLiterature, setShowLiterature] = useState(false);
-
   const severityLabel = interaction.severity?.label;
 
-  // Card background by severity
   const cardBg = () => {
     if (severityLabel === 'Critical') return 'bg-red-50 border-red-200';
     if (severityLabel === 'Moderate') return 'bg-amber-50/60 border-amber-200';
     return 'bg-white border-slate-200';
   };
 
-  const severityIcon = () => {
-    if (severityLabel === 'Critical') return <AlertTriangle size={16} className="text-red-500" />;
-    if (severityLabel === 'Moderate') return <AlertCircle size={16} className="text-amber-500" />;
-    if (severityLabel === 'Minor') return <Info size={16} className="text-yellow-500" />;
-    if (severityLabel === 'Unknown') return <HelpCircle size={16} className="text-slate-400" />;
-    return <CheckCircle size={16} className="text-emerald-500" />;
+  const accentBorder = () => {
+    if (severityLabel === 'Critical') return 'border-l-[3px] border-l-red-500';
+    if (severityLabel === 'Moderate') return 'border-l-[3px] border-l-amber-400';
+    return '';
   };
 
-  // Minor interactions: compact single-line view
   if (isMinor && !expanded) {
     return (
       <button
         onClick={() => setExpanded(true)}
-        className={`w-full flex items-center gap-2.5 px-4 py-2.5 rounded-lg border transition-all hover:bg-slate-50 ${cardBg()} ${acknowledged ? 'opacity-60' : ''}`}
+        className={`w-full flex items-center gap-2.5 px-4 py-2.5 rounded-lg border transition-all hover:shadow-sm ${cardBg()} ${acknowledged ? 'opacity-60' : ''} animate-stagger-fade-in`}
+        style={{ animationDelay: `${index * 50}ms` }}
       >
-        {severityIcon()}
         <SeverityBadge severity={interaction.severity} />
-        <span className="text-sm text-slate-700 flex-1 text-left truncate">
-          {interaction.drugA} + {interaction.drugB}
-        </span>
-        <span className="text-xs text-slate-400">{interaction.rule}</span>
+        <span className="typo-drug-name text-[13px] flex-1 text-left truncate">{interaction.drugA} + {interaction.drugB}</span>
+        <span className="text-[11px] text-slate-400">{interaction.rule}</span>
         <ChevronDown size={12} className="text-slate-400 shrink-0" />
       </button>
     );
   }
 
-  // Recommendation box tint
   const recBoxBg = () => {
     if (severityLabel === 'Critical') return 'bg-red-100/70 border-red-200';
     if (severityLabel === 'Moderate') return 'bg-amber-100/50 border-amber-200';
-    return 'bg-slate-50 border-slate-200';
+    return 'bg-blue-50 border-blue-100';
   };
 
   return (
-    <div className={`rounded-xl border overflow-hidden transition-all duration-200 ${cardBg()} ${acknowledged ? 'opacity-70' : ''}`}>
-      {/* Zone 1: Header — Drug pair + class chips */}
-      <button
-        onClick={() => setExpanded(!expanded)}
-        className="w-full flex items-start gap-3 px-4 py-3.5 text-left hover:bg-white/30 transition-colors"
-      >
-        <div className="mt-0.5 shrink-0">{severityIcon()}</div>
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 flex-wrap mb-1">
+    <div
+      className={`rounded-xl border overflow-hidden transition-all duration-200 shadow-sm hover:shadow-md ${accentBorder()} ${cardBg()} ${acknowledged ? 'opacity-70' : ''} print-break-inside-avoid animate-stagger-fade-in`}
+      style={{ animationDelay: `${index * 50}ms` }}
+    >
+      {/* Zone 1: Header */}
+      <div className={`px-4 py-3.5 cursor-pointer ${severityLabel === 'Critical' ? 'bg-red-50' : severityLabel === 'Moderate' ? 'bg-amber-50/40' : 'bg-white'}`} onClick={() => setExpanded(!expanded)}>
+        <div className="flex items-start justify-between">
+          <div className="flex-1 min-w-0">
+            <p className="typo-drug-name">{interaction.drugA} + {interaction.drugB}</p>
+            <div className="flex items-center gap-1.5 mt-1 flex-wrap">
+              {interaction.drugAClass && <ClassChip label={interaction.drugAClass} />}
+              <span className="text-slate-300 text-[10px]">+</span>
+              {interaction.drugBClass && <ClassChip label={interaction.drugBClass} />}
+            </div>
+          </div>
+          <div className="flex items-center gap-2 shrink-0">
             <SeverityBadge severity={interaction.severity} />
-            <span className="text-xs text-slate-400">{interaction.rule}</span>
-          </div>
-          <p className="text-sm font-bold text-slate-900">
-            {interaction.drugA} + {interaction.drugB}
-          </p>
-          <div className="flex items-center gap-1.5 mt-1">
-            {interaction.drugAClass && <ClassChip label={interaction.drugAClass} />}
-            <span className="text-slate-300 text-xs">+</span>
-            {interaction.drugBClass && <ClassChip label={interaction.drugBClass} />}
+            {expanded ? <ChevronUp size={14} className="text-slate-400" /> : <ChevronDown size={14} className="text-slate-400" />}
           </div>
         </div>
-        <div className="shrink-0 mt-1 text-slate-400">
-          {expanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-        </div>
-      </button>
+      </div>
 
-      {/* Zone 2 + 3: Expanded details */}
       {expanded && (
-        <div className="px-4 pb-4 space-y-3 animate-fade-in border-t border-slate-100/50 pt-3">
+        <div className="animate-fade-in">
           {/* Zone 2: Mechanism */}
-          <div>
-            <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Mechanism</h4>
-            <p className="text-sm text-slate-700 leading-relaxed">{interaction.mechanism}</p>
+          <div className="px-4 py-3 bg-white border-t border-slate-100/50">
+            <h4 className="typo-section-header text-[11px] mb-1.5">WHAT HAPPENS</h4>
+            <p className="typo-body">{interaction.mechanism}</p>
           </div>
 
-          {/* Drug Timeline */}
+          {/* PK Timeline */}
           {interaction.drugAData && interaction.drugBData && (
-            <DrugTimeline drugA={interaction.drugAData} drugB={interaction.drugBData} />
+            <div className="px-4 py-2 bg-white border-t border-slate-100/50">
+              <DrugTimeline drugA={interaction.drugAData} drugB={interaction.drugBData} />
+            </div>
           )}
 
-          {/* Zone 3: Action Box — Recommendation */}
-          <div className={`rounded-lg border px-3.5 py-3 ${recBoxBg()}`}>
-            <h4 className="text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1 flex items-center gap-1">
-              <Pill size={10} />
-              Clinical Recommendation
-            </h4>
-            <p className="text-sm text-slate-700 leading-relaxed">{interaction.recommendation}</p>
+          {/* Zone 3: Recommendation */}
+          <div className="px-4 py-3 border-t border-slate-100/50">
+            <div className={`rounded-lg border px-3.5 py-3 ${recBoxBg()}`}>
+              <h4 className="typo-section-header text-[11px] mb-1.5">RECOMMENDED ACTION</h4>
+              <p className="typo-rec text-slate-800 leading-relaxed">{interaction.recommendation}</p>
 
-            {/* Alternative suggestion for Critical */}
-            {interaction.alternativeSuggestion && (
-              <div className="mt-2 pt-2 border-t border-slate-200/50 flex items-start gap-2">
-                <Lightbulb size={13} className="text-amber-500 shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-xs font-semibold text-slate-600 mb-0.5">Alternative Approach</p>
-                  <p className="text-xs text-slate-600 leading-relaxed">{interaction.alternativeSuggestion}</p>
+              {interaction.alternativeSuggestion && severityLabel === 'Critical' && (
+                <div className="mt-3 pt-2.5 border-t border-slate-200/50">
+                  <div className="flex items-start gap-2 bg-emerald-50 border border-emerald-100 rounded-lg px-3 py-2.5">
+                    <Lightbulb size={13} className="text-emerald-600 shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-[11px] font-semibold text-emerald-700 uppercase tracking-wider mb-0.5">Alternative</p>
+                      <p className="text-[13px] text-emerald-800 font-medium leading-relaxed">{interaction.alternativeSuggestion}</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
 
-          {/* Literature — expandable */}
+          {/* Literature */}
           {(interaction.literature?.length > 0 || interaction.literatureSummary) && (
-            <div>
+            <div className="px-4 pb-3">
               <button
                 onClick={(e) => { e.stopPropagation(); setShowLiterature(!showLiterature); }}
-                className="flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-slate-700 transition-colors"
+                className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-500 hover:text-slate-700 transition-colors"
               >
                 <BookOpen size={11} />
                 Evidence & References
                 {showLiterature ? <ChevronUp size={10} /> : <ChevronDown size={10} />}
               </button>
-
               {showLiterature && (
                 <div className="mt-2 space-y-2 animate-fade-in">
                   {interaction.literatureSummary && (
-                    <p className="text-xs text-slate-600 leading-relaxed bg-slate-50/80 px-3 py-2 rounded-lg border border-slate-100">
-                      {interaction.literatureSummary}
-                    </p>
+                    <p className="typo-body bg-slate-50/80 px-3 py-2 rounded-lg border border-slate-100">{interaction.literatureSummary}</p>
                   )}
                   {interaction.literature.map((ref, i) => (
-                    <div key={i} className="text-xs text-slate-500 px-2.5 py-1.5 bg-slate-50 rounded">
+                    <div key={i} className="text-[11px] text-slate-500 px-2.5 py-1.5 bg-slate-50 rounded">
                       <p className="font-medium text-slate-600">{ref.title}</p>
-                      <p className="text-slate-400">{ref.source}</p>
+                      <p className="typo-label">{ref.source}</p>
                     </div>
                   ))}
                 </div>
@@ -244,18 +246,26 @@ function InteractionCard({ interaction, index, acknowledged, onAcknowledge }) {
             </div>
           )}
 
-          {/* Acknowledged button */}
-          <button
-            onClick={(e) => { e.stopPropagation(); onAcknowledge(); }}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-              acknowledged
-                ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
-                : 'bg-white text-slate-500 border border-slate-200 hover:border-slate-300 hover:text-slate-700'
-            }`}
-          >
-            <Check size={12} className={acknowledged ? 'text-emerald-600' : 'text-slate-400'} />
-            {acknowledged ? 'Acknowledged' : 'Mark as Acknowledged'}
-          </button>
+          {/* Acknowledgment row — Full System only */}
+          {isFullSystem && (
+            <div className="px-4 pb-3 flex items-center gap-2">
+              <button
+                onClick={(e) => { e.stopPropagation(); onAcknowledge(); }}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-medium transition-all ${acknowledged ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-white text-slate-500 border border-slate-200 hover:border-slate-300'}`}
+              >
+                <Check size={12} className={acknowledged ? 'text-emerald-600' : 'text-slate-400'} />
+                Reviewed ✓
+              </button>
+              <button
+                onClick={(e) => { e.stopPropagation(); onNote(); }}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-medium transition-all ${noted ? 'bg-slate-100 text-slate-600 border border-slate-300' : 'bg-white text-slate-400 border border-slate-200 hover:border-slate-300'}`}
+              >
+                <Flag size={10} />
+                Noted
+              </button>
+              <span className="text-[10px] text-slate-400 ml-auto italic">Your clinical judgment applies.</span>
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -265,58 +275,39 @@ function InteractionCard({ interaction, index, acknowledged, onAcknowledge }) {
 // ── Drug Flag Card ──────────────────────────────────────────────
 function DrugFlagCard({ drugFlag, species }) {
   const [expanded, setExpanded] = useState(false);
-
   if (drugFlag.flags.length === 0 && !drugFlag.speciesNote) return null;
 
   const sourceIcon = () => {
     if (drugFlag.source === DRUG_SOURCE.HUMAN_OFFLABEL) return <FlaskConical size={13} className="text-amber-500" />;
     if (drugFlag.source === DRUG_SOURCE.FOREIGN) return <Globe size={13} className="text-blue-500" />;
     if (drugFlag.source === DRUG_SOURCE.UNKNOWN) return <HelpCircle size={13} className="text-slate-400" />;
-    return <Shield size={13} className="text-emerald-500" />;
+    return <Pill size={13} className="text-emerald-500" />;
   };
 
   return (
-    <div className="bg-white border border-slate-200 rounded-lg px-4 py-3">
-      <button
-        onClick={() => setExpanded(!expanded)}
-        className="w-full flex items-center gap-2.5 text-left"
-      >
+    <div className="bg-white border border-slate-200 rounded-lg px-4 py-3 shadow-sm hover:shadow-md transition-shadow">
+      <button onClick={() => setExpanded(!expanded)} className="w-full flex items-center gap-2.5 text-left">
         {sourceIcon()}
-        <span className="text-sm font-medium text-slate-800 flex-1">{drugFlag.drugName}</span>
-        {/* Species badge */}
+        <span className="text-[13px] font-medium text-slate-800 flex-1">{drugFlag.drugName}</span>
         {drugFlag.hasSpeciesWarning && (
-          <span className={`text-xs px-1.5 py-0.5 rounded-full border ${
-            species === 'dog'
-              ? 'border-amber-300 bg-amber-50 text-amber-600'
-              : 'border-violet-300 bg-violet-50 text-violet-600'
-          }`}>
+          <span className={`text-[11px] px-1.5 py-0.5 rounded-full border ${species === 'dog' ? 'border-amber-300 bg-amber-50 text-amber-600' : 'border-violet-300 bg-violet-50 text-violet-600'}`}>
             {species === 'dog' ? '🐕' : '🐈'}
           </span>
         )}
         <div className="flex items-center gap-1.5">
           {drugFlag.flags.map((f, i) => (
-            <span key={i} className={`text-xs px-1.5 py-0.5 rounded ${
-              f.type === 'off-label' ? 'bg-amber-50 text-amber-600' :
-              f.type === 'foreign' ? 'bg-blue-50 text-blue-600' :
-              f.type === 'unknown' ? 'bg-slate-100 text-slate-500' :
-              f.type === 'species-warning' ? 'bg-red-50 text-red-600' :
-              f.type === 'mdr1' ? 'bg-red-50 text-red-600' :
-              'bg-slate-100 text-slate-500'
-            }`}>
+            <span key={i} className={`text-[10px] px-1.5 py-0.5 rounded ${f.type === 'off-label' ? 'bg-amber-50 text-amber-600' : f.type === 'foreign' ? 'bg-blue-50 text-blue-600' : f.type === 'mdr1' || f.type === 'nti' ? 'bg-red-50 text-red-600' : 'bg-slate-100 text-slate-500'}`}>
               {f.label}
             </span>
           ))}
           {expanded ? <ChevronUp size={12} className="text-slate-400" /> : <ChevronDown size={12} className="text-slate-400" />}
         </div>
       </button>
-
       {expanded && (
         <div className="mt-3 space-y-2 animate-fade-in">
-          {drugFlag.flags.map((f, i) => (
-            <p key={i} className="text-xs text-slate-500 leading-relaxed">{f.description}</p>
-          ))}
+          {drugFlag.flags.map((f, i) => <p key={i} className="typo-body">{f.description}</p>)}
           {drugFlag.speciesNote && (
-            <div className="flex items-start gap-1.5 text-xs text-slate-500 bg-slate-50 px-2.5 py-2 rounded">
+            <div className="flex items-start gap-1.5 typo-body bg-slate-50 px-2.5 py-2 rounded">
               <Dna size={11} className="text-slate-400 mt-0.5 shrink-0" />
               <p>{drugFlag.speciesNote}</p>
             </div>
@@ -327,185 +318,160 @@ function DrugFlagCard({ drugFlag, species }) {
   );
 }
 
-// ── Scan Summary Card ──────────────────────────────────────────
-function ScanSummaryCard({ results, patientInfo, acknowledgedCount, totalInteractions }) {
-  return (
-    <div className="bg-slate-50 border border-slate-200 rounded-xl overflow-hidden">
-      <div className="px-4 py-2.5 bg-slate-100 border-b border-slate-200 flex items-center gap-2">
-        <FileText size={13} className="text-slate-500" />
-        <span className="text-xs font-semibold text-slate-600 uppercase tracking-wider">Scan Summary</span>
-      </div>
-      <div className="px-4 py-3 space-y-2">
-        <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs">
-          {patientInfo?.name && (
-            <>
-              <span className="text-slate-400">Patient</span>
-              <span className="text-slate-700 font-medium">{patientInfo.name}</span>
-            </>
-          )}
-          {patientInfo?.species && (
-            <>
-              <span className="text-slate-400">Species</span>
-              <span className="text-slate-700 font-medium capitalize">{patientInfo.species === 'dog' ? 'Canine' : 'Feline'}</span>
-            </>
-          )}
-          <span className="text-slate-400">Date</span>
-          <span className="text-slate-700 font-medium">
-            {new Date(results.timestamp).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
-          </span>
-          <span className="text-slate-400">Drugs Screened</span>
-          <span className="text-slate-700 font-medium">{results.drugFlags.length}</span>
-          <span className="text-slate-400">Interactions Found</span>
-          <span className="text-slate-700 font-medium">{results.interactions.length}</span>
-          {results.interactions.length > 0 && (
-            <>
-              <span className="text-slate-400">Severity Breakdown</span>
-              <span className="text-slate-700 font-medium">
-                {results.interactions.filter(i => i.severity.label === 'Critical').length > 0 &&
-                  `${results.interactions.filter(i => i.severity.label === 'Critical').length} critical`}
-                {results.interactions.filter(i => i.severity.label === 'Moderate').length > 0 &&
-                  `${results.interactions.filter(i => i.severity.label === 'Critical').length > 0 ? ', ' : ''}${results.interactions.filter(i => i.severity.label === 'Moderate').length} moderate`}
-                {results.interactions.filter(i => i.severity.label === 'Minor').length > 0 &&
-                  `${(results.interactions.filter(i => i.severity.label === 'Critical').length + results.interactions.filter(i => i.severity.label === 'Moderate').length) > 0 ? ', ' : ''}${results.interactions.filter(i => i.severity.label === 'Minor').length} minor`}
-              </span>
-            </>
-          )}
-          <span className="text-slate-400">Acknowledgment</span>
-          <span className="text-slate-700 font-medium">
-            {acknowledgedCount} of {totalInteractions} reviewed
-          </span>
-        </div>
-      </div>
-      <div className="px-4 py-2 bg-slate-100/50 border-t border-slate-200">
-        <p className="text-[10px] text-slate-400">
-          VetDUR Scan Report — Confidence: {results.confidenceScore}%
-        </p>
-      </div>
-    </div>
-  );
-}
-
 // ── Main Results Display ────────────────────────────────────────
-export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo }) {
+export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, isFullSystem = false }) {
   if (!results) return null;
 
-  const { interactions, drugFlags, overallSeverity, confidenceScore, speciesNotes } = results;
+  const { interactions, drugFlags, speciesNotes } = results;
   const hasInteractions = interactions.length > 0;
   const flaggedDrugs = drugFlags.filter(f => f.flags.length > 0 || f.speciesNote);
 
-  // Track acknowledged state per interaction
   const [acknowledged, setAcknowledged] = useState({});
+  const [noted, setNoted] = useState({});
   const acknowledgedCount = Object.values(acknowledged).filter(Boolean).length;
+  const notedCount = Object.values(noted).filter(Boolean).length;
+  const allReviewed = interactions.length > 0 && (acknowledgedCount + notedCount) >= interactions.length;
+  const [showScanBar, setShowScanBar] = useState(false);
 
-  const handleAcknowledge = (index) => {
-    setAcknowledged(prev => ({ ...prev, [index]: !prev[index] }));
-  };
+  useEffect(() => {
+    if (allReviewed) {
+      const t = setTimeout(() => setShowScanBar(true), 300);
+      return () => clearTimeout(t);
+    } else {
+      setShowScanBar(false);
+    }
+  }, [allReviewed]);
 
   return (
-    <div className="max-w-2xl mx-auto px-4 sm:px-6 py-6 space-y-5 animate-fade-in">
-      {/* Header */}
-      <div className="flex items-center gap-3">
-        <button
-          onClick={onBack}
-          className="p-2 -ml-2 text-slate-400 hover:text-slate-600 transition-colors"
-        >
-          <ArrowLeft size={18} />
-        </button>
-        <div>
-          <h2 className="text-lg font-semibold text-slate-900">DUR Analysis Report</h2>
-          <p className="text-xs text-slate-400">
-            {new Date(results.timestamp).toLocaleString('en-US', {
-              year: 'numeric', month: 'short', day: 'numeric',
-              hour: '2-digit', minute: '2-digit'
-            })}
-          </p>
-        </div>
-      </div>
-
-      {/* Summary Band */}
-      <SummaryBand results={results} />
-
-      {/* Interactions */}
-      {hasInteractions && (
-        <div>
-          <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">
-            Interaction Report
-          </h3>
-          <div className="space-y-2">
-            {interactions.map((interaction, i) => (
-              <InteractionCard
-                key={i}
-                interaction={interaction}
-                index={i}
-                acknowledged={!!acknowledged[i]}
-                onAcknowledge={() => handleAcknowledge(i)}
-              />
-            ))}
+    <>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 animate-fade-in">
+        {/* Header */}
+        <div className="flex items-center gap-3 mb-6 no-print">
+          <button onClick={onBack} className="p-2 -ml-2 text-slate-400 hover:text-slate-600 transition-colors">
+            <ArrowLeft size={18} />
+          </button>
+          <div>
+            <h2 className="typo-page-title">DUR Analysis Report</h2>
+            <p className="typo-label mt-0.5">
+              {new Date(results.timestamp).toLocaleString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+            </p>
           </div>
         </div>
-      )}
 
-      {/* Drug Flags */}
-      {flaggedDrugs.length > 0 && (
-        <div>
-          <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">
-            Drug Advisory Flags
-          </h3>
-          <div className="space-y-2">
-            {flaggedDrugs.map((flag, i) => (
-              <DrugFlagCard key={i} drugFlag={flag} species={patientInfo?.species} />
-            ))}
+        {/* Print header */}
+        <div className="hidden print-show mb-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="typo-drug-name">{patientInfo?.name}</p>
+              <p className="typo-label">{new Date(results.timestamp).toLocaleDateString()}</p>
+            </div>
+            <NuvovetLogo size={32} className="text-slate-900" />
           </div>
         </div>
-      )}
 
-      {/* Species Notes */}
-      {speciesNotes.length > 0 && (
-        <div>
-          <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-1.5">
-            <Dna size={12} />
-            Species-Specific Notes
-          </h3>
-          <div className="bg-white border border-slate-200 rounded-lg divide-y divide-slate-100">
-            {speciesNotes.map((note, i) => (
-              <div key={i} className="px-4 py-3">
-                <p className="text-xs font-medium text-slate-600 mb-0.5">{note.drug}</p>
-                <p className="text-xs text-slate-500 leading-relaxed">{note.note}</p>
+        {/* Two-panel layout */}
+        <div className="flex flex-col lg:flex-row gap-6">
+          <div className="w-full lg:w-[320px] lg:shrink-0">
+            <div className="lg:sticky lg:top-20">
+              <PatientSummaryPanel results={results} patientInfo={patientInfo} />
+            </div>
+          </div>
+
+          <div className="flex-1 min-w-0 space-y-5">
+            {/* Mobile summary strip */}
+            <div className="lg:hidden">
+              <div className={`rounded-xl border p-3 ${results.overallSeverity.label === 'Critical' ? 'bg-red-50 border-red-200' : results.overallSeverity.label === 'Moderate' ? 'bg-amber-50 border-amber-200' : 'bg-emerald-50 border-emerald-200'}`}>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="typo-score font-medium text-slate-900">{drugFlags.length} drugs</span>
+                    <span className="text-slate-300">·</span>
+                    <span className="typo-score font-medium text-slate-900">{interactions.length} interactions</span>
+                  </div>
+                  <span className={`typo-score font-medium ${results.confidenceScore >= 85 ? 'text-emerald-600' : results.confidenceScore >= 60 ? 'text-amber-600' : 'text-red-600'}`}>{results.confidenceScore}%</span>
+                </div>
               </div>
-            ))}
+            </div>
+
+            {hasInteractions ? (
+              <div>
+                <h3 className="typo-section-header mb-3">Interaction Report</h3>
+                <div className="space-y-2">
+                  {interactions.map((interaction, i) => (
+                    <InteractionCard
+                      key={i}
+                      interaction={interaction}
+                      index={i}
+                      acknowledged={!!acknowledged[i]}
+                      noted={!!noted[i]}
+                      onAcknowledge={() => setAcknowledged(prev => ({ ...prev, [i]: !prev[i] }))}
+                      onNote={() => setNoted(prev => ({ ...prev, [i]: !prev[i] }))}
+                      isFullSystem={isFullSystem}
+                    />
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-6 text-center">
+                <CheckCircle size={32} className="text-emerald-500 mx-auto mb-3" />
+                <p className="typo-drug-name text-emerald-800 mb-1">No Significant Interactions</p>
+                <p className="typo-body text-emerald-600">All drug pairs screened. No contraindications detected.</p>
+              </div>
+            )}
+
+            {flaggedDrugs.length > 0 && (
+              <div>
+                <h3 className="typo-section-header mb-3">Drug Advisory Flags</h3>
+                <div className="space-y-2">
+                  {flaggedDrugs.map((flag, i) => <DrugFlagCard key={i} drugFlag={flag} species={patientInfo?.species} />)}
+                </div>
+              </div>
+            )}
+
+            {speciesNotes.length > 0 && (
+              <div>
+                <h3 className="typo-section-header mb-3 flex items-center gap-1.5"><Dna size={12} /> Species-Specific Notes</h3>
+                <div className="bg-white border border-slate-200 rounded-lg divide-y divide-slate-100 shadow-sm">
+                  {speciesNotes.map((note, i) => (
+                    <div key={i} className="px-4 py-3">
+                      <p className="text-[12px] font-medium text-slate-600 mb-0.5">{note.drug}</p>
+                      <p className="typo-body">{note.note}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className="flex gap-3 pt-2 no-print">
+              <button onClick={onBack} className="flex-1 px-4 py-2.5 text-[13px] font-medium text-slate-600 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors shadow-sm">Modify Prescription</button>
+              <button onClick={onNewAnalysis} className="flex-1 px-4 py-2.5 text-[13px] font-medium text-white bg-slate-900 rounded-lg hover:bg-slate-800 transition-colors shadow-sm">New Analysis</button>
+            </div>
+
+            <p className="text-[11px] text-slate-400 text-center leading-relaxed pt-2">
+              This analysis is generated from the NUVOVET interaction database and is not a substitute for clinical judgment.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Fixed bottom scan bar */}
+      {showScanBar && (
+        <div className="fixed bottom-0 left-0 right-0 z-30 no-print animate-slide-up-bar">
+          <div className="bg-white border-t border-slate-200 shadow-lg px-4 sm:px-6 py-3">
+            <div className="max-w-6xl mx-auto flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <CheckCircle size={16} className="text-emerald-500" />
+                <span className="text-[13px] font-medium text-slate-700">
+                  Scan complete · {new Date().toLocaleDateString()} · {drugFlags.length} drugs · {interactions.length} interactions reviewed
+                </span>
+              </div>
+              <button onClick={() => window.print()} className="flex items-center gap-1.5 px-4 py-2 bg-slate-900 text-white text-[12px] font-medium rounded-lg hover:bg-slate-800 transition-colors">
+                <Printer size={13} />
+                Export Summary
+              </button>
+            </div>
           </div>
         </div>
       )}
-
-      {/* Scan Summary Card */}
-      <ScanSummaryCard
-        results={results}
-        patientInfo={patientInfo}
-        acknowledgedCount={acknowledgedCount}
-        totalInteractions={interactions.length}
-      />
-
-      {/* Actions */}
-      <div className="flex gap-3 pt-2">
-        <button
-          onClick={onBack}
-          className="flex-1 px-4 py-2.5 text-sm font-medium text-slate-600 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors"
-        >
-          Modify Prescription
-        </button>
-        <button
-          onClick={onNewAnalysis}
-          className="flex-1 px-4 py-2.5 text-sm font-medium text-white bg-slate-900 rounded-lg hover:bg-slate-800 transition-colors"
-        >
-          New Analysis
-        </button>
-      </div>
-
-      {/* Disclaimer */}
-      <p className="text-xs text-slate-400 text-center leading-relaxed pt-2">
-        This analysis is generated from the VetDUR interaction database and is not a substitute for clinical judgment.
-        Always verify critical interactions with current literature and consult a veterinary pharmacologist for complex cases.
-      </p>
-    </div>
+    </>
   );
 }

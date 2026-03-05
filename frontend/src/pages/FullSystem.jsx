@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Shield, ArrowLeft, Lock, Eye, EyeOff, Zap, RotateCcw } from 'lucide-react';
+import { ArrowLeft, Lock, Eye, EyeOff, Zap, RotateCcw } from 'lucide-react';
+import { NuvovetLogo, NuvovetWordmark } from '../components/NuvovetLogo';
 import { PatientConfig } from '../components/PatientConfig';
 import { DrugInput } from '../components/DrugInput';
 import { AnalysisScreen } from '../components/AnalysisScreen';
@@ -36,10 +37,8 @@ function PasswordGate({ onAuthenticate }) {
           <ArrowLeft size={18} />
         </button>
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 bg-slate-900 rounded-lg flex items-center justify-center">
-            <Shield size={13} className="text-white" />
-          </div>
-          <span className="text-sm font-semibold text-slate-900">VetDUR</span>
+          <NuvovetLogo size={28} className="text-slate-900" />
+          <NuvovetWordmark />
         </div>
       </header>
 
@@ -162,11 +161,9 @@ export default function FullSystem() {
             <ArrowLeft size={18} />
           </button>
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 bg-slate-900 rounded-lg flex items-center justify-center">
-              <Shield size={13} className="text-white" />
-            </div>
+            <NuvovetLogo size={28} className="text-slate-900" />
             <div>
-              <span className="text-sm font-semibold text-slate-900">VetDUR</span>
+              <NuvovetWordmark />
               <span className="hidden sm:inline text-xs text-slate-400 ml-2">Full System</span>
             </div>
           </div>
@@ -249,6 +246,7 @@ export default function FullSystem() {
             results={results}
             onBack={handleBackToInput}
             onNewAnalysis={handleNewAnalysis}
+            isFullSystem={true}
           />
         </main>
       )}

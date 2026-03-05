@@ -22,7 +22,7 @@ export function RequestAccessModal({ isOpen, onClose }) {
           name: form.name,
           clinic_name: form.clinic,
           contact: form.contact,
-          _subject: `VetDUR Access Request — ${form.clinic || form.name}`,
+          _subject: `NUVOVET Access Request — ${form.clinic || form.name}`,
         }),
       });
 

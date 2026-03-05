@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  Shield, ArrowRight, Lock, ChevronDown, Database, Dna, ShieldCheck,
+  ArrowRight, Lock, ChevronDown, Database, Dna, ShieldCheck,
   FlaskConical, Globe, AlertTriangle, CheckCircle, BookOpen, Zap, Layers
 } from 'lucide-react';
+import { NuvovetLogo, NuvovetWordmark } from '../components/NuvovetLogo';
 import { RequestAccessModal } from '../components/RequestAccessModal';
 
 // ── Scroll reveal hook ──────────────────────────────────────────
@@ -139,7 +140,7 @@ function ResultPreview() {
         {/* Header bar */}
         <div className="px-4 py-3 bg-slate-50 border-b border-slate-100 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Shield size={14} className="text-slate-500" />
+            <NuvovetLogo size={14} className="text-slate-500" />
             <span className="text-xs font-semibold text-slate-600">DUR Analysis Report</span>
           </div>
           <span className="text-xs text-slate-400">3 interactions found</span>
@@ -198,10 +199,8 @@ export default function Landing() {
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100">
         <div className="max-w-5xl mx-auto px-5 sm:px-8 py-3.5 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center">
-              <Shield size={15} className="text-white" />
-            </div>
-            <span className="text-sm font-bold text-slate-900 tracking-tight">VetDUR</span>
+            <NuvovetLogo size={28} className="text-slate-900" />
+            <NuvovetWordmark />
           </div>
           <div className="flex items-center gap-3">
             <button
@@ -501,8 +500,8 @@ export default function Landing() {
       <footer className="border-t border-slate-100 bg-slate-50/50">
         <div className="max-w-5xl mx-auto px-5 sm:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-2">
-            <Shield size={13} className="text-slate-400" />
-            <span className="text-xs text-slate-400 font-medium">VetDUR</span>
+            <NuvovetLogo size={16} className="text-slate-400" />
+            <span className="text-xs text-slate-400 font-medium">NUVOVET</span>
             <span className="text-xs text-slate-300">·</span>
             <span className="text-xs text-slate-400">Veterinary Drug Utilization Review</span>
           </div>
