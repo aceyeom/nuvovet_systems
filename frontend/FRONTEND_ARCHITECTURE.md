@@ -199,13 +199,169 @@ Seven pre-built clinical cases, each with a `demonstrates` descriptor:
 
 ## Loading Experience
 
-6-step sequential animation (unchanged):
-1. Resolving drug identifiers
-2. Querying Korean Veterinary DB (877 products)
-3. CYP enzyme interaction analysis
-4. Pairwise DDI screening
-5. Species-specific dose verification
-6. Cross-referencing literature (PMC, Plumb's, BSAVA)
+6-step sequential animation with optimized timing (~2.9s total, down from ~4.8s):
+
+| Step | Duration | Description |
+|------|----------|-------------|
+| Initial delay | 200ms | — |
+| Resolve drug identifiers | 350ms | Database lookup |
+| Query Korean Veterinary DB | 450ms | 877 products |
+| CYP enzyme interaction analysis | 400ms | Enzyme profiling |
+| Pairwise DDI screening | 500ms | Interaction matrix |
+| Species-specific dose verification | 350ms | Dose/weight check |
+| Cross-reference literature | 400ms | PMC, Plumb's, BSAVA |
+| Final transition | 250ms | — |
+
+Visual progress bar at the bottom tracks completion percentage. Uses `useRef` for the `onComplete` callback to avoid stale closure issues.
+
+---
+
+## Internationalization (i18n)
+
+### Architecture
+
+React Context-based system (`I18nProvider`) with no external dependencies. Files:
+
+```
+src/i18n/
+├── index.jsx    # Provider, useI18n hook, LangToggle component
+├── en.js        # English translations (~250 keys)
+└── ko.js        # Korean translations (~250 keys)
+```
+
+### Hook API
+
+```jsx
+const { t, lang, setLang, toggleLang } = useI18n();
+```
+
+- `t` — translation object, accessed as `t.demo.step1`, `t.results.title`, etc.
+- `lang` — current language code (`'ko'` or `'en'`)
+- `setLang(code)` — set language explicitly
+- `toggleLang()` — toggle between ko/en
+
+### LangToggle Component
+
+Compact pill button (`한/EN`) that fits in any navbar. Renders inline with no layout shift.
+
+### Design Decisions
+
+- **Default language: Korean (`ko`)**. Korean veterinarians are the primary users. The Korean translation is the most complete and clinically accurate.
+- **localStorage persistence** under key `nuvovet-lang`. Sets `document.documentElement.lang` for accessibility.
+- **No library dependency** — React Context is sufficient for two languages with static translation objects.
+- **Medical terminology**: Korean translations use proper clinical terms (e.g., `혈중농도-시간곡선하면적` for AUC, `최고혈중농도 도달시간` for Tmax, `치료역` for therapeutic window).
+
+### Translation Key Namespaces
+
+| Namespace | Coverage |
+|-----------|----------|
+| Global | `appName`, `back`, `close`, `search`, `loading`, etc. |
+| `species` | Dog/cat labels in both forms |
+| `landing` | Hero, features, stats, CTA sections |
+| `demo` | All 4 demo steps, patient chart labels, vitals, conditions |
+| `drugInput` | Search, category browsing, route filters, drug class labels |
+| `analysis` | 6-step loading labels and subtitles |
+| `results` | Summary band, interaction cards, acknowledgment, scan summary |
+| `pk` | Pharmacokinetic chart labels and annotations |
+| `drugClasses` | 11 drug class labels (NSAID, corticosteroid, antibiotic, etc.) |
+| `routes` | Administration route labels (PO, SC, IV, Topical) |
+| `requestAccess` | Modal form fields, success/error messages |
+| `fullSystem` | Password gate, connected status |
+
+---
+
+## Drug Timeline — Clinical PK Visualization
+
+### Pharmacokinetic Model
+
+One-compartment Bateman equation with first-order absorption:
+
+```
+C(t) = F × (ka / (ka - ke)) × (e^(-ke·t) - e^(-ka·t))
+```
+
+Where:
+- `F` = bioavailability
+- `ka` = absorption rate constant (derived from Tmax)
+- `ke` = elimination rate constant (`ln(2) / t½`)
+
+### Multi-Dose Superposition
+
+For BID/TID dosing schedules, concentrations are calculated by summing contributions from each dose administration time:
+
+```
+C_total(t) = Σ C_single(t - t_dose_i)  for all t_dose_i ≤ t
+```
+
+### Clinical Annotations
+
+- **Cmax** — peak concentration marker (dot + label)
+- **Tmax** — time to peak annotation
+- **Cmin** — trough concentration at end of dosing interval
+- **Therapeutic window** — green shaded band between `therapMin` and `therapMax`
+- **Dose arrows** — vertical markers at each administration time
+
+### PK Parameter Table
+
+Rendered below the chart showing: Drug name, t½, Tmax, F%, and dosing schedule for each drug in the interaction pair.
+
+### Visual Design
+
+- SVG-based rendering (no external chart library)
+- Drug A: solid slate-800 line with gradient fill
+- Drug B: dashed indigo line with gradient fill
+- Y-axis: `Cp (relative)` / `Cp (상대 농도)` with percentage ticks
+- X-axis: 0–24h with 4h interval markers
+- Gradient fills (SVG `linearGradient`) under concentration curves
+- Graceful fallback message when PK data is unavailable
+
+---
+
+## Drug Search & Prescription Input
+
+### Search Modes
+
+1. **Text search** — type-ahead matching against drug name, generic name, Korean name, and drug class from both `drugDatabase.js` and `drugSearchData.js` catalogs.
+2. **Category browsing** — when search text is empty, shows the full `DRUG_SEARCH_CATALOG` filtered by active class and route. Organized by `CLASS_GROUPS` (11 categories).
+
+### Filter UI
+
+Collapsible filter bar with two chip rows:
+- **Class filter:** All, NSAID, Corticosteroid, Antibiotic, Antifungal, Antiemetic, Cardiac, Diuretic, Anxiolytic/Sedative, Anticonvulsant, GI Protectant
+- **Route filter:** All, PO (Oral), SC (Subcutaneous), IV (Intravenous), Topical
+
+Filters are pill-shaped chips with active state styling. All labels are translated via `t.drugClasses` and `t.routes`.
+
+### Doctor Workflow Optimization
+
+- Browse mode shows all available drugs organized by category, matching how doctors think about prescribing (by drug class, then route)
+- Drug names display Korean names when `lang === 'ko'`
+- Unknown drug flow with active ingredient entry for off-formulary medications
+- Pre-populated drug lists from breed profiles in demo mode
+
+---
+
+## Typography System
+
+CSS custom property hierarchy using Google Fonts (DM Sans, DM Mono):
+
+| Class | Usage |
+|-------|-------|
+| `typo-page-title` | Page/section headings |
+| `typo-section-header` | Step labels, card headers |
+| `typo-body` | Body text, descriptions |
+| `typo-label` | Field labels, metadata |
+| `typo-mono` | Drug names, clinical data |
+| `typo-stat` | Large statistics/counters |
+
+---
+
+## Print Optimization
+
+CSS `@media print` styles for clinical report output:
+- Hidden navigation, backgrounds, and interactive elements
+- `print-color-adjust: exact` for severity color preservation
+- Clean layout optimized for A4/Letter paper
 
 ---
 
@@ -216,7 +372,8 @@ Seven pre-built clinical cases, each with a `demonstrates` descriptor:
 - **Tailwind CSS 3** for styling (no component library)
 - **React Router v7** for client-side routing
 - **Lucide React** for icons
+- **Google Fonts** — DM Sans (UI), DM Mono (clinical data)
 - **Formspree** for lead capture form submission
 - **Vercel** for deployment (SPA rewrites configured)
 
-No external UI framework. No state management library. The interaction engine runs entirely client-side for the demo; the full system will connect to the backend PostgreSQL + Python DDI engine.
+No external UI framework. No state management library. No chart library — PK visualizations use pure SVG. The interaction engine runs entirely client-side for the demo; the full system will connect to the backend PostgreSQL + Python DDI engine.
