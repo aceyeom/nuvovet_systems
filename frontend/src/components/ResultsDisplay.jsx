@@ -8,18 +8,20 @@ import { SeverityBadge } from './SeverityBadge';
 import { DRUG_SOURCE } from '../data/drugDatabase';
 import { DrugTimeline } from './DrugTimeline';
 import { NuvovetLogo } from './NuvovetLogo';
+import { useI18n } from '../i18n';
 
 // ── Patient Summary Panel (left panel) ────────────────────────
 function PatientSummaryPanel({ results, patientInfo }) {
+  const { t, lang } = useI18n();
   const { interactions, drugFlags, confidenceScore } = results;
   const criticalCount = interactions.filter(i => i.severity.label === 'Critical').length;
   const moderateCount = interactions.filter(i => i.severity.label === 'Moderate').length;
   const minorCount = interactions.filter(i => i.severity.label === 'Minor' || i.severity.label === 'Unknown').length;
 
   const confColor = () => {
-    if (confidenceScore >= 85) return { bar: 'bg-emerald-500', text: 'text-emerald-700', label: 'High' };
-    if (confidenceScore >= 60) return { bar: 'bg-amber-500', text: 'text-amber-700', label: 'Moderate' };
-    return { bar: 'bg-red-500', text: 'text-red-700', label: 'Low' };
+    if (confidenceScore >= 85) return { bar: 'bg-emerald-500', text: 'text-emerald-700', label: lang === 'ko' ? '높음' : 'High' };
+    if (confidenceScore >= 60) return { bar: 'bg-amber-500', text: 'text-amber-700', label: lang === 'ko' ? '보통' : 'Moderate' };
+    return { bar: 'bg-red-500', text: 'text-red-700', label: lang === 'ko' ? '낮음' : 'Low' };
   };
   const conf = confColor();
 
@@ -35,16 +37,16 @@ function PatientSummaryPanel({ results, patientInfo }) {
     <div className="space-y-4">
       {patientInfo?.name && (
         <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
-          <h3 className="typo-section-header mb-3">Patient</h3>
+          <h3 className="typo-section-header mb-3">{t.results.patient}</h3>
           <div className="space-y-2">
-            <div className="flex justify-between"><span className="typo-label">Name</span><span className="typo-drug-name text-[13px]">{patientInfo.name}</span></div>
-            {patientInfo.species && <div className="flex justify-between"><span className="typo-label">Species</span><span className="text-[13px] font-medium text-slate-700 capitalize">{patientInfo.species === 'dog' ? 'Canine' : 'Feline'}</span></div>}
-            {patientInfo.breed && <div className="flex justify-between"><span className="typo-label">Breed</span><span className="text-[13px] font-medium text-slate-700">{patientInfo.breed}</span></div>}
-            {patientInfo.weight && <div className="flex justify-between"><span className="typo-label">Weight</span><span className="text-[13px] font-medium text-slate-700">{patientInfo.weight} kg</span></div>}
+            <div className="flex justify-between"><span className="typo-label">{t.results.patient}</span><span className="typo-drug-name text-[13px]">{patientInfo.name}</span></div>
+            {patientInfo.species && <div className="flex justify-between"><span className="typo-label">{lang === 'ko' ? '종' : 'Species'}</span><span className="text-[13px] font-medium text-slate-700">{patientInfo.species === 'dog' ? t.species.dog : t.species.cat}</span></div>}
+            {patientInfo.breed && <div className="flex justify-between"><span className="typo-label">{t.results.breed}</span><span className="text-[13px] font-medium text-slate-700">{patientInfo.breed}</span></div>}
+            {patientInfo.weight && <div className="flex justify-between"><span className="typo-label">{t.results.weight}</span><span className="text-[13px] font-medium text-slate-700">{patientInfo.weight} kg</span></div>}
           </div>
           {patientInfo.conditions && patientInfo.conditions.length > 0 && (
             <div className="mt-3 pt-3 border-t border-slate-100">
-              <span className="typo-label block mb-1.5">Active Conditions</span>
+              <span className="typo-label block mb-1.5">{t.results.conditions}</span>
               <div className="flex flex-wrap gap-1">
                 {patientInfo.conditions.map((c, i) => (
                   <span key={i} className="text-[10px] font-medium text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded-full border border-amber-100">{c}</span>
@@ -54,7 +56,7 @@ function PatientSummaryPanel({ results, patientInfo }) {
           )}
           {patientInfo.flaggedLabs && patientInfo.flaggedLabs.length > 0 && (
             <div className="mt-3 pt-3 border-t border-slate-100">
-              <span className="typo-label block mb-1.5">Flagged Labs</span>
+              <span className="typo-label block mb-1.5">{t.results.flaggedLabs}</span>
               <div className="flex flex-wrap gap-1">
                 {patientInfo.flaggedLabs.map((lab, i) => (
                   <span key={i} className={`text-[10px] font-semibold px-1.5 py-0.5 rounded-full ${lab.status === 'high' ? 'bg-red-50 text-red-600 border border-red-100' : 'bg-amber-50 text-amber-600 border border-amber-100'}`}>
@@ -68,22 +70,22 @@ function PatientSummaryPanel({ results, patientInfo }) {
       )}
 
       <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
-        <h3 className="typo-section-header mb-3">Scan Summary</h3>
+        <h3 className="typo-section-header mb-3">{t.results.scanSummary}</h3>
         <div className="space-y-2.5">
-          <div className="flex justify-between items-center"><span className="typo-label">Drugs Screened</span><span className="typo-score font-medium text-slate-900">{drugFlags.length}</span></div>
-          <div className="flex justify-between items-center"><span className="typo-label">Interactions</span><span className="typo-score font-medium text-slate-900">{interactions.length}</span></div>
+          <div className="flex justify-between items-center"><span className="typo-label">{t.results.drugsScreened}</span><span className="typo-score font-medium text-slate-900">{drugFlags.length}</span></div>
+          <div className="flex justify-between items-center"><span className="typo-label">{t.results.interactions}</span><span className="typo-score font-medium text-slate-900">{interactions.length}</span></div>
           <div className="border-t border-slate-100 pt-2">
-            <span className="typo-label block mb-1.5">Severity Breakdown</span>
+            <span className="typo-label block mb-1.5">{t.results.severity}</span>
             <div className="flex flex-wrap gap-1.5">
-              {criticalCount > 0 && <span className="text-[11px] font-semibold text-red-700 bg-red-100 px-2 py-0.5 rounded-full">{criticalCount} Critical</span>}
-              {moderateCount > 0 && <span className="text-[11px] font-semibold text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full">{moderateCount} Moderate</span>}
-              {minorCount > 0 && <span className="text-[11px] font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-full">{minorCount} Minor</span>}
-              {interactions.length === 0 && <span className="text-[11px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">None detected</span>}
+              {criticalCount > 0 && <span className="text-[11px] font-semibold text-red-700 bg-red-100 px-2 py-0.5 rounded-full">{criticalCount} {t.results.critical}</span>}
+              {moderateCount > 0 && <span className="text-[11px] font-semibold text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full">{moderateCount} {t.results.moderate}</span>}
+              {minorCount > 0 && <span className="text-[11px] font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-full">{minorCount} {t.results.minor}</span>}
+              {interactions.length === 0 && <span className="text-[11px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">{t.results.noInteractions}</span>}
             </div>
           </div>
           <div className="border-t border-slate-100 pt-2">
             <div className="flex items-center justify-between mb-1.5">
-              <span className="typo-label">Confidence</span>
+              <span className="typo-label">{t.results.confidence}</span>
               <span className={`typo-score font-medium ${conf.text}`}>{confidenceScore}%</span>
             </div>
             <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
@@ -95,7 +97,7 @@ function PatientSummaryPanel({ results, patientInfo }) {
       </div>
 
       <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
-        <h3 className="typo-section-header mb-3">Engine Scores</h3>
+        <h3 className="typo-section-header mb-3">{t.results.engineScores}</h3>
         <div className="space-y-2.5">
           {engines.map((eng) => (
             <div key={eng.id}>
@@ -123,6 +125,7 @@ function ClassChip({ label }) {
 
 // ── Interaction Card ────────────────────────────────────────────
 function InteractionCard({ interaction, index, acknowledged, noted, onAcknowledge, onNote, isFullSystem }) {
+  const { t } = useI18n();
   const isMinor = interaction.severity?.label === 'Minor' || interaction.severity?.label === 'Unknown';
   const [expanded, setExpanded] = useState(isMinor ? false : index === 0);
   const [showLiterature, setShowLiterature] = useState(false);
@@ -188,7 +191,7 @@ function InteractionCard({ interaction, index, acknowledged, noted, onAcknowledg
         <div className="animate-fade-in">
           {/* Zone 2: Mechanism */}
           <div className="px-4 py-3 bg-white border-t border-slate-100/50">
-            <h4 className="typo-section-header text-[11px] mb-1.5">WHAT HAPPENS</h4>
+            <h4 className="typo-section-header text-[11px] mb-1.5">{t.results.whatHappens.toUpperCase()}</h4>
             <p className="typo-body">{interaction.mechanism}</p>
           </div>
 
@@ -202,7 +205,7 @@ function InteractionCard({ interaction, index, acknowledged, noted, onAcknowledg
           {/* Zone 3: Recommendation */}
           <div className="px-4 py-3 border-t border-slate-100/50">
             <div className={`rounded-lg border px-3.5 py-3 ${recBoxBg()}`}>
-              <h4 className="typo-section-header text-[11px] mb-1.5">RECOMMENDED ACTION</h4>
+              <h4 className="typo-section-header text-[11px] mb-1.5">{t.results.recommendedAction.toUpperCase()}</h4>
               <p className="typo-rec text-slate-800 leading-relaxed">{interaction.recommendation}</p>
 
               {interaction.alternativeSuggestion && severityLabel === 'Critical' && (
@@ -210,7 +213,7 @@ function InteractionCard({ interaction, index, acknowledged, noted, onAcknowledg
                   <div className="flex items-start gap-2 bg-emerald-50 border border-emerald-100 rounded-lg px-3 py-2.5">
                     <Lightbulb size={13} className="text-emerald-600 shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-[11px] font-semibold text-emerald-700 uppercase tracking-wider mb-0.5">Alternative</p>
+                      <p className="text-[11px] font-semibold text-emerald-700 uppercase tracking-wider mb-0.5">{t.results.alternativeSuggestion}</p>
                       <p className="text-[13px] text-emerald-800 font-medium leading-relaxed">{interaction.alternativeSuggestion}</p>
                     </div>
                   </div>
@@ -227,7 +230,7 @@ function InteractionCard({ interaction, index, acknowledged, noted, onAcknowledg
                 className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-500 hover:text-slate-700 transition-colors"
               >
                 <BookOpen size={11} />
-                Evidence & References
+                {t.results.evidenceRefs}
                 {showLiterature ? <ChevronUp size={10} /> : <ChevronDown size={10} />}
               </button>
               {showLiterature && (
@@ -254,16 +257,16 @@ function InteractionCard({ interaction, index, acknowledged, noted, onAcknowledg
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-medium transition-all ${acknowledged ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-white text-slate-500 border border-slate-200 hover:border-slate-300'}`}
               >
                 <Check size={12} className={acknowledged ? 'text-emerald-600' : 'text-slate-400'} />
-                Reviewed ✓
+                {t.results.reviewed}
               </button>
               <button
                 onClick={(e) => { e.stopPropagation(); onNote(); }}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-medium transition-all ${noted ? 'bg-slate-100 text-slate-600 border border-slate-300' : 'bg-white text-slate-400 border border-slate-200 hover:border-slate-300'}`}
               >
                 <Flag size={10} />
-                Noted
+                {t.results.noted}
               </button>
-              <span className="text-[10px] text-slate-400 ml-auto italic">Your clinical judgment applies.</span>
+              <span className="text-[10px] text-slate-400 ml-auto italic">{t.results.clinicalJudgment}</span>
             </div>
           )}
         </div>
@@ -320,6 +323,7 @@ function DrugFlagCard({ drugFlag, species }) {
 
 // ── Main Results Display ────────────────────────────────────────
 export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, isFullSystem = false }) {
+  const { t, lang } = useI18n();
   if (!results) return null;
 
   const { interactions, drugFlags, speciesNotes } = results;
@@ -351,9 +355,9 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
             <ArrowLeft size={18} />
           </button>
           <div>
-            <h2 className="typo-page-title">DUR Analysis Report</h2>
+            <h2 className="typo-page-title">{t.results.durReport}</h2>
             <p className="typo-label mt-0.5">
-              {new Date(results.timestamp).toLocaleString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+              {new Date(results.timestamp).toLocaleString(lang === 'ko' ? 'ko-KR' : 'en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
             </p>
           </div>
         </div>
@@ -394,7 +398,7 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
 
             {hasInteractions ? (
               <div>
-                <h3 className="typo-section-header mb-3">Interaction Report</h3>
+                <h3 className="typo-section-header mb-3">{t.results.interactionReport}</h3>
                 <div className="space-y-2">
                   {interactions.map((interaction, i) => (
                     <InteractionCard
@@ -413,14 +417,14 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
             ) : (
               <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-6 text-center">
                 <CheckCircle size={32} className="text-emerald-500 mx-auto mb-3" />
-                <p className="typo-drug-name text-emerald-800 mb-1">No Significant Interactions</p>
-                <p className="typo-body text-emerald-600">All drug pairs screened. No contraindications detected.</p>
+                <p className="typo-drug-name text-emerald-800 mb-1">{t.results.noInteractions}</p>
+                <p className="typo-body text-emerald-600">{lang === 'ko' ? '모든 약물 쌍 검사 완료. 금기사항 없음.' : 'All drug pairs screened. No contraindications detected.'}</p>
               </div>
             )}
 
             {flaggedDrugs.length > 0 && (
               <div>
-                <h3 className="typo-section-header mb-3">Drug Advisory Flags</h3>
+                <h3 className="typo-section-header mb-3">{t.results.drugAdvisory}</h3>
                 <div className="space-y-2">
                   {flaggedDrugs.map((flag, i) => <DrugFlagCard key={i} drugFlag={flag} species={patientInfo?.species} />)}
                 </div>
@@ -429,7 +433,7 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
 
             {speciesNotes.length > 0 && (
               <div>
-                <h3 className="typo-section-header mb-3 flex items-center gap-1.5"><Dna size={12} /> Species-Specific Notes</h3>
+                <h3 className="typo-section-header mb-3 flex items-center gap-1.5"><Dna size={12} /> {t.results.speciesNotes}</h3>
                 <div className="bg-white border border-slate-200 rounded-lg divide-y divide-slate-100 shadow-sm">
                   {speciesNotes.map((note, i) => (
                     <div key={i} className="px-4 py-3">
@@ -442,12 +446,12 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
             )}
 
             <div className="flex gap-3 pt-2 no-print">
-              <button onClick={onBack} className="flex-1 px-4 py-2.5 text-[13px] font-medium text-slate-600 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors shadow-sm">Modify Prescription</button>
-              <button onClick={onNewAnalysis} className="flex-1 px-4 py-2.5 text-[13px] font-medium text-white bg-slate-900 rounded-lg hover:bg-slate-800 transition-colors shadow-sm">New Analysis</button>
+              <button onClick={onBack} className="flex-1 px-4 py-2.5 text-[13px] font-medium text-slate-600 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors shadow-sm">{t.results.backToMeds}</button>
+              <button onClick={onNewAnalysis} className="flex-1 px-4 py-2.5 text-[13px] font-medium text-white bg-slate-900 rounded-lg hover:bg-slate-800 transition-colors shadow-sm">{t.results.newAnalysis}</button>
             </div>
 
             <p className="text-[11px] text-slate-400 text-center leading-relaxed pt-2">
-              This analysis is generated from the NUVOVET interaction database and is not a substitute for clinical judgment.
+              {lang === 'ko' ? '본 분석은 NUVOVET 상호작용 데이터베이스를 기반으로 생성되었으며, 임상적 판단을 대체하지 않습니다.' : 'This analysis is generated from the NUVOVET interaction database and is not a substitute for clinical judgment.'}
             </p>
           </div>
         </div>
@@ -461,12 +465,12 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
               <div className="flex items-center gap-2">
                 <CheckCircle size={16} className="text-emerald-500" />
                 <span className="text-[13px] font-medium text-slate-700">
-                  Scan complete · {new Date().toLocaleDateString()} · {drugFlags.length} drugs · {interactions.length} interactions reviewed
+                  {t.results.scanComplete} · {new Date().toLocaleDateString(lang === 'ko' ? 'ko-KR' : 'en-US')} · {drugFlags.length} {lang === 'ko' ? '종 약물' : 'drugs'} · {interactions.length} {t.results.interactionsFound}
                 </span>
               </div>
               <button onClick={() => window.print()} className="flex items-center gap-1.5 px-4 py-2 bg-slate-900 text-white text-[12px] font-medium rounded-lg hover:bg-slate-800 transition-colors">
                 <Printer size={13} />
-                Export Summary
+                {t.results.exportSummary}
               </button>
             </div>
           </div>

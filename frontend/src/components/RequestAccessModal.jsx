@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { X, CheckCircle, Loader2 } from 'lucide-react';
+import { useI18n } from '../i18n';
 
 // Formspree endpoint — replace with your actual form ID
 const FORMSPREE_URL = 'https://formspree.io/f/xpznqkew';
 
 export function RequestAccessModal({ isOpen, onClose }) {
+  const { t } = useI18n();
   const [form, setForm] = useState({ name: '', clinic: '', contact: '' });
-  const [status, setStatus] = useState('idle'); // idle | submitting | success | error
+  const [status, setStatus] = useState('idle');
 
   if (!isOpen) return null;
 
@@ -44,18 +46,10 @@ export function RequestAccessModal({ isOpen, onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      {/* Backdrop */}
-      <div
-        className="absolute inset-0 bg-black/30 backdrop-blur-sm"
-        onClick={handleClose}
-      />
+      <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" onClick={handleClose} />
 
-      {/* Modal */}
       <div className="relative bg-white rounded-xl shadow-xl max-w-md w-full p-6 animate-fade-in">
-        <button
-          onClick={handleClose}
-          className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors"
-        >
+        <button onClick={handleClose} className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors">
           <X size={18} />
         </button>
 
@@ -64,85 +58,40 @@ export function RequestAccessModal({ isOpen, onClose }) {
             <div className="mx-auto w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center mb-4">
               <CheckCircle size={24} className="text-emerald-600" />
             </div>
-            <h3 className="text-lg font-semibold text-slate-900 mb-2">Request Received</h3>
-            <p className="text-sm text-slate-500">
-              We'll review your request and reach out within 1-2 business days.
-            </p>
-            <button
-              onClick={handleClose}
-              className="mt-6 px-5 py-2 text-sm text-slate-600 hover:text-slate-800 transition-colors"
-            >
-              Close
+            <h3 className="text-lg font-semibold text-slate-900 mb-2">{t.requestAccess.successTitle}</h3>
+            <p className="text-sm text-slate-500">{t.requestAccess.successDesc}</p>
+            <button onClick={handleClose} className="mt-6 px-5 py-2 text-sm text-slate-600 hover:text-slate-800 transition-colors">
+              {t.close}
             </button>
           </div>
         ) : (
           <>
-            <h3 className="text-lg font-semibold text-slate-900 mb-1">Request Full Access</h3>
-            <p className="text-sm text-slate-500 mb-6">
-              Complete the form below and we'll set you up with full system credentials.
-            </p>
+            <h3 className="text-lg font-semibold text-slate-900 mb-1">{t.requestAccess.title}</h3>
+            <p className="text-sm text-slate-500 mb-6">{t.requestAccess.desc}</p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-xs font-medium text-slate-600 mb-1.5">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  placeholder="Dr. Kim"
-                  className="w-full px-3 py-2.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-all"
-                />
+                <label className="block text-xs font-medium text-slate-600 mb-1.5">{t.requestAccess.name}</label>
+                <input type="text" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder={t.requestAccess.namePlaceholder} className="w-full px-3 py-2.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-all" />
               </div>
-
               <div>
-                <label className="block text-xs font-medium text-slate-600 mb-1.5">
-                  Clinic Name
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={form.clinic}
-                  onChange={(e) => setForm({ ...form, clinic: e.target.value })}
-                  placeholder="Seoul Animal Hospital"
-                  className="w-full px-3 py-2.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-all"
-                />
+                <label className="block text-xs font-medium text-slate-600 mb-1.5">{t.requestAccess.clinic}</label>
+                <input type="text" required value={form.clinic} onChange={(e) => setForm({ ...form, clinic: e.target.value })} placeholder={t.requestAccess.clinicPlaceholder} className="w-full px-3 py-2.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-all" />
               </div>
-
               <div>
-                <label className="block text-xs font-medium text-slate-600 mb-1.5">
-                  Email or Phone
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={form.contact}
-                  onChange={(e) => setForm({ ...form, contact: e.target.value })}
-                  placeholder="drkim@clinic.co.kr or 010-1234-5678"
-                  className="w-full px-3 py-2.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-all"
-                />
+                <label className="block text-xs font-medium text-slate-600 mb-1.5">{t.requestAccess.contact}</label>
+                <input type="text" required value={form.contact} onChange={(e) => setForm({ ...form, contact: e.target.value })} placeholder={t.requestAccess.contactPlaceholder} className="w-full px-3 py-2.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-all" />
               </div>
 
               {status === 'error' && (
-                <p className="text-xs text-red-600">
-                  Something went wrong. Please try again or email us directly.
-                </p>
+                <p className="text-xs text-red-600">{t.requestAccess.submitError}</p>
               )}
 
-              <button
-                type="submit"
-                disabled={status === 'submitting'}
-                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-900 text-white text-sm font-medium rounded-lg hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
-              >
+              <button type="submit" disabled={status === 'submitting'} className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-900 text-white text-sm font-medium rounded-lg hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200">
                 {status === 'submitting' ? (
-                  <>
-                    <Loader2 size={14} className="animate-spin" />
-                    Submitting...
-                  </>
+                  <><Loader2 size={14} className="animate-spin" /> {t.requestAccess.submitting}</>
                 ) : (
-                  'Submit Request'
+                  t.requestAccess.submit
                 )}
               </button>
             </form>
