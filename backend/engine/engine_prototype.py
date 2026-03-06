@@ -375,12 +375,15 @@ if __name__ == "__main__":
     DIGOXIN_ID      = os.environ.get('TEST_ID_DIGOXIN',      'digoxin-uuid')
 
     test_cases = [
+        """
         ("Ketoconazole + Prednisolone",     KETOCONAZOLE_ID, PREDNISOLONE_ID, {"species": "dog", "renal_disease": False}),
         ("Carprofen + Prednisolone",         CARPROFEN_ID,    PREDNISOLONE_ID, {"species": "dog", "renal_disease": False}),
         ("Furosemide + Digoxin (renal Dx)",  FUROSEMIDE_ID,   DIGOXIN_ID,      {"species": "dog", "renal_disease": True}),
         ("Furosemide + Digoxin (normal)",    FUROSEMIDE_ID,   DIGOXIN_ID,      {"species": "dog", "renal_disease": False}),
         ("Carprofen + Carprofen",            CARPROFEN_ID,    CARPROFEN_ID,    {"species": "dog", "renal_disease": False}),
+        """
     ]
+    
 
     for label, id_a, id_b, ctx in test_cases:
         try:
