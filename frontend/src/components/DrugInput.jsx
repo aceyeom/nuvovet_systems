@@ -1,25 +1,48 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Search, X, Plus, AlertTriangle, Globe, FlaskConical, HelpCircle, Pill } from 'lucide-react';
-import { searchDrugs, DRUG_SOURCE, createUnknownDrug } from '../data/drugDatabase';
-import { searchDrugCatalog } from '../data/drugSearchData';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
+import {
+  Search, X, Plus, AlertTriangle, Globe, FlaskConical, HelpCircle,
+  Pill, Syringe, ChevronDown, Filter, Tag
+} from 'lucide-react';
+import { searchDrugs, DRUG_SOURCE, DRUG_CLASS, createUnknownDrug } from '../data/drugDatabase';
+import { searchDrugCatalog, DRUG_SEARCH_CATALOG } from '../data/drugSearchData';
+import { useI18n } from '../i18n';
 
-function SourceIcon({ source }) {
-  if (source === DRUG_SOURCE.HUMAN_OFFLABEL) return <FlaskConical size={11} className="text-amber-500 shrink-0" title="Off-label human drug" />;
-  if (source === DRUG_SOURCE.FOREIGN) return <Globe size={11} className="text-blue-500 shrink-0" title="Foreign drug" />;
-  if (source === DRUG_SOURCE.UNKNOWN) return <HelpCircle size={11} className="text-slate-400 shrink-0" title="Unknown drug" />;
+// ── Drug class filter groups for doctor workflow ─────────────────
+const CLASS_GROUPS = [
+  { key: 'all',            classes: [] },
+  { key: 'nsaid',          classes: ['NSAID'] },
+  { key: 'corticosteroid', classes: ['Corticosteroid'] },
+  { key: 'antibiotic',     classes: ['Antibiotic'] },
+  { key: 'antifungal',     classes: ['Antifungal'] },
+  { key: 'analgesic',      classes: ['Analgesic'] },
+  { key: 'cardiac',        classes: ['Cardiac', 'ACE Inhibitor'] },
+  { key: 'anticonvulsant', classes: ['Anticonvulsant'] },
+  { key: 'gi_protectant',  classes: ['GI Protectant', 'Antiemetic'] },
+  { key: 'immunosuppressant', classes: ['Immunosuppressant'] },
+  { key: 'other',          classes: ['Diuretic', 'Sedative', 'Antidepressant', 'Thyroid', 'Antiparasitic', 'JAK Inhibitor'] },
+];
+
+const ROUTE_FILTERS = ['all', 'PO', 'SC', 'IV', 'Topical'];
+
+// ── Icons & Badges ───────────────────────────────────────────────
+function SourceIcon({ source, t }) {
+  if (source === DRUG_SOURCE.HUMAN_OFFLABEL) return <FlaskConical size={11} className="text-amber-500 shrink-0" title={t.drugInput.offLabel} />;
+  if (source === DRUG_SOURCE.FOREIGN) return <Globe size={11} className="text-blue-500 shrink-0" title={t.drugInput.foreignDrug} />;
+  if (source === DRUG_SOURCE.UNKNOWN) return <HelpCircle size={11} className="text-slate-400 shrink-0" />;
   return null;
 }
 
 function RouteIcon({ route }) {
   if (!route || route === 'Unknown') return null;
   const r = route.toLowerCase();
-  if (r.includes('po') || r === 'oral') return <span className="text-[11px]">💊</span>;
-  if (r.includes('sc') || r.includes('iv') || r.includes('inject')) return <span className="text-[11px]">💉</span>;
+  if (r.includes('po') || r === 'oral') return <Pill size={11} className="text-slate-400" />;
+  if (r.includes('sc') || r.includes('iv') || r.includes('im') || r.includes('inject')) return <Syringe size={11} className="text-slate-400" />;
   if (r.includes('topical')) return <span className="text-[11px]">🧴</span>;
-  return null;
+  return <Pill size={11} className="text-slate-400" />;
 }
 
-function DrugCard({ drug, index, onRemove, species }) {
+// ── Drug Card (selected drug in list) ────────────────────────────
+function DrugCard({ drug, index, onRemove, species, t, lang }) {
   const isMdr1Risk = drug.mdr1Sensitive && species === 'dog';
   const isNti = drug.narrowTherapeuticIndex;
   const isOffLabel = drug.source === DRUG_SOURCE.HUMAN_OFFLABEL;
@@ -30,9 +53,11 @@ function DrugCard({ drug, index, onRemove, species }) {
         <span className="text-[10px] text-slate-400 font-mono w-4 shrink-0 mt-1">{index + 1}</span>
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-1.5 flex-wrap">
-            <SourceIcon source={drug.source} />
-            <span className="typo-drug-name text-[14px] truncate">{drug.name}</span>
-            {drug.activeSubstance !== drug.name && drug.activeSubstance !== 'Unknown' && (
+            <SourceIcon source={drug.source} t={t} />
+            <span className="typo-drug-name text-[14px] truncate">
+              {lang === 'ko' && drug.nameKr ? drug.nameKr : drug.name}
+            </span>
+            {drug.activeSubstance && drug.activeSubstance !== drug.name && drug.activeSubstance !== 'Unknown' && (
               <span className="text-[11px] text-slate-400">({drug.activeSubstance})</span>
             )}
           </div>
@@ -44,17 +69,21 @@ function DrugCard({ drug, index, onRemove, species }) {
             )}
             <div className="flex items-center gap-1">
               <RouteIcon route={drug.route} />
-              <span className="text-[10px] text-slate-400">{drug.route}</span>
+              <span className="text-[10px] text-slate-400">
+                {lang === 'ko' ? (t.routes[drug.route] || drug.route) : drug.route}
+              </span>
             </div>
-            <span className="text-[10px] text-slate-400 bg-slate-50 px-1.5 py-0.5 rounded">{drug.class}</span>
+            <span className="text-[10px] text-slate-400 bg-slate-50 px-1.5 py-0.5 rounded">
+              {lang === 'ko' ? (t.drugClasses[drug.class?.toLowerCase()?.replace(/ /g, '_')] || drug.class) : drug.class}
+            </span>
             {isOffLabel && (
-              <span className="text-[10px] font-medium text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-100">Off-label</span>
+              <span className="text-[10px] font-medium text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-100">{t.drugInput.offLabel}</span>
             )}
             {isNti && (
-              <span className="text-[10px] font-medium text-red-600 bg-red-50 px-1.5 py-0.5 rounded border border-red-100">NTI</span>
+              <span className="text-[10px] font-medium text-red-600 bg-red-50 px-1.5 py-0.5 rounded border border-red-100">{t.drugInput.nti}</span>
             )}
             {isMdr1Risk && (
-              <span className="text-[10px] font-medium text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded border border-orange-100">MDR1 ⚠</span>
+              <span className="text-[10px] font-medium text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded border border-orange-100">{t.drugInput.mdr1} ⚠</span>
             )}
           </div>
         </div>
@@ -62,6 +91,7 @@ function DrugCard({ drug, index, onRemove, species }) {
       <button
         onClick={() => onRemove(drug.id)}
         className="p-1 text-slate-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-all shrink-0 mt-0.5"
+        title={t.remove}
       >
         <X size={14} />
       </button>
@@ -69,7 +99,9 @@ function DrugCard({ drug, index, onRemove, species }) {
   );
 }
 
+// ── Main DrugInput Component ─────────────────────────────────────
 export function DrugInput({ drugs, onAddDrug, onRemoveDrug, species, demoMode = false }) {
+  const { t, lang } = useI18n();
   const [showSearch, setShowSearch] = useState(false);
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
@@ -79,10 +111,14 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, species, demoMode = 
   const [unknownIngredient, setUnknownIngredient] = useState('');
   const [showIngredientInput, setShowIngredientInput] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [activeClassFilter, setActiveClassFilter] = useState('all');
+  const [activeRouteFilter, setActiveRouteFilter] = useState('all');
+  const [showFilters, setShowFilters] = useState(false);
   const inputRef = useRef(null);
   const dropdownRef = useRef(null);
   const debounceRef = useRef(null);
 
+  // Close dropdown on outside click
   useEffect(() => {
     const handler = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target) &&
@@ -98,6 +134,36 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, species, demoMode = 
     if (showSearch && inputRef.current) inputRef.current.focus();
   }, [showSearch]);
 
+  // ── Browse mode: show all drugs filtered by class/route ────────
+  const browseDrugs = useMemo(() => {
+    if (query.trim().length > 0) return null; // search mode active
+
+    let filtered = DRUG_SEARCH_CATALOG;
+
+    // Class filter
+    if (activeClassFilter !== 'all') {
+      const group = CLASS_GROUPS.find(g => g.key === activeClassFilter);
+      if (group) {
+        filtered = filtered.filter(p => group.classes.some(c =>
+          p.substance.drug_class?.includes(c) || p.substance.subclass?.includes(c)
+        ));
+      }
+    }
+
+    // Route filter
+    if (activeRouteFilter !== 'all') {
+      filtered = filtered.filter(p =>
+        p.route_of_administration?.toLowerCase().includes(activeRouteFilter.toLowerCase())
+      );
+    }
+
+    // Exclude already-added drugs
+    filtered = filtered.filter(p => !drugs.some(d => d.id === p.drug_db_id));
+
+    return filtered;
+  }, [query, activeClassFilter, activeRouteFilter, drugs]);
+
+  // ── Search handler ─────────────────────────────────────────────
   const handleSearch = (value) => {
     setQuery(value);
     setSelectedProduct(null);
@@ -116,11 +182,12 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, species, demoMode = 
         setShowDropdown(false);
         setShowUnknownOption(false);
       }
-    }, 200);
+    }, 150);
   };
 
   const handleSelectDrug = (drug) => {
-    const catalogMatch = catalogResults.find(c => c.drug_db_id === drug.id);
+    const catalogMatch = catalogResults.find(c => c.drug_db_id === drug.id) ||
+      DRUG_SEARCH_CATALOG.find(c => c.drug_db_id === drug.id);
     if (catalogMatch && catalogMatch.variants.length > 1) {
       setSelectedProduct({ drug, catalog: catalogMatch });
       return;
@@ -129,6 +196,24 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, species, demoMode = 
     onAddDrug({
       ...drug,
       selectedVariant: variant ? `${variant.strength_value}${variant.strength_unit} ${catalogMatch.dosage_form?.split(',')[0] || ''}`.trim() : null,
+    });
+    resetSearch();
+  };
+
+  // Select from browse mode (catalog product → drugDatabase entry)
+  const handleSelectCatalogProduct = (product) => {
+    const drug = searchDrugs(product.drug_db_id, species).find(d => d.id === product.drug_db_id) ||
+                 searchDrugs(product.english_name_base, species)[0];
+    if (!drug) return;
+
+    if (product.variants.length > 1) {
+      setSelectedProduct({ drug, catalog: product });
+      return;
+    }
+    const variant = product.variants[0];
+    onAddDrug({
+      ...drug,
+      selectedVariant: variant ? `${variant.strength_value}${variant.strength_unit} ${product.dosage_form?.split(',')[0] || ''}`.trim() : null,
     });
     resetSearch();
   };
@@ -151,6 +236,9 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, species, demoMode = 
     setShowUnknownOption(false);
     setSelectedProduct(null);
     setShowSearch(false);
+    setActiveClassFilter('all');
+    setActiveRouteFilter('all');
+    setShowFilters(false);
   };
 
   const handleConfirmUnknown = () => {
@@ -160,27 +248,42 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, species, demoMode = 
     resetSearch();
   };
 
+  // ── Class filter label ─────────────────────────────────────────
+  const classLabel = (key) => {
+    if (key === 'all') return t.drugInput.allDrugs;
+    if (key === 'other') return lang === 'ko' ? '기타' : 'Other';
+    return t.drugClasses[key] || key;
+  };
+
+  const routeLabel = (r) => {
+    if (r === 'all') return t.drugInput.routeAll;
+    return t.routes[r] || r;
+  };
+
   return (
     <div className="space-y-3">
+      {/* ── Drug List ── */}
       {drugs.length > 0 && (
         <div className="space-y-2">
           {drugs.map((drug, idx) => (
-            <DrugCard key={drug.id || idx} drug={drug} index={idx} onRemove={onRemoveDrug} species={species} />
+            <DrugCard key={drug.id || idx} drug={drug} index={idx} onRemove={onRemoveDrug} species={species} t={t} lang={lang} />
           ))}
         </div>
       )}
 
+      {/* ── Add Button or Search Panel ── */}
       {!showSearch ? (
         <button
           onClick={() => setShowSearch(true)}
           className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-slate-900 text-white text-[13px] font-medium rounded-lg hover:bg-slate-800 transition-all duration-200"
         >
           <Plus size={15} />
-          Add Medication
+          {t.drugInput.addMedication}
         </button>
       ) : (
         <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm animate-expand-in">
-          <div className="p-3">
+          {/* ── Search bar ── */}
+          <div className="p-3 pb-2">
             <div className="relative">
               <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
               <input
@@ -189,19 +292,83 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, species, demoMode = 
                 value={query}
                 onChange={(e) => handleSearch(e.target.value)}
                 onFocus={() => query.trim().length >= 1 && setShowDropdown(true)}
-                placeholder="Search by brand name, generic name, or active ingredient"
-                className="w-full pl-9 pr-8 py-2.5 text-[13px] border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-all placeholder:text-slate-400"
+                placeholder={t.drugInput.searchPlaceholder}
+                className="w-full pl-9 pr-16 py-2.5 text-[13px] border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-all placeholder:text-slate-400"
               />
-              <button onClick={resetSearch} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
-                <X size={14} />
-              </button>
+              <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
+                <button
+                  onClick={() => setShowFilters(!showFilters)}
+                  className={`p-1 rounded transition-colors ${showFilters ? 'text-slate-900 bg-slate-100' : 'text-slate-400 hover:text-slate-600'}`}
+                  title={t.drugInput.filterByClass}
+                >
+                  <Filter size={13} />
+                </button>
+                <button onClick={resetSearch} className="p-1 text-slate-400 hover:text-slate-600">
+                  <X size={13} />
+                </button>
+              </div>
             </div>
           </div>
 
+          {/* ── Filter bar: class + route ── */}
+          {showFilters && (
+            <div className="px-3 pb-2 space-y-2 animate-fade-in">
+              {/* Class filters */}
+              <div>
+                <div className="flex items-center gap-1 mb-1.5">
+                  <Tag size={10} className="text-slate-400" />
+                  <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">{t.drugInput.filterByClass}</span>
+                </div>
+                <div className="flex flex-wrap gap-1">
+                  {CLASS_GROUPS.map(g => (
+                    <button
+                      key={g.key}
+                      onClick={() => { setActiveClassFilter(g.key); setQuery(''); }}
+                      className={`px-2 py-1 text-[10px] font-medium rounded-full border transition-all ${
+                        activeClassFilter === g.key
+                          ? 'bg-slate-900 text-white border-slate-900'
+                          : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
+                      }`}
+                    >
+                      {classLabel(g.key)}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Route filters */}
+              <div>
+                <div className="flex items-center gap-1 mb-1.5">
+                  <Pill size={10} className="text-slate-400" />
+                  <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">{t.drugInput.filterByRoute}</span>
+                </div>
+                <div className="flex flex-wrap gap-1">
+                  {ROUTE_FILTERS.map(r => (
+                    <button
+                      key={r}
+                      onClick={() => { setActiveRouteFilter(r); setQuery(''); }}
+                      className={`px-2 py-1 text-[10px] font-medium rounded-full border transition-all ${
+                        activeRouteFilter === r
+                          ? 'bg-slate-900 text-white border-slate-900'
+                          : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
+                      }`}
+                    >
+                      {routeLabel(r)}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ── Variant selector ── */}
           {selectedProduct && (
-            <div className="px-3 pb-3 animate-fade-in">
+            <div className="px-3 pb-3 border-t border-slate-100 pt-2 animate-fade-in">
               <p className="text-[11px] text-slate-400 mb-2">
-                Select strength for <span className="font-medium text-slate-600">{selectedProduct.catalog.english_name_base}</span>
+                {lang === 'ko'
+                  ? <>{selectedProduct.catalog.korean_name_base}의 <span className="font-medium text-slate-600">{t.drugInput.strength}</span>을 선택하세요</>
+                  : <>Select strength for <span className="font-medium text-slate-600">{selectedProduct.catalog.english_name_base}</span></>
+                }
               </p>
               <div className="flex flex-wrap gap-2">
                 {selectedProduct.catalog.variants.map((v) => (
@@ -211,14 +378,18 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, species, demoMode = 
                     className="px-3 py-1.5 text-[12px] font-medium text-slate-700 bg-slate-50 border border-slate-200 rounded-full hover:bg-slate-100 hover:border-slate-300 transition-all"
                   >
                     {v.strength_value}{v.strength_unit}
+                    {v.license_status === 'korean_approved' && (
+                      <span className="ml-1 text-emerald-600">●</span>
+                    )}
                   </button>
                 ))}
               </div>
             </div>
           )}
 
-          {showDropdown && !selectedProduct && (results.length > 0 || showUnknownOption) && (
-            <div ref={dropdownRef} className="border-t border-slate-100 max-h-60 overflow-y-auto">
+          {/* ── Search results (text search mode) ── */}
+          {showDropdown && !selectedProduct && query.trim().length > 0 && (results.length > 0 || showUnknownOption) && (
+            <div ref={dropdownRef} className="border-t border-slate-100 max-h-64 overflow-y-auto">
               {results.map((drug) => {
                 const cat = catalogResults.find(c => c.drug_db_id === drug.id);
                 return (
@@ -229,17 +400,26 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, species, demoMode = 
                   >
                     <div className="flex items-start gap-2.5">
                       <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center shrink-0 mt-0.5">
-                        <Pill size={14} className="text-slate-400" />
+                        <RouteIcon route={drug.route} />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-1.5">
-                          <span className="text-[13px] font-semibold text-slate-800">{cat ? cat.english_name_base : drug.name}</span>
-                          {drug.activeSubstance !== drug.name && (
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          <span className="text-[13px] font-semibold text-slate-800">
+                            {lang === 'ko' && drug.nameKr ? drug.nameKr : (cat ? cat.english_name_base : drug.name)}
+                          </span>
+                          {lang === 'ko' && drug.name && (
+                            <span className="text-[11px] text-slate-400">({drug.name})</span>
+                          )}
+                          {lang !== 'ko' && drug.activeSubstance !== drug.name && (
                             <span className="text-[11px] text-slate-400">({drug.activeSubstance})</span>
                           )}
+                          <SourceIcon source={drug.source} t={t} />
                         </div>
                         <div className="text-[11px] text-slate-400 mt-0.5">
-                          {cat ? `${cat.substance.drug_class}${cat.substance.subclass ? ` · ${cat.substance.subclass}` : ''} · ${cat.route_of_administration} ${cat.dosage_form}` : drug.class}
+                          {cat
+                            ? `${cat.substance.drug_class}${cat.substance.subclass ? ` · ${cat.substance.subclass}` : ''} · ${lang === 'ko' ? (t.routes[cat.route_of_administration] || cat.route_of_administration) : cat.route_of_administration} · ${cat.dosage_form}`
+                            : `${lang === 'ko' ? (t.drugClasses[drug.class?.toLowerCase()?.replace(/ /g, '_')] || drug.class) : drug.class} · ${lang === 'ko' ? (t.routes[drug.route] || drug.route) : drug.route}`
+                          }
                         </div>
                         {cat && (
                           <div className="flex items-center gap-1.5 mt-1 flex-wrap">
@@ -249,10 +429,10 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, species, demoMode = 
                               </span>
                             ))}
                             {cat.variants[0]?.license_status === 'korean_approved' && (
-                              <span className="text-[10px] text-emerald-600 font-medium">● Korean Licensed</span>
+                              <span className="text-[10px] text-emerald-600 font-medium">● {t.drugInput.koreanApproved}</span>
                             )}
                             {cat.variants[0]?.is_prescription_only && (
-                              <span className="text-[10px] text-blue-600 font-medium">● Rx only</span>
+                              <span className="text-[10px] text-blue-600 font-medium">Rx</span>
                             )}
                           </div>
                         )}
@@ -270,8 +450,12 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, species, demoMode = 
                   <div className="flex items-center gap-2 text-slate-500">
                     <AlertTriangle size={14} className="text-amber-500" />
                     <div>
-                      <div className="text-[13px] font-medium">Add "{query.trim()}" as unknown drug</div>
-                      <div className="text-[11px] text-slate-400">Not found in database — specify active ingredient</div>
+                      <div className="text-[13px] font-medium">
+                        {lang === 'ko' ? `"${query.trim()}" 직접 입력` : `Add "${query.trim()}" as unknown drug`}
+                      </div>
+                      <div className="text-[11px] text-slate-400">
+                        {lang === 'ko' ? '데이터베이스에 없음 — 유효성분을 입력하세요' : 'Not in database — specify active ingredient'}
+                      </div>
                     </div>
                   </div>
                 </button>
@@ -279,19 +463,93 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, species, demoMode = 
 
               {showIngredientInput && (
                 <div className="px-3 py-3 border-t border-slate-100 bg-slate-50">
-                  <p className="text-[11px] text-slate-500 mb-2">Optional: enter the active ingredient for better analysis</p>
+                  <p className="text-[11px] text-slate-500 mb-2">
+                    {lang === 'ko' ? '선택사항: 더 정확한 분석을 위해 유효성분을 입력하세요' : 'Optional: enter active ingredient for better analysis'}
+                  </p>
                   <div className="flex gap-2">
                     <input
                       type="text"
                       value={unknownIngredient}
                       onChange={(e) => setUnknownIngredient(e.target.value)}
-                      placeholder="e.g., acetaminophen"
+                      placeholder={lang === 'ko' ? '예: 아세트아미노펜' : 'e.g., acetaminophen'}
                       className="flex-1 px-2.5 py-2 text-[13px] border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10"
                       autoFocus
                     />
-                    <button onClick={handleConfirmUnknown} className="px-3 py-2 bg-slate-900 text-white text-[11px] font-medium rounded-lg hover:bg-slate-800">Add</button>
+                    <button onClick={handleConfirmUnknown} className="px-3 py-2 bg-slate-900 text-white text-[11px] font-medium rounded-lg hover:bg-slate-800">
+                      {t.add}
+                    </button>
                   </div>
-                  <button onClick={handleConfirmUnknown} className="mt-1.5 text-[11px] text-slate-400 hover:text-slate-600">Skip — add without ingredient</button>
+                  <button onClick={handleConfirmUnknown} className="mt-1.5 text-[11px] text-slate-400 hover:text-slate-600">
+                    {lang === 'ko' ? '건너뛰기 — 성분 없이 추가' : 'Skip — add without ingredient'}
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* ── Browse mode (no search text → show catalog grid) ── */}
+          {!selectedProduct && query.trim().length === 0 && showSearch && (
+            <div className="border-t border-slate-100">
+              {browseDrugs && browseDrugs.length > 0 ? (
+                <div className="max-h-64 overflow-y-auto">
+                  <div className="px-3 pt-2 pb-1">
+                    <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">
+                      {activeClassFilter !== 'all' || activeRouteFilter !== 'all'
+                        ? (lang === 'ko' ? '필터 결과' : 'Filtered Results')
+                        : (lang === 'ko' ? '전체 의약품 목록' : 'All Available Drugs')
+                      }
+                      <span className="ml-1 text-slate-300">({browseDrugs.length})</span>
+                    </span>
+                  </div>
+                  {browseDrugs.map((product) => (
+                    <button
+                      key={product.product_id}
+                      onClick={() => handleSelectCatalogProduct(product)}
+                      className="w-full text-left px-3 py-2 hover:bg-slate-50 transition-colors border-b border-slate-50 last:border-0"
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-7 h-7 rounded-md bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0">
+                          <RouteIcon route={product.route_of_administration} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-[12px] font-semibold text-slate-800 truncate">
+                              {lang === 'ko' ? product.korean_name_base : product.english_name_base}
+                            </span>
+                            <span className="text-[10px] text-slate-400 truncate">
+                              {lang === 'ko' ? product.english_name_base : product.korean_name_base}
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-1.5 mt-0.5 flex-wrap">
+                            <span className="text-[10px] text-slate-400">{product.substance.drug_class}</span>
+                            <span className="text-[10px] text-slate-300">·</span>
+                            <span className="text-[10px] text-slate-400">{lang === 'ko' ? (t.routes[product.route_of_administration] || product.route_of_administration) : product.route_of_administration}</span>
+                            <span className="text-[10px] text-slate-300">·</span>
+                            <span className="text-[10px] text-slate-400">{product.dosage_form}</span>
+                            {product.variants[0]?.license_status === 'korean_approved' && (
+                              <span className="text-[9px] text-emerald-600 font-medium">{t.drugInput.koreanApproved}</span>
+                            )}
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-1 shrink-0">
+                          {product.variants.length > 1 ? (
+                            <span className="text-[10px] text-slate-400 flex items-center gap-0.5">
+                              {product.variants.length} <ChevronDown size={10} />
+                            </span>
+                          ) : (
+                            <span className="text-[10px] text-slate-500 bg-slate-50 px-1.5 py-0.5 rounded">
+                              {product.variants[0]?.strength_value}{product.variants[0]?.strength_unit}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <div className="px-4 py-6 text-center">
+                  <p className="text-[12px] text-slate-400">{t.drugInput.noMatchFound}</p>
+                  <p className="text-[11px] text-slate-300 mt-1">{t.drugInput.tryDifferentSearch}</p>
                 </div>
               )}
             </div>
@@ -300,7 +558,7 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, species, demoMode = 
       )}
 
       {demoMode && drugs.length === 0 && (
-        <p className="text-[11px] text-slate-400 text-center">Add at least 2 drugs to check interactions</p>
+        <p className="text-[11px] text-slate-400 text-center">{t.demo.addAtLeast2}</p>
       )}
     </div>
   );

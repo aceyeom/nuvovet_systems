@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Lock, Eye, EyeOff, Zap, RotateCcw } from 'lucide-react';
 import { NuvovetLogo, NuvovetWordmark } from '../components/NuvovetLogo';
+import { useI18n, LangToggle } from '../i18n';
 import { PatientConfig } from '../components/PatientConfig';
 import { DrugInput } from '../components/DrugInput';
 import { AnalysisScreen } from '../components/AnalysisScreen';
@@ -12,6 +13,7 @@ const SYSTEM_PASSWORD = 'vetdur2025';
 
 // ── Password Gate ───────────────────────────────────────────────
 function PasswordGate({ onAuthenticate }) {
+  const { t } = useI18n();
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(false);
@@ -47,9 +49,9 @@ function PasswordGate({ onAuthenticate }) {
           <div className="mx-auto w-14 h-14 bg-slate-100 rounded-2xl flex items-center justify-center mb-6">
             <Lock size={24} className="text-slate-500" />
           </div>
-          <h2 className="text-xl font-semibold text-slate-900 mb-2">Full System Access</h2>
+          <h2 className="text-xl font-semibold text-slate-900 mb-2">{t.fullSystem.accessTitle}</h2>
           <p className="text-sm text-slate-500 mb-8">
-            Enter your access password to use the full DUR system.
+            {t.fullSystem.accessDesc}
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-3">
@@ -58,7 +60,7 @@ function PasswordGate({ onAuthenticate }) {
                 type={showPassword ? 'text' : 'password'}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Access password"
+                placeholder={t.fullSystem.passwordPlaceholder}
                 className={`w-full px-4 py-3 text-sm border rounded-lg focus:outline-none focus:ring-2 transition-all pr-10 ${
                   error
                     ? 'border-red-300 focus:ring-red-100 bg-red-50'
@@ -75,13 +77,13 @@ function PasswordGate({ onAuthenticate }) {
               </button>
             </div>
             {error && (
-              <p className="text-xs text-red-500 animate-fade-in">Invalid password. Please try again.</p>
+              <p className="text-xs text-red-500 animate-fade-in">{t.fullSystem.invalidPassword}</p>
             )}
             <button
               type="submit"
               className="w-full px-4 py-3 bg-slate-900 text-white text-sm font-medium rounded-lg hover:bg-slate-800 transition-all duration-200"
             >
-              Enter System
+              {t.fullSystem.enterSystem}
             </button>
           </form>
 
@@ -89,7 +91,7 @@ function PasswordGate({ onAuthenticate }) {
             onClick={() => navigate('/demo')}
             className="mt-6 text-xs text-slate-400 hover:text-slate-600 transition-colors"
           >
-            Or try the demo instead
+            {t.fullSystem.tryDemoInstead}
           </button>
         </div>
       </main>
@@ -100,6 +102,7 @@ function PasswordGate({ onAuthenticate }) {
 // ── Full System Main ────────────────────────────────────────────
 export default function FullSystem() {
   const navigate = useNavigate();
+  const { t } = useI18n();
   const [authenticated, setAuthenticated] = useState(false);
   const [species, setSpecies] = useState('dog');
   const [weight, setWeight] = useState(10);
@@ -164,23 +167,24 @@ export default function FullSystem() {
             <NuvovetLogo size={28} className="text-slate-900" />
             <div>
               <NuvovetWordmark />
-              <span className="hidden sm:inline text-xs text-slate-400 ml-2">Full System</span>
+              <span className="hidden sm:inline text-xs text-slate-400 ml-2">{t.fullSystem}</span>
             </div>
           </div>
         </div>
         <div className="flex items-center gap-2">
+          <LangToggle />
           {step === 'input' && drugs.length > 0 && (
             <button
               onClick={handleReset}
               className="p-2 text-slate-400 hover:text-slate-600 transition-colors"
-              title="Reset all"
+              title={t.reset}
             >
               <RotateCcw size={15} />
             </button>
           )}
           <span className="text-xs px-2 py-1 bg-emerald-50 text-emerald-600 rounded-full font-medium flex items-center gap-1">
             <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full" />
-            Connected
+            {t.connected}
           </span>
         </div>
       </header>
@@ -191,7 +195,7 @@ export default function FullSystem() {
           {/* Patient config */}
           <div>
             <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">
-              Patient
+              {t.fullSystem.patientSection}
             </h3>
             <PatientConfig
               species={species}
@@ -204,7 +208,7 @@ export default function FullSystem() {
           {/* Drug input */}
           <div>
             <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">
-              Medications {drugs.length > 0 && `(${drugs.length})`}
+              {t.fullSystem.medsSection} {drugs.length > 0 && `(${drugs.length})`}
             </h3>
             <DrugInput
               drugs={drugs}
@@ -221,12 +225,12 @@ export default function FullSystem() {
             className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-slate-900 text-white text-sm font-medium rounded-lg hover:bg-slate-800 disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200 shadow-sm"
           >
             <Zap size={15} />
-            Run DUR Scan
+            {t.fullSystem.runScan}
           </button>
 
           {drugs.length < 2 && drugs.length > 0 && (
             <p className="text-xs text-slate-400 text-center">
-              Add at least one more drug to check interactions
+              {t.fullSystem.addMoreDrugs}
             </p>
           )}
         </main>

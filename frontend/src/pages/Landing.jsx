@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { NuvovetLogo, NuvovetWordmark } from '../components/NuvovetLogo';
 import { RequestAccessModal } from '../components/RequestAccessModal';
+import { useI18n, LangToggle } from '../i18n';
 
 // ── Scroll reveal hook ──────────────────────────────────────────
 function useReveal(threshold = 0.15) {
@@ -185,6 +186,7 @@ function ResultPreview() {
 // ── Main Landing Page ───────────────────────────────────────────
 export default function Landing() {
   const navigate = useNavigate();
+  const { t, lang } = useI18n();
   const [showAccessModal, setShowAccessModal] = useState(false);
   const [heroVisible, setHeroVisible] = useState(false);
 
@@ -203,18 +205,19 @@ export default function Landing() {
             <NuvovetWordmark />
           </div>
           <div className="flex items-center gap-3">
+            <LangToggle />
             <button
               onClick={() => navigate('/system')}
               className="hidden sm:flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-700 transition-colors"
             >
               <Lock size={11} />
-              Full System
+              {t.fullSystem}
             </button>
             <button
               onClick={() => navigate('/demo')}
               className="px-4 py-2 bg-slate-900 text-white text-xs font-medium rounded-lg hover:bg-slate-800 transition-all"
             >
-              Try Demo
+              {t.nav.tryDemo}
             </button>
           </div>
         </div>
