@@ -304,7 +304,7 @@ def validate_result(data: dict, ingredient: str) -> list[str]:
     return errors
 
 
-async def convert_one(client: anthropic.AsyncAnthropic, drug: dict, semaphore: asyncio.Semaphore) -> tuple[str, bool, str]:
+async def convert_one(client: AsyncOpenAI, drug: dict, semaphore: asyncio.Semaphore) -> tuple[str, bool, str]:
     """단일 약물 변환. Returns (ingredient, success, message)"""
     ingredient = drug["ingredient"]
     output_path = get_output_path(ingredient)
