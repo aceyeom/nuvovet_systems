@@ -5,6 +5,13 @@ import {
 } from 'lucide-react';
 import { searchDrugs, DRUG_SOURCE, DRUG_CLASS, createUnknownDrug } from '../data/drugDatabase';
 import { searchDrugCatalog, DRUG_SEARCH_CATALOG } from '../data/drugSearchData';
+import {
+  buildPrescriptionLineItem,
+  calculateDoseMetrics,
+  DOSE_UNIT_ENUM,
+  ROUTE_ENUM,
+  TREATMENT_CATEGORY_ENUM,
+} from '../data/emrSchema';
 import { useI18n } from '../i18n';
 
 // ── Species-Specific Toxicity Hardstops ─────────────────────────
@@ -180,11 +187,31 @@ function RouteIcon({ route }) {
 }
 
 // ── Drug Card (selected drug in list) ────────────────────────────
-function DrugCard({ drug, index, onRemove, species, weight, t, lang }) {
+function DrugCard({ drug, index, onRemove, onUpdateDrug, species, weight, t, lang }) {
+  const lineItem = buildPrescriptionLineItem(drug, weight);
   const isMdr1Risk = drug.mdr1Sensitive && species === 'dog';
   const isNti = drug.narrowTherapeuticIndex;
   const isOffLabel = drug.source === DRUG_SOURCE.HUMAN_OFFLABEL;
   const hardstopReason = getHardstop(drug, species);
+
+  const handleLineChange = (field, value) => {
+    if (!onUpdateDrug) return;
+    const nextLine = {
+      ...lineItem,
+      [field]: value,
+    };
+    const metrics = calculateDoseMetrics({
+      dosePerKg: nextLine.dosePerKg,
+      doseUnit: nextLine.doseUnit,
+      patientWeight: weight,
+      daysSupplied: nextLine.daysSupplied,
+      timesPerDay: nextLine.timesPerDay,
+    });
+    onUpdateDrug(drug.id, {
+      [field]: value,
+      ...metrics,
+    });
+  };
 
   return (
     <div
@@ -263,6 +290,126 @@ function DrugCard({ drug, index, onRemove, species, weight, t, lang }) {
       {!hardstopReason && (
         <div className="ml-6">
           <DoseCalculator drug={drug} species={species} weight={weight} lang={lang} />
+
+          {/* EMR-style prescription line fields */}
+          <div className="mt-2.5 grid grid-cols-2 sm:grid-cols-4 gap-2 text-[10px]">
+            <label className="flex flex-col gap-1">
+              <span className="text-slate-400">{t.drugInput.dosePerKg}</span>
+              <input
+                type="number"
+                min="0"
+                step="0.01"
+                value={lineItem.dosePerKg}
+                onChange={(e) => handleLineChange('dosePerKg', Number(e.target.value) || 0)}
+                className="px-2 py-1.5 border border-slate-200 rounded-md text-[11px] focus:outline-none focus:ring-2 focus:ring-slate-900/10"
+              />
+            </label>
+
+            <label className="flex flex-col gap-1">
+              <span className="text-slate-400">{t.drugInput.doseUnit}</span>
+              <select
+                value={lineItem.doseUnit}
+                onChange={(e) => handleLineChange('doseUnit', e.target.value)}
+                className="px-2 py-1.5 border border-slate-200 rounded-md text-[11px] bg-white focus:outline-none focus:ring-2 focus:ring-slate-900/10"
+              >
+                {DOSE_UNIT_ENUM.map((unit) => (
+                  <option key={unit} value={unit}>{unit}</option>
+                ))}
+              </select>
+            </label>
+
+            <label className="flex flex-col gap-1">
+              <span className="text-slate-400">Dy</span>
+              <input
+                type="number"
+                min="1"
+                step="1"
+                value={lineItem.daysSupplied}
+                onChange={(e) => handleLineChange('daysSupplied', Math.max(1, Number(e.target.value) || 1))}
+                className="px-2 py-1.5 border border-slate-200 rounded-md text-[11px] focus:outline-none focus:ring-2 focus:ring-slate-900/10"
+              />
+            </label>
+
+            <label className="flex flex-col gap-1">
+              <span className="text-slate-400">Tt</span>
+              <input
+                type="number"
+                min="1"
+                step="1"
+                value={lineItem.timesPerDay}
+                onChange={(e) => handleLineChange('timesPerDay', Math.max(1, Number(e.target.value) || 1))}
+                className="px-2 py-1.5 border border-slate-200 rounded-md text-[11px] focus:outline-none focus:ring-2 focus:ring-slate-900/10"
+              />
+            </label>
+          </div>
+
+          <div className="mt-2 grid grid-cols-2 sm:grid-cols-4 gap-2 text-[10px]">
+            <label className="flex flex-col gap-1">
+              <span className="text-slate-400">Rt</span>
+              <select
+                value={lineItem.route}
+                onChange={(e) => handleLineChange('route', e.target.value)}
+                className="px-2 py-1.5 border border-slate-200 rounded-md text-[11px] bg-white focus:outline-none focus:ring-2 focus:ring-slate-900/10"
+              >
+                {ROUTE_ENUM.map((route) => (
+                  <option key={route} value={route}>{route}</option>
+                ))}
+              </select>
+            </label>
+
+            <label className="flex flex-col gap-1">
+              <span className="text-slate-400">{t.drugInput.folderName}</span>
+              <input
+                type="text"
+                value={lineItem.folderName}
+                onChange={(e) => handleLineChange('folderName', e.target.value)}
+                className="px-2 py-1.5 border border-slate-200 rounded-md text-[11px] focus:outline-none focus:ring-2 focus:ring-slate-900/10"
+              />
+            </label>
+
+            <label className="flex flex-col gap-1">
+              <span className="text-slate-400">{t.drugInput.treatmentCategory}</span>
+              <select
+                value={lineItem.treatmentCategory}
+                onChange={(e) => handleLineChange('treatmentCategory', e.target.value)}
+                className="px-2 py-1.5 border border-slate-200 rounded-md text-[11px] bg-white focus:outline-none focus:ring-2 focus:ring-slate-900/10"
+              >
+                {TREATMENT_CATEGORY_ENUM.map((cat) => (
+                  <option key={cat} value={cat}>{cat}</option>
+                ))}
+              </select>
+            </label>
+
+            <label className="flex flex-col gap-1">
+              <span className="text-slate-400">{t.drugInput.sellingPrice}</span>
+              <input
+                type="number"
+                min="0"
+                step="100"
+                value={lineItem.sellingPrice}
+                onChange={(e) => handleLineChange('sellingPrice', Math.max(0, Number(e.target.value) || 0))}
+                className="px-2 py-1.5 border border-slate-200 rounded-md text-[11px] focus:outline-none focus:ring-2 focus:ring-slate-900/10"
+              />
+            </label>
+          </div>
+
+          <div className="mt-2 flex items-center justify-between text-[10px] text-slate-500 bg-slate-50 border border-slate-100 rounded-md px-2.5 py-2">
+            <span>
+              {t.drugInput.calculatedDose}: <span className="font-semibold text-slate-700">{lineItem.calculatedDose_mg.toFixed(2)} mg</span>
+            </span>
+            <span>
+              {t.drugInput.totalDose}: <span className="font-semibold text-slate-700">{lineItem.totalDose_mg.toFixed(2)} mg</span>
+            </span>
+            <label className="inline-flex items-center gap-1.5 text-slate-500">
+              <input
+                type="checkbox"
+                checked={lineItem.vatApplicable}
+                onChange={(e) => handleLineChange('vatApplicable', e.target.checked)}
+                className="rounded border-slate-300"
+              />
+              VAT
+            </label>
+          </div>
         </div>
       )}
     </div>
@@ -270,7 +417,7 @@ function DrugCard({ drug, index, onRemove, species, weight, t, lang }) {
 }
 
 // ── Main DrugInput Component ─────────────────────────────────────
-export function DrugInput({ drugs, onAddDrug, onRemoveDrug, species, weight = 10, demoMode = false }) {
+export function DrugInput({ drugs, onAddDrug, onRemoveDrug, onUpdateDrug, species, weight = 10, demoMode = false }) {
   const { t, lang } = useI18n();
   const [showSearch, setShowSearch] = useState(false);
   const [query, setQuery] = useState('');
@@ -363,10 +510,10 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, species, weight = 10
       return;
     }
     const variant = catalogMatch?.variants[0];
-    onAddDrug({
+    onAddDrug(buildPrescriptionLineItem({
       ...drug,
       selectedVariant: variant ? `${variant.strength_value}${variant.strength_unit} ${catalogMatch.dosage_form?.split(',')[0] || ''}`.trim() : null,
-    });
+    }, weight));
     resetSearch();
   };
 
@@ -381,20 +528,20 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, species, weight = 10
       return;
     }
     const variant = product.variants[0];
-    onAddDrug({
+    onAddDrug(buildPrescriptionLineItem({
       ...drug,
       selectedVariant: variant ? `${variant.strength_value}${variant.strength_unit} ${product.dosage_form?.split(',')[0] || ''}`.trim() : null,
-    });
+    }, weight));
     resetSearch();
   };
 
   const handleSelectVariant = (variant) => {
     if (!selectedProduct) return;
     const { drug, catalog } = selectedProduct;
-    onAddDrug({
+    onAddDrug(buildPrescriptionLineItem({
       ...drug,
       selectedVariant: `${variant.strength_value}${variant.strength_unit} ${catalog.dosage_form?.split(',')[0] || ''}`.trim(),
-    });
+    }, weight));
     resetSearch();
   };
 
@@ -412,7 +559,7 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, species, weight = 10
   };
 
   const handleConfirmUnknown = () => {
-    onAddDrug(createUnknownDrug(query.trim(), unknownIngredient.trim() || null));
+    onAddDrug(buildPrescriptionLineItem(createUnknownDrug(query.trim(), unknownIngredient.trim() || null), weight));
     setUnknownIngredient('');
     setShowIngredientInput(false);
     resetSearch();
@@ -436,7 +583,17 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, species, weight = 10
       {drugs.length > 0 && (
         <div className="space-y-2">
           {drugs.map((drug, idx) => (
-            <DrugCard key={drug.id || idx} drug={drug} index={idx} onRemove={onRemoveDrug} species={species} weight={weight} t={t} lang={lang} />
+            <DrugCard
+              key={drug.id || idx}
+              drug={drug}
+              index={idx}
+              onRemove={onRemoveDrug}
+              onUpdateDrug={onUpdateDrug}
+              species={species}
+              weight={weight}
+              t={t}
+              lang={lang}
+            />
           ))}
         </div>
       )}

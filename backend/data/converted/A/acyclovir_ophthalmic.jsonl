@@ -58,6 +58,7 @@
     "duration_hr_max": 0,
     "evidence": "약동학적 발현 시간, 최고 농도 도달 시간 및 지속 시간에 대한 구체적 정보가 모노그래프에 명시되지 않음."
   },
+
   "precautions": {
     "dog": {
       "status": 0,

@@ -272,6 +272,20 @@ function PatientProfileStep({ profile, breed, breedId, species, onUpdateProfile,
             </div>
           </div>
 
+          <div className="px-4 pb-3 flex flex-wrap gap-2">
+            <span className="text-[10px] text-slate-500 bg-slate-50 border border-slate-100 rounded-full px-2 py-0.5">
+              Chart #{p.animalChartId}
+            </span>
+            <span className="text-[10px] text-slate-500 bg-slate-50 border border-slate-100 rounded-full px-2 py-0.5">
+              Status: {p.patientStatus}
+            </span>
+            {p.lastVisitDate && (
+              <span className="text-[10px] text-slate-500 bg-slate-50 border border-slate-100 rounded-full px-2 py-0.5">
+                Last visit: {p.lastVisitDate}
+              </span>
+            )}
+          </div>
+
           {/* Active conditions */}
           <div className="px-4 pb-3">
             <p className="typo-label uppercase mb-1.5">{t.demo.activeConditions}</p>
@@ -490,6 +504,31 @@ function PatientProfileStep({ profile, breed, breedId, species, onUpdateProfile,
                 <p className="typo-body leading-relaxed">{p.history}</p>
               </div>
             </div>
+
+            {/* EMR Registration Fields */}
+            <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+              <div className="px-4 py-2.5 bg-slate-50 border-b border-slate-100">
+                <span className="typo-section-header">EMR Registration</span>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
+                <div className="px-4 py-3 space-y-1">
+                  <p className="typo-label">DOB</p>
+                  <p className="typo-drug-name text-[13px]">{p.dateOfBirth || '-'}</p>
+                  <p className="typo-label mt-2">Registration No.</p>
+                  <p className="typo-drug-name text-[13px]">{p.animalRegistrationNumber || '-'}</p>
+                  <p className="typo-label mt-2">Blood Type</p>
+                  <p className="typo-drug-name text-[13px]">{p.bloodType || '-'}</p>
+                </div>
+                <div className="px-4 py-3 space-y-1">
+                  <p className="typo-label">Attending Vet</p>
+                  <p className="typo-drug-name text-[13px]">{p.attendingVet || '-'}</p>
+                  <p className="typo-label mt-2">Primary Vet</p>
+                  <p className="typo-drug-name text-[13px]">{p.primaryVet || '-'}</p>
+                  <p className="typo-label mt-2">Insurance</p>
+                  <p className="typo-drug-name text-[13px]">{p.insuranceGroup || '-'}</p>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 
@@ -507,7 +546,7 @@ function PatientProfileStep({ profile, breed, breedId, species, onUpdateProfile,
 }
 
 // ── Step 4: Medication Review ───────────────────────────────────
-function MedicationStep({ drugs, species, patientName, weight, onAddDrug, onRemoveDrug, onRunAnalysis, onBack }) {
+function MedicationStep({ drugs, species, patientName, weight, onAddDrug, onRemoveDrug, onUpdateDrug, onRunAnalysis, onBack }) {
   const { t } = useI18n();
   return (
     <div className="flex-1 flex flex-col px-5 py-6 animate-slide-in">
@@ -533,6 +572,7 @@ function MedicationStep({ drugs, species, patientName, weight, onAddDrug, onRemo
             drugs={drugs}
             onAddDrug={onAddDrug}
             onRemoveDrug={onRemoveDrug}
+            onUpdateDrug={onUpdateDrug}
             species={species}
             weight={weight || 10}
             demoMode
@@ -605,6 +645,10 @@ export default function Demo() {
 
   const handleRemoveDrug = (drugId) => {
     setDrugs(prev => prev.filter(d => d.id !== drugId));
+  };
+
+  const handleUpdateDrug = (drugId, patch) => {
+    setDrugs(prev => prev.map((d) => (d.id === drugId ? { ...d, ...patch } : d)));
   };
 
   const handleRunAnalysis = () => {
@@ -718,6 +762,7 @@ export default function Demo() {
           weight={profile?.weight}
           onAddDrug={handleAddDrug}
           onRemoveDrug={handleRemoveDrug}
+          onUpdateDrug={handleUpdateDrug}
           onRunAnalysis={handleRunAnalysis}
           onBack={() => setStep('profile')}
         />

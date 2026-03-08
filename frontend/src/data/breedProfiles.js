@@ -4,6 +4,41 @@
  * pre-filled EMR data that the user can modify.
  */
 
+import { PATIENT_STATUS_ENUM, SEX_ENUM } from './emrSchema';
+
+const SEX_NORMALIZATION = {
+  'Female Spayed': 'Spayed Female',
+  'Male Neutered': 'Neutered Male',
+  'Female Intact': 'Intact Female',
+  'Male Intact': 'Intact Male',
+};
+
+function withEmrFields(profile, fallbackChartId) {
+  const todayIso = '2026-03-08';
+  const normalizedSex = SEX_NORMALIZATION[profile.sex] || profile.sex || 'Unknown';
+
+  const safeSex = SEX_ENUM.includes(normalizedSex) ? normalizedSex : 'Unknown';
+  const safeStatus = PATIENT_STATUS_ENUM.includes(profile.patientStatus) ? profile.patientStatus : '정상';
+
+  return {
+    ...profile,
+    sex: safeSex,
+    animalChartId: profile.animalChartId || fallbackChartId,
+    animalRegistrationNumber: profile.animalRegistrationNumber || '',
+    dateOfBirth: profile.dateOfBirth || '',
+    patientStatus: safeStatus,
+    statusChangeDate: profile.statusChangeDate || '',
+    registrationDate: profile.registrationDate || '',
+    lastVisitDate: profile.lastVisitDate || todayIso,
+    attendingVet: profile.attendingVet || '',
+    primaryVet: profile.primaryVet || '',
+    diet: profile.diet || '',
+    bloodType: profile.bloodType || '',
+    insuranceGroup: profile.insuranceGroup || '',
+    privateInsuranceNumber: profile.privateInsuranceNumber || '',
+  };
+}
+
 export const BREED_DATA = {
   dog: [
     {
@@ -201,10 +236,14 @@ export const BREED_DATA = {
 };
 
 export function getBreedsForSpecies(species) {
-  return BREED_DATA[species] || [];
+  const breeds = BREED_DATA[species] || [];
+  return breeds.map((entry, idx) => ({
+    ...entry,
+    profile: withEmrFields(entry.profile, `${species === 'dog' ? 'D' : 'C'}-${1000 + idx}`),
+  }));
 }
 
 export function getBreedProfile(species, breedId) {
-  const breeds = BREED_DATA[species] || [];
+  const breeds = getBreedsForSpecies(species);
   return breeds.find(b => b.id === breedId) || null;
 }

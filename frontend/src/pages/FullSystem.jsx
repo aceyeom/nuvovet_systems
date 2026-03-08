@@ -122,6 +122,10 @@ export default function FullSystem() {
     setDrugs(prev => prev.filter(d => d.id !== drugId));
   };
 
+  const handleUpdateDrug = (drugId, patch) => {
+    setDrugs(prev => prev.map((d) => (d.id === drugId ? { ...d, ...patch } : d)));
+  };
+
   const handleRunAnalysis = () => {
     if (drugs.length < 2) return;
     setStep('analyzing');
@@ -214,6 +218,7 @@ export default function FullSystem() {
               drugs={drugs}
               onAddDrug={handleAddDrug}
               onRemoveDrug={handleRemoveDrug}
+              onUpdateDrug={handleUpdateDrug}
               species={species}
               weight={weight}
             />

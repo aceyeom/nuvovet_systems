@@ -38,7 +38,7 @@ export const DRUG_CLASS = {
   HORMONE: 'Hormone',
 };
 
-export const DRUG_DATABASE = [
+const RAW_DRUG_DATABASE = [
   // ── Korean Approved Veterinary Drugs ──────────────────────────
   {
     id: 'meloxicam',
@@ -632,6 +632,80 @@ export const DRUG_DATABASE = [
   },
 ];
 
+function inferDosageForm(route) {
+  const r = String(route || '').toUpperCase();
+  if (r.includes('IV') || r.includes('SC') || r.includes('IM')) return 'Inj';
+  if (r.includes('TOP')) return 'Oint';
+  return 'Tab';
+}
+
+function inferSeverityFromText(term) {
+  const value = String(term || '').toLowerCase();
+  if (value.includes('anuria') || value.includes('mdr1') || value.includes('fungal')) return 'absolute';
+  if (value.includes('renal') || value.includes('hepatic') || value.includes('pregnancy')) return 'relative';
+  return 'caution';
+}
+
+function inferActionFromSeverity(severity) {
+  if (severity === 'absolute') return 'contraindicated';
+  if (severity === 'relative') return 'reduce_dose';
+  return 'monitor';
+}
+
+function buildContraindicationRules(terms = []) {
+  return terms.map((term) => {
+    const severity = inferSeverityFromText(term);
+    return {
+      condition: term,
+      matchTerms: [String(term).toLowerCase()],
+      severity,
+      action: inferActionFromSeverity(severity),
+      labTrigger: null,
+    };
+  });
+}
+
+function normalizeDrugEntry(drug) {
+  const contraindicationTerms = Array.isArray(drug.contraindications) ? drug.contraindications : [];
+  const renal = Number(drug.renalElimination) || 0;
+  const hepatic = Number(drug.hepaticElimination ?? Math.max(1 - renal, 0));
+
+  return {
+    ...drug,
+    brandNames: drug.brandNames || [drug.nameKr, drug.name].filter(Boolean),
+    dosageForm: drug.dosageForm || inferDosageForm(drug.route),
+    availableStrengths: drug.availableStrengths || [],
+    washoutPeriod_days: drug.washoutPeriod_days || Math.max(1, Math.round((drug.pk?.halfLife || 24) * 5 / 24)),
+    speciesContraindicated: drug.speciesContraindicated || [],
+    organBurdenWeight: drug.organBurdenWeight || { renal, hepatic },
+    additiveRiskWith: drug.additiveRiskWith || {
+      nephrotoxic: ['high', 'moderate'].includes(drug.riskFlags?.nephrotoxic),
+      hepatotoxic: ['high', 'moderate'].includes(drug.riskFlags?.hepatotoxic),
+      gi_ulcer: ['high', 'moderate'].includes(drug.riskFlags?.giUlcer),
+      sedation: drug.class === DRUG_CLASS.SEDATIVE,
+      bleeding: ['high', 'moderate'].includes(drug.riskFlags?.bleedingRisk),
+      qt_prolongation: ['high', 'moderate'].includes(drug.riskFlags?.qtProlongation),
+    },
+    renalDoseAdjustment: drug.renalDoseAdjustment || {
+      creatinine_threshold_dog: 2.5,
+      creatinine_threshold_cat: 1.8,
+      adjustment_type: renal >= 0.6 ? 'reduce_dose' : 'monitor',
+      adjustment_factor: renal >= 0.6 ? 0.5 : 1,
+      note: renal >= 0.6 ? 'Renal elimination burden is high. Consider dose reduction or interval extension.' : 'Standard renal monitoring advised.',
+    },
+    hepaticDoseAdjustment: drug.hepaticDoseAdjustment || {
+      applies: Boolean(drug.narrowTherapeuticIndex && drug.pk?.primaryElimination === 'hepatic'),
+      alt_threshold_multiplier: 3,
+      adjustment_type: drug.narrowTherapeuticIndex ? 'monitor' : 'reduce_dose',
+      note: 'If ALT rises above threshold, consider dose reduction and closer hepatic monitoring.',
+    },
+    contraindicationTerms,
+    contraindications: buildContraindicationRules(contraindicationTerms),
+  };
+}
+
+export const DRUG_DATABASE = RAW_DRUG_DATABASE.map(normalizeDrugEntry);
+
 // Search function for drug lookup
 export function searchDrugs(query, species = null) {
   if (!query || query.trim().length < 1) return [];
@@ -658,7 +732,7 @@ export function getDrugById(id) {
 
 // Build an "unknown drug" placeholder
 export function createUnknownDrug(name, activeIngredient = null) {
-  return {
+  return normalizeDrugEntry({
     id: `unknown_${Date.now()}`,
     name: name,
     nameKr: null,
@@ -680,5 +754,5 @@ export function createUnknownDrug(name, activeIngredient = null) {
       cat: 'No veterinary data available for this drug.'
     },
     contraindications: [],
-  };
+  });
 }
