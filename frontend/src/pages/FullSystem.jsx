@@ -289,6 +289,7 @@ function LabRow({ label, labKey, data, onChangeData, onRemove }) {
 // ── Add Lab Modal (inline) ────────────────────────────────────────────────────
 
 function AddLabMarker({ patient, onChange, onClose }) {
+  const { t } = useI18n();
   const [selected, setSelected] = useState('');
   const existing = Object.keys(patient.labResults);
   const available = LAB_MARKERS.filter(m => !existing.includes(m));
@@ -313,10 +314,10 @@ function AddLabMarker({ patient, onChange, onClose }) {
           onChange={e => setSelected(e.target.value)}
           className="flex-1 text-[11px] px-2 py-1 border border-slate-200 rounded bg-white focus:outline-none focus:ring-1 focus:ring-slate-300"
         >
-          <option value="">Select marker...</option>
+          <option value="">{t.fullSystem.selectMarker}</option>
           {available.map(m => <option key={m} value={m}>{m.toUpperCase()} ({LAB_UNITS[m] || '—'})</option>)}
         </select>
-        <button onClick={() => add(selected)} disabled={!selected} className="px-2.5 py-1 bg-slate-800 text-white text-[10px] rounded hover:bg-slate-700 disabled:opacity-40 transition-colors">Add</button>
+        <button onClick={() => add(selected)} disabled={!selected} className="px-2.5 py-1 bg-slate-800 text-white text-[10px] rounded hover:bg-slate-700 disabled:opacity-40 transition-colors">{t.add}</button>
         <button onClick={onClose} className="p-1 text-slate-400 hover:text-slate-600"><X size={11} /></button>
       </div>
     </div>
@@ -343,6 +344,7 @@ const COMMON_ALLERGIES = [
 // ── Patient Sidebar ───────────────────────────────────────────────────────────
 
 function PatientSidebar({ patient, onChange }) {
+  const { t, lang } = useI18n();
   const age = calculateAge(patient.dateOfBirth);
   const statusMeta = STATUS_META[patient.patientStatus] || STATUS_META['기타'];
   const [showAddLab, setShowAddLab] = useState(false);
@@ -399,7 +401,7 @@ function PatientSidebar({ patient, onChange }) {
         <div className="mb-3">
           <label className="text-[9px] font-bold text-slate-400 uppercase tracking-widest block mb-1.5 flex items-center gap-1.5">
             <BookOpen size={9} className="text-slate-300" />
-            Quick-Load Demo Patient
+            {t.fullSystem.quickLoadDemo}
           </label>
           <select
             defaultValue=""
@@ -412,15 +414,15 @@ function PatientSidebar({ patient, onChange }) {
             }}
             className="w-full px-2.5 py-1.5 text-[11px] border border-slate-200 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-slate-900/10 text-slate-600"
           >
-            <option value="" disabled>— Select a demo patient —</option>
-            <optgroup label="🐕  Canine">
+            <option value="" disabled>{t.fullSystem.selectDemoPatient}</option>
+            <optgroup label={`🐕  ${t.species.dog}`}>
               {BREED_DATA.dog.map(b => (
                 <option key={b.id} value={`dog::${b.id}`}>
                   {b.profile.name} · {b.breed} · {b.demonstrates.slice(0, 30)}...
                 </option>
               ))}
             </optgroup>
-            <optgroup label="🐈  Feline">
+            <optgroup label={`🐈  ${t.species.cat}`}>
               {BREED_DATA.cat.map(b => (
                 <option key={b.id} value={`cat::${b.id}`}>
                   {b.profile.name} · {b.breed} · {b.demonstrates.slice(0, 30)}...
@@ -437,7 +439,7 @@ function PatientSidebar({ patient, onChange }) {
               type="text"
               value={patient.name}
               onChange={e => set('name')(e.target.value)}
-              placeholder="Patient Name"
+              placeholder={t.fullSystem.patientNamePlaceholder}
               className="w-full text-[17px] font-bold text-slate-900 placeholder:text-slate-300 border-0 border-b border-transparent hover:border-slate-200 focus:border-slate-400 focus:outline-none pb-0.5 bg-transparent transition-colors"
             />
           </div>
@@ -457,7 +459,7 @@ function PatientSidebar({ patient, onChange }) {
         {/* Meta row */}
         <div className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-[10px] text-slate-500 mt-0.5">
           <span className="capitalize font-semibold text-slate-700">
-            {patient.species === 'dog' ? '🐕 Canine' : '🐈 Feline'}
+            {patient.species === 'dog' ? `🐕 ${t.species.dog}` : `🐈 ${t.species.cat}`}
           </span>
           {patient.breed && <><span className="text-slate-300">·</span><span>{patient.breed}</span></>}
           {patient.sex !== 'Unknown' && <><span className="text-slate-300">·</span><span>{patient.sex}</span></>}
@@ -476,17 +478,17 @@ function PatientSidebar({ patient, onChange }) {
           <div className="flex flex-wrap gap-1 mt-2">
             {patient.conditions.length > 0 && (
               <span className="text-[9px] font-semibold bg-red-50 text-red-600 border border-red-100 px-1.5 py-0.5 rounded-full flex items-center gap-1">
-                <AlertCircle size={8} />{patient.conditions.length} condition{patient.conditions.length > 1 ? 's' : ''}
+                <AlertCircle size={8} />{patient.conditions.length} {patient.conditions.length !== 1 ? t.fullSystem.conditionPlural : t.fullSystem.conditionSingular}
               </span>
             )}
             {flaggedLabCount > 0 && (
               <span className="text-[9px] font-semibold bg-amber-50 text-amber-600 border border-amber-100 px-1.5 py-0.5 rounded-full flex items-center gap-1">
-                <FlaskConical size={8} />{flaggedLabCount} flagged lab{flaggedLabCount > 1 ? 's' : ''}
+                <FlaskConical size={8} />{flaggedLabCount} {flaggedLabCount !== 1 ? t.fullSystem.flaggedLabPlural : t.fullSystem.flaggedLabSingular}
               </span>
             )}
             {patient.allergies.length > 0 && (
               <span className="text-[9px] font-semibold bg-purple-50 text-purple-600 border border-purple-100 px-1.5 py-0.5 rounded-full flex items-center gap-1">
-                <Tag size={8} />{patient.allergies.length} allerg{patient.allergies.length > 1 ? 'ies' : 'y'}
+                <Tag size={8} />{patient.allergies.length} {patient.allergies.length !== 1 ? t.fullSystem.allergyPlural : t.fullSystem.allergySingular}
               </span>
             )}
           </div>
@@ -497,34 +499,34 @@ function PatientSidebar({ patient, onChange }) {
       <div className="flex-1 overflow-y-auto">
 
         {/* IDENTITY */}
-        <Section title="Patient Identity" icon={User} defaultOpen>
+        <Section title={t.fullSystem.sectionPatientIdentity} icon={User} defaultOpen>
           <div className="grid grid-cols-2 gap-2">
-            <FieldRow label="Full Name">
+            <FieldRow label={t.fullSystem.fieldFullName}>
               <TInput value={patient.name} onChange={set('name')} placeholder="Name" />
             </FieldRow>
-            <FieldRow label="Chart ID 동물번호">
+            <FieldRow label={t.fullSystem.fieldChartId}>
               <TInput value={patient.animalChartId} onChange={set('animalChartId')} placeholder="Auto" mono />
             </FieldRow>
           </div>
 
           <div className="grid grid-cols-2 gap-2">
-            <FieldRow label="Species 종">
+            <FieldRow label={t.fullSystem.fieldSpecies}>
               <SInput
                 value={patient.species}
                 onChange={set('species')}
                 options={[{ value: 'dog', label: '🐕 Canine (Dog)' }, { value: 'cat', label: '🐈 Feline (Cat)' }]}
               />
             </FieldRow>
-            <FieldRow label="Breed 품종">
+            <FieldRow label={t.fullSystem.fieldBreed}>
               <TInput value={patient.breed} onChange={set('breed')} placeholder="e.g. POODLE/푸들" />
             </FieldRow>
           </div>
 
           <div className="grid grid-cols-2 gap-2">
-            <FieldRow label="Sex 성별">
+            <FieldRow label={t.fullSystem.fieldSex}>
               <SInput value={patient.sex} onChange={set('sex')} options={SEX_ENUM} />
             </FieldRow>
-            <FieldRow label="Date of Birth 생년월일">
+            <FieldRow label={t.fullSystem.fieldDateOfBirth}>
               <DInput value={patient.dateOfBirth} onChange={set('dateOfBirth')} />
             </FieldRow>
           </div>
@@ -533,26 +535,26 @@ function PatientSidebar({ patient, onChange }) {
             <div className="flex items-center gap-2 px-2.5 py-1.5 bg-slate-50 border border-slate-100 rounded-md">
               <Calendar size={10} className="text-slate-400 shrink-0" />
               <span className="text-[11px] text-slate-600">
-                Age: <span className="font-semibold text-slate-800">{age}</span>
-                <span className="text-slate-400 ml-1">· calculated from DOB</span>
+                {t.demo.age}: <span className="font-semibold text-slate-800">{age}</span>
+                <span className="text-slate-400 ml-1">· {t.fullSystem.ageCalculated}</span>
               </span>
             </div>
           )}
 
-          <FieldRow label="Patient Status 상태">
+          <FieldRow label={t.fullSystem.fieldPatientStatus}>
             <SInput value={patient.patientStatus} onChange={set('patientStatus')} options={PATIENT_STATUS_ENUM} />
           </FieldRow>
 
           {patient.patientStatus !== '정상' && (
-            <FieldRow label="Status Change Date 상태변경일">
+            <FieldRow label={t.fullSystem.fieldStatusChangeDate}>
               <DInput value={patient.statusChangeDate} onChange={set('statusChangeDate')} />
             </FieldRow>
           )}
         </Section>
 
         {/* REGISTRATION */}
-        <Section title="Registration 등록" icon={ClipboardList} defaultOpen={false}>
-          <FieldRow label="Animal Registration No. 동물등록번호" hint="(microchip / RFID)">
+        <Section title={t.fullSystem.sectionRegistration} icon={ClipboardList} defaultOpen={false}>
+          <FieldRow label={t.fullSystem.fieldAnimalRegNo} hint={t.fullSystem.fieldAnimalRegNoHint}>
             <TInput
               value={patient.animalRegistrationNumber}
               onChange={set('animalRegistrationNumber')}
@@ -562,37 +564,37 @@ function PatientSidebar({ patient, onChange }) {
           </FieldRow>
 
           <div className="grid grid-cols-2 gap-2">
-            <FieldRow label="Registration Date 등록일">
+            <FieldRow label={t.fullSystem.fieldRegDate}>
               <DInput value={patient.registrationDate} onChange={set('registrationDate')} />
             </FieldRow>
-            <FieldRow label="Last Visit 최근 방문일자">
+            <FieldRow label={t.fullSystem.fieldLastVisit}>
               <DInput value={patient.lastVisitDate} onChange={set('lastVisitDate')} />
             </FieldRow>
           </div>
         </Section>
 
         {/* MEDICAL TEAM */}
-        <Section title="Medical Team 담당의" icon={Stethoscope} defaultOpen={false}>
+        <Section title={t.fullSystem.sectionMedicalTeam} icon={Stethoscope} defaultOpen={false}>
           <div className="grid grid-cols-2 gap-2">
-            <FieldRow label="Attending Vet 담당의">
+            <FieldRow label={t.fullSystem.fieldAttendingVet}>
               <TInput value={patient.attendingVet} onChange={set('attendingVet')} placeholder="Dr. Kim" />
             </FieldRow>
-            <FieldRow label="Primary Vet 주치의">
+            <FieldRow label={t.fullSystem.fieldPrimaryVet}>
               <TInput value={patient.primaryVet} onChange={set('primaryVet')} placeholder="Dr. Lee" />
             </FieldRow>
           </div>
         </Section>
 
         {/* PHYSICAL & NUTRITION */}
-        <Section title="Physical & Nutrition 신체" icon={Activity} defaultOpen>
+        <Section title={t.fullSystem.sectionPhysicalNutrition} icon={Activity} defaultOpen>
           <div className="grid grid-cols-2 gap-2">
-            <FieldRow label="Weight 체중">
+            <FieldRow label={t.fullSystem.fieldWeight}>
               <div className="flex items-center gap-1.5">
                 <NInput value={patient.weight} onChange={set('weight')} min={0.1} max={200} step={0.1} />
                 <span className="text-[10px] text-slate-400 shrink-0">kg</span>
               </div>
             </FieldRow>
-            <FieldRow label="Body Condition Score">
+            <FieldRow label={t.fullSystem.fieldBCS}>
               <SInput
                 value={patient.bodyCondition}
                 onChange={set('bodyCondition')}
@@ -602,41 +604,41 @@ function PatientSidebar({ patient, onChange }) {
           </div>
 
           <div className="grid grid-cols-2 gap-2">
-            <FieldRow label="Blood Type 혈액형">
+            <FieldRow label={t.fullSystem.fieldBloodType}>
               <SInput
                 value={patient.bloodType}
                 onChange={set('bloodType')}
                 options={['', ...(patient.species === 'dog' ? BLOOD_TYPES_DOG : BLOOD_TYPES_CAT)]}
               />
             </FieldRow>
-            <FieldRow label="Diet / Food 사료">
+            <FieldRow label={t.fullSystem.fieldDiet}>
               <TInput value={patient.diet} onChange={set('diet')} placeholder="e.g. Hills c/d" />
             </FieldRow>
           </div>
         </Section>
 
         {/* INSURANCE */}
-        <Section title="Insurance 보험" icon={Shield} defaultOpen={false}>
+        <Section title={t.fullSystem.sectionInsurance} icon={Shield} defaultOpen={false}>
           <div className="grid grid-cols-2 gap-2">
-            <FieldRow label="Insurance Grade 보험군">
+            <FieldRow label={t.fullSystem.fieldInsuranceGrade}>
               <TInput value={patient.insuranceGroup} onChange={set('insuranceGroup')} placeholder="e.g. 10등급" />
             </FieldRow>
-            <FieldRow label="Private Insurance No. 사보험번호">
+            <FieldRow label={t.fullSystem.fieldPrivateInsuranceNo}>
               <TInput value={patient.privateInsuranceNumber} onChange={set('privateInsuranceNumber')} placeholder="Policy no." mono />
             </FieldRow>
           </div>
         </Section>
 
         {/* VITALS */}
-        <Section title="Vitals 활력징후" icon={Heart} defaultOpen>
+        <Section title={t.fullSystem.sectionVitals} icon={Heart} defaultOpen>
           <div className="grid grid-cols-3 gap-2">
-            <FieldRow label="Temp 체온">
+            <FieldRow label={t.fullSystem.fieldTemp}>
               <TInput value={patient.temperature} onChange={set('temperature')} placeholder="38.5 °C" />
             </FieldRow>
-            <FieldRow label="HR 심박수">
+            <FieldRow label={t.fullSystem.fieldHR}>
               <TInput value={patient.heartRate} onChange={set('heartRate')} placeholder="80 bpm" />
             </FieldRow>
-            <FieldRow label="RR 호흡수">
+            <FieldRow label={t.fullSystem.fieldRR}>
               <TInput value={patient.respRate} onChange={set('respRate')} placeholder="20/min" />
             </FieldRow>
           </div>
@@ -644,7 +646,7 @@ function PatientSidebar({ patient, onChange }) {
 
         {/* LAB RESULTS */}
         <Section
-          title="Lab Results 검사결과"
+          title={t.fullSystem.sectionLabResults}
           icon={FlaskConical}
           defaultOpen
           badge={flaggedLabCount || null}
@@ -670,18 +672,18 @@ function PatientSidebar({ patient, onChange }) {
               onClick={() => setShowAddLab(true)}
               className="mt-1 text-[10px] text-slate-400 hover:text-slate-600 flex items-center gap-1 transition-colors"
             >
-              <Plus size={10} /> Add lab marker
+              <Plus size={10} /> {t.fullSystem.addLabMarker}
             </button>
           )}
 
           <p className="text-[9.5px] text-slate-300 leading-relaxed">
-            Click the status badge (WNL / ↑ H / ↓ L) to cycle. Elevated creatinine triggers renal dose warnings in the DUR engine.
+            {t.fullSystem.labStatusHint}
           </p>
         </Section>
 
         {/* ACTIVE CONDITIONS */}
         <Section
-          title="Active Conditions 현재 질환"
+          title={t.fullSystem.sectionActiveConditions}
           icon={AlertCircle}
           defaultOpen
           badge={patient.conditions.length || null}
@@ -691,7 +693,7 @@ function PatientSidebar({ patient, onChange }) {
             items={patient.conditions}
             onAdd={c => onChange({ ...patient, conditions: [...patient.conditions, c] })}
             onRemove={c => onChange({ ...patient, conditions: patient.conditions.filter(x => x !== c) })}
-            placeholder="Add condition + Enter"
+            placeholder={t.fullSystem.addConditionPlaceholder}
             chipClass="bg-red-50 text-red-700 border border-red-100"
             suggestions={COMMON_CONDITIONS}
           />
@@ -699,7 +701,7 @@ function PatientSidebar({ patient, onChange }) {
 
         {/* ALLERGIES */}
         <Section
-          title="Known Allergies 알레르기 이력"
+          title={t.fullSystem.sectionKnownAllergies}
           icon={Tag}
           defaultOpen={false}
           badge={patient.allergies.length || null}
@@ -708,18 +710,18 @@ function PatientSidebar({ patient, onChange }) {
             items={patient.allergies}
             onAdd={a => onChange({ ...patient, allergies: [...patient.allergies, a] })}
             onRemove={a => onChange({ ...patient, allergies: patient.allergies.filter(x => x !== a) })}
-            placeholder="Add allergy + Enter"
+            placeholder={t.fullSystem.addAllergyPlaceholder}
             chipClass="bg-amber-50 text-amber-700 border border-amber-100"
             suggestions={COMMON_ALLERGIES}
           />
         </Section>
 
         {/* CLINICAL HISTORY */}
-        <Section title="Clinical History 임상 이력" icon={FileText} defaultOpen={false}>
+        <Section title={t.fullSystem.sectionClinicalHistory} icon={FileText} defaultOpen={false}>
           <textarea
             value={patient.history}
             onChange={e => set('history')(e.target.value)}
-            placeholder="Subjective clinical history — chief complaint, chronic conditions, prior treatments..."
+            placeholder={t.fullSystem.clinicalHistoryPlaceholder}
             rows={5}
             className="w-full px-2.5 py-2 text-[11.5px] text-slate-700 border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-all resize-none placeholder:text-slate-300 leading-relaxed"
           />
@@ -827,16 +829,16 @@ export default function FullSystem() {
   const [step, setStep] = useState('input');
   const [results, setResults] = useState(null);
 
-  if (!authenticated) {
-    return <PasswordGate onAuthenticate={() => setAuthenticated(true)} />;
-  }
-
   const handleAddDrug = useCallback((drug) => setDrugs(prev => [...prev, drug]), []);
   const handleRemoveDrug = useCallback((drugId) => setDrugs(prev => prev.filter(d => d.id !== drugId)), []);
   const handleUpdateDrug = useCallback((drugId, patch) => setDrugs(prev => prev.map(d => d.id === drugId ? { ...d, ...patch } : d)), []);
 
+  if (!authenticated) {
+    return <PasswordGate onAuthenticate={() => setAuthenticated(true)} />;
+  }
+
   const handleRunAnalysis = () => {
-    if (drugs.length < 2) return;
+    if (drugs.length < 1) return;
     setStep('analyzing');
   };
 
@@ -946,41 +948,37 @@ export default function FullSystem() {
               <div className="space-y-2">
                 <button
                   onClick={handleRunAnalysis}
-                  disabled={drugs.length < 2}
+                  disabled={drugs.length === 0}
                   className="w-full flex items-center justify-center gap-2 px-4 py-3.5 bg-slate-900 text-white text-sm font-semibold rounded-xl hover:bg-slate-800 disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200 shadow-sm"
                 >
                   <Zap size={15} />
                   {t.fullSystem.runScan}
-                  {drugs.length >= 2 && (
+                  {drugs.length >= 1 && (
                     <span className="ml-1 text-slate-400 text-xs font-normal">
-                      · {drugs.length} drugs
+                      · {drugs.length} {t.results.drugCountLabel}
                     </span>
                   )}
                 </button>
-
-                {drugs.length === 1 && (
-                  <p className="text-[11px] text-slate-400 text-center">{t.fullSystem.addMoreDrugs}</p>
-                )}
 
                 {drugs.length === 0 && (
                   <div className="text-center py-8">
                     <div className="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center mx-auto mb-3">
                       <Pill size={20} className="text-slate-300" />
                     </div>
-                    <p className="text-[12px] text-slate-400 font-medium">No medications added</p>
+                    <p className="text-[12px] text-slate-400 font-medium">{t.fullSystem.noMedications}</p>
                     <p className="text-[11px] text-slate-300 mt-1">
-                      Search above to add medications for {patient.name || 'the patient'}
+                      {t.fullSystem.addMedicationsHint} {patient.name || t.fullSystem.patientFallback}
                     </p>
                   </div>
                 )}
               </div>
 
               {/* Patient data DUR context summary (visible when drugs added) */}
-              {drugs.length >= 2 && (patient.conditions.length > 0 || Object.values(patient.labResults).some(l => l.status !== 'normal')) && (
+              {drugs.length >= 1 && (patient.conditions.length > 0 || Object.values(patient.labResults).some(l => l.status !== 'normal')) && (
                 <div className="border border-amber-200 bg-amber-50 rounded-xl p-4 space-y-2">
                   <p className="text-[10px] font-bold text-amber-700 uppercase tracking-wider flex items-center gap-1.5">
                     <AlertCircle size={11} />
-                    Patient Context — will be factored into DUR analysis
+                    {t.fullSystem.patientContext}
                   </p>
                   <div className="space-y-1">
                     {patient.conditions.map(c => (
@@ -992,7 +990,7 @@ export default function FullSystem() {
                     {Object.entries(patient.labResults).filter(([, v]) => v.status !== 'normal').map(([key, v]) => (
                       <div key={key} className="text-[11px] text-amber-800 flex items-center gap-1.5">
                         <span className={`w-1 h-1 rounded-full shrink-0 ${v.status === 'high' ? 'bg-red-500' : 'bg-blue-500'}`} />
-                        {key.toUpperCase()}: {v.value} {v.unit} ({v.status === 'high' ? '↑ Elevated' : '↓ Low'})
+                        {key.toUpperCase()}: {v.value} {v.unit} ({v.status === 'high' ? t.fullSystem.labElevated : t.fullSystem.labLow})
                       </div>
                     ))}
                   </div>

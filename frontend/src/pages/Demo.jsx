@@ -582,18 +582,12 @@ function MedicationStep({ drugs, species, patientName, weight, onAddDrug, onRemo
         {/* Run button */}
         <button
           onClick={onRunAnalysis}
-          disabled={drugs.length < 2}
+          disabled={drugs.length === 0}
           className="w-full flex items-center justify-center gap-2 px-4 py-3.5 bg-slate-900 text-white text-sm font-medium rounded-xl hover:bg-slate-800 disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200 shadow-sm"
         >
           <Zap size={15} />
           {t.fullSystem.runScan}
         </button>
-
-        {drugs.length < 2 && (
-          <p className="typo-label text-center">
-            {t.demo.addAtLeast2}
-          </p>
-        )}
       </div>
     </div>
   );
@@ -652,7 +646,7 @@ export default function Demo() {
   };
 
   const handleRunAnalysis = () => {
-    if (drugs.length < 2) return;
+    if (drugs.length < 1) return;
     setStep('analyzing');
   };
 
