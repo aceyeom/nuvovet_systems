@@ -106,7 +106,7 @@
   },
 
   "drug_interactions": [
-    {"note": "append more drug interactions as needed, each with drug name, severity (minor/moderate/major), mechanism keywords, and evidence note",
+    {"note": "append more drug interactions as needed, each with drug name, severity (minor/moderate/major), mechanism keywords, and evidence note"},
     {
       "drug": "string — interacting drug name or class e.g. 'Corticosteroids'",
       "severity": "integer — 1=minor | 2=moderate | 3=critical/avoid",

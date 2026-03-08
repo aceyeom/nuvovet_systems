@@ -68,136 +68,262 @@ MAX_RETRIES = 7
 REQUEST_DELAY = 8    # 요청 간 최소 대기(초)
 
 # ─── few-shot 예시 (Acepromazine) ───────────────────────
-EXAMPLE_OUTPUT = """{
+EXAMPLE_OUTPUT = """
+{
+  "id": "string — unique slug, snake_case e.g. 'meloxicam'",
+
   "drug_identity": {
-    "name_ko": "아세프로마진",
-    "name_en": "Acepromazine",
-    "class": "Phenothiazine Sedative/Tranquilizer",
-    "has_reversal": false,
-    "reversal_evidence": "전용 역전제(해독제)가 없으며, 저혈압 등 부작용 발생 시 수액 및 승압제(노르에피네프린)를 통한 지지 요법 필요."
+    "name_ko": "string — Korean INN name e.g. '멜록시캄'",
+    "name_en": "string — English INN name e.g. 'Meloxicam'",
+    "class": "string — enum: NSAID | Corticosteroid | Antibiotic | Antiparasitic | Antifungal | Analgesic | Cardiac | Diuretic | Sedative | Antiemetic | GI Protectant | Anticonvulsant | Antidepressant | ACE Inhibitor | Bronchodilator | Immunosuppressant | Thyroid | Hormone | Antineoplastic Agent | Antiretroviral",
+    "source": "string — enum: kr_vet | human_offlabel | foreign | unknown",
+    "has_reversal": "boolean",
+    "reversal_evidence": "string | null",
+    "off_label_note": "string | null — only for human_offlabel source",
+    "dosage_form": "string — enum: Tab | Inj | Cap | Susp | Drop | Oint | Topical | Ophthalmic",
+    "available_strengths": [
+      { "value": "float", "unit": "string — e.g. mg | mg/kg | IU/kg | mcg/kg | EA" }
+    ]
   },
-  "section_1_2_10": {
-    "highlights": "가장 흔한 전마취 진정제. 라벨보다 낮은 용량 권장. 진통 효과 없음. 혈관 확장으로 인한 저혈압 및 저체온 주의.",
-    "indications": "진정 및 안정, 마취 전 처치, 멀미 예방(항구토), 고양이 요도 폐쇄 보조 치료, 말 제엽염 치료.",
-    "client_info": "투약 후 소리에 민감해져 갑자기 놀랄 수 있음. 환경을 어둡고 조용하게 유지. 소변이 분홍색/적갈색으로 보일 수 있으나 정상임."
+
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "string — enum: Liver | Kidney | Mixed | Unknown",
+    "clearance_organ": "string — enum: Kidney | Liver | Biliary | Mixed",
+    "renal_elimination_fraction": "float 0–1 — e.g. 0.15 means 15% renally eliminated",
+    "cyp_profile": {
+      "substrates": ["string — CYP enzyme e.g. 'CYP2C9'"],
+      "inhibitors": ["string — CYP enzyme this drug inhibits"],
+      "inducers": ["string — CYP enzyme this drug induces"],
+      "pathway_evidence": "string | null — note on metabolic pathway"
+    },
+    "extra_information": "string | add dog & cats specific information in here"
   },
-  "organ_systems_impact": {
-    "note": "-1: 부작용, 0: 정보없음, 1: 치료적, 2: 기타",
+
+  "organ_burden_logic": {
+    "note": "string — scoring methodology e.g. 'Score = sum of weights from triggered_keywords'",
     "dog": {
-      "brain": 1, "brain_evidence": "중추 도파민 차단으로 효과적인 진정. 단, 일부 공격적 개체에서 역설적 흥분(-1) 가능.",
-      "heart": 2, "heart_evidence": "직접적 억제는 적으나 혈압 저하에 따른 반사성 빈맥 가능성.",
-      "cardiovascular": -1, "cardiovascular_evidence": "알파-1 수용체 차단으로 강력한 혈관 확장 및 저혈압 유발.",
-      "blood": -1, "blood_evidence": "비장 적혈구 격리로 헤마토크릿(PCV) 수치 일시적 감소.",
-      "metabolism": 2, "metabolism_evidence": "간 대사 의존적. 간부전 시 효과가 매우 길게 지속될 수 있음.",
-      "respiratory": 1, "respiratory_evidence": "호흡 억제 효과 미미. 상부 기도 폐쇄 환자 진정에 유용.",
-      "eye": -1, "eye_evidence": "제3안검(순막) 돌출 유발 및 눈물량 감소 가능."
+      "brain": {
+        "calculated_score": "integer 0–100",
+        "triggered_keywords": ["string — Paper's keyword that set this score"],
+        "index": "integer — Paper's section index, -1 if not directly cited",
+        "evidence": "string — Korean or English evidence note"
+      },
+      "blood": {
+        "calculated_score": "integer 0–100",
+        "triggered_keywords": ["string"],
+        "index": "integer",
+        "evidence": "string"
+      },
+      "kidney": {
+        "calculated_score": "integer 0–100",
+        "triggered_keywords": ["string"],
+        "index": "integer",
+        "evidence": "string"
+      },
+      "liver": {
+        "calculated_score": "integer 0–100",
+        "triggered_keywords": ["string"],
+        "index": "integer",
+        "evidence": "string"
+      },
+      "heart": {
+        "calculated_score": "integer 0–100",
+        "triggered_keywords": ["string"],
+        "index": "integer",
+        "evidence": "string"
+      }
     },
     "cat": {
-      "brain": 1, "brain_evidence": "우수한 진정 및 안정 효과.",
-      "heart": 2, "heart_evidence": "심박수 변화 가능하나 일반적으로 안정적임.",
-      "cardiovascular": -1, "cardiovascular_evidence": "개와 마찬가지로 저혈압 위험 존재.",
-      "blood": -1, "blood_evidence": "비장 비대 및 일시적 빈혈 수치(PCV 감소) 발생.",
-      "metabolism": 2, "metabolism_evidence": "간 대사 의존.",
-      "respiratory": 1, "respiratory_evidence": "호흡 수치에 미치는 영향이 매우 적어 안전함.",
-      "eye": -1, "eye_evidence": "제3안검 돌출 보고됨."
+      "brain": {
+        "calculated_score": "integer 0–100",
+        "triggered_keywords": ["string"],
+        "index": "integer",
+        "evidence": "string"
+      },
+      "blood": {
+        "calculated_score": "integer 0–100",
+        "triggered_keywords": ["string"],
+        "index": "integer",
+        "evidence": "string"
+      },
+      "kidney": {
+        "calculated_score": "integer 0–100",
+        "triggered_keywords": ["string"],
+        "index": "integer",
+        "evidence": "string"
+      },
+      "liver": {
+        "calculated_score": "integer 0–100",
+        "triggered_keywords": ["string"],
+        "index": "integer",
+        "evidence": "string"
+      },
+      "heart": {
+        "calculated_score": "integer 0–100",
+        "triggered_keywords": ["string"],
+        "index": "integer",
+        "evidence": "string"
+      }
     }
   },
-  "genetic_sensitivity": {
-    "has_genetic_risk": true,
-    "affected_breeds": ["Collie", "Australian Shepherd", "Shetland Sheepdog", "Old English Sheepdog"],
-    "evidence": "MDR1 유전자 변이종은 약물 배출이 느려 진정 효과가 극도로 강해짐. 25-50% 감량 필수."
-  },
+
   "timing_profile": {
-    "onset_min": 15,
-    "peak_min": 30,
-    "duration_hr_min": 3,
-    "duration_hr_max": 8,
-    "evidence": "정맥 주사 시 15분, 경구 시 30-60분 내 발현. 개체에 따라 최대 8시간까지 지속 가능."
+    "onset_min": "integer — minutes to onset",
+    "t_max_hr": "float — hours to peak plasma concentration",
+    "half_life_hr": "float — elimination half-life in hours",
+    "f_percent": "integer 0–100 — oral bioavailability %",
+    "protein_binding_percent": "integer 0–100",
+    "evidence": "string | null"
   },
-  "precautions": {
-    "dog": { "status": 1, "evidence": "MDR1 변이종, 심장 질환, 저혈압, 간부전 환자 주의. 단두종(복서 등) 실신 주의." },
-    "cat": { "status": 1, "evidence": "탈수, 쇼크, 중증 간질환 시 사용 지양." }
-  },
+
   "drug_interactions": [
-    { "drug": "Epinephrine", "severity": 3, "evidence": "에피네프린 역전 현상으로 치명적 저혈압 유발. 절대 금기." },
-    { "drug": "Organophosphates", "severity": 3, "evidence": "유기인제 독성 강화. 살충제 노출 전후 1개월 사용 금지." },
-    { "drug": "Opioids", "severity": 1, "evidence": "신경이완진통 시너지(진정 강화). 용량 조절 권장." },
-    { "drug": "Alpha-2 Agonists", "severity": 2, "evidence": "중추신경 억제 가중. 저혈압 및 서맥 모니터링 필수." }
+    {"note": "append more drug interactions as needed, each with drug name, severity (minor/moderate/major), mechanism keywords, and evidence note"},
+    {
+      "drug": "string — interacting drug name or class e.g. 'Corticosteroids'",
+      "severity": "integer — 1=minor | 2=moderate | 3=critical/avoid",
+      "keywords": ["string — mechanism keyword e.g. 'GI ulceration'"],
+      "evidence": "string — English evidence note"
+    },
+    {
+      "drug": "string — interacting drug name or class e.g. 'Corticosteroids'",
+      "severity": "integer — 1=minor | 2=moderate | 3=critical/avoid",
+      "keywords": ["string — mechanism keyword e.g. 'GI ulceration'"],
+      "evidence": "string — English evidence note"
+    } 
+    
   ],
+
+  "additive_risks": {
+    "nephrotoxic": "boolean — additive renal load (triple whammy etc.)",
+    "hepatotoxic": "boolean — additive hepatic load",
+    "gi_ulcer": "boolean — additive GI ulceration risk",
+    "bleeding": "boolean — additive bleeding risk",
+    "sedation": "boolean — additive CNS sedation",
+    "qt_prolongation": "boolean — additive QT interval risk"
+  },
+
+  "species_flags": {
+    "species_contraindicated": ["string — e.g. 'cat_breed','dog_breed"],
+    "mdr1_sensitive": "boolean — P-gp substrate, dangerous in MDR1-mutant breeds",
+    "serotonin_syndrome_risk": "boolean",
+    "electrolyte_effect": "string | null — e.g. 'k_depleting' | 'k_sparing'",
+    "narrow_therapeutic_index": "boolean — TDM required",
+    "washout_period_days": "integer — minimum days before switching (5 × half-life rule)"
+  },
+
   "dosage_and_kinetics": {
     "dog": {
-      "is_approved": true,
-      "qt_prolongation": true,
-      "half_life": "7.1 - 16 hours",
+      "is_approved": "boolean — species-level regulatory approval",
       "dosage_list": [
         {
-          "logic_type": "linear",
-          "context": "Standard Sedation / Premedication",
-          "value": "0.01 - 0.05",
-          "unit": "mg/kg",
-          "route": "IV, IM, SC",
-          "frequency": "Single dose",
-          "evidence": "임상적으로 라벨(0.5-1.1mg/kg)보다 훨씬 낮은 이 용량이 권장됨."
-        },
-        {
-          "logic_type": "capped",
-          "context": "Large Breed Maximum Dose",
-          "value": "3.0",
-          "unit": "mg/animal",
-          "route": "Any",
-          "frequency": "Max total",
-          "evidence": "대형견의 경우 체중당 계산 시 과용량 위험이 있어 총량을 3~4mg으로 제한함."
-        },
-        {
-          "logic_type": "linear",
-          "context": "Oral Sedation",
-          "value": "0.55 - 2.2",
-          "unit": "mg/kg",
-          "route": "PO",
-          "frequency": "q6h - q12h",
-          "evidence": "여행이나 스트레스 상황에서 사용되는 경구 용량 범위."
+          "logic_type": "string — enum: linear | weight_band | fixed | max_capped",
+          "context": "string — clinical indication e.g. 'Anti-inflammatory dose'",
+          "value": "string — dose as string to support ranges e.g. '0.1 - 0.2'",
+          "unit": "string — enum: mg/kg | mcg/kg | IU/kg | ml/kg | mg | EA",
+          "route": "string — enum: PO | IV | SC | IM | Eye | Ear | Top | Inh",
+          "frequency": "string — enum: SID | BID | TID | QID | q8h | q12h | Monthly | PRN",
+          "max_dose_mg_kg": "float | null — safety ceiling",
+          "evidence": "string | null <reference>"
         }
       ]
     },
     "cat": {
-      "is_approved": true,
-      "qt_prolongation": true,
-      "half_life": "Generally long",
+      "is_approved": "boolean",
       "dosage_list": [
         {
-          "logic_type": "linear",
-          "context": "Standard Sedation",
-          "value": "0.01 - 0.1",
-          "unit": "mg/kg",
-          "route": "IV, IM, SC",
-          "frequency": "Single dose",
-          "evidence": "고양이 진정을 위한 표준 체중당 용량."
-        },
-        {
-          "logic_type": "fixed",
-          "context": "Urethral Obstruction Adjunctive",
-          "value": "0.25",
-          "unit": "mg/animal",
-          "route": "IM",
-          "frequency": "q8h",
-          "evidence": "요도 폐쇄 보조 치료 시 체중과 무관하게 낮은 고정 용량 사용."
+          "logic_type": "string",
+          "context": "string",
+          "value": "string",
+          "unit": "string",
+          "route": "string",
+          "frequency": "string",
+          "max_dose_mg_kg": "float | null",
+          "evidence": "string | null"
         }
       ]
     }
   },
-  "effects_and_mechanisms": {
-    "common_extra_effects": ["근이완", "항구토", "부정맥 방지"],
-    "common_mechanism": "뇌 내 도파민(D2) 수용체 길항 및 말초 알파-1 아드레날린 수용체 차단.",
-    "dog_extra_effects": ["가려움증 완화"],
-    "dog_mechanism": "망상활성계 억제 및 항히스타민 작용 보조.",
-    "cat_extra_effects": ["요도 평활근 이완"],
-    "cat_mechanism": "알파 차단 효과를 통한 요도 내압 감소 도움."
+
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": "float | null — trigger creatinine for dogs",
+    "creatinine_threshold_cat_mg_dL": "float | null — trigger creatinine for cats",
+    "adjustment_type": "string — enum: reduce_dose | extend_interval | avoid | none",
+    "adjustment_factor": "float 0–1 | null — multiplier e.g. 0.5 = half normal dose",
+    "note": "string | null"
   },
+
+  "hepatic_dose_adjustment": {
+    "applies": "boolean — true only for NTI drugs with primary hepatic elimination",
+    "alt_threshold_multiplier": "float | null — e.g. 3.0 = ALT > 3× upper normal triggers this",
+    "adjustment_type": "string — enum: reduce_dose | monitor | avoid | none",
+    "note": "string | null"
+  },
+
+  "contraindications": [
+    {
+      "condition": "string — condition name e.g. 'Renal disease'",
+      "match_terms": ["string — EMR condition strings that auto-trigger this e.g. 'CKD'", "string — 'IRIS Stage'"],
+      "severity": "string — enum: absolute | relative | caution",
+      "action": "string — enum: contraindicated | reduce_dose | monitor | avoid",
+      "lab_trigger": {
+        "marker": "string | null — e.g. 'creatinine' | 'alt' | 'alp' | 'bun' | 'hct'",
+        "threshold": "float | null",
+        "unit": "string | null — e.g. 'mg/dL' | 'U/L' | '%'"
+      }
+    }
+  ],
+
+  "genetic_sensitivity": {
+    "has_genetic_risk": "boolean",
+    "affected_breeds": ["string — e.g. 'Shetland Sheepdog'"],
+    "evidence": "string | null"
+  },
+
+  "effects_and_mechanisms": {
+    "common_mechanism": "string — pharmacological mechanism of action",
+    "common_extra_effects": ["string — known adverse effects"],
+    "dog_mechanism": "string | null — dog-specific mechanism notes",
+    "dog_extra_effects": ["string — dog-specific adverse effects"],
+    "cat_mechanism": "string | null — cat-specific mechanism notes",
+    "cat_extra_effects": ["string — cat-specific adverse effects"]
+  },
+
+  "species_notes": {
+    "dog": "string — clinical note for dogs",
+    "cat": "string — clinical note for cats"
+  },
+
+  "precautions": {
+    "dog": {
+      "status": "integer — 1=use with caution | 2=contraindicated",
+      "evidence": "string"
+    },
+    "cat": {
+      "status": "integer — 1=use with caution | 2=contraindicated",
+      "evidence": "string"
+    }
+  },
+
   "storage_and_forms": {
-    "storage": "20°C-25°C 차광 보관. 정제는 밀폐 용기.",
-    "forms": ["10mg/mL 주사제", "10mg 정제", "25mg 정제"]
+    "storage": "string — storage conditions",
+    "forms": ["string — available formulations"]
+  },
+
+  "section_1_2_10": {
+    "highlights": "string — key clinical highlights (Korean preferred for EMR display)",
+    "indications": "string — approved and off-label indications",
+    "client_info": "string — owner-facing communication note"
+  },
+
+  "_data_quality": {
+    "overall_confidence": "integer 0–100",
+    "renal_adjustment_confidence": "string — enum: high | medium | low | none",
+    "hepatic_adjustment_confidence": "string — enum: high | medium | low | none",
+    "organ_burden_confidence": "string — enum: high | medium | low | none",
+    "ddi_source": "string — enum: plumbs_direct | additive_class | cyp_derived | unknown"
   }
-}"""
+}
+"""
 
 # ─── System prompt ──────────────────────────────────────
 SYSTEM_PROMPT = """You are a veterinary clinical pharmacologist and Korean translator.
@@ -322,16 +448,27 @@ async def convert_one(client: AsyncOpenAI, drug: dict, semaphore: asyncio.Semaph
 
     async with semaphore:
         for attempt in range(1, MAX_RETRIES + 1):
+            # rate limit은 attempt를 소비하지 않고 무한 재시도
+            rate_retries = 0
+            while True:
+                try:
+                    await asyncio.sleep(REQUEST_DELAY)  # rate limit 방지 딜레이
+                    response = await client.chat.completions.create(
+                        model=MODEL,
+                        max_tokens=16384,
+                        messages=[
+                            {"role": "system", "content": SYSTEM_PROMPT},
+                            {"role": "user", "content": user_prompt},
+                        ],
+                    )
+                    break  # 성공하면 while 루프 탈출
+                except openai.RateLimitError:
+                    rate_retries += 1
+                    wait = min(rate_retries * 30, 300)  # 30초씩 증가, 최대 5분
+                    log(f"  [RATE] {ingredient}: rate limited, waiting {wait}s... (rate retry {rate_retries})")
+                    await asyncio.sleep(wait)
+
             try:
-                await asyncio.sleep(REQUEST_DELAY)  # rate limit 방지 딜레이
-                response = await client.chat.completions.create(
-                    model=MODEL,
-                    max_tokens=16384,
-                    messages=[
-                        {"role": "system", "content": SYSTEM_PROMPT},
-                        {"role": "user", "content": user_prompt},
-                    ],
-                )
                 content = response.choices[0].message.content
                 if not content:
                     raise ValueError("Empty response content")
@@ -362,11 +499,6 @@ async def convert_one(client: AsyncOpenAI, drug: dict, semaphore: asyncio.Semaph
                     return (ingredient, False, f"Parse error: {e}")
                 log(f"  [RETRY] {ingredient}: JSON parse error, attempt {attempt}/{MAX_RETRIES}")
                 await asyncio.sleep(5 * attempt)
-
-            except openai.RateLimitError:
-                wait = min(2 ** attempt * 10, 300)  # 최대 5분
-                log(f"  [RATE] {ingredient}: rate limited, waiting {wait}s... (attempt {attempt}/{MAX_RETRIES})")
-                await asyncio.sleep(wait)
 
             except openai.APIError as e:
                 if attempt == MAX_RETRIES:
