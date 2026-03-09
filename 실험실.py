@@ -2,10 +2,12 @@
 """
 plumbs_output/*.jsonl → backend/data/converted/{drug}.jsonl 변환 스크립트
 
-OpenAI API를 사용하여 raw monograph 텍스트를 structured JSON schema로 변환.
+Claude API를 사용하여 raw monograph 텍스트를 structured JSON schema로 변환.
 Usage:
-  python3 실험실.py --api-key <OPENAI_API_KEY> --test 10
-  python3 실험실.py --api-key <OPENAI_API_KEY>
+  export CLAUDE_API_KEY=<your_claude_api_key>
+  python3 실험실.py --test 10
+  python3 실험실.py
+  python3 실험실.py --api-key <your_claude_api_key>
 """
 
 import json
@@ -16,53 +18,32 @@ import time
 from pathlib import Path
 from getpass import getpass
 
+import anthropic
 import os
-import openai
-from openai import AsyncOpenAI
+from anthropic import AsyncAnthropic
 
 
 def log(msg):
     print(msg, flush=True)
 
-def parse_sse_response(raw) -> str:
-    """API 프록시가 SSE 스트림을 raw string으로 반환할 때 텍스트 추출"""
-    if hasattr(raw, 'content') and not isinstance(raw, str):
-        # 정상적인 Message 객체
-        return raw.content[0].text
-    # SSE 스트림 파싱
+def extract_claude_text(response) -> str:
+    """Claude Messages API 응답에서 텍스트 블록만 추출"""
     text_parts = []
-    raw_str = str(raw)
-    for line in raw_str.split('\n'):
-        if not line.startswith('data: '):
+    for block in getattr(response, "content", []) or []:
+        if getattr(block, "type", None) != "text":
             continue
-        payload = line[6:]
-        if payload.strip() == '[DONE]':
-            continue
-        try:
-            data = json.loads(payload)
-            msg_type = data.get('type', '')
-            if msg_type == 'content_block_delta':
-                delta = data.get('delta', {})
-                if delta.get('type') == 'text_delta':
-                    text_parts.append(delta.get('text', ''))
-            elif msg_type == 'message_delta':
-                # 에러 체크
-                stop = data.get('delta', {}).get('stop_reason')
-                if stop == 'max_tokens':
-                    log("  [WARN] max_tokens reached")
-        except json.JSONDecodeError:
-            continue
-    result = ''.join(text_parts)
+        text_parts.append(getattr(block, "text", ""))
+
+    result = ''.join(text_parts).strip()
     if not result:
-        # 디버그: 전체 응답의 처음 500자 출력
-        log(f"  [DEBUG] Empty parse. Raw response start: {raw_str[:300]}")
+        raise ValueError("Empty Claude response content")
     return result
 
 # ─── 설정 ───────────────────────────────────────────────
 INPUT_DIR = Path("plumbs_output")
 OUTPUT_DIR = Path("backend/data/converted")
 ERROR_LOG = Path("conversion_errors.log")
-MODEL = "gpt-5.4"
+MODEL = "claude-3-5-sonnet-20241022"
 MAX_CONCURRENT = 1   # API rate limit 대응
 MAX_RETRIES = 7
 REQUEST_DELAY = 8    # 요청 간 최소 대기(초)
@@ -326,49 +307,41 @@ EXAMPLE_OUTPUT = """
 """
 
 # ─── System prompt ──────────────────────────────────────
-SYSTEM_PROMPT = """You are a veterinary clinical pharmacologist and Korean translator.
-Convert the raw Plumb's Veterinary Drug Handbook monograph into a structured JSON object following the EXACT schema below.
+SYSTEM_PROMPT = """You are a veterinary clinical pharmacologist and Korean medical translator.
+Convert a raw Plumb's Veterinary Drug Handbook monograph into a single JSON object that matches the provided example schema exactly.
 
 CRITICAL RULES:
-1. All "evidence" fields and Korean text fields (highlights, indications, client_info, name_ko) MUST be in Korean (한국어).
-2. Extract EXACT dosage numbers from the text. Do NOT hallucinate or round values.
-3. dosage_list is the MOST IMPORTANT field. Include ALL dosages for dogs and cats from the Dosages section.
-4. logic_type: "linear" = mg/kg dose, "capped" = total dose cap (mg/animal max), "fixed" = fixed mg/animal dose
-5. organ_systems_impact scores: -1 = adverse, 0 = no info, 1 = therapeutic, 2 = other/indirect
-6. precautions.status: 0 = safe, 1 = caution, 2 = contraindicated
-7. drug_interactions.severity: 1 = minor, 2 = moderate, 3 = severe/contraindicated
-8. If info for cats is not available, still include the cat field with appropriate defaults (0 scores, empty dosage_list).
-9. Include dosages for ALL species mentioned (dogs, cats, horses, etc. if present) but dog and cat are the minimum required keys.
-10. name_ko should be the standard Korean pharmaceutical name for the drug.
-11. For timing_profile, extract onset, peak and duration from the Pharmacokinetics section. Use 0 if not stated.
-12. Return ONLY valid JSON. No markdown, no explanation, no wrapping."""
+1. Return exactly one valid JSON object. No markdown, no commentary, no code fences.
+2. Follow the example output's top-level keys and nested structure exactly.
+3. Keep every required section even when data is missing. Use type-appropriate defaults such as null, [], false, 0, or 'Unknown'.
+4. All evidence, note, highlights, indications, client_info, species_notes, and other clinician-facing narrative fields must be written in Korean.
+5. Keep controlled enum values, drug names, routes, frequencies, organ names, and CYP enzyme names in the format shown by the example schema.
+6. Extract dosage values exactly as written in the source. Do not round, normalize away ranges, or invent missing doses.
+7. dosage_and_kinetics.dog and dosage_and_kinetics.cat are mandatory. If a species has no stated dose, keep dosage_list as [] and preserve the species object.
+8. organ_burden_logic.*.*.calculated_score must be an integer from 0 to 100. If the text does not support a score, use 0, empty triggered_keywords, index -1, and a short Korean evidence note.
+9. Do not include placeholder example rows inside arrays. drug_interactions and contraindications must contain only actual extracted items or be empty arrays.
+10. Do not hallucinate reversal agents, approval status, contraindications, dose adjustments, kinetics, genetic risks, washout periods, or interaction mechanisms.
+11. Use _data_quality to reflect uncertainty when the monograph lacks support.
+12. name_ko should be the standard Korean drug name when known; otherwise provide the most established Korean transliteration available from context."""
 
 # ─── User prompt template ──────────────────────────────
 USER_PROMPT_TEMPLATE = """Convert this monograph into the target JSON schema.
 
-## Target Schema (field definitions):
-- drug_identity: {{name_ko(한국어), name_en, class(drug class from monograph header), has_reversal(bool), reversal_evidence(한국어)}}
-- section_1_2_10: {{highlights(한국어 요약), indications(한국어), client_info(한국어)}}
-- organ_systems_impact: {{note, dog/cat: {{brain,heart,cardiovascular,blood,metabolism,respiratory,eye (each int + _evidence 한국어)}}}}
-- genetic_sensitivity: {{has_genetic_risk(bool), affected_breeds([]), evidence(한국어)}}
-- timing_profile: {{onset_min(int), peak_min(int), duration_hr_min(int), duration_hr_max(int), evidence(한국어)}}
-- precautions: {{dog/cat: {{status(int 0-2), evidence(한국어)}}}}
-- drug_interactions: [{{drug(str), severity(int 1-3), evidence(한국어)}}]
-- dosage_and_kinetics: {{dog/cat: {{is_approved(bool), qt_prolongation(bool), half_life(str), dosage_list:[{{logic_type, context, value, unit, route, frequency, evidence(한국어)}}]}}}}
-- effects_and_mechanisms: {{common_extra_effects([한국어]), common_mechanism(한국어), dog_extra_effects([한국어]), dog_mechanism(한국어), cat_extra_effects([한국어]), cat_mechanism(한국어)}}
-- storage_and_forms: {{storage(한국어), forms([한국어])}}
+Requirements:
+- Match the example output's structure exactly, including every top-level section.
+- Use the example as a schema guide only, not as literal content.
+- Preserve all enumerated field formats shown in the example.
+- Return JSON only.
 
-## Example Output (Acepromazine):
+## Example Output Schema
 {example}
 
-## Now convert this drug:
-Drug name: {ingredient}
+## Drug name
+{ingredient}
 
----RAW MONOGRAPH---
+## Raw monograph
 {raw_content}
----END MONOGRAPH---
-
-Return ONLY the JSON object."""
+"""
 
 # ─── 핵심 함수들 ────────────────────────────────────────
 
@@ -402,10 +375,13 @@ def validate_result(data: dict, ingredient: str) -> list[str]:
     """변환 결과 유효성 검증. 문제가 있으면 에러 메시지 리스트 반환."""
     errors = []
     required_keys = [
-        "drug_identity", "section_1_2_10", "organ_systems_impact",
-        "genetic_sensitivity", "timing_profile", "precautions",
-        "drug_interactions", "dosage_and_kinetics",
-        "effects_and_mechanisms", "storage_and_forms"
+        "id", "drug_identity", "metabolism_and_clearance",
+        "organ_burden_logic", "timing_profile", "drug_interactions",
+        "additive_risks", "species_flags", "dosage_and_kinetics",
+        "renal_dose_adjustment", "hepatic_dose_adjustment",
+        "contraindications", "genetic_sensitivity",
+        "effects_and_mechanisms", "species_notes", "precautions",
+        "storage_and_forms", "section_1_2_10", "_data_quality"
     ]
     for key in required_keys:
         if key not in data:
@@ -413,114 +389,130 @@ def validate_result(data: dict, ingredient: str) -> list[str]:
 
     # dosage 검증
     dk = data.get("dosage_and_kinetics", {})
+    has_any_dosage = False
     for species in ("dog", "cat"):
         sp = dk.get(species, {})
-        dl = sp.get("dosage_list", [])
-        if not dl:
-            errors.append(f"dosage_list empty for {species}")
+        if species not in dk:
+            errors.append(f"Missing dosage_and_kinetics.{species}")
+            continue
+
+        dl = sp.get("dosage_list")
+        if not isinstance(dl, list):
+            errors.append(f"dosage_and_kinetics.{species}.dosage_list is not a list")
+            continue
+
+        if dl:
+            has_any_dosage = True
+
+    if not has_any_dosage:
+        errors.append("dosage_list empty for both dog and cat")
 
     # organ score 범위 검증
-    osi = data.get("organ_systems_impact", {})
+    obl = data.get("organ_burden_logic", {})
     for species in ("dog", "cat"):
-        sp = osi.get(species, {})
-        for organ in ("brain", "heart", "cardiovascular", "blood", "metabolism", "respiratory", "eye"):
-            val = sp.get(organ)
-            if val is not None and val not in (-1, 0, 1, 2):
-                errors.append(f"organ_systems_impact.{species}.{organ} = {val} (not in -1,0,1,2)")
+        sp = obl.get(species, {})
+        for organ in ("brain", "blood", "kidney", "liver", "heart"):
+            organ_data = sp.get(organ)
+            if not isinstance(organ_data, dict):
+                errors.append(f"organ_burden_logic.{species}.{organ} missing or not an object")
+                continue
+
+            score = organ_data.get("calculated_score")
+            if not isinstance(score, int) or not (0 <= score <= 100):
+                errors.append(
+                    f"organ_burden_logic.{species}.{organ}.calculated_score = {score} (not int 0-100)"
+                )
 
     return errors
 
 
-async def convert_one(client: AsyncOpenAI, drug: dict, semaphore: asyncio.Semaphore) -> tuple[str, bool, str]:
-    """단일 약물 변환. Returns (ingredient, success, message)"""
-    ingredient = drug["ingredient"]
-    output_path = get_output_path(ingredient)
+async def convert_one(client: AsyncAnthropic, drug: dict, semaphore: asyncio.Semaphore) -> tuple[str, bool, str]:
+  """단일 약물 변환. Returns (ingredient, success, message)"""
+  ingredient = drug["ingredient"]
+  output_path = get_output_path(ingredient)
 
-    # 이미 변환됨 → 건너뛰기
-    if output_path.exists():
-        return (ingredient, True, "already exists")
+  # 이미 변환됨 → 건너뛰기
+  if output_path.exists():
+    return (ingredient, True, "already exists")
 
-    user_prompt = USER_PROMPT_TEMPLATE.format(
-        example=EXAMPLE_OUTPUT,
-        ingredient=ingredient,
-        raw_content=drug["raw_content"][:40000]  # 컨텍스트 초과 방지
-    )
+  user_prompt = USER_PROMPT_TEMPLATE.format(
+    example=EXAMPLE_OUTPUT,
+    ingredient=ingredient,
+    raw_content=drug["raw_content"][:40000],  # 컨텍스트 초과 방지
+  )
 
-    async with semaphore:
-        for attempt in range(1, MAX_RETRIES + 1):
-            # rate limit은 attempt를 소비하지 않고 무한 재시도
-            rate_retries = 0
-            while True:
-                try:
-                    await asyncio.sleep(REQUEST_DELAY)  # rate limit 방지 딜레이
-                    response = await client.chat.completions.create(
-                        model=MODEL,
-                        max_tokens=16384,
-                        messages=[
-                            {"role": "system", "content": SYSTEM_PROMPT},
-                            {"role": "user", "content": user_prompt},
-                        ],
-                    )
-                    break  # 성공하면 while 루프 탈출
-                except openai.RateLimitError:
-                    rate_retries += 1
-                    wait = min(rate_retries * 30, 300)  # 30초씩 증가, 최대 5분
-                    log(f"  [RATE] {ingredient}: rate limited, waiting {wait}s... (rate retry {rate_retries})")
-                    await asyncio.sleep(wait)
+  async with semaphore:
+    for attempt in range(1, MAX_RETRIES + 1):
+      rate_retries = 0
 
-            try:
-                content = response.choices[0].message.content
-                if not content:
-                    raise ValueError("Empty response content")
-                raw_text = content.strip()
+      while True:
+        try:
+          await asyncio.sleep(REQUEST_DELAY)
+          response = await client.messages.create(
+            model=MODEL,
+            max_tokens=16384,
+            system=SYSTEM_PROMPT,
+            messages=[
+              {"role": "user", "content": user_prompt},
+            ],
+            temperature=0,
+          )
+          break
+        except anthropic.RateLimitError:
+          rate_retries += 1
+          wait = min(rate_retries * 30, 300)
+          log(f"  [RATE] {ingredient}: rate limited, waiting {wait}s... (rate retry {rate_retries})")
+          await asyncio.sleep(wait)
 
-                # JSON 파싱 (마크다운 블록 제거)
-                if raw_text.startswith("```"):
-                    raw_text = re.sub(r'^```(?:json)?\s*', '', raw_text)
-                    raw_text = re.sub(r'\s*```$', '', raw_text)
+      try:
+        raw_text = extract_claude_text(response)
 
-                data = json.loads(raw_text)
+        if raw_text.startswith("```"):
+          raw_text = re.sub(r'^```(?:json)?\s*', '', raw_text)
+          raw_text = re.sub(r'\s*```$', '', raw_text)
 
-                # 유효성 검증
-                validation_errors = validate_result(data, ingredient)
-                if validation_errors:
-                    warn_msg = "; ".join(validation_errors)
-                    log(f"  [WARN] {ingredient}: {warn_msg}")
+        data = json.loads(raw_text)
 
-                # 저장
-                with open(output_path, 'w', encoding='utf-8') as f:
-                    json.dump(data, f, ensure_ascii=False, indent=2)
+        validation_errors = validate_result(data, ingredient)
+        if validation_errors:
+          warn_msg = "; ".join(validation_errors)
+          log(f"  [WARN] {ingredient}: {warn_msg}")
 
-                log(f"  [OK] {ingredient}")
-                return (ingredient, True, "converted")
+        with open(output_path, 'w', encoding='utf-8') as f:
+          json.dump(data, f, ensure_ascii=False, indent=2)
 
-            except (json.JSONDecodeError, ValueError) as e:
-                if attempt == MAX_RETRIES:
-                    return (ingredient, False, f"Parse error: {e}")
-                log(f"  [RETRY] {ingredient}: JSON parse error, attempt {attempt}/{MAX_RETRIES}")
-                await asyncio.sleep(5 * attempt)
+        log(f"  [OK] {ingredient}")
+        return (ingredient, True, "converted")
 
-            except openai.APIError as e:
-                if attempt == MAX_RETRIES:
-                    return (ingredient, False, f"API error: {e}")
-                await asyncio.sleep(2 ** attempt)
+      except (json.JSONDecodeError, ValueError) as e:
+        if attempt == MAX_RETRIES:
+          return (ingredient, False, f"Parse error: {e}")
+        log(f"  [RETRY] {ingredient}: JSON parse error, attempt {attempt}/{MAX_RETRIES}")
+        await asyncio.sleep(5 * attempt)
 
-    return (ingredient, False, "max retries exceeded")
+      except anthropic.APIError as e:
+        if attempt == MAX_RETRIES:
+          return (ingredient, False, f"API error: {e}")
+        await asyncio.sleep(2 ** attempt)
+
+  return (ingredient, False, "max retries exceeded")
 
 
 def resolve_api_key(cli_api_key: str | None) -> str:
-    """CLI 인자 우선, 없으면 환경변수, 둘 다 없으면 프롬프트에서 입력받는다."""
-    if cli_api_key:
-        return cli_api_key.strip()
+  """CLI 인자 우선, 없으면 환경변수, 둘 다 없으면 프롬프트에서 입력받는다."""
+  if cli_api_key:
+    return cli_api_key.strip()
 
-    env_api_key = os.environ.get("OPENAI_API_KEY")
-    if env_api_key:
-        return env_api_key.strip()
+  env_api_key = os.environ.get("CLAUDE_API_KEY") or os.environ.get("ANTHROPIC_API_KEY")
+  if env_api_key:
+    return env_api_key.strip()
 
-    entered_api_key = getpass("OpenAI API key: ").strip()
-    if not entered_api_key:
-        raise ValueError("OpenAI API key가 필요합니다. --api-key 인자 또는 OPENAI_API_KEY 환경변수를 사용하세요.")
-    return entered_api_key
+  entered_api_key = getpass("Anthropic API key: ").strip()
+  if not entered_api_key:
+    raise ValueError(
+      "Anthropic API key가 필요합니다. --api-key 인자 또는 CLAUDE_API_KEY/ANTHROPIC_API_KEY 환경변수를 사용하세요."
+    )
+  return entered_api_key
 
 
 async def main(api_key: str, model: str, test_count: int | None = None):
@@ -537,7 +529,7 @@ async def main(api_key: str, model: str, test_count: int | None = None):
     global MODEL
     MODEL = model
 
-    client = AsyncOpenAI(api_key=api_key)
+    client = AsyncAnthropic(api_key=api_key)
     semaphore = asyncio.Semaphore(MAX_CONCURRENT)
 
     start_time = time.time()
@@ -569,7 +561,7 @@ async def main(api_key: str, model: str, test_count: int | None = None):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--api-key", type=str, default=None, help="OpenAI API key")
+    parser.add_argument("--api-key", type=str, default=None, help="Anthropic API key")
     parser.add_argument("--model", type=str, default=MODEL, help=f"사용할 모델명 (기본값: {MODEL})")
     parser.add_argument("--test", type=int, default=None, help="테스트할 약물 수 (예: --test 10)")
     args = parser.parse_args()

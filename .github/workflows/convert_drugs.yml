@@ -27,10 +27,11 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install openai
+        run: pip install anthropic
 
       - name: Run conversion script
         env:
+          CLAUDE_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python 실험실.py
 
