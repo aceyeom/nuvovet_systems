@@ -43,7 +43,7 @@ def extract_claude_text(response) -> str:
 INPUT_DIR = Path("plumbs_output")
 OUTPUT_DIR = Path("backend/data/converted")
 ERROR_LOG = Path("conversion_errors.log")
-MODEL = "claude-3-5-sonnet-20241022"
+MODEL = "claude-haiku-4-5-20251001"
 MAX_CONCURRENT = 1   # API rate limit 대응
 MAX_RETRIES = 7
 REQUEST_DELAY = 8    # 요청 간 최소 대기(초)
@@ -463,6 +463,12 @@ async def convert_one(client: AsyncAnthropic, drug: dict, semaphore: asyncio.Sem
           wait = min(rate_retries * 30, 300)
           log(f"  [RATE] {ingredient}: rate limited, waiting {wait}s... (rate retry {rate_retries})")
           await asyncio.sleep(wait)
+        except anthropic.NotFoundError as e:
+          return (
+            ingredient,
+            False,
+            f"Model not found: {MODEL}. --model 옵션으로 사용 가능한 모델을 지정하세요. 원본 오류: {e}",
+          )
 
       try:
         raw_text = extract_claude_text(response)
