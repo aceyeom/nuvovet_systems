@@ -2,6 +2,11 @@ name: Convert Drug Monographs
 
 on:
   workflow_dispatch:  # 수동 실행
+    inputs:
+      batch_size:
+        description: "배치당 처리 약물 수"
+        required: false
+        default: "70"
   schedule:
     - cron: '0 15 * * *'  # 00:00 KST
     - cron: '0 21 * * *'  # 06:00 KST
@@ -12,14 +17,117 @@ permissions:
   contents: write
   models: read
 
+concurrency:
+  group: convert-drugs-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
-  convert:
+  plan_batches:
     runs-on: ubuntu-latest
-    timeout-minutes: 360  # 최대 6시간
+    outputs:
+      batches: ${{ steps.plan.outputs.batches }}
+      total_drugs: ${{ steps.plan.outputs.total_drugs }}
+      total_missing: ${{ steps.plan.outputs.total_missing }}
+      batch_size: ${{ steps.plan.outputs.batch_size }}
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Plan batch matrix
+        id: plan
+        run: |
+          python - <<'PY'
+          import glob
+          import json
+          import os
+          import re
+
+          files = sorted(
+              glob.glob("plumbs_output/*.jsonl"),
+              key=lambda p: int(os.path.splitext(os.path.basename(p))[0])
+          )
+
+          def output_path_for(ingredient: str) -> str:
+            safe_name = re.sub(r"[^\w\-]", "_", ingredient.lower()).strip("_")
+            first_letter = ingredient[0].upper() if ingredient else "_"
+            if not first_letter.isalpha():
+              first_letter = "_"
+            return os.path.join("backend", "data", "converted", first_letter, f"{safe_name}.jsonl")
+
+          total = 0
+          missing = 0
+          for path in files:
+              with open(path, encoding="utf-8") as f:
+                  for line in f:
+                      if line.strip():
+                  total += 1
+                  try:
+                    drug = json.loads(line)
+                  except json.JSONDecodeError:
+                    continue
+                  ingredient = drug.get("ingredient", "")
+                  if not ingredient:
+                    continue
+                  if not os.path.exists(output_path_for(ingredient)):
+                    missing += 1
+
+          batch_size_raw = os.environ.get("INPUT_BATCH_SIZE") or "70"
+          try:
+            batch_size = max(int(batch_size_raw), 1)
+          except ValueError:
+            batch_size = 70
+
+          batches = []
+          start = 0
+          idx = 1
+          while start < missing:
+            count = min(batch_size, missing - start)
+              batches.append({"index": idx, "start": start, "count": count})
+              start += count
+              idx += 1
+
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
+              out.write(f"total_drugs={total}\n")
+            out.write(f"total_missing={missing}\n")
+              out.write(f"batch_size={batch_size}\n")
+              out.write(f"batches={json.dumps(batches)}\n")
+
+          print(f"Planned {len(batches)} batches for {missing} missing drugs (total={total}, batch_size={batch_size})")
+          PY
+
+        - name: Plan summary
+        run: |
+          echo "total_drugs=${{ steps.plan.outputs.total_drugs }}"
+          echo "total_missing=${{ steps.plan.outputs.total_missing }}"
+          echo "planned_batch_size=${{ steps.plan.outputs.batch_size }}"
+
+  convert:
+    needs: plan_batches
+      if: needs.plan_batches.outputs.total_missing != '0'
+    runs-on: ubuntu-latest
+      timeout-minutes: 150
+    strategy:
+        fail-fast: true
+      max-parallel: 1
+      matrix:
+        batch: ${{ fromJSON(needs.plan_batches.outputs.batches) }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref_name }}
+
+      - name: Validate API key presence
+        env:
+          CLAUDE_API_KEY: ${{ secrets.CLAUDE_API_KEY || vars.CLAUDE_API_KEY }}
+        run: |
+          if [ -z "$CLAUDE_API_KEY" ]; then
+            echo "CLAUDE_API_KEY is missing; aborting before any API calls."
+            exit 1
+          fi
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -29,17 +137,58 @@ jobs:
       - name: Install dependencies
         run: pip install anthropic
 
-      - name: Run conversion script
+      - name: Run conversion script (batch)
         env:
           # Prefer secret; fallback to repository variable if configured there.
           CLAUDE_API_KEY: ${{ secrets.CLAUDE_API_KEY || vars.CLAUDE_API_KEY }}
-        run: python 실험실.py
+        run: |
+          python 실험실.py \
+            --only-missing \
+            --start-index "${{ matrix.batch.start }}" \
+            --count "${{ matrix.batch.count }}"
 
-      - name: Commit and push results
+      - name: Upload partial outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: converted-batch-${{ matrix.batch.index }}
+          path: |
+            backend/data/converted/
+            conversion_errors.log
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Commit and push batch results
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add backend/data/converted/
           git add conversion_errors.log || true
-          git diff --cached --quiet || git commit -m "chore: auto-convert drug monographs [skip ci]"
-          git push
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: auto-convert batch ${{ matrix.batch.index }} [skip ci]"
+            git pull --rebase origin "${{ github.ref_name }}"
+            git push origin "${{ github.ref_name }}"
+          else
+            echo "No changes to commit for batch ${{ matrix.batch.index }}"
+          fi
+
+      - name: Batch summary
+        if: always()
+        run: |
+          echo "batch_index=${{ matrix.batch.index }}"
+          echo "batch_start=${{ matrix.batch.start }}"
+          echo "batch_count=${{ matrix.batch.count }}"
+          echo "total_drugs=${{ needs.plan_batches.outputs.total_drugs }}"
+          echo "total_missing=${{ needs.plan_batches.outputs.total_missing }}"
+          echo "planned_batch_size=${{ needs.plan_batches.outputs.batch_size }}"
+
+  no_work:
+    needs: plan_batches
+    if: needs.plan_batches.outputs.total_missing == '0'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Nothing to convert
+        run: |
+          echo "No missing converted outputs detected."
+          echo "total_drugs=${{ needs.plan_batches.outputs.total_drugs }}"

@@ -480,6 +480,14 @@ async def convert_one(
                     await asyncio.sleep(wait)
                 except anthropic.NotFoundError as e:
                     return (ingredient, False, f"Model not found: {model}. 원본 오류: {e}")
+                except anthropic.BadRequestError as e:
+                    return (ingredient, False, f"Bad request: {e}")
+                except anthropic.APIError as e:
+                    if attempt == MAX_RETRIES:
+                        return (ingredient, False, f"API error: {e}")
+                    wait = min(2 ** attempt, 60)
+                    log(f"  [RETRY] {ingredient}: API error, waiting {wait}s (attempt {attempt}/{MAX_RETRIES})")
+                    await asyncio.sleep(wait)
 
             try:
                 raw_text = extract_claude_text(response)
@@ -515,11 +523,6 @@ async def convert_one(
                     return (ingredient, False, f"Parse error: {e}")
                 log(f"  [RETRY] {ingredient}: JSON parse error, attempt {attempt}/{MAX_RETRIES}")
                 await asyncio.sleep(5 * attempt)
-
-            except anthropic.APIError as e:
-                if attempt == MAX_RETRIES:
-                    return (ingredient, False, f"API error: {e}")
-                await asyncio.sleep(2 ** attempt)
 
     return (ingredient, False, "max retries exceeded")
 
@@ -568,7 +571,15 @@ async def main(api_key: str, model: str, test_count: int | None = None):
 
     start_time = time.time()
     tasks = [convert_one(client, drug, semaphore, model) for drug in drugs]
-    results = await asyncio.gather(*tasks)
+    gathered = await asyncio.gather(*tasks, return_exceptions=True)
+
+    results: list[tuple[str, bool, str]] = []
+    for idx, item in enumerate(gathered):
+      if isinstance(item, Exception):
+        ingredient = drugs[idx].get("ingredient", f"unknown_{idx}")
+        results.append((ingredient, False, f"Unhandled exception: {item}"))
+      else:
+        results.append(item)
 
     success   = [r for r in results if r[1]]
     failed    = [r for r in results if not r[1]]
@@ -597,7 +608,69 @@ if __name__ == "__main__":
     parser.add_argument("--api-key", type=str, default=None, help="Anthropic API key")
     parser.add_argument("--model", type=str, default=MODEL, help=f"사용할 모델명 (기본값: {MODEL})")
     parser.add_argument("--test", type=int, default=None, help="테스트할 약물 수 (예: --test 10)")
+    parser.add_argument("--start-index", type=int, default=0, help="전체 약물 목록에서 시작 인덱스(0-based)")
+    parser.add_argument("--count", type=int, default=None, help="처리할 약물 수")
+    parser.add_argument("--only-missing", action="store_true", help="이미 변환된 출력 파일이 없는 약물만 처리")
     args = parser.parse_args()
 
     api_key = resolve_api_key(args.api_key)
-    asyncio.run(main(api_key=api_key, model=args.model, test_count=args.test))
+
+    async def _entrypoint() -> None:
+        OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+        log("소스 데이터 로드 중...")
+        all_drugs = load_all_drugs()
+        total = len(all_drugs)
+        log(f"총 {total}개 약물 로드됨\n")
+
+        if args.only_missing:
+          before = len(all_drugs)
+          all_drugs = [d for d in all_drugs if not get_output_path(d["ingredient"]).exists()]
+          log(f"미변환 약물만 처리: {len(all_drugs)}개 (전체 {before}개 중)\n")
+
+        if args.test:
+            selected_drugs = all_drugs[:args.test]
+            log(f"테스트 모드: 처음 {args.test}개만 변환\n")
+        else:
+            start = max(args.start_index, 0)
+            end = total if args.count is None else min(start + max(args.count, 0), total)
+            selected_drugs = all_drugs[start:end]
+            log(f"배치 모드: start={start}, end={end}, count={len(selected_drugs)}\n")
+
+        client = AsyncAnthropic(api_key=api_key)
+        semaphore = asyncio.Semaphore(MAX_CONCURRENT)
+
+        start_time = time.time()
+        tasks = [convert_one(client, drug, semaphore, args.model) for drug in selected_drugs]
+        gathered = await asyncio.gather(*tasks, return_exceptions=True)
+
+        results: list[tuple[str, bool, str]] = []
+        for idx, item in enumerate(gathered):
+            if isinstance(item, Exception):
+                ingredient = selected_drugs[idx].get("ingredient", f"unknown_{idx}")
+                results.append((ingredient, False, f"Unhandled exception: {item}"))
+            else:
+                results.append(item)
+
+        success = [r for r in results if r[1]]
+        failed = [r for r in results if not r[1]]
+        skipped = [r for r in results if r[1] and r[2] == "already exists"]
+        converted = [r for r in results if r[1] and r[2] == "converted"]
+
+        elapsed = time.time() - start_time
+
+        log(f"\n{'='*60}")
+        log(f"완료! ({elapsed:.1f}초)")
+        log(f"  성공: {len(success)}개 (새로 변환: {len(converted)}, 기존: {len(skipped)})")
+        log(f"  실패: {len(failed)}개")
+
+        if failed:
+            log("\n실패 목록:")
+            with open(ERROR_LOG, "w", encoding="utf-8") as f:
+                for ingredient, _, msg in failed:
+                    line = f"  {ingredient}: {msg}"
+                    log(line)
+                    f.write(line + "\n")
+            log(f"\n에러 로그: {ERROR_LOG}")
+
+    asyncio.run(_entrypoint())
