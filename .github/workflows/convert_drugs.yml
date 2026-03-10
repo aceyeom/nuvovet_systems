@@ -6,7 +6,7 @@ on:
       batch_size:
         description: "배치당 처리 약물 수"
         required: false
-        default: "70"
+        default: "20"
   schedule:
     - cron: '0 15 * * *'  # 00:00 KST
     - cron: '0 21 * * *'  # 06:00 KST
@@ -36,6 +36,8 @@ jobs:
 
       - name: Plan batch matrix
         id: plan
+        env:
+          WORKFLOW_BATCH_SIZE: ${{ github.event.inputs.batch_size || '70' }}
         run: |
           python - <<'PY'
           import glob
@@ -49,54 +51,64 @@ jobs:
           )
 
           def output_path_for(ingredient: str) -> str:
-            safe_name = re.sub(r"[^\w\-]", "_", ingredient.lower()).strip("_")
-            first_letter = ingredient[0].upper() if ingredient else "_"
-            if not first_letter.isalpha():
-              first_letter = "_"
-            return os.path.join("backend", "data", "converted", first_letter, f"{safe_name}.jsonl")
+              safe_name = re.sub(r"[^\w\-]", "_", ingredient.lower()).strip("_")
+              first_letter = ingredient[0].upper() if ingredient else "_"
+              if not first_letter.isalpha():
+                  first_letter = "_"
+              return os.path.join("backend", "data", "converted", first_letter, f"{safe_name}.jsonl")
 
           total = 0
-          missing = 0
+          missing_drugs = []
           for path in files:
               with open(path, encoding="utf-8") as f:
                   for line in f:
-                      if line.strip():
-                  total += 1
-                  try:
-                    drug = json.loads(line)
-                  except json.JSONDecodeError:
-                    continue
-                  ingredient = drug.get("ingredient", "")
-                  if not ingredient:
-                    continue
-                  if not os.path.exists(output_path_for(ingredient)):
-                    missing += 1
+                      line = line.strip()
+                      if not line:
+                          continue
 
-          batch_size_raw = os.environ.get("INPUT_BATCH_SIZE") or "70"
+                      total += 1
+                      try:
+                          drug = json.loads(line)
+                      except json.JSONDecodeError:
+                          continue
+
+                      ingredient = drug.get("ingredient", "")
+                      if not ingredient:
+                          continue
+
+                      if not os.path.exists(output_path_for(ingredient)):
+                          missing_drugs.append(ingredient)
+
+          batch_size_raw = os.environ.get("WORKFLOW_BATCH_SIZE") or "70"
           try:
-            batch_size = max(int(batch_size_raw), 1)
+              batch_size = max(int(batch_size_raw), 1)
           except ValueError:
-            batch_size = 70
+              batch_size = 70
 
           batches = []
-          start = 0
-          idx = 1
-          while start < missing:
-            count = min(batch_size, missing - start)
-              batches.append({"index": idx, "start": start, "count": count})
-              start += count
-              idx += 1
+          for start in range(0, len(missing_drugs), batch_size):
+              batch_ingredients = missing_drugs[start:start + batch_size]
+              batches.append(
+                  {
+                      "index": len(batches) + 1,
+                      "count": len(batch_ingredients),
+                      "ingredients": batch_ingredients,
+                  }
+              )
 
           with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
               out.write(f"total_drugs={total}\n")
-            out.write(f"total_missing={missing}\n")
+              out.write(f"total_missing={len(missing_drugs)}\n")
               out.write(f"batch_size={batch_size}\n")
               out.write(f"batches={json.dumps(batches)}\n")
 
-          print(f"Planned {len(batches)} batches for {missing} missing drugs (total={total}, batch_size={batch_size})")
+          print(
+              f"Planned {len(batches)} batches for {len(missing_drugs)} missing drugs "
+              f"(total={total}, batch_size={batch_size})"
+          )
           PY
 
-        - name: Plan summary
+      - name: Plan summary
         run: |
           echo "total_drugs=${{ steps.plan.outputs.total_drugs }}"
           echo "total_missing=${{ steps.plan.outputs.total_missing }}"
@@ -104,11 +116,11 @@ jobs:
 
   convert:
     needs: plan_batches
-      if: needs.plan_batches.outputs.total_missing != '0'
+    if: needs.plan_batches.outputs.total_missing != '0'
     runs-on: ubuntu-latest
-      timeout-minutes: 150
+    timeout-minutes: 150
     strategy:
-        fail-fast: true
+      fail-fast: true
       max-parallel: 1
       matrix:
         batch: ${{ fromJSON(needs.plan_batches.outputs.batches) }}
@@ -141,23 +153,19 @@ jobs:
         env:
           # Prefer secret; fallback to repository variable if configured there.
           CLAUDE_API_KEY: ${{ secrets.CLAUDE_API_KEY || vars.CLAUDE_API_KEY }}
+          BATCH_INGREDIENTS: ${{ toJSON(matrix.batch.ingredients) }}
         run: |
           python 실험실.py \
-            --only-missing \
-            --start-index "${{ matrix.batch.start }}" \
-            --count "${{ matrix.batch.count }}"
+            --ingredients-json "$BATCH_INGREDIENTS"
 
-      - name: Upload partial outputs
+      - name: Upload error logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: converted-batch-${{ matrix.batch.index }}
-          path: |
-            backend/data/converted/
-            conversion_errors.log
-          if-no-files-found: warn
-          retention-days: 30
-
+          name: error-log-batch-${{ matrix.batch.index }}
+          path: conversion_errors.log
+          if-no-files-found: ignore  # 에러가 발생하지 않아 로그 파일이 없을 때 경고가 뜨지 않게 변경
+          retention-days: 7          # 에러 로그는 오래 보관할 필요가 없으므로 30일 -> 7일로 단축
       - name: Commit and push batch results
         if: always()
         run: |
@@ -177,7 +185,6 @@ jobs:
         if: always()
         run: |
           echo "batch_index=${{ matrix.batch.index }}"
-          echo "batch_start=${{ matrix.batch.start }}"
           echo "batch_count=${{ matrix.batch.count }}"
           echo "total_drugs=${{ needs.plan_batches.outputs.total_drugs }}"
           echo "total_missing=${{ needs.plan_batches.outputs.total_missing }}"

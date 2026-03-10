@@ -353,6 +353,29 @@ def get_output_path(ingredient: str) -> Path:
     return folder / f"{safe_name}.jsonl"
 
 
+def select_drugs_by_ingredients(drugs: list[dict], ingredients: list[str]) -> list[dict]:
+    """지정한 ingredient 목록 순서대로 약물 선택."""
+    indexed_drugs: dict[str, dict] = {}
+    for drug in drugs:
+        ingredient = drug.get("ingredient")
+        if ingredient and ingredient not in indexed_drugs:
+            indexed_drugs[ingredient] = drug
+
+    selected = []
+    missing = []
+    for ingredient in ingredients:
+        drug = indexed_drugs.get(ingredient)
+        if drug is None:
+            missing.append(ingredient)
+            continue
+        selected.append(drug)
+
+    if missing:
+        log(f"  [WARN] manifest에 있지만 소스에서 찾지 못한 약물 {len(missing)}개: {', '.join(missing[:10])}")
+
+    return selected
+
+
 _RISK_FLAG_VALUES = {"none", "low", "moderate", "high"}
 
 def validate_result(data: dict, ingredient: str) -> list[str]:
@@ -611,6 +634,12 @@ if __name__ == "__main__":
     parser.add_argument("--start-index", type=int, default=0, help="전체 약물 목록에서 시작 인덱스(0-based)")
     parser.add_argument("--count", type=int, default=None, help="처리할 약물 수")
     parser.add_argument("--only-missing", action="store_true", help="이미 변환된 출력 파일이 없는 약물만 처리")
+    parser.add_argument(
+        "--ingredients-json",
+        type=str,
+        default=None,
+        help="처리할 ingredient 목록 JSON 배열. 예: '[\"meloxicam\", \"gabapentin\"]'",
+    )
     args = parser.parse_args()
 
     api_key = resolve_api_key(args.api_key)
@@ -623,17 +652,37 @@ if __name__ == "__main__":
         total = len(all_drugs)
         log(f"총 {total}개 약물 로드됨\n")
 
+        manifest_ingredients: list[str] | None = None
+        if args.ingredients_json:
+            try:
+                parsed_ingredients = json.loads(args.ingredients_json)
+            except json.JSONDecodeError as e:
+                raise ValueError(f"--ingredients-json 파싱 실패: {e}") from e
+
+            if not isinstance(parsed_ingredients, list) or not all(
+                isinstance(item, str) for item in parsed_ingredients
+            ):
+                raise ValueError("--ingredients-json은 문자열 배열(JSON list of strings)이어야 합니다.")
+
+            manifest_ingredients = parsed_ingredients
+            all_drugs = select_drugs_by_ingredients(all_drugs, manifest_ingredients)
+            log(f"manifest 배치 모드: 지정된 {len(manifest_ingredients)}개 중 {len(all_drugs)}개 로드\n")
+
         if args.only_missing:
-          before = len(all_drugs)
-          all_drugs = [d for d in all_drugs if not get_output_path(d["ingredient"]).exists()]
-          log(f"미변환 약물만 처리: {len(all_drugs)}개 (전체 {before}개 중)\n")
+            before = len(all_drugs)
+            all_drugs = [d for d in all_drugs if not get_output_path(d["ingredient"]).exists()]
+            log(f"미변환 약물만 처리: {len(all_drugs)}개 (전체 {before}개 중)\n")
 
         if args.test:
             selected_drugs = all_drugs[:args.test]
             log(f"테스트 모드: 처음 {args.test}개만 변환\n")
+        elif manifest_ingredients is not None:
+            selected_drugs = all_drugs
+            log(f"manifest 실행 모드: count={len(selected_drugs)}\n")
         else:
             start = max(args.start_index, 0)
-            end = total if args.count is None else min(start + max(args.count, 0), total)
+            current_total = len(all_drugs)
+            end = current_total if args.count is None else min(start + max(args.count, 0), current_total)
             selected_drugs = all_drugs[start:end]
             log(f"배치 모드: start={start}, end={end}, count={len(selected_drugs)}\n")
 
