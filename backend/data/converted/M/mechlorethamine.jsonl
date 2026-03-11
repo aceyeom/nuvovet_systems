@@ -1,0 +1,429 @@
+{
+  "id": "mechlorethamine",
+  "drug_identity": {
+    "name_ko": "메클로레타민",
+    "name_en": "Mechlorethamine",
+    "active_ingredient": "Mechlorethamine",
+    "brand_names": [
+      "Mustargen",
+      "Caryolysine",
+      "Onco-Cloramin",
+      "Valchlor"
+    ],
+    "allergy_class": null,
+    "class": "Antineoplastic Agent",
+    "source": "human_offlabel",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": "수의학적으로 승인된 제품 없음. 개와 고양이의 림프종 치료를 위한 MOPP, MPP, MOMP 프로토콜에서 사람용 제품을 오프라벨로 사용.",
+    "dosage_form": [
+      "Inj",
+      "Topical"
+    ],
+    "available_strengths": [
+      {
+        "value": 10,
+        "unit": "mg"
+      }
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": "주사 후 메클로레타민은 물과 결합하여 빠른 화학적 변환을 거치며, 투여 후 수 분 내에 활성 약물이 남지 않는다. 구체적인 CYP 대사 경로는 문헌에 기술되지 않음."
+    },
+    "extra_information": "메클로레타민은 조직에 자극성이 있어 전신 투여 시 반드시 IV로 투여해야 한다. 강내 투여 후 흡수는 불완전하다. 투여 후 수 분 내에 활성 약물이 소실된다. 투석으로 제거되지 않는다."
+  },
+  "organ_burden_logic": {
+    "note": "키워드 기반 점수 산출. 수의학적 종별 PK 데이터 없음; 주로 부작용 및 독성 프로파일에서 도출.",
+    "dog": {
+      "brain": {
+        "calculated_score": 20,
+        "triggered_keywords": [
+          "peripheral neuropathy"
+        ],
+        "index": 1,
+        "evidence": "말초 신경병증이 잠재적 부작용으로 보고됨. 직접적인 CNS 독성 데이터는 없음."
+      },
+      "blood": {
+        "calculated_score": 85,
+        "triggered_keywords": [
+          "myelosuppression",
+          "leukopenia",
+          "thrombocytopenia",
+          "bone marrow depression",
+          "neutrophil nadir",
+          "platelet nadir"
+        ],
+        "index": 0,
+        "evidence": "골수억제(백혈구감소증, 혈소판감소증)는 흔하고 심각한 부작용으로, 치료 중단을 초래할 수 있다. 호중구 및 혈소판 최저점은 약 7일. 주간 CBC 모니터링 권장."
+      },
+      "kidney": {
+        "calculated_score": 30,
+        "triggered_keywords": [
+          "renal function monitoring",
+          "hyperuricemia"
+        ],
+        "index": 2,
+        "evidence": "신기능 모니터링이 권장됨. 고요산혈증이 잠재적 부작용으로 보고되어 신장에 간접적 부담을 줄 수 있음."
+      },
+      "liver": {
+        "calculated_score": 40,
+        "triggered_keywords": [
+          "hepatotoxicity",
+          "hepatic enzymes monitoring"
+        ],
+        "index": 3,
+        "evidence": "간독성이 잠재적 부작용으로 보고됨. 치료 전 및 3~4개월마다 간효소 모니터링 권장."
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "심장 독성에 대한 직접적인 언급 없음."
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 20,
+        "triggered_keywords": [
+          "peripheral neuropathy"
+        ],
+        "index": 1,
+        "evidence": "말초 신경병증이 잠재적 부작용으로 보고됨. 고양이 특이적 CNS 데이터 없음."
+      },
+      "blood": {
+        "calculated_score": 85,
+        "triggered_keywords": [
+          "myelosuppression",
+          "leukopenia",
+          "thrombocytopenia",
+          "bone marrow depression"
+        ],
+        "index": 0,
+        "evidence": "골수억제는 고양이에서도 주요 부작용으로 예상됨. 주간 CBC 모니터링 권장."
+      },
+      "kidney": {
+        "calculated_score": 30,
+        "triggered_keywords": [
+          "renal function monitoring",
+          "hyperuricemia"
+        ],
+        "index": 2,
+        "evidence": "신기능 모니터링 권장. 고요산혈증으로 인한 간접적 신장 부담 가능."
+      },
+      "liver": {
+        "calculated_score": 40,
+        "triggered_keywords": [
+          "hepatotoxicity",
+          "hepatic enzymes monitoring"
+        ],
+        "index": 3,
+        "evidence": "간독성이 잠재적 부작용으로 보고됨. 간효소 모니터링 권장."
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "심장 독성에 대한 직접적인 언급 없음."
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": "투여 후 수 분 내에 활성 약물이 소실되어 반감기를 정량화하기 어렵다. 구체적인 PK 파라미터는 문헌에 기술되지 않음."
+  },
+  "_ddi_note": "Plumb's Drug Interactions 섹션에서 추출. 중증도: 금기→3, 주요→3, 중등도→2, 경미→1.",
+  "drug_interactions": [
+    {
+      "drug": "Myelosuppressive Agents (antineoplastics, immunosuppressants, iron chelators)",
+      "severity": 2,
+      "keywords": [
+        "additive myelosuppression",
+        "bone marrow depression"
+      ],
+      "evidence": "Concurrent use with other bone marrow depressant medications may result in additive myelosuppression."
+    },
+    {
+      "drug": "Live and Inactivated Vaccines",
+      "severity": 2,
+      "keywords": [
+        "diminished vaccine efficacy",
+        "enhanced vaccine adverse effects"
+      ],
+      "evidence": "Mechlorethamine may diminish vaccine efficacy and enhance adverse effects of vaccines."
+    },
+    {
+      "drug": "Radiation Therapy",
+      "severity": 2,
+      "keywords": [
+        "additive bone marrow depression",
+        "second malignancy risk"
+      ],
+      "evidence": "Additive bone marrow depression may occur in patients undergoing concomitant radiation therapy. Combined use may increase risk for a second malignant tumor."
+    }
+  ],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": true,
+    "gi_ulcer": true,
+    "bleeding": true,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "low",
+    "hepatotoxic": "moderate",
+    "gi_ulcer": "moderate",
+    "bleeding": "high",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": true,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "fixed",
+          "context": "림프종 1차 치료(T세포) 또는 구제 요법 - MOPP, MPP, MOMP 프로토콜 (오프라벨)",
+          "value": "3",
+          "unit": "mg/kg",
+          "route": "IV",
+          "frequency": "Once",
+          "max_dose_mg_kg": null,
+          "duration_note": "21~28일 프로토콜의 1일과 7일에 투여. 단위는 mg/m² (mg/kg 아님). 다른 항암제와 병용.",
+          "evidence": "3 mg/m² (NOT mg/kg) IV, 21~28일 프로토콜의 1일과 7일에 투여. MOPP, MPP, MOMP 프로토콜."
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "fixed",
+          "context": "림프종 구제 요법 - MOPP, MOMP 프로토콜 (오프라벨)",
+          "value": "3",
+          "unit": "mg/kg",
+          "route": "IV",
+          "frequency": "Once",
+          "max_dose_mg_kg": null,
+          "duration_note": "21~28일 프로토콜의 1일과 7일에 투여. 단위는 mg/m² (mg/kg 아님). 다른 항암제와 병용.",
+          "evidence": "3 mg/m² (NOT mg/kg) IV, 21~28일 프로토콜의 1일과 7일에 투여. MOPP, MOMP 구제 프로토콜."
+        }
+      ]
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": "문헌에 신기능 저하 시 구체적인 용량 조정 지침이 명시되지 않음. 신기능 모니터링이 권장되며, 임상적 판단에 따라 조정 필요."
+  },
+  "hepatic_dose_adjustment": {
+    "applies": true,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "monitor",
+    "note": "간독성이 잠재적 부작용으로 보고됨. 치료 전 및 3~4개월마다 간효소 모니터링 권장. 구체적인 용량 조정 기준은 문헌에 명시되지 않음."
+  },
+  "contraindications": [
+    {
+      "condition": "과민반응",
+      "match_terms": [
+        "hypersensitivity to mechlorethamine",
+        "anaphylaxis"
+      ],
+      "severity": "absolute",
+      "action": "contraindicated",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "활동성 감염",
+      "match_terms": [
+        "active infection",
+        "known infection"
+      ],
+      "severity": "absolute",
+      "action": "contraindicated",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "기존 골수억제",
+      "match_terms": [
+        "pre-existing myelosuppression",
+        "leukopenia",
+        "thrombocytopenia"
+      ],
+      "severity": "relative",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": "plt",
+        "threshold": null,
+        "unit": "x10^3/uL"
+      }
+    },
+    {
+      "condition": "임신",
+      "match_terms": [
+        "pregnancy",
+        "pregnant"
+      ],
+      "severity": "relative",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    }
+  ],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": "알킬화제로서 DNA 복제, RNA 전사, 단백질 합성을 방해하는 이중기능 알킬화제. 세포주기 비특이적.",
+    "common_extra_effects": [
+      "골수억제 (백혈구감소증, 혈소판감소증)",
+      "구토, 오심",
+      "이독성 (고용량)",
+      "탈모",
+      "고요산혈증",
+      "간독성",
+      "말초 신경병증",
+      "위장관 궤양",
+      "혈관외 유출 시 조직 손상 및 괴사",
+      "과민반응 (아나필락시스 포함)",
+      "생식선 기능 억제",
+      "발암성, 돌연변이 유발성, 기형 유발성"
+    ],
+    "dog_mechanism": "알킬화제로서 DNA 이중가닥 교차결합을 형성하여 DNA 복제를 억제. 세포주기 비특이적.",
+    "dog_extra_effects": [
+      "골수억제 (호중구 및 혈소판 최저점 약 7일)",
+      "구토, 오심",
+      "털 코트 변화 (지저분함, 과도한 탈모, 면도 부위 재성장 불량)",
+      "지속적으로 자라는 털을 가진 품종(푸들, 테리어, 아프간 하운드, 올드 잉글리시 쉽독)에서 심한 탈모 가능",
+      "혈관외 유출 시 조직 손상"
+    ],
+    "cat_mechanism": "알킬화제로서 DNA 이중가닥 교차결합을 형성하여 DNA 복제를 억제. 세포주기 비특이적.",
+    "cat_extra_effects": [
+      "골수억제",
+      "구토, 오심",
+      "혈관외 유출 시 조직 손상"
+    ]
+  },
+  "species_notes": {
+    "dog": "개에서 MOPP, MPP, MOMP 프로토콜의 일부로 림프종(T세포 포함) 1차 및 구제 치료에 사용됨. 3 mg/m² IV로 21~28일 프로토콜의 1일과 7일에 투여. 지속적으로 자라는 털을 가진 품종에서 심한 탈모 위험이 높음. 주간 CBC 및 정기적 간효소 모니터링 필수.",
+    "cat": "고양이에서 MOPP, MOMP 구제 프로토콜의 일부로 림프종 치료에 사용됨. 3 mg/m² IV로 21~28일 프로토콜의 1일과 7일에 투여. 고양이 특이적 PK 데이터는 없으나 골수억제 및 GI 부작용 모니터링 필수."
+  },
+  "precautions": {
+    "dog": {
+      "status": 1,
+      "evidence": "극도로 독성이 강한 약물로 독성 모니터링 경험과 자원을 갖춘 수의사만 투여해야 함. 혈관외 유출 방지 필수. 골수억제 및 GI 부작용 면밀히 모니터링. 발암성, 돌연변이 유발성, 기형 유발성."
+    },
+    "cat": {
+      "status": 1,
+      "evidence": "극도로 독성이 강한 약물로 독성 모니터링 경험과 자원을 갖춘 수의사만 투여해야 함. 혈관외 유출 방지 필수. 골수억제 및 GI 부작용 면밀히 모니터링."
+    }
+  },
+  "storage_and_forms": {
+    "storage": "분말 주사제는 15°C~30°C(59°F~86°F)에서 빛과 습기를 차단하여 보관. 재조제 후 용액은 매우 불안정하여 즉시 투여해야 함.",
+    "forms": [
+      "Mechlorethamine Powder for Injection 10 mg (Mustargen®)",
+      "Topical Gel (Valchlor®)"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "메클로레타민은 극도로 독성이 강한 알킬화 항암제로, 개와 고양이의 림프종 치료를 위한 MOPP, MPP, MOMP 프로토콜에서 오프라벨로 사용됩니다. 3 mg/m² IV로 21~28일 프로토콜의 1일과 7일에 투여합니다. 골수억제(호중구 및 혈소판 최저점 약 7일)와 GI 부작용이 주요 독성입니다. 혈관외 유출 시 심각한 조직 손상이 발생할 수 있으며, 혈관외 유출 발생 시 소듐 티오황산염 투여가 권장됩니다. NIOSH 위험 약물로 분류되어 취급 시 적절한 개인보호장비 착용이 필수입니다.",
+    "indications": "개와 고양이의 림프종(T세포 림프종 포함) 1차 및 구제 치료를 위한 MOPP(메클로레타민, 빈크리스틴, 프로카르바진, 프레드니손), MPP(메클로레타민, 프로카르바진, 프레드니손), MOMP(메클로레타민, 빈크리스틴, 멜팔란, 프레드니손) 프로토콜의 구성 약물. 수의학적으로 승인된 제품 없음(오프라벨 사용).",
+    "client_info": "이 약물은 NIOSH에서 위험 약물로 분류된 항암제입니다. 반려동물에게 투여할 때는 반드시 장갑을 착용하고 투여 후 손을 철저히 씻으십시오. 투여 당일부터 약 72시간 동안 반려동물의 소변, 대변, 구토물 등 모든 체액을 처리할 때 일회용 장갑을 착용하고, 폐기물은 비닐봉지에 밀봉하여 일반 쓰레기로 버리십시오. 골수억제로 인해 출혈, 멍, 발열(감염 징후), 또는 쉽게 피로해지는 증상이 나타나면 즉시 수의사에게 연락하십시오. 구토, 위장 장애, 비정상적 출혈, 멍, 배뇨 이상, 우울증, 감염, 호흡 곤란 등의 독성 징후가 나타나면 즉시 보고하십시오. 정기적인 혈액 검사를 위한 내원 일정을 반드시 지켜주십시오."
+  },
+  "_data_quality": {
+    "overall_confidence": 55,
+    "renal_adjustment_confidence": "low",
+    "hepatic_adjustment_confidence": "low",
+    "organ_burden_confidence": "low",
+    "ddi_source": "plumbs_direct",
+    "plumbs_sections_found": [
+      "Uses/Indications",
+      "Pharmacology/Actions",
+      "Pharmacokinetics",
+      "Contraindications/Precautions/Warnings",
+      "Adverse Effects",
+      "Reproductive/Nursing Safety",
+      "Overdose/Acute Toxicity",
+      "Drug Interactions",
+      "Laboratory Considerations",
+      "Dosages",
+      "Monitoring",
+      "Client Information",
+      "Chemistry/Synonyms",
+      "Storage/Stability",
+      "Dosage Forms/Regulatory Status"
+    ],
+    "missing_sections": [
+      "Detailed Pharmacokinetics (half-life, Vd, clearance)",
+      "CYP metabolism data",
+      "Renal dose adjustment guidelines",
+      "Hepatic dose adjustment guidelines",
+      "Species-specific PK data"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile.onset_min",
+      "timing_profile.t_max_hr",
+      "timing_profile.half_life_hr",
+      "timing_profile.f_percent",
+      "timing_profile.protein_binding_percent",
+      "metabolism_and_clearance.renal_elimination_fraction",
+      "cyp_profile.substrates",
+      "cyp_profile.inhibitors",
+      "cyp_profile.inducers",
+      "renal_dose_adjustment.creatinine_threshold_dog_mg_dL",
+      "renal_dose_adjustment.creatinine_threshold_cat_mg_dL",
+      "renal_dose_adjustment.adjustment_factor",
+      "hepatic_dose_adjustment.alt_threshold_multiplier",
+      "species_flags.washout_period_days"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "claude-sonnet-4-6",
+    "extraction_pass": 1,
+    "source_file": "plumbs_output/62.jsonl",
+    "extracted_at": "2026-03-11T11:33:44.462320+00:00",
+    "reviewer": null
+  }
+}

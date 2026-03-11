@@ -1,0 +1,517 @@
+{
+  "id": "iron_dextran",
+  "drug_identity": {
+    "name_ko": "철 덱스트란",
+    "name_en": "Iron Dextran",
+    "active_ingredient": "Iron Dextran",
+    "brand_names": [
+      "Cosmofer",
+      "DexFerrum",
+      "Dexiron",
+      "Driken",
+      "Fercayl",
+      "Ferrocel",
+      "Ferroin",
+      "Ferrum Hausmann",
+      "Fexiron",
+      "Imferdex",
+      "Imferon",
+      "InFeD",
+      "Uniferon",
+      "Infufer"
+    ],
+    "allergy_class": null,
+    "class": "Unknown",
+    "source": "foreign",
+    "formulary_status": "active",
+    "has_reversal": true,
+    "reversal_agent": "Deferoxamine",
+    "reversal_evidence": "철 덱스트란 과다투여 시 킬레이션 요법(데페록사민)이 필요할 수 있다고 Plumb's에 명시되어 있음.",
+    "off_label_note": "개와 고양이에서의 사용은 extra-label이며, 돼지에서만 FDA 승인된 제품임.",
+    "dosage_form": [
+      "Inj"
+    ],
+    "available_strengths": [
+      {
+        "value": 50,
+        "unit": "mg/mL"
+      },
+      {
+        "value": 100,
+        "unit": "mg/mL"
+      },
+      {
+        "value": 200,
+        "unit": "mg/mL"
+      }
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Liver",
+    "clearance_organ": "Mixed",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": "덱스트란 성분은 절단 후 대사되거나 배설되며, 철 성분은 헤모시데린, 페리틴, 트랜스페린 형성에 이용됨. 철은 체내에서 쉽게 배설되지 않으며 소량만이 대변, 담즙, 소변으로 배설됨."
+    },
+    "extra_information": "IM 주사 후 주로 림프계를 통해 서서히 흡수됨. 주사 후 3일 이내에 약 60%, 1~3주 후에는 최대 90%가 흡수되며, 나머지는 수개월에 걸쳐 서서히 흡수될 수 있음. 흡수 후 간, 비장, 골수의 세망내피계 세포가 혈장에서 철을 서서히 제거함."
+  },
+  "organ_burden_logic": {
+    "note": "키워드 기반 점수 산정. 철 덱스트란은 주로 간, 비장, 골수의 세망내피계에서 처리됨. 반복 투여 시 철 과부하 및 헤모시데로시스 위험 있음.",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "뇌에 대한 직접적인 독성 또는 부담에 관한 언급 없음."
+      },
+      "blood": {
+        "calculated_score": 70,
+        "triggered_keywords": [
+          "hemosiderosis",
+          "iron overload",
+          "hemoglobin",
+          "RBC indices"
+        ],
+        "index": 1,
+        "evidence": "철 과부하 및 헤모시데로시스 위험이 명시되어 있으며, 혈액 내 철 농도 및 RBC 지수 모니터링이 권장됨."
+      },
+      "kidney": {
+        "calculated_score": 20,
+        "triggered_keywords": [
+          "nephrotoxicity"
+        ],
+        "index": 1,
+        "evidence": "디머캅롤(BAL)과 병용 시 신독성 위험 증가. 급성 신우신염 단계에서 사용 금기(인체 기준)."
+      },
+      "liver": {
+        "calculated_score": 60,
+        "triggered_keywords": [
+          "hepatic impairment",
+          "reticuloendothelial cells",
+          "liver"
+        ],
+        "index": 1,
+        "evidence": "간의 세망내피계 세포가 철을 처리하며, 유의한 간 기능 장애 환자에서 주의 사용 권고됨."
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "심장에 대한 직접적인 독성 또는 부담에 관한 언급 없음."
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "뇌에 대한 직접적인 독성 또는 부담에 관한 언급 없음."
+      },
+      "blood": {
+        "calculated_score": 70,
+        "triggered_keywords": [
+          "hemosiderosis",
+          "iron overload",
+          "hemoglobin",
+          "RBC indices"
+        ],
+        "index": 1,
+        "evidence": "철 과부하 및 헤모시데로시스 위험이 명시되어 있으며, 혈액 내 철 농도 및 RBC 지수 모니터링이 권장됨."
+      },
+      "kidney": {
+        "calculated_score": 20,
+        "triggered_keywords": [
+          "nephrotoxicity"
+        ],
+        "index": 1,
+        "evidence": "디머캅롤(BAL)과 병용 시 신독성 위험 증가. 급성 신우신염 단계에서 사용 금기(인체 기준)."
+      },
+      "liver": {
+        "calculated_score": 60,
+        "triggered_keywords": [
+          "hepatic impairment",
+          "reticuloendothelial cells",
+          "liver"
+        ],
+        "index": 1,
+        "evidence": "간의 세망내피계 세포가 철을 처리하며, 유의한 간 기능 장애 환자에서 주의 사용 권고됨."
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "심장에 대한 직접적인 독성 또는 부담에 관한 언급 없음."
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": "IM 주사 후 3일 이내 약 60%, 1~3주 후 최대 90% 흡수. 정확한 반감기 수치는 Plumb's 본문에 명시되지 않음."
+  },
+  "_ddi_note": "Plumb's Drug Interactions 섹션에서 추출. 중증도: 금기→3, 주요→3, 중등도→2, 경미→1.",
+  "drug_interactions": [
+    {
+      "drug": "ACE Inhibitors (benazepril, enalapril 등)",
+      "severity": 2,
+      "keywords": [
+        "anaphylaxis",
+        "hypersensitivity"
+      ],
+      "evidence": "In humans, concurrent use of ACE inhibitors may increase the risk for anaphylactic-type reactions. Veterinary significance is uncertain."
+    },
+    {
+      "drug": "Chloramphenicol",
+      "severity": 2,
+      "keywords": [
+        "delayed response",
+        "iron deficiency anemia"
+      ],
+      "evidence": "Chloramphenicol may delay the response to iron administration; avoid use in patients with iron deficiency anemia."
+    },
+    {
+      "drug": "Dimercaprol (BAL)",
+      "severity": 2,
+      "keywords": [
+        "nephrotoxicity"
+      ],
+      "evidence": "Concurrent use of dimercaprol and iron dextran may increase the risk for nephrotoxicity."
+    },
+    {
+      "drug": "Mycophenolate",
+      "severity": 2,
+      "keywords": [
+        "decreased efficacy"
+      ],
+      "evidence": "Concurrent use may result in decreased efficacy of mycophenolate mofetil."
+    },
+    {
+      "drug": "Oral iron supplements",
+      "severity": 2,
+      "keywords": [
+        "iron overload"
+      ],
+      "evidence": "Parenteral iron supplementation should not be used concurrently with oral iron supplements due to risk of iron overload."
+    },
+    {
+      "drug": "Oxytetracycline HCl",
+      "severity": 2,
+      "keywords": [
+        "physical incompatibility"
+      ],
+      "evidence": "Iron dextran injection is reportedly physically incompatible when mixed with oxytetracycline HCl."
+    },
+    {
+      "drug": "Sulfadiazine sodium",
+      "severity": 2,
+      "keywords": [
+        "physical incompatibility"
+      ],
+      "evidence": "Iron dextran injection is reportedly physically incompatible when mixed with sulfadiazine sodium."
+    }
+  ],
+  "additive_risks": {
+    "nephrotoxic": true,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "moderate",
+    "hepatotoxic": "low",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "max_capped",
+          "context": "조혈 촉진제(EPO, DPO) 투여 시 철 보충 (extra-label)",
+          "value": "10 - 20",
+          "unit": "mg/kg",
+          "route": "IM",
+          "frequency": "Monthly",
+          "max_dose_mg_kg": null,
+          "duration_note": "최대 300 mg/dog; EPO 또는 DPO 치료 시작 시 투여. 일반적으로 월 1회 이상 투여 불필요.",
+          "evidence": "Plumb's Veterinary Drug Handbook, extra-label use"
+        },
+        {
+          "logic_type": "linear",
+          "context": "철 결핍성 빈혈 치료",
+          "value": "10 - 20",
+          "unit": "mg/kg",
+          "route": "IM",
+          "frequency": "Once",
+          "max_dose_mg_kg": null,
+          "duration_note": "1회 투여 후 주 1회 반복 가능하거나, 1회 투여 후 경구 황산제일철 요법으로 전환 가능.",
+          "evidence": "Plumb's Veterinary Drug Handbook"
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "fixed",
+          "context": "조혈 촉진제(EPO, DPO) 투여 시 철 보충 (extra-label)",
+          "value": "50",
+          "unit": "mg",
+          "route": "IM",
+          "frequency": "Monthly",
+          "max_dose_mg_kg": null,
+          "duration_note": "50 mg/cat (mg/kg 아님, 약 10 mg/kg); EPO 또는 DPO 치료 시작 시 1회 투여. 일반적으로 월 1회 이상 투여 불필요.",
+          "evidence": "Plumb's Veterinary Drug Handbook, extra-label use"
+        },
+        {
+          "logic_type": "fixed",
+          "context": "신생아 일과성 철 결핍성 빈혈 예방 (extra-label)",
+          "value": "50",
+          "unit": "mg",
+          "route": "IM",
+          "frequency": "Once",
+          "max_dose_mg_kg": null,
+          "duration_note": "50 mg/kitten (mg/kg 아님); 생후 18일령에 투여.",
+          "evidence": "Plumb's Veterinary Drug Handbook, extra-label use"
+        },
+        {
+          "logic_type": "fixed",
+          "context": "철 결핍성 빈혈 치료",
+          "value": "50",
+          "unit": "mg",
+          "route": "IM",
+          "frequency": "q24h",
+          "max_dose_mg_kg": null,
+          "duration_note": "50 mg/cat (mg/kg 아님); 3~4주마다 투여.",
+          "evidence": "Plumb's Veterinary Drug Handbook"
+        }
+      ]
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "avoid",
+    "adjustment_factor": null,
+    "note": "급성 신우신염(pyelonephritis) 단계에서는 사용을 피할 것(인체 기준). 디머캅롤 병용 시 신독성 위험 증가. 구체적인 용량 조절 기준은 명시되지 않음."
+  },
+  "hepatic_dose_adjustment": {
+    "applies": true,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "monitor",
+    "note": "유의한 간 기능 장애 환자에서 주의하여 사용할 것. 구체적인 용량 조절 기준은 명시되지 않음."
+  },
+  "contraindications": [
+    {
+      "condition": "철 덱스트란 과민반응",
+      "match_terms": [
+        "iron dextran hypersensitivity",
+        "allergy to iron dextran"
+      ],
+      "severity": "absolute",
+      "action": "contraindicated",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "철 결핍성 빈혈 이외의 빈혈",
+      "match_terms": [
+        "non-iron deficiency anemia",
+        "hemolytic anemia",
+        "aplastic anemia"
+      ],
+      "severity": "absolute",
+      "action": "contraindicated",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "유의한 간 기능 장애",
+      "match_terms": [
+        "hepatic impairment",
+        "liver disease",
+        "hepatic failure"
+      ],
+      "severity": "relative",
+      "action": "monitor",
+      "lab_trigger": {
+        "marker": "alt",
+        "threshold": null,
+        "unit": "U/L"
+      }
+    },
+    {
+      "condition": "급성 감염성 신장 질환(신우신염)",
+      "match_terms": [
+        "pyelonephritis",
+        "acute kidney infection"
+      ],
+      "severity": "relative",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": "creatinine",
+        "threshold": null,
+        "unit": "mg/dL"
+      }
+    },
+    {
+      "condition": "철 과부하",
+      "match_terms": [
+        "iron overload",
+        "hemosiderosis",
+        "hemochromatosis"
+      ],
+      "severity": "absolute",
+      "action": "contraindicated",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "경구 철 보충제 병용",
+      "match_terms": [
+        "oral iron supplementation",
+        "ferrous sulfate concurrent use"
+      ],
+      "severity": "relative",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    }
+  ],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": "철은 산소의 운반 및 이용에 필요한 미오글로빈과 헤모글로빈의 구성 성분임. 철 결핍 상태에서 철 보충은 총 체내 철 및 헤모글로빈 농도를 회복시켜 결핍 관련 임상 증상을 개선함. 이온화된 철은 사이토크롬 산화효소, 숙신산 탈수소효소, 잔틴 산화효소의 구성 성분임.",
+    "common_extra_effects": [
+      "IM 주사 부위 통증",
+      "아나필락시스 유사 반응(드물지만 치명적일 수 있음)",
+      "만성 과다투여 시 철 과부하 및 헤모시데로시스",
+      "실험동물에서 반복 IM 주사 부위 육종 발생 보고",
+      "고용량 투여 시 기형 유발 및 배아 독성 위험 증가"
+    ],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "개에서 철 덱스트란은 EPO 또는 DPO 등 조혈 촉진제 투여 시 또는 철 결핍성 빈혈 치료 시 extra-label로 사용됨. 용량은 10~20 mg/kg IM이며 최대 300 mg/dog. IM으로만 투여하며 SC 또는 IV 투여는 금기임. 투여 후 아나필락시스 반응 여부를 관찰해야 함.",
+    "cat": "고양이에서 철 덱스트란은 EPO 또는 DPO 투여 시, 신생아 철 결핍성 빈혈 예방, 또는 철 결핍성 빈혈 치료 시 extra-label로 사용됨. 용량은 mg/kg이 아닌 50 mg/cat(고정 용량)으로 투여함. IM으로만 투여하며 SC 또는 IV 투여는 금기임."
+  },
+  "precautions": {
+    "dog": {
+      "status": 1,
+      "evidence": "개에서 extra-label 사용. IM으로만 투여(SC, IV 금기). 유의한 간 기능 장애, 급성 감염성 신장 질환, 경구 철 보충제 병용 시 주의. 투여 후 아나필락시스 반응 모니터링 필요."
+    },
+    "cat": {
+      "status": 1,
+      "evidence": "고양이에서 extra-label 사용. IM으로만 투여(SC, IV 금기). 고정 용량(50 mg/cat) 사용. 투여 후 아나필락시스 반응 모니터링 필요."
+    }
+  },
+  "storage_and_forms": {
+    "storage": "실온(15~30°C, 59~86°F) 보관. 동결 금지. 첫 사용 후 60일 이내 사용. 바이알 천공 횟수는 제품 라벨 참조.",
+    "forms": [
+      "Iron Dextran Injection 100 mg elemental iron/mL (100 mL vials) - 동물용",
+      "Iron Dextran Injection 200 mg elemental iron/mL (100 mL, 250 mL vials) - 동물용",
+      "Iron Dextran Injection 50 mg elemental iron/mL (2 mL single-dose vials) - 인체용 (InFeD)"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "철 덱스트란은 철 결핍성 빈혈의 치료 및 예방에 사용되는 비경구용 철 제제임. 돼지에서 FDA 승인되었으며, 개와 고양이에서는 extra-label로 사용됨. 반드시 IM으로만 투여하며 SC 또는 IV 투여는 금기임. 드물지만 치명적인 아나필락시스 반응이 발생할 수 있으므로 투여 후 모니터링이 필수적임. 반복 투여 시 철 과부하 및 헤모시데로시스 위험이 있음.",
+    "indications": "철 결핍성 빈혈의 치료 및 예방(주로 신생아 식용 동물). 개와 고양이에서 에리스로포이에틴(EPO) 또는 다르베포에틴(DPO) 등 조혈 촉진제 투여 시 철 보충(extra-label). 고양이 신생아 일과성 철 결핍성 빈혈 예방(extra-label). 조류 및 페럿에서 철 결핍성 빈혈 치료(extra-label).",
+    "client_info": "소동물(개, 고양이)에서는 수의사가 직접 철 덱스트란을 투여합니다. 돼지의 경우 허벅지 뒷부분 근육에 최소 1/2인치 깊이로 주사합니다. 생후 4주 이상의 돼지에서 사용 시 근육 착색이 발생할 수 있습니다. 사용 전 바이알 마개를 소독하십시오. 투여 후 이상 반응(쇠약, 구토, 호흡 곤란 등) 발생 시 즉시 수의사에게 연락하십시오."
+  },
+  "_data_quality": {
+    "overall_confidence": 65,
+    "renal_adjustment_confidence": "low",
+    "hepatic_adjustment_confidence": "low",
+    "organ_burden_confidence": "low",
+    "ddi_source": "plumbs_direct",
+    "plumbs_sections_found": [
+      "Uses/Indications",
+      "Pharmacology/Actions",
+      "Pharmacokinetics",
+      "Contraindications/Precautions/Warnings",
+      "Adverse Effects",
+      "Reproductive/Nursing Safety",
+      "Overdose/Acute Toxicity",
+      "Drug Interactions",
+      "Laboratory Considerations",
+      "Dosages",
+      "Monitoring",
+      "Client Information",
+      "Chemistry/Synonyms",
+      "Storage/Stability",
+      "Compatibility/Compounding Considerations",
+      "Dosage Forms/Regulatory Status"
+    ],
+    "missing_sections": [
+      "Specific veterinary PK data (half-life, Tmax, bioavailability)",
+      "CYP enzyme interactions",
+      "Renal dose adjustment thresholds",
+      "Hepatic dose adjustment thresholds"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile.onset_min",
+      "timing_profile.t_max_hr",
+      "timing_profile.half_life_hr",
+      "timing_profile.f_percent",
+      "timing_profile.protein_binding_percent",
+      "cyp_profile.substrates",
+      "cyp_profile.inhibitors",
+      "cyp_profile.inducers",
+      "renal_dose_adjustment.creatinine_threshold_dog_mg_dL",
+      "renal_dose_adjustment.creatinine_threshold_cat_mg_dL",
+      "renal_dose_adjustment.adjustment_factor",
+      "hepatic_dose_adjustment.alt_threshold_multiplier",
+      "species_flags.washout_period_days"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "claude-sonnet-4-6",
+    "extraction_pass": 1,
+    "source_file": "plumbs_output/56.jsonl",
+    "extracted_at": "2026-03-11T11:29:30.479990+00:00",
+    "reviewer": null
+  }
+}

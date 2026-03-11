@@ -1,0 +1,308 @@
+{
+  "id": "miconazole_ophthalmic",
+  "drug_identity": {
+    "name_ko": "미코나졸 점안액",
+    "name_en": "Miconazole Ophthalmic",
+    "active_ingredient": "Miconazole",
+    "brand_names": [],
+    "allergy_class": "azole",
+    "class": "Antifungal",
+    "source": "human_offlabel",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": "시판 점안 제제가 없으며 반드시 조제(compounding)하여 사용해야 함. 주로 말의 진균성 각막염에 사용되며, 개에서도 각막진균증 치료에 성공적으로 사용된 사례가 있음.",
+    "dosage_form": [
+      "Ophthalmic"
+    ],
+    "available_strengths": [
+      {
+        "value": 1.0,
+        "unit": "%"
+      }
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Liver",
+    "clearance_organ": "Mixed",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [
+        "CYP3A4"
+      ],
+      "inducers": [],
+      "pathway_evidence": "미코나졸은 14-알파-스테롤 탈메틸화효소(cytochrome P-450 효소)를 억제하여 항진균 효과를 나타냄. 전신 흡수는 점안 투여 시 거의 없으나, 전신 노출 시 간독성이 보고됨."
+    },
+    "extra_information": "점안 투여 시 전신 흡수는 거의 없는 것으로 알려져 있음. 각막 투과성은 나타마이신보다 우수함. 개 및 고양이에 대한 구체적인 약동학 데이터는 문헌에 보고되지 않음."
+  },
+  "organ_burden_logic": {
+    "note": "점안 투여 시 전신 흡수가 거의 없으므로 장기 부담 점수는 전신 노출 기준이 아닌 국소 독성 및 전신 노출 가능성에 근거함. 인체 데이터 기반; 수의 종별 PK 연구 없음.",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "점안 투여 시 전신 흡수가 거의 없어 뇌에 대한 부담 근거 없음."
+      },
+      "blood": {
+        "calculated_score": 5,
+        "triggered_keywords": [
+          "systemic absorption unlikely"
+        ],
+        "index": -1,
+        "evidence": "전신 흡수 가능성이 낮으나 완전히 배제할 수 없음."
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "점안 투여 시 신장 부담 근거 없음."
+      },
+      "liver": {
+        "calculated_score": 10,
+        "triggered_keywords": [
+          "hepatotoxicity"
+        ],
+        "index": -1,
+        "evidence": "인체에서 전신 노출 시 간독성이 보고되었으나, 점안 투여 시 전신 흡수가 거의 없어 임상적 의의는 낮음."
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "점안 투여 시 심장 부담 근거 없음."
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "점안 투여 시 전신 흡수가 거의 없어 뇌에 대한 부담 근거 없음."
+      },
+      "blood": {
+        "calculated_score": 5,
+        "triggered_keywords": [
+          "systemic absorption unlikely"
+        ],
+        "index": -1,
+        "evidence": "전신 흡수 가능성이 낮으나 완전히 배제할 수 없음."
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "점안 투여 시 신장 부담 근거 없음."
+      },
+      "liver": {
+        "calculated_score": 10,
+        "triggered_keywords": [
+          "hepatotoxicity"
+        ],
+        "index": -1,
+        "evidence": "인체에서 전신 노출 시 간독성이 보고되었으나, 점안 투여 시 전신 흡수가 거의 없어 임상적 의의는 낮음."
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "점안 투여 시 심장 부담 근거 없음."
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": "점안 투여 시 약동학 데이터가 모노그래프에 보고되지 않음. 전신 흡수는 거의 없는 것으로 알려져 있음."
+  },
+  "_ddi_note": "Plumb's 약물상호작용 섹션에서 추출. 점안 제제로서 전신 흡수가 거의 없으므로 전신 DDI 위험은 낮음. 미코나졸은 다른 약물과 직접 혼합(in vitro)해서는 안 됨.",
+  "drug_interactions": [
+    {
+      "drug": "Other ophthalmic medications",
+      "severity": 1,
+      "keywords": [
+        "in vitro incompatibility",
+        "do not mix"
+      ],
+      "evidence": "Miconazole should not be mixed directly (in vitro) with any other drugs. A 5-minute interval between ophthalmic medications is recommended."
+    }
+  ],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": true,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "low",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "fixed",
+          "context": "각막진균증(keratomycosis) - 비허가(extra-label) 사용",
+          "value": "1 - 2",
+          "unit": "mg/kg",
+          "route": "Eye",
+          "frequency": "PRN",
+          "max_dose_mg_kg": null,
+          "duration_note": "임상 반응에 따라 점적 횟수를 조절. 개에서 성공적 사용 사례 보고됨(1건).",
+          "evidence": "모노그래프에 개에 대한 구체적 용량 미기재; 말 용량 참고 및 증례 보고 기반."
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": []
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": "점안 투여 시 전신 흡수가 거의 없으므로 신기능에 따른 용량 조절 필요성에 대한 정보가 모노그래프에 없음."
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": "점안 투여 시 전신 흡수가 거의 없으므로 간기능에 따른 용량 조절 필요성에 대한 정보가 모노그래프에 없음. 전신 노출 시 간독성 위험이 있으므로 주의 요망."
+  },
+  "contraindications": [
+    {
+      "condition": "미코나졸 또는 제형 성분에 대한 과민반응",
+      "match_terms": [
+        "hypersensitivity",
+        "allergy to miconazole",
+        "azole allergy"
+      ],
+      "severity": "absolute",
+      "action": "contraindicated",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    }
+  ],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": "14-알파-스테롤 탈메틸화효소(cytochrome P-450 효소)를 억제하여 라노스테롤에서 에르고스테롤로의 전환을 차단함. 에르고스테롤은 진균 세포막의 필수 성분으로, 합성 억제 시 세포막 투과성 증가 및 세포 내용물 누출이 발생함. 추가적으로 내인성 호흡 억제, 퓨린 흡수 억제, 효모의 균사 형태 전환 억제, 트리글리세리드 및 인지질 생합성 장애를 유발함.",
+    "common_extra_effects": [
+      "점적 시 일시적 작열감 또는 자통",
+      "결막하 주사 시 국소 자극",
+      "각막 상피세포에 대한 세포독성(나타마이신보다 낮음)",
+      "전신 노출 시 간독성(인체)",
+      "전신 노출 시 청력 손실(인체)"
+    ],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "개에서 각막진균증 치료에 성공적으로 사용된 사례가 보고되어 있으나, 공식 허가된 용량은 없음. 말에서의 용량을 참고하여 임상 반응에 따라 조절 필요. 배양 및 감수성 검사를 권장함.",
+    "cat": "고양이에 대한 점안 미코나졸 사용 데이터가 모노그래프에 없음. 사용 시 주의 깊은 모니터링이 필요하며, 임상 경험이 매우 제한적임."
+  },
+  "precautions": {
+    "dog": {
+      "status": 1,
+      "evidence": "개에서 각막진균증 치료에 사용된 사례가 있으나 공식 허가 용량 없음. 배양 및 감수성 검사 후 사용 권장. 점적 시 일시적 자통 가능."
+    },
+    "cat": {
+      "status": 1,
+      "evidence": "고양이에 대한 사용 데이터가 없음. 사용 시 세심한 모니터링 필요."
+    }
+  },
+  "storage_and_forms": {
+    "storage": "냉장 보관(2°C-8°C) 또는 실온(20°C-25°C) 보관; 제품 라벨에 따라 다를 수 있음. 냉동 금지. 습기 및 직사광선 차단.",
+    "forms": [
+      "1% 점안액 (조제품; 시판 제품 없음)",
+      "Monistat IV® (과거 시판 제품, 현재 단종)를 모방하여 조제"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "미코나졸 점안액은 진균성 각막염 치료에 사용되는 아졸계 항진균제로, 시판 점안 제제가 없어 반드시 조제하여 사용해야 합니다. 나타마이신보다 각막 투과성이 우수하며, 광범위한 항진균 스펙트럼을 가집니다. 주로 말의 진균성 각막염에 사용되며, 개에서도 사용 사례가 있습니다. 배양 및 감수성 검사를 통해 적절한 항진균제를 선택하는 것이 중요합니다.",
+    "indications": "진균성 각막염(각막진균증): Blastomyces dermatitidis, Paracoccidioides brasiliensis, Histoplasma capsulatum, Candida spp, Coccidioides immitis, Cryptococcus neoformans, Aspergillus fumigatus 등에 의한 안구 표면 진균 감염. 일부 Aspergillus spp 및 Fusarium spp는 감수성이 낮을 수 있음. 모든 동물에서 비허가(extra-label) 사용.",
+    "client_info": "수의사의 지시에 따라 정확히 사용하세요. 약물 오염을 방지하기 위해 올바른 점안 방법을 사용하고, 사용하지 않을 때는 뚜껑을 꼭 닫아두세요. 이 약을 점안한 후 다른 안약을 사용하기 전에 5분을 기다리세요. 수의사가 지정한 추적 검진을 빠짐없이 받으세요. 약의 색이 변하거나 혼탁해지거나 입자가 생기면 사용하지 마세요. 냉동 보관하지 마세요. 제품 라벨에 따라 냉장 또는 실온 보관하세요."
+  },
+  "_data_quality": {
+    "overall_confidence": 42,
+    "renal_adjustment_confidence": "low",
+    "hepatic_adjustment_confidence": "low",
+    "organ_burden_confidence": "low",
+    "ddi_source": "plumbs_direct",
+    "plumbs_sections_found": [
+      "Uses/Indications",
+      "Pharmacology/Actions",
+      "Contraindications/Precautions/Warnings",
+      "Adverse Effects",
+      "Dosages",
+      "Monitoring",
+      "Client Information",
+      "Storage/Stability",
+      "Compatibility/Compounding Considerations",
+      "Dosage Forms/Regulatory Status"
+    ],
+    "missing_sections": [
+      "Pharmacokinetics",
+      "Drug Interactions",
+      "Reproductive Safety",
+      "Overdosage"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile.onset_min",
+      "timing_profile.t_max_hr",
+      "timing_profile.half_life_hr",
+      "timing_profile.f_percent",
+      "timing_profile.protein_binding_percent",
+      "metabolism_and_clearance.renal_elimination_fraction",
+      "cyp_profile.substrates",
+      "dosage_and_kinetics.dog.dosage_list",
+      "dosage_and_kinetics.cat.dosage_list",
+      "renal_dose_adjustment",
+      "hepatic_dose_adjustment",
+      "species_flags.washout_period_days"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "claude-sonnet-4-6",
+    "extraction_pass": 1,
+    "source_file": "plumbs_output/13.jsonl",
+    "extracted_at": "2026-03-11T11:15:13.814621+00:00",
+    "reviewer": null
+  }
+}

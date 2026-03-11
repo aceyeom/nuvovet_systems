@@ -1,3 +1,78 @@
-  [SKIP] 15.jsonl line 8: JSON 파싱 에러 - Unterminated string starting at: line 1 column 82 (char 81)
-  [SKIP] 15.jsonl line 9: JSON 파싱 에러 - Expecting value: line 1 column 68 (char 67)
-  [SKIP] 29.jsonl line 4: JSON 파싱 에러 - Unterminated string starting at: line 1 column 71 (char 70)
+  [WARN] Guaifenesin, Intravenous: dosage_list empty for both dog and cat
+  [WARN] Heparin: Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'
+  [WARN] Imipenem/Cilastatin Sodium: Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'
+  [WARN] Mitomycin Ophthalmic: Inconsistency: additive_risks.nephrotoxic=true but risk_flags.nephrotoxic='low'
+  [WARN] Natamycin Ophthalmic: dosage_list empty for both dog and cat
+  [WARN] Nepafenac Ophthalmic: Inconsistency: additive_risks.nephrotoxic=true but risk_flags.nephrotoxic='low'
+  [WARN] Valacyclovir: dosage_list empty for both dog and cat
+  [WARN] Acyclovir Ophthalmic: Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'
+  [WARN] Diclofenac Ophthalmic: Inconsistency: additive_risks.nephrotoxic=true but risk_flags.nephrotoxic='low'
+  [WARN] Dorzolamide Ophthalmic: Inconsistency: additive_risks.nephrotoxic=true but risk_flags.nephrotoxic='low'
+  [WARN] Fluorometholone Ophthalmic: Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'
+  [WARN] Flurbiprofen Ophthalmic: Inconsistency: additive_risks.nephrotoxic=true but risk_flags.nephrotoxic='low'
+  [WARN] Itraconazole Ophthalmic: Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'
+  [WARN] Ketorolac Ophthalmic: Inconsistency: additive_risks.nephrotoxic=true but risk_flags.nephrotoxic='low'
+  [WARN] Loteprednol Ophthalmic: Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'
+  [WARN] Loteprednol Ophthalmic: Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'
+  [WARN] Eprinomectin: dosage_list empty for both dog and cat
+  [WARN] Esomeprazole: Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'
+  [WARN] Estradiol: dosage_list empty for both dog and cat
+  [WARN] Penicillamine: Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'
+  [WARN] Pentosan Polysulfate (PPS): Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'
+  [WARN] Pergolide: dosage_list empty for both dog and cat
+  [WARN] Pirlimycin: dosage_list empty for both dog and cat
+  [WARN] Probenecid: Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'; dosage_list empty for both dog and cat
+  [WARN] Cefotaxime: Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'
+  [WARN] Cefquinome: dosage_list empty for both dog and cat
+  [WARN] Ceftiofur Crystalline Free Acid: dosage_list empty for both dog and cat
+  [WARN] Ceftiofur HCl: dosage_list empty for both dog and cat
+  [WARN] Cephalexin: Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'
+  [WARN] Cephapirin: dosage_list empty for both dog and cat
+  [WARN] Ciclesonide: dosage_list empty for both dog and cat
+  [WARN] Clenbuterol: dosage_list empty for both dog and cat
+  [WARN] Clodronate: dosage_list empty for both dog and cat
+  [WARN] Morantel: dosage_list empty for both dog and cat
+  [WARN] Novobiocin: dosage_list empty for both dog and cat
+  [WARN] Olsalazine: Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'
+  [WARN] Ondansetron: Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'
+  [WARN] Oxibendazole: dosage_list empty for both dog and cat
+  [WARN] Oxytetracycline: Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'
+  [WARN] Parapox Ovis Virus: dosage_list empty for both dog and cat
+  [WARN] Pyrilamine: dosage_list empty for both dog and cat
+  [WARN] Reserpine: dosage_list empty for both dog and cat
+  [WARN] Romifidine: dosage_list empty for both dog and cat
+  [WARN] Sevoflurane: Inconsistency: additive_risks.nephrotoxic=true but risk_flags.nephrotoxic='low'
+  [WARN] Spectinomycin: Inconsistency: additive_risks.nephrotoxic=true but risk_flags.nephrotoxic='low'; Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'; dosage_list empty for both dog and cat
+  [WARN] Succimer: Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'; dosage_list empty for both dog and cat
+  [WARN] Cloxacillin: dosage_list empty for both dog and cat
+  [WARN] Cromolyn (Inhaled): dosage_list empty for both dog and cat
+  [RETRY] Cyclosporine (Systemic): JSON parse error, attempt 1/7
+  [WARN] Danofloxacin: dosage_list empty for both dog and cat
+  [WARN] Diclofenac, Topical: dosage_list empty for both dog and cat
+  [WARN] Famciclovir: Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'
+  [WARN] Florfenicol: dosage_list empty for both dog and cat
+  [WARN] Fluoxetine: Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'
+  [WARN] Gamithromycin: dosage_list empty for both dog and cat
+  [WARN] Tiamulin: dosage_list empty for both dog and cat
+  [WARN] Tildipirosin: dosage_list empty for both dog and cat
+  [WARN] Tilmicosin: dosage_list empty for both dog and cat
+  [WARN] Tiludronate: dosage_list empty for both dog and cat
+  [WARN] Triamterene: Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'
+  [WARN] Tripelennamine: dosage_list empty for both dog and cat
+  [WARN] Tulathromycin: dosage_list empty for both dog and cat
+  [WARN] Atovaquone: Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'
+  [WARN] Benazepril: Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'
+  [WARN] Bleomycin: Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'
+  [WARN] Butylscopolamine: dosage_list empty for both dog and cat
+  [WARN] Carvedilol: Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'
+  [WARN] Cefaclor: Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'
+  [WARN] Alprazolam: Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'
+  [WARN] Amoxicillin/Clavulanate: Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'
+  [WARN] Apramycin: dosage_list empty for both dog and cat
+  [WARN] Isoflupredone: dosage_list empty for both dog and cat
+  [WARN] Isoxsuprine: dosage_list empty for both dog and cat
+  [WARN] Ivermectin/Clorsulon: dosage_list empty for both dog and cat
+  [WARN] Leuprolide: dosage_list empty for both dog and cat
+  [WARN] Marbofloxacin: Inconsistency: additive_risks.hepatotoxic=true but risk_flags.hepatotoxic='low'
+  [WARN] Albendazole: dosage_list empty for both dog and cat
+  [WARN] Acetic Acid: dosage_list empty for both dog and cat

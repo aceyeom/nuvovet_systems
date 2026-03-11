@@ -1,0 +1,774 @@
+{
+  "id": "propofol",
+  "drug_identity": {
+    "name_ko": "프로포폴",
+    "name_en": "Propofol",
+    "active_ingredient": "Propofol",
+    "brand_names": [
+      "PropoFlo",
+      "PropoFlo 28",
+      "Diprivan",
+      "Rapanofal",
+      "Rapinovet",
+      "Ansiven",
+      "Bioprofol",
+      "Cryotol",
+      "Diprofol",
+      "Propoflo Plus",
+      "Propothesia",
+      "Propovan",
+      "Provive",
+      "Recofol"
+    ],
+    "allergy_class": null,
+    "class": "Sedative",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Inj"
+    ],
+    "available_strengths": [
+      {
+        "value": 10,
+        "unit": "mg/mL"
+      }
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Liver",
+    "clearance_organ": "Kidney",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [
+        "CYP2B6",
+        "CYP2B11"
+      ],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": "프로포폴은 인간에서 CYP2B6, 개에서 CYP2B11의 기질이다. 주로 간에서 글루쿠로나이드 결합(주) 및 수산화 반응을 통해 비활성 대사체로 전환되며, 대사체는 신장으로 배설된다. 혈장 청소율이 간 혈류량을 초과하여 간외 대사가 시사된다."
+    },
+    "extra_information": "개에서 정상상태 분포용적은 3 L/kg 이상이며, 소실 반감기는 약 1.4시간, 청소율은 약 50 mL/kg/분이다. 그레이하운드는 CYP2B11 유전자 발현 감소로 인해 프로포폴 대사가 느리다. 고양이는 글루쿠로나이드 결합 능력이 낮아 장시간 주입 시 회복이 지연될 수 있다."
+  },
+  "organ_burden_logic": {
+    "note": "키워드 기반 점수 산정. 개와 고양이 모두 수의학적 데이터 존재. 간: 주요 대사 기관(글루쿠로나이드 결합, CYP2B11). 신장: 대사체 주요 배설 경로. 뇌: 직접 CNS 억제 작용, 뇌압 감소. 혈액: 고양이에서 하인츠소체 생성 보고. 심장: 심근 억제, 혈압 저하, 부정맥 가능성.",
+    "dog": {
+      "brain": {
+        "calculated_score": 75,
+        "triggered_keywords": [
+          "CNS depression",
+          "cerebral oxygen consumption decrease",
+          "intracranial pressure decrease",
+          "seizure-like signs",
+          "unconsciousness"
+        ],
+        "index": 1,
+        "evidence": "프로포폴은 GABA 수용체를 통해 CNS를 억제하며, 뇌산소소비량 및 두개내압을 감소시킨다. 개에서 유도 시 경련 유사 증상(패들링, 후궁반장, 근간대성 경련)이 약 1.2%에서 발생한다."
+      },
+      "blood": {
+        "calculated_score": 20,
+        "triggered_keywords": [
+          "histamine release",
+          "anaphylactoid reaction"
+        ],
+        "index": 2,
+        "evidence": "일부 동물에서 히스타민 방출 및 드물게 아나필락토이드 반응이 보고되었다. 개에서 반복 투여 시 혈액학적 이상은 일반적으로 보고되지 않는다."
+      },
+      "kidney": {
+        "calculated_score": 30,
+        "triggered_keywords": [
+          "renal elimination",
+          "renal failure (infusion syndrome)"
+        ],
+        "index": 3,
+        "evidence": "대사체가 주로 신장으로 배설된다. 프로포폴 주입 증후군(매우 드묾)에서 신부전이 보고되었다. 신장 또는 간 질환 동물에서도 안전하게 사용 가능하다고 기술되어 있다."
+      },
+      "liver": {
+        "calculated_score": 60,
+        "triggered_keywords": [
+          "hepatic metabolism",
+          "glucuronide conjugation",
+          "CYP2B11",
+          "extrahepatic metabolism"
+        ],
+        "index": 4,
+        "evidence": "프로포폴은 주로 간에서 글루쿠로나이드 결합 및 수산화를 통해 대사된다. 혈장 청소율이 간 혈류량을 초과하여 간외 대사도 시사된다. 간 질환 동물에서도 안전하게 사용 가능하다고 기술되어 있다."
+      },
+      "heart": {
+        "calculated_score": 65,
+        "triggered_keywords": [
+          "myocardial depression",
+          "hypotension",
+          "vasodilation",
+          "arrhythmia",
+          "decreased cardiac output"
+        ],
+        "index": 5,
+        "evidence": "프로포폴은 전신혈관저항 감소, 일시적 혈관확장성 저혈압, 심근 직접 억제, 부정맥을 유발할 수 있다. 에피네프린 유발 부정맥을 용량 의존적으로 증강시킨다."
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 75,
+        "triggered_keywords": [
+          "CNS depression",
+          "unconsciousness",
+          "prolonged recovery",
+          "seizure-like signs"
+        ],
+        "index": 1,
+        "evidence": "프로포폴은 GABA 수용체를 통해 CNS를 억제한다. 고양이에서 반복 투여 또는 장시간 CRI 시 회복 지연이 보고된다."
+      },
+      "blood": {
+        "calculated_score": 55,
+        "triggered_keywords": [
+          "Heinz body formation",
+          "anemia",
+          "CBC monitoring"
+        ],
+        "index": 2,
+        "evidence": "고양이에서 반복 투여 또는 장시간 CRI 시 하인츠소체 생성 증가가 보고되었다. 반복 노출 시 CBC 모니터링이 권장된다."
+      },
+      "kidney": {
+        "calculated_score": 30,
+        "triggered_keywords": [
+          "renal elimination",
+          "renal failure (infusion syndrome)"
+        ],
+        "index": 3,
+        "evidence": "대사체가 주로 신장으로 배설된다. 신장 질환 고양이에서도 안전하게 사용 가능하다고 기술되어 있다."
+      },
+      "liver": {
+        "calculated_score": 70,
+        "triggered_keywords": [
+          "glucuronidation",
+          "reduced glucuronidation capacity",
+          "prolonged recovery"
+        ],
+        "index": 4,
+        "evidence": "고양이는 글루쿠로나이드 결합 능력이 낮아 장시간 주입 시 회복이 지연될 수 있다. 30분 이상 주입 후 회복 지연이 보고되어 단기 사용이 권장된다."
+      },
+      "heart": {
+        "calculated_score": 60,
+        "triggered_keywords": [
+          "myocardial depression",
+          "hypotension",
+          "vasodilation",
+          "arrhythmia"
+        ],
+        "index": 5,
+        "evidence": "프로포폴은 고양이에서도 심근 억제, 혈관확장성 저혈압, 부정맥을 유발할 수 있다."
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": 1,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": 1.4,
+      "species": "dog"
+    },
+    "f_percent": null,
+    "protein_binding_percent": 97,
+    "evidence": "IV 투여 후 혈뇌장벽을 빠르게 통과하여 1~2분 내 작용 발현. 단회 IV 유도 후 개에서 작용 지속시간 약 5~7분, 고양이에서 5~12분. 개에서 소실 반감기 약 1.4시간, 청소율 약 50 mL/kg/분. 혈장 단백 결합률 95~99%."
+  },
+  "_ddi_note": "Plumb's Drug Interactions 섹션에서 추출. 중증도: 금기→3, 주요→3, 중등도→2, 경미→1.",
+  "drug_interactions": [
+    {
+      "drug": "Alpha-2 Adrenergic Receptor Agonists (dexmedetomidine, medetomidine, xylazine)",
+      "severity": 2,
+      "keywords": [
+        "hypoxemia",
+        "dose reduction",
+        "respiratory depression",
+        "propofol dose sparing"
+      ],
+      "evidence": "Propofol given after medetomidine or dexmedetomidine may result in hypoxemia; propofol dose reduction of 30–61% in dogs and 48.9% in cats anticipated. Respiratory monitoring and support required."
+    },
+    {
+      "drug": "Inhalation Anesthetics (isoflurane, sevoflurane, halothane)",
+      "severity": 2,
+      "keywords": [
+        "increased propofol serum concentration",
+        "CNS depression"
+      ],
+      "evidence": "Propofol serum concentrations may be increased when used with inhalation anesthetics. Higher initial inhalant concentrations may be needed following propofol induction compared to barbiturate induction."
+    },
+    {
+      "drug": "Local Anesthetics (bupivacaine, lidocaine)",
+      "severity": 1,
+      "keywords": [
+        "propofol dose sparing",
+        "sedation"
+      ],
+      "evidence": "Use of local anesthetics can reduce propofol dose requirements for sedation. Systemic lidocaine does not reduce propofol MIR in dogs."
+    },
+    {
+      "drug": "Benzodiazepines (diazepam, midazolam)",
+      "severity": 2,
+      "keywords": [
+        "hypothermia",
+        "synergistic sedation",
+        "midazolam plasma concentration increase"
+      ],
+      "evidence": "Concurrent use increases risk of hypothermia in dogs. Midazolam may have synergistic effects with propofol; midazolam plasma concentrations may be increased up to 20%."
+    },
+    {
+      "drug": "CYP Hepatic P-450 Inhibitors (chloramphenicol, cimetidine, ketoconazole)",
+      "severity": 2,
+      "keywords": [
+        "prolonged recovery",
+        "CYP inhibition",
+        "reduced propofol metabolism"
+      ],
+      "evidence": "Drugs that inhibit the hepatic P-450 enzyme system may potentially prolong recovery times associated with propofol; clinical significance is unclear."
+    },
+    {
+      "drug": "Epinephrine",
+      "severity": 3,
+      "keywords": [
+        "arrhythmia",
+        "proarrhythmic",
+        "dose-dependent"
+      ],
+      "evidence": "Propofol enhances epinephrine-induced arrhythmia in a dose-dependent manner in dogs."
+    },
+    {
+      "drug": "Melatonin",
+      "severity": 1,
+      "keywords": [
+        "propofol dose sparing",
+        "anesthetic induction"
+      ],
+      "evidence": "Administration of melatonin 2 hours prior to induction may modestly reduce the propofol dose required for intubation and anesthetic induction."
+    },
+    {
+      "drug": "Metoclopramide",
+      "severity": 1,
+      "keywords": [
+        "propofol dose sparing",
+        "induction dose reduction"
+      ],
+      "evidence": "In humans, metoclopramide reduced the propofol dose required for induction by 20–25%."
+    },
+    {
+      "drug": "Opioids (fentanyl, hydromorphone, meperidine, morphine, remifentanil)",
+      "severity": 2,
+      "keywords": [
+        "increased serum concentration",
+        "propofol dose sparing",
+        "cardiovascular depression",
+        "respiratory depression",
+        "hypoxemia"
+      ],
+      "evidence": "May increase serum concentrations of both opioid and propofol. Propofol dose requirements may be reduced. Remifentanil decreased heart rate, cardiac index, and stroke volume in dogs. Incidence of hypoxemia increases when combined with opioids."
+    },
+    {
+      "drug": "Phenothiazines (acepromazine)",
+      "severity": 2,
+      "keywords": [
+        "increased sedation",
+        "cardiorespiratory depression",
+        "propofol dose sparing"
+      ],
+      "evidence": "Increased sedation and cardiorespiratory depression are possible. Propofol dose reduction of 40–60% anticipated with phenothiazine premedication."
+    },
+    {
+      "drug": "St. John's Wort",
+      "severity": 3,
+      "keywords": [
+        "cardiovascular collapse",
+        "delayed emergence",
+        "anesthesia"
+      ],
+      "evidence": "Concurrent use may result in an increased risk for cardiovascular collapse and/or delayed emergence from anesthesia."
+    }
+  ],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": true,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": true,
+    "washout_period_days": 0.3
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "linear",
+          "context": "전신마취 유도 (전처치 없음, 라벨 용량)",
+          "value": "5.5 - 7.6",
+          "unit": "mg/kg",
+          "route": "IV",
+          "frequency": "Once",
+          "max_dose_mg_kg": 7.6,
+          "duration_note": "30~90초에 걸쳐 천천히 투여",
+          "evidence": "FDA 승인 라벨 용량. 전처치 없는 건강한 개 기준."
+        },
+        {
+          "logic_type": "linear",
+          "context": "전신마취 유도 (아세프로마진 전처치)",
+          "value": "3.7 - 4.4",
+          "unit": "mg/kg",
+          "route": "IV",
+          "frequency": "Once",
+          "max_dose_mg_kg": 4.4,
+          "duration_note": "30~90초에 걸쳐 천천히 투여",
+          "evidence": "FDA 승인 라벨 용량."
+        },
+        {
+          "logic_type": "linear",
+          "context": "전신마취 유도 (자일라진 전처치)",
+          "value": "2.2 - 3.3",
+          "unit": "mg/kg",
+          "route": "IV",
+          "frequency": "Once",
+          "max_dose_mg_kg": 3.3,
+          "duration_note": "60~90초에 걸쳐 천천히 투여",
+          "evidence": "FDA 승인 라벨 용량."
+        },
+        {
+          "logic_type": "linear",
+          "context": "전신마취 유도 (메데토미딘 전처치)",
+          "value": "2.2 - 2.8",
+          "unit": "mg/kg",
+          "route": "IV",
+          "frequency": "Once",
+          "max_dose_mg_kg": 2.8,
+          "duration_note": "60~90초에 걸쳐 천천히 투여",
+          "evidence": "FDA 승인 라벨 용량."
+        },
+        {
+          "logic_type": "linear",
+          "context": "전신마취 유도 (벤조디아제핀 + 오피오이드 전처치)",
+          "value": "4.7",
+          "unit": "mg/kg",
+          "route": "IV",
+          "frequency": "Once",
+          "max_dose_mg_kg": 4.7,
+          "duration_note": "60~90초에 걸쳐 천천히 투여",
+          "evidence": "FDA 승인 라벨 용량."
+        },
+        {
+          "logic_type": "linear",
+          "context": "전신마취 유도 (알파-2 작용제 + 오피오이드 전처치)",
+          "value": "3.2",
+          "unit": "mg/kg",
+          "route": "IV",
+          "frequency": "Once",
+          "max_dose_mg_kg": 3.2,
+          "duration_note": "60~90초에 걸쳐 천천히 투여",
+          "evidence": "FDA 승인 라벨 용량."
+        },
+        {
+          "logic_type": "linear",
+          "context": "전신마취 간헐적 IV 유지 (전처치 없음)",
+          "value": "1.1 - 3.2",
+          "unit": "mg/kg",
+          "route": "IV",
+          "frequency": "PRN",
+          "max_dose_mg_kg": 3.2,
+          "duration_note": "10~60초에 걸쳐 투여; 최대 20분",
+          "evidence": "FDA 승인 라벨 용량."
+        },
+        {
+          "logic_type": "linear",
+          "context": "전신마취 간헐적 IV 유지 (아세프로마진 전처치)",
+          "value": "1.1",
+          "unit": "mg/kg",
+          "route": "IV",
+          "frequency": "PRN",
+          "max_dose_mg_kg": 1.1,
+          "duration_note": "30~60초에 걸쳐 투여",
+          "evidence": "FDA 승인 라벨 용량."
+        },
+        {
+          "logic_type": "linear",
+          "context": "전신마취 유도 (extra-label, 전처치 후 서서히 주입)",
+          "value": "1 - 1.3",
+          "unit": "mg/kg",
+          "route": "IV",
+          "frequency": "Once",
+          "max_dose_mg_kg": null,
+          "duration_note": "분당 1~1.3 mg/kg 속도로 IV 주입; 기관삽관 용이",
+          "evidence": "Extra-label. 메타돈/아세프로마진 또는 메타돈/덱스메데토미딘 IM 전처치 30분 후."
+        },
+        {
+          "logic_type": "linear",
+          "context": "전신마취 유도 TIVA (extra-label, 효과 기준)",
+          "value": "2 - 8",
+          "unit": "mg/kg",
+          "route": "IV",
+          "frequency": "Once",
+          "max_dose_mg_kg": 8.0,
+          "duration_note": "약 60초에 걸쳐 천천히 투여",
+          "evidence": "Extra-label. 전처치 시 25% 이상 감량 가능."
+        },
+        {
+          "logic_type": "linear",
+          "context": "전신마취 TIVA 유지 (extra-label, CRI)",
+          "value": "0.1 - 0.5",
+          "unit": "mg/kg",
+          "route": "CRI",
+          "frequency": "PRN",
+          "max_dose_mg_kg": null,
+          "duration_note": "분당 0.1~0.5 mg/kg IV CRI",
+          "evidence": "Extra-label."
+        },
+        {
+          "logic_type": "linear",
+          "context": "난치성 간질중첩증 (extra-label)",
+          "value": "2 - 8",
+          "unit": "mg/kg",
+          "route": "IV",
+          "frequency": "Once",
+          "max_dose_mg_kg": 8.0,
+          "duration_note": "초기 볼루스 후 0.1~0.25 mg/kg/분 CRI; 6~12시간 유지 후 점감; 최대 약 48시간",
+          "evidence": "Extra-label."
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "linear",
+          "context": "전신마취 유도 (전처치 없음 또는 아세프로마진/부토르파놀/옥시모르폰 전처치, 라벨 용량)",
+          "value": "8 - 13.2",
+          "unit": "mg/kg",
+          "route": "IV",
+          "frequency": "Once",
+          "max_dose_mg_kg": 13.2,
+          "duration_note": "60~90초에 걸쳐 천천히 투여",
+          "evidence": "FDA 승인 라벨 용량. 많은 임상의는 실제 필요 용량이 더 낮다고 판단함."
+        },
+        {
+          "logic_type": "linear",
+          "context": "전신마취 유도 (자일라진 전처치, 라벨 용량)",
+          "value": "7 - 12",
+          "unit": "mg/kg",
+          "route": "IV",
+          "frequency": "Once",
+          "max_dose_mg_kg": 12.0,
+          "duration_note": "60~90초에 걸쳐 천천히 투여",
+          "evidence": "FDA 승인 라벨 용량."
+        },
+        {
+          "logic_type": "linear",
+          "context": "전신마취 간헐적 IV 유지 (전처치 없음, 라벨 용량)",
+          "value": "1.1 - 4.4",
+          "unit": "mg/kg",
+          "route": "IV",
+          "frequency": "PRN",
+          "max_dose_mg_kg": 4.4,
+          "duration_note": "30~60초에 걸쳐 투여",
+          "evidence": "FDA 승인 라벨 용량."
+        },
+        {
+          "logic_type": "linear",
+          "context": "전신마취 간헐적 IV 유지 (자일라진 전처치, 라벨 용량)",
+          "value": "1.1 - 2.2",
+          "unit": "mg/kg",
+          "route": "IV",
+          "frequency": "PRN",
+          "max_dose_mg_kg": 2.2,
+          "duration_note": "30~60초에 걸쳐 투여",
+          "evidence": "FDA 승인 라벨 용량."
+        },
+        {
+          "logic_type": "linear",
+          "context": "전신마취 유도 TIVA (extra-label, 효과 기준)",
+          "value": "2 - 8",
+          "unit": "mg/kg",
+          "route": "IV",
+          "frequency": "Once",
+          "max_dose_mg_kg": 11.7,
+          "duration_note": "약 60초에 걸쳐 천천히 투여; 최대 11.7 mg/kg까지 사용 보고됨",
+          "evidence": "Extra-label. 전처치 시 25% 이상 감량 가능."
+        },
+        {
+          "logic_type": "linear",
+          "context": "전신마취 TIVA 유지 (extra-label, CRI)",
+          "value": "0.1 - 0.5",
+          "unit": "mg/kg",
+          "route": "CRI",
+          "frequency": "PRN",
+          "max_dose_mg_kg": null,
+          "duration_note": "분당 0.1~0.5 mg/kg IV CRI; 단기 사용 권장 (장시간 CRI 시 회복 지연 위험)",
+          "evidence": "Extra-label."
+        },
+        {
+          "logic_type": "linear",
+          "context": "프로포폴/케타민 TIVA (extra-label)",
+          "value": "2",
+          "unit": "mg/kg",
+          "route": "IV",
+          "frequency": "Once",
+          "max_dose_mg_kg": null,
+          "duration_note": "케타민 2 mg/kg IV와 병용 유도 후 프로포폴 10 mg/kg/시간 + 케타민 10 mg/kg/시간 CRI 유지",
+          "evidence": "Extra-label. 고양이 OHE 연구."
+        },
+        {
+          "logic_type": "linear",
+          "context": "난치성 간질중첩증 (extra-label)",
+          "value": "2 - 8",
+          "unit": "mg/kg",
+          "route": "IV",
+          "frequency": "Once",
+          "max_dose_mg_kg": 8.0,
+          "duration_note": "초기 볼루스 후 0.1~0.25 mg/kg/분 CRI; 6~12시간 유지 후 점감",
+          "evidence": "Extra-label."
+        }
+      ]
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "none",
+    "adjustment_factor": null,
+    "note": "신장 또는 간 질환 동물에서도 안전하게 사용 가능하다고 기술되어 있다. 구체적인 용량 조정 기준은 제시되지 않았다."
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "none",
+    "note": "간 질환 동물에서도 안전하게 사용 가능하다고 기술되어 있다. 구체적인 용량 조정 기준은 제시되지 않았다."
+  },
+  "contraindications": [
+    {
+      "condition": "프로포폴 또는 성분(계란, 대두) 과민증",
+      "match_terms": [
+        "hypersensitivity",
+        "egg allergy",
+        "soybean allergy",
+        "propofol allergy"
+      ],
+      "severity": "absolute",
+      "action": "contraindicated",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "전신마취 또는 진정이 금기인 상태",
+      "match_terms": [
+        "anesthesia contraindicated",
+        "sedation contraindicated"
+      ],
+      "severity": "absolute",
+      "action": "contraindicated",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "기존 심장 부정맥",
+      "match_terms": [
+        "cardiac arrhythmia",
+        "arrhythmia"
+      ],
+      "severity": "relative",
+      "action": "monitor",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "발작 병력 또는 활성 발작 장애",
+      "match_terms": [
+        "seizure disorder",
+        "epilepsy",
+        "status epilepticus"
+      ],
+      "severity": "relative",
+      "action": "monitor",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "쇠약 또는 중증 환자 (심혈관/호흡 억제 위험 증가)",
+      "match_terms": [
+        "debilitated",
+        "critically ill",
+        "poor body condition"
+      ],
+      "severity": "relative",
+      "action": "reduce_dose",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "저단백혈증",
+      "match_terms": [
+        "hypoproteinemia",
+        "hypoalbuminemia"
+      ],
+      "severity": "relative",
+      "action": "monitor",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "고지혈증 병력",
+      "match_terms": [
+        "hyperlipidemia",
+        "hyperlipemia"
+      ],
+      "severity": "relative",
+      "action": "monitor",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    }
+  ],
+  "genetic_sensitivity": {
+    "has_genetic_risk": true,
+    "affected_breeds": [
+      "Greyhound",
+      "American Kennel Club Greyhound"
+    ],
+    "gene": "CYP2B11",
+    "evidence": "그레이하운드는 CYP2B11 유전자 발현 감소로 인해 프로포폴 대사가 느려 반복 투여 또는 주입 시 회복이 지연될 수 있다. AKC 그레이하운드가 경주용 그레이하운드보다 결핍이 더 심하다. 모든 사이트하운드에서 동일하지 않으며 일부 다른 견종에서도 결핍이 보고되었다."
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": "GABA 수용체에서 GABA의 해리 속도를 감소시켜 GABA의 효과를 강화하며, 염소 이온 유입을 통한 시냅스후 세포막 과분극을 유발하는 단기 작용 진정-최면 마취제. 글리신 및 NMDA 수용체에도 작용 가능성이 있다.",
+    "common_extra_effects": [
+      "일시적 호흡 억제 (흔함)",
+      "무호흡 (특히 빠른 투여 시)",
+      "혈관확장성 저혈압",
+      "심근 억제",
+      "부정맥",
+      "히스타민 방출 (드묾)",
+      "아나필락토이드 반응 (매우 드묾)",
+      "저체온증 (벤조디아제핀 병용 시)",
+      "주사 부위 통증 (인간에서 보고; 개/고양이에서는 임상적으로 유의하지 않음)"
+    ],
+    "dog_mechanism": "개에서 CYP2B11에 의해 대사됨. 단회 IV 유도 후 작용 지속시간 약 5~7분. 뇌산소소비량, 두개내압, 뇌관류압 감소. 안압을 일시적으로 증가시킬 수 있으나 5분 후 기저치 이하로 감소.",
+    "dog_extra_effects": [
+      "경련 유사 증상 (패들링, 후궁반장, 근간대성 경련; 약 1.2%)",
+      "회복 시 재채기 및 패들링",
+      "일시적 안압 상승",
+      "에피네프린 유발 부정맥 증강 (용량 의존적)",
+      "프로포폴 주입 증후군 (매우 드묾; 1례 보고)"
+    ],
+    "cat_mechanism": "고양이는 글루쿠로나이드 결합 능력이 낮아 장시간 주입 시 회복이 지연될 수 있음. 단회 IV 유도 후 작용 지속시간 5~12분.",
+    "cat_extra_effects": [
+      "하인츠소체 생성 증가 (반복 투여 또는 장시간 CRI 시)",
+      "회복 지연 (반복 투여 또는 장시간 CRI 시)",
+      "식욕부진",
+      "무기력",
+      "불쾌감",
+      "설사",
+      "회복 시 재채기 및 패들링"
+    ]
+  },
+  "species_notes": {
+    "dog": "개에서 FDA 승인된 라벨 용량이 있으며, 전처치 약물 사용 시 용량을 40~60% 감량해야 한다. 그레이하운드는 CYP2B11 결핍으로 인해 반복 투여 또는 주입 시 회복이 지연될 수 있으므로 주의가 필요하다. 연속 투여는 일반적으로 안전하다. 안압 상승이 일시적으로 발생할 수 있으나 5분 후 기저치 이하로 감소한다. 난치성 간질중첩증 치료에도 사용된다.",
+    "cat": "고양이에서 FDA 승인된 라벨 용량이 있으나, 많은 임상의는 실제 필요 용량이 더 낮다고 판단한다. 글루쿠로나이드 결합 능력이 낮아 30분 이상 주입 시 회복 지연이 발생할 수 있으므로 단기 사용이 권장된다. 반복 투여 또는 장시간 CRI 시 하인츠소체 생성, 식욕부진, 무기력, 설사가 발생할 수 있으므로 CBC 모니터링이 필요하다. 벤질알코올 함유 제제(PropoFlo® 28)는 미국에서 개에만 라벨 승인되어 있으나 고양이에서도 안전성이 확인되었다."
+  },
+  "precautions": {
+    "dog": {
+      "status": 1,
+      "evidence": "쇠약 또는 중증 환자, 기존 심장 부정맥, 발작 병력, 저단백혈증, 고지혈증 병력 시 주의 필요. 그레이하운드에서 회복 지연 가능성. 진통 효과 없음. 지속적 모니터링 및 호흡/심혈관 지지 준비 필요."
+    },
+    "cat": {
+      "status": 1,
+      "evidence": "장시간 또는 반복 투여 시 하인츠소체 생성, 회복 지연, 식욕부진, 무기력, 설사 가능. 30분 이상 주입 시 단기 사용 권장. 진통 효과 없음. 지속적 모니터링 및 호흡/심혈관 지지 준비 필요."
+    }
+  },
+  "storage_and_forms": {
+    "storage": "빛 차단 보관; 냉동 금지. PropoFlo® 28: 실온 보관, 개봉 후 28일 이내 사용. 기타 수의용 제품: 4~25°C 보관, 개봉 후 6시간 이내 사용. 인체용 제품: 22°C 이하(4°C 이상) 보관, 개봉 후 12시간 또는 마취 종료 시 폐기. 과도한 크리밍, 응집, 큰 액적, 상분리, 이물질, 변색 시 사용 금지.",
+    "forms": [
+      "1% 주사액 (10 mg/mL), 대두유/글리세롤/난황 레시틴 함유 등장성 유백색 마크로에멀젼"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "프로포폴은 개와 고양이에서 FDA 승인된 단기 작용 정맥 마취제로, 빠른 유도(20~60초)와 부드러운 회복이 특징이다. 진통 효과가 없으므로 수술 전후 진통제 병용이 필수적이다. 전처치 약물 사용 시 용량을 40~60% 감량해야 한다. 호흡 억제 및 무호흡이 흔하므로 지속적 모니터링과 기도 관리 준비가 필수이다. 고양이에서 장시간 CRI 시 하인츠소체 생성 및 회복 지연에 주의해야 한다. 그레이하운드에서 CYP2B11 결핍으로 인한 회복 지연 가능성이 있다.",
+    "indications": "개와 고양이에서 단기 시술을 위한 전신마취 단회 주사; 최대 20분간 증량 투여를 통한 마취 유도 및 유지; 흡입 마취제로 유지되는 전신마취 유도. Extra-label: 난치성 간질중첩증 치료, TIVA 유지, 안락사 전 진정. 말, 당나귀, 양, 염소, 알파카, 토끼, 설치류, 파충류에서도 extra-label로 사용.",
+    "client_info": "프로포폴은 동물병원에서 수술이나 시술 시 전신마취를 위해 정맥으로 투여하는 마취제입니다. 효과가 빠르게 나타나고 회복도 빠른 편이지만, 호흡 억제가 발생할 수 있어 마취 중 지속적인 모니터링이 필요합니다. 이 약물은 통증을 없애주지 않으므로 별도의 진통제가 함께 사용됩니다. 고양이에서 반복 투여 시 혈액 이상(하인츠소체)이 발생할 수 있어 혈액 검사가 필요할 수 있습니다. 마취 후 회복 시 재채기나 다리를 구르는 행동이 일시적으로 나타날 수 있으나 대부분 자연스럽게 회복됩니다."
+  },
+  "_data_quality": {
+    "overall_confidence": 82,
+    "renal_adjustment_confidence": "low",
+    "hepatic_adjustment_confidence": "low",
+    "organ_burden_confidence": "high",
+    "ddi_source": "plumbs_direct",
+    "plumbs_sections_found": [
+      "Uses/Indications",
+      "Pharmacology/Actions",
+      "Pharmacokinetics",
+      "Contraindications/Precautions/Warnings",
+      "Adverse Effects",
+      "Reproductive/Nursing Safety",
+      "Overdose/Acute Toxicity",
+      "Drug Interactions",
+      "Dosages",
+      "Chemistry/Synonyms",
+      "Storage/Stability",
+      "Compatibility/Compounding Considerations"
+    ],
+    "missing_sections": [
+      "Laboratory Considerations (none noted)",
+      "Monitoring (partial)"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile.t_max_hr",
+      "timing_profile.f_percent",
+      "timing_profile.half_life_hr.min",
+      "timing_profile.half_life_hr.max",
+      "metabolism_and_clearance.renal_elimination_fraction",
+      "renal_dose_adjustment.creatinine_threshold_dog_mg_dL",
+      "renal_dose_adjustment.creatinine_threshold_cat_mg_dL",
+      "hepatic_dose_adjustment.alt_threshold_multiplier",
+      "drug_identity.available_strengths"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "claude-sonnet-4-6",
+    "extraction_pass": 1,
+    "source_file": "plumbs_output/22.jsonl",
+    "extracted_at": "2026-03-11T11:18:01.239976+00:00",
+    "reviewer": null
+  }
+}

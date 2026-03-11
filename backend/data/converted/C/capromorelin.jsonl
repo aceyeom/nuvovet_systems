@@ -1,0 +1,512 @@
+{
+  "id": "capromorelin",
+  "drug_identity": {
+    "name_ko": "카프로모렐린",
+    "name_en": "Capromorelin",
+    "active_ingredient": "Capromorelin",
+    "brand_names": [
+      "Entyce",
+      "Elura"
+    ],
+    "allergy_class": null,
+    "class": "Unknown",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Oral Liquid"
+    ],
+    "available_strengths": [
+      {
+        "value": 30,
+        "unit": "mg/mL"
+      },
+      {
+        "value": 20,
+        "unit": "mg/mL"
+      }
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Liver",
+    "clearance_organ": "Mixed",
+    "renal_elimination_fraction": 0.37,
+    "cyp_profile": {
+      "substrates": [
+        "CYP3A4",
+        "CYP3A5"
+      ],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": "개에서 CYP3A4 및 CYP3A5에 의해 주로 간에서 대사됨. 대사체는 72시간 이내에 소변(약 37%)과 대변(약 62%)으로 배설됨."
+    },
+    "extra_information": "개: 경구 투여 후 약 44% 흡수, 최고 혈중 농도 도달 시간 1시간 이내, 단백 결합률 약 50%, 반감기 약 1.2시간. 반복 투여 시 축적 없음. 고양이: 공복 시 최고 농도 도달 시간 0.25~1시간, 식이와 함께 투여 시 최고 농도 약 50% 감소, AUC 약 40% 감소, 반감기 1.1시간."
+  },
+  "organ_burden_logic": {
+    "note": "키워드 기반 점수 산정. 개와 고양이 각각 임상시험 및 안전성 연구 데이터 기반.",
+    "dog": {
+      "brain": {
+        "calculated_score": 10,
+        "triggered_keywords": [
+          "lethargy"
+        ],
+        "index": 1,
+        "evidence": "개에서 기면(lethargy)이 이상반응으로 보고됨. 직접적인 CNS 독성 데이터는 없음."
+      },
+      "blood": {
+        "calculated_score": 30,
+        "triggered_keywords": [
+          "decreased RBC",
+          "hemoglobin",
+          "hematocrit",
+          "elevated BUN",
+          "elevated phosphorus",
+          "increased cholesterol",
+          "increased alkaline phosphatase"
+        ],
+        "index": 2,
+        "evidence": "고용량(17.5배) 투여 시 RBC, 헤모글로빈, 헤마토크릿 감소(통계적 비유의), BUN 및 인 상승, 콜레스테롤 및 ALP 용량 의존적 증가 보고됨."
+      },
+      "kidney": {
+        "calculated_score": 25,
+        "triggered_keywords": [
+          "renal insufficiency",
+          "elevated BUN"
+        ],
+        "index": 2,
+        "evidence": "신부전 개에서 주의 사용 권고. BUN 상승이 임상시험에서 보고됨. 소변으로 약 37% 배설."
+      },
+      "liver": {
+        "calculated_score": 45,
+        "triggered_keywords": [
+          "hepatic metabolism",
+          "increased liver weight",
+          "hepatocellular vacuolation",
+          "hepatic dysfunction",
+          "increased alkaline phosphatase"
+        ],
+        "index": 3,
+        "evidence": "CYP3A4/3A5에 의한 간 대사. 고용량 안전성 연구에서 간 중량 증가 및 간세포 공포화 관찰. ALP 용량 의존적 증가. 간기능 장애 시 주의 사용 권고."
+      },
+      "heart": {
+        "calculated_score": 20,
+        "triggered_keywords": [
+          "increased PR interval"
+        ],
+        "index": 1,
+        "evidence": "고용량(7 mg/kg/day, 40 mg/kg/day) 투여 시 ECG에서 PR 간격 연장 관찰. 심장 독성의 물리적 또는 조직병리학적 증거는 없음."
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 15,
+        "triggered_keywords": [
+          "lethargy",
+          "hiding behavior"
+        ],
+        "index": 1,
+        "evidence": "고양이에서 기면 및 숨기 행동이 이상반응으로 보고됨."
+      },
+      "blood": {
+        "calculated_score": 30,
+        "triggered_keywords": [
+          "anemia",
+          "hyperglycemia",
+          "decreased insulin secretion"
+        ],
+        "index": 2,
+        "evidence": "CKD 고양이에서 빈혈 및 고혈당 보고. 건강한 고양이에서 인슐린 분비 및 혈당 조절 감소 관찰."
+      },
+      "kidney": {
+        "calculated_score": 40,
+        "triggered_keywords": [
+          "CKD",
+          "progression of CKD stage",
+          "dehydration"
+        ],
+        "index": 3,
+        "evidence": "CKD 고양이 대상 적응증. CKD 단계 진행이 이상반응으로 보고됨. 심한 탈수 시 주의 사용 권고."
+      },
+      "liver": {
+        "calculated_score": 20,
+        "triggered_keywords": [
+          "hepatic dysfunction"
+        ],
+        "index": 1,
+        "evidence": "간기능 장애 고양이에서 주의 사용 권고. 고양이 특이적 간 독성 데이터는 제한적."
+      },
+      "heart": {
+        "calculated_score": 40,
+        "triggered_keywords": [
+          "bradycardia",
+          "hypotension",
+          "cardiac disease"
+        ],
+        "index": 3,
+        "evidence": "투여 후 서맥 및 저혈압 발생 가능. 최대 효과는 투여 1시간 후, 4시간 내 회복. 일부 사례에서 수액 소생술이 필요할 정도의 심한 저혈압 보고. 심장 질환 고양이에서 주의 사용 권고."
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": 1.0,
+    "half_life_hr": {
+      "min": 1.1,
+      "max": 1.2,
+      "mean": 1.15,
+      "species": "dog"
+    },
+    "f_percent": 44,
+    "protein_binding_percent": 50,
+    "evidence": "개: 경구 투여 후 약 44% 흡수, 최고 혈중 농도 도달 시간 1시간 이내, 반감기 약 1.2시간, 단백 결합률 약 50%. 고양이(공복): 최고 농도 도달 시간 0.25~1시간, 반감기 1.1시간."
+  },
+  "_ddi_note": "Plumb's Drug Interactions 섹션에서 추출. 이론적 상호작용 포함. 중증도: 금기→3, 주요→3, 중등도→2, 경미→1. 현재까지 보고된 실제 약물 상호작용은 없으며, CYP3A4/3A5 기반 이론적 상호작용만 존재함.",
+  "drug_interactions": [
+    {
+      "drug": "CYP3A4 Inhibitors (amiodarone, cimetidine, diltiazem, erythromycin, itraconazole, ketoconazole)",
+      "severity": 2,
+      "keywords": [
+        "CYP3A4 inhibition",
+        "reduced metabolism",
+        "increased capromorelin exposure"
+      ],
+      "evidence": "May reduce capromorelin metabolism in dogs via CYP3A4 inhibition, potentially increasing plasma levels and adverse effects. Theoretical interaction; no specific cases reported."
+    },
+    {
+      "drug": "CYP3A4 Inducers (phenobarbital, rifampin)",
+      "severity": 2,
+      "keywords": [
+        "CYP3A4 induction",
+        "increased metabolism",
+        "reduced efficacy"
+      ],
+      "evidence": "May increase capromorelin metabolism in dogs via CYP3A4 induction, potentially reducing plasma levels and therapeutic efficacy. Theoretical interaction; no specific cases reported."
+    }
+  ],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": true,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": true,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "low",
+    "hepatotoxic": "moderate",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "low"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": 0.2
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "linear",
+          "context": "식욕 자극 (FDA 승인 용량)",
+          "value": "3",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "SID",
+          "max_dose_mg_kg": null,
+          "duration_note": "4일 초과 치료 효과는 평가되지 않음",
+          "evidence": "FDA 승인 라벨 용량. Entyce® 30 mg/mL 경구 용액."
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "linear",
+          "context": "만성 신장 질환 고양이의 체중 감소 관리 (FDA 승인 용량)",
+          "value": "2",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "SID",
+          "max_dose_mg_kg": null,
+          "duration_note": "정기 급식 30분 전 투여. 부분 투여 또는 투여 15분 이내 구토 시 재투여.",
+          "evidence": "FDA 승인 라벨 용량. Elura® 20 mg/mL 경구 용액."
+        },
+        {
+          "logic_type": "linear",
+          "context": "식욕 자극 (허가 외 사용)",
+          "value": "1 - 3",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "SID",
+          "max_dose_mg_kg": 3.0,
+          "duration_note": "최대 21일",
+          "evidence": "허가 외 사용 용량. 임상 연구 기반."
+        }
+      ]
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": "개에서 신부전 시 주의 사용 권고. 구체적인 용량 조정 지침은 명시되지 않음. CKD 고양이에서는 체중 증가 및 내약성이 확인된 파일럿 연구 결과 있음."
+  },
+  "hepatic_dose_adjustment": {
+    "applies": true,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "monitor",
+    "note": "개와 고양이 모두 간기능 장애 시 주의 사용 권고. 구체적인 용량 조정 지침은 명시되지 않음."
+  },
+  "contraindications": [
+    {
+      "condition": "과민반응",
+      "match_terms": [
+        "hypersensitivity",
+        "allergy to capromorelin"
+      ],
+      "severity": "absolute",
+      "action": "contraindicated",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "말단비대증 (고양이)",
+      "match_terms": [
+        "acromegaly",
+        "hypersomatotropism"
+      ],
+      "severity": "absolute",
+      "action": "contraindicated",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "간기능 장애",
+      "match_terms": [
+        "hepatic dysfunction",
+        "liver disease",
+        "hepatic failure"
+      ],
+      "severity": "relative",
+      "action": "monitor",
+      "lab_trigger": {
+        "marker": "alt",
+        "threshold": null,
+        "unit": "U/L"
+      }
+    },
+    {
+      "condition": "신부전 (개)",
+      "match_terms": [
+        "renal insufficiency",
+        "CKD",
+        "renal failure"
+      ],
+      "severity": "relative",
+      "action": "monitor",
+      "lab_trigger": {
+        "marker": "creatinine",
+        "threshold": null,
+        "unit": "mg/dL"
+      }
+    },
+    {
+      "condition": "심장 질환 (고양이)",
+      "match_terms": [
+        "cardiac disease",
+        "heart disease"
+      ],
+      "severity": "relative",
+      "action": "monitor",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "심한 탈수 (고양이)",
+      "match_terms": [
+        "severe dehydration",
+        "dehydration"
+      ],
+      "severity": "relative",
+      "action": "monitor",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "당뇨병 또는 당뇨 전단계 (고양이)",
+      "match_terms": [
+        "diabetes mellitus",
+        "prediabetes",
+        "hyperglycemia"
+      ],
+      "severity": "relative",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": "bun",
+        "threshold": null,
+        "unit": "mg/dL"
+      }
+    },
+    {
+      "condition": "번식, 임신, 수유 중인 동물",
+      "match_terms": [
+        "breeding",
+        "pregnant",
+        "lactating",
+        "pregnancy",
+        "lactation"
+      ],
+      "severity": "relative",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    }
+  ],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": "그렐린 수용체 작용제로서 성장 호르몬(GH) 분비를 자극하고 인슐린 유사 성장 인자 1(IGF1) 방출을 유도하여 식욕을 증진시킴. 위장, 심장, 췌장 기능 조절에도 관여.",
+    "common_extra_effects": [
+      "구토",
+      "과다 침 분비",
+      "설사",
+      "다음증",
+      "기면",
+      "고혈당",
+      "성장 호르몬 및 코르티솔 상승",
+      "IGF1 지속적 상승"
+    ],
+    "dog_mechanism": "CYP3A4/3A5에 의해 간에서 대사. 경구 투여 후 약 44% 흡수. 반복 투여 시 GH 및 코르티솔 상승 효과 감소(4~7일째).",
+    "dog_extra_effects": [
+      "설사",
+      "구토",
+      "다음증",
+      "과다 침 분비",
+      "고창",
+      "오심",
+      "복부 불편감",
+      "장음 증가",
+      "기면",
+      "BUN 상승",
+      "인 상승",
+      "PR 간격 연장 (고용량)"
+    ],
+    "cat_mechanism": "공복 시 투여 권장. 식이와 함께 투여 시 최고 농도 및 AUC 감소. 반감기 1.1시간.",
+    "cat_extra_effects": [
+      "구토",
+      "과다 침 분비",
+      "식욕 부진",
+      "숨기 행동",
+      "기면",
+      "빈혈",
+      "탈수",
+      "CKD 단계 진행",
+      "설사",
+      "상기도 감염",
+      "요로 감염",
+      "고혈당",
+      "서맥",
+      "저혈압"
+    ]
+  },
+  "species_notes": {
+    "dog": "개에서 FDA 승인된 식욕 자극제. 3 mg/kg PO 1일 1회 투여. 4일 초과 효과는 평가되지 않음. 신부전 개에서 주의 사용. 간기능 장애 시 주의. CYP3A4/3A5 억제제 또는 유도제와 병용 시 이론적 상호작용 가능성 있음.",
+    "cat": "CKD 고양이의 체중 감소 관리에 FDA 승인. 2 mg/kg PO 1일 1회, 정기 급식 30분 전 투여. 고양이에서 서맥 및 저혈압 발생 가능하므로 심장 질환 고양이에서 주의. 당뇨 또는 당뇨 전단계 고양이에서 사용 평가 미완료. 말단비대증 고양이에서 금기."
+  },
+  "precautions": {
+    "dog": {
+      "status": 1,
+      "evidence": "신부전, 간기능 장애 개에서 주의 사용 권고. 고용량에서 간 중량 증가, 간세포 공포화, PR 간격 연장 관찰. 번식, 임신, 수유 중인 개에서 안전성 미확립."
+    },
+    "cat": {
+      "status": 1,
+      "evidence": "말단비대증 고양이에서 금기. 심장 질환, 심한 탈수, 간기능 장애 고양이에서 주의. 투여 후 서맥 및 저혈압 발생 가능. 당뇨 또는 당뇨 전단계 고양이에서 사용 부적절할 수 있음. 번식, 임신, 수유 중인 고양이에서 안전성 미확립."
+    }
+  },
+  "storage_and_forms": {
+    "storage": "30°C(86°F) 이하에서 보관. 어린이 및 반려동물의 손이 닿지 않는 곳에 보관.",
+    "forms": [
+      "Capromorelin Flavored Solution 30 mg/mL (10 mL, 15 mL, 30 mL 병) - Entyce® (개용)",
+      "Capromorelin Flavored Solution 20 mg/mL (15 mL 병) - Elura® (고양이용)"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "카프로모렐린은 그렐린 수용체 작용제로, 개의 식욕 자극 및 만성 신장 질환(CKD) 고양이의 체중 감소 관리에 FDA 승인된 수의용 약물입니다. 개에서 3 mg/kg, 고양이에서 2 mg/kg을 1일 1회 경구 투여합니다. 고양이에서 서맥, 저혈압, 고혈당 등의 이상반응에 주의가 필요하며, 말단비대증 고양이에서는 금기입니다. CYP3A4/3A5를 통해 간에서 대사되므로 관련 약물과의 상호작용 가능성을 고려해야 합니다.",
+    "indications": "승인 적응증: 개의 식욕 자극(Entyce®), CKD 고양이의 체중 감소 관리(Elura®). 허가 외 사용: 고양이의 식욕 자극(1~3 mg/kg PO 1일 1회, 최대 21일).",
+    "client_info": "투여 전 병을 부드럽게 흔들어 주세요(개용 제품). 투여 후 침 흘림, 구토, 머리 흔들기가 일시적으로 나타날 수 있으며 수 분 내에 회복됩니다. 고양이에게 투여 시 정기 급식 30분 전에 투여하고, 부분 투여 또는 투여 15분 이내 구토 시에만 재투여하세요. 약물은 다른 반려동물과 어린이의 손이 닿지 않는 곳에 보관하세요. 이상반응(구토, 설사, 식욕 부진, 기면 등) 발생 시 수의사에게 연락하세요."
+  },
+  "_data_quality": {
+    "overall_confidence": 78,
+    "renal_adjustment_confidence": "low",
+    "hepatic_adjustment_confidence": "low",
+    "organ_burden_confidence": "medium",
+    "ddi_source": "cyp_derived",
+    "plumbs_sections_found": [
+      "Uses/Indications",
+      "Pharmacology/Actions",
+      "Pharmacokinetics",
+      "Contraindications/Precautions/Warnings",
+      "Adverse Effects",
+      "Reproductive/Nursing Safety",
+      "Overdose/Acute Toxicity",
+      "Drug Interactions",
+      "Dosages",
+      "Monitoring",
+      "Client Information",
+      "Chemistry/Synonyms",
+      "Storage/Stability",
+      "Dosage Forms/Regulatory Status"
+    ],
+    "missing_sections": [
+      "Laboratory Interactions (none noted)",
+      "Compatibility/Compounding Considerations (none noted)",
+      "Human-labeled products (none)"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile.onset_min",
+      "renal_dose_adjustment.creatinine_threshold_dog_mg_dL",
+      "renal_dose_adjustment.creatinine_threshold_cat_mg_dL",
+      "renal_dose_adjustment.adjustment_factor",
+      "hepatic_dose_adjustment.alt_threshold_multiplier",
+      "cyp_profile.substrates (cat-specific CYP data not reported)",
+      "timing_profile.half_life_hr (cat-specific mean not confirmed separately)"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "claude-sonnet-4-6",
+    "extraction_pass": 1,
+    "source_file": "plumbs_output/52.jsonl",
+    "extracted_at": "2026-03-11T11:25:44.218698+00:00",
+    "reviewer": null
+  }
+}
