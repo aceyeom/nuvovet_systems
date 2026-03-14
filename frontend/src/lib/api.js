@@ -2,7 +2,7 @@
  * NuvoVet API Client
  *
  * All requests go to the FastAPI backend at VITE_API_URL.
- * Callers receive null / empty arrays when the backend is unreachable.
+ * Callers receive null when the backend is unreachable.
  *
  * Environment variable:
  *   VITE_API_URL  (default: http://localhost:8000)
@@ -43,7 +43,7 @@ export async function searchDrugsApi(query, species = null, limit = 20) {
   const params = new URLSearchParams({ q: query.trim(), limit });
   if (species) params.set('species', species);
   const data = await apiFetch(`/api/drugs/search?${params}`);
-  return data?.results ?? [];
+  return data?.results ?? null;
 }
 
 /**
@@ -65,8 +65,7 @@ export async function listDrugsApi({ drugClass, source, limit = 50, offset = 0 }
   const params = new URLSearchParams({ limit, offset });
   if (drugClass) params.set('drug_class', drugClass);
   if (source) params.set('source', source);
-  const data = await apiFetch(`/api/drugs?${params}`);
-  return data ?? { results: [], total: 0 };
+  return apiFetch(`/api/drugs?${params}`);
 }
 
 // ── Health check ─────────────────────────────────────────────────
