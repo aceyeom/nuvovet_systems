@@ -83,6 +83,16 @@ def _build_search_index(db: Dict[str, Any]) -> List[Dict[str, Any]]:
 
 # ── Mapping utilities ─────────────────────────────────────────────
 
+def _organ_detail(species_organ: dict, key: str) -> dict:
+    """Extract enriched organ burden detail (score + keywords + evidence)."""
+    entry = species_organ.get(key) or {}
+    return {
+        "score": entry.get("calculated_score", 0) or 0,
+        "keywords": entry.get("triggered_keywords") or [],
+        "evidence": entry.get("evidence") or "",
+    }
+
+
 def _risk_score_to_level(score: Any) -> str:
     try:
         s = int(score or 0)
@@ -206,6 +216,8 @@ def _map_drug(raw: dict) -> dict:
     dog_kidney = (dog_organ.get("kidney") or {}).get("calculated_score", 0) or 0
     dog_liver  = (dog_organ.get("liver")  or {}).get("calculated_score", 0) or 0
     dog_blood  = (dog_organ.get("blood")  or {}).get("calculated_score", 0) or 0
+    # Note: dog_kidney/dog_liver/dog_blood remain as flat ints for risk flag computation below.
+    # The enriched organBurden response (with evidence/keywords) uses _organ_detail() separately.
 
     # Risk flags — derived from additive_risks booleans + organ burden scores
     nephrotoxic_level = _risk_score_to_level(dog_kidney) if additive.get("nephrotoxic") else (
@@ -335,21 +347,21 @@ def _map_drug(raw: dict) -> dict:
         "commonMechanism": effects.get("common_mechanism"),
         "commonAdverseEffects": effects.get("common_extra_effects") or [],
 
-        # Organ burden
+        # Organ burden (enriched with evidence + keywords for anatomy diagram)
         "organBurden": {
             "dog": {
-                "brain":  (dog_organ.get("brain")  or {}).get("calculated_score", 0) or 0,
-                "blood":  dog_blood,
-                "kidney": dog_kidney,
-                "liver":  dog_liver,
-                "heart":  (dog_organ.get("heart")  or {}).get("calculated_score", 0) or 0,
+                "brain":  _organ_detail(dog_organ, "brain"),
+                "blood":  _organ_detail(dog_organ, "blood"),
+                "kidney": _organ_detail(dog_organ, "kidney"),
+                "liver":  _organ_detail(dog_organ, "liver"),
+                "heart":  _organ_detail(dog_organ, "heart"),
             },
             "cat": {
-                "brain":  (cat_organ.get("brain")  or {}).get("calculated_score", 0) or 0,
-                "blood":  (cat_organ.get("blood")  or {}).get("calculated_score", 0) or 0,
-                "kidney": (cat_organ.get("kidney") or {}).get("calculated_score", 0) or 0,
-                "liver":  (cat_organ.get("liver")  or {}).get("calculated_score", 0) or 0,
-                "heart":  (cat_organ.get("heart")  or {}).get("calculated_score", 0) or 0,
+                "brain":  _organ_detail(cat_organ, "brain"),
+                "blood":  _organ_detail(cat_organ, "blood"),
+                "kidney": _organ_detail(cat_organ, "kidney"),
+                "liver":  _organ_detail(cat_organ, "liver"),
+                "heart":  _organ_detail(cat_organ, "heart"),
             },
         },
 
