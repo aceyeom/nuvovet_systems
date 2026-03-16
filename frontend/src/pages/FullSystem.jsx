@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import {
   ArrowLeft, Lock, Eye, EyeOff, Zap, RotateCcw,
   ChevronDown, ChevronUp, Plus, X, Camera, Users, Save,
-  CheckCircle, AlertCircle, LogOut, Search, UserPlus,
+  CheckCircle, AlertCircle, LogOut, Search, UserPlus, Settings,
   Filter, SortAsc, ChevronRight,
 } from 'lucide-react';
 import { NuvovetWordmark } from '../components/NuvovetLogo';
-import { useI18n, LangToggle } from '../i18n';
+import { useI18n } from '../i18n';
 import { DrugInput } from '../components/DrugInput';
 import { AnalysisScreen } from '../components/AnalysisScreen';
 import { ResultsDisplay } from '../components/ResultsDisplay';
@@ -53,24 +53,47 @@ function DecimalInput({ value, onChange, onBlur, placeholder, className, min, ma
 // ── Searchable tag input ──────────────────────────────────────────
 function TagInput({ items, onAdd, onRemove, placeholder, chipClass, suggestions = [] }) {
   const [value, setValue] = useState('');
+  const [quickFilter, setQuickFilter] = useState('');
   const [showSug, setShowSug] = useState(false);
-  const filtered = suggestions.filter(
-    (s) => s.toLowerCase().includes(value.toLowerCase()) && !items.includes(s)
-  );
+  const filterTerm = quickFilter.trim().toLowerCase();
+  const suggestionQuery = (value.trim() || quickFilter.trim()).toLowerCase();
+  const visibleItems = filterTerm
+    ? items.filter((item) => item.toLowerCase().includes(filterTerm))
+    : items;
+  const filteredSuggestions = suggestions.filter((s) => {
+    if (items.includes(s)) return false;
+    if (!suggestionQuery) return true;
+    return s.toLowerCase().includes(suggestionQuery);
+  });
   const handleAdd = (item) => {
     const trimmed = (item || value).trim();
     if (trimmed && !items.includes(trimmed)) { onAdd(trimmed); setValue(''); setShowSug(false); }
   };
   return (
     <div className="space-y-1.5">
+      {(items.length > 0 || suggestions.length > 0) && (
+        <input
+          type="text"
+          value={quickFilter}
+          onChange={(e) => {
+            setQuickFilter(e.target.value);
+            if (!showSug) setShowSug(true);
+          }}
+          placeholder="Quick filter..."
+          className="w-full px-2.5 py-1.5 text-xs border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-900/10 placeholder:text-slate-300 bg-slate-50/50"
+        />
+      )}
       {items.length > 0 && (
         <div className="flex flex-wrap gap-1">
-          {items.map((item) => (
+          {visibleItems.map((item) => (
             <span key={item} className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium ${chipClass}`}>
               {item}
               <button onClick={() => onRemove(item)} className="hover:opacity-70 ml-0.5"><X size={10} /></button>
             </span>
           ))}
+          {visibleItems.length === 0 && (
+            <span className="text-[11px] text-slate-400 px-1 py-0.5">No matching tags</span>
+          )}
         </div>
       )}
       <div className="relative">
@@ -90,9 +113,9 @@ function TagInput({ items, onAdd, onRemove, placeholder, chipClass, suggestions 
             className="px-3 py-2 bg-slate-800 text-white text-sm rounded-lg hover:bg-slate-700 transition-colors flex items-center"
           ><Plus size={13} /></button>
         </div>
-        {showSug && filtered.length > 0 && (
+        {showSug && filteredSuggestions.length > 0 && (
           <div className="absolute z-20 top-full left-0 right-0 mt-1 bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden max-h-48 overflow-y-auto">
-            {filtered.slice(0, 8).map((s) => (
+            {filteredSuggestions.slice(0, 8).map((s) => (
               <button key={s} onMouseDown={(e) => { e.preventDefault(); handleAdd(s); }}
                 className="w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 transition-colors border-b border-slate-50 last:border-0">
                 {s}
@@ -690,7 +713,7 @@ function ExistingPatientPanel({ onSelect }) {
 // ── Full System Main ──────────────────────────────────────────────
 export default function FullSystem() {
   const navigate = useNavigate();
-  const { t, lang } = useI18n();
+  const { t, lang, setLang } = useI18n();
   const { user, isAuthenticated, logout } = useAuth();
 
   // ── Patient state ──────────────────────────────────────────────
@@ -726,6 +749,7 @@ export default function FullSystem() {
   const [patientTab, setPatientTab] = useState('new'); // 'new' | 'existing'
   const [leftPanelWidth, setLeftPanelWidth] = useState(460);
   const [isResizingPanels, setIsResizingPanels] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
   const [missingRequired, setMissingRequired] = useState({ species: false, weight: false, drugs: false });
   const [validationShakeTick, setValidationShakeTick] = useState(0);
 
@@ -741,6 +765,7 @@ export default function FullSystem() {
   const pollRef = useRef(null);
   const debounceRef = useRef(null);
   const inputPanelsRef = useRef(null);
+  const settingsMenuRef = useRef(null);
 
   // ── Backend polling ────────────────────────────────────────────
   useEffect(() => {
@@ -779,6 +804,21 @@ export default function FullSystem() {
       window.removeEventListener('mouseup', onMouseUp);
     };
   }, [isResizingPanels]);
+
+  useEffect(() => {
+    const onPointerDown = (e) => {
+      if (!settingsMenuRef.current?.contains(e.target)) setSettingsOpen(false);
+    };
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') setSettingsOpen(false);
+    };
+    window.addEventListener('mousedown', onPointerDown);
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      window.removeEventListener('mousedown', onPointerDown);
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, []);
 
   // ── Auto-rerun on patient detail changes ───────────────────────
   useEffect(() => {
@@ -996,29 +1036,11 @@ export default function FullSystem() {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            {user && (
-              <span className="hidden sm:inline text-xs text-slate-500 font-medium">
-                {user.username}
-              </span>
-            )}
-            <button onClick={() => navigate('/patients')}
-              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors">
-              <Users size={14} />
-              {t.fullSystem.patientsNav}
-            </button>
-            <LangToggle />
             {step === 'input' && (drugs.length > 0 || patientName) && (
               <button onClick={handleReset} className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-50 rounded-lg transition-colors" title="Reset">
                 <RotateCcw size={14} />
               </button>
             )}
-            {/* Sign Out */}
-            <button onClick={logout}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium text-slate-500 hover:text-slate-800 hover:bg-slate-50 rounded-lg transition-colors"
-              title="Sign Out">
-              <LogOut size={14} />
-              <span className="hidden sm:inline">Sign out</span>
-            </button>
             {isConnected ? (
               <span className="text-[11px] px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-full font-semibold flex items-center gap-1.5 border border-emerald-100">
                 <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
@@ -1030,6 +1052,74 @@ export default function FullSystem() {
                 Offline
               </span>
             )}
+
+            <div className="relative" ref={settingsMenuRef}>
+              <button
+                onClick={() => setSettingsOpen(v => !v)}
+                className={`p-2 rounded-lg border transition-colors ${
+                  settingsOpen
+                    ? 'text-slate-800 border-slate-300 bg-slate-50'
+                    : 'text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50'
+                }`}
+                title="Settings"
+                aria-label="Settings"
+                aria-expanded={settingsOpen}
+              >
+                <Settings size={15} />
+              </button>
+
+              {settingsOpen && (
+                <div className="absolute right-0 top-full mt-2 w-[230px] bg-white border border-slate-200 rounded-xl shadow-xl p-2 z-40">
+                  <div className="px-2.5 py-2 border-b border-slate-100">
+                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Account</p>
+                    <p className="text-[12px] font-medium text-slate-700 mt-1 truncate">{user?.username || 'User'}</p>
+                  </div>
+
+                  <button
+                    onClick={() => { setSettingsOpen(false); navigate('/patients'); }}
+                    className="w-full mt-1 flex items-center gap-2 px-2.5 py-2 text-[12px] text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors"
+                  >
+                    <Users size={13} />
+                    {t.fullSystem.patientsNav}
+                  </button>
+
+                  <div className="mt-1 px-2.5 py-2 border-t border-slate-100">
+                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">Language</p>
+                    <div className="grid grid-cols-2 gap-1.5">
+                      <button
+                        onClick={() => setLang('ko')}
+                        className={`px-2 py-1.5 text-[11px] rounded-md border transition-colors ${
+                          lang === 'ko'
+                            ? 'bg-slate-900 text-white border-slate-900'
+                            : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                        }`}
+                      >
+                        한국어
+                      </button>
+                      <button
+                        onClick={() => setLang('en')}
+                        className={`px-2 py-1.5 text-[11px] rounded-md border transition-colors ${
+                          lang === 'en'
+                            ? 'bg-slate-900 text-white border-slate-900'
+                            : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                        }`}
+                      >
+                        English
+                      </button>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={logout}
+                    className="w-full mt-1 flex items-center gap-2 px-2.5 py-2 text-[12px] text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors"
+                    title="Sign Out"
+                  >
+                    <LogOut size={13} />
+                    Sign out
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </header>
@@ -1432,7 +1522,7 @@ export default function FullSystem() {
             </div>
 
             {/* Right column — Dosage Summary & Organ Load */}
-            <div className="w-full lg:w-[320px] lg:shrink-0 overflow-y-auto border-t lg:border-t-0 lg:border-l border-slate-200 bg-white order-3">
+            <div className="w-full lg:w-[350px] lg:shrink-0 overflow-y-auto border-t lg:border-t-0 lg:border-l border-slate-200 bg-white order-3">
               <DosageSummaryPanel
                 results={results}
                 drugs={drugs}

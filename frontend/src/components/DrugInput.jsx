@@ -178,22 +178,17 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
             )}
           </div>
         </div>
-        {!expanded && totalDoseMg != null && (
-          <div className={`shrink-0 rounded-lg border px-2.5 py-1.5 text-right min-w-[150px] ${
-            doseStatus === 'above' ? 'bg-red-50 border-red-200' :
-            doseStatus === 'below' ? 'bg-orange-50 border-orange-200' :
-            doseStatus === 'within' ? 'bg-emerald-50 border-emerald-200' :
-            'bg-slate-50 border-slate-200'
-          }`}>
+        {!expanded && (
+          <div className="shrink-0 rounded-lg border border-slate-200 bg-slate-50/70 px-2.5 py-1.5 text-right min-w-[170px]">
             <div className={`text-[14px] font-bold leading-tight ${
               doseStatus === 'above' ? 'text-red-700' :
               doseStatus === 'below' ? 'text-orange-700' :
-              doseStatus === 'within' ? 'text-emerald-700' :
               'text-slate-800'
             }`}>
-              {totalDoseDisplay}
+              {totalDoseDisplay || '—'}
             </div>
             <div className="text-[9px] text-slate-500">Total dose</div>
+            <div className="text-[10px] text-slate-500 mt-0.5">{freq} · {route} · {duration}d</div>
             {tabletsNeeded && selectedStrength && (
               <div className="text-[10px] font-semibold text-slate-600 mt-0.5">
                 {tabletsNeeded.toFixed(2)} tabs × {selectedStrength.value} {selectedStrength.unit}
@@ -276,7 +271,7 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
             </div>
 
             {/* Right: dose-related info */}
-            <div className="rounded-lg border border-slate-200 bg-slate-50/70 p-2.5 space-y-2">
+            <div className="rounded-lg border border-slate-200 bg-white p-2.5 space-y-2">
               <label className="block text-[9px] font-bold text-slate-500 uppercase tracking-widest">Dose</label>
               <div className="flex items-center gap-1.5">
                 <DoseInput
@@ -289,23 +284,28 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
               </div>
 
               {(totalDoseMg || doseNum > 0) ? (
-                <div className={`rounded-md p-2 text-center border ${
-                  doseStatus === 'above' ? 'bg-red-50 border-red-200' :
-                  doseStatus === 'below' ? 'bg-orange-50 border-orange-200' :
-                  doseStatus === 'within' ? 'bg-emerald-50 border-emerald-200' :
-                  'bg-white border-slate-200'
-                }`}>
+                <div className="rounded-md p-2 text-center border border-slate-200 bg-slate-50/60">
                   {totalDoseMg != null ? (
                     <>
                       <div className={`text-[15px] font-bold leading-tight ${
                         doseStatus === 'above' ? 'text-red-700' :
                         doseStatus === 'below' ? 'text-orange-700' :
-                        doseStatus === 'within' ? 'text-emerald-700' :
                         'text-slate-800'
                       }`}>
                         {totalDoseDisplay}
                       </div>
                       <div className="text-[9px] text-slate-400">Total dose</div>
+                      {doseStatus && (
+                        <div className={`mt-1 inline-flex items-center justify-center rounded-full border px-1.5 py-0.5 text-[9px] font-semibold ${
+                          doseStatus === 'above'
+                            ? 'border-red-200 bg-red-50 text-red-700'
+                            : doseStatus === 'below'
+                            ? 'border-orange-200 bg-orange-50 text-orange-700'
+                            : 'border-slate-200 bg-white text-slate-600'
+                        }`}>
+                          {doseStatus === 'above' ? 'Above range' : doseStatus === 'below' ? 'Below range' : 'In range'}
+                        </div>
+                      )}
                       {tabletsNeeded && (
                         <div className="text-[11px] font-semibold text-slate-600 mt-0.5">
                           {tabletsNeeded.toFixed(2)} tabs × {selectedStrength.value} {selectedStrength.unit}
@@ -363,6 +363,7 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, onUpdateDrug, specie
   const [filterOpen, setFilterOpen] = useState(false);
   const [filters, setFilters] = useState({ class: null, source: null, form: null, hasReversal: false });
   const [collapseSignal, setCollapseSignal] = useState(0);
+  const [collapsedOnFirstSearchOpen, setCollapsedOnFirstSearchOpen] = useState(false);
   const debounceRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -444,10 +445,17 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, onUpdateDrug, specie
 
   useEffect(() => () => { if (debounceRef.current) clearTimeout(debounceRef.current); }, []);
 
+  const handleSearchFocus = () => {
+    if (!collapsedOnFirstSearchOpen) {
+      setCollapseSignal(v => v + 1);
+      setCollapsedOnFirstSearchOpen(true);
+    }
+    if (!filterOpen && (results.length > 0 || hasActiveFilters)) setShowDropdown(true);
+  };
+
   const handleAddDrug = (drug) => {
     if (selectedIds.has(drug.id)) return;
     onAddDrug(drug);
-    setCollapseSignal(v => v + 1);
     setQuery(''); setResults([]); setShowDropdown(false);
     inputRef.current?.focus();
   };
@@ -457,7 +465,6 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, onUpdateDrug, specie
     const unknown = createUnknownDrug(query.trim());
     if (!selectedIds.has(unknown.id)) {
       onAddDrug(unknown);
-      setCollapseSignal(v => v + 1);
     }
     setQuery(''); setResults([]); setShowDropdown(false);
   };
@@ -477,7 +484,7 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, onUpdateDrug, specie
             type="text"
             value={query}
             onChange={handleQueryChange}
-            onFocus={() => { if (!filterOpen && (results.length > 0 || hasActiveFilters)) setShowDropdown(true); }}
+            onFocus={handleSearchFocus}
             onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
             placeholder={t.drugInput.searchPlaceholder}
             className="flex-1 px-3 py-2.5 text-sm bg-transparent focus:outline-none placeholder:text-slate-300"
