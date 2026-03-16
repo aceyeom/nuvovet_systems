@@ -14,6 +14,12 @@ export interface VisitRecord {
   date: string;         // ISO 8601
   drugs: string[];      // drug_id[]
   dur_summary: string;  // overall_risk value from DUR result
+  prescribed_drugs?: {
+    id: string;
+    name: string;
+    regimen?: string;
+    note?: string;
+  }[];
 }
 
 export interface PatientProfile {

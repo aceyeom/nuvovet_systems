@@ -959,6 +959,15 @@ export default function FullSystem() {
       date: new Date().toISOString(),
       drugs: drugs.map((d) => d.id),
       dur_summary: results?.overallSeverity?.label || 'Unknown',
+      prescribed_drugs: drugs.map((d) => {
+        const regimenParts = [d.freq, d.route, d.prescriptionDays ? `${d.prescriptionDays}d` : null].filter(Boolean);
+        return {
+          id: d.id,
+          name: d.name || d.id,
+          regimen: regimenParts.length > 0 ? regimenParts.join(' · ') : undefined,
+          note: d.memo?.trim() || undefined,
+        };
+      }),
     });
     handleSavePatient();
   };

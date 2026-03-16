@@ -163,7 +163,21 @@ function PatientDetail({ patient, onClose, onUpdate, onDelete, onStartVisit }) {
                         <SeverityDot severity={visit.dur_summary} />
                       </div>
                       {visit.drugs?.length > 0 && (
-                        <p className="text-[11px] text-slate-400 mt-0.5">{visit.drugs.join(', ')}</p>
+                        <div className="mt-1 space-y-1">
+                          {Array.isArray(visit.prescribed_drugs) && visit.prescribed_drugs.length > 0 ? (
+                            visit.prescribed_drugs.map((rx, idx) => (
+                              <div key={`${rx.id}-${idx}`} className="text-[11px] text-slate-500 leading-relaxed">
+                                <p className="text-slate-600">
+                                  {rx.name}
+                                  {rx.regimen ? ` · ${rx.regimen}` : ''}
+                                </p>
+                                {rx.note && <p className="text-slate-400">Note: {rx.note}</p>}
+                              </div>
+                            ))
+                          ) : (
+                            <p className="text-[11px] text-slate-400">{visit.drugs.join(', ')}</p>
+                          )}
+                        </div>
                       )}
                     </div>
                   </div>

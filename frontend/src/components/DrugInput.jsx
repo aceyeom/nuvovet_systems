@@ -97,6 +97,7 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
 
   // Duration
   const [duration, setDuration] = useState(drug.prescriptionDays || 7);
+  const [memo, setMemo] = useState(drug.memo || '');
 
   // Dose state — pre-fill with species default
   const defaultDose = drug.defaultDose?.[species] || '';
@@ -140,11 +141,12 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
       route,
       freq,
       prescriptionDays: duration,
+      memo,
       doseStatus,
       _selectedStrengthIdx: selectedStrengthIdx,
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dosePerKg, route, freq, duration, selectedStrengthIdx]);
+  }, [dosePerKg, route, freq, duration, memo, selectedStrengthIdx]);
 
   const inputBorderClass = doseStatus === 'above'
     ? 'border-red-400 focus:ring-red-200'
@@ -179,21 +181,23 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
           </div>
         </div>
         {!expanded && (
-          <div className="shrink-0 rounded-lg border border-slate-200 bg-slate-50/70 px-2.5 py-1.5 text-right min-w-[170px]">
-            <div className={`text-[14px] font-bold leading-tight ${
-              doseStatus === 'above' ? 'text-red-700' :
-              doseStatus === 'below' ? 'text-orange-700' :
-              'text-slate-800'
-            }`}>
-              {totalDoseDisplay || '—'}
-            </div>
-            <div className="text-[9px] text-slate-500">Total dose</div>
-            <div className="text-[10px] text-slate-500 mt-0.5">{freq} · {route} · {duration}d</div>
-            {tabletsNeeded && selectedStrength && (
-              <div className="text-[10px] font-semibold text-slate-600 mt-0.5">
-                {tabletsNeeded.toFixed(2)} tabs × {selectedStrength.value} {selectedStrength.unit}
+          <div className="shrink-0 min-w-[170px] text-right">
+            <div className="rounded-lg border border-slate-200 bg-slate-50/70 px-2.5 py-1.5">
+              <div className={`text-[14px] font-bold leading-tight ${
+                doseStatus === 'above' ? 'text-red-700' :
+                doseStatus === 'below' ? 'text-orange-700' :
+                'text-slate-800'
+              }`}>
+                {totalDoseDisplay || '—'}
               </div>
-            )}
+              <div className="text-[9px] text-slate-500">Total dose</div>
+              {tabletsNeeded && selectedStrength && (
+                <div className="text-[10px] font-semibold text-slate-600 mt-0.5">
+                  {tabletsNeeded.toFixed(2)} tabs × {selectedStrength.value} {selectedStrength.unit}
+                </div>
+              )}
+            </div>
+            <div className="mt-1 text-[10px] text-slate-500">{freq} · {route} · {duration}d</div>
           </div>
         )}
         <div className="flex items-center gap-1 shrink-0">
@@ -240,7 +244,7 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
                 </div>
               )}
 
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-3 gap-2">
                 <div>
                   <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Route</label>
                   <select value={route} onChange={e => setRoute(e.target.value)}
@@ -255,17 +259,27 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
                     {FREQ_OPTIONS.map(f => <option key={f}>{f}</option>)}
                   </select>
                 </div>
+                <div>
+                  <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Duration (days)</label>
+                  <input
+                    type="number"
+                    value={duration}
+                    onChange={e => setDuration(parseInt(e.target.value) || 1)}
+                    min={1}
+                    max={365}
+                    className="w-full px-2.5 py-1.5 text-[12px] border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white text-slate-700"
+                  />
+                </div>
               </div>
 
               <div>
-                <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Duration (days)</label>
-                <input
-                  type="number"
-                  value={duration}
-                  onChange={e => setDuration(parseInt(e.target.value) || 1)}
-                  min={1}
-                  max={365}
-                  className="w-full px-2.5 py-1.5 text-[12px] border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white text-slate-700"
+                <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Memo</label>
+                <textarea
+                  value={memo}
+                  onChange={(e) => setMemo(e.target.value)}
+                  placeholder="Qualitative notes (e.g., with food, monitor appetite, owner counseling)..."
+                  rows={2}
+                  className="w-full px-2.5 py-1.5 text-[12px] border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white text-slate-700 placeholder:text-slate-300 resize-y min-h-[54px]"
                 />
               </div>
             </div>
@@ -366,6 +380,7 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, onUpdateDrug, specie
   const [collapsedOnFirstSearchOpen, setCollapsedOnFirstSearchOpen] = useState(false);
   const debounceRef = useRef(null);
   const inputRef = useRef(null);
+  const suppressNextFocusCollapseRef = useRef(false);
 
   const selectedIds = new Set(drugs.map((d) => d.id));
   const activeFilterCount = [filters.class, filters.source, filters.form, filters.hasReversal].filter(Boolean).length;
@@ -446,6 +461,11 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, onUpdateDrug, specie
   useEffect(() => () => { if (debounceRef.current) clearTimeout(debounceRef.current); }, []);
 
   const handleSearchFocus = () => {
+    if (suppressNextFocusCollapseRef.current) {
+      suppressNextFocusCollapseRef.current = false;
+      if (!filterOpen && (results.length > 0 || hasActiveFilters)) setShowDropdown(true);
+      return;
+    }
     if (!collapsedOnFirstSearchOpen) {
       setCollapseSignal(v => v + 1);
       setCollapsedOnFirstSearchOpen(true);
@@ -457,6 +477,7 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, onUpdateDrug, specie
     if (selectedIds.has(drug.id)) return;
     onAddDrug(drug);
     setQuery(''); setResults([]); setShowDropdown(false);
+    suppressNextFocusCollapseRef.current = true;
     inputRef.current?.focus();
   };
 
@@ -467,6 +488,8 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, onUpdateDrug, specie
       onAddDrug(unknown);
     }
     setQuery(''); setResults([]); setShowDropdown(false);
+    suppressNextFocusCollapseRef.current = true;
+    inputRef.current?.focus();
   };
 
   const sourceLabel = (src) => SOURCE_OPTIONS.find(s => s.value === src)?.label || src;
