@@ -38,124 +38,79 @@ const LEGEND_ITEMS = [
   { label: '86–100', className: 'bg-red-700' },
 ];
 
-// ── Dog SVG paths — side-profile facing left ───────────────────────
-const DOG_BODY = `
-  M 58,82
-  C 62,72 71,66 83,62
-  L 88,58
-  L 86,49
-  L 90,40
-  L 96,46
-  L 101,36
-  L 107,44
-  L 112,53
-  C 133,56 163,57 190,56
-  C 216,55 236,61 249,75
-  C 256,83 259,93 257,104
-  C 256,111 259,118 266,123
-  C 272,127 276,133 273,136
-  C 267,139 260,136 254,130
-  C 248,124 244,119 238,117
-  L 232,137
-  C 232,141 226,143 220,142
-  C 214,141 211,138 211,133
-  L 213,113
-  C 205,116 192,119 177,120
-  L 175,137
-  C 175,141 170,143 164,143
-  C 159,143 155,140 155,136
-  L 156,120
-  L 130,121
-  L 128,138
-  C 128,142 122,144 116,143
-  C 110,142 107,139 107,134
-  L 110,113
-  C 102,111 95,108 90,103
-  C 82,97 76,93 68,91
-  L 60,90
-  C 56,89 55,86 58,82
-  Z`;
-
-const DOG_ORGANS = {
-  brain: `M 92,54 C 96,49 104,49 109,54 C 113,59 112,66 106,69
-    C 100,71 93,68 90,62 C 88,59 89,56 92,54 Z`,
-  heart: `M 121,79 C 125,73 132,72 137,76 C 141,80 142,87 138,92
-    C 134,97 126,98 121,94 C 117,90 117,84 121,79 Z`,
-  liver: `M 146,82 C 154,76 167,76 177,80 C 184,84 186,91 182,97
-    C 178,103 166,105 155,102 C 146,99 141,93 142,88 C 142,85 144,83 146,82 Z`,
-  kidney: `M 171,84 C 177,79 187,79 195,83 C 201,87 202,94 198,99
-    C 194,104 184,105 176,102 C 169,99 166,93 167,88 C 167,86 169,85 171,84 Z`,
-  blood: `M 111,82 L 136,82 L 161,83 L 186,85 L 208,88
-    M 141,85 L 138,94 M 166,86 L 163,96 M 191,88 L 188,97`,
+// ── Image-based anatomy overlays (normalized coordinates: 0..1) ──
+const ANATOMY_IMAGE_CONFIG = {
+  dog: {
+    src: '/anatomy/dog-outline.png',
+    alt: 'Dog side profile anatomy',
+    aspectRatio: '485 / 385',
+    scale: 1.34,
+    offsetX: -0.5,
+    offsetY: -6.5,
+    mdr1: { x: 0.18, y: 0.27 },
+    organs: {
+      brain:  { x: 0.19, y: 0.31, size: 0.18, hit: 0.2 },
+      heart:  { x: 0.33, y: 0.54, size: 0.17, hit: 0.19 },
+      liver:  { x: 0.47, y: 0.56, size: 0.2, hit: 0.22 },
+      kidney: { x: 0.59, y: 0.56, size: 0.17, hit: 0.19 },
+      blood:  { x: 0.46, y: 0.53, size: 0.56, hit: 0.6 },
+    },
+    labels: {
+      brain:  { x: 0.19, y: 0.25 },
+      heart:  { x: 0.33, y: 0.48 },
+      liver:  { x: 0.47, y: 0.49 },
+      kidney: { x: 0.59, y: 0.49 },
+    },
+  },
+  cat: {
+    src: '/anatomy/cat-outline.png',
+    alt: 'Cat side profile anatomy',
+    aspectRatio: '379 / 199',
+    scale: 1.17,
+    offsetX: 0,
+    offsetY: -1.2,
+    mdr1: { x: 0.20, y: 0.35 },
+    organs: {
+      brain:  { x: 0.21, y: 0.37, size: 0.16, hit: 0.18 },
+      heart:  { x: 0.38, y: 0.56, size: 0.16, hit: 0.18 },
+      liver:  { x: 0.52, y: 0.57, size: 0.19, hit: 0.21 },
+      kidney: { x: 0.63, y: 0.57, size: 0.16, hit: 0.18 },
+      blood:  { x: 0.49, y: 0.54, size: 0.52, hit: 0.56 },
+    },
+    labels: {
+      brain:  { x: 0.21, y: 0.33 },
+      heart:  { x: 0.38, y: 0.51 },
+      liver:  { x: 0.52, y: 0.52 },
+      kidney: { x: 0.63, y: 0.52 },
+    },
+  },
 };
 
-// Dog organ label positions
-const DOG_ORGAN_LABELS = {
-  brain:  { x: 100, y: 50 },
-  heart:  { x: 130, y: 78 },
-  liver:  { x: 162, y: 81 },
-  kidney: { x: 186, y: 82 },
-};
+const HEAT_ORGANS = ['brain', 'heart', 'liver', 'kidney', 'blood'];
 
-// ── Cat SVG paths — side-profile facing left ───────────────────────
-const CAT_BODY = `
-  M 62,89
-  C 68,80 77,74 89,71
-  L 92,63
-  L 88,52
-  L 93,43
-  L 99,50
-  L 104,40
-  L 110,47
-  L 114,58
-  C 132,61 155,62 179,61
-  C 201,60 219,64 233,72
-  C 243,79 251,88 256,98
-  C 259,105 260,112 258,116
-  C 256,121 258,124 263,126
-  C 269,128 274,132 273,136
-  C 268,139 261,138 256,134
-  C 250,130 244,126 238,123
-  L 236,138
-  C 236,142 230,144 224,143
-  C 218,142 215,139 215,134
-  L 216,116
-  C 207,118 194,120 181,121
-  L 180,137
-  C 180,141 174,143 168,143
-  C 162,143 159,140 159,135
-  L 160,121
-  C 150,121 141,121 132,120
-  L 130,138
-  C 130,142 124,144 118,143
-  C 112,142 109,139 109,134
-  L 111,116
-  C 102,113 95,109 90,104
-  C 83,99 76,95 69,93
-  L 63,92
-  C 59,91 58,89 62,89
-  Z`;
+function hexToRgba(hex, alpha) {
+  if (!hex || typeof hex !== 'string' || !hex.startsWith('#')) {
+    return `rgba(148, 163, 184, ${alpha})`;
+  }
+  const raw = hex.replace('#', '');
+  const full = raw.length === 3
+    ? raw.split('').map((c) => c + c).join('')
+    : raw;
 
-const CAT_ORGANS = {
-  brain: `M 94,55 C 98,50 105,50 110,54 C 114,58 114,65 109,68
-    C 103,71 96,69 93,63 C 91,60 91,57 94,55 Z`,
-  heart: `M 122,80 C 126,74 133,73 138,77 C 142,81 143,88 139,93
-    C 135,97 127,98 122,95 C 118,91 118,85 122,80 Z`,
-  liver: `M 147,83 C 155,78 167,78 177,82 C 184,86 186,93 182,98
-    C 178,104 166,106 155,103 C 147,100 142,94 143,89 C 143,86 145,84 147,83 Z`,
-  kidney: `M 172,85 C 178,80 188,80 196,84 C 201,88 203,95 199,100
-    C 195,105 186,106 178,103 C 171,100 168,94 169,89 C 169,87 170,86 172,85 Z`,
-  blood: `M 111,84 L 136,84 L 161,85 L 186,87 L 207,90
-    M 141,87 L 138,95 M 166,88 L 163,96 M 190,90 L 188,98`,
-};
+  if (full.length !== 6) {
+    return `rgba(148, 163, 184, ${alpha})`;
+  }
 
-// Cat organ label positions
-const CAT_ORGAN_LABELS = {
-  brain:  { x: 102, y: 51 },
-  heart:  { x: 131, y: 79 },
-  liver:  { x: 162, y: 82 },
-  kidney: { x: 186, y: 83 },
-};
+  const r = Number.parseInt(full.slice(0, 2), 16);
+  const g = Number.parseInt(full.slice(2, 4), 16);
+  const b = Number.parseInt(full.slice(4, 6), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
+function getHeatOpacity(score) {
+  if (score == null) return 0;
+  return Math.min(0.76, 0.18 + score / 140);
+}
 
 // ── Organ load calculation (from OrganLoadIndicator) ─────────────
 function getOrganLoads(drugs, species) {
@@ -340,12 +295,11 @@ export default function AnatomyDiagram({
 }) {
   const [hoveredOrgan, setHoveredOrgan] = useState(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
+  const [imageFailed, setImageFailed] = useState(false);
+  const [imageReady, setImageReady] = useState(false);
   const containerRef = useRef(null);
   const { t } = useI18n();
-
-  const organPaths = species === 'cat' ? CAT_ORGANS : DOG_ORGANS;
-  const bodyPath = species === 'cat' ? CAT_BODY : DOG_BODY;
-  const organLabelPos = species === 'cat' ? CAT_ORGAN_LABELS : DOG_ORGAN_LABELS;
+  const anatomyConfig = species === 'cat' ? ANATOMY_IMAGE_CONFIG.cat : ANATOMY_IMAGE_CONFIG.dog;
 
   const showMdr1 = Boolean(
     mdr1SensitiveDrugs &&
@@ -382,12 +336,14 @@ export default function AnatomyDiagram({
     setHoveredOrgan(null);
   }, []);
 
+  useEffect(() => {
+    setImageFailed(false);
+    setImageReady(false);
+  }, [species]);
+
   if (!species) return null;
 
   const hasData = organScores && Object.values(organScores).some(o => o.finalScore !== null);
-
-  // MDR1 ring position (near brain)
-  const mdr1Pos = species === 'cat' ? { cx: 102, cy: 56 } : { cx: 101, cy: 55 };
 
   return (
     <div ref={containerRef} className="select-none">
@@ -401,68 +357,81 @@ export default function AnatomyDiagram({
         </span>
       </div>
 
-      {/* SVG Diagram */}
+      {/* Image + heatmap diagram */}
       <div className="relative bg-slate-50 rounded-lg border border-slate-100 p-2 mb-2">
-        <svg
-          viewBox="40 -4 240 148"
-          className="w-full"
-          style={{ maxHeight: 160 }}
+        <div
+          className="relative w-full max-h-[220px] overflow-hidden rounded-md bg-slate-100"
+          style={{ aspectRatio: anatomyConfig.aspectRatio }}
           role="img"
           aria-label={`${species} organ burden diagram`}
         >
-          <defs>
-            <pattern id="noDataPattern" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-              <rect width="6" height="6" fill="#f1f5f9" />
-              <line x1="0" y1="0" x2="0" y2="6" stroke="#cbd5e1" strokeWidth="1.5" />
-            </pattern>
-          </defs>
-
-          {/* Body silhouette */}
-          <path
-            d={bodyPath}
-            fill="#f8fafc"
-            stroke="#94a3b8"
-            strokeWidth="1.2"
-            strokeLinejoin="round"
-            strokeLinecap="round"
-          />
-
-          {/* Blood vessels (rendered first, under organs) */}
-          <path
-            d={organPaths.blood}
-            fill="none"
-            stroke={organScores?.blood?.finalScore !== null
-              ? getBurdenColor(organScores.blood.finalScore)
-              : '#e2e8f0'}
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeDasharray="4 3"
-            className="organ-region"
+          <img
+            src={anatomyConfig.src}
+            alt={anatomyConfig.alt}
+            className="absolute inset-0 w-full h-full object-contain select-none"
             style={{
-              transition: 'stroke 400ms ease',
-              opacity: organScores?.blood?.finalScore !== null ? 0.7 : 0.3,
+              transformOrigin: 'center',
+              transform: `translate(${anatomyConfig.offsetX}%, ${anatomyConfig.offsetY}%) scale(${anatomyConfig.scale})`,
             }}
-            onMouseEnter={(e) => handleMouseEnter('blood', e)}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
+            draggable={false}
+            onLoad={() => setImageReady(true)}
+            onError={() => {
+              setImageReady(false);
+              setImageFailed(true);
+            }}
           />
 
-          {/* Solid organs */}
-          {['brain', 'heart', 'liver', 'kidney'].map((organ) => {
+          {/* Heatmap blobs */}
+          {HEAT_ORGANS.map((organ) => {
+            const point = anatomyConfig.organs[organ];
+            if (!point) return null;
+
             const score = organScores?.[organ]?.finalScore ?? null;
-            const fillColor = getBurdenColor(score);
+            const color = getBurdenColor(score);
+            const opacity = getHeatOpacity(score);
+            const isHovered = hoveredOrgan === organ;
 
             return (
-              <path
-                key={organ}
-                d={organPaths[organ]}
-                fill={fillColor}
-                stroke={hoveredOrgan === organ ? '#475569' : '#94a3b8'}
-                strokeWidth={hoveredOrgan === organ ? 1.5 : 0.8}
-                className="organ-region"
+              <div
+                key={`heat-${organ}`}
+                className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 rounded-full transition-all duration-300"
+                style={{
+                  left: `${point.x * 100}%`,
+                  top: `${point.y * 100}%`,
+                  width: `${point.size * 100}%`,
+                  height: `${point.size * 100}%`,
+                  opacity,
+                  background: `radial-gradient(circle, ${hexToRgba(color, 0.74)} 0%, ${hexToRgba(color, 0.32)} 48%, ${hexToRgba(color, 0)} 78%)`,
+                  filter: isHovered ? 'blur(0.5px) saturate(1.15)' : 'blur(1.2px)',
+                  transform: `translate(-50%, -50%) scale(${isHovered ? 1.08 : 1})`,
+                }}
+              />
+            );
+          })}
+
+          {/* Hover hit zones for tooltips */}
+          {HEAT_ORGANS.map((organ) => {
+            const point = anatomyConfig.organs[organ];
+            if (!point) return null;
+
+            return (
+              <button
+                key={`hit-${organ}`}
+                type="button"
+                aria-label={`${organ} region`}
+                className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full border-0 p-0 bg-transparent"
+                style={{
+                  left: `${point.x * 100}%`,
+                  top: `${point.y * 100}%`,
+                  width: `${point.hit * 100}%`,
+                  height: `${point.hit * 100}%`,
+                  outline: 'none',
+                }}
                 onMouseEnter={(e) => handleMouseEnter(organ, e)}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
+                onFocus={(e) => handleMouseEnter(organ, e)}
+                onBlur={handleMouseLeave}
               />
             );
           })}
@@ -470,55 +439,57 @@ export default function AnatomyDiagram({
           {/* MDR1 pulsing ring around brain */}
           {showMdr1 && (
             <>
-              <ellipse
-                cx={mdr1Pos.cx}
-                cy={mdr1Pos.cy}
-                rx="14"
-                ry="12"
-                className="mdr1-ring"
+              <div
+                className="mdr1-ring absolute -translate-x-1/2 -translate-y-1/2 rounded-full"
+                style={{
+                  left: `${anatomyConfig.mdr1.x * 100}%`,
+                  top: `${anatomyConfig.mdr1.y * 100}%`,
+                  width: '11%',
+                  height: '11%',
+                }}
               />
-              <rect
-                x={mdr1Pos.cx - 13}
-                y={mdr1Pos.cy - 18}
-                width="26"
-                height="11"
-                rx="3"
-                fill="#f59e0b"
-                opacity="0.9"
-              />
-              <text
-                x={mdr1Pos.cx}
-                y={mdr1Pos.cy - 10}
-                textAnchor="middle"
-                className="text-[7px] font-bold"
-                fill="white"
+              <span
+                className="absolute -translate-x-1/2 -translate-y-1/2 text-[8px] font-bold text-white bg-amber-500/95 px-1.5 py-0.5 rounded"
+                style={{
+                  left: `${anatomyConfig.mdr1.x * 100}%`,
+                  top: `${(anatomyConfig.mdr1.y - 0.1) * 100}%`,
+                }}
               >
                 MDR1
-              </text>
+              </span>
             </>
           )}
 
           {/* Organ score labels */}
           {['brain', 'heart', 'liver', 'kidney'].map((organ) => {
-            const pos = organLabelPos[organ];
+            const pos = anatomyConfig.labels[organ];
             const score = organScores?.[organ]?.finalScore;
+
             return (
-              <text
+              <span
                 key={`label-${organ}`}
-                x={pos.x}
-                y={pos.y}
-                textAnchor="middle"
-                className="pointer-events-none"
-                fill="#475569"
-                fontSize="7"
-                fontWeight="600"
-                fontFamily="DM Sans, system-ui, sans-serif"
+                className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 text-[10px] font-semibold text-slate-700"
+                style={{
+                  left: `${pos.x * 100}%`,
+                  top: `${pos.y * 100}%`,
+                  textShadow: '0 1px 0 rgba(255,255,255,0.85)',
+                }}
               >
                 {score !== null && score !== undefined ? score : '—'}
-              </text>
+              </span>
             );
           })}
-        </svg>
+        </div>
+
+        {imageFailed && (
+          <div className="mt-1 px-2 py-1 rounded bg-amber-50 border border-amber-200 text-[10px] text-amber-700">
+            Anatomy image is missing. Add {anatomyConfig.src} to render the diagram.
+          </div>
+        )}
+
+        {!imageReady && !imageFailed && (
+          <div className="absolute inset-2 rounded-md bg-white/35 animate-pulse" />
+        )}
 
         {/* Empty state */}
         {!hasData && (
