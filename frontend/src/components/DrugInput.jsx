@@ -79,6 +79,7 @@ function getDoseStatus(doseNum, range) {
 // ── Drug Card ───────────────────────────────────────────────────
 function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSignal }) {
   const hardstop = checkHardstop(drug, species);
+  const hasSeenCollapseSignalRef = useRef(false);
 
   // Formulation state
   const strengths = drug.availableStrengths || [];
@@ -114,8 +115,12 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
     return () => clearTimeout(timer);
   }, []);
 
-  // Auto-collapse when adding a new drug from search
+  // Collapse only after the card has mounted, so a newly added card stays open.
   useEffect(() => {
+    if (!hasSeenCollapseSignalRef.current) {
+      hasSeenCollapseSignalRef.current = true;
+      return;
+    }
     setExpanded(false);
   }, [collapseSignal]);
 
@@ -179,6 +184,12 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
               <span className="text-[10px] text-slate-400">{drug.activeSubstance}</span>
             )}
           </div>
+          {!expanded && (
+            <div className="mt-1.5 space-y-0.5">
+              <p className="text-[11px] text-slate-500 font-medium">{freq} · {route} · {duration}d</p>
+              {memo && <p className="text-[11px] text-slate-400 italic leading-snug">{memo}</p>}
+            </div>
+          )}
         </div>
         {!expanded && (
           <div className="shrink-0 min-w-[170px] text-right">
@@ -197,7 +208,6 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
                 </div>
               )}
             </div>
-            <div className="mt-1 text-[10px] text-slate-500">{freq} · {route} · {duration}d</div>
           </div>
         )}
         <div className="flex items-center gap-1 shrink-0">
@@ -432,15 +442,11 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, onUpdateDrug, specie
 
   const handleQueryChange = useCallback((e) => {
     const val = e.target.value;
-    // Collapse existing cards only when a new search actually starts.
-    if (drugs.length > 0 && !query.trim() && val.trim()) {
-      setCollapseSignal((v) => v + 1);
-    }
     setQuery(val);
     if (val.trim()) setFilterOpen(false); // hide filters when typing
     scheduleSearch(val, filters);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters, doSearch, drugs.length, query]);
+  }, [filters, doSearch]);
 
   const handleFilterToggle = (key, val) => {
     const newF = { ...filters, [key]: filters[key] === val ? null : val };
@@ -468,6 +474,7 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, onUpdateDrug, specie
 
   const handleAddDrug = (drug) => {
     if (selectedIds.has(drug.id)) return;
+    setCollapseSignal((v) => v + 1);
     onAddDrug(drug);
     setQuery(''); setResults([]); setShowDropdown(false);
     inputRef.current?.focus();
@@ -477,6 +484,7 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, onUpdateDrug, specie
     if (!query.trim()) return;
     const unknown = createUnknownDrug(query.trim());
     if (!selectedIds.has(unknown.id)) {
+      setCollapseSignal((v) => v + 1);
       onAddDrug(unknown);
     }
     setQuery(''); setResults([]); setShowDropdown(false);
