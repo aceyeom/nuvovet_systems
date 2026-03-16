@@ -106,6 +106,12 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
 
   // Expanded state
   const [expanded, setExpanded] = useState(true);
+  const [isEntering, setIsEntering] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsEntering(false), 20);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Auto-collapse when adding a new drug from search
   useEffect(() => {
@@ -122,6 +128,9 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
   // Tablets / volume needed
   const tabletsNeeded = totalDoseMg && selectedStrength
     ? +(totalDoseMg / selectedStrength.value).toFixed(2)
+    : null;
+  const totalDoseDisplay = totalDoseMg != null
+    ? `${totalDoseMg.toFixed(totalDoseMg < 1 ? 3 : totalDoseMg < 10 ? 2 : 1)} mg`
     : null;
 
   // Push updates to parent whenever key state changes
@@ -144,7 +153,9 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
     : 'border-slate-200 focus:ring-slate-900/10';
 
   return (
-    <div className={`bg-white border rounded-xl shadow-sm overflow-hidden ${hardstop ? 'border-red-300' : doseStatus === 'above' ? 'border-red-200' : doseStatus === 'below' ? 'border-orange-200' : 'border-slate-200'}`}>
+    <div className={`bg-white border rounded-xl shadow-sm overflow-hidden transition-all duration-300 ease-out ${
+      isEntering ? 'opacity-0 translate-y-1 scale-[0.995]' : 'opacity-100 translate-y-0 scale-100'
+    } ${hardstop ? 'border-red-300' : doseStatus === 'above' ? 'border-red-200' : doseStatus === 'below' ? 'border-orange-200' : 'border-slate-200'}`}>
 
       {/* Hardstop banner */}
       {hardstop && (
@@ -167,6 +178,29 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
             )}
           </div>
         </div>
+        {!expanded && totalDoseMg != null && (
+          <div className={`shrink-0 rounded-lg border px-2.5 py-1.5 text-right min-w-[150px] ${
+            doseStatus === 'above' ? 'bg-red-50 border-red-200' :
+            doseStatus === 'below' ? 'bg-orange-50 border-orange-200' :
+            doseStatus === 'within' ? 'bg-emerald-50 border-emerald-200' :
+            'bg-slate-50 border-slate-200'
+          }`}>
+            <div className={`text-[14px] font-bold leading-tight ${
+              doseStatus === 'above' ? 'text-red-700' :
+              doseStatus === 'below' ? 'text-orange-700' :
+              doseStatus === 'within' ? 'text-emerald-700' :
+              'text-slate-800'
+            }`}>
+              {totalDoseDisplay}
+            </div>
+            <div className="text-[9px] text-slate-500">Total dose</div>
+            {tabletsNeeded && selectedStrength && (
+              <div className="text-[10px] font-semibold text-slate-600 mt-0.5">
+                {tabletsNeeded.toFixed(2)} tabs × {selectedStrength.value} {selectedStrength.unit}
+              </div>
+            )}
+          </div>
+        )}
         <div className="flex items-center gap-1 shrink-0">
           <button onClick={() => setExpanded(v => !v)}
             className="p-1 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
@@ -179,19 +213,11 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
         </div>
       </div>
 
-      {/* Dose summary bar (always visible) */}
-      {!expanded && (doseNum > 0 || totalDoseMg) && (
-        <div className={`px-3.5 pb-2.5 flex items-center gap-2.5 text-[11px] ${doseStatus === 'above' ? 'text-red-700' : doseStatus === 'below' ? 'text-orange-700' : 'text-slate-600'}`}>
-          {doseNum > 0 && <span className="font-semibold">{doseNum} mg/kg</span>}
-          {totalDoseMg && <span>= <span className="font-semibold">{totalDoseMg.toFixed(2)} mg</span></span>}
-          {doseStatus === 'above' && <span className="font-medium">↑ Above range</span>}
-          {doseStatus === 'below' && <span className="font-medium">↓ Below range</span>}
-        </div>
-      )}
-
       {/* Expanded content */}
-      {expanded && (
-        <div className="px-3.5 pb-3 pt-2.5 border-t border-slate-100">
+      <div className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out ${
+        expanded ? 'max-h-[560px] opacity-100' : 'max-h-0 opacity-0'
+      }`}>
+        <div className={`px-3.5 pb-3 pt-2.5 ${expanded ? 'border-t border-slate-100' : ''}`}>
           <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_220px] gap-3">
 
             {/* Left: regimen controls (compact) */}
@@ -277,12 +303,12 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
                         doseStatus === 'within' ? 'text-emerald-700' :
                         'text-slate-800'
                       }`}>
-                        {totalDoseMg.toFixed(totalDoseMg < 1 ? 3 : totalDoseMg < 10 ? 2 : 1)} mg
+                        {totalDoseDisplay}
                       </div>
                       <div className="text-[9px] text-slate-400">Total dose</div>
                       {tabletsNeeded && (
                         <div className="text-[11px] font-semibold text-slate-600 mt-0.5">
-                          {tabletsNeeded} tabs × {selectedStrength.value} {selectedStrength.unit}
+                          {tabletsNeeded.toFixed(2)} tabs × {selectedStrength.value} {selectedStrength.unit}
                         </div>
                       )}
                     </>
@@ -308,7 +334,7 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
             </div>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }
@@ -535,8 +561,9 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, onUpdateDrug, specie
         )}
 
         {/* ── Compact filter panel — attached below search bar ── */}
-        {filterOpen && (
-          <div className="border border-slate-200 border-t-0 rounded-b-xl bg-white overflow-hidden shadow-sm">
+        <div className={`border border-slate-200 border-t-0 rounded-b-xl bg-white overflow-hidden shadow-sm transition-[max-height,opacity] duration-300 ease-in-out ${
+          filterOpen ? 'max-h-[720px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none border-transparent shadow-none'
+        }`}>
 
             {/* Active chips */}
             {hasActiveFilters && (
@@ -630,7 +657,7 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, onUpdateDrug, specie
               </div>
             </div>
           </div>
-        )}
+        </div>
       </div>
 
       {/* Selected drug cards */}

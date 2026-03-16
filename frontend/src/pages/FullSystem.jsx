@@ -398,7 +398,7 @@ function LoadPatientModal({ onClose, onSelect }) {
 }
 
 // ── Editable Patient Summary (left col on results) ────────────────
-function PatientEditPanel({ patient, drugs, results, onUpdate }) {
+function PatientEditPanel({ patient, drugs, results, onUpdate, conditionSuggestions = [], allergySuggestions = [] }) {
   const RENAL_OPTIONS = ['Unknown','Normal','Mild impairment','Moderate impairment','Severe impairment'];
   const HEPATIC_OPTIONS = RENAL_OPTIONS;
   const [editing, setEditing] = useState(null); // field name being edited
@@ -466,7 +466,7 @@ function PatientEditPanel({ patient, drugs, results, onUpdate }) {
             onRemove={(c) => onUpdate({ conditions: (patient.conditions||[]).filter(x => x !== c) })}
             placeholder="Add condition..."
             chipClass="bg-red-50 text-red-700 border border-red-100"
-            suggestions={[]}
+            suggestions={conditionSuggestions}
           />
         </div>
       )}
@@ -480,7 +480,7 @@ function PatientEditPanel({ patient, drugs, results, onUpdate }) {
             onRemove={(a) => onUpdate({ allergies: (patient.allergies||[]).filter(x => x !== a) })}
             placeholder="Add allergy..."
             chipClass="bg-amber-50 text-amber-700 border border-amber-100"
-            suggestions={[]}
+            suggestions={allergySuggestions}
           />
         </div>
       )}
@@ -513,75 +513,58 @@ function DosageSummaryPanel({ results, drugs, species, patientInfo, onUpdateDrug
     <div className="p-4 space-y-4">
       <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest">Dosage Summary</h3>
 
-      {drugs.map((drug) => {
-        const dosePerKg = parseFloat(drug.dosePerKg) || 0;
-        const weight = patientInfo?.weight || 0;
-        const totalMg = dosePerKg > 0 && weight > 0 ? +(dosePerKg * weight).toFixed(2) : null;
-        const range = drug.doseRange?.[species];
-        const status = drug.doseStatus || (range && dosePerKg > 0
-          ? dosePerKg < range[0] ? 'below' : dosePerKg > range[1] ? 'above' : 'within'
-          : null);
+      {drugs.length > 0 ? (
+        <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+          {drugs.map((drug, idx) => {
+            const dosePerKg = parseFloat(drug.dosePerKg) || 0;
+            const weight = patientInfo?.weight || 0;
+            const totalMg = dosePerKg > 0 && weight > 0 ? +(dosePerKg * weight).toFixed(2) : null;
+            const range = drug.doseRange?.[species];
+            const status = drug.doseStatus || (range && dosePerKg > 0
+              ? dosePerKg < range[0] ? 'below' : dosePerKg > range[1] ? 'above' : 'within'
+              : null);
 
-        const statusColors = {
-          within: 'bg-emerald-50 border-emerald-200 text-emerald-700',
-          below:  'bg-orange-50 border-orange-200 text-orange-700',
-          above:  'bg-red-50 border-red-200 text-red-700',
-        };
-        const indicator = { within: '●', below: '↓', above: '↑' };
+            const statusTone = status === 'above'
+              ? 'text-red-600'
+              : status === 'below'
+              ? 'text-orange-600'
+              : status === 'within'
+              ? 'text-emerald-600'
+              : 'text-slate-300';
 
-        return (
-          <div key={drug.id} className={`rounded-xl border px-3 py-2.5 shadow-sm ${status ? statusColors[status] : 'bg-white border-slate-200'}`}>
-            <div className="flex items-start justify-between gap-2 mb-1.5">
-              <p className="text-[13px] font-semibold text-slate-900 leading-tight">{drug.name}</p>
-              {status && (
-                <span className={`text-[11px] font-bold px-1.5 py-0.5 rounded-full border ${statusColors[status]}`}>
-                  {indicator[status]}
-                </span>
-              )}
-            </div>
+            const statusLabel = status === 'above'
+              ? 'Above range'
+              : status === 'below'
+              ? 'Below range'
+              : status === 'within'
+              ? 'Within range'
+              : null;
 
-            {dosePerKg > 0 && (
-              <div className="space-y-1">
-                <div className="flex justify-between text-[12px]">
-                  <span className="text-slate-500">Dose</span>
-                  <span className="font-semibold text-slate-800">{dosePerKg} mg/kg</span>
+            return (
+              <div key={drug.id} className={`px-3 py-2 ${idx !== drugs.length - 1 ? 'border-b border-slate-100' : ''}`}>
+                <div className="flex items-center gap-2">
+                  <span className={`text-[10px] leading-none ${statusTone}`}>●</span>
+                  <p className="text-[12px] font-semibold text-slate-900 truncate">{drug.name}</p>
+                  {statusLabel && (
+                    <span className={`ml-auto text-[10px] font-medium ${statusTone}`}>{statusLabel}</span>
+                  )}
                 </div>
-                {totalMg && (
-                  <div className="flex justify-between text-[12px]">
-                    <span className="text-slate-500">Total</span>
-                    <span className="font-semibold text-slate-800">{totalMg} mg</span>
-                  </div>
-                )}
-                {range && (
-                  <div className="flex justify-between text-[11px]">
-                    <span className="text-slate-400">Rec. range</span>
-                    <span className="text-slate-500">{range[0]}–{range[1]} mg/kg</span>
-                  </div>
-                )}
+
+                <div className="mt-1 flex flex-wrap items-center gap-x-2.5 gap-y-0.5 text-[11px] text-slate-500">
+                  {dosePerKg > 0 && <span>Dose {dosePerKg} mg/kg</span>}
+                  {totalMg && <span>Total {totalMg} mg</span>}
+                  {range && <span>Range {range[0]}–{range[1]} mg/kg</span>}
+                  {drug.freq && (
+                    <span>
+                      {drug.freq}{drug.route ? ` · ${drug.route}` : ''}{drug.prescriptionDays ? ` · ${drug.prescriptionDays}d` : ''}
+                    </span>
+                  )}
+                </div>
               </div>
-            )}
-
-            {status === 'below' && range && (
-              <p className="mt-1.5 text-[11px] font-medium text-orange-700">
-                Below recommended range ({range[0]}–{range[1]} mg/kg)
-              </p>
-            )}
-            {status === 'above' && range && (
-              <p className="mt-1.5 text-[11px] font-medium text-red-700">
-                Exceeds recommended range ({range[0]}–{range[1]} mg/kg)
-              </p>
-            )}
-
-            {drug.freq && (
-              <p className="mt-1.5 text-[11px] text-slate-400">
-                {drug.freq}{drug.route ? ` · ${drug.route}` : ''}{drug.prescriptionDays ? ` · ${drug.prescriptionDays}d` : ''}
-              </p>
-            )}
-          </div>
-        );
-      })}
-
-      {drugs.length === 0 && (
+            );
+          })}
+        </div>
+      ) : (
         <p className="text-[12px] text-slate-400 text-center py-4">No drugs selected</p>
       )}
 
@@ -1432,6 +1415,8 @@ export default function FullSystem() {
                 drugs={drugs}
                 results={results}
                 onUpdate={handlePatientEditUpdate}
+                conditionSuggestions={conditionSuggestions}
+                allergySuggestions={allergySuggestions}
               />
             </div>
 

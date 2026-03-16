@@ -530,6 +530,30 @@ def list_breeds(
     """
     db = get_drug_db()
     breed_mdr1: Dict[str, bool] = {}
+    if species:
+        species = species.strip().lower()
+        if species not in {"dog", "cat"}:
+            raise HTTPException(status_code=400, detail="species must be 'dog' or 'cat'")
+
+    def _has_species_profile(raw: Dict[str, Any], sp: str) -> bool:
+        dosage = raw.get("dosage_and_kinetics") or {}
+        d = dosage.get(sp) or {}
+        has_dose = bool(d.get("is_approved")) or bool(d.get("dosage_list"))
+
+        notes = raw.get("species_notes") or {}
+        note_val = notes.get(sp)
+        has_note = isinstance(note_val, str) and bool(note_val.strip())
+
+        precautions = raw.get("precautions") or {}
+        p = precautions.get(sp) or {}
+        has_precaution = isinstance(p, dict) and any(v not in (None, "", False, [], {}) for v in p.values())
+
+        return has_dose or has_note or has_precaution
+
+    species_keywords = {
+        "dog": ["dog", "canine", "개", "견"],
+        "cat": ["cat", "feline", "고양이", "묘"],
+    }
 
     for raw in db.values():
         genetic = raw.get("genetic_sensitivity") or {}
@@ -537,12 +561,24 @@ def list_breeds(
         is_mdr1 = bool(sp_flags.get("mdr1_sensitive"))
         affected = genetic.get("affected_breeds") or []
 
-        # Species filter: skip if this drug only applies to the other species
+        # Species filter: include only entries that have usable profile for selected species.
         if species:
-            dosage = raw.get("dosage_and_kinetics") or {}
-            has_species = bool(dosage.get(species))
-            if not has_species:
-                pass  # Still include breeds since breed list is species-agnostic
+            contraindicated = set(sp_flags.get("species_contraindicated") or [])
+            if f"{species}_all" in contraindicated:
+                continue
+
+            if not _has_species_profile(raw, species):
+                continue
+
+            # Additional cleanup: if genetic evidence explicitly references only the other species,
+            # do not surface those breeds for the selected species.
+            evidence = str(genetic.get("evidence") or "").lower()
+            if evidence:
+                other = "cat" if species == "dog" else "dog"
+                has_species_kw = any(k in evidence for k in species_keywords[species])
+                has_other_kw = any(k in evidence for k in species_keywords[other])
+                if has_other_kw and not has_species_kw:
+                    continue
 
         for breed in affected:
             if not isinstance(breed, str) or not breed.strip():
