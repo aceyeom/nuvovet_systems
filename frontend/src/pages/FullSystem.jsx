@@ -17,6 +17,8 @@ import { EMRImportModal } from '../components/EMRImportModal';
 import { searchPatients, savePatient, addVisitRecord, getAllPatients, sortPatients } from '../lib/patientStorage';
 import { useAuth } from '../context/AuthContext';
 import { OrganLoadIndicator } from '../components/OrganLoadIndicator';
+import AnatomyDiagram from '../components/charts/AnatomyDiagram';
+import { aggregateOrganBurden } from '../components/charts/organBurdenAggregator';
 
 // ── Decimal number input ──────────────────────────────────────────
 function DecimalInput({ value, onChange, onBlur, placeholder, className, min, max }) {
@@ -583,7 +585,19 @@ function DosageSummaryPanel({ results, drugs, species, patientInfo, onUpdateDrug
         <p className="text-[12px] text-slate-400 text-center py-4">No drugs selected</p>
       )}
 
-      {/* Cumulative Organ Load */}
+      {/* Anatomical Organ Burden Diagram */}
+      {species && (
+        <div className="bg-white border border-slate-200 rounded-xl p-3 shadow-sm">
+          <AnatomyDiagram
+            species={species}
+            organScores={aggregateOrganBurden(drugs, species)}
+            patientBreed={patientInfo?.breed}
+            mdr1SensitiveDrugs={drugs.filter(d => d.mdr1Sensitive).map(d => d.id)}
+          />
+        </div>
+      )}
+
+      {/* Cumulative Organ Load (compact numeric view) */}
       <div className="bg-white border border-slate-200 rounded-xl p-3 shadow-sm">
         <OrganLoadIndicator drugs={drugs} patientInfo={patientInfo} species={species} />
       </div>
