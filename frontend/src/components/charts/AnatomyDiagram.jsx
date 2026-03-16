@@ -41,12 +41,10 @@ const LEGEND_ITEMS = [
 // ── Image-based anatomy overlays (normalized coordinates: 0..1) ──
 const ANATOMY_IMAGE_CONFIG = {
   dog: {
-    src: '/anatomy/dog-outline.png',
-    alt: 'Dog side profile anatomy',
-    aspectRatio: '485 / 385',
-    scale: 1.34,
-    offsetX: -0.5,
-    offsetY: -6.5,
+    src: '/anatomy/dog-traced.svg',
+    alt: 'Dog traced anatomy silhouette',
+    width: 485,
+    height: 385,
     mdr1: { x: 0.18, y: 0.27 },
     organs: {
       brain:  { x: 0.19, y: 0.31, size: 0.18, hit: 0.2 },
@@ -63,12 +61,10 @@ const ANATOMY_IMAGE_CONFIG = {
     },
   },
   cat: {
-    src: '/anatomy/cat-outline.png',
-    alt: 'Cat side profile anatomy',
-    aspectRatio: '379 / 199',
-    scale: 1.17,
-    offsetX: 0,
-    offsetY: -1.2,
+    src: '/anatomy/cat-traced.svg',
+    alt: 'Cat traced anatomy silhouette',
+    width: 379,
+    height: 199,
     mdr1: { x: 0.20, y: 0.35 },
     organs: {
       brain:  { x: 0.21, y: 0.37, size: 0.16, hit: 0.18 },
@@ -296,7 +292,6 @@ export default function AnatomyDiagram({
   const [hoveredOrgan, setHoveredOrgan] = useState(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
   const [imageFailed, setImageFailed] = useState(false);
-  const [imageReady, setImageReady] = useState(false);
   const containerRef = useRef(null);
   const { t } = useI18n();
   const anatomyConfig = species === 'cat' ? ANATOMY_IMAGE_CONFIG.cat : ANATOMY_IMAGE_CONFIG.dog;
@@ -338,7 +333,6 @@ export default function AnatomyDiagram({
 
   useEffect(() => {
     setImageFailed(false);
-    setImageReady(false);
   }, [species]);
 
   if (!species) return null;
@@ -359,26 +353,43 @@ export default function AnatomyDiagram({
 
       {/* Image + heatmap diagram */}
       <div className="relative bg-slate-50 rounded-lg border border-slate-100 p-2 mb-2">
-        <div
-          className="relative w-full max-h-[220px] overflow-hidden rounded-md bg-slate-100"
-          style={{ aspectRatio: anatomyConfig.aspectRatio }}
+        <svg
+          className="w-full max-h-[220px] rounded-md bg-slate-100"
+          viewBox={`0 0 ${anatomyConfig.width} ${anatomyConfig.height}`}
           role="img"
           aria-label={`${species} organ burden diagram`}
         >
-          <img
-            src={anatomyConfig.src}
-            alt={anatomyConfig.alt}
-            className="absolute inset-0 w-full h-full object-contain select-none"
-            style={{
-              transformOrigin: 'center',
-              transform: `translate(${anatomyConfig.offsetX}%, ${anatomyConfig.offsetY}%) scale(${anatomyConfig.scale})`,
-            }}
-            draggable={false}
-            onLoad={() => setImageReady(true)}
-            onError={() => {
-              setImageReady(false);
-              setImageFailed(true);
-            }}
+          <defs>
+            {HEAT_ORGANS.map((organ) => {
+              const score = organScores?.[organ]?.finalScore ?? null;
+              const color = getBurdenColor(score);
+              const opacity = getHeatOpacity(score);
+              const gradientId = `heat-${species}-${organ}`;
+
+              return (
+                <radialGradient
+                  key={gradientId}
+                  id={gradientId}
+                  cx="50%"
+                  cy="50%"
+                  r="50%"
+                >
+                  <stop offset="0%" stopColor={hexToRgba(color, 0.8)} stopOpacity={opacity} />
+                  <stop offset="55%" stopColor={hexToRgba(color, 0.45)} stopOpacity={opacity * 0.7} />
+                  <stop offset="100%" stopColor={hexToRgba(color, 0)} stopOpacity="0" />
+                </radialGradient>
+              );
+            })}
+          </defs>
+
+          <image
+            href={anatomyConfig.src}
+            x="0"
+            y="0"
+            width={anatomyConfig.width}
+            height={anatomyConfig.height}
+            preserveAspectRatio="xMidYMid meet"
+            onError={() => setImageFailed(true)}
           />
 
           {/* Heatmap blobs */}
@@ -386,77 +397,76 @@ export default function AnatomyDiagram({
             const point = anatomyConfig.organs[organ];
             if (!point) return null;
 
-            const score = organScores?.[organ]?.finalScore ?? null;
-            const color = getBurdenColor(score);
-            const opacity = getHeatOpacity(score);
-            const isHovered = hoveredOrgan === organ;
+            const cx = point.x * anatomyConfig.width;
+            const cy = point.y * anatomyConfig.height;
+            const r = point.size * anatomyConfig.width * 0.5;
 
             return (
-              <div
+              <circle
                 key={`heat-${organ}`}
-                className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 rounded-full transition-all duration-300"
-                style={{
-                  left: `${point.x * 100}%`,
-                  top: `${point.y * 100}%`,
-                  width: `${point.size * 100}%`,
-                  height: `${point.size * 100}%`,
-                  opacity,
-                  background: `radial-gradient(circle, ${hexToRgba(color, 0.74)} 0%, ${hexToRgba(color, 0.32)} 48%, ${hexToRgba(color, 0)} 78%)`,
-                  filter: isHovered ? 'blur(0.5px) saturate(1.15)' : 'blur(1.2px)',
-                  transform: `translate(-50%, -50%) scale(${isHovered ? 1.08 : 1})`,
-                }}
+                cx={cx}
+                cy={cy}
+                r={r}
+                fill={`url(#heat-${species}-${organ})`}
+                opacity={hoveredOrgan === organ ? 1 : 0.85}
+                style={{ transition: 'opacity 220ms ease' }}
+                pointerEvents="none"
               />
             );
           })}
 
-          {/* Hover hit zones for tooltips */}
+          {/* Hover hit zones */}
           {HEAT_ORGANS.map((organ) => {
             const point = anatomyConfig.organs[organ];
             if (!point) return null;
 
+            const cx = point.x * anatomyConfig.width;
+            const cy = point.y * anatomyConfig.height;
+            const r = point.hit * anatomyConfig.width * 0.5;
+
             return (
-              <button
+              <circle
                 key={`hit-${organ}`}
-                type="button"
-                aria-label={`${organ} region`}
-                className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full border-0 p-0 bg-transparent"
-                style={{
-                  left: `${point.x * 100}%`,
-                  top: `${point.y * 100}%`,
-                  width: `${point.hit * 100}%`,
-                  height: `${point.hit * 100}%`,
-                  outline: 'none',
-                }}
+                cx={cx}
+                cy={cy}
+                r={r}
+                fill="transparent"
+                className="organ-region"
                 onMouseEnter={(e) => handleMouseEnter(organ, e)}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
-                onFocus={(e) => handleMouseEnter(organ, e)}
-                onBlur={handleMouseLeave}
               />
             );
           })}
 
-          {/* MDR1 pulsing ring around brain */}
+          {/* MDR1 marker */}
           {showMdr1 && (
             <>
-              <div
-                className="mdr1-ring absolute -translate-x-1/2 -translate-y-1/2 rounded-full"
-                style={{
-                  left: `${anatomyConfig.mdr1.x * 100}%`,
-                  top: `${anatomyConfig.mdr1.y * 100}%`,
-                  width: '11%',
-                  height: '11%',
-                }}
+              <circle
+                cx={anatomyConfig.mdr1.x * anatomyConfig.width}
+                cy={anatomyConfig.mdr1.y * anatomyConfig.height}
+                r={anatomyConfig.width * 0.055}
+                className="mdr1-ring-svg"
               />
-              <span
-                className="absolute -translate-x-1/2 -translate-y-1/2 text-[8px] font-bold text-white bg-amber-500/95 px-1.5 py-0.5 rounded"
-                style={{
-                  left: `${anatomyConfig.mdr1.x * 100}%`,
-                  top: `${(anatomyConfig.mdr1.y - 0.1) * 100}%`,
-                }}
+              <rect
+                x={anatomyConfig.mdr1.x * anatomyConfig.width - anatomyConfig.width * 0.045}
+                y={anatomyConfig.mdr1.y * anatomyConfig.height - anatomyConfig.height * 0.13}
+                width={anatomyConfig.width * 0.09}
+                height={anatomyConfig.height * 0.05}
+                rx="3"
+                fill="#f59e0b"
+                opacity="0.92"
+              />
+              <text
+                x={anatomyConfig.mdr1.x * anatomyConfig.width}
+                y={anatomyConfig.mdr1.y * anatomyConfig.height - anatomyConfig.height * 0.095}
+                textAnchor="middle"
+                fill="white"
+                fontSize="8"
+                fontWeight="700"
               >
                 MDR1
-              </span>
+              </text>
             </>
           )}
 
@@ -466,29 +476,25 @@ export default function AnatomyDiagram({
             const score = organScores?.[organ]?.finalScore;
 
             return (
-              <span
+              <text
                 key={`label-${organ}`}
-                className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 text-[10px] font-semibold text-slate-700"
-                style={{
-                  left: `${pos.x * 100}%`,
-                  top: `${pos.y * 100}%`,
-                  textShadow: '0 1px 0 rgba(255,255,255,0.85)',
-                }}
+                x={pos.x * anatomyConfig.width}
+                y={pos.y * anatomyConfig.height}
+                textAnchor="middle"
+                fill="#475569"
+                fontSize="10"
+                fontWeight="600"
               >
                 {score !== null && score !== undefined ? score : '—'}
-              </span>
+              </text>
             );
           })}
-        </div>
+        </svg>
 
         {imageFailed && (
           <div className="mt-1 px-2 py-1 rounded bg-amber-50 border border-amber-200 text-[10px] text-amber-700">
             Anatomy image is missing. Add {anatomyConfig.src} to render the diagram.
           </div>
-        )}
-
-        {!imageReady && !imageFailed && (
-          <div className="absolute inset-2 rounded-md bg-white/35 animate-pulse" />
         )}
 
         {/* Empty state */}

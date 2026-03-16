@@ -322,6 +322,11 @@ input:focus, button:focus-visible {
   50% { opacity: 0.2; transform: translate(-50%, -50%) scale(1.22); }
 }
 
+@keyframes mdr1PulseRingSvg {
+  0%, 100% { stroke-opacity: 0.72; stroke-width: 2.2; }
+  50% { stroke-opacity: 0.2; stroke-width: 3.8; }
+}
+
 .organ-region {
   cursor: pointer;
   transition: fill 400ms ease, opacity 400ms ease;
@@ -335,6 +340,14 @@ input:focus, button:focus-visible {
   border: 2px solid #f59e0b;
   box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.25);
   animation: mdr1PulseRing 2s ease-in-out infinite;
+}
+
+.mdr1-ring-svg {
+  fill: none;
+  stroke: #f59e0b;
+  stroke-width: 2.2;
+  opacity: 0.72;
+  animation: mdr1PulseRingSvg 2s ease-in-out infinite;
 }
 
 /* ── Print styles ──────────────────────────────────────────────── */
