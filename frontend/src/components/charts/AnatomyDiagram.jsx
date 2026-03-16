@@ -31,14 +31,6 @@ const LEVEL_COLORS = {
   critical: 'text-blue-900',
 };
 
-const LEGEND_ITEMS = [
-  { label: '0–20',   en: 'Routine',         ko: '정상',      className: 'bg-blue-100' },
-  { label: '21–40',  en: 'Routine',         ko: '정상',      className: 'bg-blue-200' },
-  { label: '41–60',  en: 'Monitor',         ko: '관찰',      className: 'bg-blue-400' },
-  { label: '61–85',  en: 'Monitor Closely', ko: '주의 관찰', className: 'bg-blue-600' },
-  { label: '86–100', en: 'Monitor Closely', ko: '주의 관찰', className: 'bg-blue-900' },
-];
-
 // ── SVG anatomy overlays (pixel coordinates in species canvas) ─────
 // Dog: viewBox 485×385 — organ shapes positioned to match the traced silhouette
 // Cat: viewBox 379×199 — smaller proportional shapes for feline anatomy
@@ -47,7 +39,7 @@ const LEGEND_ITEMS = [
 // Heart: slightly left of center in the upper chest cavity
 // Liver: large region in the mid-right abdominal cavity, behind the ribcage
 // Kidney: two smaller bean shapes in the mid-to-lower back region
-// Blood: thin circulatory line tracing through the torso
+// Blood: branching vascular line from the brain, over the organs, into all four legs
 
 const ANATOMY_IMAGE_CONFIG = {
   dog: {
@@ -61,7 +53,7 @@ const ANATOMY_IMAGE_CONFIG = {
       heart:  { type: 'path', d: 'M 140 170 C 146 161, 158 160, 164 168 C 168 173, 168 179, 165 185 C 161 192, 155 196, 148 196 C 142 196, 136 192, 133 185 C 131 179, 133 173, 140 170 Z' },
       liver:  { type: 'path', d: 'M 190 178 C 206 168, 232 167, 248 175 C 255 179, 257 188, 253 196 C 248 205, 236 210, 222 211 C 209 212, 197 207, 190 200 C 184 194, 183 185, 190 178 Z' },
       kidney: { type: 'path', d: 'M 271 175 C 278 169, 288 168, 296 172 C 303 175, 308 182, 308 190 C 308 198, 303 204, 296 208 C 288 212, 278 211, 271 207 C 264 202, 261 195, 262 188 C 263 182, 266 178, 271 175 Z' },
-      blood:  { type: 'line', d: 'M 120 180 C 158 173, 210 172, 260 178 C 290 183, 320 192, 350 206', strokeWidth: 8, hitWidth: 24 },
+      blood:  { type: 'line', d: 'M 101 92 C 114 94, 124 101, 133 116 C 150 144, 184 157, 223 161 C 261 165, 299 164, 335 168 C 363 171, 388 177, 410 188 M 203 161 C 189 190, 178 226, 171 301 M 243 163 C 238 193, 235 232, 234 309 M 309 166 C 311 196, 318 233, 329 306 M 352 173 C 362 200, 376 236, 393 302', strokeWidth: 10, hitWidth: 28 },
     },
     // Label anchor positions — outside the body silhouette, connected by leader lines
     labelAnchors: {
@@ -69,7 +61,7 @@ const ANATOMY_IMAGE_CONFIG = {
       heart:  { x: 105, y: 230, organCx: 148, organCy: 180 },
       liver:  { x: 280, y: 230, organCx: 222, organCy: 192 },
       kidney: { x: 340, y: 160, organCx: 286, organCy: 190 },
-      blood:  { x: 380, y: 215, organCx: 340, organCy: 200 },
+      blood:  { x: 390, y: 218, organCx: 330, organCy: 168 },
     },
   },
   cat: {
@@ -79,24 +71,24 @@ const ANATOMY_IMAGE_CONFIG = {
     height: 199,
     mdr1: { x: 0.18, y: 0.245 },
     sections: {
-      brain:  { type: 'path', d: 'M 62 44 C 65 37, 73 34, 81 36 C 88 38, 92 44, 90 51 C 88 57, 83 61, 77 62 C 73 62, 69 60, 66 56 C 63 55, 60 50, 62 44 Z' },
+      brain:  { type: 'path', d: 'M 59 44 C 62 37, 70 34, 78 36 C 85 38, 89 44, 87 51 C 85 57, 80 61, 74 62 C 70 62, 66 60, 63 56 C 60 55, 57 50, 59 44 Z' },
       heart:  { type: 'path', d: 'M 112 96 C 116 89, 126 88, 131 95 C 134 99, 134 105, 132 110 C 129 116, 124 119, 118 120 C 113 120, 108 116, 106 110 C 104 105, 106 99, 112 96 Z' },
       liver:  { type: 'path', d: 'M 149 100 C 163 93, 183 93, 196 99 C 201 102, 203 108, 200 114 C 196 121, 185 125, 174 126 C 163 126, 153 122, 148 116 C 143 111, 143 105, 149 100 Z' },
       kidney: { type: 'path', d: 'M 213 98 C 219 93, 227 92, 234 95 C 240 98, 244 104, 244 110 C 244 117, 240 122, 234 125 C 228 128, 219 127, 213 123 C 208 119, 205 113, 206 107 C 207 102, 209 99, 213 98 Z' },
-      blood:  { type: 'line', d: 'M 96 106 C 124 101, 158 100, 190 103 C 215 106, 238 113, 258 122', strokeWidth: 5, hitWidth: 16 },
+      blood:  { type: 'line', d: 'M 77 49 C 87 53, 96 59, 103 69 C 116 86, 143 94, 172 96 C 201 98, 227 99, 252 103 C 274 106, 295 112, 314 123 M 162 96 C 152 116, 145 138, 141 171 M 188 97 C 185 118, 184 140, 184 173 M 232 101 C 236 121, 242 143, 251 174 M 264 104 C 274 121, 286 142, 298 171', strokeWidth: 7, hitWidth: 20 },
     },
     labelAnchors: {
-      brain:  { x: 40,  y: 25,  organCx: 76,  organCy: 48 },
+      brain:  { x: 40,  y: 25,  organCx: 73,  organCy: 48 },
       heart:  { x: 82,  y: 140, organCx: 118, organCy: 106 },
       liver:  { x: 210, y: 142, organCx: 174, organCy: 112 },
       kidney: { x: 270, y: 88,  organCx: 228, organCy: 110 },
-      blood:  { x: 280, y: 130, organCx: 250, organCy: 118 },
+      blood:  { x: 296, y: 134, organCx: 246, organCy: 102 },
     },
   },
 };
 
 const HEAT_ORGANS = ['brain', 'heart', 'liver', 'kidney', 'blood'];
-const ORGAN_RENDER_ORDER = ['blood', 'brain', 'heart', 'liver', 'kidney'];
+const ORGAN_RENDER_ORDER = ['brain', 'heart', 'liver', 'kidney', 'blood'];
 
 // ── Blue intensity color scale ────────────────────────────────────
 function getSeverityHex(score) {
@@ -564,24 +556,24 @@ export default function AnatomyDiagram({
 
             return (
               <g key={`label-${organ}`} pointerEvents="none">
-                {/* Leader line: 1px thin connecting organ to label */}
+                {/* Leader line from organ to label */}
                 <line
                   x1={anchor.organCx}
                   y1={anchor.organCy}
                   x2={anchor.x}
                   y2={anchor.y}
                   stroke={hovered ? '#334155' : '#94a3b8'}
-                  strokeWidth="1"
+                  strokeWidth="1.6"
                   strokeDasharray="3 2"
-                  opacity={hovered ? 0.8 : 0.5}
+                  opacity={hovered ? 0.9 : 0.65}
                 />
-                {/* Small dot at organ end */}
+                {/* Dot at organ end */}
                 <circle
                   cx={anchor.organCx}
                   cy={anchor.organCy}
-                  r="2"
+                  r="3"
                   fill={hovered ? '#334155' : '#94a3b8'}
-                  opacity={hovered ? 0.8 : 0.5}
+                  opacity={hovered ? 0.9 : 0.65}
                 />
                 {/* Full label text */}
                 <text
@@ -589,9 +581,13 @@ export default function AnatomyDiagram({
                   y={anchor.y}
                   textAnchor={anchor.x < anatomyConfig.width / 2 ? 'end' : 'start'}
                   fill={hovered ? '#0f172a' : '#475569'}
-                  fontSize={hovered ? '10' : '9'}
-                  fontWeight="600"
+                  fontSize={hovered ? '14' : '12.5'}
+                  fontWeight="700"
                   fontFamily="system-ui, -apple-system, sans-serif"
+                  stroke="rgba(255,255,255,0.92)"
+                  strokeWidth="2.5"
+                  paintOrder="stroke"
+                  letterSpacing="0.2"
                 >
                   {organLabel.ko}
                 </text>
@@ -613,24 +609,21 @@ export default function AnatomyDiagram({
           </div>
         )}
 
-        {/* ── Legend — inside the diagram card, below the silhouette ── */}
+        {/* Compact spectrum legend */}
         <div className="mt-2 pt-2 border-t border-slate-100">
-          <p className="text-[10px] font-semibold text-slate-500 mb-1.5">
-            {lang === 'ko' ? '색상 = 모니터링 우선순위' : 'Color = Monitoring Priority'}
-          </p>
-          <div className="flex items-center gap-2 flex-wrap">
-            {LEGEND_ITEMS.map((item) => (
-              <div key={item.label} className="flex items-center gap-1">
-                <div
-                  className={`w-3.5 h-3.5 rounded-sm ${item.className}`}
-                  style={{ border: '1px solid rgba(0,0,0,0.08)' }}
-                />
-                <span className="text-[10px] text-slate-500">{item.label}</span>
-                <span className="text-[9px] text-slate-400">
-                  {lang === 'ko' ? item.ko : item.en}
-                </span>
-              </div>
-            ))}
+          <div className="flex items-center gap-2">
+            <span className="shrink-0 text-[10px] font-medium text-slate-400">
+              {lang === 'ko' ? '낮음' : 'Low'}
+            </span>
+            <div
+              className="h-2 flex-1 rounded-full border border-slate-200"
+              style={{
+                background: 'linear-gradient(90deg, #dbeafe 0%, #93c5fd 25%, #3b82f6 55%, #1d4ed8 78%, #1e3a5f 100%)',
+              }}
+            />
+            <span className="shrink-0 text-[10px] font-medium text-slate-500">
+              {lang === 'ko' ? '높음' : 'High'}
+            </span>
           </div>
         </div>
       </div>

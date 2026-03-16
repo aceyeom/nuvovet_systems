@@ -185,12 +185,17 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
             )}
           </div>
           {!expanded && (
-            <div className="mt-1.5 space-y-0.5">
-              <p className="text-[11px] text-slate-500 font-medium">{freq} · {route} · {duration}d</p>
-              {memo && <p className="text-[11px] text-slate-400 italic leading-snug">{memo}</p>}
-            </div>
+            <></>
           )}
         </div>
+        {!expanded && (
+          <div className="flex-1 min-w-0 flex flex-col items-center justify-center px-2">
+            <p className="text-[13px] font-semibold text-slate-700 tracking-wide whitespace-nowrap">
+              {freq} · {route} · {duration}d
+            </p>
+            {memo && <p className="text-[11px] text-slate-400 italic leading-snug mt-0.5 text-center">{memo}</p>}
+          </div>
+        )}
         {!expanded && (
           <div className="shrink-0 min-w-[170px] text-right">
             <div className="rounded-lg border border-slate-200 bg-slate-50/70 px-2.5 py-1.5">

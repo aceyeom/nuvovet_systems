@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import {
   ArrowLeft, Lock, Eye, EyeOff, Zap, RotateCcw,
   ChevronDown, ChevronUp, Plus, X, Camera, Users, Save,
-  CheckCircle, AlertCircle, LogOut, Search, UserPlus, Settings,
-  Filter, SortAsc, ChevronRight,
+  CheckCircle, AlertCircle, LogOut, Search, UserPlus, Settings, UserCircle,
+  Filter, SortAsc, ChevronRight, Globe,
 } from 'lucide-react';
 import { NuvovetWordmark } from '../components/NuvovetLogo';
 import { useI18n } from '../i18n';
@@ -731,6 +731,7 @@ export default function FullSystem() {
   const [leftPanelWidth, setLeftPanelWidth] = useState(460);
   const [isResizingPanels, setIsResizingPanels] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
   const [missingRequired, setMissingRequired] = useState({ species: false, weight: false, drugs: false });
   const [validationShakeTick, setValidationShakeTick] = useState(0);
 
@@ -747,6 +748,7 @@ export default function FullSystem() {
   const debounceRef = useRef(null);
   const inputPanelsRef = useRef(null);
   const settingsMenuRef = useRef(null);
+  const profileMenuRef = useRef(null);
 
   // ── Backend polling ────────────────────────────────────────────
   useEffect(() => {
@@ -789,9 +791,10 @@ export default function FullSystem() {
   useEffect(() => {
     const onPointerDown = (e) => {
       if (!settingsMenuRef.current?.contains(e.target)) setSettingsOpen(false);
+      if (!profileMenuRef.current?.contains(e.target)) setProfileOpen(false);
     };
     const onKeyDown = (e) => {
-      if (e.key === 'Escape') setSettingsOpen(false);
+      if (e.key === 'Escape') { setSettingsOpen(false); setProfileOpen(false); }
     };
     window.addEventListener('mousedown', onPointerDown);
     window.addEventListener('keydown', onKeyDown);
@@ -1031,82 +1034,106 @@ export default function FullSystem() {
                 <RotateCcw size={14} />
               </button>
             )}
-            {isConnected ? (
-              <span className="text-[11px] px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-full font-semibold flex items-center gap-1.5 border border-emerald-100">
-                <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
-                {t.connected}
-              </span>
-            ) : (
-              <span className="text-[11px] px-2.5 py-1 bg-slate-100 text-slate-500 rounded-full font-semibold flex items-center gap-1.5 border border-slate-200">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full" />
-                Offline
-              </span>
-            )}
 
+            {/* Profile button */}
+            <div className="relative" ref={profileMenuRef}>
+              <button
+                onClick={() => { setProfileOpen(v => !v); setSettingsOpen(false); }}
+                className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-[12px] font-medium transition-colors ${
+                  profileOpen
+                    ? 'text-slate-800 border-slate-300 bg-slate-50'
+                    : 'text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50'
+                }`}
+                aria-label="Profile"
+                aria-expanded={profileOpen}
+              >
+                <UserCircle size={15} />
+                <span className="hidden sm:inline">{user?.username || 'Profile'}</span>
+              </button>
+
+              {profileOpen && (
+                <div className="absolute right-0 top-full mt-2 w-[260px] bg-white border border-slate-200 rounded-xl shadow-xl z-40 overflow-hidden">
+                  {/* Account header */}
+                  <div className="flex items-center gap-3 px-4 py-3.5 bg-slate-50 border-b border-slate-100">
+                    <div className="w-9 h-9 rounded-full bg-slate-800 text-white flex items-center justify-center shrink-0 text-[14px] font-bold uppercase">
+                      {(user?.username || 'U')[0]}
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[13px] font-semibold text-slate-900 truncate">{user?.username || 'User'}</p>
+                      <p className="text-[11px] text-slate-400">Veterinarian · nuvovet</p>
+                    </div>
+                  </div>
+
+                  {/* Navigation items */}
+                  <div className="p-1.5 space-y-0.5">
+                    <button
+                      onClick={() => { setProfileOpen(false); navigate('/patients'); }}
+                      className="w-full flex items-center gap-2.5 px-3 py-2 text-[12px] text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors"
+                    >
+                      <Users size={14} className="text-slate-400" />
+                      Patient Records
+                    </button>
+                  </div>
+
+                  {/* Sign out */}
+                  <div className="p-1.5 border-t border-slate-100">
+                    <button
+                      onClick={() => { setProfileOpen(false); logout(); }}
+                      className="w-full flex items-center gap-2.5 px-3 py-2 text-[12px] text-red-500 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors font-medium"
+                    >
+                      <LogOut size={14} />
+                      Sign out
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Language / Settings button */}
             <div className="relative" ref={settingsMenuRef}>
               <button
-                onClick={() => setSettingsOpen(v => !v)}
-                className={`p-2 rounded-lg border transition-colors ${
+                onClick={() => { setSettingsOpen(v => !v); setProfileOpen(false); }}
+                className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-[12px] font-medium transition-colors ${
                   settingsOpen
                     ? 'text-slate-800 border-slate-300 bg-slate-50'
                     : 'text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50'
                 }`}
-                title="Settings"
-                aria-label="Settings"
+                aria-label="Language"
                 aria-expanded={settingsOpen}
               >
-                <Settings size={15} />
+                <Globe size={15} />
+                <span className="hidden sm:inline text-[11px]">{lang === 'ko' ? '한국어' : 'EN'}</span>
               </button>
 
               {settingsOpen && (
-                <div className="absolute right-0 top-full mt-2 w-[230px] bg-white border border-slate-200 rounded-xl shadow-xl p-2 z-40">
-                  <div className="px-2.5 py-2 border-b border-slate-100">
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Account</p>
-                    <p className="text-[12px] font-medium text-slate-700 mt-1 truncate">{user?.username || 'User'}</p>
+                <div className="absolute right-0 top-full mt-2 w-[180px] bg-white border border-slate-200 rounded-xl shadow-xl z-40 overflow-hidden">
+                  <div className="px-3.5 py-2.5 border-b border-slate-100">
+                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Language</p>
                   </div>
-
-                  <button
-                    onClick={() => { setSettingsOpen(false); navigate('/patients'); }}
-                    className="w-full mt-1 flex items-center gap-2 px-2.5 py-2 text-[12px] text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors"
-                  >
-                    <Users size={13} />
-                    {t.fullSystem.patientsNav}
-                  </button>
-
-                  <div className="mt-1 px-2.5 py-2 border-t border-slate-100">
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">Language</p>
-                    <div className="grid grid-cols-2 gap-1.5">
-                      <button
-                        onClick={() => setLang('ko')}
-                        className={`px-2 py-1.5 text-[11px] rounded-md border transition-colors ${
-                          lang === 'ko'
-                            ? 'bg-slate-900 text-white border-slate-900'
-                            : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
-                        }`}
-                      >
-                        한국어
-                      </button>
-                      <button
-                        onClick={() => setLang('en')}
-                        className={`px-2 py-1.5 text-[11px] rounded-md border transition-colors ${
-                          lang === 'en'
-                            ? 'bg-slate-900 text-white border-slate-900'
-                            : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
-                        }`}
-                      >
-                        English
-                      </button>
-                    </div>
+                  <div className="p-1.5 space-y-0.5">
+                    <button
+                      onClick={() => { setLang('ko'); setSettingsOpen(false); }}
+                      className={`w-full flex items-center justify-between px-3 py-2 text-[12px] rounded-lg transition-colors ${
+                        lang === 'ko'
+                          ? 'bg-slate-900 text-white font-semibold'
+                          : 'text-slate-600 hover:bg-slate-50'
+                      }`}
+                    >
+                      <span>한국어</span>
+                      {lang === 'ko' && <span className="text-[9px] opacity-70">✓</span>}
+                    </button>
+                    <button
+                      onClick={() => { setLang('en'); setSettingsOpen(false); }}
+                      className={`w-full flex items-center justify-between px-3 py-2 text-[12px] rounded-lg transition-colors ${
+                        lang === 'en'
+                          ? 'bg-slate-900 text-white font-semibold'
+                          : 'text-slate-600 hover:bg-slate-50'
+                      }`}
+                    >
+                      <span>English</span>
+                      {lang === 'en' && <span className="text-[9px] opacity-70">✓</span>}
+                    </button>
                   </div>
-
-                  <button
-                    onClick={logout}
-                    className="w-full mt-1 flex items-center gap-2 px-2.5 py-2 text-[12px] text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors"
-                    title="Sign Out"
-                  >
-                    <LogOut size={13} />
-                    Sign out
-                  </button>
                 </div>
               )}
             </div>
@@ -1512,7 +1539,7 @@ export default function FullSystem() {
             </div>
 
             {/* Right column — Dosage Summary & Organ Load */}
-            <div className="w-full lg:w-[350px] lg:shrink-0 overflow-y-auto border-t lg:border-t-0 lg:border-l border-slate-200 bg-white order-3">
+            <div className="w-full lg:w-[402px] lg:shrink-0 overflow-y-auto border-t lg:border-t-0 lg:border-l border-slate-200 bg-white order-3">
               <DosageSummaryPanel
                 results={results}
                 drugs={drugs}
