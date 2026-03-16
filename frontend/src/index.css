@@ -307,14 +307,14 @@ input:focus, button:focus-visible {
 .animate-glow-green { animation: glowGreen 2s ease-in-out infinite; }
 .animate-gentle-pulse { animation: gentlePulse 2s ease-in-out infinite; }
 
-/* ── Organ Burden Anatomy Diagram ─────────────────────────────── */
+/* ── Organ Involvement Anatomy Diagram ────────────────────────── */
 
 :root {
   --color-burden-none: rgba(148, 163, 184, 0.15);
-  --color-burden-low: #fde68a;
-  --color-burden-moderate: #f59e0b;
-  --color-burden-high: #ef4444;
-  --color-burden-critical: #b91c1c;
+  --color-burden-low: #93c5fd;
+  --color-burden-moderate: #3b82f6;
+  --color-burden-high: #1d4ed8;
+  --color-burden-critical: #1e3a5f;
 }
 
 @keyframes mdr1PulseRing {

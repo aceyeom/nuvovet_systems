@@ -3,12 +3,10 @@ import { Activity, AlertTriangle } from 'lucide-react';
 import { useI18n } from '../i18n';
 
 /**
- * Cumulative Organ Load Score
+ * Primary Elimination Route (formerly Cumulative Organ Load Score)
  *
  * Always expanded — all five organ scores visible without any interaction required.
  * This is one of NuvoVet's core differentiators and must be prominently displayed.
- *
- * Removed: accordion/collapse toggle (Task 5)
  */
 
 function getOrganLoads(drugs, species) {
@@ -148,7 +146,7 @@ export function OrganLoadIndicator({ drugs = [], patientInfo, species = 'dog' })
         </div>
       )}
 
-      {/* Organ burden bars — always visible */}
+      {/* Elimination route bars — always visible */}
       <div className="px-4 pb-3 space-y-2.5">
         <OrganBar
           label={t.results.renalEliminationBurden}
