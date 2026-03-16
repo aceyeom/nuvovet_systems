@@ -377,10 +377,8 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, onUpdateDrug, specie
   const [filterOpen, setFilterOpen] = useState(false);
   const [filters, setFilters] = useState({ class: null, source: null, form: null, hasReversal: false });
   const [collapseSignal, setCollapseSignal] = useState(0);
-  const [collapsedOnFirstSearchOpen, setCollapsedOnFirstSearchOpen] = useState(false);
   const debounceRef = useRef(null);
   const inputRef = useRef(null);
-  const suppressNextFocusCollapseRef = useRef(false);
 
   const selectedIds = new Set(drugs.map((d) => d.id));
   const activeFilterCount = [filters.class, filters.source, filters.form, filters.hasReversal].filter(Boolean).length;
@@ -434,11 +432,15 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, onUpdateDrug, specie
 
   const handleQueryChange = useCallback((e) => {
     const val = e.target.value;
+    // Collapse existing cards only when a new search actually starts.
+    if (drugs.length > 0 && !query.trim() && val.trim()) {
+      setCollapseSignal((v) => v + 1);
+    }
     setQuery(val);
     if (val.trim()) setFilterOpen(false); // hide filters when typing
     scheduleSearch(val, filters);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters, doSearch]);
+  }, [filters, doSearch, drugs.length, query]);
 
   const handleFilterToggle = (key, val) => {
     const newF = { ...filters, [key]: filters[key] === val ? null : val };
@@ -461,15 +463,6 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, onUpdateDrug, specie
   useEffect(() => () => { if (debounceRef.current) clearTimeout(debounceRef.current); }, []);
 
   const handleSearchFocus = () => {
-    if (suppressNextFocusCollapseRef.current) {
-      suppressNextFocusCollapseRef.current = false;
-      if (!filterOpen && (results.length > 0 || hasActiveFilters)) setShowDropdown(true);
-      return;
-    }
-    if (!collapsedOnFirstSearchOpen) {
-      setCollapseSignal(v => v + 1);
-      setCollapsedOnFirstSearchOpen(true);
-    }
     if (!filterOpen && (results.length > 0 || hasActiveFilters)) setShowDropdown(true);
   };
 
@@ -477,7 +470,6 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, onUpdateDrug, specie
     if (selectedIds.has(drug.id)) return;
     onAddDrug(drug);
     setQuery(''); setResults([]); setShowDropdown(false);
-    suppressNextFocusCollapseRef.current = true;
     inputRef.current?.focus();
   };
 
@@ -488,7 +480,6 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, onUpdateDrug, specie
       onAddDrug(unknown);
     }
     setQuery(''); setResults([]); setShowDropdown(false);
-    suppressNextFocusCollapseRef.current = true;
     inputRef.current?.focus();
   };
 

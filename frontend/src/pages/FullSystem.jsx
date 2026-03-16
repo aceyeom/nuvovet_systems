@@ -53,13 +53,8 @@ function DecimalInput({ value, onChange, onBlur, placeholder, className, min, ma
 // ── Searchable tag input ──────────────────────────────────────────
 function TagInput({ items, onAdd, onRemove, placeholder, chipClass, suggestions = [] }) {
   const [value, setValue] = useState('');
-  const [quickFilter, setQuickFilter] = useState('');
   const [showSug, setShowSug] = useState(false);
-  const filterTerm = quickFilter.trim().toLowerCase();
-  const suggestionQuery = (value.trim() || quickFilter.trim()).toLowerCase();
-  const visibleItems = filterTerm
-    ? items.filter((item) => item.toLowerCase().includes(filterTerm))
-    : items;
+  const suggestionQuery = value.trim().toLowerCase();
   const filteredSuggestions = suggestions.filter((s) => {
     if (items.includes(s)) return false;
     if (!suggestionQuery) return true;
@@ -71,29 +66,14 @@ function TagInput({ items, onAdd, onRemove, placeholder, chipClass, suggestions 
   };
   return (
     <div className="space-y-1.5">
-      {(items.length > 0 || suggestions.length > 0) && (
-        <input
-          type="text"
-          value={quickFilter}
-          onChange={(e) => {
-            setQuickFilter(e.target.value);
-            if (!showSug) setShowSug(true);
-          }}
-          placeholder="Quick filter..."
-          className="w-full px-2.5 py-1.5 text-xs border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-900/10 placeholder:text-slate-300 bg-slate-50/50"
-        />
-      )}
       {items.length > 0 && (
         <div className="flex flex-wrap gap-1">
-          {visibleItems.map((item) => (
+          {items.map((item) => (
             <span key={item} className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium ${chipClass}`}>
               {item}
               <button onClick={() => onRemove(item)} className="hover:opacity-70 ml-0.5"><X size={10} /></button>
             </span>
           ))}
-          {visibleItems.length === 0 && (
-            <span className="text-[11px] text-slate-400 px-1 py-0.5">No matching tags</span>
-          )}
         </div>
       )}
       <div className="relative">
