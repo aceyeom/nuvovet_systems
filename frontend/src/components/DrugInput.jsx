@@ -189,7 +189,7 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
           )}
         </div>
         {!expanded && (
-          <div className="flex-1 min-w-0 flex flex-col items-center justify-center px-2">
+          <div className="flex-1 min-w-0 flex flex-col items-center justify-center px-2 pt-1">
             <p className="text-[13px] font-semibold text-slate-700 tracking-wide whitespace-nowrap">
               {freq} · {route} · {duration}d
             </p>

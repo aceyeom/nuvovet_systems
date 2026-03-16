@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   AlertTriangle, AlertCircle, Info, CheckCircle, ChevronDown, ChevronUp,
   BookOpen, FlaskConical, Globe, HelpCircle, Dna, ArrowLeft,
   Check, Lightbulb, FileText, Clock, Pill, Flag, Printer, Download,
-  Mail, Send, Save
+  Mail, Send
 } from 'lucide-react';
 import { SeverityBadge } from './SeverityBadge';
 import { DRUG_SOURCE } from '../data/drugDatabase';
@@ -579,6 +579,10 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
   const notedCount = Object.values(noted).filter(Boolean).length;
   const allReviewed = interactions.length > 0 && (acknowledgedCount + notedCount) >= interactions.length;
   const [showScanBar, setShowScanBar] = useState(false);
+  const [showDiagnosisToast, setShowDiagnosisToast] = useState(false);
+  const [isDiagnosisToastFading, setIsDiagnosisToastFading] = useState(false);
+  const diagnosisToastFadeRef = useRef(null);
+  const diagnosisToastHideRef = useRef(null);
 
   useEffect(() => {
     if (allReviewed) {
@@ -589,19 +593,64 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
     }
   }, [allReviewed]);
 
+  useEffect(() => {
+    return () => {
+      if (diagnosisToastFadeRef.current) clearTimeout(diagnosisToastFadeRef.current);
+      if (diagnosisToastHideRef.current) clearTimeout(diagnosisToastHideRef.current);
+    };
+  }, []);
+
+  const handleCompleteAndRecordDiagnosis = () => {
+    if (!onUpdatePatientRecord) return;
+
+    onUpdatePatientRecord();
+
+    if (diagnosisToastFadeRef.current) clearTimeout(diagnosisToastFadeRef.current);
+    if (diagnosisToastHideRef.current) clearTimeout(diagnosisToastHideRef.current);
+
+    setIsDiagnosisToastFading(false);
+    setShowDiagnosisToast(true);
+
+    diagnosisToastFadeRef.current = setTimeout(() => {
+      setIsDiagnosisToastFading(true);
+    }, 1400);
+
+    diagnosisToastHideRef.current = setTimeout(() => {
+      setShowDiagnosisToast(false);
+      setIsDiagnosisToastFading(false);
+    }, 1750);
+  };
+
   return (
     <>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 animate-fade-in">
         {/* Header */}
-        <div className="flex items-center gap-3 mb-5 no-print">
-          <button onClick={onBack} className="p-2 -ml-2 text-slate-400 hover:text-slate-600 transition-colors shrink-0">
-            <ArrowLeft size={18} />
-          </button>
-          <div className="min-w-0">
-            <h2 className="typo-page-title">{t.results.durReport}</h2>
-            <p className="typo-label mt-0.5">
-              {new Date(results.timestamp).toLocaleString(lang === 'ko' ? 'ko-KR' : 'en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
-            </p>
+        <div className="flex items-start justify-between gap-3 mb-5 no-print">
+          <div className="flex items-center gap-3 min-w-0">
+            <button onClick={onBack} className="p-2 -ml-2 text-slate-400 hover:text-slate-600 transition-colors shrink-0">
+              <ArrowLeft size={18} />
+            </button>
+            <div className="min-w-0">
+              <h2 className="typo-page-title">{t.results.durReport}</h2>
+              <p className="typo-label mt-0.5">
+                {new Date(results.timestamp).toLocaleString(lang === 'ko' ? 'ko-KR' : 'en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+              </p>
+            </div>
+          </div>
+          <div className="shrink-0">
+            <button
+              onClick={handleCompleteAndRecordDiagnosis}
+              disabled={!onUpdatePatientRecord}
+              className={`inline-flex items-center gap-1.5 px-3.5 py-2 text-[12px] font-semibold rounded-lg border transition-colors ${
+                onUpdatePatientRecord
+                  ? 'text-white bg-slate-900 border-slate-900 hover:bg-slate-800'
+                  : 'text-slate-400 bg-slate-100 border-slate-200 cursor-not-allowed'
+              }`}
+              title="Complete and record diagnosis"
+            >
+              <CheckCircle size={14} />
+              Complete and record diagnosis
+            </button>
           </div>
         </div>
 
@@ -696,15 +745,6 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
 
             <div className="flex gap-3 no-print flex-wrap">
               <button onClick={onBack} className="flex-1 px-4 py-2.5 text-[13px] font-medium text-slate-600 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors shadow-sm">{t.results.backToMeds}</button>
-              {onUpdatePatientRecord && (
-                <button
-                  onClick={onUpdatePatientRecord}
-                  className="flex items-center gap-1.5 px-4 py-2.5 text-[13px] font-medium text-slate-700 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors shadow-sm"
-                >
-                  <Save size={13} />
-                  {t.results.updatePatientRecord}
-                </button>
-              )}
               <button onClick={onNewAnalysis} className="flex-1 px-4 py-2.5 text-[13px] font-medium text-white bg-slate-900 rounded-lg hover:bg-slate-800 transition-colors shadow-sm">{t.results.newAnalysis}</button>
             </div>
 
@@ -714,6 +754,16 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
           </div>
         </div>
       </div>
+
+      {showDiagnosisToast && (
+        <div
+          className={`fixed right-6 top-6 z-50 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-2.5 shadow-lg transition-opacity duration-300 ${
+            isDiagnosisToastFading ? 'opacity-0' : 'opacity-100'
+          }`}
+        >
+          <p className="text-[12px] font-semibold text-emerald-700">Diagnosis was recorded.</p>
+        </div>
+      )}
 
       {/* Fixed bottom scan bar — shows only after full review in full system */}
       {showScanBar && (
