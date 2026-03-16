@@ -658,7 +658,6 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, onUpdateDrug, specie
             </div>
           </div>
         </div>
-      </div>
 
       {/* Selected drug cards */}
       {drugs.length > 0 && (
