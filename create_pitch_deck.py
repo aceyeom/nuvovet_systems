@@ -12,6 +12,7 @@ from pptx.enum.shapes import MSO_SHAPE
 from pptx.oxml.ns import qn
 import copy
 import math
+from pathlib import Path
 
 # ── Color Palette ──
 NAVY = RGBColor(0x1E, 0x27, 0x61)
@@ -1094,7 +1095,11 @@ add_nav_dots(slide, 11, 12)
 # ============================================================
 # SAVE
 # ============================================================
-output_path = "/mnt/user-data/outputs/nuvovet_pitch_deck.pptx"
-prs.save(output_path)
+project_root = Path(__file__).resolve().parent
+output_dir = project_root / "docs" / "outputs"
+output_dir.mkdir(parents=True, exist_ok=True)
+output_path = output_dir / "nuvovet_pitch_deck.pptx"
+
+prs.save(str(output_path))
 print(f"Pitch deck saved to {output_path}")
 print(f"Total slides: {len(prs.slides)}")
