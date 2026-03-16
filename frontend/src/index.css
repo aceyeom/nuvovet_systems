@@ -336,6 +336,10 @@ input:focus, button:focus-visible {
   filter: brightness(1.15);
 }
 
+.organ-section {
+  transition: fill 240ms ease, stroke 200ms ease, opacity 200ms ease;
+}
+
 .mdr1-ring {
   border: 2px solid #f59e0b;
   box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.25);

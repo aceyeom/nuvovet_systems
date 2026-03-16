@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { AlertTriangle, Activity } from 'lucide-react';
-import { getBurdenColor, getBurdenLevel, isMdr1SensitiveBreed } from './organBurdenAggregator';
+import { getBurdenLevel, isMdr1SensitiveBreed } from './organBurdenAggregator';
 import { useI18n } from '../../i18n';
 
 // ── Organ display config ───────────────────────────────────────────
@@ -38,7 +38,7 @@ const LEGEND_ITEMS = [
   { label: '86–100', className: 'bg-red-700' },
 ];
 
-// ── Image-based anatomy overlays (normalized coordinates: 0..1) ──
+// ── SVG anatomy overlays (pixel coordinates in species canvas) ─────
 const ANATOMY_IMAGE_CONFIG = {
   dog: {
     src: '/anatomy/dog-traced.svg',
@@ -46,18 +46,19 @@ const ANATOMY_IMAGE_CONFIG = {
     width: 485,
     height: 385,
     mdr1: { x: 0.18, y: 0.27 },
-    organs: {
-      brain:  { x: 0.19, y: 0.31, size: 0.18, hit: 0.2 },
-      heart:  { x: 0.33, y: 0.54, size: 0.17, hit: 0.19 },
-      liver:  { x: 0.47, y: 0.56, size: 0.2, hit: 0.22 },
-      kidney: { x: 0.59, y: 0.56, size: 0.17, hit: 0.19 },
-      blood:  { x: 0.46, y: 0.53, size: 0.56, hit: 0.6 },
+    sections: {
+      brain:  { type: 'ellipse', cx: 92, cy: 116, rx: 28, ry: 20 },
+      heart:  { type: 'path', d: 'M 132 178 C 145 158, 168 157, 180 174 C 186 183, 184 198, 173 206 C 162 214, 145 211, 136 202 C 128 194, 126 186, 132 178 Z' },
+      liver:  { type: 'path', d: 'M 182 174 C 206 158, 246 161, 270 176 C 281 183, 283 198, 272 208 C 258 220, 221 223, 196 214 C 179 208, 171 192, 182 174 Z' },
+      kidney: { type: 'path', d: 'M 246 180 C 260 169, 281 169, 296 179 C 307 187, 309 201, 300 211 C 290 221, 269 223, 254 215 C 241 208, 237 192, 246 180 Z' },
+      blood:  { type: 'line', d: 'M 112 190 C 174 181, 245 181, 300 193 C 327 199, 351 209, 376 225', strokeWidth: 28, hitWidth: 40 },
     },
     labels: {
-      brain:  { x: 0.19, y: 0.25 },
-      heart:  { x: 0.33, y: 0.48 },
-      liver:  { x: 0.47, y: 0.49 },
-      kidney: { x: 0.59, y: 0.49 },
+      brain:  { x: 92,  y: 104 },
+      heart:  { x: 157, y: 182 },
+      liver:  { x: 225, y: 183 },
+      kidney: { x: 273, y: 186 },
+      blood:  { x: 300, y: 212 },
     },
   },
   cat: {
@@ -66,23 +67,36 @@ const ANATOMY_IMAGE_CONFIG = {
     width: 379,
     height: 199,
     mdr1: { x: 0.20, y: 0.35 },
-    organs: {
-      brain:  { x: 0.21, y: 0.37, size: 0.16, hit: 0.18 },
-      heart:  { x: 0.38, y: 0.56, size: 0.16, hit: 0.18 },
-      liver:  { x: 0.52, y: 0.57, size: 0.19, hit: 0.21 },
-      kidney: { x: 0.63, y: 0.57, size: 0.16, hit: 0.18 },
-      blood:  { x: 0.49, y: 0.54, size: 0.52, hit: 0.56 },
+    sections: {
+      brain:  { type: 'ellipse', cx: 76, cy: 71, rx: 19, ry: 14 },
+      heart:  { type: 'path', d: 'M 118 102 C 127 89, 145 88, 153 99 C 158 107, 157 118, 149 124 C 141 131, 127 130, 120 123 C 114 117, 112 109, 118 102 Z' },
+      liver:  { type: 'path', d: 'M 154 100 C 174 90, 202 92, 218 103 C 226 108, 227 118, 220 126 C 209 136, 180 139, 161 132 C 149 127, 145 110, 154 100 Z' },
+      kidney: { type: 'path', d: 'M 206 102 C 218 94, 236 95, 248 103 C 255 108, 257 118, 251 125 C 244 133, 226 135, 214 130 C 203 126, 199 109, 206 102 Z' },
+      blood:  { type: 'line', d: 'M 100 109 C 142 103, 193 104, 231 112 C 254 117, 275 124, 295 133', strokeWidth: 18, hitWidth: 28 },
     },
     labels: {
-      brain:  { x: 0.21, y: 0.33 },
-      heart:  { x: 0.38, y: 0.51 },
-      liver:  { x: 0.52, y: 0.52 },
-      kidney: { x: 0.63, y: 0.52 },
+      brain:  { x: 75,  y: 60 },
+      heart:  { x: 135, y: 104 },
+      liver:  { x: 187, y: 106 },
+      kidney: { x: 229, y: 108 },
+      blood:  { x: 256, y: 124 },
     },
   },
 };
 
 const HEAT_ORGANS = ['brain', 'heart', 'liver', 'kidney', 'blood'];
+const ORGAN_RENDER_ORDER = ['blood', 'brain', 'heart', 'liver', 'kidney'];
+const ORGAN_SHORT = { brain: 'BR', heart: 'HT', liver: 'LV', kidney: 'KD', blood: 'BL' };
+
+function getSeverityHex(score) {
+  const level = getBurdenLevel(score);
+  if (level === 'nodata') return '#cbd5e1';
+  if (level === 'none') return '#94a3b8';
+  if (level === 'low') return '#fde68a';
+  if (level === 'moderate') return '#f59e0b';
+  if (level === 'high') return '#ef4444';
+  return '#b91c1c';
+}
 
 function hexToRgba(hex, alpha) {
   if (!hex || typeof hex !== 'string' || !hex.startsWith('#')) {
@@ -103,9 +117,17 @@ function hexToRgba(hex, alpha) {
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
-function getHeatOpacity(score) {
-  if (score == null) return 0;
-  return Math.min(0.76, 0.18 + score / 140);
+function getSectionFill(score) {
+  if (score == null) return 'rgba(148, 163, 184, 0.16)';
+  const level = getBurdenLevel(score);
+  const alpha = level === 'none' ? 0.26 : level === 'low' ? 0.42 : level === 'moderate' ? 0.54 : level === 'high' ? 0.62 : 0.68;
+  return hexToRgba(getSeverityHex(score), alpha);
+}
+
+function getSectionStroke(score, hovered) {
+  if (hovered) return '#1e293b';
+  if (score == null) return '#94a3b8';
+  return '#475569';
 }
 
 // ── Organ load calculation (from OrganLoadIndicator) ─────────────
@@ -359,29 +381,6 @@ export default function AnatomyDiagram({
           role="img"
           aria-label={`${species} organ burden diagram`}
         >
-          <defs>
-            {HEAT_ORGANS.map((organ) => {
-              const score = organScores?.[organ]?.finalScore ?? null;
-              const color = getBurdenColor(score);
-              const opacity = getHeatOpacity(score);
-              const gradientId = `heat-${species}-${organ}`;
-
-              return (
-                <radialGradient
-                  key={gradientId}
-                  id={gradientId}
-                  cx="50%"
-                  cy="50%"
-                  r="50%"
-                >
-                  <stop offset="0%" stopColor={hexToRgba(color, 0.8)} stopOpacity={opacity} />
-                  <stop offset="55%" stopColor={hexToRgba(color, 0.45)} stopOpacity={opacity * 0.7} />
-                  <stop offset="100%" stopColor={hexToRgba(color, 0)} stopOpacity="0" />
-                </radialGradient>
-              );
-            })}
-          </defs>
-
           <image
             href={anatomyConfig.src}
             x="0"
@@ -392,50 +391,105 @@ export default function AnatomyDiagram({
             onError={() => setImageFailed(true)}
           />
 
-          {/* Heatmap blobs */}
-          {HEAT_ORGANS.map((organ) => {
-            const point = anatomyConfig.organs[organ];
-            if (!point) return null;
+          {/* Organ sections: distinct region fills with clear boundaries */}
+          {ORGAN_RENDER_ORDER.map((organ) => {
+            const section = anatomyConfig.sections[organ];
+            if (!section) return null;
 
-            const cx = point.x * anatomyConfig.width;
-            const cy = point.y * anatomyConfig.height;
-            const r = point.size * anatomyConfig.width * 0.5;
+            const score = organScores?.[organ]?.finalScore ?? null;
+            const hovered = hoveredOrgan === organ;
+            const fill = getSectionFill(score);
+            const stroke = getSectionStroke(score, hovered);
+            const strokeWidth = hovered ? 2 : 1.3;
+
+            if (section.type === 'ellipse') {
+              return (
+                <g key={`section-${organ}`}>
+                  <ellipse
+                    cx={section.cx}
+                    cy={section.cy}
+                    rx={section.rx}
+                    ry={section.ry}
+                    fill={fill}
+                    stroke={stroke}
+                    strokeWidth={strokeWidth}
+                    strokeDasharray={score == null ? '4 3' : undefined}
+                    className="organ-section"
+                  />
+                  <ellipse
+                    cx={section.cx}
+                    cy={section.cy}
+                    rx={section.rx}
+                    ry={section.ry}
+                    fill="transparent"
+                    className="organ-region"
+                    onMouseEnter={(e) => handleMouseEnter(organ, e)}
+                    onMouseMove={handleMouseMove}
+                    onMouseLeave={handleMouseLeave}
+                  />
+                </g>
+              );
+            }
+
+            if (section.type === 'line') {
+              return (
+                <g key={`section-${organ}`}>
+                  <path
+                    d={section.d}
+                    fill="none"
+                    stroke={fill}
+                    strokeWidth={section.strokeWidth}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="organ-section"
+                  />
+                  <path
+                    d={section.d}
+                    fill="none"
+                    stroke={stroke}
+                    strokeWidth={hovered ? 3.6 : 2.2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeDasharray={score == null ? '6 4' : undefined}
+                    opacity={0.8}
+                    pointerEvents="none"
+                  />
+                  <path
+                    d={section.d}
+                    fill="none"
+                    stroke="transparent"
+                    strokeWidth={section.hitWidth}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="organ-region"
+                    onMouseEnter={(e) => handleMouseEnter(organ, e)}
+                    onMouseMove={handleMouseMove}
+                    onMouseLeave={handleMouseLeave}
+                  />
+                </g>
+              );
+            }
 
             return (
-              <circle
-                key={`heat-${organ}`}
-                cx={cx}
-                cy={cy}
-                r={r}
-                fill={`url(#heat-${species}-${organ})`}
-                opacity={hoveredOrgan === organ ? 1 : 0.85}
-                style={{ transition: 'opacity 220ms ease' }}
-                pointerEvents="none"
-              />
-            );
-          })}
-
-          {/* Hover hit zones */}
-          {HEAT_ORGANS.map((organ) => {
-            const point = anatomyConfig.organs[organ];
-            if (!point) return null;
-
-            const cx = point.x * anatomyConfig.width;
-            const cy = point.y * anatomyConfig.height;
-            const r = point.hit * anatomyConfig.width * 0.5;
-
-            return (
-              <circle
-                key={`hit-${organ}`}
-                cx={cx}
-                cy={cy}
-                r={r}
-                fill="transparent"
-                className="organ-region"
-                onMouseEnter={(e) => handleMouseEnter(organ, e)}
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
-              />
+              <g key={`section-${organ}`}>
+                <path
+                  d={section.d}
+                  fill={fill}
+                  stroke={stroke}
+                  strokeWidth={strokeWidth}
+                  strokeLinejoin="round"
+                  strokeDasharray={score == null ? '4 3' : undefined}
+                  className="organ-section"
+                />
+                <path
+                  d={section.d}
+                  fill="transparent"
+                  className="organ-region"
+                  onMouseEnter={(e) => handleMouseEnter(organ, e)}
+                  onMouseMove={handleMouseMove}
+                  onMouseLeave={handleMouseLeave}
+                />
+              </g>
             );
           })}
 
@@ -470,23 +524,27 @@ export default function AnatomyDiagram({
             </>
           )}
 
-          {/* Organ score labels */}
-          {['brain', 'heart', 'liver', 'kidney'].map((organ) => {
+          {/* Organ section labels */}
+          {HEAT_ORGANS.map((organ) => {
             const pos = anatomyConfig.labels[organ];
+            if (!pos) return null;
             const score = organScores?.[organ]?.finalScore;
+            const hovered = hoveredOrgan === organ;
+            const label = ORGAN_SHORT[organ];
 
             return (
-              <text
-                key={`label-${organ}`}
-                x={pos.x * anatomyConfig.width}
-                y={pos.y * anatomyConfig.height}
-                textAnchor="middle"
-                fill="#475569"
-                fontSize="10"
-                fontWeight="600"
-              >
-                {score !== null && score !== undefined ? score : '—'}
-              </text>
+              <g key={`label-${organ}`} pointerEvents="none">
+                <text
+                  x={pos.x}
+                  y={pos.y}
+                  textAnchor="middle"
+                  fill={hovered ? '#0f172a' : '#334155'}
+                  fontSize={hovered ? '11' : '10'}
+                  fontWeight="700"
+                >
+                  {label} {score !== null && score !== undefined ? score : '—'}
+                </text>
+              </g>
             );
           })}
         </svg>
