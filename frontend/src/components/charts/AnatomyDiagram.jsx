@@ -13,32 +13,42 @@ const ORGAN_LABELS = {
 };
 
 const LEVEL_LABELS = {
-  nodata:   { en: 'No Data',  ko: '데이터 없음', dots: '○○○○○' },
-  none:     { en: 'Minimal',  ko: '최소',       dots: '○○○○○' },
-  low:      { en: 'Low',      ko: '낮음',       dots: '●○○○○' },
-  moderate: { en: 'Moderate', ko: '보통',       dots: '●●○○○' },
-  high:     { en: 'High',     ko: '높음',       dots: '●●●●○' },
-  critical: { en: 'Critical', ko: '위험',       dots: '●●●●●' },
+  nodata:   { en: 'No Data',        ko: '데이터 없음', dots: '○○○○○' },
+  none:     { en: 'Routine',         ko: '정상',       dots: '○○○○○' },
+  low:      { en: 'Routine',         ko: '정상',       dots: '●○○○○' },
+  moderate: { en: 'Monitor',         ko: '관찰',       dots: '●●○○○' },
+  high:     { en: 'Monitor Closely', ko: '주의 관찰',  dots: '●●●●○' },
+  critical: { en: 'Monitor Closely', ko: '주의 관찰',  dots: '●●●●●' },
 };
 
+// Blue intensity scale — lightest to deepest navy
 const LEVEL_COLORS = {
   nodata:   'text-slate-400',
   none:     'text-slate-500',
-  low:      'text-amber-500',
-  moderate: 'text-amber-600',
-  high:     'text-red-500',
-  critical: 'text-red-700',
+  low:      'text-blue-400',
+  moderate: 'text-blue-500',
+  high:     'text-blue-700',
+  critical: 'text-blue-900',
 };
 
 const LEGEND_ITEMS = [
-  { label: '0–20',   className: 'bg-slate-200' },
-  { label: '21–40',  className: 'bg-amber-200' },
-  { label: '41–60',  className: 'bg-amber-500' },
-  { label: '61–85',  className: 'bg-red-500' },
-  { label: '86–100', className: 'bg-red-700' },
+  { label: '0–20',   en: 'Routine',         ko: '정상',      className: 'bg-blue-100' },
+  { label: '21–40',  en: 'Routine',         ko: '정상',      className: 'bg-blue-200' },
+  { label: '41–60',  en: 'Monitor',         ko: '관찰',      className: 'bg-blue-400' },
+  { label: '61–85',  en: 'Monitor Closely', ko: '주의 관찰', className: 'bg-blue-600' },
+  { label: '86–100', en: 'Monitor Closely', ko: '주의 관찰', className: 'bg-blue-900' },
 ];
 
 // ── SVG anatomy overlays (pixel coordinates in species canvas) ─────
+// Dog: viewBox 485×385 — organ shapes positioned to match the traced silhouette
+// Cat: viewBox 379×199 — smaller proportional shapes for feline anatomy
+//
+// Brain: rounded brain shape inside the skull/head region
+// Heart: slightly left of center in the upper chest cavity
+// Liver: large region in the mid-right abdominal cavity, behind the ribcage
+// Kidney: two smaller bean shapes in the mid-to-lower back region
+// Blood: thin circulatory line tracing through the torso
+
 const ANATOMY_IMAGE_CONFIG = {
   dog: {
     src: '/anatomy/dog-traced.svg',
@@ -47,18 +57,19 @@ const ANATOMY_IMAGE_CONFIG = {
     height: 385,
     mdr1: { x: 0.185, y: 0.24 },
     sections: {
-      brain:  { type: 'path', d: 'M 74 89 C 78 77, 92 72, 106 75 C 118 78, 124 89, 120 100 C 117 109, 108 114, 98 114 C 92 115, 88 112, 85 107 C 79 106, 72 99, 74 89 Z' },
-      heart:  { type: 'path', d: 'M 138 166 C 145 156, 161 155, 168 165 C 171 170, 172 176, 170 182 C 167 190, 159 196, 150 197 C 141 197, 133 191, 130 182 C 128 176, 130 170, 138 166 Z' },
-      liver:  { type: 'path', d: 'M 184 176 C 203 164, 235 164, 252 173 C 259 177, 261 186, 257 194 C 252 204, 238 211, 222 212 C 207 214, 193 209, 184 201 C 177 194, 176 184, 184 176 Z' },
-      kidney: { type: 'path', d: 'M 267 171 C 276 164, 289 163, 300 167 C 309 170, 315 178, 315 187 C 315 197, 310 205, 301 210 C 291 215, 278 214, 269 209 C 260 203, 255 194, 256 185 C 257 179, 261 174, 267 171 Z' },
-      blood:  { type: 'line', d: 'M 112 175 C 158 169, 206 169, 252 175 C 291 180, 325 190, 356 206', strokeWidth: 20, hitWidth: 34 },
+      brain:  { type: 'path', d: 'M 82 84 C 86 74, 96 70, 106 73 C 114 76, 118 84, 116 93 C 114 100, 107 105, 99 106 C 93 106, 88 103, 85 98 C 81 96, 79 91, 82 84 Z' },
+      heart:  { type: 'path', d: 'M 140 170 C 146 161, 158 160, 164 168 C 168 173, 168 179, 165 185 C 161 192, 155 196, 148 196 C 142 196, 136 192, 133 185 C 131 179, 133 173, 140 170 Z' },
+      liver:  { type: 'path', d: 'M 190 178 C 206 168, 232 167, 248 175 C 255 179, 257 188, 253 196 C 248 205, 236 210, 222 211 C 209 212, 197 207, 190 200 C 184 194, 183 185, 190 178 Z' },
+      kidney: { type: 'path', d: 'M 271 175 C 278 169, 288 168, 296 172 C 303 175, 308 182, 308 190 C 308 198, 303 204, 296 208 C 288 212, 278 211, 271 207 C 264 202, 261 195, 262 188 C 263 182, 266 178, 271 175 Z' },
+      blood:  { type: 'line', d: 'M 120 180 C 158 173, 210 172, 260 178 C 290 183, 320 192, 350 206', strokeWidth: 8, hitWidth: 24 },
     },
-    labels: {
-      brain:  { x: 98,  y: 96 },
-      heart:  { x: 150, y: 179 },
-      liver:  { x: 221, y: 189 },
-      kidney: { x: 287, y: 189 },
-      blood:  { x: 308, y: 208 },
+    // Label anchor positions — outside the body silhouette, connected by leader lines
+    labelAnchors: {
+      brain:  { x: 50,  y: 52,  organCx: 98,  organCy: 88 },
+      heart:  { x: 105, y: 230, organCx: 148, organCy: 180 },
+      liver:  { x: 280, y: 230, organCx: 222, organCy: 192 },
+      kidney: { x: 340, y: 160, organCx: 286, organCy: 190 },
+      blood:  { x: 380, y: 215, organCx: 340, organCy: 200 },
     },
   },
   cat: {
@@ -68,34 +79,34 @@ const ANATOMY_IMAGE_CONFIG = {
     height: 199,
     mdr1: { x: 0.18, y: 0.245 },
     sections: {
-      brain:  { type: 'path', d: 'M 57 48 C 60 39, 70 35, 80 37 C 89 39, 94 46, 92 54 C 90 61, 84 66, 77 67 C 73 67, 70 66, 67 63 C 62 62, 56 56, 57 48 Z' },
-      heart:  { type: 'path', d: 'M 109 95 C 114 87, 126 86, 132 93 C 135 97, 136 102, 134 108 C 132 115, 126 120, 119 121 C 112 121, 106 117, 103 110 C 101 105, 102 99, 109 95 Z' },
-      liver:  { type: 'path', d: 'M 146 98 C 162 90, 185 90, 198 96 C 203 99, 205 106, 201 112 C 197 120, 186 125, 174 126 C 162 127, 151 123, 145 116 C 140 111, 140 103, 146 98 Z' },
-      kidney: { type: 'path', d: 'M 211 95 C 218 90, 227 89, 235 92 C 241 95, 246 101, 246 108 C 246 115, 242 121, 236 125 C 229 128, 220 128, 213 124 C 207 120, 204 114, 204 108 C 204 103, 206 98, 211 95 Z' },
-      blood:  { type: 'line', d: 'M 91 103 C 122 99, 154 98, 185 101 C 212 104, 237 112, 262 123', strokeWidth: 12, hitWidth: 22 },
+      brain:  { type: 'path', d: 'M 62 44 C 65 37, 73 34, 81 36 C 88 38, 92 44, 90 51 C 88 57, 83 61, 77 62 C 73 62, 69 60, 66 56 C 63 55, 60 50, 62 44 Z' },
+      heart:  { type: 'path', d: 'M 112 96 C 116 89, 126 88, 131 95 C 134 99, 134 105, 132 110 C 129 116, 124 119, 118 120 C 113 120, 108 116, 106 110 C 104 105, 106 99, 112 96 Z' },
+      liver:  { type: 'path', d: 'M 149 100 C 163 93, 183 93, 196 99 C 201 102, 203 108, 200 114 C 196 121, 185 125, 174 126 C 163 126, 153 122, 148 116 C 143 111, 143 105, 149 100 Z' },
+      kidney: { type: 'path', d: 'M 213 98 C 219 93, 227 92, 234 95 C 240 98, 244 104, 244 110 C 244 117, 240 122, 234 125 C 228 128, 219 127, 213 123 C 208 119, 205 113, 206 107 C 207 102, 209 99, 213 98 Z' },
+      blood:  { type: 'line', d: 'M 96 106 C 124 101, 158 100, 190 103 C 215 106, 238 113, 258 122', strokeWidth: 5, hitWidth: 16 },
     },
-    labels: {
-      brain:  { x: 75,  y: 50 },
-      heart:  { x: 118, y: 104 },
-      liver:  { x: 174, y: 107 },
-      kidney: { x: 225, y: 108 },
-      blood:  { x: 242, y: 123 },
+    labelAnchors: {
+      brain:  { x: 40,  y: 25,  organCx: 76,  organCy: 48 },
+      heart:  { x: 82,  y: 140, organCx: 118, organCy: 106 },
+      liver:  { x: 210, y: 142, organCx: 174, organCy: 112 },
+      kidney: { x: 270, y: 88,  organCx: 228, organCy: 110 },
+      blood:  { x: 280, y: 130, organCx: 250, organCy: 118 },
     },
   },
 };
 
 const HEAT_ORGANS = ['brain', 'heart', 'liver', 'kidney', 'blood'];
 const ORGAN_RENDER_ORDER = ['blood', 'brain', 'heart', 'liver', 'kidney'];
-const ORGAN_SHORT = { brain: 'BR', heart: 'HT', liver: 'LV', kidney: 'KD', blood: 'BL' };
 
+// ── Blue intensity color scale ────────────────────────────────────
 function getSeverityHex(score) {
   const level = getBurdenLevel(score);
-  if (level === 'nodata') return '#cbd5e1';
-  if (level === 'none') return '#94a3b8';
-  if (level === 'low') return '#fde68a';
-  if (level === 'moderate') return '#f59e0b';
-  if (level === 'high') return '#ef4444';
-  return '#b91c1c';
+  if (level === 'nodata') return '#cbd5e1';   // slate-200
+  if (level === 'none') return '#94a3b8';      // slate-400
+  if (level === 'low') return '#93c5fd';       // blue-300
+  if (level === 'moderate') return '#3b82f6';  // blue-500
+  if (level === 'high') return '#1d4ed8';      // blue-700
+  return '#1e3a5f';                            // deep navy
 }
 
 function hexToRgba(hex, alpha) {
@@ -120,7 +131,7 @@ function hexToRgba(hex, alpha) {
 function getSectionFill(score) {
   if (score == null) return 'rgba(148, 163, 184, 0.16)';
   const level = getBurdenLevel(score);
-  const alpha = level === 'none' ? 0.26 : level === 'low' ? 0.42 : level === 'moderate' ? 0.54 : level === 'high' ? 0.62 : 0.68;
+  const alpha = level === 'none' ? 0.28 : level === 'low' ? 0.40 : level === 'moderate' ? 0.52 : level === 'high' ? 0.60 : 0.68;
   return hexToRgba(getSeverityHex(score), alpha);
 }
 
@@ -198,8 +209,8 @@ function getHepaticRisk(hepaticPct) {
   return { level: 'low', label: 'Low', bar: 'bg-emerald-500', text: 'text-emerald-700' };
 }
 
-// ── Tooltip Component ──────────────────────────────────────────────
-function OrganTooltip({ organ, data, position, containerRef }) {
+// ── Tooltip Component (now includes per-drug contribution) ────────
+function OrganTooltip({ organ, data, position, containerRef, contributions, t }) {
   const tooltipRef = useRef(null);
   const [adjusted, setAdjusted] = useState({ x: 0, y: 0 });
 
@@ -227,7 +238,7 @@ function OrganTooltip({ organ, data, position, containerRef }) {
       className="fixed z-[9999] pointer-events-none"
       style={{ left: adjusted.x, top: adjusted.y }}
     >
-      <div className="bg-white border border-slate-200 rounded-xl shadow-xl p-3 max-w-[280px] text-left">
+      <div className="bg-white border border-slate-200 rounded-xl shadow-xl p-3 max-w-[300px] text-left">
         <div className="flex items-center justify-between mb-2 pb-1.5 border-b border-slate-100">
           <span className="text-[12px] font-bold text-slate-800">{organLabel.ko} / {organLabel.en}</span>
           <div className="text-right">
@@ -269,11 +280,39 @@ function OrganTooltip({ organ, data, position, containerRef }) {
         )}
 
         {data.evidence && (
-          <div>
+          <div className="mb-2">
             <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Evidence</p>
             <p className="text-[11px] text-slate-600 leading-relaxed line-clamp-3">
               {data.evidence}
             </p>
+          </div>
+        )}
+
+        {/* Per-drug elimination contribution (moved from main card) */}
+        {contributions && contributions.length > 0 && (
+          <div className="pt-2 mt-2 border-t border-slate-100">
+            <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
+              {t?.results?.perDrugContribution || 'Per-drug contribution'}
+            </p>
+            <div className="space-y-0.5">
+              {contributions.map((c, i) => (
+                <div key={i} className="flex items-center gap-1.5 text-[10px]">
+                  <span className="font-medium text-slate-700 w-20 truncate shrink-0">{c.drugName}</span>
+                  <span className="text-slate-400 font-mono">
+                    {t?.results?.renalShort || 'renal'} <span className="text-slate-600 font-semibold">{c.scaledRenal}%</span>
+                  </span>
+                  <span className="text-slate-300">·</span>
+                  <span className="text-slate-400 font-mono">
+                    {t?.results?.hepaticShort || 'hepatic'} <span className="text-slate-600 font-semibold">{c.scaledHepatic}%</span>
+                  </span>
+                  {c.doseScalingApplied && c.doseModifier !== 1.0 && (
+                    <span className="text-[9px] font-medium px-1 rounded bg-blue-50 text-blue-600">
+                      ×{c.doseModifier}
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </div>
@@ -310,12 +349,13 @@ export default function AnatomyDiagram({
   mdr1SensitiveDrugs,
   drugs = [],
   patientInfo,
+  overallRisk,
 }) {
   const [hoveredOrgan, setHoveredOrgan] = useState(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
   const [imageFailed, setImageFailed] = useState(false);
   const containerRef = useRef(null);
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const anatomyConfig = species === 'cat' ? ANATOMY_IMAGE_CONFIG.cat : ANATOMY_IMAGE_CONFIG.dog;
 
   const showMdr1 = Boolean(
@@ -340,6 +380,9 @@ export default function AnatomyDiagram({
   const hepaticRisk = getHepaticRisk(hepatic);
   const isCritical = renalRisk.level === 'critical';
 
+  // Check if overall DUR risk is contraindicated (only case where red outline is allowed)
+  const isContraindicated = overallRisk === 'contraindicated';
+
   const handleMouseEnter = useCallback((organ, e) => {
     setHoveredOrgan(organ);
     setTooltipPos({ x: e.clientX, y: e.clientY });
@@ -361,12 +404,23 @@ export default function AnatomyDiagram({
 
   const hasData = organScores && Object.values(organScores).some(o => o.finalScore !== null);
 
+  // Helper: get organ score fill color for the dot in the score table
+  function getOrganDotColor(score) {
+    if (score == null) return '#e2e8f0';
+    const level = getBurdenLevel(score);
+    if (level === 'none') return '#cbd5e1';
+    if (level === 'low') return '#93c5fd';      // blue-300
+    if (level === 'moderate') return '#3b82f6';  // blue-500
+    if (level === 'high') return '#1d4ed8';      // blue-700
+    return '#1e3a5f';                            // deep navy
+  }
+
   return (
     <div ref={containerRef} className="select-none">
       {/* Header */}
       <div className="flex items-center justify-between mb-2">
         <h3 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-          Organ Burden
+          Organ Involvement
         </h3>
         <span className="text-[10px] text-slate-400">
           {species === 'dog' ? '🐕' : '🐈'} {species === 'dog' ? 'Canine' : 'Feline'}
@@ -379,7 +433,7 @@ export default function AnatomyDiagram({
           className="w-full max-h-[220px] rounded-md bg-slate-100"
           viewBox={`0 0 ${anatomyConfig.width} ${anatomyConfig.height}`}
           role="img"
-          aria-label={`${species} organ burden diagram`}
+          aria-label={`${species} organ involvement diagram`}
         >
           <image
             href={anatomyConfig.src}
@@ -402,34 +456,10 @@ export default function AnatomyDiagram({
             const stroke = getSectionStroke(score, hovered);
             const strokeWidth = hovered ? 2 : 1.3;
 
-            if (section.type === 'ellipse') {
-              return (
-                <g key={`section-${organ}`}>
-                  <ellipse
-                    cx={section.cx}
-                    cy={section.cy}
-                    rx={section.rx}
-                    ry={section.ry}
-                    fill={fill}
-                    stroke={stroke}
-                    strokeWidth={strokeWidth}
-                    strokeDasharray={score == null ? '4 3' : undefined}
-                    className="organ-section"
-                  />
-                  <ellipse
-                    cx={section.cx}
-                    cy={section.cy}
-                    rx={section.rx}
-                    ry={section.ry}
-                    fill="transparent"
-                    className="organ-region"
-                    onMouseEnter={(e) => handleMouseEnter(organ, e)}
-                    onMouseMove={handleMouseMove}
-                    onMouseLeave={handleMouseLeave}
-                  />
-                </g>
-              );
-            }
+            // Red outline ONLY if overall DUR risk is "contraindicated" and this organ has a high score
+            const showRedOutline = isContraindicated && score != null && score > 60;
+            const finalStroke = showRedOutline ? '#dc2626' : stroke;
+            const finalStrokeWidth = showRedOutline ? 2.5 : strokeWidth;
 
             if (section.type === 'line') {
               return (
@@ -442,16 +472,17 @@ export default function AnatomyDiagram({
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     className="organ-section"
+                    opacity={0.7}
                   />
                   <path
                     d={section.d}
                     fill="none"
-                    stroke={stroke}
-                    strokeWidth={hovered ? 3.6 : 2.2}
+                    stroke={showRedOutline ? '#dc2626' : (hovered ? '#1e293b' : '#475569')}
+                    strokeWidth={hovered ? 2 : 1.2}
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeDasharray={score == null ? '6 4' : undefined}
-                    opacity={0.8}
+                    opacity={0.6}
                     pointerEvents="none"
                   />
                   <path
@@ -475,8 +506,8 @@ export default function AnatomyDiagram({
                 <path
                   d={section.d}
                   fill={fill}
-                  stroke={stroke}
-                  strokeWidth={strokeWidth}
+                  stroke={finalStroke}
+                  strokeWidth={finalStrokeWidth}
                   strokeLinejoin="round"
                   strokeDasharray={score == null ? '4 3' : undefined}
                   className="organ-section"
@@ -524,25 +555,45 @@ export default function AnatomyDiagram({
             </>
           )}
 
-          {/* Organ section labels */}
+          {/* Leader lines and labels — full organ names outside the silhouette */}
           {HEAT_ORGANS.map((organ) => {
-            const pos = anatomyConfig.labels[organ];
-            if (!pos) return null;
-            const score = organScores?.[organ]?.finalScore;
+            const anchor = anatomyConfig.labelAnchors[organ];
+            if (!anchor) return null;
             const hovered = hoveredOrgan === organ;
-            const label = ORGAN_SHORT[organ];
+            const organLabel = ORGAN_LABELS[organ];
 
             return (
               <g key={`label-${organ}`} pointerEvents="none">
+                {/* Leader line: 1px thin connecting organ to label */}
+                <line
+                  x1={anchor.organCx}
+                  y1={anchor.organCy}
+                  x2={anchor.x}
+                  y2={anchor.y}
+                  stroke={hovered ? '#334155' : '#94a3b8'}
+                  strokeWidth="1"
+                  strokeDasharray="3 2"
+                  opacity={hovered ? 0.8 : 0.5}
+                />
+                {/* Small dot at organ end */}
+                <circle
+                  cx={anchor.organCx}
+                  cy={anchor.organCy}
+                  r="2"
+                  fill={hovered ? '#334155' : '#94a3b8'}
+                  opacity={hovered ? 0.8 : 0.5}
+                />
+                {/* Full label text */}
                 <text
-                  x={pos.x}
-                  y={pos.y}
-                  textAnchor="middle"
-                  fill={hovered ? '#0f172a' : '#334155'}
-                  fontSize={hovered ? '11' : '10'}
-                  fontWeight="700"
+                  x={anchor.x}
+                  y={anchor.y}
+                  textAnchor={anchor.x < anatomyConfig.width / 2 ? 'end' : 'start'}
+                  fill={hovered ? '#0f172a' : '#475569'}
+                  fontSize={hovered ? '10' : '9'}
+                  fontWeight="600"
+                  fontFamily="system-ui, -apple-system, sans-serif"
                 >
-                  {label} {score !== null && score !== undefined ? score : '—'}
+                  {organLabel.ko}
                 </text>
               </g>
             );
@@ -558,22 +609,30 @@ export default function AnatomyDiagram({
         {/* Empty state */}
         {!hasData && (
           <div className="absolute inset-0 flex items-center justify-center bg-white/60 rounded-lg">
-            <p className="text-[11px] text-slate-400">Add drugs to see organ burden</p>
+            <p className="text-[11px] text-slate-400">Add drugs to see organ involvement</p>
           </div>
         )}
-      </div>
 
-      {/* Color scale legend */}
-      <div className="flex items-center gap-1 mb-2">
-        {LEGEND_ITEMS.map((item) => (
-          <div key={item.label} className="flex items-center gap-0.5">
-            <div
-              className={`w-2.5 h-2.5 rounded-sm ${item.className}`}
-              style={{ border: '1px solid rgba(0,0,0,0.08)' }}
-            />
-            <span className="text-[8px] text-slate-400">{item.label}</span>
+        {/* ── Legend — inside the diagram card, below the silhouette ── */}
+        <div className="mt-2 pt-2 border-t border-slate-100">
+          <p className="text-[10px] font-semibold text-slate-500 mb-1.5">
+            {lang === 'ko' ? '색상 = 모니터링 우선순위' : 'Color = Monitoring Priority'}
+          </p>
+          <div className="flex items-center gap-2 flex-wrap">
+            {LEGEND_ITEMS.map((item) => (
+              <div key={item.label} className="flex items-center gap-1">
+                <div
+                  className={`w-3.5 h-3.5 rounded-sm ${item.className}`}
+                  style={{ border: '1px solid rgba(0,0,0,0.08)' }}
+                />
+                <span className="text-[10px] text-slate-500">{item.label}</span>
+                <span className="text-[9px] text-slate-400">
+                  {lang === 'ko' ? item.ko : item.en}
+                </span>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
 
       {/* Compact organ score table */}
@@ -595,14 +654,7 @@ export default function AnatomyDiagram({
               <div className="flex items-center gap-1.5">
                 <div
                   className="w-2 h-2 rounded-full shrink-0"
-                  style={{
-                    backgroundColor: data.finalScore !== null
-                      ? (level === 'none' ? '#cbd5e1' :
-                         level === 'low' ? '#fde68a' :
-                         level === 'moderate' ? '#f59e0b' :
-                         level === 'high' ? '#ef4444' : '#b91c1c')
-                      : '#e2e8f0',
-                  }}
+                  style={{ backgroundColor: getOrganDotColor(data.finalScore) }}
                 />
                 <span className="text-[11px] text-slate-600">{organLabel.ko} / {organLabel.en}</span>
                 {organ === 'brain' && showMdr1 && (
@@ -622,14 +674,14 @@ export default function AnatomyDiagram({
         })}
       </div>
 
-      {/* ── Elimination Pathways (merged from OrganLoadIndicator) ─── */}
+      {/* ── Primary Elimination Route (renamed from Cumulative Organ Load) ─── */}
       {drugs.length > 0 && (
         <div className={`rounded-lg border overflow-hidden ${isCritical ? 'border-red-200 bg-red-50' : 'border-slate-200 bg-white'}`}>
           <div className="px-3 py-2 flex items-center justify-between border-b border-slate-100">
             <div className="flex items-center gap-1.5">
               <Activity size={12} className={renalRisk.text} />
               <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider">
-                {t.results.cumulativeOrganLoad}
+                {t.results.primaryEliminationRoute || 'Primary Elimination Route'}
               </span>
             </div>
             {isCritical && (
@@ -668,32 +720,10 @@ export default function AnatomyDiagram({
             />
           </div>
 
-          {/* Per-drug contribution (compact) */}
+          {/* Per-drug contribution REMOVED from main card — now in tooltip only */}
           {contributions.length > 0 && (
             <div className="px-3 pb-2 border-t border-slate-100 pt-2">
-              <p className="text-[9px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
-                {t.results.perDrugContribution}
-              </p>
-              <div className="space-y-1">
-                {contributions.map((c, i) => (
-                  <div key={i} className="flex items-center gap-1.5 text-[10px]">
-                    <span className="font-medium text-slate-700 w-24 truncate shrink-0">{c.drugName}</span>
-                    <span className="text-slate-400 font-mono">
-                      {t.results.renalShort} <span className="text-slate-600 font-semibold">{c.scaledRenal}%</span>
-                    </span>
-                    <span className="text-slate-300">·</span>
-                    <span className="text-slate-400 font-mono">
-                      {t.results.hepaticShort} <span className="text-slate-600 font-semibold">{c.scaledHepatic}%</span>
-                    </span>
-                    {c.doseScalingApplied && c.doseModifier !== 1.0 && (
-                      <span className={`text-[9px] font-medium px-1 rounded ${c.doseModifier > 1 ? 'bg-amber-50 text-amber-600' : 'bg-blue-50 text-blue-600'}`}>
-                        ×{c.doseModifier}
-                      </span>
-                    )}
-                  </div>
-                ))}
-              </div>
-              <p className="text-[9px] text-slate-400 mt-1.5 leading-relaxed">
+              <p className="text-[9px] text-slate-400 leading-relaxed">
                 {t.results.organLoadFootnote}
               </p>
             </div>
@@ -708,6 +738,8 @@ export default function AnatomyDiagram({
           data={organScores[hoveredOrgan]}
           position={tooltipPos}
           containerRef={containerRef}
+          contributions={contributions}
+          t={t}
         />
       )}
     </div>

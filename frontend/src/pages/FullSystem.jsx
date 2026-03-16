@@ -570,7 +570,7 @@ function DosageSummaryPanel({ results, drugs, species, patientInfo, onUpdateDrug
         <p className="text-[12px] text-slate-400 text-center py-4">No drugs selected</p>
       )}
 
-      {/* Unified Organ Burden Diagram + Elimination Pathways */}
+      {/* Unified Organ Involvement Diagram + Elimination Pathways */}
       {species && (
         <div className="bg-white border border-slate-200 rounded-xl p-3 shadow-sm">
           <AnatomyDiagram
@@ -580,6 +580,7 @@ function DosageSummaryPanel({ results, drugs, species, patientInfo, onUpdateDrug
             mdr1SensitiveDrugs={drugs.filter(d => d.mdr1Sensitive).map(d => d.id)}
             drugs={drugs}
             patientInfo={patientInfo}
+            overallRisk={results?.overallSeverity?.score >= 100 ? 'contraindicated' : undefined}
           />
         </div>
       )}

@@ -6,7 +6,6 @@ import {
   Activity, Ban, Timer, Scale, RefreshCcw
 } from 'lucide-react';
 import { SeverityBadge } from '../components/SeverityBadge';
-import { OrganLoadIndicator } from '../components/OrganLoadIndicator';
 import { NuvovetLogo } from '../components/NuvovetLogo';
 import { MolecularBackground } from '../components/MolecularBackground';
 import { RequestAccessModal } from '../components/RequestAccessModal';
@@ -104,28 +103,6 @@ function AnimatedStat({ value, label, suffix = '' }) {
   );
 }
 
-// ── Illustrative data ──────────────────────────────────────────
-
-const DEMO_DRUGS = [
-  {
-    id: 'meloxicam', name: 'Meloxicam', class: 'NSAID',
-    renalElimination: 0.15, hepaticElimination: 0.85,
-    pk: { primaryElimination: 'hepatic' },
-    riskFlags: { bleedingRisk: 'high', giUlcer: 'high', nephrotoxic: 'moderate' },
-  },
-  {
-    id: 'prednisolone', name: 'Prednisolone', class: 'Corticosteroid',
-    renalElimination: 0.20, hepaticElimination: 0.80,
-    pk: { primaryElimination: 'hepatic' },
-    riskFlags: { bleedingRisk: 'moderate', giUlcer: 'moderate' },
-  },
-];
-const DEMO_PATIENT = {
-  flaggedLabs: [
-    { key: 'creatinine', value: '2.4', unit: 'mg/dL', status: 'high' },
-  ],
-};
-
 // ── DDI Collision Demo ─────────────────────────────────────────
 
 function DDICollisionDemo({ visible }) {
@@ -183,9 +160,9 @@ function DDICollisionDemo({ visible }) {
   );
 }
 
-// ── Animated Organ Load Demo ───────────────────────────────────
+// ── Animated Organ Involvement Demo (blue scale) ─────────────
 
-function AnimatedOrganLoadDemo({ visible }) {
+function AnimatedOrganInvolvementDemo({ visible }) {
   const [phase, setPhase] = useState(0);
   const cycle = useAutoReplay(9000, visible);
 
@@ -207,17 +184,13 @@ function AnimatedOrganLoadDemo({ visible }) {
     <div className="mt-3 space-y-2.5">
       {/* Drug labels sliding in */}
       <div className="flex flex-wrap gap-1.5">
-        <div
-          className={`transition-all duration-500 ${phase >= 1 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
-        >
+        <div className={`transition-all duration-500 ${phase >= 1 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}>
           <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 text-blue-700 text-[9px] font-bold rounded-full border border-blue-200">
             <span className="w-1.5 h-1.5 bg-blue-400 rounded-full" />
             Meloxicam
           </span>
         </div>
-        <div
-          className={`transition-all duration-500 delay-200 ${phase >= 2 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
-        >
+        <div className={`transition-all duration-500 delay-200 ${phase >= 2 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}>
           <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-violet-50 text-violet-700 text-[9px] font-bold rounded-full border border-violet-200">
             <span className="w-1.5 h-1.5 bg-violet-400 rounded-full" />
             Prednisolone
@@ -225,37 +198,37 @@ function AnimatedOrganLoadDemo({ visible }) {
         </div>
       </div>
 
-      {/* Organ bars */}
+      {/* Organ involvement bars — blue scale */}
       <div className="space-y-2">
         <div>
           <div className="flex items-center justify-between mb-1">
-            <span className="text-[10px] font-medium text-slate-500">Renal Burden</span>
-            <span className={`text-[10px] font-bold font-mono transition-colors duration-500 ${isCritical ? 'text-red-600' : 'text-slate-600'}`}>
+            <span className="text-[10px] font-medium text-slate-500">Renal Involvement</span>
+            <span className={`text-[10px] font-bold font-mono transition-colors duration-500 ${isCritical ? 'text-red-600' : 'text-blue-600'}`}>
               {renalPct}%
             </span>
           </div>
           <div className="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
             <div
-              className={`h-full rounded-full transition-all duration-1000 ease-out ${isCritical ? 'bg-red-500' : 'bg-emerald-500'}`}
+              className={`h-full rounded-full transition-all duration-1000 ease-out ${isCritical ? 'bg-red-500' : 'bg-blue-500'}`}
               style={{ width: `${Math.min((renalPct / 200) * 100, 100)}%` }}
             />
           </div>
         </div>
         <div>
           <div className="flex items-center justify-between mb-1">
-            <span className="text-[10px] font-medium text-slate-500">Hepatic Burden</span>
-            <span className="text-[10px] font-bold font-mono text-amber-600">{hepaticPct}%</span>
+            <span className="text-[10px] font-medium text-slate-500">Hepatic Involvement</span>
+            <span className="text-[10px] font-bold font-mono text-blue-700">{hepaticPct}%</span>
           </div>
           <div className="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
             <div
-              className={`h-full rounded-full transition-all duration-1000 ease-out ${hepaticPct > 100 ? 'bg-amber-500' : 'bg-emerald-500'}`}
+              className={`h-full rounded-full transition-all duration-1000 ease-out ${hepaticPct > 100 ? 'bg-blue-700' : 'bg-blue-400'}`}
               style={{ width: `${Math.min((hepaticPct / 200) * 100, 100)}%` }}
             />
           </div>
         </div>
       </div>
 
-      {/* Critical banner */}
+      {/* Critical banner — only when creatinine is elevated */}
       {isCritical && (
         <div className="animate-bounce-in">
           <div className="bg-red-100 border border-red-200 rounded-lg px-2.5 py-1.5 flex items-center gap-2 animate-pulse-glow">
@@ -283,9 +256,7 @@ function SpeciesBreedDemo({ visible }) {
 
   return (
     <div className="space-y-2 mt-3">
-      <div
-        className={`transition-all duration-600 ${phase >= 1 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-6'}`}
-      >
+      <div className={`transition-all duration-600 ${phase >= 1 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-6'}`}>
         <div className="bg-red-950 border border-red-500/50 rounded-lg px-3 py-2 flex items-start gap-2 animate-pulse-glow">
           <Ban size={11} className="text-red-400 shrink-0 mt-0.5" />
           <div>
@@ -294,9 +265,7 @@ function SpeciesBreedDemo({ visible }) {
           </div>
         </div>
       </div>
-      <div
-        className={`transition-all duration-600 ${phase >= 2 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-6'}`}
-      >
+      <div className={`transition-all duration-600 ${phase >= 2 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-6'}`}>
         <div className="bg-orange-950/60 border border-orange-500/40 rounded-lg px-3 py-2">
           <p className="text-[9px] font-semibold text-orange-400">MDR1 Sensitivity · Ivermectin</p>
           <p className="text-[9px] text-orange-300/80">Collie/Sheltie/ASD — MDR1 mutation confirmed. CNS toxicity risk. Switch to Selamectin.</p>
@@ -341,7 +310,7 @@ function AnimatedDosingDemo({ visible }) {
             </div>
           )}
         </div>
-        <div className={`flex items-center text-slate-600 transition-all duration-500 ${phase >= 3 ? 'translate-x-0 opacity-100' : '-translate-x-2 opacity-0'}`}>
+        <div className={`flex items-center text-slate-600 text-xs mb-3 transition-all duration-500 ${phase >= 3 ? 'translate-x-0 opacity-100' : '-translate-x-2 opacity-0'}`}>
           →
         </div>
         <div className={`flex-1 rounded-lg p-2.5 text-center transition-all duration-700 ${
@@ -362,76 +331,89 @@ function AnimatedDosingDemo({ visible }) {
   );
 }
 
-// ── Washout Timeline Demo ──────────────────────────────────────
+// ── Washout Timeline Demo (fixed layout) ─────────────────────
 
 function TimelineWashoutDemo({ visible }) {
   const [phase, setPhase] = useState(0);
   useEffect(() => {
     if (!visible) return;
-    const t1 = setTimeout(() => setPhase(1), 300);
-    const t2 = setTimeout(() => setPhase(2), 1000);
-    const t3 = setTimeout(() => setPhase(3), 1800);
+    setPhase(0);
+    const t1 = setTimeout(() => setPhase(1), 400);
+    const t2 = setTimeout(() => setPhase(2), 1200);
+    const t3 = setTimeout(() => setPhase(3), 2200);
     return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
   }, [visible]);
 
   return (
-    <div className={`mt-3 space-y-2.5 transition-all duration-700 ${visible ? 'opacity-100' : 'opacity-0'}`}>
-      {/* Timeline SVG */}
-      <div className="relative bg-slate-900 rounded-xl p-4 overflow-hidden">
-        <svg viewBox="0 0 300 60" className="w-full h-auto" preserveAspectRatio="xMidYMid meet">
-          {/* Timeline base */}
-          <line x1="20" y1="40" x2="280" y2="40" stroke="#334155" strokeWidth="1.5" />
+    <div className={`mt-3 space-y-3 transition-all duration-700 ${visible ? 'opacity-100' : 'opacity-0'}`}>
+      {/* Timeline */}
+      <div className="bg-slate-900 rounded-xl p-4 overflow-hidden">
+        <div className="relative h-16">
+          {/* Base line */}
+          <div className="absolute top-1/2 left-4 right-4 h-px bg-slate-700" />
 
-          {/* Self-drawing decay curve */}
-          <path
-            d="M 60,15 C 80,15 100,25 140,35 C 160,40 200,42 280,42"
-            fill="none"
-            stroke="#f59e0b"
-            strokeWidth="1.5"
-            strokeDasharray="200"
-            strokeDashoffset={phase >= 1 ? '0' : '200'}
-            style={{ transition: 'stroke-dashoffset 2s ease-out' }}
-          />
+          {/* Drug A marker */}
+          <div
+            className={`absolute top-1/2 -translate-y-1/2 transition-all duration-600 ${phase >= 1 ? 'opacity-100' : 'opacity-0'}`}
+            style={{ left: '12%' }}
+          >
+            <div className="w-3 h-3 bg-blue-500 rounded-full border-2 border-slate-900" />
+            <span className="absolute top-5 left-1/2 -translate-x-1/2 text-[8px] text-blue-400 font-semibold whitespace-nowrap">
+              Tramadol
+            </span>
+            <span className="absolute -top-5 left-1/2 -translate-x-1/2 text-[7px] text-slate-500 font-mono whitespace-nowrap">
+              t½ 1.8h
+            </span>
+          </div>
 
-          {/* Drug markers */}
-          <circle cx="60" cy="40" r="4" fill={phase >= 1 ? '#3b82f6' : '#475569'}
-            style={{ transition: 'fill 0.5s' }} />
-          <text x="60" y="55" textAnchor="middle" fill="#94a3b8" fontSize="6" fontFamily="DM Sans">Tramadol</text>
+          {/* Drug B marker */}
+          <div
+            className={`absolute top-1/2 -translate-y-1/2 transition-all duration-600 delay-300 ${phase >= 2 ? 'opacity-100' : 'opacity-0'}`}
+            style={{ left: '55%' }}
+          >
+            <div className="w-3 h-3 bg-violet-500 rounded-full border-2 border-slate-900" />
+            <span className="absolute top-5 left-1/2 -translate-x-1/2 text-[8px] text-violet-400 font-semibold whitespace-nowrap">
+              Trazodone
+            </span>
+            <span className="absolute -top-5 left-1/2 -translate-x-1/2 text-[7px] text-slate-500 font-mono whitespace-nowrap">
+              t½ 3.5h
+            </span>
+          </div>
 
-          <circle cx="140" cy="40" r="4" fill={phase >= 2 ? '#8b5cf6' : '#475569'}
-            style={{ transition: 'fill 0.5s' }} />
-          <text x="140" y="55" textAnchor="middle" fill="#94a3b8" fontSize="6" fontFamily="DM Sans">Trazodone</text>
+          {/* Washout zone highlight */}
+          <div
+            className={`absolute top-1/2 -translate-y-1/2 h-8 rounded transition-all duration-800 ${phase >= 2 ? 'opacity-100' : 'opacity-0'}`}
+            style={{ left: '15%', width: '38%', background: 'rgba(245, 158, 11, 0.12)' }}
+          >
+            <span className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[8px] font-bold text-amber-400 uppercase tracking-wide whitespace-nowrap transition-opacity duration-500 ${phase >= 2 ? 'opacity-100' : 'opacity-0'}`}>
+              washout zone
+            </span>
+          </div>
 
-          {/* Washout zone */}
-          <rect x="60" y="8" width="80" height="28" rx="4"
-            fill="#f59e0b" opacity={phase >= 2 ? 0.1 : 0}
-            style={{ transition: 'opacity 0.8s' }} />
-          {phase >= 2 && (
-            <text x="100" y="22" textAnchor="middle" fill="#f59e0b" fontSize="6" fontWeight="bold" fontFamily="DM Sans">
-              WASHOUT ZONE
-            </text>
-          )}
-
-          {/* Half-life markers */}
-          {phase >= 1 && (
-            <>
-              <text x="80" y="12" fill="#64748b" fontSize="5" fontFamily="DM Mono">t½ 1.8h</text>
-              {phase >= 2 && (
-                <text x="160" y="12" fill="#64748b" fontSize="5" fontFamily="DM Mono">t½ 3.5h</text>
-              )}
-            </>
-          )}
-        </svg>
+          {/* Decay curve */}
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 300 60" preserveAspectRatio="none">
+            <path
+              d="M 36,12 C 60,12 90,25 140,38 C 170,44 220,48 270,48"
+              fill="none"
+              stroke="#f59e0b"
+              strokeWidth="1.5"
+              strokeDasharray="200"
+              strokeDashoffset={phase >= 1 ? '0' : '200'}
+              style={{ transition: 'stroke-dashoffset 2s ease-out' }}
+              opacity="0.7"
+            />
+          </svg>
+        </div>
       </div>
 
       {/* Warning */}
       <div className={`transition-all duration-600 ${phase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}>
-        <div className="bg-amber-950/60 border border-amber-500/40 rounded-lg px-3 py-2 animate-pulse-glow-amber">
+        <div className="bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
           <div className="flex items-center gap-1.5 mb-0.5">
-            <Timer size={10} className="text-amber-400" />
-            <span className="text-[9px] font-bold text-amber-400 uppercase">Serotonin Risk — Washout Required</span>
+            <Timer size={10} className="text-amber-600" />
+            <span className="text-[10px] font-bold text-amber-700 uppercase">Serotonin Risk — Washout Required</span>
           </div>
-          <p className="text-[8px] text-amber-400/70">≥1d washout before starting new serotonergic drug</p>
+          <p className="text-[9px] text-amber-600">≥1 day washout before starting new serotonergic drug</p>
         </div>
       </div>
     </div>
@@ -569,10 +551,10 @@ function GradientSeverityBar() {
   const { t } = useI18n();
 
   const levels = [
-    { label: t.results.critical, score: '100', position: '5%', color: 'bg-red-500', textColor: 'text-red-700', desc: t.landing.severityCritical },
-    { label: t.results.moderate, score: '40–75', position: '35%', color: 'bg-amber-500', textColor: 'text-amber-700', desc: t.landing.severityModerate },
-    { label: t.results.minor, score: '15–39', position: '62%', color: 'bg-yellow-400', textColor: 'text-yellow-700', desc: t.landing.severityMinor },
-    { label: t.results.none, score: '0', position: '88%', color: 'bg-emerald-500', textColor: 'text-emerald-700', desc: t.landing.severityNone },
+    { label: t.results.critical, score: '100', color: 'bg-red-500', textColor: 'text-red-700', desc: t.landing.severityCritical },
+    { label: t.results.moderate, score: '40–75', color: 'bg-amber-500', textColor: 'text-amber-700', desc: t.landing.severityModerate },
+    { label: t.results.minor, score: '15–39', color: 'bg-yellow-400', textColor: 'text-yellow-700', desc: t.landing.severityMinor },
+    { label: t.results.none, score: '0', color: 'bg-emerald-500', textColor: 'text-emerald-700', desc: t.landing.severityNone },
   ];
 
   return (
@@ -812,7 +794,7 @@ export default function Landing() {
       </section>
 
       {/* ─── Clinical Informatics — Bento Box ───────────────────── */}
-      <section className="bg-gradient-to-b from-[#f5f7fb] to-slate-50 overflow-hidden">
+      <section className="bg-gradient-to-b from-slate-50 to-slate-100/50 overflow-hidden">
         <div className="max-w-6xl mx-auto px-5 sm:px-8 py-20 sm:py-28">
 
           {/* Billboard header */}
@@ -844,7 +826,7 @@ export default function Landing() {
               <BentoCard
                 icon={ShieldCheck}
                 title="Multi-drug interaction check"
-                description="Every drug pair evaluated for CYP enzyme conflicts, duplicate class contraindications, QT interval stacking, bleeding risk amplification, and serotonin syndrome — with a 3-tier severity classification and evidence-backed recommendation."
+                description="Every drug pair evaluated for CYP enzyme conflicts, duplicate class contraindications, QT interval stacking, bleeding risk amplification, and serotonin syndrome — with a 3-tier severity classification."
                 demo={DDICollisionDemo}
                 iconColor="text-red-600"
                 className="h-full"
@@ -852,14 +834,14 @@ export default function Landing() {
               />
             </div>
 
-            {/* Organ Load — top right */}
+            {/* Organ Involvement — top right (updated naming + blue scale) */}
             <div className="lg:col-span-5">
               <BentoCard
                 icon={Activity}
-                title="Cumulative organ load"
-                description="Hepatic and renal elimination burden summed across the full regimen. Escalates to critical when combined organ load exceeds safe thresholds."
-                demo={AnimatedOrganLoadDemo}
-                iconColor="text-red-500"
+                title="Organ involvement mapping"
+                description="Hepatic and renal elimination routes mapped across the full regimen with a blue intensity scale. Monitoring priority surfaces when organ involvement crosses safe thresholds."
+                demo={AnimatedOrganInvolvementDemo}
+                iconColor="text-blue-600"
                 className="h-full"
                 delay={100}
               />
@@ -891,7 +873,7 @@ export default function Landing() {
               />
             </div>
 
-            {/* Washout — wide bottom */}
+            {/* Washout — wide bottom (fixed demo) */}
             <div className="lg:col-span-7">
               <BentoCard
                 icon={RefreshCcw}
@@ -957,7 +939,7 @@ export default function Landing() {
       </section>
 
       {/* ─── Demo Preview CTA — Immersive Dark ──────────────────── */}
-      <section className="bg-[#f5f7fb]">
+      <section className="bg-slate-50">
         <div className="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20">
           <RevealSection>
             <div className="bg-slate-900 rounded-3xl p-8 sm:p-14 text-center overflow-hidden relative">
