@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { I18nProvider } from './i18n';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import Landing from './pages/Landing';
@@ -11,7 +11,7 @@ import Account from './pages/Account';
 
 // Protect /system — redirect to /system with login if unauthenticated
 function ProtectedRoute({ children }) {
-  const { isAuthenticated, loading } = useAuth();
+  const { loading } = useAuth();
   if (loading) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
@@ -23,23 +23,33 @@ function ProtectedRoute({ children }) {
   return children;
 }
 
+function AppRoutes() {
+  const location = useLocation();
+
+  return (
+    <div key={location.pathname} className="route-enter">
+      <Routes location={location}>
+        <Route path="/" element={<Landing />} />
+        <Route path="/demo" element={<Demo />} />
+        <Route path="/system" element={
+          <ProtectedRoute>
+            <FullSystem />
+          </ProtectedRoute>
+        } />
+        <Route path="/patients" element={<Patients />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/account" element={<Account />} />
+      </Routes>
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <I18nProvider>
       <AuthProvider>
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/demo" element={<Demo />} />
-            <Route path="/system" element={
-              <ProtectedRoute>
-                <FullSystem />
-              </ProtectedRoute>
-            } />
-            <Route path="/patients" element={<Patients />} />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route path="/account" element={<Account />} />
-          </Routes>
+          <AppRoutes />
         </BrowserRouter>
       </AuthProvider>
     </I18nProvider>

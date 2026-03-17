@@ -62,7 +62,7 @@ export function AuthProvider({ children }) {
       return { ok: true };
     }
 
-    return { ok: false, error: 'Only admin / admin is allowed' };
+    return { ok: false, error: 'Invalid username or password' };
   }, [_setAuth]);
 
   const signup = useCallback(async () => {
