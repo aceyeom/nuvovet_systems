@@ -168,7 +168,7 @@ function AuthGate({ onAuthenticated }) {
     setSubmitting(true);
     const result = await login(username.trim(), password);
     setSubmitting(false);
-    if (result.ok) { onAuthenticated(); }
+    if (result.ok) { navigate('/account', { replace: true }); }
     else { setError(result.error || 'Authentication failed'); }
   };
 

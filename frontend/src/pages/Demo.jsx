@@ -370,7 +370,7 @@ const DEMO_PROFILES = [
   {
     id: 'choco',
     photo: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=640&h=760&auto=format&fit=crop&q=75',
-    photoPosition: '50% 34%',
+    photoPosition: '50% 22%',
     nameKo: '초코',
     nameEn: 'Choco',
     species: 'dog',
@@ -386,27 +386,9 @@ const DEMO_PROFILES = [
     flaggedLabs: [],
   },
   {
-    id: 'haru',
-    photo: 'https://images.unsplash.com/photo-1552053831-71594a27632d?w=480&auto=format&fit=crop&q=70',
-    photoPosition: '50% 28%',
-    nameKo: '하루',
-    nameEn: 'Haru',
-    species: 'dog',
-    breed: 'Golden Retriever',
-    weight: 28,
-    ageKo: '8세',
-    sex: 'Spayed Female',
-    sexKo: '중성화 암컷',
-    summaryKo: '만성 심장질환 이력. NSAID+이뇨제+ACE억제제 3제 병용 시 신장 관류 저하(Triple Whammy) 위험.',
-    summaryEn: 'Chronic cardiac disease. Triple Whammy — renal perfusion risk with NSAID + diuretic + ACEi.',
-    drugIds: ['meloxicam', 'furosemide', 'enalapril'],
-    conditions: ['Chronic Heart Disease'],
-    flaggedLabs: [],
-  },
-  {
     id: 'kongyi',
     photo: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?w=640&h=760&auto=format&fit=crop&q=75',
-    photoPosition: '50% 40%',
+    photoPosition: '50% 26%',
     nameKo: '콩이',
     nameEn: 'Kongyi',
     species: 'dog',
@@ -424,7 +406,7 @@ const DEMO_PROFILES = [
   {
     id: 'nabi',
     photo: 'https://images.unsplash.com/photo-1561948955-570b270e7c36?w=640&h=760&auto=format&fit=crop&q=75',
-    photoPosition: '50% 36%',
+    photoPosition: '50% 42%',
     nameKo: '나비',
     nameEn: 'Nabi',
     species: 'cat',
@@ -461,8 +443,8 @@ function ProfileSelectStep({ onSelect }) {
           </h1>
           <p className="typo-body text-slate-500 max-w-md mx-auto" style={{ wordBreak: 'keep-all' }}>
             {lang === 'ko'
-              ? '실제 임상 시나리오를 기반으로 한 4가지 환자 프로필 중 하나를 선택하세요.'
-              : 'Choose from four clinical scenarios to see how NuvoVet handles complex drug interactions.'}
+              ? '실제 임상 시나리오를 기반으로 한 3가지 환자 프로필 중 하나를 선택하세요.'
+              : 'Choose from three clinical scenarios to see how NuvoVet handles complex drug interactions.'}
           </p>
         </div>
 
@@ -986,6 +968,7 @@ export default function Demo() {
 
   // ── Guided animation step ────────────────────────────────────────
   const [guideStep, setGuideStep] = useState('search');
+  const [drugPanelTab, setDrugPanelTab] = useState('prescription');
 
   useEffect(() => {
     if (drugs.length === 0) {
@@ -1001,6 +984,7 @@ export default function Demo() {
       .map((id) => DEMO_DRUGS_CATALOGUE.find((d) => d.id === id))
       .filter(Boolean);
     setDrugs(profileDrugs);
+    setDrugPanelTab('prescription');
     setStep('prescription');
   };
 
@@ -1102,103 +1086,163 @@ export default function Demo() {
 
       {/* ── Prescription step ── */}
       {step === 'prescription' && selectedProfile && (
-        <div className="flex-1 flex flex-col px-4 sm:px-6 py-6 animate-slide-in">
-          <div className="max-w-lg mx-auto w-full space-y-5">
+        <div className="flex-1 overflow-hidden px-4 sm:px-6 py-5 animate-slide-in">
+          <div className="h-full max-w-[1320px] mx-auto grid grid-cols-1 lg:grid-cols-[340px_minmax(0,1fr)] gap-5">
 
-            {/* Title */}
-            <div>
-              <p className="typo-section-header mb-1.5">
-                {lang === 'ko' ? '데모 처방 / DEMO PRESCRIPTION' : 'DEMO PRESCRIPTION'}
-              </p>
-              <h1 className="typo-page-title mb-1">
-                {lang === 'ko' ? '처방 DUR 검사' : 'Prescription DUR Check'}
-              </h1>
-              <p className="typo-body">
-                {lang === 'ko'
-                  ? '약물을 확인하거나 추가한 뒤 DUR 검사를 실행하세요.'
-                  : 'Review or add drugs below, then run the DUR scan.'}
-              </p>
-            </div>
-
-            {/* Selected patient */}
-            <SelectedProfileCard profile={selectedProfile} />
-
-            {/* Drug search section */}
-            <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-4">
-              <div className="flex items-center justify-between">
-                <p className="typo-section-header">
-                  {lang === 'ko' ? `약물 목록 (${drugs.length})` : `DRUGS (${drugs.length})`}
+            {/* Left panel — patient info */}
+            <aside className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden flex flex-col">
+              <div className="px-4 py-3 border-b border-slate-100 bg-slate-50">
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                  {lang === 'ko' ? '환자 정보' : 'Patient Info'}
                 </p>
-                {guideStep === 'search' && (
-                  <span className="text-[10px] font-semibold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-full animate-pulse">
-                    {lang === 'ko' ? '↓ 검색하세요' : '↓ Start searching'}
-                  </span>
+              </div>
+              <div className="p-4 overflow-y-auto space-y-3">
+                <SelectedProfileCard profile={selectedProfile} />
+                <div className="bg-white border border-slate-200 rounded-xl p-3">
+                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">
+                    {lang === 'ko' ? '초기 약물 세트' : 'Initial Regimen'}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {selectedProfile.drugIds.map((id) => {
+                      const d = DEMO_DRUGS_CATALOGUE.find((x) => x.id === id);
+                      if (!d) return null;
+                      return (
+                        <span key={id} className="text-[10px] font-medium px-2 py-0.5 rounded-full border border-slate-200 bg-slate-50 text-slate-600">
+                          {d.name}
+                        </span>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            </aside>
+
+            {/* Right panel — drug prescription */}
+            <section className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden flex flex-col min-h-0">
+              <div className="px-5 py-4 border-b border-slate-200">
+                <p className="typo-section-header mb-1.5">
+                  {lang === 'ko' ? '데모 처방 / DEMO PRESCRIPTION' : 'DEMO PRESCRIPTION'}
+                </p>
+                <h1 className="typo-page-title mb-1">
+                  {lang === 'ko' ? '처방 DUR 검사' : 'Prescription DUR Check'}
+                </h1>
+                <p className="typo-body">
+                  {lang === 'ko'
+                    ? '환자 정보는 왼쪽에서 확인하고, 오른쪽에서 약물을 관리하세요.'
+                    : 'Review patient details on the left and manage prescriptions on the right.'}
+                </p>
+              </div>
+
+              <div className="border-b border-slate-200 px-3 pt-2 bg-white">
+                <div className="flex items-stretch gap-1">
+                  <button
+                    onClick={() => setDrugPanelTab('prescription')}
+                    className={`px-3 py-2 text-[12px] font-medium rounded-t-lg border border-b-0 transition-colors ${
+                      drugPanelTab === 'prescription'
+                        ? 'bg-slate-900 text-white border-slate-900'
+                        : 'bg-slate-50 text-slate-500 border-slate-200 hover:text-slate-700'
+                    }`}
+                  >
+                    {lang === 'ko' ? `처방 약물 (${drugs.length})` : `Prescription (${drugs.length})`}
+                  </button>
+                  <button
+                    onClick={() => setDrugPanelTab('search')}
+                    className={`px-3 py-2 text-[12px] font-medium rounded-t-lg border border-b-0 transition-colors ${
+                      drugPanelTab === 'search'
+                        ? 'bg-slate-900 text-white border-slate-900'
+                        : 'bg-slate-50 text-slate-500 border-slate-200 hover:text-slate-700'
+                    }`}
+                  >
+                    {lang === 'ko' ? '약물 검색' : 'Drug Search'}
+                  </button>
+                </div>
+              </div>
+
+              <div className="flex-1 overflow-y-auto px-5 py-4 space-y-4 bg-slate-50/40">
+                {drugPanelTab === 'search' && (
+                  <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm space-y-4">
+                    <div className="flex items-center justify-between">
+                      <p className="typo-section-header">
+                        {lang === 'ko' ? '검색 가능한 약물' : 'Searchable Drugs'}
+                      </p>
+                      {guideStep === 'search' && (
+                        <span className="text-[10px] font-semibold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-full animate-pulse">
+                          {lang === 'ko' ? '↓ 검색하세요' : '↓ Start searching'}
+                        </span>
+                      )}
+                    </div>
+
+                    <div onClick={handleSearchFocus} onChange={handleSearchInput}>
+                      <DemoDrugSearch
+                        addedDrugIds={addedDrugIds}
+                        onAdd={handleAddDrug}
+                        guideStep={guideStep}
+                      />
+                    </div>
+
+                    <div className="flex flex-wrap gap-1.5">
+                      {DEMO_DRUGS_CATALOGUE.map((d) => (
+                        <span
+                          key={d.id}
+                          className={`text-[10px] px-2 py-0.5 rounded-full border transition-colors ${
+                            addedDrugIds.has(d.id)
+                              ? 'bg-emerald-50 text-emerald-600 border-emerald-200'
+                              : 'bg-slate-50 text-slate-400 border-slate-200'
+                          }`}
+                        >
+                          {addedDrugIds.has(d.id) ? '✓ ' : ''}{d.name}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {(drugPanelTab === 'prescription' || drugs.length > 0) && (
+                  <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm space-y-3">
+                    <p className="typo-section-header">
+                      {lang === 'ko' ? `약물 목록 (${drugs.length})` : `DRUGS (${drugs.length})`}
+                    </p>
+
+                    {drugs.length > 0 ? (
+                      <div className="space-y-3">
+                        {drugs.map((drug) => (
+                          <DemoDrugCard
+                            key={drug.id}
+                            drug={drug}
+                            species={selectedProfile.species}
+                            weight={selectedProfile.weight}
+                            onRemove={() => handleRemoveDrug(drug.id)}
+                            guideStrength={guideStep === 'strength'}
+                          />
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="text-[12px] text-slate-400">
+                        {lang === 'ko' ? '약물 검색 탭에서 약물을 추가하세요.' : 'Add drugs from the Drug Search tab.'}
+                      </p>
+                    )}
+                  </div>
                 )}
               </div>
 
-              {/* Demo drug chips */}
-              <div className="flex flex-wrap gap-1.5">
-                {DEMO_DRUGS_CATALOGUE.map((d) => (
-                  <span
-                    key={d.id}
-                    className={`text-[10px] px-2 py-0.5 rounded-full border transition-colors ${
-                      addedDrugIds.has(d.id)
-                        ? 'bg-emerald-50 text-emerald-600 border-emerald-200'
-                        : 'bg-slate-50 text-slate-400 border-slate-200'
-                    }`}
-                  >
-                    {addedDrugIds.has(d.id) ? '✓ ' : ''}{d.name}
-                  </span>
-                ))}
+              <div className="px-5 py-4 border-t border-slate-200 bg-white">
+                <button
+                  onClick={handleRunAnalysis}
+                  disabled={drugs.length === 0}
+                  className={`w-full flex items-center justify-center gap-2 px-4 py-3.5 bg-slate-900 text-white text-sm font-semibold rounded-xl hover:bg-slate-800 disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200 shadow-sm ${
+                    guideStep === 'run' ? 'animate-demo-guide-pulse' : ''
+                  }`}
+                >
+                  <Zap size={15} />
+                  {lang === 'ko' ? 'DUR 검사 실행 / Run DUR Scan' : 'Run DUR Scan'}
+                </button>
+                {drugs.length === 0 && (
+                  <p className="text-center text-[11px] text-slate-400 mt-2">
+                    {lang === 'ko' ? '약물을 하나 이상 추가해 주세요.' : 'Add at least one drug to run the scan.'}
+                  </p>
+                )}
               </div>
-
-              {/* Drug search input */}
-              <div
-                onClick={handleSearchFocus}
-                onChange={handleSearchInput}
-              >
-                <DemoDrugSearch
-                  addedDrugIds={addedDrugIds}
-                  onAdd={handleAddDrug}
-                  guideStep={guideStep}
-                />
-              </div>
-
-              {/* Added drug cards */}
-              {drugs.length > 0 && (
-                <div className="space-y-3 mt-2">
-                  {drugs.map((drug) => (
-                    <DemoDrugCard
-                      key={drug.id}
-                      drug={drug}
-                      species={selectedProfile.species}
-                      weight={selectedProfile.weight}
-                      onRemove={() => handleRemoveDrug(drug.id)}
-                      guideStrength={guideStep === 'strength'}
-                    />
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Run DUR button */}
-            <button
-              onClick={handleRunAnalysis}
-              disabled={drugs.length === 0}
-              className={`w-full flex items-center justify-center gap-2 px-4 py-3.5 bg-slate-900 text-white text-sm font-semibold rounded-xl hover:bg-slate-800 disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200 shadow-sm ${
-                guideStep === 'run' ? 'animate-demo-guide-pulse' : ''
-              }`}
-            >
-              <Zap size={15} />
-              {lang === 'ko' ? 'DUR 검사 실행 / Run DUR Scan' : 'Run DUR Scan'}
-            </button>
-
-            {drugs.length === 0 && (
-              <p className="text-center text-[11px] text-slate-400">
-                {lang === 'ko' ? '약물을 하나 이상 추가해 주세요.' : 'Add at least one drug to run the scan.'}
-              </p>
-            )}
-
+            </section>
           </div>
         </div>
       )}
