@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  ArrowRight, ChevronDown, Dna, ShieldCheck,
+  ArrowRight, Lock, ChevronDown, Dna, ShieldCheck,
   AlertTriangle, CheckCircle, Zap, Layers,
   Activity, Ban, Timer, Scale, RefreshCcw
 } from 'lucide-react';
 import { SeverityBadge } from '../components/SeverityBadge';
+import { NuvovetLogo } from '../components/NuvovetLogo';
 import { MolecularBackground } from '../components/MolecularBackground';
 import { RequestAccessModal } from '../components/RequestAccessModal';
 import { useI18n } from '../i18n';
