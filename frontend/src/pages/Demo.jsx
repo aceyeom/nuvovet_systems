@@ -2,29 +2,18 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   ArrowLeft, Zap, Search, X, Lock, ChevronDown, ChevronUp,
-  Check, AlertCircle
+  Check, ArrowRight
 } from 'lucide-react';
 import { NuvovetWordmark } from '../components/NuvovetLogo';
 import { AnalysisScreen } from '../components/AnalysisScreen';
 import { ResultsDisplay } from '../components/ResultsDisplay';
+import AnatomyDiagram from '../components/charts/AnatomyDiagram';
+import { aggregateOrganBurden } from '../components/charts/organBurdenAggregator';
 import { runFullDURAnalysis } from '../utils/durEngine';
 import { useI18n, LangToggle } from '../i18n';
 import { DRUG_SOURCE } from '../data/drugDatabase';
 
-// ── Fixed Demo Patient ──────────────────────────────────────────
-const DEMO_PATIENT = {
-  name: 'Max',
-  species: 'dog',
-  breed: 'Border Collie',
-  weight: 12,
-  age: '4 years',
-  sex: 'Neutered Male',
-  conditions: [],
-  flaggedLabs: [],
-  locked: true,
-};
-
-// ── Hardcoded Demo Drug Catalogue (5 drugs, no API) ─────────────
+// ── Demo Drug Catalogue ────────────────────────────────────────────
 const DEMO_DRUGS_CATALOGUE = [
   {
     id: 'meloxicam',
@@ -136,9 +125,371 @@ const DEMO_DRUGS_CATALOGUE = [
       { label: '40 mg tablet', value: 40, unit: 'mg', form: 'Tab' },
     ],
   },
+  {
+    id: 'ivermectin',
+    name: 'Ivermectin',
+    nameKr: '이버멕틴',
+    activeSubstance: 'Ivermectin',
+    class: 'Antiparasitic',
+    source: DRUG_SOURCE.KR_VET,
+    defaultDose: { dog: 6, cat: 24 },
+    doseRange: { dog: [3, 12], cat: [12, 48] },
+    unit: 'mcg/kg',
+    freq: 'SID',
+    route: 'PO',
+    narrowTherapeuticIndex: true,
+    mdr1Sensitive: true,
+    cypProfile: { substrate: ['CYP3A4'], inhibitor: [], inducer: [] },
+    riskFlags: { nephrotoxic: 'none', hepatotoxic: 'low', qtProlongation: 'none', bleedingRisk: 'none', giUlcer: 'none' },
+    renalElimination: 0.10,
+    pk: { halfLife: 24, timeToPeak: 4, bioavailability: 0.93, proteinBinding: 0.93, primaryElimination: 'hepatic' },
+    availableStrengths: [
+      { label: '0.08% oral solution (0.8 mg/mL)', value: 0.8, unit: 'mg/mL', form: 'Soln' },
+    ],
+  },
+  {
+    id: 'ketoconazole',
+    name: 'Ketoconazole',
+    nameKr: '케토코나졸',
+    activeSubstance: 'Ketoconazole',
+    class: 'Antifungal',
+    source: DRUG_SOURCE.KR_VET,
+    defaultDose: { dog: 5, cat: 2.5 },
+    doseRange: { dog: [2.5, 10], cat: [1, 5] },
+    unit: 'mg/kg',
+    freq: 'BID',
+    route: 'PO',
+    narrowTherapeuticIndex: false,
+    cypProfile: { substrate: ['CYP3A4'], inhibitor: ['CYP3A4'], inducer: [] },
+    riskFlags: { nephrotoxic: 'low', hepatotoxic: 'moderate', qtProlongation: 'none', bleedingRisk: 'none', giUlcer: 'none' },
+    renalElimination: 0.15,
+    pk: { halfLife: 8, timeToPeak: 2, bioavailability: 0.75, proteinBinding: 0.99, primaryElimination: 'hepatic' },
+    availableStrengths: [
+      { label: '200 mg tablet', value: 200, unit: 'mg', form: 'Tab' },
+    ],
+  },
+  {
+    id: 'enalapril',
+    name: 'Enalapril',
+    nameKr: '에날라프릴',
+    activeSubstance: 'Enalapril Maleate',
+    class: 'ACE Inhibitor',
+    source: DRUG_SOURCE.KR_VET,
+    defaultDose: { dog: 0.5, cat: 0.25 },
+    doseRange: { dog: [0.25, 1.0], cat: [0.125, 0.5] },
+    unit: 'mg/kg',
+    freq: 'SID',
+    route: 'PO',
+    narrowTherapeuticIndex: false,
+    cypProfile: { substrate: [], inhibitor: [], inducer: [] },
+    riskFlags: { nephrotoxic: 'moderate', hepatotoxic: 'none', qtProlongation: 'none', bleedingRisk: 'none', giUlcer: 'none' },
+    renalElimination: 0.90,
+    pk: { halfLife: 11, timeToPeak: 4, bioavailability: 0.60, proteinBinding: 0.50, primaryElimination: 'renal' },
+    availableStrengths: [
+      { label: '2.5 mg tablet', value: 2.5, unit: 'mg', form: 'Tab' },
+      { label: '5 mg tablet', value: 5, unit: 'mg', form: 'Tab' },
+    ],
+  },
+  {
+    id: 'cyclosporine',
+    name: 'Cyclosporine',
+    nameKr: '사이클로스포린',
+    activeSubstance: 'Cyclosporine',
+    class: 'Immunosuppressant',
+    source: DRUG_SOURCE.KR_VET,
+    defaultDose: { dog: 5, cat: 5 },
+    doseRange: { dog: [2.5, 10], cat: [2.5, 7.5] },
+    unit: 'mg/kg',
+    freq: 'SID',
+    route: 'PO',
+    narrowTherapeuticIndex: true,
+    cypProfile: { substrate: ['CYP3A4'], inhibitor: ['CYP3A4'], inducer: [] },
+    riskFlags: { nephrotoxic: 'moderate', hepatotoxic: 'moderate', qtProlongation: 'none', bleedingRisk: 'none', giUlcer: 'none' },
+    renalElimination: 0.10,
+    pk: { halfLife: 10, timeToPeak: 1.5, bioavailability: 0.34, proteinBinding: 0.98, primaryElimination: 'hepatic' },
+    availableStrengths: [
+      { label: '10 mg/mL oral solution', value: 10, unit: 'mg/mL', form: 'Soln' },
+      { label: '25 mg capsule', value: 25, unit: 'mg', form: 'Cap' },
+      { label: '100 mg capsule', value: 100, unit: 'mg', form: 'Cap' },
+    ],
+  },
+  {
+    id: 'phenobarbital',
+    name: 'Phenobarbital',
+    nameKr: '페노바르비탈',
+    activeSubstance: 'Phenobarbital',
+    class: 'Anticonvulsant',
+    source: DRUG_SOURCE.KR_VET,
+    defaultDose: { dog: 2.5, cat: 1.5 },
+    doseRange: { dog: [1.5, 5], cat: [0.5, 3] },
+    unit: 'mg/kg',
+    freq: 'BID',
+    route: 'PO',
+    narrowTherapeuticIndex: true,
+    cypProfile: { substrate: ['CYP3A4'], inhibitor: [], inducer: ['CYP3A4'] },
+    riskFlags: { nephrotoxic: 'none', hepatotoxic: 'moderate', qtProlongation: 'none', bleedingRisk: 'none', giUlcer: 'none' },
+    renalElimination: 0.25,
+    pk: { halfLife: 72, timeToPeak: 8, bioavailability: 0.89, proteinBinding: 0.45, primaryElimination: 'hepatic' },
+    availableStrengths: [
+      { label: '15 mg tablet', value: 15, unit: 'mg', form: 'Tab' },
+      { label: '30 mg tablet', value: 30, unit: 'mg', form: 'Tab' },
+      { label: '60 mg tablet', value: 60, unit: 'mg', form: 'Tab' },
+    ],
+  },
 ];
 
-// ── Demo Drug Card (simplified, with guided animation support) ──
+// ── Demo Patient Profiles ─────────────────────────────────────────
+const DEMO_PROFILES = [
+  {
+    id: 'choco',
+    photo: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?w=480&auto=format&fit=crop&q=70',
+    nameKo: '초코',
+    nameEn: 'Choco',
+    species: 'dog',
+    breed: 'Border Collie',
+    weight: 12,
+    ageKo: '4세',
+    sex: 'Neutered Male',
+    sexKo: '중성화 수컷',
+    summaryKo: 'MDR1 유전자 변이 고위험 견종. 이버멕틴과 케토코나졸 병용 시 P-gp 억제로 신경독성 위험이 높습니다.',
+    summaryEn: 'MDR1 mutation risk breed. Ivermectin + Ketoconazole: P-gp inhibition → severe neurotoxicity risk.',
+    drugIds: ['ivermectin', 'ketoconazole'],
+    conditions: [],
+    flaggedLabs: [],
+  },
+  {
+    id: 'haru',
+    photo: 'https://images.unsplash.com/photo-1552053831-71594a27632d?w=480&auto=format&fit=crop&q=70',
+    nameKo: '하루',
+    nameEn: 'Haru',
+    species: 'dog',
+    breed: 'Golden Retriever',
+    weight: 28,
+    ageKo: '8세',
+    sex: 'Spayed Female',
+    sexKo: '중성화 암컷',
+    summaryKo: '만성 심장질환 이력. NSAID+이뇨제+ACE억제제 3제 병용 시 신장 관류 저하(Triple Whammy) 위험.',
+    summaryEn: 'Chronic cardiac disease. Triple Whammy — renal perfusion risk with NSAID + diuretic + ACEi.',
+    drugIds: ['meloxicam', 'furosemide', 'enalapril'],
+    conditions: ['Chronic Heart Disease'],
+    flaggedLabs: [],
+  },
+  {
+    id: 'kongyi',
+    photo: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=480&auto=format&fit=crop&q=70',
+    nameKo: '콩이',
+    nameEn: 'Kongyi',
+    species: 'dog',
+    breed: 'Shih Tzu',
+    weight: 6,
+    ageKo: '6세',
+    sex: 'Intact Male',
+    sexKo: '미중성화 수컷',
+    summaryKo: '알레르기성 피부염 및 간질 병력. 프레드니솔론+페노바르비탈+사이클로스포린 3제로 간 CYP3A4 부담 가중.',
+    summaryEn: 'Allergic dermatitis + epilepsy. Hepatic CYP3A4 overload risk with corticosteroid + anticonvulsant + immunosuppressant.',
+    drugIds: ['prednisolone', 'phenobarbital', 'cyclosporine'],
+    conditions: ['Allergic Dermatitis', 'Epilepsy'],
+    flaggedLabs: [],
+  },
+];
+
+// ── Profile Selection Step ────────────────────────────────────────
+function ProfileSelectStep({ onSelect }) {
+  const { lang } = useI18n();
+  const [hovered, setHovered] = useState(null);
+
+  return (
+    <div className="flex-1 px-4 sm:px-6 py-8 animate-slide-in">
+      <div className="max-w-3xl mx-auto">
+        <div className="mb-8 text-center">
+          <p className="typo-section-header mb-2">
+            {lang === 'ko' ? '데모 시작 / START DEMO' : 'START DEMO'}
+          </p>
+          <h1 className="typo-page-title mb-3">
+            {lang === 'ko' ? '환자를 선택하세요' : 'Select a Demo Patient'}
+          </h1>
+          <p className="typo-body text-slate-500 max-w-md mx-auto" style={{ wordBreak: 'keep-all' }}>
+            {lang === 'ko'
+              ? '실제 임상 시나리오를 기반으로 한 3가지 환자 프로필 중 하나를 선택하세요.'
+              : 'Choose from three clinical scenarios to see how NuvoVet handles complex drug interactions.'}
+          </p>
+        </div>
+
+        <div className="grid sm:grid-cols-3 gap-4">
+          {DEMO_PROFILES.map((profile) => (
+            <button
+              key={profile.id}
+              onClick={() => onSelect(profile)}
+              onMouseEnter={() => setHovered(profile.id)}
+              onMouseLeave={() => setHovered(null)}
+              className={`text-left rounded-2xl border bg-white shadow-sm overflow-hidden transition-all duration-200 ${
+                hovered === profile.id
+                  ? 'border-indigo-400 shadow-indigo-100/60 shadow-lg -translate-y-0.5'
+                  : 'border-slate-200 hover:border-slate-300'
+              }`}
+            >
+              {/* Dog photo */}
+              <div className="h-40 overflow-hidden bg-slate-100">
+                <img
+                  src={profile.photo}
+                  alt={profile.nameEn}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+
+              {/* Info */}
+              <div className="p-4">
+                <div className="flex items-baseline gap-2 mb-0.5">
+                  <span className="text-[18px] font-black text-slate-900">{profile.nameKo}</span>
+                  <span className="text-[12px] text-slate-400 font-medium">{profile.nameEn}</span>
+                </div>
+                <p className="text-[11px] font-semibold text-slate-500 mb-2">
+                  {profile.breed} · {profile.weight}kg · {profile.ageKo} · {lang === 'ko' ? profile.sexKo : profile.sex}
+                </p>
+                <p
+                  className="text-[11px] text-slate-600 leading-relaxed mb-3"
+                  style={{ wordBreak: 'keep-all', lineHeight: 1.8 }}
+                >
+                  {lang === 'ko' ? profile.summaryKo : profile.summaryEn}
+                </p>
+
+                {/* Pre-selected drug tags */}
+                <div className="flex flex-wrap gap-1">
+                  {profile.drugIds.map((id) => {
+                    const drug = DEMO_DRUGS_CATALOGUE.find((d) => d.id === id);
+                    return drug ? (
+                      <span
+                        key={id}
+                        className="text-[10px] font-semibold px-2 py-0.5 bg-slate-100 text-slate-600 rounded-full border border-slate-200"
+                      >
+                        {drug.name}
+                      </span>
+                    ) : null;
+                  })}
+                </div>
+
+                {profile.conditions.length > 0 && (
+                  <div className="mt-2 flex flex-wrap gap-1">
+                    {profile.conditions.map((c, i) => (
+                      <span
+                        key={i}
+                        className="text-[10px] font-medium px-2 py-0.5 bg-amber-50 text-amber-700 rounded-full border border-amber-100"
+                      >
+                        {c}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Select CTA */}
+              <div
+                className={`px-4 py-2.5 border-t flex items-center justify-between transition-colors duration-200 ${
+                  hovered === profile.id
+                    ? 'bg-indigo-50 border-indigo-100'
+                    : 'bg-slate-50 border-slate-100'
+                }`}
+              >
+                <span
+                  className={`text-[11px] font-semibold transition-colors ${
+                    hovered === profile.id ? 'text-indigo-600' : 'text-slate-400'
+                  }`}
+                >
+                  {lang === 'ko' ? '이 환자 선택' : 'Select patient'}
+                </span>
+                <ArrowRight
+                  size={13}
+                  className={`transition-colors ${
+                    hovered === profile.id ? 'text-indigo-500' : 'text-slate-300'
+                  }`}
+                />
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Selected Profile Card (prescription step) ────────────────────
+function SelectedProfileCard({ profile }) {
+  const { lang } = useI18n();
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+      <div className="px-4 py-3 flex items-center justify-between bg-slate-50 border-b border-slate-100">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full overflow-hidden bg-slate-100 shrink-0">
+            <img src={profile.photo} alt={profile.nameEn} className="w-full h-full object-cover" />
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <p className="text-[14px] font-bold text-slate-900">{profile.nameKo}</p>
+              <span className="text-[11px] text-slate-400 font-medium">{profile.nameEn}</span>
+              <span className="flex items-center gap-1 text-[10px] font-semibold text-slate-400 bg-slate-200/60 px-2 py-0.5 rounded-full">
+                <Lock size={8} />
+                {lang === 'ko' ? '데모' : 'Demo'}
+              </span>
+            </div>
+            <p className="text-[11px] text-slate-400">
+              {profile.breed} · {lang === 'ko' ? profile.sexKo : profile.sex}
+            </p>
+          </div>
+        </div>
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className="flex items-center gap-1 text-[11px] text-slate-400 hover:text-slate-600 transition-colors"
+        >
+          {expanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+        </button>
+      </div>
+
+      <div className="px-4 py-3 grid grid-cols-4 gap-3">
+        {[
+          { label: lang === 'ko' ? '나이' : 'Age', value: profile.ageKo },
+          { label: lang === 'ko' ? '체중' : 'Weight', value: `${profile.weight} kg` },
+          { label: lang === 'ko' ? '품종' : 'Breed', value: profile.breed },
+          { label: lang === 'ko' ? '성별' : 'Sex', value: lang === 'ko' ? profile.sexKo : profile.sex },
+        ].map(({ label, value }) => (
+          <div key={label}>
+            <p className="typo-label uppercase">{label}</p>
+            <p className="text-[12px] font-semibold text-slate-900 mt-0.5 truncate">{value}</p>
+          </div>
+        ))}
+      </div>
+
+      {expanded && (
+        <div className="px-4 pb-3 animate-fade-in">
+          {profile.conditions.length > 0 ? (
+            <>
+              <p className="typo-label mb-1.5">{lang === 'ko' ? '기저 질환' : 'Conditions'}</p>
+              <div className="flex flex-wrap gap-1">
+                {profile.conditions.map((c, i) => (
+                  <span key={i} className="text-[10px] font-medium text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded-full border border-amber-100">
+                    {c}
+                  </span>
+                ))}
+              </div>
+            </>
+          ) : (
+            <p className="text-[12px] text-slate-400 italic">
+              {lang === 'ko' ? '기저 질환 없음' : 'No pre-existing conditions'}
+            </p>
+          )}
+          <div className="mt-2 flex items-center gap-1.5 text-[11px] text-slate-400">
+            <Lock size={10} />
+            {lang === 'ko' ? '환자 정보 수정 불가 (데모 모드)' : 'Patient details locked in demo mode'}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── Demo Drug Card (simplified, with guided animation support) ───
 function DemoDrugCard({ drug, weight, onRemove, guideStrength }) {
   const [selectedStrengthIdx, setSelectedStrengthIdx] = useState(0);
   const [dosePerKg, setDosePerKg] = useState(drug.defaultDose?.dog || '');
@@ -195,7 +546,7 @@ function DemoDrugCard({ drug, weight, onRemove, guideStrength }) {
         {/* Dose + freq */}
         <div className="flex gap-3">
           <div className="flex-1">
-            <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wide mb-1">Dose (mg/kg)</p>
+            <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wide mb-1">Dose ({drug.unit})</p>
             <input
               type="number"
               value={dosePerKg}
@@ -229,7 +580,7 @@ function DemoDrugCard({ drug, weight, onRemove, guideStrength }) {
   );
 }
 
-// ── Demo Drug Search (no API) ────────────────────────────────────
+// ── Demo Drug Search (no API) ─────────────────────────────────────
 function DemoDrugSearch({ addedDrugIds, onAdd, guideStep }) {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
@@ -312,8 +663,8 @@ function DemoDrugSearch({ addedDrugIds, onAdd, guideStep }) {
           </p>
           <p className="text-[11px] text-slate-400 mt-0.5">
             {lang === 'ko'
-              ? 'Meloxicam, Prednisolone, Dexmedetomidine, Amoxicillin-Clavulanate, Furosemide'
-              : 'Try: Meloxicam, Prednisolone, Dexmedetomidine, Amoxicillin-Clavulanate, Furosemide'}
+              ? 'Meloxicam, Prednisolone, Furosemide, Ivermectin, Ketoconazole, Enalapril, Cyclosporine, Phenobarbital 등'
+              : 'Try: Meloxicam, Prednisolone, Furosemide, Ivermectin, Ketoconazole, Enalapril, Cyclosporine, Phenobarbital'}
           </p>
         </div>
       )}
@@ -321,89 +672,172 @@ function DemoDrugSearch({ addedDrugIds, onAdd, guideStep }) {
   );
 }
 
-// ── Locked Patient Card ─────────────────────────────────────────
-function LockedPatientCard() {
+// ── Demo Results — Left Patient Summary ───────────────────────────
+function DemoResultsPatientSummary({ profile, drugs }) {
   const { lang } = useI18n();
-  const [expanded, setExpanded] = useState(false);
+
   return (
-    <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
-      <div className="px-4 py-3 flex items-center justify-between bg-slate-50 border-b border-slate-100">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-xl shrink-0">🐕</div>
-          <div>
-            <div className="flex items-center gap-2">
-              <p className="text-[14px] font-bold text-slate-900">{DEMO_PATIENT.name}</p>
-              <span className="flex items-center gap-1 text-[10px] font-semibold text-slate-400 bg-slate-200/60 px-2 py-0.5 rounded-full">
-                <Lock size={8} />
-                {lang === 'ko' ? '데모 환자 / Demo Patient' : 'Demo Patient'}
+    <div className="space-y-3">
+      <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+        <div className="h-28 bg-slate-100 overflow-hidden">
+          <img
+            src={profile.photo}
+            alt={profile.nameEn}
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="px-4 py-3">
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-[16px] font-black text-slate-900">{profile.nameKo}</span>
+            <span className="text-[11px] text-slate-400">{profile.nameEn}</span>
+            <span className="flex items-center gap-1 text-[10px] font-semibold text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded-full ml-auto">
+              <Lock size={8} />
+              {lang === 'ko' ? '데모' : 'Demo'}
+            </span>
+          </div>
+          <p className="text-[11px] text-slate-500 mb-3">
+            {profile.breed} · {lang === 'ko' ? profile.sexKo : profile.sex}
+          </p>
+          <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+            {[
+              { label: lang === 'ko' ? '체중' : 'Weight', value: `${profile.weight} kg` },
+              { label: lang === 'ko' ? '나이' : 'Age', value: profile.ageKo },
+              { label: lang === 'ko' ? '종' : 'Species', value: lang === 'ko' ? '개 (Canine)' : 'Canine' },
+              { label: lang === 'ko' ? '성별' : 'Sex', value: lang === 'ko' ? profile.sexKo : profile.sex },
+            ].map(({ label, value }) => (
+              <div key={label}>
+                <p className="typo-label">{label}</p>
+                <p className="text-[12px] font-semibold text-slate-800 mt-0.5">{value}</p>
+              </div>
+            ))}
+          </div>
+
+          {profile.conditions.length > 0 && (
+            <div className="mt-3 pt-3 border-t border-slate-100">
+              <p className="typo-label mb-1.5">{lang === 'ko' ? '기저 질환' : 'Conditions'}</p>
+              <div className="flex flex-wrap gap-1">
+                {profile.conditions.map((c, i) => (
+                  <span key={i} className="text-[10px] font-medium text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded-full border border-amber-100">
+                    {c}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Prescribed drugs list */}
+      <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+        <p className="typo-section-header mb-3">
+          {lang === 'ko' ? '처방 약물' : 'PRESCRIBED DRUGS'}
+        </p>
+        <div className="space-y-2">
+          {drugs.map((drug) => (
+            <div key={drug.id} className="flex items-center justify-between gap-2 py-1 border-b border-slate-50 last:border-0">
+              <div>
+                <p className="text-[12px] font-semibold text-slate-800">{drug.nameKr || drug.name}</p>
+                <p className="text-[10px] text-slate-400">{drug.name}</p>
+              </div>
+              <span className="text-[10px] font-medium text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded shrink-0">
+                {drug.class}
               </span>
             </div>
-            <p className="text-[11px] text-slate-400">Border Collie · Canine · {DEMO_PATIENT.sex}</p>
-          </div>
+          ))}
         </div>
-        <button
-          onClick={() => setExpanded(!expanded)}
-          className="flex items-center gap-1 text-[11px] text-slate-400 hover:text-slate-600 transition-colors"
-        >
-          {expanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-        </button>
       </div>
-
-      <div className="px-4 py-3 grid grid-cols-4 gap-3">
-        {[
-          { label: lang === 'ko' ? '나이' : 'Age', value: DEMO_PATIENT.age },
-          { label: lang === 'ko' ? '체중' : 'Weight', value: `${DEMO_PATIENT.weight} kg` },
-          { label: lang === 'ko' ? '품종' : 'Breed', value: DEMO_PATIENT.breed },
-          { label: lang === 'ko' ? '성별' : 'Sex', value: 'Neutered M' },
-        ].map(({ label, value }) => (
-          <div key={label}>
-            <p className="typo-label uppercase">{label}</p>
-            <p className="text-[13px] font-semibold text-slate-900 mt-0.5">{value}</p>
-          </div>
-        ))}
-      </div>
-
-      {expanded && (
-        <div className="px-4 pb-3 animate-fade-in">
-          <p className="typo-label mb-1.5">{lang === 'ko' ? '기저 질환' : 'Conditions'}</p>
-          <p className="text-[12px] text-slate-400 italic">
-            {lang === 'ko' ? '없음 (데모 시 선택 가능)' : 'None pre-filled — select during demo'}
-          </p>
-          <div className="mt-2 flex items-center gap-1.5 text-[11px] text-slate-400">
-            <Lock size={10} />
-            {lang === 'ko' ? '환자 정보 수정 불가 (데모 모드)' : 'Patient details locked in demo mode'}
-          </div>
-        </div>
-      )}
     </div>
   );
 }
 
-// ── Main Demo Page ──────────────────────────────────────────────
+// ── Demo Results — Right Organ + Dose Panel ───────────────────────
+function DemoResultsRightPanel({ drugs, profile, results }) {
+  const { lang } = useI18n();
+  const species = profile?.species || 'dog';
+  const weight = profile?.weight || 12;
+  const organScores = aggregateOrganBurden(drugs, species);
+
+  return (
+    <div className="space-y-3">
+      {/* Dose summary */}
+      <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+        <p className="typo-section-header mb-3">
+          {lang === 'ko' ? '체중 보정 용량' : 'WEIGHT-ADJUSTED DOSE'}
+        </p>
+        <div className="space-y-0">
+          {drugs.map((drug) => {
+            const dose = drug.defaultDose?.[species] ?? drug.defaultDose?.dog;
+            const totalMg = dose ? (dose * weight) : null;
+            return (
+              <div key={drug.id} className="py-2 border-b border-slate-50 last:border-0">
+                <div className="flex items-baseline justify-between gap-2">
+                  <p className="text-[12px] font-semibold text-slate-800">{drug.nameKr || drug.name}</p>
+                  {totalMg !== null && (
+                    <span className="text-[12px] font-bold text-slate-900 shrink-0">
+                      {totalMg % 1 === 0 ? totalMg : totalMg.toFixed(2)} mg
+                    </span>
+                  )}
+                </div>
+                <p className="text-[10px] text-slate-400 mt-0.5">
+                  {dose} {drug.unit} × {weight} kg · {drug.freq} · {drug.route}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Anatomy diagram */}
+      <div className="bg-white border border-slate-200 rounded-xl p-3 shadow-sm">
+        <AnatomyDiagram
+          species={species}
+          organScores={organScores}
+          patientBreed={profile?.breed}
+          mdr1SensitiveDrugs={drugs.filter((d) => d.mdr1Sensitive).map((d) => d.id)}
+          drugs={drugs}
+          patientInfo={{
+            name: profile?.nameKo,
+            breed: profile?.breed,
+            weight: profile?.weight,
+            species,
+          }}
+          overallRisk={results?.overallSeverity?.score >= 100 ? 'contraindicated' : undefined}
+        />
+      </div>
+    </div>
+  );
+}
+
+// ── Main Demo Page ───────────────────────────────────────────────
 export default function Demo() {
   const navigate = useNavigate();
   const { t, lang } = useI18n();
 
-  const [step, setStep] = useState('prescription'); // 'prescription' | 'analyzing' | 'results'
+  const [step, setStep] = useState('profile_select'); // 'profile_select' | 'prescription' | 'analyzing' | 'results'
+  const [selectedProfile, setSelectedProfile] = useState(null);
   const [drugs, setDrugs] = useState([]);
   const [results, setResults] = useState(null);
 
-  // ── Guided animation step ──────────────────────────────────────
-  // 'search' → user should search; 'result' → results shown; 'strength' → pick size; 'run' → run DUR
+  // ── Guided animation step ────────────────────────────────────────
   const [guideStep, setGuideStep] = useState('search');
 
-  // Track drug state for guide transitions
   useEffect(() => {
     if (drugs.length === 0) {
       setGuideStep('search');
     } else {
-      // After adding a drug, guide to strength selection
-      // After strength is implicitly selected (it defaults to 0), guide to Run DUR
       setGuideStep('run');
     }
   }, [drugs.length]);
 
-  // When search results appear we'll set guideStep to 'result' in the search handler
+  const handleSelectProfile = (profile) => {
+    setSelectedProfile(profile);
+    const profileDrugs = profile.drugIds
+      .map((id) => DEMO_DRUGS_CATALOGUE.find((d) => d.id === id))
+      .filter(Boolean);
+    setDrugs(profileDrugs);
+    setStep('prescription');
+  };
+
   const handleSearchFocus = () => {
     if (drugs.length === 0) setGuideStep('search');
   };
@@ -413,14 +847,13 @@ export default function Demo() {
   };
 
   const handleAddDrug = (drug) => {
-    setDrugs(prev => [...prev, drug]);
+    setDrugs((prev) => [...prev, drug]);
     setGuideStep('strength');
-    // After brief delay, move to 'run' (assume strength defaults to first option)
     setTimeout(() => setGuideStep('run'), 2500);
   };
 
   const handleRemoveDrug = (drugId) => {
-    setDrugs(prev => prev.filter(d => d.id !== drugId));
+    setDrugs((prev) => prev.filter((d) => d.id !== drugId));
   };
 
   const handleRunAnalysis = () => {
@@ -430,27 +863,42 @@ export default function Demo() {
   };
 
   const handleAnalysisComplete = useCallback(() => {
-    const analysisResults = runFullDURAnalysis(drugs, 'dog', DEMO_PATIENT.weight);
+    const weight = selectedProfile?.weight ?? 12;
+    const species = selectedProfile?.species ?? 'dog';
+    const analysisResults = runFullDURAnalysis(drugs, species, weight);
     setResults(analysisResults);
     setStep('results');
-  }, [drugs]);
+  }, [drugs, selectedProfile]);
 
   const handleNewAnalysis = () => {
-    setStep('prescription');
+    setStep('profile_select');
     setDrugs([]);
     setResults(null);
+    setSelectedProfile(null);
     setGuideStep('search');
   };
 
-  const addedDrugIds = new Set(drugs.map(d => d.id));
+  const addedDrugIds = new Set(drugs.map((d) => d.id));
 
-  const patientInfo = {
-    name: DEMO_PATIENT.name,
-    species: 'dog',
-    breed: DEMO_PATIENT.breed,
-    weight: DEMO_PATIENT.weight,
-    conditions: DEMO_PATIENT.conditions,
-    flaggedLabs: DEMO_PATIENT.flaggedLabs,
+  const patientInfo = selectedProfile
+    ? {
+        name: selectedProfile.nameKo,
+        species: selectedProfile.species,
+        breed: selectedProfile.breed,
+        weight: selectedProfile.weight,
+        conditions: selectedProfile.conditions,
+        flaggedLabs: selectedProfile.flaggedLabs,
+      }
+    : null;
+
+  const handleBack = () => {
+    if (step === 'results') {
+      setStep('prescription');
+    } else if (step === 'prescription') {
+      setStep('profile_select');
+    } else {
+      navigate('/');
+    }
   };
 
   return (
@@ -463,7 +911,7 @@ export default function Demo() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-[62px] flex items-center justify-between">
           <div className="flex items-center gap-3">
             <button
-              onClick={() => step === 'results' ? setStep('prescription') : navigate('/')}
+              onClick={handleBack}
               className="p-2 -ml-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-white transition-colors"
             >
               <ArrowLeft size={18} />
@@ -479,8 +927,13 @@ export default function Demo() {
         </div>
       </header>
 
+      {/* ── Profile Selection Step ── */}
+      {step === 'profile_select' && (
+        <ProfileSelectStep onSelect={handleSelectProfile} />
+      )}
+
       {/* ── Prescription step ── */}
-      {step === 'prescription' && (
+      {step === 'prescription' && selectedProfile && (
         <div className="flex-1 flex flex-col px-4 sm:px-6 py-6 animate-slide-in">
           <div className="max-w-lg mx-auto w-full space-y-5">
 
@@ -494,13 +947,13 @@ export default function Demo() {
               </h1>
               <p className="typo-body">
                 {lang === 'ko'
-                  ? '아래의 약물을 검색하고 추가한 뒤 DUR 검사를 실행하세요.'
-                  : 'Search and add drugs below, then run the DUR scan.'}
+                  ? '약물을 확인하거나 추가한 뒤 DUR 검사를 실행하세요.'
+                  : 'Review or add drugs below, then run the DUR scan.'}
               </p>
             </div>
 
-            {/* Locked patient */}
-            <LockedPatientCard />
+            {/* Selected patient */}
+            <SelectedProfileCard profile={selectedProfile} />
 
             {/* Drug search section */}
             <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-4">
@@ -515,9 +968,9 @@ export default function Demo() {
                 )}
               </div>
 
-              {/* Demo drug hint */}
+              {/* Demo drug chips */}
               <div className="flex flex-wrap gap-1.5">
-                {DEMO_DRUGS_CATALOGUE.map(d => (
+                {DEMO_DRUGS_CATALOGUE.map((d) => (
                   <span
                     key={d.id}
                     className={`text-[10px] px-2 py-0.5 rounded-full border transition-colors ${
@@ -546,11 +999,11 @@ export default function Demo() {
               {/* Added drug cards */}
               {drugs.length > 0 && (
                 <div className="space-y-3 mt-2">
-                  {drugs.map(drug => (
+                  {drugs.map((drug) => (
                     <DemoDrugCard
                       key={drug.id}
                       drug={drug}
-                      weight={DEMO_PATIENT.weight}
+                      weight={selectedProfile.weight}
                       onRemove={() => handleRemoveDrug(drug.id)}
                       guideStrength={guideStep === 'strength'}
                     />
@@ -586,22 +1039,53 @@ export default function Demo() {
         <AnalysisScreen
           onComplete={handleAnalysisComplete}
           drugCount={drugs.length}
-          species="dog"
+          species={selectedProfile?.species || 'dog'}
         />
       )}
 
-      {/* ── Results step ── */}
-      {step === 'results' && (
+      {/* ── Results step — 3-column layout ── */}
+      {step === 'results' && results && selectedProfile && (
         <main className="flex-1 pb-8">
-          <ResultsDisplay
-            results={results}
-            onBack={() => setStep('prescription')}
-            onNewAnalysis={handleNewAnalysis}
-            patientInfo={patientInfo}
-            drugs={drugs}
-            species="dog"
-            demoMode
-          />
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-6 py-5 animate-fade-in">
+            <div className="flex gap-5 items-start">
+
+              {/* Left column — patient summary */}
+              <div className="hidden lg:block w-72 xl:w-80 shrink-0">
+                <div className="sticky top-[78px]">
+                  <DemoResultsPatientSummary
+                    profile={selectedProfile}
+                    drugs={drugs}
+                  />
+                </div>
+              </div>
+
+              {/* Middle column — scan results */}
+              <div className="flex-1 min-w-0">
+                <ResultsDisplay
+                  hideSidebar
+                  demoMode
+                  results={results}
+                  onBack={() => setStep('prescription')}
+                  onNewAnalysis={handleNewAnalysis}
+                  patientInfo={patientInfo}
+                  drugs={drugs}
+                  species={selectedProfile.species}
+                />
+              </div>
+
+              {/* Right column — dose summary + anatomy */}
+              <div className="hidden xl:block w-72 xl:w-80 shrink-0">
+                <div className="sticky top-[78px]">
+                  <DemoResultsRightPanel
+                    drugs={drugs}
+                    profile={selectedProfile}
+                    results={results}
+                  />
+                </div>
+              </div>
+
+            </div>
+          </div>
         </main>
       )}
     </div>

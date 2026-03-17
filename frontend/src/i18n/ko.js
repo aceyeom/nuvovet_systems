@@ -542,6 +542,73 @@ const ko = {
     finishSession: '세션 종료',
   },
 
+  // ── 로그인 ───────────────────────────────────────────────────
+  login: {
+    username: '아이디',
+    password: '비밀번호',
+    usernamePlaceholder: '아이디 입력',
+    passwordPlaceholder: '비밀번호 입력',
+    signIn: '로그인',
+    signingIn: '로그인 중...',
+    pageLabel: '로그인',
+    pageTitle: '계정에 로그인',
+    showPassword: '비밀번호 표시',
+    hidePassword: '비밀번호 숨기기',
+  },
+
+  // ── 장기 관여 다이어그램 ──────────────────────────────────────
+  anatomy: {
+    organInvolvement: '장기 관여',
+    addDrugsPrompt: '약물을 추가하면 장기 관여도가 표시됩니다',
+    contributingDrugs: '관여 약물',
+    triggeredEffects: '유발 효과',
+    evidence: '근거',
+    noDose: '(용량 없음)',
+    singleDrug: '단일 약물',
+  },
+
+  // ── 랜딩 스크롤 패널 ──────────────────────────────────────────
+  panels: {
+    sectionLabel: '임상 인포매틱스',
+    panel1Title: '실시간 다제 DDI 검사',
+    panel1TitleEn: 'Real-time Multi-Drug Interaction Check',
+    panel1Desc: '처방의 모든 약물 쌍에 대해 CYP 효소 프로파일, 동일 계열 중복 처방, QT 연장 중첩, 출혈 위험, 세로토닌 증후군을 3단계 심각도로 분류하여 실시간으로 검사합니다.',
+    panel2Title: '장기 관여 다이어그램',
+    panel2TitleEn: 'Organ Involvement Diagram',
+    panel2Desc: '처방 전체에 걸쳐 신장 및 간장 소실 경로를 시각적으로 매핑합니다. 복합 장기 부담이 안전 임계값을 초과하면 장기별 모니터링 우선순위가 표시됩니다.',
+    panel3Title: '품종 및 유전적 안전성',
+    panel3TitleEn: 'Breed & Genetic Safety',
+    panel3Desc: '아세트아미노펜(고양이), 퍼메트린(고양이) 등 절대 금기는 스캔 전 즉시 표시됩니다. MDR1 감수성 품종은 약물별로 플래그가 지정됩니다.',
+    panel4Title: '체중 기반 용량 계산',
+    panel4TitleEn: 'Weight-Adjusted Dosing',
+    panel4Desc: '용량 범위가 환자 체중에 맞게 자동 조정됩니다. 신장 및 간 수치가 기준을 초과하면 조정 계수가 적용됩니다 — 크레아티닌 상승 시 0.2 mg/kg → 0.1 mg/kg.',
+    panel5Title: '휴약 기간 자문',
+    panel5TitleEn: 'Washout Period Advisor',
+    panel5Desc: '5×반감기 법칙에 따른 전환 프로토콜이 계산됩니다. 세로토닉 증후군 위험이 있는 경우 한 약물 중단과 다음 약물 시작 사이의 임상적으로 안전한 간격을 표시합니다.',
+    scrollHint: '스크롤하여 각 기능 탐색',
+  },
+
+  // ── 파이프라인 섹션 (랜딩) ───────────────────────────────────
+  pipelineSectionLabel: '약물 분류 파이프라인',
+  pipelineSectionTitle: '임상 수준의\n상호작용\n검사.',
+  pipelineSectionDesc: '모든 약물 입력은 6단계 분류 파이프라인을 통해 처리됩니다 — 약물의 출처에 관계없이 일관된 결과를 보장합니다.',
+  pipelineSteps: [
+    { label: '약물 성분 표준화', sub: '3단계 모델: 유효성분 → 약효군 → 알레르기 분류' },
+    { label: '6개 출처 분류', sub: '국내 허가 동물용 · 허가 외 인체용 · 수입약 · 미확인 · 다제 · 종별' },
+    { label: 'CYP 효소 프로파일링', sub: 'CYP3A4, CYP2D6, CYP1A2, CYP2C9 기질/억제제/유도제 분석' },
+    { label: '쌍별 상호작용 행렬', sub: '모든 약물 쌍 검사 — DDI, QT 중첩, 출혈, 세로토닌 증후군' },
+    { label: '종별 장기 조정', sub: '개·고양이 약동학 파라미터, 신장/간 용량 스케일링, MDR1 품종 플래그' },
+    { label: '신뢰도 점수 결과', sub: '출처 인용 및 데이터 품질 신뢰도 점수를 포함한 심각도 분류' },
+  ],
+  pipelineSpeciesNote: '종별 조정',
+  pipelineSpeciesNoteBody: '고양이 글루쿠론산화 결핍 → 투여 빈도 절반. MDR1 품종 플래그 콜리/셸티 적용.',
+  substanceResolutionLabel: '성분 분류 — 실시간',
+  substanceInputLabel: '약물 입력',
+  substanceNormalizeLabel: '표준화',
+  substanceHumanOffLabel: '허가 외 인체용',
+  substanceCypLabel: 'CYP 검사',
+  substanceInteractionLabel: '상호작용 감지',
+
   // ── 투여경로 ──────────────────────────────────────────────────
   routes: {
     PO: '경구 (PO)',

@@ -541,6 +541,73 @@ const en = {
     finishSession: 'Finish Session',
   },
 
+  // ── Login ──────────────────────────────────────────────────────
+  login: {
+    username: 'Username',
+    password: 'Password',
+    usernamePlaceholder: 'Enter username',
+    passwordPlaceholder: 'Enter password',
+    signIn: 'Log in',
+    signingIn: 'Signing in...',
+    pageLabel: 'Login',
+    pageTitle: 'Sign in to your account',
+    showPassword: 'Show password',
+    hidePassword: 'Hide password',
+  },
+
+  // ── Anatomy Diagram ────────────────────────────────────────────
+  anatomy: {
+    organInvolvement: 'Organ Involvement',
+    addDrugsPrompt: 'Add drugs to see organ involvement',
+    contributingDrugs: 'Contributing drugs',
+    triggeredEffects: 'Triggered effects',
+    evidence: 'Evidence',
+    noDose: '(no dose)',
+    singleDrug: 'Single drug',
+  },
+
+  // ── Landing Scroll Panels ──────────────────────────────────────
+  panels: {
+    sectionLabel: 'Clinical Informatics',
+    panel1Title: '실시간 다제 DDI 검사',
+    panel1TitleEn: 'Real-time Multi-Drug Interaction Check',
+    panel1Desc: 'Every drug pair evaluated for CYP enzyme conflicts, duplicate class contraindications, QT interval stacking, bleeding risk amplification, and serotonin syndrome — with a 3-tier severity classification.',
+    panel2Title: '장기 관여 다이어그램',
+    panel2TitleEn: 'Organ Involvement Diagram',
+    panel2Desc: 'Maps renal and hepatic elimination routes across the full regimen. Monitoring priority surfaces when combined organ involvement exceeds safe thresholds — not just per drug, but across all drugs simultaneously.',
+    panel3Title: '품종 및 유전적 안전성',
+    panel3TitleEn: 'Breed & Genetic Safety',
+    panel3Desc: 'Absolute species contraindications (acetaminophen→cat, permethrin→cat) fire before the scan. MDR1-sensitive breeds are flagged per drug. Feline and canine PK divergences are applied throughout.',
+    panel4Title: '체중 기반 용량 계산',
+    panel4TitleEn: 'Weight-Adjusted Dosing',
+    panel4Desc: 'Dose ranges auto-scale to the patient\'s weight. Renal and hepatic lab values trigger adjustment factors — reducing a 0.2 mg/kg dose to 0.1 mg/kg when creatinine is elevated.',
+    panel5Title: '휴약 기간 자문',
+    panel5TitleEn: 'Washout Period Advisor',
+    panel5Desc: 'Switching protocols calculated from 5× half-life rules. Serotonin syndrome risk flags active washout periods so the interval between stopping one drug and starting the next is clinically safe.',
+    scrollHint: 'Scroll to explore each engine',
+  },
+
+  // ── Pipeline Section (Landing) ─────────────────────────────────
+  pipelineSectionLabel: 'Drug Resolution Pipeline',
+  pipelineSectionTitle: 'Clinical-grade\ninteraction\nscreening.',
+  pipelineSectionDesc: 'Every drug input passes through a six-stage resolution pipeline — ensuring consistent results regardless of the drug\'s origin.',
+  pipelineSteps: [
+    { label: 'Drug Substance Normalization', sub: 'Three-tier model: active ingredient → drug class → allergy class' },
+    { label: 'Six-Case Origin Classification', sub: 'KR Vet approved · Human off-label · Foreign · Unknown · Multi-drug · Species-specific' },
+    { label: 'CYP Enzyme Profiling', sub: 'Substrate/inhibitor/inducer analysis across CYP3A4, CYP2D6, CYP1A2, CYP2C9' },
+    { label: 'Pairwise Interaction Matrix', sub: 'Every drug pair checked — DDI, QT stacking, bleeding, serotonin syndrome' },
+    { label: 'Species & Organ Adjustments', sub: 'Canine vs. feline PK parameters, renal/hepatic dose scaling, MDR1 breed flags' },
+    { label: 'Confidence-scored Result', sub: 'Severity classification with source citation and data-quality confidence score' },
+  ],
+  pipelineSpeciesNote: 'Species-specific adjustment',
+  pipelineSpeciesNoteBody: 'Feline glucuronidation deficit → dose frequency halved. MDR1 breed flag applied for Collie/Sheltie.',
+  substanceResolutionLabel: 'Substance Resolution — Live',
+  substanceInputLabel: 'Drug input',
+  substanceNormalizeLabel: 'Normalize',
+  substanceHumanOffLabel: 'Human off-label',
+  substanceCypLabel: 'CYP check',
+  substanceInteractionLabel: 'Interaction detected',
+
   // ── Routes ─────────────────────────────────────────────────────
   routes: {
     PO: 'Oral',

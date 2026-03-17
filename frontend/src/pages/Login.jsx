@@ -4,11 +4,12 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useI18n } from '../i18n';
 import { useAuth } from '../context/AuthContext';
 import { NuvovetWordmark } from '../components/NuvovetLogo';
+import { TopBarControls } from '../components/TopBarControls';
 
 export default function Login() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { lang } = useI18n();
+  const { t, lang } = useI18n();
   const { login, isAuthenticated } = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -30,7 +31,7 @@ export default function Login() {
     setError('');
 
     if (!username.trim() || !password) {
-      setError(lang === 'ko' ? '아이디와 비밀번호를 입력하세요.' : 'Enter both username and password.');
+      setError(lang === 'ko' ? '아이디와 비밀번호를 입력하세요.' : 'Please enter both username and password.');
       return;
     }
 
@@ -57,6 +58,7 @@ export default function Login() {
             <ArrowLeft size={16} />
             <NuvovetWordmark />
           </button>
+          <TopBarControls />
         </div>
       </header>
 
@@ -67,17 +69,17 @@ export default function Login() {
               <Lock size={24} className="text-slate-500" />
             </div>
             <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-slate-400">
-              {lang === 'ko' ? '로그인' : 'Login'}
+              {t.login.pageLabel}
             </p>
             <h1 className="mt-1 text-2xl font-black tracking-tight text-slate-900">
-              {lang === 'ko' ? '계정에 로그인' : 'Sign in to your account'}
+              {t.login.pageTitle}
             </h1>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-3">
             <div>
               <label className="mb-1 block text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">
-                Username
+                {t.login.username}
               </label>
               <input
                 type="text"
@@ -85,14 +87,14 @@ export default function Login() {
                 onChange={(event) => setUsername(event.target.value)}
                 autoComplete="username"
                 autoFocus
-                placeholder={lang === 'ko' ? '아이디 입력' : 'Enter username'}
+                placeholder={t.login.usernamePlaceholder}
                 className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-300 focus:ring-2 focus:ring-slate-900/10"
               />
             </div>
 
             <div>
               <label className="mb-1 block text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">
-                Password
+                {t.login.password}
               </label>
               <div className="relative">
                 <input
@@ -100,14 +102,14 @@ export default function Login() {
                   value={password}
                   onChange={(event) => setPassword(event.target.value)}
                   autoComplete="current-password"
-                  placeholder={lang === 'ko' ? '비밀번호 입력' : 'Enter password'}
+                  placeholder={t.login.passwordPlaceholder}
                   className="w-full rounded-xl border border-slate-200 px-4 py-3 pr-11 text-sm text-slate-900 outline-none transition focus:border-slate-300 focus:ring-2 focus:ring-slate-900/10"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword((value) => !value)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 rounded-md p-1 text-slate-400 transition-colors hover:text-slate-600"
-                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  aria-label={showPassword ? t.login.hidePassword : t.login.showPassword}
                 >
                   {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
@@ -125,9 +127,7 @@ export default function Login() {
               disabled={submitting}
               className="w-full rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {submitting
-                ? (lang === 'ko' ? '로그인 중...' : 'Signing in...')
-                : (lang === 'ko' ? '로그인' : 'Log in')}
+              {submitting ? t.login.signingIn : t.login.signIn}
             </button>
           </form>
         </section>
