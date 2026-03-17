@@ -6,9 +6,10 @@ import {
   AlertTriangle, Shield
 } from 'lucide-react';
 import { NuvovetWordmark } from '../components/NuvovetLogo';
-import { LangToggle, useI18n } from '../i18n';
+import { useI18n } from '../i18n';
 import { getAllPatients } from '../lib/patientStorage';
 import { useAuth } from '../context/AuthContext';
+import { TopBarControls } from '../components/TopBarControls';
 
 // ── Risk Badge ──────────────────────────────────────────────────
 function RiskBadge({ level }) {
@@ -81,7 +82,7 @@ function PatientRow({ patient, onClick }) {
 export default function Account() {
   const navigate = useNavigate();
   const { lang } = useI18n();
-  const { user, logout } = useAuth();
+  const { user, logout, isAuthenticated, loading } = useAuth();
   const [patients, setPatients] = useState([]);
   const [search, setSearch] = useState('');
 
@@ -136,19 +137,34 @@ export default function Account() {
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-[0_1px_3px_rgba(15,23,42,0.07)]">
         <div className="max-w-7xl mx-auto px-5 sm:px-8 h-[62px] flex items-center justify-between">
-          <NuvovetWordmark />
-          <div className="flex items-center gap-3">
-            <LangToggle />
-            <button
-              onClick={() => navigate('/pricing')}
-              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-semibold text-slate-600 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors"
-            >
-              {lang === 'ko' ? '플랜 보기' : 'View Plans'}
-            </button>
-          </div>
+          <button onClick={() => navigate('/')} className="text-left">
+            <NuvovetWordmark />
+          </button>
+          <TopBarControls autoOpenLogin={!loading && !isAuthenticated} />
         </div>
       </header>
 
+      {loading ? (
+        <div className="flex min-h-[calc(100vh-62px)] items-center justify-center px-6">
+          <div className="h-5 w-5 animate-spin rounded-full border-2 border-slate-300 border-t-slate-800" />
+        </div>
+      ) : !isAuthenticated ? (
+        <div className="mx-auto flex min-h-[calc(100vh-62px)] max-w-2xl items-center justify-center px-6 text-center">
+          <div className="rounded-3xl border border-slate-200 bg-white px-8 py-12 shadow-sm">
+            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-slate-400">
+              {lang === 'ko' ? '계정' : 'Account'}
+            </p>
+            <h1 className="mt-3 text-2xl font-black tracking-tight text-slate-900">
+              {lang === 'ko' ? '계정을 보려면 로그인하세요.' : 'Sign in to open your account.'}
+            </h1>
+            <p className="mt-3 text-sm leading-relaxed text-slate-500">
+              {lang === 'ko'
+                ? '로그인 창이 자동으로 열립니다. 허용되는 계정은 admin / admin 입니다.'
+                : 'The login dialog opens automatically. Only admin / admin is accepted.'}
+            </p>
+          </div>
+        </div>
+      ) : (
       <div className="max-w-7xl mx-auto px-4 sm:px-8 py-8">
         <div className="flex flex-col lg:flex-row gap-6">
 
@@ -162,7 +178,7 @@ export default function Account() {
                   {initials}
                 </div>
                 <p className="text-[15px] font-bold text-slate-900 mb-0.5">{displayName}</p>
-                <p className="text-[12px] text-slate-400 mb-2">{user?.email || lang === 'ko' ? '계정 이메일 없음' : 'No email on file'}</p>
+                <p className="text-[12px] text-slate-400 mb-2">{user?.email || (lang === 'ko' ? '계정 이메일 없음' : 'No email on file')}</p>
                 <span className={`px-2.5 py-0.5 text-[11px] font-bold rounded-full ${planBadge}`}>
                   {plan} {lang === 'ko' ? '플랜' : 'Plan'}
                 </span>
@@ -285,6 +301,7 @@ export default function Account() {
 
         </div>
       </div>
+      )}
     </div>
   );
 }

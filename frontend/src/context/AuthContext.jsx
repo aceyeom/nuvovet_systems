@@ -5,8 +5,9 @@ const AuthContext = createContext(null);
 
 const TOKEN_KEY = 'nuvovet_token';
 const USER_KEY  = 'nuvovet_user';
-
-const BASE_URL = import.meta.env.VITE_API_URL || 'https://nuvovet-systems.onrender.com';
+const ADMIN_USERNAME = 'admin';
+const ADMIN_PASSWORD = 'admin';
+const LOCAL_TOKEN = 'nuvovet-admin-session';
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(() => {
@@ -40,59 +41,33 @@ export function AuthProvider({ children }) {
   // Validate stored token on mount
   useEffect(() => {
     const storedToken = (() => { try { return localStorage.getItem(TOKEN_KEY); } catch { return null; } })();
-    if (!storedToken) { setLoading(false); return; }
+    const storedUser = (() => {
+      try { return JSON.parse(localStorage.getItem(USER_KEY)); } catch { return null; }
+    })();
 
-    setAuthToken(storedToken);
-    fetch(`${BASE_URL}/api/auth/me`, {
-      headers: { Authorization: `Bearer ${storedToken}` },
-    })
-      .then(r => (r.ok ? r.json() : null))
-      .then(data => {
-        if (data?.authenticated) {
-          setUser({ username: data.username });
-          setToken(storedToken);
-        } else {
-          _clearAuth();
-        }
-      })
-      .catch(() => {
-        // Backend unreachable — keep existing stored user for offline tolerance
-        // but don't block the UI
-      })
-      .finally(() => setLoading(false));
+    if (storedToken === LOCAL_TOKEN && storedUser?.username === ADMIN_USERNAME) {
+      setAuthToken(storedToken);
+      setToken(storedToken);
+      setUser({ username: ADMIN_USERNAME });
+    } else if (storedToken || storedUser) {
+      _clearAuth();
+    }
+
+    setLoading(false);
   }, [_clearAuth]);
 
   const login = useCallback(async (username, password) => {
-    try {
-      const res = await fetch(`${BASE_URL}/api/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
-      });
-      const data = await res.json();
-      if (!res.ok) return { ok: false, error: data.detail || 'Login failed' };
-      _setAuth(data);
+    if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+      _setAuth({ access_token: LOCAL_TOKEN, username: ADMIN_USERNAME });
       return { ok: true };
-    } catch {
-      return { ok: false, error: 'Network error — check your connection' };
     }
+
+    return { ok: false, error: 'Only admin / admin is allowed' };
   }, [_setAuth]);
 
-  const signup = useCallback(async (username, password) => {
-    try {
-      const res = await fetch(`${BASE_URL}/api/auth/signup`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
-      });
-      const data = await res.json();
-      if (!res.ok) return { ok: false, error: data.detail || 'Signup failed' };
-      _setAuth(data);
-      return { ok: true };
-    } catch {
-      return { ok: false, error: 'Network error — check your connection' };
-    }
-  }, [_setAuth]);
+  const signup = useCallback(async () => {
+    return { ok: false, error: 'Sign up is available from the pricing page' };
+  }, []);
 
   const logout = useCallback(() => {
     _clearAuth();

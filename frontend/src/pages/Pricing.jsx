@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Check, X, ChevronDown, ChevronUp, Star } from 'lucide-react';
+import { Check, X, ChevronDown, ChevronUp, Star } from 'lucide-react';
 import { NuvovetWordmark } from '../components/NuvovetLogo';
-import { LangToggle, useI18n } from '../i18n';
+import { useI18n } from '../i18n';
+import { TopBarControls } from '../components/TopBarControls';
 
 // ── Coming Soon Modal ───────────────────────────────────────────
 function ComingSoonModal({ type, onClose }) {
@@ -231,23 +232,11 @@ export default function Pricing() {
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-[0_1px_3px_rgba(15,23,42,0.07)]">
         <div className="max-w-6xl mx-auto px-5 sm:px-8 h-[62px] flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <button
-              onClick={() => navigate('/')}
-              className="p-2 -ml-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors"
-            >
-              <ArrowLeft size={18} />
-            </button>
-            <NuvovetWordmark />
-          </div>
-          <div className="flex items-center gap-3">
-            <LangToggle />
-            <button
-              onClick={() => navigate('/demo')}
-              className="px-4 py-2.5 bg-slate-900 text-white text-[11px] font-bold rounded-lg hover:bg-slate-800 transition-all tracking-wide"
-            >
-              {lang === 'ko' ? '데모 체험' : 'Try Demo'}
+            <button onClick={() => navigate('/')} className="text-left">
+              <NuvovetWordmark />
             </button>
           </div>
+          <TopBarControls />
         </div>
       </header>
 

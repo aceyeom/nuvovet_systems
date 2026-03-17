@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import {
   ArrowLeft, Lock, Eye, EyeOff, Zap, RotateCcw,
   ChevronDown, ChevronUp, Plus, X, Camera, Users, Save,
-  CheckCircle, AlertCircle, LogOut, Search, UserPlus, Settings, UserCircle,
-  Filter, SortAsc, ChevronRight, Globe,
+  CheckCircle, AlertCircle, Search, UserPlus,
+  Filter, SortAsc, ChevronRight,
 } from 'lucide-react';
 import { NuvovetWordmark } from '../components/NuvovetLogo';
 import { useI18n } from '../i18n';
@@ -18,6 +18,7 @@ import { searchPatients, savePatient, addVisitRecord, getAllPatients, sortPatien
 import { useAuth } from '../context/AuthContext';
 import AnatomyDiagram from '../components/charts/AnatomyDiagram';
 import { aggregateOrganBurden } from '../components/charts/organBurdenAggregator';
+import { TopBarControls } from '../components/TopBarControls';
 
 // ── Decimal number input ──────────────────────────────────────────
 function DecimalInput({ value, onChange, onBlur, placeholder, className, min, max }) {
@@ -152,12 +153,10 @@ function BreedInput({ value, onChange, species }) {
 
 // ── Login / Signup Gate ───────────────────────────────────────────
 function AuthGate({ onAuthenticated }) {
-  const { login, signup, loading } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
-  const [mode, setMode] = useState('login'); // 'login' | 'signup'
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
@@ -166,14 +165,8 @@ function AuthGate({ onAuthenticated }) {
     e.preventDefault();
     setError('');
     if (!username.trim() || !password) { setError('Please fill in all fields'); return; }
-    if (mode === 'signup') {
-      if (password.length < 6) { setError('Password must be at least 6 characters'); return; }
-      if (password !== confirmPassword) { setError('Passwords do not match'); return; }
-    }
     setSubmitting(true);
-    const result = mode === 'login'
-      ? await login(username.trim(), password)
-      : await signup(username.trim(), password);
+    const result = await login(username.trim(), password);
     setSubmitting(false);
     if (result.ok) { onAuthenticated(); }
     else { setError(result.error || 'Authentication failed'); }
@@ -192,13 +185,13 @@ function AuthGate({ onAuthenticated }) {
       <main className="flex-1 flex items-center justify-center px-6 pb-16">
         <div className="max-w-sm w-full">
           <div className="mx-auto w-14 h-14 bg-slate-100 rounded-2xl flex items-center justify-center mb-6">
-            {mode === 'login' ? <Lock size={24} className="text-slate-500" /> : <UserPlus size={24} className="text-slate-500" />}
+            <Lock size={24} className="text-slate-500" />
           </div>
           <h2 className="text-xl font-semibold text-slate-900 mb-1 text-center">
-            {mode === 'login' ? 'Sign in to Full System' : 'Create an account'}
+            Sign in to Full System
           </h2>
           <p className="text-sm text-slate-500 mb-6 text-center">
-            {mode === 'login' ? 'Access the complete veterinary DUR system' : 'Join to access the full DUR system'}
+            Access the complete veterinary DUR system with the admin account.
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-3">
@@ -221,8 +214,8 @@ function AuthGate({ onAuthenticated }) {
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder={mode === 'signup' ? 'Minimum 6 characters' : 'Enter password'}
-                  autoComplete={mode === 'login' ? 'current-password' : 'new-password'}
+                  placeholder="Enter password"
+                  autoComplete="current-password"
                   className="w-full px-4 py-3 pr-10 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 transition-all"
                 />
                 <button type="button" onClick={() => setShowPassword(!showPassword)}
@@ -231,39 +224,15 @@ function AuthGate({ onAuthenticated }) {
                 </button>
               </div>
             </div>
-            {mode === 'signup' && (
-              <div>
-                <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1">Confirm Password</label>
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  placeholder="Repeat password"
-                  autoComplete="new-password"
-                  className="w-full px-4 py-3 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 transition-all"
-                />
-              </div>
-            )}
             {error && <p className="text-xs text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">{error}</p>}
+            <p className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-500">
+              Only admin / admin is allowed.
+            </p>
             <button type="submit" disabled={submitting}
               className="w-full px-4 py-3 bg-slate-900 text-white text-sm font-medium rounded-lg hover:bg-slate-800 disabled:opacity-60 transition-all">
-              {submitting ? 'Please wait...' : mode === 'login' ? 'Sign In' : 'Create Account'}
+              {submitting ? 'Please wait...' : 'Sign In'}
             </button>
           </form>
-
-          <div className="mt-5 text-center">
-            {mode === 'login' ? (
-              <p className="text-sm text-slate-500">
-                Don't have an account?{' '}
-                <button onClick={() => { setMode('signup'); setError(''); }} className="font-medium text-slate-800 hover:underline">Create one</button>
-              </p>
-            ) : (
-              <p className="text-sm text-slate-500">
-                Already have an account?{' '}
-                <button onClick={() => { setMode('login'); setError(''); }} className="font-medium text-slate-800 hover:underline">Sign in</button>
-              </p>
-            )}
-          </div>
 
           <button onClick={() => navigate('/demo')} className="mt-4 w-full text-xs text-slate-400 hover:text-slate-600 transition-colors text-center block">
             Try Demo instead →
@@ -694,8 +663,8 @@ function ExistingPatientPanel({ onSelect }) {
 // ── Full System Main ──────────────────────────────────────────────
 export default function FullSystem() {
   const navigate = useNavigate();
-  const { t, lang, setLang } = useI18n();
-  const { user, isAuthenticated, logout } = useAuth();
+  const { t, lang } = useI18n();
+  const { isAuthenticated } = useAuth();
 
   // ── Patient state ──────────────────────────────────────────────
   const [patientId, setPatientId] = useState(null);
@@ -730,8 +699,6 @@ export default function FullSystem() {
   const [patientTab, setPatientTab] = useState('new'); // 'new' | 'existing'
   const [leftPanelWidth, setLeftPanelWidth] = useState(460);
   const [isResizingPanels, setIsResizingPanels] = useState(false);
-  const [settingsOpen, setSettingsOpen] = useState(false);
-  const [profileOpen, setProfileOpen] = useState(false);
   const [missingRequired, setMissingRequired] = useState({ species: false, weight: false, drugs: false });
   const [validationShakeTick, setValidationShakeTick] = useState(0);
 
@@ -747,8 +714,6 @@ export default function FullSystem() {
   const pollRef = useRef(null);
   const debounceRef = useRef(null);
   const inputPanelsRef = useRef(null);
-  const settingsMenuRef = useRef(null);
-  const profileMenuRef = useRef(null);
 
   // ── Backend polling ────────────────────────────────────────────
   useEffect(() => {
@@ -787,22 +752,6 @@ export default function FullSystem() {
       window.removeEventListener('mouseup', onMouseUp);
     };
   }, [isResizingPanels]);
-
-  useEffect(() => {
-    const onPointerDown = (e) => {
-      if (!settingsMenuRef.current?.contains(e.target)) setSettingsOpen(false);
-      if (!profileMenuRef.current?.contains(e.target)) setProfileOpen(false);
-    };
-    const onKeyDown = (e) => {
-      if (e.key === 'Escape') { setSettingsOpen(false); setProfileOpen(false); }
-    };
-    window.addEventListener('mousedown', onPointerDown);
-    window.addEventListener('keydown', onKeyDown);
-    return () => {
-      window.removeEventListener('mousedown', onPointerDown);
-      window.removeEventListener('keydown', onKeyDown);
-    };
-  }, []);
 
   // ── Auto-rerun on patient detail changes ───────────────────────
   useEffect(() => {
@@ -1034,109 +983,7 @@ export default function FullSystem() {
                 <RotateCcw size={14} />
               </button>
             )}
-
-            {/* Profile button */}
-            <div className="relative" ref={profileMenuRef}>
-              <button
-                onClick={() => { setProfileOpen(v => !v); setSettingsOpen(false); }}
-                className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-[12px] font-medium transition-colors ${
-                  profileOpen
-                    ? 'text-slate-800 border-slate-300 bg-slate-50'
-                    : 'text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50'
-                }`}
-                aria-label="Profile"
-                aria-expanded={profileOpen}
-              >
-                <UserCircle size={15} />
-                <span className="hidden sm:inline">{user?.username || 'Profile'}</span>
-              </button>
-
-              {profileOpen && (
-                <div className="absolute right-0 top-full mt-2 w-[260px] bg-white border border-slate-200 rounded-xl shadow-xl z-40 overflow-hidden">
-                  {/* Account header */}
-                  <div className="flex items-center gap-3 px-4 py-3.5 bg-slate-50 border-b border-slate-100">
-                    <div className="w-9 h-9 rounded-full bg-slate-800 text-white flex items-center justify-center shrink-0 text-[14px] font-bold uppercase">
-                      {(user?.username || 'U')[0]}
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-[13px] font-semibold text-slate-900 truncate">{user?.username || 'User'}</p>
-                      <p className="text-[11px] text-slate-400">Veterinarian · nuvovet</p>
-                    </div>
-                  </div>
-
-                  {/* Navigation items */}
-                  <div className="p-1.5 space-y-0.5">
-                    <button
-                      onClick={() => { setProfileOpen(false); navigate('/patients'); }}
-                      className="w-full flex items-center gap-2.5 px-3 py-2 text-[12px] text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors"
-                    >
-                      <Users size={14} className="text-slate-400" />
-                      Patient Records
-                    </button>
-                  </div>
-
-                  {/* Sign out */}
-                  <div className="p-1.5 border-t border-slate-100">
-                    <button
-                      onClick={() => { setProfileOpen(false); logout(); }}
-                      className="w-full flex items-center gap-2.5 px-3 py-2 text-[12px] text-red-500 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors font-medium"
-                    >
-                      <LogOut size={14} />
-                      Sign out
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Language / Settings button */}
-            <div className="relative" ref={settingsMenuRef}>
-              <button
-                onClick={() => { setSettingsOpen(v => !v); setProfileOpen(false); }}
-                className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-[12px] font-medium transition-colors ${
-                  settingsOpen
-                    ? 'text-slate-800 border-slate-300 bg-slate-50'
-                    : 'text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50'
-                }`}
-                aria-label="Language"
-                aria-expanded={settingsOpen}
-              >
-                <Globe size={15} />
-                <span className="hidden sm:inline text-[11px]">{lang === 'ko' ? '한국어' : 'EN'}</span>
-              </button>
-
-              {settingsOpen && (
-                <div className="absolute right-0 top-full mt-2 w-[180px] bg-white border border-slate-200 rounded-xl shadow-xl z-40 overflow-hidden">
-                  <div className="px-3.5 py-2.5 border-b border-slate-100">
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Language</p>
-                  </div>
-                  <div className="p-1.5 space-y-0.5">
-                    <button
-                      onClick={() => { setLang('ko'); setSettingsOpen(false); }}
-                      className={`w-full flex items-center justify-between px-3 py-2 text-[12px] rounded-lg transition-colors ${
-                        lang === 'ko'
-                          ? 'bg-slate-900 text-white font-semibold'
-                          : 'text-slate-600 hover:bg-slate-50'
-                      }`}
-                    >
-                      <span>한국어</span>
-                      {lang === 'ko' && <span className="text-[9px] opacity-70">✓</span>}
-                    </button>
-                    <button
-                      onClick={() => { setLang('en'); setSettingsOpen(false); }}
-                      className={`w-full flex items-center justify-between px-3 py-2 text-[12px] rounded-lg transition-colors ${
-                        lang === 'en'
-                          ? 'bg-slate-900 text-white font-semibold'
-                          : 'text-slate-600 hover:bg-slate-50'
-                      }`}
-                    >
-                      <span>English</span>
-                      {lang === 'en' && <span className="text-[9px] opacity-70">✓</span>}
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
+            <TopBarControls />
           </div>
         </div>
       </header>

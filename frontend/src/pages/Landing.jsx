@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  ArrowRight, Lock, ChevronDown, Dna, ShieldCheck,
+  ArrowRight, ChevronDown, Dna, ShieldCheck,
   AlertTriangle, CheckCircle, Zap, Layers,
   Activity, Ban, Timer, Scale, RefreshCcw
 } from 'lucide-react';
 import { SeverityBadge } from '../components/SeverityBadge';
-import { NuvovetLogo } from '../components/NuvovetLogo';
 import { MolecularBackground } from '../components/MolecularBackground';
 import { RequestAccessModal } from '../components/RequestAccessModal';
-import { useI18n, LangToggle } from '../i18n';
+import { useI18n } from '../i18n';
+import { TopBarControls } from '../components/TopBarControls';
 
 // ── Hooks ──────────────────────────────────────────────────────
 
@@ -617,28 +617,7 @@ export default function Landing() {
               nuvovet
             </span>
           </div>
-          <div className="flex items-center gap-4">
-            <LangToggle />
-            <button
-              onClick={() => navigate('/pricing')}
-              className="hidden sm:flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-slate-800 transition-colors"
-            >
-              {lang === 'ko' ? '플랜' : 'Pricing'}
-            </button>
-            <button
-              onClick={() => navigate('/account')}
-              className="hidden sm:flex items-center gap-1.5 text-xs font-medium text-slate-400 hover:text-slate-700 transition-colors"
-            >
-              <Lock size={11} />
-              {lang === 'ko' ? '계정' : 'Account'}
-            </button>
-            <button
-              onClick={() => navigate('/demo')}
-              className="px-4 py-2.5 bg-slate-900 text-white text-[11px] font-bold rounded-lg hover:bg-slate-800 transition-all tracking-wide"
-            >
-              {t.nav.tryDemo}
-            </button>
-          </div>
+          <TopBarControls />
         </div>
       </header>
 
