@@ -11,6 +11,7 @@ import { MolecularBackground } from '../components/MolecularBackground';
 import { RequestAccessModal } from '../components/RequestAccessModal';
 import { useI18n } from '../i18n';
 import { TopBarControls } from '../components/TopBarControls';
+import AnatomyDiagram from '../components/charts/AnatomyDiagram';
 
 // ── Hooks ──────────────────────────────────────────────────────
 
@@ -588,6 +589,253 @@ function GradientSeverityBar() {
   );
 }
 
+// ── Scroll Feature Panel (full-viewport dark section) ──────────
+
+function ScrollFeaturePanel({ panelIdx, titleKo, titleEn, description, lang, isCenter = false, children }) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      { threshold: 0.2 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className="min-h-screen flex items-center border-t border-white/[0.06]"
+    >
+      <div className="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20 w-full">
+        <div className={`grid lg:grid-cols-2 gap-12 lg:gap-16 items-center ${isCenter ? 'lg:items-start' : ''}`}>
+
+          {/* Left — text */}
+          <div
+            className={`transition-all duration-700 ease-out ${
+              visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+            }`}
+          >
+            <div className="flex items-center gap-2 mb-6">
+              <span className="text-[10px] font-bold text-indigo-400 bg-indigo-400/10 border border-indigo-400/20 px-2.5 py-1 rounded-full uppercase tracking-widest">
+                {String(panelIdx).padStart(2, '0')}
+              </span>
+            </div>
+            <div className="mb-6">
+              <h2 className={`font-black text-white tracking-tight ${
+                lang === 'ko'
+                  ? 'text-2xl sm:text-3xl leading-[1.4] word-break-keep'
+                  : 'text-2xl sm:text-3xl lg:text-4xl leading-tight'
+              }`}>
+                {titleKo}
+              </h2>
+              {titleEn && (
+                <p className="mt-1.5 text-sm text-white/30 font-medium leading-snug">
+                  {titleEn}
+                </p>
+              )}
+            </div>
+            <p className={`text-sm sm:text-[15px] text-white/50 max-w-md ${
+              lang === 'ko' ? 'leading-[1.9]' : 'leading-relaxed'
+            }`}>
+              {description}
+            </p>
+          </div>
+
+          {/* Right — live demo */}
+          <div
+            className={`transition-all duration-700 ease-out ${
+              visible ? 'opacity-100 translate-y-0 delay-200' : 'opacity-0 translate-y-5'
+            }`}
+            style={{ transitionDelay: visible ? '200ms' : '0ms' }}
+          >
+            <div className="bg-white/[0.04] border border-white/[0.08] rounded-2xl p-5 sm:p-6 backdrop-blur-sm">
+              {children(visible)}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Panel 1 — DDI Check (adapted for dark panel) ────────────────
+
+function DDIPanelDemo({ visible }) {
+  const [phase, setPhase] = useState(0);
+
+  useEffect(() => {
+    if (!visible) return;
+    setPhase(0);
+    const t1 = setTimeout(() => setPhase(1), 300);
+    const t2 = setTimeout(() => setPhase(2), 900);
+    const t3 = setTimeout(() => setPhase(3), 1400);
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
+  }, [visible]);
+
+  return (
+    <div className="space-y-4">
+      {/* Drug pills colliding */}
+      <div className="relative h-14 flex items-center justify-center overflow-hidden">
+        <div
+          className="absolute left-0 px-3 py-1.5 bg-blue-500/20 text-blue-300 text-[11px] font-bold rounded-full border border-blue-500/30 transition-all duration-700 ease-out"
+          style={{ transform: phase >= 1 ? 'translateX(calc(50% + 8px))' : 'translateX(-20px)', opacity: phase >= 1 ? 1 : 0 }}
+        >
+          Meloxicam
+        </div>
+        <div
+          className="absolute right-0 px-3 py-1.5 bg-violet-500/20 text-violet-300 text-[11px] font-bold rounded-full border border-violet-500/30 transition-all duration-700 ease-out"
+          style={{ transform: phase >= 1 ? 'translateX(calc(-50% - 8px))' : 'translateX(20px)', opacity: phase >= 1 ? 1 : 0 }}
+        >
+          Prednisolone
+        </div>
+        {phase >= 2 && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-full bg-red-400/20" style={{ animation: 'collisionFlash 0.6s ease-out forwards' }} />
+          </div>
+        )}
+      </div>
+
+      {/* Result badge */}
+      <div className={`transition-all duration-500 ${phase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}>
+        <div className="bg-red-950/60 border border-red-500/30 rounded-xl px-4 py-3 animate-pulse-glow">
+          <div className="flex items-center gap-2 mb-1.5">
+            <SeverityBadge severity={{ label: 'Critical' }} />
+            <span className="text-[10px] text-white/40">NSAID + Corticosteroid GI Risk</span>
+          </div>
+          <p className="text-[13px] font-semibold text-white">Meloxicam + Prednisolone</p>
+          <p className="text-[11px] text-white/50 mt-1 leading-relaxed">
+            위장궤양 위험 ×15 (단독 대비). 양성자펌프억제제 병용 권고.
+          </p>
+          <p className="text-[9px] text-white/25 mt-1">GI ulceration risk ×15 vs either drug alone. PPI co-prescription recommended.</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Panel 2 — Animated Organ Panel with real AnatomyDiagram ────
+
+const ORGAN_MOCK_DRUGS = [
+  { id: 'meloxicam-demo', name: 'Meloxicam', renalElimination: 0.40, hepaticElimination: 0.55, pk: { primaryElimination: 'hepatic' }, defaultDose: { dog: 0.1 }, dosePerKg: 0.1 },
+  { id: 'prednisolone-demo', name: 'Prednisolone', renalElimination: 0.20, hepaticElimination: 0.75, pk: { primaryElimination: 'hepatic' }, defaultDose: { dog: 0.5 }, dosePerKg: 0.5 },
+];
+
+const ORGAN_FULL_SCORES = {
+  brain:  { finalScore: 14, contributingDrugs: [{ drugId: 'prednisolone-demo', drugName: 'Prednisolone', baseScore: 14, scaledScore: 14, doseScalingApplied: false }], keywords: ['CNS penetration'], evidence: null },
+  heart:  { finalScore: 8,  contributingDrugs: [], keywords: [], evidence: null },
+  liver:  { finalScore: 72, contributingDrugs: [
+    { drugId: 'meloxicam-demo', drugName: 'Meloxicam', baseScore: 42, scaledScore: 42, doseScalingApplied: false },
+    { drugId: 'prednisolone-demo', drugName: 'Prednisolone', baseScore: 30, scaledScore: 30, doseScalingApplied: false },
+  ], keywords: ['hepatotoxic', 'CYP3A4'], evidence: null },
+  kidney: { finalScore: 35, contributingDrugs: [{ drugId: 'meloxicam-demo', drugName: 'Meloxicam', baseScore: 35, scaledScore: 35, doseScalingApplied: false }], keywords: ['nephrotoxic'], evidence: null },
+  blood:  { finalScore: 22, contributingDrugs: [{ drugId: 'meloxicam-demo', drugName: 'Meloxicam', baseScore: 22, scaledScore: 22, doseScalingApplied: false }], keywords: ['bleeding_risk'], evidence: null },
+};
+
+// Reveal order: highest score first
+const ORGAN_REVEAL_ORDER = ['liver', 'kidney', 'blood', 'brain', 'heart'];
+
+function AnimatedOrganPanel({ visible }) {
+  const [revealPhase, setRevealPhase] = useState(0);
+
+  useEffect(() => {
+    if (!visible) { setRevealPhase(0); return; }
+    ORGAN_REVEAL_ORDER.forEach((_, i) => {
+      setTimeout(() => setRevealPhase(i + 1), 700 + i * 380);
+    });
+  }, [visible]);
+
+  const animatedScores = Object.fromEntries(
+    Object.entries(ORGAN_FULL_SCORES).map(([organ, data]) => {
+      const revealIdx = ORGAN_REVEAL_ORDER.indexOf(organ);
+      const revealed = revealPhase > revealIdx;
+      return [organ, revealed ? data : { ...data, finalScore: null, contributingDrugs: [] }];
+    })
+  );
+
+  return (
+    <div className="bg-white rounded-xl overflow-hidden p-3">
+      <div className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2 px-1">
+        Border Collie · 12 kg · Meloxicam + Prednisolone
+      </div>
+      <AnatomyDiagram
+        species="dog"
+        organScores={animatedScores}
+        patientBreed="Border Collie"
+        mdr1SensitiveDrugs={[]}
+        drugs={ORGAN_MOCK_DRUGS}
+        patientInfo={{ flaggedLabs: [] }}
+        overallRisk={null}
+      />
+    </div>
+  );
+}
+
+// ── Panel 3 — Breed & Genetic Safety ───────────────────────────
+
+const MDR1_BREEDS = ['Border Collie', 'Rough/Smooth Collie', 'Shetland Sheepdog', 'Australian Shepherd', 'Old English Sheepdog', 'Silken Windhound'];
+
+function BreedGeneticPanel({ visible }) {
+  const [phase, setPhase] = useState(0);
+  useEffect(() => {
+    if (!visible) return;
+    const t1 = setTimeout(() => setPhase(1), 400);
+    const t2 = setTimeout(() => setPhase(2), 900);
+    const t3 = setTimeout(() => setPhase(3), 1500);
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
+  }, [visible]);
+
+  return (
+    <div className="space-y-4">
+      {/* Patient card */}
+      <div className={`transition-all duration-600 ease-out ${phase >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+        <div className="bg-slate-800/80 border border-slate-700 rounded-xl p-4">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center text-lg shrink-0">🐕</div>
+            <div className="flex-1 min-w-0">
+              <p className="text-[13px] font-bold text-white">Border Collie · 12 kg · 4세</p>
+              <p className="text-[11px] text-slate-400">수컷 (중성화) — Neutered Male</p>
+            </div>
+            <span className={`shrink-0 inline-flex items-center gap-1 text-[10px] font-bold text-amber-400 bg-amber-400/10 border border-amber-400/30 px-2.5 py-1 rounded-full transition-opacity duration-500 ${phase >= 2 ? 'opacity-100 animate-pulse-glow-amber' : 'opacity-0'}`}>
+              MDR1 위험
+            </span>
+          </div>
+          {phase >= 2 && (
+            <div className="bg-amber-950/60 border border-amber-500/30 rounded-lg px-3 py-2.5 animate-fade-in">
+              <p className="text-[10px] font-bold text-amber-400 uppercase tracking-wide mb-1">MDR1 감수성 · Ivermectin</p>
+              <p className="text-[10px] text-amber-300/80 leading-relaxed">P-gp 억제제 병용 시 혈뇌장벽 투과율 ↑ — CNS 신경독성 위험 (MDR1 돌연변이 품종)</p>
+              <p className="text-[9px] text-amber-400/50 mt-0.5">CNS toxicity risk with P-gp inhibitor co-administration</p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Affected breed list */}
+      {phase >= 3 && (
+        <div className="bg-slate-800/50 border border-slate-700/60 rounded-xl p-4 animate-fade-in">
+          <p className="text-[9px] font-bold text-slate-500 uppercase tracking-wider mb-3">MDR1 감수성 품종 / Affected Breeds</p>
+          <div className="space-y-1.5">
+            {MDR1_BREEDS.map((breed, i) => (
+              <div
+                key={breed}
+                className="flex items-center gap-2 text-[11px]"
+                style={{ animation: `fadeIn 0.3s ease-out ${i * 90}ms both` }}
+              >
+                <span className="w-1.5 h-1.5 bg-amber-400 rounded-full shrink-0" />
+                <span className="text-slate-300">{breed}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ════════════════════════════════════════════════════════════════
 // ── Main Landing Page ──────────────────────────────────────────
 // ════════════════════════════════════════════════════════════════
@@ -679,7 +927,8 @@ export default function Landing() {
                       onClick={() => navigate('/pricing')}
                       className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-white text-slate-700 text-sm font-medium rounded-xl border border-slate-200 hover:border-slate-300 hover:bg-slate-50 hover:scale-[1.02] transition-all duration-200"
                     >
-                      {lang === 'ko' ? '플랜 보기 / View Plans' : 'View Plans'}
+                      {lang === 'ko' ? '플랜 보기' : 'View Plans'}
+                      <span className="text-slate-400 text-xs font-normal">{lang === 'ko' ? '/ View Plans' : ''}</span>
                     </button>
                   </div>
                 </div>
@@ -725,31 +974,29 @@ export default function Landing() {
             <div>
               <RevealSection>
                 <p className="text-xs font-semibold text-indigo-500 uppercase tracking-widest mb-4">
-                  Drug Resolution Pipeline
+                  {t.pipelineSectionLabel}
                 </p>
-                <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-black text-slate-900 tracking-tight leading-[1.08] mb-5">
-                  Clinical-grade<br />
-                  <span className="text-slate-300">interaction</span><br />
-                  screening.
+                <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-black text-slate-900 tracking-tight leading-[1.2] mb-5">
+                  {lang === 'ko' ? (
+                    <>임상 수준의<br /><span className="text-slate-300">상호작용</span><br />검사.</>
+                  ) : (
+                    <>Clinical-grade<br /><span className="text-slate-300">interaction</span><br />screening.</>
+                  )}
                 </h2>
-                <p className="text-sm text-slate-500 leading-relaxed mb-10 max-w-sm">
-                  Every drug input passes through a six-stage resolution pipeline — classifying it by origin, applying species-specific pharmacokinetics, then running pairwise interaction checks with dual-source evidence.
+                <p className={`text-sm text-slate-500 mb-10 max-w-sm ${lang === 'ko' ? 'leading-[1.9]' : 'leading-relaxed'}`}>
+                  {t.pipelineSectionDesc}
                 </p>
               </RevealSection>
 
               {/* Vertical pipeline */}
               <div className="relative pl-9">
                 <div className="absolute left-3.5 top-3 bottom-3 w-px bg-gradient-to-b from-indigo-300 via-violet-300 to-emerald-300" />
-                {[
-                  { label: 'Drug Substance Normalization', sub: 'Three-tier model: active ingredient → drug class → allergy class', color: 'bg-slate-900' },
-                  { label: 'Six-Case Origin Classification', sub: 'KR Vet approved · Human off-label · Foreign · Unknown · Multi-drug · Species-specific', color: 'bg-indigo-600' },
-                  { label: 'CYP Enzyme Profiling', sub: 'Substrate/inhibitor/inducer analysis across CYP3A4, CYP2D6, CYP1A2, CYP2C9', color: 'bg-violet-600' },
-                  { label: 'Pairwise Interaction Matrix', sub: 'Every drug pair checked — DDI, QT stacking, bleeding, serotonin syndrome', color: 'bg-slate-700' },
-                  { label: 'Species & Organ Adjustments', sub: 'Canine vs. feline PK parameters, renal/hepatic dose scaling, MDR1 breed flags', color: 'bg-slate-600' },
-                  { label: 'Confidence-scored Result', sub: 'Severity classification with source citation and data-quality confidence score', color: 'bg-emerald-600' },
-                ].map(({ label, sub, color }, i) => (
-                  <PipelineStep key={i} number={i + 1} label={label} sublabel={sub} accentColor={color} delay={i * 100} />
-                ))}
+                {(t.pipelineSteps || []).map(({ label, sub }, i) => {
+                  const colors = ['bg-slate-900', 'bg-indigo-600', 'bg-violet-600', 'bg-slate-700', 'bg-slate-600', 'bg-emerald-600'];
+                  return (
+                    <PipelineStep key={i} number={i + 1} label={label} sublabel={sub} accentColor={colors[i]} delay={i * 100} />
+                  );
+                })}
               </div>
             </div>
 
@@ -766,9 +1013,9 @@ export default function Landing() {
                   <div className="flex items-start gap-3">
                     <Dna size={16} className="text-violet-600 shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-[12px] font-semibold text-violet-900">Species-specific adjustment</p>
-                      <p className="text-[11px] text-violet-700 mt-0.5 leading-relaxed">
-                        Feline glucuronidation deficit → dose frequency halved. MDR1 breed flag applied for Collie/Sheltie.
+                      <p className="text-[12px] font-semibold text-violet-900">{t.pipelineSpeciesNote}</p>
+                      <p className={`text-[11px] text-violet-700 mt-0.5 ${lang === 'ko' ? 'leading-[1.85]' : 'leading-relaxed'}`}>
+                        {t.pipelineSpeciesNoteBody}
                       </p>
                     </div>
                   </div>
@@ -779,100 +1026,79 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* ─── Clinical Informatics — Bento Box ───────────────────── */}
-      <section className="bg-gradient-to-b from-slate-50 to-slate-100/50 overflow-hidden">
-        <div className="max-w-6xl mx-auto px-5 sm:px-8 py-20 sm:py-28">
-
-          {/* Billboard header */}
+      {/* ─── Clinical Informatics — Scroll-Driven Panels ─────────── */}
+      <section id="features" className="bg-[#070c18] overflow-hidden">
+        {/* Section header strip */}
+        <div className="max-w-6xl mx-auto px-5 sm:px-8 pt-16 pb-0 text-center">
           <RevealSection>
-            <div className="mb-14 lg:mb-20">
-              <p className="text-xs font-semibold text-indigo-500 uppercase tracking-widest mb-5">Clinical Informatics</p>
-              <div className="flex flex-col sm:flex-row sm:items-end gap-4 sm:gap-8 mb-5">
-                <div className="text-[80px] sm:text-[110px] lg:text-[140px] font-black text-slate-900 leading-none tracking-tight select-none" aria-hidden>
-                  6
-                </div>
-                <div className="pb-2 sm:pb-4">
-                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 leading-tight">
-                    independent engines.<br />
-                    <span className="text-slate-400">One complete prescription review.</span>
-                  </h2>
-                </div>
-              </div>
-              <p className="text-base text-slate-500 max-w-2xl leading-relaxed">
-                Substance normalization, off-label drug handling, pairwise interaction checks across all drug types, real-time DUR scanning — running in parallel on every submission.
-              </p>
-            </div>
+            <p className="text-xs font-semibold text-indigo-400 uppercase tracking-widest mb-3">
+              {t.panels?.sectionLabel}
+            </p>
+            <h2 className={`text-2xl sm:text-3xl font-black text-white mb-3 ${lang === 'ko' ? 'leading-[1.4]' : 'leading-tight'}`}>
+              {lang === 'ko' ? (
+                <><span className="text-white">5가지 엔진.</span> <span className="text-white/30">하나의 처방 검토.</span></>
+              ) : (
+                <><span className="text-white">Five engines.</span> <span className="text-white/30">One prescription review.</span></>
+              )}
+            </h2>
           </RevealSection>
-
-          {/* Bento grid — organic layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5">
-
-            {/* DDI — large card, spans 7 cols */}
-            <div className="lg:col-span-7 lg:row-span-2">
-              <BentoCard
-                icon={ShieldCheck}
-                title="Multi-drug interaction check"
-                description="Every drug pair evaluated for CYP enzyme conflicts, duplicate class contraindications, QT interval stacking, bleeding risk amplification, and serotonin syndrome — with a 3-tier severity classification."
-                demo={DDICollisionDemo}
-                iconColor="text-red-600"
-                className="h-full"
-                delay={0}
-              />
-            </div>
-
-            {/* Organ Involvement — top right (updated naming + blue scale) */}
-            <div className="lg:col-span-5">
-              <BentoCard
-                icon={Activity}
-                title="Organ involvement mapping"
-                description="Hepatic and renal elimination routes mapped across the full regimen with a blue intensity scale. Monitoring priority surfaces when organ involvement crosses safe thresholds."
-                demo={AnimatedOrganInvolvementDemo}
-                iconColor="text-blue-600"
-                className="h-full"
-                delay={100}
-              />
-            </div>
-
-            {/* Species — bottom right of first group */}
-            <div className="lg:col-span-5">
-              <BentoCard
-                icon={Layers}
-                title="Species & breed safety"
-                description="Absolute contraindications fire before the scan. MDR1-sensitive breeds flagged per drug."
-                demo={SpeciesBreedDemo}
-                iconColor="text-violet-600"
-                className="h-full"
-                delay={200}
-              />
-            </div>
-
-            {/* Dosing — bottom left */}
-            <div className="lg:col-span-5">
-              <BentoCard
-                icon={Scale}
-                title="Weight-adjusted dosing"
-                description="Recommended dose calculated from patient weight with renal/hepatic adjustment factors. Dose overrides flagged when outside evidence range."
-                demo={AnimatedDosingDemo}
-                iconColor="text-blue-600"
-                className="h-full"
-                delay={300}
-              />
-            </div>
-
-            {/* Washout — wide bottom (fixed demo) */}
-            <div className="lg:col-span-7">
-              <BentoCard
-                icon={RefreshCcw}
-                title="Washout & timing advisor"
-                description="Half-life-based washout calculations for serotonergic drugs and narrow-therapeutic-index agents. Warns when new drugs are started before washout window closes."
-                demo={TimelineWashoutDemo}
-                iconColor="text-amber-600"
-                className="h-full"
-                delay={400}
-              />
-            </div>
-          </div>
         </div>
+
+        {/* Panel 1 — Real-time DDI Check */}
+        <ScrollFeaturePanel
+          panelIdx={1}
+          titleKo={t.panels?.panel1Title || '실시간 다제 DDI 검사'}
+          titleEn={t.panels?.panel1TitleEn || 'Real-time Multi-Drug Interaction Check'}
+          description={t.panels?.panel1Desc}
+          lang={lang}
+        >
+          {(visible) => <DDIPanelDemo visible={visible} />}
+        </ScrollFeaturePanel>
+
+        {/* Panel 2 — Organ Involvement Diagram */}
+        <ScrollFeaturePanel
+          panelIdx={2}
+          titleKo={t.panels?.panel2Title || '장기 관여 다이어그램'}
+          titleEn={t.panels?.panel2TitleEn || 'Organ Involvement Diagram'}
+          description={t.panels?.panel2Desc}
+          lang={lang}
+          isCenter
+        >
+          {(visible) => <AnimatedOrganPanel visible={visible} />}
+        </ScrollFeaturePanel>
+
+        {/* Panel 3 — Breed & Genetic Safety */}
+        <ScrollFeaturePanel
+          panelIdx={3}
+          titleKo={t.panels?.panel3Title || '품종 및 유전적 안전성'}
+          titleEn={t.panels?.panel3TitleEn || 'Breed & Genetic Safety'}
+          description={t.panels?.panel3Desc}
+          lang={lang}
+        >
+          {(visible) => <BreedGeneticPanel visible={visible} />}
+        </ScrollFeaturePanel>
+
+        {/* Panel 4 — Weight-Adjusted Dosing */}
+        <ScrollFeaturePanel
+          panelIdx={4}
+          titleKo={t.panels?.panel4Title || '체중 기반 용량 계산'}
+          titleEn={t.panels?.panel4TitleEn || 'Weight-Adjusted Dosing'}
+          description={t.panels?.panel4Desc}
+          lang={lang}
+        >
+          {(visible) => <AnimatedDosingDemo visible={visible} />}
+        </ScrollFeaturePanel>
+
+        {/* Panel 5 — Washout Advisor */}
+        <ScrollFeaturePanel
+          panelIdx={5}
+          titleKo={t.panels?.panel5Title || '휴약 기간 자문'}
+          titleEn={t.panels?.panel5TitleEn || 'Washout Period Advisor'}
+          description={t.panels?.panel5Desc}
+          lang={lang}
+        >
+          {(visible) => <TimelineWashoutDemo visible={visible} />}
+        </ScrollFeaturePanel>
       </section>
 
       {/* ─── Severity & Results ──────────────────────────────────── */}
@@ -881,7 +1107,7 @@ export default function Landing() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
             <div>
               <RevealSection>
-                <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Drug Pipeline</p>
+                <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">{lang === 'ko' ? '약물 파이프라인' : 'Drug Pipeline'}</p>
                 <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mb-3">
                   {t.landing.pipelineTitle}
                 </h2>
@@ -1037,6 +1263,7 @@ export default function Landing() {
 
 function SubstanceResolutionDemo() {
   const [ref, visible] = useReveal(0.15);
+  const { t } = useI18n();
   const typedText = useTypewriter('Metronidazole 250mg', 60, visible);
   const [phase, setPhase] = useState(0);
 
@@ -1050,34 +1277,34 @@ function SubstanceResolutionDemo() {
 
   return (
     <div ref={ref} className="bg-slate-950 rounded-2xl p-5 text-white overflow-hidden">
-      <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4">Substance Resolution — Live</p>
+      <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4">{t.substanceResolutionLabel}</p>
 
       {/* Input */}
       <div className="flex items-center gap-3 mb-3">
         <div className="w-2 h-2 bg-slate-500 rounded-full animate-gentle-pulse" />
-        <div className="text-[11px] text-slate-400">Drug input</div>
+        <div className="text-[11px] text-slate-400">{t.substanceInputLabel}</div>
       </div>
       <div className="bg-slate-800 rounded-lg px-3 py-2.5 mb-3 ml-5">
         <span className="text-sm font-semibold text-white">{typedText}</span>
         <span className="inline-block w-px h-4 bg-white/60 ml-0.5 animate-pulse align-middle" />
         {phase >= 1 && (
           <span className="ml-2 text-[10px] text-amber-400 font-medium" style={{ animation: 'fadeIn 0.4s ease-out' }}>
-            Human off-label
+            {t.substanceHumanOffLabel}
           </span>
         )}
       </div>
 
       {/* Normalize arrow */}
       <div className={`ml-5 text-slate-600 text-xs mb-3 transition-all duration-500 ${phase >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'}`}>
-        ↓ Normalize
+        ↓ {t.substanceNormalizeLabel}
       </div>
 
       {/* Resolved fields */}
       <div className={`grid grid-cols-3 gap-1.5 ml-5 mb-3 transition-all duration-600 ${phase >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}>
         {[
-          { label: 'Substance', val: 'Metronidazole', color: 'text-blue-300' },
-          { label: 'Class', val: 'Nitroimidazole', color: 'text-violet-300' },
-          { label: 'Allergy', val: 'Metronidazole', color: 'text-amber-300' },
+          { label: '유효성분', val: 'Metronidazole', color: 'text-blue-300' },
+          { label: '약효군', val: 'Nitroimidazole', color: 'text-violet-300' },
+          { label: '알레르기', val: 'Metronidazole', color: 'text-amber-300' },
         ].map(({ label, val, color }) => (
           <div key={label} className="bg-slate-800/60 rounded-md px-2 py-1.5">
             <div className="text-[9px] text-slate-500 uppercase tracking-wider">{label}</div>
@@ -1088,13 +1315,13 @@ function SubstanceResolutionDemo() {
 
       {/* CYP check */}
       <div className={`ml-5 text-slate-600 text-xs mb-3 transition-all duration-500 ${phase >= 2 ? 'opacity-100' : 'opacity-0'}`}>
-        ↓ CYP check: CYP3A4 inhibitor
+        ↓ {t.substanceCypLabel}: CYP3A4 inhibitor
       </div>
 
       {/* Interaction found */}
       <div className={`ml-5 transition-all duration-600 ${phase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}>
         <div className="bg-amber-900/50 border border-amber-600/40 rounded-lg px-3 py-2.5">
-          <div className="text-[9px] font-bold text-amber-400 uppercase tracking-wider mb-1">Interaction detected</div>
+          <div className="text-[9px] font-bold text-amber-400 uppercase tracking-wider mb-1">{t.substanceInteractionLabel}</div>
           <div className="text-[11px] text-amber-200 font-medium">Metronidazole + Ketoconazole</div>
           <div className="text-[10px] text-amber-300/80 mt-0.5">CYP3A4 inhibition → Moderate</div>
         </div>
@@ -1107,17 +1334,20 @@ function SubstanceResolutionDemo() {
 
 function ConfidenceBreakdown() {
   const [ref, visible] = useReveal(0.15);
+  const { lang } = useI18n();
 
   const items = [
-    { label: 'Substance match', pct: 95, color: 'bg-emerald-500' },
-    { label: 'CYP profile coverage', pct: 88, color: 'bg-emerald-500' },
-    { label: 'Species data (dog)', pct: 82, color: 'bg-amber-500' },
-    { label: 'Literature source', pct: 74, color: 'bg-amber-500' },
+    { label: lang === 'ko' ? '성분 매칭' : 'Substance match', pct: 95, color: 'bg-emerald-500' },
+    { label: lang === 'ko' ? 'CYP 프로파일 적용률' : 'CYP profile coverage', pct: 88, color: 'bg-emerald-500' },
+    { label: lang === 'ko' ? '종별 데이터 (개)' : 'Species data (dog)', pct: 82, color: 'bg-amber-500' },
+    { label: lang === 'ko' ? '문헌 출처' : 'Literature source', pct: 74, color: 'bg-amber-500' },
   ];
 
   return (
     <div ref={ref} className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
-      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">Confidence Breakdown</p>
+      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">
+        {lang === 'ko' ? '신뢰도 세부 내역 / Confidence Breakdown' : 'Confidence Breakdown'}
+      </p>
       {items.map(({ label, pct, color }, i) => (
         <div key={label} className="flex items-center gap-3 mb-2 last:mb-0">
           <span className="text-[11px] text-slate-500 w-36 shrink-0">{label}</span>

@@ -245,13 +245,13 @@ function OrganTooltip({ organ, data, position, containerRef, contributions, t })
 
         {data.contributingDrugs.length > 0 && (
           <div className="mb-2">
-            <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Contributing drugs</p>
+            <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">{t?.anatomy?.contributingDrugs || '관여 약물'}</p>
             {data.contributingDrugs.map((cd) => (
               <div key={cd.drugId} className="flex justify-between text-[11px] py-0.5">
                 <span className="text-slate-700 font-medium truncate mr-2">{cd.drugName}</span>
                 <span className="text-slate-500 shrink-0">
                   base: {cd.baseScore} → {cd.scaledScore}
-                  {!cd.doseScalingApplied && <span className="text-slate-400 ml-1">(no dose)</span>}
+                  {!cd.doseScalingApplied && <span className="text-slate-400 ml-1">{t?.anatomy?.noDose || '(용량 없음)'}</span>}
                 </span>
               </div>
             ))}
@@ -259,12 +259,12 @@ function OrganTooltip({ organ, data, position, containerRef, contributions, t })
         )}
 
         {data.contributingDrugs.length === 0 && data.finalScore !== null && (
-          <p className="text-[11px] text-slate-400 mb-2">단일 약물</p>
+          <p className="text-[11px] text-slate-400 mb-2">{t?.anatomy?.singleDrug || '단일 약물'}</p>
         )}
 
         {data.keywords.length > 0 && (
           <div className="mb-2">
-            <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Triggered effects</p>
+            <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">{t?.anatomy?.triggeredEffects || '유발 효과'}</p>
             <p className="text-[11px] text-slate-600 leading-relaxed">
               {data.keywords.join(' · ')}
             </p>
@@ -273,7 +273,7 @@ function OrganTooltip({ organ, data, position, containerRef, contributions, t })
 
         {data.evidence && (
           <div className="mb-2">
-            <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Evidence</p>
+            <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">{t?.anatomy?.evidence || '근거'}</p>
             <p className="text-[11px] text-slate-600 leading-relaxed line-clamp-3">
               {data.evidence}
             </p>
@@ -412,10 +412,10 @@ export default function AnatomyDiagram({
       {/* Header */}
       <div className="flex items-center justify-between mb-2">
         <h3 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-          Organ Involvement
+          {t.anatomy?.organInvolvement || '장기 관여'}
         </h3>
         <span className="text-[10px] text-slate-400">
-          {species === 'dog' ? '🐕' : '🐈'} {species === 'dog' ? 'Canine' : 'Feline'}
+          {species === 'dog' ? '🐕' : '🐈'} {species === 'dog' ? t.species.dog : t.species.cat}
         </span>
       </div>
 
@@ -598,14 +598,16 @@ export default function AnatomyDiagram({
 
         {imageFailed && (
           <div className="mt-1 px-2 py-1 rounded bg-amber-50 border border-amber-200 text-[10px] text-amber-700">
-            Anatomy image is missing. Add {anatomyConfig.src} to render the diagram.
+            {lang === 'ko'
+              ? `해부학 이미지가 없습니다. ${anatomyConfig.src} 파일을 추가하세요.`
+              : `Anatomy image is missing. Add ${anatomyConfig.src} to render the diagram.`}
           </div>
         )}
 
         {/* Empty state */}
         {!hasData && (
           <div className="absolute inset-0 flex items-center justify-center bg-white/60 rounded-lg">
-            <p className="text-[11px] text-slate-400">Add drugs to see organ involvement</p>
+            <p className="text-[11px] text-slate-400">{t.anatomy?.addDrugsPrompt || '약물을 추가하면 장기 관여도가 표시됩니다'}</p>
           </div>
         )}
 
