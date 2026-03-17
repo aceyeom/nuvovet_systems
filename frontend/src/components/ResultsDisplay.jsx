@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   AlertTriangle, AlertCircle, Info, CheckCircle, ChevronDown, ChevronUp,
   BookOpen, FlaskConical, Globe, HelpCircle, Dna, ArrowLeft,
   Check, Lightbulb, FileText, Clock, Pill, Flag, Printer, Download,
-  Mail, Send
+  Mail, Send, ArrowRight
 } from 'lucide-react';
 import { SeverityBadge } from './SeverityBadge';
 import { DRUG_SOURCE } from '../data/drugDatabase';
@@ -13,6 +14,34 @@ import { OrganLoadIndicator } from './OrganLoadIndicator';
 import { ConfidenceProvenance } from './ConfidenceProvenance';
 import { ScanExportButton } from './ScanExportPDF';
 import { useI18n } from '../i18n';
+
+// ── Demo Upgrade Banner ─────────────────────────────────────────
+function DemoUpgradeBanner({ lang }) {
+  const navigate = useNavigate();
+  return (
+    <div className="bg-slate-900 text-white no-print">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-5">
+        <div>
+          <p className="text-[17px] font-black mb-1">
+            {lang === 'ko' ? '전체 기능을 사용할 준비가 되셨나요?' : 'Ready to access the full version?'}
+          </p>
+          <p className="text-[13px] text-slate-400">
+            {lang === 'ko'
+              ? '실제 환자 데이터로 완전한 DUR 분석을 경험하세요'
+              : 'Experience complete DUR analysis with your real patients'}
+          </p>
+        </div>
+        <button
+          onClick={() => navigate('/pricing')}
+          className="shrink-0 inline-flex items-center gap-2 px-6 py-3 bg-white text-slate-900 text-sm font-bold rounded-xl hover:bg-slate-100 transition-colors"
+        >
+          {lang === 'ko' ? '플랜 보기 / View Plans' : 'View Plans'}
+          <ArrowRight size={14} />
+        </button>
+      </div>
+    </div>
+  );
+}
 
 // ── Overall Severity Banner ─────────────────────────────────────
 function SeverityBanner({ results, drugs = [] }) {
@@ -565,7 +594,7 @@ function ResultsActionBar({ results, patientInfo, drugs, species, lang, t }) {
 }
 
 // ── Main Results Display ────────────────────────────────────────
-export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, isFullSystem = false, drugs = [], species = 'dog', onUpdatePatientRecord, hideSidebar = false }) {
+export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, isFullSystem = false, drugs = [], species = 'dog', onUpdatePatientRecord, hideSidebar = false, demoMode = false }) {
   const { t, lang } = useI18n();
   if (!results) return null;
 
@@ -637,6 +666,7 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
               </p>
             </div>
           </div>
+          {!demoMode && (
           <div className="shrink-0">
             <button
               onClick={handleCompleteAndRecordDiagnosis}
@@ -652,6 +682,7 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
               Complete and record diagnosis
             </button>
           </div>
+          )}
         </div>
 
         {/* Print header */}
@@ -743,10 +774,19 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
               t={t}
             />
 
+            {!demoMode && (
             <div className="flex gap-3 no-print flex-wrap">
               <button onClick={onBack} className="flex-1 px-4 py-2.5 text-[13px] font-medium text-slate-600 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors shadow-sm">{t.results.backToMeds}</button>
               <button onClick={onNewAnalysis} className="flex-1 px-4 py-2.5 text-[13px] font-medium text-white bg-slate-900 rounded-lg hover:bg-slate-800 transition-colors shadow-sm">{t.results.newAnalysis}</button>
             </div>
+            )}
+
+            {demoMode && (
+            <div className="flex gap-3 no-print flex-wrap">
+              <button onClick={onBack} className="flex-1 px-4 py-2.5 text-[13px] font-medium text-slate-600 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors shadow-sm">{lang === 'ko' ? '← 처방으로 돌아가기' : '← Back to Prescription'}</button>
+              <button onClick={onNewAnalysis} className="flex-1 px-4 py-2.5 text-[13px] font-medium text-white bg-slate-900 rounded-lg hover:bg-slate-800 transition-colors shadow-sm">{lang === 'ko' ? '새로 시작' : 'Start Over'}</button>
+            </div>
+            )}
 
             <p className="text-[11px] text-slate-400 text-center leading-relaxed pt-1">
               {t.results.disclaimer}
@@ -754,6 +794,11 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
           </div>
         </div>
       </div>
+
+      {/* Demo upgrade banner */}
+      {demoMode && (
+        <DemoUpgradeBanner lang={lang} />
+      )}
 
       {showDiagnosisToast && (
         <div
@@ -766,7 +811,7 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
       )}
 
       {/* Fixed bottom scan bar — shows only after full review in full system */}
-      {showScanBar && (
+      {showScanBar && !demoMode && (
         <div className="fixed bottom-0 left-0 right-0 z-30 no-print animate-slide-up-bar">
           <div className="bg-white border-t border-slate-200 shadow-lg px-4 sm:px-6 py-3">
             <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">

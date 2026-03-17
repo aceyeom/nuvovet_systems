@@ -620,11 +620,17 @@ export default function Landing() {
           <div className="flex items-center gap-4">
             <LangToggle />
             <button
-              onClick={() => navigate('/system')}
+              onClick={() => navigate('/pricing')}
+              className="hidden sm:flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-slate-800 transition-colors"
+            >
+              {lang === 'ko' ? '플랜' : 'Pricing'}
+            </button>
+            <button
+              onClick={() => navigate('/account')}
               className="hidden sm:flex items-center gap-1.5 text-xs font-medium text-slate-400 hover:text-slate-700 transition-colors"
             >
               <Lock size={11} />
-              {t.fullSystemLabel}
+              {lang === 'ko' ? '계정' : 'Account'}
             </button>
             <button
               onClick={() => navigate('/demo')}
@@ -690,10 +696,10 @@ export default function Landing() {
                       <ArrowRight size={15} />
                     </button>
                     <button
-                      onClick={() => setShowAccessModal(true)}
+                      onClick={() => navigate('/pricing')}
                       className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-white text-slate-700 text-sm font-medium rounded-xl border border-slate-200 hover:border-slate-300 hover:bg-slate-50 hover:scale-[1.02] transition-all duration-200"
                     >
-                      {t.nav.requestAccess}
+                      {lang === 'ko' ? '플랜 보기 / View Plans' : 'View Plans'}
                     </button>
                   </div>
                 </div>
@@ -1004,18 +1010,18 @@ export default function Landing() {
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-3">
                 <button
-                  onClick={() => setShowAccessModal(true)}
+                  onClick={() => navigate('/pricing')}
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-900 text-white text-sm font-semibold rounded-xl hover:bg-slate-800 hover:scale-[1.02] transition-all duration-200 shadow-lg shadow-slate-900/20"
                 >
-                  {t.nav.requestAccess}
+                  {lang === 'ko' ? '플랜 보기 / View Plans' : 'View Plans'}
                   <ArrowRight size={15} />
                 </button>
                 <button
-                  onClick={() => navigate('/system')}
+                  onClick={() => navigate('/account')}
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-slate-700 text-sm font-medium rounded-xl border border-slate-200 hover:border-slate-300 hover:scale-[1.02] transition-all duration-200"
                 >
                   <Lock size={13} />
-                  {t.nav.signIn}
+                  {lang === 'ko' ? '계정으로 이동' : 'My Account'}
                 </button>
               </div>
             </div>

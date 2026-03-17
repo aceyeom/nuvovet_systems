@@ -6,6 +6,8 @@ import Landing from './pages/Landing';
 import Demo from './pages/Demo';
 import FullSystem from './pages/FullSystem';
 import Patients from './pages/Patients';
+import Pricing from './pages/Pricing';
+import Account from './pages/Account';
 
 // Protect /system — redirect to /system with login if unauthenticated
 function ProtectedRoute({ children }) {
@@ -35,6 +37,8 @@ export default function App() {
               </ProtectedRoute>
             } />
             <Route path="/patients" element={<Patients />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/account" element={<Account />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>
