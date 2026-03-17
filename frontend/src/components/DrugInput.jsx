@@ -173,7 +173,10 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
       )}
 
       {/* Drug header */}
-      <div className="flex items-start gap-2.5 px-3.5 pt-2.5 pb-1.5">
+      <div
+        onClick={() => setExpanded(v => !v)}
+        className="flex items-start gap-2.5 px-3.5 pt-2.5 pb-1.5 cursor-pointer"
+      >
         <div className="mt-0.5"><SourceIcon source={drug.source} /></div>
         <div className="flex-1 min-w-0">
           <p className="text-[13px] font-semibold text-slate-900 leading-tight">{drug.name}</p>
@@ -216,11 +219,19 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
           </div>
         )}
         <div className="flex items-center gap-1 shrink-0">
-          <button onClick={() => setExpanded(v => !v)}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setExpanded(v => !v);
+            }}
             className="p-1 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
             {expanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
           </button>
-          <button onClick={() => onRemove(drug.id)}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onRemove(drug.id);
+            }}
             className="p-1 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
             <X size={14} />
           </button>
