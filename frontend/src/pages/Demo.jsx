@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  ArrowLeft, Zap, Search, X, Lock, ChevronDown, ChevronUp,
+  ArrowLeft, Zap, Search, X, Lock,
   Check, ArrowRight
 } from 'lucide-react';
 import { NuvovetWordmark } from '../components/NuvovetLogo';
@@ -369,8 +369,8 @@ DEMO_DRUGS_CATALOGUE.forEach((drug) => {
 const DEMO_PROFILES = [
   {
     id: 'choco',
-    photo: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=640&h=760&auto=format&fit=crop&q=75',
-    photoPosition: '50% 22%',
+    photo: 'https://images.unsplash.com/photo-1568393691080-d016376b767d?q=80&w=1331&auto=format&fit=crop&ixlib',
+    photoPosition: '50% 50%',
     nameKo: '초코',
     nameEn: 'Choco',
     species: 'dog',
@@ -383,12 +383,13 @@ const DEMO_PROFILES = [
     summaryEn: 'MDR1 mutation risk breed. Ivermectin + Ketoconazole: P-gp inhibition → severe neurotoxicity risk.',
     drugIds: ['ivermectin', 'ketoconazole'],
     conditions: [],
+    allergies: ['Macrocyclic Lactones (Suspected sensitivity)'],
     flaggedLabs: [],
   },
   {
     id: 'kongyi',
     photo: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?w=640&h=760&auto=format&fit=crop&q=75',
-    photoPosition: '50% 26%',
+    photoPosition: '50% 20%',
     nameKo: '콩이',
     nameEn: 'Kongyi',
     species: 'dog',
@@ -401,12 +402,13 @@ const DEMO_PROFILES = [
     summaryEn: 'Allergic dermatitis + epilepsy. Hepatic CYP3A4 overload risk with corticosteroid + anticonvulsant + immunosuppressant.',
     drugIds: ['prednisolone', 'phenobarbital', 'cyclosporine'],
     conditions: ['Allergic Dermatitis', 'Epilepsy'],
+    allergies: ['Chicken Protein', 'Dust Mites'],
     flaggedLabs: [],
   },
   {
     id: 'nabi',
     photo: 'https://images.unsplash.com/photo-1561948955-570b270e7c36?w=640&h=760&auto=format&fit=crop&q=75',
-    photoPosition: '50% 42%',
+    photoPosition: '50% 50%',
     nameKo: '나비',
     nameEn: 'Nabi',
     species: 'cat',
@@ -419,6 +421,7 @@ const DEMO_PROFILES = [
     summaryEn: 'Hyperthyroidism with early CKD. Organ involvement monitoring is required across thyroid, blood pressure and antiemetic therapy.',
     drugIds: ['methimazole', 'amlodipine', 'maropitant'],
     conditions: ['Hyperthyroidism', 'Early CKD (IRIS Stage 2)'],
+    allergies: [],
     flaggedLabs: [
       { key: 'creatinine', value: '2.0', unit: 'mg/dL', status: 'high' },
       { key: 'bun', value: '36', unit: 'mg/dL', status: 'high' },
@@ -455,7 +458,7 @@ function ProfileSelectStep({ onSelect }) {
               onClick={() => onSelect(profile)}
               onMouseEnter={() => setHovered(profile.id)}
               onMouseLeave={() => setHovered(null)}
-              className={`text-left rounded-2xl border bg-white shadow-sm overflow-hidden transition-all duration-200 ${
+              className={`w-full h-full flex flex-col text-left rounded-2xl border bg-white shadow-sm overflow-hidden transition-all duration-200 ${
                 hovered === profile.id
                   ? 'border-indigo-400 shadow-indigo-100/60 shadow-lg -translate-y-0.5'
                   : 'border-slate-200 hover:border-slate-300'
@@ -473,7 +476,7 @@ function ProfileSelectStep({ onSelect }) {
               </div>
 
               {/* Info */}
-              <div className="p-4">
+              <div className="p-4 flex-1">
                 <div className="flex items-baseline gap-2 mb-0.5">
                   <span className="text-[18px] font-black text-slate-900">{profile.nameKo}</span>
                   <span className="text-[12px] text-slate-400 font-medium">{profile.nameEn}</span>
@@ -550,11 +553,11 @@ function ProfileSelectStep({ onSelect }) {
 // ── Selected Profile Card (prescription step) ────────────────────
 function SelectedProfileCard({ profile }) {
   const { lang } = useI18n();
-  const [expanded, setExpanded] = useState(false);
+  const allergies = profile.allergies || [];
 
   return (
     <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
-      <div className="px-4 py-3 flex items-center justify-between bg-slate-50 border-b border-slate-100">
+      <div className="px-4 py-3 flex items-center bg-slate-50 border-b border-slate-100">
         <div className="flex items-center gap-3">
           <div className="w-16 h-20 rounded-xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200">
             <img
@@ -578,52 +581,62 @@ function SelectedProfileCard({ profile }) {
             </p>
           </div>
         </div>
-        <button
-          onClick={() => setExpanded(!expanded)}
-          className="flex items-center gap-1 text-[11px] text-slate-400 hover:text-slate-600 transition-colors"
-        >
-          {expanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-        </button>
       </div>
 
-      <div className="px-4 py-3 grid grid-cols-4 gap-3">
+      <div className="px-4 py-3 grid grid-cols-1 gap-2.5">
         {[
           { label: lang === 'ko' ? '나이' : 'Age', value: profile.ageKo },
           { label: lang === 'ko' ? '체중' : 'Weight', value: `${profile.weight} kg` },
           { label: lang === 'ko' ? '품종' : 'Breed', value: profile.breed },
           { label: lang === 'ko' ? '성별' : 'Sex', value: lang === 'ko' ? profile.sexKo : profile.sex },
         ].map(({ label, value }) => (
-          <div key={label}>
+          <div key={label} className="pb-2 border-b border-slate-100 last:border-b-0 last:pb-0">
             <p className="typo-label uppercase">{label}</p>
-            <p className="text-[12px] font-semibold text-slate-900 mt-0.5 truncate">{value}</p>
+            <p className="text-[12px] font-semibold text-slate-900 mt-0.5 break-words">{value}</p>
           </div>
         ))}
       </div>
 
-      {expanded && (
-        <div className="px-4 pb-3 animate-fade-in">
+      <div className="px-4 pb-3 space-y-3 animate-fade-in">
+        <div>
+          <p className="typo-label mb-1.5">{lang === 'ko' ? '기저 질환' : 'Conditions'}</p>
           {profile.conditions.length > 0 ? (
-            <>
-              <p className="typo-label mb-1.5">{lang === 'ko' ? '기저 질환' : 'Conditions'}</p>
-              <div className="flex flex-wrap gap-1">
-                {profile.conditions.map((c, i) => (
-                  <span key={i} className="text-[10px] font-medium text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded-full border border-amber-100">
-                    {c}
-                  </span>
-                ))}
-              </div>
-            </>
+            <div className="flex flex-wrap gap-1">
+              {profile.conditions.map((c, i) => (
+                <span key={i} className="text-[10px] font-medium text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded-full border border-amber-100">
+                  {c}
+                </span>
+              ))}
+            </div>
           ) : (
             <p className="text-[12px] text-slate-400 italic">
               {lang === 'ko' ? '기저 질환 없음' : 'No pre-existing conditions'}
             </p>
           )}
-          <div className="mt-2 flex items-center gap-1.5 text-[11px] text-slate-400">
-            <Lock size={10} />
-            {lang === 'ko' ? '환자 정보 수정 불가 (데모 모드)' : 'Patient details locked in demo mode'}
-          </div>
         </div>
-      )}
+
+        <div>
+          <p className="typo-label mb-1.5">{lang === 'ko' ? '알레르기' : 'Allergies'}</p>
+          {allergies.length > 0 ? (
+            <div className="flex flex-wrap gap-1">
+              {allergies.map((allergy, i) => (
+                <span key={i} className="text-[10px] font-medium text-rose-700 bg-rose-50 px-1.5 py-0.5 rounded-full border border-rose-100">
+                  {allergy}
+                </span>
+              ))}
+            </div>
+          ) : (
+            <p className="text-[12px] text-slate-400 italic">
+              {lang === 'ko' ? '알레르기 없음' : 'No known allergies'}
+            </p>
+          )}
+        </div>
+
+        <div className="pt-1 flex items-center gap-1.5 text-[11px] text-slate-400">
+          <Lock size={10} />
+          {lang === 'ko' ? '환자 정보 수정 불가 (데모 모드)' : 'Patient details locked in demo mode'}
+        </div>
+      </div>
     </div>
   );
 }
