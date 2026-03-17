@@ -324,6 +324,25 @@ input:focus, button:focus-visible {
 .animate-glow-green { animation: glowGreen 2s ease-in-out infinite; }
 .animate-gentle-pulse { animation: gentlePulse 2s ease-in-out infinite; }
 
+/* ── Landing page scan line ──────────────────────────────────── */
+
+@keyframes scanLine {
+  0% { top: 0%; opacity: 0; }
+  5% { opacity: 0.6; }
+  95% { opacity: 0.6; }
+  100% { top: 100%; opacity: 0; }
+}
+
+.landing-scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(99,102,241,0.4), rgba(99,102,241,0.6), rgba(99,102,241,0.4), transparent);
+  box-shadow: 0 0 8px 2px rgba(99,102,241,0.15);
+  animation: scanLine 3s ease-in-out infinite;
+}
+
 /* ── Organ Involvement Anatomy Diagram ────────────────────────── */
 
 :root {
