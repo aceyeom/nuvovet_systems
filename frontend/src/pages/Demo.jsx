@@ -388,8 +388,8 @@ const DEMO_PROFILES = [
   },
   {
     id: 'kongyi',
-    photo: 'https://images.unsplash.com/photo-1589210043112-d4835d91b37a?q=80&w=640&h=760&auto=format&fit=crop',
-    photoPosition: '50% 30%',
+    photo: 'https://images.unsplash.com/photo-1589210043112-d4835d91b37a?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    photoPosition: '50% 20%',
     nameKo: '콩이',
     nameEn: 'Kongyi',
     species: 'dog',
@@ -407,8 +407,8 @@ const DEMO_PROFILES = [
   },
   {
     id: 'nabi',
-    photo: 'https://images.unsplash.com/photo-1570534536531-c3def02ad855?q=80&w=640&h=760&auto=format&fit=crop',
-    photoPosition: '50% 25%',
+    photo: 'https://images.unsplash.com/photo-1570534536531-c3def02ad855?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    photoPosition: '50% 50%',
     nameKo: '나비',
     nameEn: 'Nabi',
     species: 'cat',
