@@ -20,7 +20,7 @@ function DemoUpgradeBanner({ lang }) {
   const navigate = useNavigate();
   return (
     <div className="bg-slate-900 text-white no-print">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-5">
+      <div className="w-full px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-5">
         <div>
           <p className="text-[17px] font-black mb-1">
             {lang === 'ko' ? '전체 기능을 사용할 준비가 되셨나요?' : 'Ready to access the full version?'}
@@ -151,6 +151,17 @@ function PatientSummaryPanel({ results, patientInfo, drugs = [], species = 'dog'
     <div className="space-y-3">
       {patientInfo?.name && (
         <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+          {patientInfo.imageUrl && (
+            <div className="mb-3 h-52 rounded-xl overflow-hidden border border-slate-200 bg-slate-100">
+              <img
+                src={patientInfo.imageUrl}
+                alt={`${patientInfo.breed || patientInfo.species || 'patient'} profile`}
+                className="w-full h-full object-cover"
+                style={{ objectPosition: patientInfo.imagePosition || '50% 35%' }}
+                loading="lazy"
+              />
+            </div>
+          )}
           <h3 className="typo-section-header mb-3">{t.results.patient}</h3>
           <div className="space-y-1.5">
             <div className="flex justify-between items-baseline gap-2">
@@ -764,15 +775,17 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
               </div>
             )}
 
-            {/* Always-visible action bar */}
-            <ResultsActionBar
-              results={results}
-              patientInfo={patientInfo}
-              drugs={drugs}
-              species={species}
-              lang={lang}
-              t={t}
-            />
+            {/* Always-visible action bar (full system only) */}
+            {!demoMode && (
+              <ResultsActionBar
+                results={results}
+                patientInfo={patientInfo}
+                drugs={drugs}
+                species={species}
+                lang={lang}
+                t={t}
+              />
+            )}
 
             {!demoMode && (
             <div className="flex gap-3 no-print flex-wrap">
