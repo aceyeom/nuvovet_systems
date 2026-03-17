@@ -140,7 +140,7 @@ export default function Account() {
           <button onClick={() => navigate('/')} className="text-left">
             <NuvovetWordmark />
           </button>
-          <TopBarControls autoOpenLogin={!loading && !isAuthenticated} />
+          <TopBarControls />
         </div>
       </header>
 
@@ -159,9 +159,15 @@ export default function Account() {
             </h1>
             <p className="mt-3 text-sm leading-relaxed text-slate-500">
               {lang === 'ko'
-                ? '로그인 창이 자동으로 열립니다. 허용되는 계정은 admin / admin 입니다.'
-                : 'The login dialog opens automatically. Only admin / admin is accepted.'}
+                ? '로그인 페이지에서 계정으로 로그인해 주세요.'
+                : 'Please sign in from the login page.'}
             </p>
+            <button
+              onClick={() => navigate('/login?redirect=/account')}
+              className="mt-5 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
+            >
+              {lang === 'ko' ? '로그인 페이지로 이동' : 'Go to Login'}
+            </button>
           </div>
         </div>
       ) : (

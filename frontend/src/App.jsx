@@ -8,6 +8,7 @@ import FullSystem from './pages/FullSystem';
 import Patients from './pages/Patients';
 import Pricing from './pages/Pricing';
 import Account from './pages/Account';
+import Login from './pages/Login';
 
 // Protect /system — redirect to /system with login if unauthenticated
 function ProtectedRoute({ children }) {
@@ -39,6 +40,7 @@ function AppRoutes() {
         <Route path="/patients" element={<Patients />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/account" element={<Account />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );
