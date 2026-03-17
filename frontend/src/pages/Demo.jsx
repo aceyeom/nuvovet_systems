@@ -1,688 +1,457 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  ArrowLeft, ArrowRight, Zap, ChevronRight, ChevronDown, ChevronUp,
-  Heart, Thermometer, Weight, Calendar, AlertCircle,
-  Plus, X, Search, Pencil, FileText, Activity
+  ArrowLeft, Zap, Search, X, Lock, ChevronDown, ChevronUp,
+  Check, AlertCircle
 } from 'lucide-react';
-import { NuvovetLogo, NuvovetWordmark } from '../components/NuvovetLogo';
-import { DrugInput } from '../components/DrugInput';
+import { NuvovetWordmark } from '../components/NuvovetLogo';
 import { AnalysisScreen } from '../components/AnalysisScreen';
 import { ResultsDisplay } from '../components/ResultsDisplay';
-import { getDrugById } from '../data/drugDatabase';
-import { getBreedsForSpecies, getBreedProfile } from '../data/breedProfiles';
 import { runFullDURAnalysis } from '../utils/durEngine';
-import { getBreedImage } from '../assets/breeds/index';
 import { useI18n, LangToggle } from '../i18n';
+import { DRUG_SOURCE } from '../data/drugDatabase';
 
-// ── Common veterinary conditions for autocomplete ───────────────
-const COMMON_CONDITIONS = [
-  'Hip Dysplasia', 'Elbow Dysplasia', 'Osteoarthritis', 'Chronic Pain',
-  'Seasonal Allergies', 'Atopic Dermatitis', 'Food Allergy',
-  'Diabetes mellitus', 'Hypothyroidism', 'Hyperthyroidism', 'Cushing\'s Disease',
-  'CKD (Chronic Kidney Disease)', 'Early Stage Renal Failure', 'Hepatic Disease',
-  'Congestive Heart Failure', 'Hypertrophic Cardiomyopathy (HCM)', 'Dilated Cardiomyopathy',
-  'Epilepsy', 'Seizure Disorder', 'IVDD — Intervertebral Disc Disease',
-  'Pancreatitis', 'Inflammatory Bowel Disease', 'Urinary Tract Infection',
-  'Feline Lower Urinary Tract Disease', 'Anxiety', 'Separation Anxiety',
-  'Brachycephalic Syndrome', 'MDR1 Deficient', 'Immune-Mediated Hemolytic Anemia',
-  'Lymphoma', 'Mast Cell Tumor', 'Heartworm Disease',
+// ── Fixed Demo Patient ──────────────────────────────────────────
+const DEMO_PATIENT = {
+  name: 'Max',
+  species: 'dog',
+  breed: 'Border Collie',
+  weight: 12,
+  age: '4 years',
+  sex: 'Neutered Male',
+  conditions: [],
+  flaggedLabs: [],
+  locked: true,
+};
+
+// ── Hardcoded Demo Drug Catalogue (5 drugs, no API) ─────────────
+const DEMO_DRUGS_CATALOGUE = [
+  {
+    id: 'meloxicam',
+    name: 'Meloxicam',
+    nameKr: '멜록시캄',
+    activeSubstance: 'Meloxicam',
+    class: 'NSAID',
+    source: DRUG_SOURCE.KR_VET,
+    defaultDose: { dog: 0.1, cat: 0.05 },
+    doseRange: { dog: [0.05, 0.2], cat: [0.025, 0.05] },
+    unit: 'mg/kg',
+    freq: 'SID',
+    route: 'PO',
+    narrowTherapeuticIndex: false,
+    cypProfile: { substrate: ['CYP3A4'], inhibitor: [], inducer: [] },
+    riskFlags: { nephrotoxic: 'moderate', hepatotoxic: 'low', qtProlongation: 'none', bleedingRisk: 'moderate', giUlcer: 'moderate' },
+    renalElimination: 0.40,
+    pk: { halfLife: 24, timeToPeak: 7.5, bioavailability: 0.93, proteinBinding: 0.97, primaryElimination: 'hepatic' },
+    availableStrengths: [
+      { label: '1.5 mg/mL oral suspension', value: 1.5, unit: 'mg/mL', form: 'Susp' },
+      { label: '5 mg tablet', value: 5, unit: 'mg', form: 'Tab' },
+    ],
+  },
+  {
+    id: 'prednisolone',
+    name: 'Prednisolone',
+    nameKr: '프레드니솔론',
+    activeSubstance: 'Prednisolone',
+    class: 'Corticosteroid',
+    source: DRUG_SOURCE.KR_VET,
+    defaultDose: { dog: 0.5, cat: 1.0 },
+    doseRange: { dog: [0.25, 2.0], cat: [0.5, 2.0] },
+    unit: 'mg/kg',
+    freq: 'SID',
+    route: 'PO',
+    narrowTherapeuticIndex: false,
+    cypProfile: { substrate: ['CYP3A4'], inhibitor: [], inducer: ['CYP3A4'] },
+    riskFlags: { nephrotoxic: 'low', hepatotoxic: 'moderate', qtProlongation: 'none', bleedingRisk: 'low', giUlcer: 'moderate' },
+    renalElimination: 0.20,
+    pk: { halfLife: 2.5, timeToPeak: 1.5, bioavailability: 0.95, proteinBinding: 0.70, primaryElimination: 'hepatic' },
+    availableStrengths: [
+      { label: '5 mg tablet', value: 5, unit: 'mg', form: 'Tab' },
+      { label: '20 mg tablet', value: 20, unit: 'mg', form: 'Tab' },
+    ],
+  },
+  {
+    id: 'dexmedetomidine',
+    name: 'Dexmedetomidine',
+    nameKr: '덱스메데토미딘',
+    activeSubstance: 'Dexmedetomidine',
+    class: 'Sedative',
+    source: DRUG_SOURCE.KR_VET,
+    defaultDose: { dog: 10, cat: 40 },
+    doseRange: { dog: [5, 20], cat: [20, 80] },
+    unit: 'mcg/kg',
+    freq: 'SID',
+    route: 'IM',
+    narrowTherapeuticIndex: true,
+    cypProfile: { substrate: ['CYP2D6'], inhibitor: [], inducer: [] },
+    riskFlags: { nephrotoxic: 'none', hepatotoxic: 'none', qtProlongation: 'low', bleedingRisk: 'none', giUlcer: 'none' },
+    renalElimination: 0.10,
+    pk: { halfLife: 0.75, timeToPeak: 0.25, bioavailability: 0.95, proteinBinding: 0.94, primaryElimination: 'hepatic' },
+    availableStrengths: [
+      { label: '0.5 mg/mL injection', value: 0.5, unit: 'mg/mL', form: 'Inj' },
+      { label: '1 mg/mL injection', value: 1, unit: 'mg/mL', form: 'Inj' },
+    ],
+  },
+  {
+    id: 'amoxicillin-clavulanate',
+    name: 'Amoxicillin-Clavulanate',
+    nameKr: '아목시실린-클라불란산',
+    activeSubstance: 'Amoxicillin + Clavulanic Acid',
+    class: 'Antibiotic',
+    source: DRUG_SOURCE.KR_VET,
+    defaultDose: { dog: 12.5, cat: 12.5 },
+    doseRange: { dog: [10, 25], cat: [10, 25] },
+    unit: 'mg/kg',
+    freq: 'BID',
+    route: 'PO',
+    narrowTherapeuticIndex: false,
+    cypProfile: { substrate: [], inhibitor: [], inducer: [] },
+    riskFlags: { nephrotoxic: 'low', hepatotoxic: 'low', qtProlongation: 'none', bleedingRisk: 'none', giUlcer: 'low' },
+    renalElimination: 0.75,
+    pk: { halfLife: 1.5, timeToPeak: 1, bioavailability: 0.72, proteinBinding: 0.18, primaryElimination: 'renal' },
+    availableStrengths: [
+      { label: '62.5 mg tablet (50mg/12.5mg)', value: 62.5, unit: 'mg', form: 'Tab' },
+      { label: '125 mg tablet (100mg/25mg)', value: 125, unit: 'mg', form: 'Tab' },
+    ],
+  },
+  {
+    id: 'furosemide',
+    name: 'Furosemide',
+    nameKr: '푸로세미드',
+    activeSubstance: 'Furosemide',
+    class: 'Diuretic',
+    source: DRUG_SOURCE.KR_VET,
+    defaultDose: { dog: 2, cat: 1 },
+    doseRange: { dog: [1, 4], cat: [0.5, 2] },
+    unit: 'mg/kg',
+    freq: 'BID',
+    route: 'PO',
+    narrowTherapeuticIndex: false,
+    cypProfile: { substrate: [], inhibitor: [], inducer: [] },
+    riskFlags: { nephrotoxic: 'moderate', hepatotoxic: 'none', qtProlongation: 'low', bleedingRisk: 'none', giUlcer: 'none' },
+    renalElimination: 0.80,
+    pk: { halfLife: 1.5, timeToPeak: 1, bioavailability: 0.77, proteinBinding: 0.91, primaryElimination: 'renal' },
+    availableStrengths: [
+      { label: '20 mg tablet', value: 20, unit: 'mg', form: 'Tab' },
+      { label: '40 mg tablet', value: 40, unit: 'mg', form: 'Tab' },
+    ],
+  },
 ];
 
-// ── Step indicator ──────────────────────────────────────────────
-function StepIndicator({ current, steps }) {
-  return (
-    <div className="flex items-center justify-center gap-1.5 py-3">
-      {steps.map((step, i) => (
-        <div key={i} className="flex items-center gap-1.5">
-          <div className={`h-1.5 rounded-full transition-all duration-500 ${
-            i < current ? 'w-6 bg-slate-900' :
-            i === current ? 'w-8 bg-slate-900' :
-            'w-4 bg-slate-200'
-          }`} />
-        </div>
-      ))}
-    </div>
-  );
-}
+// ── Demo Drug Card (simplified, with guided animation support) ──
+function DemoDrugCard({ drug, weight, onRemove, guideStrength }) {
+  const [selectedStrengthIdx, setSelectedStrengthIdx] = useState(0);
+  const [dosePerKg, setDosePerKg] = useState(drug.defaultDose?.dog || '');
+  const [freq, setFreq] = useState(drug.freq || 'SID');
+  const strengths = drug.availableStrengths || [];
 
-// ── Breed image helper ──────────────────────────────────────────
-function BreedPhoto({ breedId, species, size = 44, className = '' }) {
-  const src = getBreedImage(breedId);
-  if (src) {
-    return (
-      <img
-        src={src}
-        alt={breedId}
-        className={`rounded-full object-cover border-2 border-slate-200 bg-slate-50 ${className}`}
-        style={{ width: size, height: size }}
-      />
-    );
-  }
-  return (
-    <div
-      className={`rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-xl shrink-0 ${className}`}
-      style={{ width: size, height: size }}
-    >
-      {species === 'dog' ? '🐕' : '🐈'}
-    </div>
-  );
-}
-
-// ── Step 1: Species Selection ───────────────────────────────────
-function SpeciesStep({ onSelect }) {
-  const [hovered, setHovered] = useState(null);
-  const { t } = useI18n();
+  const doseNum = parseFloat(dosePerKg) || 0;
+  const totalDoseMg = doseNum > 0 && weight > 0 ? +(doseNum * weight) : null;
+  const selectedStrength = strengths[selectedStrengthIdx] || null;
 
   return (
-    <div className="flex-1 flex flex-col items-center justify-center px-5 py-10 sm:py-16 animate-slide-in">
-      <p className="typo-section-header mb-2">{t.demo.step1}</p>
-      <h2 className="typo-page-title text-center mb-2">{t.demo.selectSpecies}</h2>
-      <p className="typo-body text-center mb-10 max-w-sm">
-        {t.demo.selectSpeciesDesc}
-      </p>
-
-      <div className="grid grid-cols-2 gap-4 w-full max-w-sm">
-        {[
-          { id: 'dog', label: t.demo.canine, sub: t.demo.canineSub, img: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&h=300&fit=crop&q=80' },
-          { id: 'cat', label: t.demo.feline, sub: t.demo.felineSub, img: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&h=300&fit=crop&q=80' },
-        ].map((sp) => (
-          <button
-            key={sp.id}
-            onClick={() => onSelect(sp.id)}
-            onMouseEnter={() => setHovered(sp.id)}
-            onMouseLeave={() => setHovered(null)}
-            className={`relative flex flex-col items-center gap-3 p-4 sm:p-6 rounded-xl border-2 transition-all duration-300 overflow-hidden ${
-              hovered === sp.id
-                ? 'border-slate-900 bg-slate-50 shadow-md scale-[1.02]'
-                : 'border-slate-200 bg-white hover:border-slate-300'
-            }`}
-          >
-            <div className="w-full aspect-[4/3] rounded-lg overflow-hidden bg-slate-100 mb-1">
-              <img
-                src={sp.img}
-                alt={sp.label}
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
-            <div>
-              <p className="typo-drug-name">{sp.label}</p>
-              <p className="typo-label mt-0.5">{sp.sub}</p>
-            </div>
-          </button>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-// ── Step 2: Breed Selection ─────────────────────────────────────
-function BreedStep({ species, onSelect, onBack }) {
-  const breeds = getBreedsForSpecies(species);
-  const { t } = useI18n();
-
-  return (
-    <div className="flex-1 flex flex-col px-5 py-8 animate-slide-in">
-      <div className="max-w-lg mx-auto w-full">
-        <button onClick={onBack} className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-slate-600 mb-6 transition-colors">
-          <ArrowLeft size={14} /> {t.back}
-        </button>
-
-        <p className="typo-section-header mb-2">{t.demo.step2}</p>
-        <h2 className="typo-page-title mb-1.5">{t.demo.selectBreed}</h2>
-        <p className="typo-body mb-8">
-          {t.demo.selectBreedDesc}
-        </p>
-
-        <div className="space-y-3">
-          {breeds.map((breed) => (
-            <button
-              key={breed.id}
-              onClick={() => onSelect(breed.id)}
-              className="w-full flex items-center gap-4 p-4 bg-white border border-slate-200 rounded-xl hover:border-slate-300 hover:shadow-sm transition-all duration-200 text-left group"
-            >
-              <BreedPhoto breedId={breed.id} species={species} size={56} />
-              <div className="flex-1 min-w-0">
-                <p className="typo-drug-name">{breed.breed}</p>
-                <p className="typo-label mt-0.5 truncate">
-                  {breed.profile.name} · {breed.profile.age} · {breed.profile.conditions.join(', ')}
-                </p>
-                {breed.demonstrates && (
-                  <p className="text-[10px] text-slate-400 mt-1 italic">
-                    {t.demo.demonstrates}: {breed.demonstrates}
-                  </p>
-                )}
-              </div>
-              <ChevronRight size={16} className="text-slate-300 group-hover:text-slate-500 transition-colors shrink-0" />
-            </button>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ── Step 3: Patient EMR Profile (Collapsed Summary) ─────────────
-function PatientProfileStep({ profile, breed, breedId, species, onUpdateProfile, onContinue, onBack }) {
-  const { t, lang } = useI18n();
-  const p = profile;
-  const [expanded, setExpanded] = useState(false);
-
-  // Editable fields
-  const [editingWeight, setEditingWeight] = useState(false);
-  const [tempWeight, setTempWeight] = useState(p.weight);
-  const [newAllergy, setNewAllergy] = useState('');
-  const [newCondition, setNewCondition] = useState('');
-  const [showAddAllergy, setShowAddAllergy] = useState(false);
-  const [showAddCondition, setShowAddCondition] = useState(false);
-  const [conditionSuggestions, setConditionSuggestions] = useState([]);
-
-  const statusColor = (s) => {
-    if (s === 'high') return 'text-red-600 bg-red-50';
-    if (s === 'low') return 'text-amber-600 bg-amber-50';
-    return 'text-slate-600 bg-slate-50';
-  };
-
-  // Get abnormal labs automatically
-  const abnormalLabs = Object.entries(p.labResults)
-    .filter(([, lab]) => lab.status !== 'normal')
-    .map(([key, lab]) => ({ key, ...lab }));
-
-  // Condition autocomplete
-  const handleConditionInput = (value) => {
-    setNewCondition(value);
-    if (value.trim().length >= 2) {
-      const matches = COMMON_CONDITIONS.filter(c =>
-        c.toLowerCase().includes(value.toLowerCase()) &&
-        !p.conditions.includes(c)
-      ).slice(0, 5);
-      setConditionSuggestions(matches);
-    } else {
-      setConditionSuggestions([]);
-    }
-  };
-
-  const addCondition = (cond) => {
-    onUpdateProfile({ ...p, conditions: [...p.conditions, cond] });
-    setNewCondition('');
-    setConditionSuggestions([]);
-    setShowAddCondition(false);
-  };
-
-  return (
-    <div className="flex-1 flex flex-col px-5 py-6 animate-slide-in">
-      <div className="max-w-lg mx-auto w-full space-y-5">
-        <button onClick={onBack} className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-slate-600 transition-colors">
-          <ArrowLeft size={14} /> {t.back}
-        </button>
-
+    <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm animate-fade-in">
+      {/* Header */}
+      <div className="flex items-center justify-between px-3.5 py-2.5 bg-slate-50 border-b border-slate-100">
         <div>
-          <p className="typo-section-header mb-2">{t.demo.step3}</p>
-          <h2 className="typo-page-title mb-1">{t.demo.patientChart}</h2>
-          <p className="typo-body">{t.demo.patientChartDesc}</p>
+          <p className="text-[13px] font-semibold text-slate-900">{drug.name}</p>
+          <p className="text-[11px] text-slate-400">{drug.activeSubstance} · {drug.class}</p>
         </div>
-
-        {/* ── Summary Card (always visible) ── */}
-        <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-          <div className="px-4 py-3.5 bg-slate-50 border-b border-slate-100 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <BreedPhoto breedId={breedId} species={species} size={80} className="border-slate-200" />
-              <div>
-                <h3 className="typo-drug-name text-[15px]">{p.name}</h3>
-                <p className="typo-label">{breed} · {species === 'dog' ? t.species.dog : t.species.cat} · {p.sex}</p>
-              </div>
-            </div>
-            <span className="typo-label px-2 py-1 bg-slate-200/60 text-slate-500 rounded-full">
-              {t.demoPatient}
-            </span>
-          </div>
-
-          {/* Key facts row */}
-          <div className="px-4 py-3 grid grid-cols-3 gap-3">
-            <div>
-              <p className="typo-label uppercase">{t.demo.age}</p>
-              <p className="typo-drug-name text-[14px]">{p.age}</p>
-            </div>
-            <div>
-              <p className="typo-label uppercase">{t.demo.weight}</p>
-              {editingWeight ? (
-                <input
-                  type="number"
-                  value={tempWeight}
-                  onChange={(e) => setTempWeight(parseFloat(e.target.value) || 0)}
-                  onBlur={() => { onUpdateProfile({ ...p, weight: tempWeight }); setEditingWeight(false); }}
-                  onKeyDown={(e) => { if (e.key === 'Enter') { onUpdateProfile({ ...p, weight: tempWeight }); setEditingWeight(false); } }}
-                  className="w-16 text-sm font-semibold text-slate-900 border border-slate-300 rounded px-1 py-0.5 focus:outline-none focus:ring-2 focus:ring-slate-900/10"
-                  autoFocus
-                />
-              ) : (
-                <button
-                  onClick={() => setEditingWeight(true)}
-                  className="typo-drug-name text-[14px] hover:text-slate-600 inline-flex items-center gap-1 group"
-                >
-                  {p.weight} kg
-                  <Pencil size={9} className="text-slate-300 group-hover:text-slate-500 transition-colors" />
-                </button>
-              )}
-            </div>
-            <div>
-              <p className="typo-label uppercase">{t.demo.bcs}</p>
-              <p className="typo-drug-name text-[14px]">{p.bodyCondition}</p>
-            </div>
-          </div>
-
-          <div className="px-4 pb-3 flex flex-wrap gap-2">
-            <span className="text-[10px] text-slate-500 bg-slate-50 border border-slate-100 rounded-full px-2 py-0.5">
-              Chart #{p.animalChartId}
-            </span>
-            <span className="text-[10px] text-slate-500 bg-slate-50 border border-slate-100 rounded-full px-2 py-0.5">
-              Status: {p.patientStatus}
-            </span>
-            {p.lastVisitDate && (
-              <span className="text-[10px] text-slate-500 bg-slate-50 border border-slate-100 rounded-full px-2 py-0.5">
-                Last visit: {p.lastVisitDate}
-              </span>
-            )}
-          </div>
-
-          {/* Active conditions */}
-          <div className="px-4 pb-3">
-            <p className="typo-label uppercase mb-1.5">{t.demo.activeConditions}</p>
-            <div className="flex flex-wrap gap-1.5">
-              {p.conditions.map((cond, i) => (
-                <span key={i} className="inline-flex items-center gap-1 px-2 py-0.5 bg-amber-50 text-amber-700 text-xs font-medium rounded-full border border-amber-100">
-                  {cond}
-                  <button
-                    onClick={() => onUpdateProfile({ ...p, conditions: p.conditions.filter((_, j) => j !== i) })}
-                    className="text-amber-400 hover:text-amber-600"
-                  >
-                    <X size={10} />
-                  </button>
-                </span>
-              ))}
-              <button
-                onClick={() => setShowAddCondition(true)}
-                className="inline-flex items-center gap-0.5 px-2 py-0.5 text-xs text-slate-400 hover:text-slate-600 border border-dashed border-slate-200 rounded-full"
-              >
-                <Plus size={10} /> {t.add}
-              </button>
-            </div>
-            {showAddCondition && (
-              <div className="relative mt-2 animate-fade-in">
-                <input
-                  type="text"
-                  value={newCondition}
-                  onChange={(e) => handleConditionInput(e.target.value)}
-                  placeholder={t.demo.typeToSearch}
-                  className="w-full px-2.5 py-1.5 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10"
-                  autoFocus
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' && newCondition.trim()) {
-                      addCondition(newCondition.trim());
-                    }
-                    if (e.key === 'Escape') {
-                      setShowAddCondition(false);
-                      setNewCondition('');
-                      setConditionSuggestions([]);
-                    }
-                  }}
-                />
-                {conditionSuggestions.length > 0 && (
-                  <div className="absolute z-20 top-full mt-1 w-full bg-white border border-slate-200 rounded-lg shadow-lg max-h-40 overflow-y-auto">
-                    {conditionSuggestions.map((sug, i) => (
-                      <button
-                        key={i}
-                        onClick={() => addCondition(sug)}
-                        className="w-full text-left px-3 py-2 text-xs text-slate-700 hover:bg-slate-50 border-b border-slate-100 last:border-0"
-                      >
-                        {sug}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-
-          {/* Abnormal labs auto-surfaced */}
-          {abnormalLabs.length > 0 && (
-            <div className="px-4 pb-3">
-              <p className="typo-label uppercase mb-1.5">{t.demo.flaggedLabs}</p>
-              <div className="flex flex-wrap gap-2">
-                {abnormalLabs.map((lab, i) => (
-                  <span
-                    key={i}
-                    className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
-                      lab.status === 'high' ? 'bg-red-50 text-red-600 border border-red-100' : 'bg-amber-50 text-amber-600 border border-amber-100'
-                    }`}
-                  >
-                    {lab.key.toUpperCase()}: {lab.value} {lab.unit} {lab.status === 'high' ? '↑' : '↓'}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* ── Edit Details Expand ── */}
         <button
-          onClick={() => setExpanded(!expanded)}
-          className="w-full flex items-center justify-center gap-1.5 text-xs text-slate-400 hover:text-slate-600 transition-colors py-1"
+          onClick={onRemove}
+          className="p-1.5 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50 transition-colors"
         >
-          {expanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-          {expanded ? t.demo.hideDetails : t.demo.editDetails}
+          <X size={13} />
         </button>
+      </div>
 
-        {expanded && (
-          <div className="space-y-5 animate-fade-in">
-            {/* Vitals grid */}
-            <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-              <div className="px-4 py-2.5 bg-slate-50 border-b border-slate-100">
-                <span className="typo-section-header">{t.demo.vitals}</span>
-              </div>
-              <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-slate-100">
-                {[
-                  { icon: Calendar, label: t.demo.age, value: p.age },
-                  { icon: Weight, label: t.demo.weight, value: `${p.weight} kg` },
-                  { icon: Heart, label: t.demo.heartRate, value: p.heartRate },
-                  { icon: Thermometer, label: t.demo.temp, value: p.temperature },
-                ].map((v, i) => (
-                  <div key={i} className="px-3 py-3 text-center">
-                    <v.icon size={13} className="text-slate-400 mx-auto mb-1" />
-                    <p className="typo-label mb-0.5">{v.label}</p>
-                    <p className="typo-drug-name text-[14px]">{v.value}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Body Condition */}
-            <div className="bg-white border border-slate-200 rounded-xl px-4 py-3 flex items-center justify-between shadow-sm">
-              <div>
-                <p className="typo-label mb-0.5">{t.demo.bodyCondition}</p>
-                <p className="typo-drug-name text-[14px]">{p.bodyCondition}</p>
-              </div>
-              <div>
-                <p className="typo-label mb-0.5">{t.demo.respRate}</p>
-                <p className="typo-drug-name text-[14px]">{p.respRate}</p>
-              </div>
-            </div>
-
-            {/* Allergies */}
-            <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-              <div className="px-4 py-2.5 bg-slate-50 border-b border-slate-100 flex items-center justify-between">
-                <span className="typo-section-header">{t.demo.knownAllergies}</span>
+      <div className="px-3.5 py-3 space-y-3">
+        {/* Strength selector */}
+        {strengths.length > 0 && (
+          <div>
+            <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wide mb-1.5">
+              Size / Formulation
+            </p>
+            <div className="flex flex-wrap gap-1.5">
+              {strengths.map((s, i) => (
                 <button
-                  onClick={() => setShowAddAllergy(true)}
-                  className="text-xs text-slate-400 hover:text-slate-600 flex items-center gap-1 transition-colors"
+                  key={i}
+                  onClick={() => setSelectedStrengthIdx(i)}
+                  className={`px-2.5 py-1 text-[11px] font-medium rounded-lg border transition-all duration-150 ${
+                    guideStrength ? 'animate-demo-guide-pulse' : ''
+                  } ${
+                    selectedStrengthIdx === i
+                      ? 'bg-slate-900 text-white border-slate-900'
+                      : 'bg-white text-slate-600 border-slate-200 hover:border-slate-400'
+                  }`}
                 >
-                  <Plus size={12} /> {t.add}
+                  {s.label}
                 </button>
-              </div>
-              <div className="px-4 py-3">
-                {p.allergies.length === 0 ? (
-                  <p className="typo-body italic">{t.demo.nkda}</p>
-                ) : (
-                  <div className="flex flex-wrap gap-2">
-                    {p.allergies.map((allergy, i) => (
-                      <span key={i} className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-red-50 text-red-700 text-xs font-medium rounded-full border border-red-100">
-                        {allergy}
-                        <button
-                          onClick={() => onUpdateProfile({ ...p, allergies: p.allergies.filter((_, j) => j !== i) })}
-                          className="text-red-400 hover:text-red-600"
-                        >
-                          <X size={11} />
-                        </button>
-                      </span>
-                    ))}
-                  </div>
-                )}
-                {showAddAllergy && (
-                  <div className="flex gap-2 mt-2 animate-fade-in">
-                    <input
-                      type="text"
-                      value={newAllergy}
-                      onChange={(e) => setNewAllergy(e.target.value)}
-                      placeholder="e.g., Penicillin"
-                      className="flex-1 px-2.5 py-1.5 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10"
-                      autoFocus
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' && newAllergy.trim()) {
-                          onUpdateProfile({ ...p, allergies: [...p.allergies, newAllergy.trim()] });
-                          setNewAllergy('');
-                          setShowAddAllergy(false);
-                        }
-                      }}
-                    />
-                    <button
-                      onClick={() => {
-                        if (newAllergy.trim()) {
-                          onUpdateProfile({ ...p, allergies: [...p.allergies, newAllergy.trim()] });
-                          setNewAllergy('');
-                        }
-                        setShowAddAllergy(false);
-                      }}
-                      className="px-2.5 py-1.5 bg-slate-900 text-white text-xs rounded-lg hover:bg-slate-800"
-                    >
-                      {t.add}
-                    </button>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* Lab Results */}
-            <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-              <div className="px-4 py-2.5 bg-slate-50 border-b border-slate-100">
-                <span className="typo-section-header">{t.demo.allLabResults}</span>
-              </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 divide-x divide-y divide-slate-100">
-                {Object.entries(p.labResults).map(([key, lab]) => (
-                  <div key={key} className="px-3 py-2.5">
-                    <p className="typo-label uppercase mb-0.5">{key}</p>
-                    <p className={`text-sm font-semibold ${lab.status === 'high' ? 'text-red-600' : lab.status === 'low' ? 'text-amber-600' : 'text-slate-900'}`}>
-                      {lab.value}
-                      <span className="text-xs font-normal text-slate-400 ml-1">{lab.unit}</span>
-                    </p>
-                    {lab.status !== 'normal' && (
-                      <span className={`text-xs font-medium ${lab.status === 'high' ? 'text-red-500' : 'text-amber-500'}`}>
-                        {lab.status === 'high' ? '↑ High' : '↓ Low'}
-                      </span>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Clinical History */}
-            <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-              <div className="px-4 py-2.5 bg-slate-50 border-b border-slate-100">
-                <span className="typo-section-header">{t.demo.clinicalHistory}</span>
-              </div>
-              <div className="px-4 py-3">
-                <p className="typo-body leading-relaxed">{p.history}</p>
-              </div>
-            </div>
-
-            {/* EMR Registration Fields */}
-            <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-              <div className="px-4 py-2.5 bg-slate-50 border-b border-slate-100">
-                <span className="typo-section-header">EMR Registration</span>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
-                <div className="px-4 py-3 space-y-1">
-                  <p className="typo-label">DOB</p>
-                  <p className="typo-drug-name text-[13px]">{p.dateOfBirth || '-'}</p>
-                  <p className="typo-label mt-2">Registration No.</p>
-                  <p className="typo-drug-name text-[13px]">{p.animalRegistrationNumber || '-'}</p>
-                  <p className="typo-label mt-2">Blood Type</p>
-                  <p className="typo-drug-name text-[13px]">{p.bloodType || '-'}</p>
-                </div>
-                <div className="px-4 py-3 space-y-1">
-                  <p className="typo-label">Attending Vet</p>
-                  <p className="typo-drug-name text-[13px]">{p.attendingVet || '-'}</p>
-                  <p className="typo-label mt-2">Primary Vet</p>
-                  <p className="typo-drug-name text-[13px]">{p.primaryVet || '-'}</p>
-                  <p className="typo-label mt-2">Insurance</p>
-                  <p className="typo-drug-name text-[13px]">{p.insuranceGroup || '-'}</p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         )}
 
-        {/* Continue button */}
-        <button
-          onClick={onContinue}
-          className="w-full flex items-center justify-center gap-2 px-4 py-3.5 bg-slate-900 text-white text-sm font-medium rounded-xl hover:bg-slate-800 transition-all duration-200 shadow-sm"
-        >
-          {t.demo.continueToMeds}
-          <ArrowRight size={15} />
-        </button>
+        {/* Dose + freq */}
+        <div className="flex gap-3">
+          <div className="flex-1">
+            <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wide mb-1">Dose (mg/kg)</p>
+            <input
+              type="number"
+              value={dosePerKg}
+              onChange={(e) => setDosePerKg(e.target.value)}
+              className="w-full px-2.5 py-1.5 text-[12px] border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10"
+            />
+          </div>
+          <div>
+            <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wide mb-1">Freq</p>
+            <select
+              value={freq}
+              onChange={(e) => setFreq(e.target.value)}
+              className="px-2.5 py-1.5 text-[12px] border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white"
+            >
+              {['SID', 'BID', 'TID', 'q8h', 'PRN'].map(f => <option key={f}>{f}</option>)}
+            </select>
+          </div>
+        </div>
+
+        {/* Total dose display */}
+        {totalDoseMg !== null && (
+          <p className="text-[11px] text-slate-500">
+            Total: <span className="font-semibold text-slate-800">{totalDoseMg.toFixed(2)} mg</span>
+            {selectedStrength
+              ? ` ≈ ${(totalDoseMg / selectedStrength.value).toFixed(2)} × ${selectedStrength.label}`
+              : ''}
+          </p>
+        )}
       </div>
     </div>
   );
 }
 
-// ── Step 4: Medication Review ───────────────────────────────────
-function MedicationStep({ drugs, species, patientName, weight, onAddDrug, onRemoveDrug, onUpdateDrug, onRunAnalysis, onBack }) {
-  const { t } = useI18n();
-  return (
-    <div className="flex-1 flex flex-col px-5 py-6 animate-slide-in">
-      <div className="max-w-lg mx-auto w-full space-y-5">
-        <button onClick={onBack} className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-slate-600 transition-colors">
-          <ArrowLeft size={14} /> {t.demo.backToChart}
-        </button>
+// ── Demo Drug Search (no API) ────────────────────────────────────
+function DemoDrugSearch({ addedDrugIds, onAdd, guideStep }) {
+  const [query, setQuery] = useState('');
+  const [results, setResults] = useState([]);
+  const [showResults, setShowResults] = useState(false);
+  const inputRef = useRef(null);
+  const { lang } = useI18n();
 
-        <div>
-          <p className="typo-section-header mb-2">{t.demo.step4}</p>
-          <h2 className="typo-page-title mb-1">{t.demo.prescriptions}</h2>
-          <p className="typo-body">
-            {t.demo.prescriptionsDesc} <span className="font-medium text-slate-700">{patientName}</span>
+  const handleQuery = (e) => {
+    const q = e.target.value;
+    setQuery(q);
+    if (q.trim().length >= 1) {
+      const filtered = DEMO_DRUGS_CATALOGUE.filter(d =>
+        d.name.toLowerCase().includes(q.toLowerCase()) ||
+        d.nameKr?.includes(q) ||
+        d.activeSubstance.toLowerCase().includes(q.toLowerCase())
+      );
+      setResults(filtered);
+      setShowResults(true);
+    } else {
+      setResults([]);
+      setShowResults(false);
+    }
+  };
+
+  const handleAdd = (drug) => {
+    if (addedDrugIds.has(drug.id)) return;
+    onAdd({ ...drug });
+    setQuery('');
+    setResults([]);
+    setShowResults(false);
+  };
+
+  return (
+    <div className="relative">
+      <div className="relative">
+        <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+        <input
+          ref={inputRef}
+          type="text"
+          value={query}
+          onChange={handleQuery}
+          onFocus={() => query && setShowResults(true)}
+          onBlur={() => setTimeout(() => setShowResults(false), 150)}
+          placeholder={lang === 'ko' ? '약물 검색 (예: Meloxicam)...' : 'Search drugs (e.g. Meloxicam)...'}
+          className={`w-full pl-9 pr-4 py-3 text-[13px] bg-white border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-900/20 transition-all ${
+            guideStep === 'search' ? 'animate-demo-guide-pulse' : ''
+          }`}
+        />
+      </div>
+
+      {showResults && results.length > 0 && (
+        <div className="absolute z-30 top-full mt-1 left-0 right-0 bg-white border border-slate-200 rounded-xl shadow-xl overflow-hidden">
+          {results.map((drug, i) => (
+            <button
+              key={drug.id}
+              onMouseDown={() => handleAdd(drug)}
+              disabled={addedDrugIds.has(drug.id)}
+              className={`w-full flex items-center justify-between px-4 py-2.5 text-left hover:bg-slate-50 border-b border-slate-100 last:border-0 transition-colors disabled:opacity-40 ${
+                guideStep === 'result' ? 'animate-demo-bounce-in' : ''
+              }`}
+              style={{ animationDelay: `${i * 40}ms` }}
+            >
+              <div>
+                <p className="text-[13px] font-semibold text-slate-900">{drug.name}</p>
+                <p className="text-[11px] text-slate-400">{drug.nameKr} · {drug.class}</p>
+              </div>
+              {addedDrugIds.has(drug.id)
+                ? <Check size={14} className="text-emerald-500 shrink-0" />
+                : <span className="text-[10px] font-bold text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full">+ ADD</span>
+              }
+            </button>
+          ))}
+        </div>
+      )}
+
+      {showResults && results.length === 0 && query.trim() && (
+        <div className="absolute z-30 top-full mt-1 left-0 right-0 bg-white border border-slate-200 rounded-xl shadow-xl px-4 py-3">
+          <p className="text-[12px] text-slate-500">
+            {lang === 'ko' ? '데모에 포함된 약물만 검색됩니다.' : 'Only demo drugs are searchable.'}
+          </p>
+          <p className="text-[11px] text-slate-400 mt-0.5">
+            {lang === 'ko'
+              ? 'Meloxicam, Prednisolone, Dexmedetomidine, Amoxicillin-Clavulanate, Furosemide'
+              : 'Try: Meloxicam, Prednisolone, Dexmedetomidine, Amoxicillin-Clavulanate, Furosemide'}
           </p>
         </div>
+      )}
+    </div>
+  );
+}
 
-        {/* Drug input */}
-        <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
-          <h3 className="typo-section-header mb-3">
-            {t.demo.currentMeds} ({drugs.length})
-          </h3>
-          <DrugInput
-            drugs={drugs}
-            onAddDrug={onAddDrug}
-            onRemoveDrug={onRemoveDrug}
-            onUpdateDrug={onUpdateDrug}
-            species={species}
-            weight={weight || 10}
-            demoMode
-          />
+// ── Locked Patient Card ─────────────────────────────────────────
+function LockedPatientCard() {
+  const { lang } = useI18n();
+  const [expanded, setExpanded] = useState(false);
+  return (
+    <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+      <div className="px-4 py-3 flex items-center justify-between bg-slate-50 border-b border-slate-100">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-xl shrink-0">🐕</div>
+          <div>
+            <div className="flex items-center gap-2">
+              <p className="text-[14px] font-bold text-slate-900">{DEMO_PATIENT.name}</p>
+              <span className="flex items-center gap-1 text-[10px] font-semibold text-slate-400 bg-slate-200/60 px-2 py-0.5 rounded-full">
+                <Lock size={8} />
+                {lang === 'ko' ? '데모 환자 / Demo Patient' : 'Demo Patient'}
+              </span>
+            </div>
+            <p className="text-[11px] text-slate-400">Border Collie · Canine · {DEMO_PATIENT.sex}</p>
+          </div>
         </div>
-
-        {/* Run button */}
         <button
-          onClick={onRunAnalysis}
-          disabled={drugs.length === 0}
-          className="w-full flex items-center justify-center gap-2 px-4 py-3.5 bg-slate-900 text-white text-sm font-medium rounded-xl hover:bg-slate-800 disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200 shadow-sm"
+          onClick={() => setExpanded(!expanded)}
+          className="flex items-center gap-1 text-[11px] text-slate-400 hover:text-slate-600 transition-colors"
         >
-          <Zap size={15} />
-          {t.fullSystem.runScan}
+          {expanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
         </button>
       </div>
+
+      <div className="px-4 py-3 grid grid-cols-4 gap-3">
+        {[
+          { label: lang === 'ko' ? '나이' : 'Age', value: DEMO_PATIENT.age },
+          { label: lang === 'ko' ? '체중' : 'Weight', value: `${DEMO_PATIENT.weight} kg` },
+          { label: lang === 'ko' ? '품종' : 'Breed', value: DEMO_PATIENT.breed },
+          { label: lang === 'ko' ? '성별' : 'Sex', value: 'Neutered M' },
+        ].map(({ label, value }) => (
+          <div key={label}>
+            <p className="typo-label uppercase">{label}</p>
+            <p className="text-[13px] font-semibold text-slate-900 mt-0.5">{value}</p>
+          </div>
+        ))}
+      </div>
+
+      {expanded && (
+        <div className="px-4 pb-3 animate-fade-in">
+          <p className="typo-label mb-1.5">{lang === 'ko' ? '기저 질환' : 'Conditions'}</p>
+          <p className="text-[12px] text-slate-400 italic">
+            {lang === 'ko' ? '없음 (데모 시 선택 가능)' : 'None pre-filled — select during demo'}
+          </p>
+          <div className="mt-2 flex items-center gap-1.5 text-[11px] text-slate-400">
+            <Lock size={10} />
+            {lang === 'ko' ? '환자 정보 수정 불가 (데모 모드)' : 'Patient details locked in demo mode'}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
 // ── Main Demo Page ──────────────────────────────────────────────
-const STEPS = ['species', 'breed', 'profile', 'medications', 'analyzing', 'results'];
-
 export default function Demo() {
   const navigate = useNavigate();
-  const { t } = useI18n();
-  const [step, setStep] = useState('species');
-  const [species, setSpecies] = useState(null);
-  const [breedId, setBreedId] = useState(null);
-  const [breedName, setBreedName] = useState('');
-  const [profile, setProfile] = useState(null);
+  const { t, lang } = useI18n();
+
+  const [step, setStep] = useState('prescription'); // 'prescription' | 'analyzing' | 'results'
   const [drugs, setDrugs] = useState([]);
   const [results, setResults] = useState(null);
 
-  const currentStepIndex = STEPS.indexOf(step);
+  // ── Guided animation step ──────────────────────────────────────
+  // 'search' → user should search; 'result' → results shown; 'strength' → pick size; 'run' → run DUR
+  const [guideStep, setGuideStep] = useState('search');
 
-  const handleSpeciesSelect = (sp) => {
-    setSpecies(sp);
-    setStep('breed');
-  };
-
-  const handleBreedSelect = (id) => {
-    setBreedId(id);
-    const breed = getBreedProfile(species, id);
-    if (breed) {
-      setProfile({ ...breed.profile });
-      setBreedName(breed.breed);
-      // Load default drugs
-      const defaultDrugs = breed.profile.defaultDrugs
-        .map(drugId => getDrugById(drugId))
-        .filter(Boolean);
-      setDrugs(defaultDrugs);
+  // Track drug state for guide transitions
+  useEffect(() => {
+    if (drugs.length === 0) {
+      setGuideStep('search');
+    } else {
+      // After adding a drug, guide to strength selection
+      // After strength is implicitly selected (it defaults to 0), guide to Run DUR
+      setGuideStep('run');
     }
-    setStep('profile');
+  }, [drugs.length]);
+
+  // When search results appear we'll set guideStep to 'result' in the search handler
+  const handleSearchFocus = () => {
+    if (drugs.length === 0) setGuideStep('search');
   };
 
-  const handleUpdateProfile = (updated) => {
-    setProfile(updated);
+  const handleSearchInput = () => {
+    if (drugs.length === 0) setGuideStep('result');
   };
 
   const handleAddDrug = (drug) => {
     setDrugs(prev => [...prev, drug]);
+    setGuideStep('strength');
+    // After brief delay, move to 'run' (assume strength defaults to first option)
+    setTimeout(() => setGuideStep('run'), 2500);
   };
 
   const handleRemoveDrug = (drugId) => {
     setDrugs(prev => prev.filter(d => d.id !== drugId));
   };
 
-  const handleUpdateDrug = (drugId, patch) => {
-    setDrugs(prev => prev.map((d) => (d.id === drugId ? { ...d, ...patch } : d)));
-  };
-
   const handleRunAnalysis = () => {
     if (drugs.length < 1) return;
+    setGuideStep('done');
     setStep('analyzing');
   };
 
   const handleAnalysisComplete = useCallback(() => {
-    const analysisResults = runFullDURAnalysis(drugs, species, profile?.weight || 10);
+    const analysisResults = runFullDURAnalysis(drugs, 'dog', DEMO_PATIENT.weight);
     setResults(analysisResults);
     setStep('results');
-  }, [drugs, species, profile]);
-
-  const handleBackToMeds = () => {
-    setStep('medications');
-  };
+  }, [drugs]);
 
   const handleNewAnalysis = () => {
-    setStep('species');
-    setSpecies(null);
-    setBreedId(null);
-    setBreedName('');
-    setProfile(null);
+    setStep('prescription');
     setDrugs([]);
     setResults(null);
+    setGuideStep('search');
   };
 
-  // Build enriched patient info for results
-  const abnormalLabs = profile ? Object.entries(profile.labResults || {})
-    .filter(([, lab]) => lab.status !== 'normal')
-    .map(([key, lab]) => ({ key, ...lab })) : [];
+  const addedDrugIds = new Set(drugs.map(d => d.id));
 
-  const patientInfo = profile ? {
-    name: profile.name,
-    species,
-    breed: breedName,
-    weight: profile.weight,
-    conditions: profile.conditions,
-    flaggedLabs: abnormalLabs,
-  } : { name: profile?.name, species };
+  const patientInfo = {
+    name: DEMO_PATIENT.name,
+    species: 'dog',
+    breed: DEMO_PATIENT.breed,
+    weight: DEMO_PATIENT.weight,
+    conditions: DEMO_PATIENT.conditions,
+    flaggedLabs: DEMO_PATIENT.flaggedLabs,
+  };
 
   return (
     <div className="min-h-screen bg-gray-50/50 flex flex-col relative">
@@ -692,94 +461,146 @@ export default function Demo() {
       {/* Header */}
       <header className="sticky top-0 z-30 bg-white border-b border-slate-200 shadow-[0_1px_3px_rgba(15,23,42,0.07),0_3px_10px_rgba(15,23,42,0.04)]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-[62px] flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => {
-              if (step === 'species') navigate('/');
-              else if (step === 'breed') setStep('species');
-              else if (step === 'profile') setStep('breed');
-              else if (step === 'medications') setStep('profile');
-              else if (step === 'results') setStep('medications');
-              else navigate('/');
-            }}
-            className="p-2 -ml-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-white transition-colors"
-          >
-            <ArrowLeft size={18} />
-          </button>
           <div className="flex items-center gap-3">
+            <button
+              onClick={() => step === 'results' ? setStep('prescription') : navigate('/')}
+              className="p-2 -ml-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-white transition-colors"
+            >
+              <ArrowLeft size={18} />
+            </button>
             <NuvovetWordmark />
           </div>
-        </div>
-        <div className="flex items-center gap-2">
-          <LangToggle />
-          <span className="typo-label px-2.5 py-1 bg-slate-100 text-slate-500 rounded-full">
-            {t.demoLabel}
-          </span>
-        </div>
+          <div className="flex items-center gap-2">
+            <LangToggle />
+            <span className="typo-label px-2.5 py-1 bg-slate-100 text-slate-500 rounded-full">
+              {t.demoLabel}
+            </span>
+          </div>
         </div>
       </header>
 
-      {/* Step indicator */}
-      {step !== 'analyzing' && step !== 'results' && (
-        <StepIndicator current={currentStepIndex} steps={STEPS.slice(0, 4)} />
+      {/* ── Prescription step ── */}
+      {step === 'prescription' && (
+        <div className="flex-1 flex flex-col px-4 sm:px-6 py-6 animate-slide-in">
+          <div className="max-w-lg mx-auto w-full space-y-5">
+
+            {/* Title */}
+            <div>
+              <p className="typo-section-header mb-1.5">
+                {lang === 'ko' ? '데모 처방 / DEMO PRESCRIPTION' : 'DEMO PRESCRIPTION'}
+              </p>
+              <h1 className="typo-page-title mb-1">
+                {lang === 'ko' ? '처방 DUR 검사' : 'Prescription DUR Check'}
+              </h1>
+              <p className="typo-body">
+                {lang === 'ko'
+                  ? '아래의 약물을 검색하고 추가한 뒤 DUR 검사를 실행하세요.'
+                  : 'Search and add drugs below, then run the DUR scan.'}
+              </p>
+            </div>
+
+            {/* Locked patient */}
+            <LockedPatientCard />
+
+            {/* Drug search section */}
+            <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-4">
+              <div className="flex items-center justify-between">
+                <p className="typo-section-header">
+                  {lang === 'ko' ? `약물 목록 (${drugs.length})` : `DRUGS (${drugs.length})`}
+                </p>
+                {guideStep === 'search' && (
+                  <span className="text-[10px] font-semibold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-full animate-pulse">
+                    {lang === 'ko' ? '↓ 검색하세요' : '↓ Start searching'}
+                  </span>
+                )}
+              </div>
+
+              {/* Demo drug hint */}
+              <div className="flex flex-wrap gap-1.5">
+                {DEMO_DRUGS_CATALOGUE.map(d => (
+                  <span
+                    key={d.id}
+                    className={`text-[10px] px-2 py-0.5 rounded-full border transition-colors ${
+                      addedDrugIds.has(d.id)
+                        ? 'bg-emerald-50 text-emerald-600 border-emerald-200'
+                        : 'bg-slate-50 text-slate-400 border-slate-200'
+                    }`}
+                  >
+                    {addedDrugIds.has(d.id) ? '✓ ' : ''}{d.name}
+                  </span>
+                ))}
+              </div>
+
+              {/* Drug search input */}
+              <div
+                onClick={handleSearchFocus}
+                onChange={handleSearchInput}
+              >
+                <DemoDrugSearch
+                  addedDrugIds={addedDrugIds}
+                  onAdd={handleAddDrug}
+                  guideStep={guideStep}
+                />
+              </div>
+
+              {/* Added drug cards */}
+              {drugs.length > 0 && (
+                <div className="space-y-3 mt-2">
+                  {drugs.map(drug => (
+                    <DemoDrugCard
+                      key={drug.id}
+                      drug={drug}
+                      weight={DEMO_PATIENT.weight}
+                      onRemove={() => handleRemoveDrug(drug.id)}
+                      guideStrength={guideStep === 'strength'}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Run DUR button */}
+            <button
+              onClick={handleRunAnalysis}
+              disabled={drugs.length === 0}
+              className={`w-full flex items-center justify-center gap-2 px-4 py-3.5 bg-slate-900 text-white text-sm font-semibold rounded-xl hover:bg-slate-800 disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200 shadow-sm ${
+                guideStep === 'run' ? 'animate-demo-guide-pulse' : ''
+              }`}
+            >
+              <Zap size={15} />
+              {lang === 'ko' ? 'DUR 검사 실행 / Run DUR Scan' : 'Run DUR Scan'}
+            </button>
+
+            {drugs.length === 0 && (
+              <p className="text-center text-[11px] text-slate-400">
+                {lang === 'ko' ? '약물을 하나 이상 추가해 주세요.' : 'Add at least one drug to run the scan.'}
+              </p>
+            )}
+
+          </div>
+        </div>
       )}
 
-      {/* Content */}
-      {step === 'species' && (
-        <SpeciesStep onSelect={handleSpeciesSelect} />
-      )}
-
-      {step === 'breed' && (
-        <BreedStep
-          species={species}
-          onSelect={handleBreedSelect}
-          onBack={() => setStep('species')}
-        />
-      )}
-
-      {step === 'profile' && profile && (
-        <PatientProfileStep
-          profile={profile}
-          breed={breedName}
-          breedId={breedId}
-          species={species}
-          onUpdateProfile={handleUpdateProfile}
-          onContinue={() => setStep('medications')}
-          onBack={() => setStep('breed')}
-        />
-      )}
-
-      {step === 'medications' && (
-        <MedicationStep
-          drugs={drugs}
-          species={species}
-          patientName={profile?.name}
-          weight={profile?.weight}
-          onAddDrug={handleAddDrug}
-          onRemoveDrug={handleRemoveDrug}
-          onUpdateDrug={handleUpdateDrug}
-          onRunAnalysis={handleRunAnalysis}
-          onBack={() => setStep('profile')}
-        />
-      )}
-
+      {/* ── Analyzing step ── */}
       {step === 'analyzing' && (
         <AnalysisScreen
           onComplete={handleAnalysisComplete}
           drugCount={drugs.length}
-          species={species}
+          species="dog"
         />
       )}
 
+      {/* ── Results step ── */}
       {step === 'results' && (
         <main className="flex-1 pb-8">
           <ResultsDisplay
             results={results}
-            onBack={handleBackToMeds}
+            onBack={() => setStep('prescription')}
             onNewAnalysis={handleNewAnalysis}
             patientInfo={patientInfo}
             drugs={drugs}
-            species={species}
+            species="dog"
+            demoMode
           />
         </main>
       )}
