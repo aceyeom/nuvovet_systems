@@ -759,7 +759,8 @@ export default function FullSystem() {
     if (debounceRef.current) clearTimeout(debounceRef.current);
     debounceRef.current = setTimeout(() => {
       const w = getWeightKg();
-      const newResults = runFullDURAnalysis(drugs, species, w);
+      const patientCtx = { breed, ageNum, ageUnit, conditions, creatinine, alt };
+      const newResults = runFullDURAnalysis(drugs, species, w, patientCtx);
       newResults.wasRefined = true;
       setResults(newResults);
     }, 500);
@@ -881,7 +882,8 @@ export default function FullSystem() {
   };
 
   const handleAnalysisComplete = () => {
-    const analysisResults = runFullDURAnalysis(drugs, species, weightKg);
+    const patientCtx = { breed, ageNum, ageUnit, conditions, creatinine, alt };
+    const analysisResults = runFullDURAnalysis(drugs, species, weightKg, patientCtx);
     setResults(analysisResults);
     setStep('results');
   };
