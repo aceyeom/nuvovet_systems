@@ -93,6 +93,16 @@ def _get_default_dose(dosage_kinetics: Optional[dict], species: str) -> Optional
     return _parse_dose_value(dl[0].get("value"))
 
 
+def _get_species_dose_ceil(dosage_kinetics: Optional[dict], species: str) -> Optional[float]:
+    """Return the minimum max_dose_mg_kg across dosage_list entries for a species."""
+    if not dosage_kinetics:
+        return None
+    sp = dosage_kinetics.get(species) or {}
+    dl = sp.get("dosage_list") or []
+    maxes = [e["max_dose_mg_kg"] for e in dl if isinstance(e, dict) and e.get("max_dose_mg_kg") is not None]
+    return min(maxes) if maxes else None
+
+
 def _get_dose_range(dosage_kinetics: Optional[dict], species: str) -> Optional[List[float]]:
     if not dosage_kinetics:
         return None
@@ -306,6 +316,30 @@ def map_drug(raw: dict) -> dict:
 
         # Raw interactions
         "rawInteractions": raw.get("drug_interactions") or [],
+
+        # Full contraindication objects (with match_terms) for patient condition matching
+        "rawContraindications": [
+            {
+                "condition": c.get("condition", ""),
+                "matchTerms": c.get("match_terms") or [],
+                "severity": c.get("severity", ""),
+                "action": c.get("action", ""),
+            }
+            for c in (raw.get("contraindications") or [])
+            if isinstance(c, dict)
+        ],
+
+        # Per-species dose ceilings (minimum max_dose_mg_kg in dosage_list)
+        "speciesDoseCeil": {
+            "dog": _get_species_dose_ceil(dosage, "dog"),
+            "cat": _get_species_dose_ceil(dosage, "cat"),
+        },
+
+        # True if this is a macrocyclic lactone (mdr1-sensitive antiparasitic)
+        "macrocyclicLactone": bool(sp_flags.get("mdr1_sensitive") and identity.get("class") == "Antiparasitic"),
+
+        # Highlights and section text for dose-ceiling parsing
+        "sectionHighlights": (raw.get("section_1_2_10") or {}).get("highlights") or "",
 
         # Data quality
         "dataQuality": {

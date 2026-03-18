@@ -47,13 +47,17 @@ function DemoUpgradeBanner({ lang }) {
 function SeverityBanner({ results, drugs = [] }) {
   const { t, lang } = useI18n();
   const { interactions, drugFlags, confidenceScore, overallSeverity } = results;
-  const criticalCount = interactions.filter(i => i.severity.label === 'Critical').length;
-  const moderateCount = interactions.filter(i => i.severity.label === 'Moderate').length;
-  const minorCount = interactions.filter(i => i.severity.label === 'Minor' || i.severity.label === 'Unknown').length;
+  const patientAlerts = results.patientAlerts || [];
+  const criticalCount = interactions.filter(i => i.severity.label === 'Critical').length
+    + patientAlerts.filter(a => a.severity?.label === 'Critical').length;
+  const moderateCount = interactions.filter(i => i.severity.label === 'Moderate').length
+    + patientAlerts.filter(a => a.severity?.label === 'Moderate').length;
+  const minorCount = interactions.filter(i => i.severity.label === 'Minor' || i.severity.label === 'Unknown').length
+    + patientAlerts.filter(a => a.severity?.label === 'Minor').length;
 
   const isCritical = overallSeverity?.label === 'Critical';
   const isModerate = overallSeverity?.label === 'Moderate';
-  const isClear = interactions.length === 0;
+  const isClear = interactions.length === 0 && patientAlerts.length === 0;
 
   const bannerBg = isCritical
     ? 'bg-red-50 border-red-300'
@@ -604,12 +608,94 @@ function ResultsActionBar({ results, patientInfo, drugs, species, lang, t }) {
   );
 }
 
+// ── Patient Alert Card ──────────────────────────────────────────
+function PatientAlertCard({ alert, index }) {
+  const [expanded, setExpanded] = useState(index < 3);
+
+  const isCritical = alert.severity?.label === 'Critical';
+  const isModerate = alert.severity?.label === 'Moderate';
+
+  const typeLabel = {
+    'mdr1-pgp-inhibitor':       '⚠ Pharmacogenetic Risk',
+    'breed-risk':               '⚠ Breed-Specific Risk',
+    'species-pharmacogenetic':  '⚠ Species Pharmacogenetic',
+    'drug-disease':             '⚑ Drug–Disease Interaction',
+    'creatinine-adjustment':    '⚑ Renal Dose Adjustment',
+    'developmental':            '⛔ Developmental Contraindication',
+    'lab-interference':         '⚗ Lab Interference Alert',
+    'condition-drug-monitoring':'⚑ Monitoring Requirement',
+    'species-contraindication': '⛔ Species Contraindication',
+    'dose-exceeded':            '⛔ Dose Ceiling Exceeded',
+    'species-dose-caution':     '⚠ Species Dose Caution',
+    'triple-nephrotoxic':       '⛔ Triple Nephrotoxic Combination',
+    'triple-sedation':          '⛔ Triple Sedation Escalation',
+    'excipient-toxicity':       '⛔ Excipient Toxicity',
+  }[alert.type] || '⚠ Clinical Alert';
+
+  const cardBg = isCritical
+    ? 'bg-red-50 border-red-300 border-l-[4px] border-l-red-600'
+    : isModerate
+    ? 'bg-amber-50 border-amber-200 border-l-[3px] border-l-amber-500'
+    : 'bg-blue-50 border-blue-200';
+
+  const headerBg = isCritical ? 'bg-red-50' : isModerate ? 'bg-amber-50/60' : 'bg-blue-50/60';
+
+  return (
+    <div
+      className={`rounded-xl border overflow-hidden shadow-sm transition-all duration-200 hover:shadow-md print-break-inside-avoid animate-stagger-fade-in ${cardBg}`}
+      style={{ animationDelay: `${index * 40}ms` }}
+    >
+      <div className={`px-4 py-3.5 cursor-pointer ${headerBg}`} onClick={() => setExpanded(e => !e)}>
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 mb-1 flex-wrap">
+              <SeverityBadge severity={alert.severity} />
+              <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
+                isCritical ? 'text-red-700 bg-red-100' :
+                isModerate ? 'text-amber-700 bg-amber-100' :
+                'text-blue-700 bg-blue-100'
+              }`}>{typeLabel}</span>
+            </div>
+            <p className="typo-drug-name text-[13px] break-words leading-snug">{alert.rule}</p>
+            {alert.drug && (
+              <p className="text-[11px] text-slate-500 mt-0.5">Drug: <span className="font-medium text-slate-700">{alert.drug}</span></p>
+            )}
+          </div>
+          <div className="shrink-0 mt-0.5">
+            {expanded ? <ChevronUp size={14} className="text-slate-400" /> : <ChevronDown size={14} className="text-slate-400" />}
+          </div>
+        </div>
+      </div>
+
+      {expanded && (
+        <div className="animate-fade-in">
+          <div className="px-4 py-3 bg-white border-t border-slate-100/50">
+            <h4 className="typo-section-header text-[11px] mb-1.5">MECHANISM / CLINICAL BASIS</h4>
+            <p className="typo-body leading-relaxed text-[12px]">{alert.mechanism}</p>
+          </div>
+          <div className="px-4 py-3 border-t border-slate-100/50">
+            <div className={`rounded-lg border px-3.5 py-3 ${
+              isCritical ? 'bg-red-100/70 border-red-200' :
+              isModerate ? 'bg-amber-100/50 border-amber-200' :
+              'bg-blue-50 border-blue-100'
+            }`}>
+              <h4 className="typo-section-header text-[11px] mb-1.5">RECOMMENDED ACTION</h4>
+              <p className="typo-rec text-slate-800 leading-relaxed text-[12px]">{alert.recommendation}</p>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── Main Results Display ────────────────────────────────────────
 export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, isFullSystem = false, drugs = [], species = 'dog', onUpdatePatientRecord, hideSidebar = false, demoMode = false }) {
   const { t, lang } = useI18n();
   if (!results) return null;
 
   const { interactions, drugFlags, speciesNotes } = results;
+  const patientAlerts = results.patientAlerts || [];
   const hasInteractions = interactions.length > 0;
   const flaggedDrugs = drugFlags.filter(f => f.flags.length > 0 || f.speciesNote);
 
@@ -749,6 +835,25 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
                 <p className="typo-body text-emerald-600">
                   {t.results.noContraindicationsDetail}
                 </p>
+              </div>
+            )}
+
+            {/* Patient-context clinical alerts — breed, age, condition, dose, lab */}
+            {patientAlerts.length > 0 && (
+              <div>
+                <h3 className="typo-section-header mb-3 flex items-center gap-1.5">
+                  <Flag size={12} className="text-red-500" />
+                  Patient-Specific Clinical Alerts
+                  <span className="text-[10px] font-normal text-slate-400 ml-1">
+                    ({patientAlerts.filter(a => a.severity?.label === 'Critical').length} critical,{' '}
+                    {patientAlerts.filter(a => a.severity?.label === 'Moderate').length} moderate)
+                  </span>
+                </h3>
+                <div className="space-y-3">
+                  {patientAlerts.map((alert, i) => (
+                    <PatientAlertCard key={`${alert.type}-${i}`} alert={alert} index={i} />
+                  ))}
+                </div>
               </div>
             )}
 
