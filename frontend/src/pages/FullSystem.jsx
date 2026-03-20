@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, useRef } from 'react';
+import React, { useState, useCallback, useEffect, useMemo, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   ArrowLeft, Lock, Eye, EyeOff, Zap, RotateCcw,
@@ -368,6 +368,78 @@ function LoadPatientModal({ onClose, onSelect }) {
   );
 }
 
+function AnalysisStepBar({
+  step,
+  analysisIsAvailable,
+  analysisIsStale,
+  onOpenPrescription,
+  onOpenAnalysis,
+  onReset,
+}) {
+  const isPrescriptionActive = step === 'input';
+  const isAnalysisActive = step === 'analyzing' || step === 'results';
+
+  return (
+    <div className="shrink-0 border-b border-slate-200 bg-white/90 px-4 py-3 backdrop-blur-sm sm:px-6">
+      <div className="mx-auto flex w-full items-center justify-between gap-4 animate-nav-margin-settle">
+        <div className="inline-flex items-center rounded-2xl border border-slate-200 bg-slate-50 p-1 shadow-sm">
+          <button
+            type="button"
+            onClick={onOpenPrescription}
+            className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold transition-colors ${
+              isPrescriptionActive
+                ? 'bg-white text-slate-900 shadow-sm'
+                : 'text-slate-500 hover:text-slate-700'
+            }`}
+          >
+            <span className={`h-2 w-2 rounded-full ${isPrescriptionActive ? 'bg-slate-900' : 'bg-slate-300'}`} />
+            <span>Prescription</span>
+          </button>
+          <button
+            type="button"
+            onClick={onOpenAnalysis}
+            className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold transition-colors ${
+              isAnalysisActive
+                ? 'bg-white text-slate-900 shadow-sm'
+                : 'text-slate-500 hover:text-slate-700'
+            }`}
+          >
+            <span className={`h-2 w-2 rounded-full ${step === 'analyzing' ? 'bg-emerald-500 animate-pulse' : analysisIsAvailable && !analysisIsStale ? 'bg-slate-900' : 'bg-slate-300'}`} />
+            <span>Analysis</span>
+            {analysisIsStale && step !== 'analyzing' && (
+              <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-amber-700">
+                Refresh
+              </span>
+            )}
+          </button>
+        </div>
+
+        <div className="flex items-center gap-2">
+          {analysisIsAvailable && !analysisIsStale && step === 'results' && (
+            <span className="hidden sm:inline rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-medium text-emerald-700">
+              Analysis ready
+            </span>
+          )}
+          {analysisIsStale && step !== 'analyzing' && (
+            <span className="hidden sm:inline rounded-full bg-amber-50 px-2.5 py-1 text-[11px] font-medium text-amber-700">
+              Prescription changed
+            </span>
+          )}
+          <button
+            type="button"
+            onClick={onReset}
+            className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-700"
+            title="Reset"
+          >
+            <RotateCcw size={14} />
+            <span>Reset</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Editable Patient Summary (left col on results) ────────────────
 function PatientEditPanel({ patient, drugs, results, onUpdate, conditionSuggestions = [], allergySuggestions = [] }) {
   const RENAL_OPTIONS = ['Unknown','Normal','Mild impairment','Moderate impairment','Severe impairment'];
@@ -705,6 +777,7 @@ export default function FullSystem() {
   // ── Flow state ─────────────────────────────────────────────────
   const [step, setStep] = useState('input');
   const [results, setResults] = useState(null);
+  const [lastAnalyzedSignature, setLastAnalyzedSignature] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
 
   // ── Suggestions ────────────────────────────────────────────────
@@ -714,6 +787,52 @@ export default function FullSystem() {
   const pollRef = useRef(null);
   const debounceRef = useRef(null);
   const inputPanelsRef = useRef(null);
+
+  const analysisSignature = useMemo(() => JSON.stringify({
+    species,
+    weight,
+    weightUnit,
+    sex,
+    breed,
+    ageNum,
+    ageUnit,
+    reproductiveStatus,
+    conditions,
+    allergies,
+    renalStatus,
+    hepaticStatus,
+    creatinine,
+    alt,
+    drugs: drugs.map((drug) => ({
+      id: drug.id,
+      name: drug.name,
+      dosePerKg: drug.dosePerKg,
+      doseMg: drug.doseMg,
+      freq: drug.freq,
+      route: drug.route,
+      prescriptionDays: drug.prescriptionDays,
+      memo: drug.memo,
+    })),
+  }), [
+    ageNum,
+    ageUnit,
+    allergies,
+    alt,
+    breed,
+    conditions,
+    creatinine,
+    drugs,
+    hepaticStatus,
+    renalStatus,
+    reproductiveStatus,
+    sex,
+    species,
+    weight,
+    weightUnit,
+  ]);
+
+  const analysisIsAvailable = !!results && !!lastAnalyzedSignature;
+  const analysisIsStale = analysisIsAvailable && lastAnalyzedSignature !== analysisSignature;
 
   // ── Backend polling ────────────────────────────────────────────
   useEffect(() => {
@@ -752,20 +871,6 @@ export default function FullSystem() {
       window.removeEventListener('mouseup', onMouseUp);
     };
   }, [isResizingPanels]);
-
-  // ── Auto-rerun on patient detail changes ───────────────────────
-  useEffect(() => {
-    if (step !== 'results' || drugs.length === 0) return;
-    if (debounceRef.current) clearTimeout(debounceRef.current);
-    debounceRef.current = setTimeout(() => {
-      const w = getWeightKg();
-      const patientCtx = { breed, ageNum, ageUnit, conditions, creatinine, alt };
-      const newResults = runFullDURAnalysis(drugs, species, w, patientCtx);
-      newResults.wasRefined = true;
-      setResults(newResults);
-    }, 500);
-    return () => { if (debounceRef.current) clearTimeout(debounceRef.current); };
-  }, [conditions, allergies, renalStatus, hepaticStatus, creatinine, alt, weight, weightUnit]);
 
   // ── Drug callbacks ─────────────────────────────────────────────
   const handleAddDrug = useCallback((drug) => setDrugs((prev) => [...prev, drug]), []);
@@ -885,7 +990,28 @@ export default function FullSystem() {
     const patientCtx = { breed, ageNum, ageUnit, conditions, creatinine, alt };
     const analysisResults = runFullDURAnalysis(drugs, species, weightKg, patientCtx);
     setResults(analysisResults);
+    setLastAnalyzedSignature(analysisSignature);
     setStep('results');
+  };
+
+  const handleOpenPrescription = () => {
+    setStep('input');
+  };
+
+  const handleOpenAnalysis = () => {
+    if (step === 'analyzing') return;
+    if (!canRun) {
+      setStep('input');
+      setMissingRequired({ species: isSpeciesMissing, weight: isWeightMissing, drugs: isDrugsMissing });
+      setValidationShakeTick(v => v + 1);
+      return;
+    }
+    if (analysisIsAvailable && !analysisIsStale) {
+      setStep('results');
+      return;
+    }
+    if (!dontSavePatientChecked) handleSavePatient();
+    setStep('analyzing');
   };
 
   const handleUpdatePatientRecord = () => {
@@ -948,7 +1074,7 @@ export default function FullSystem() {
     setBreed(''); setAgeNum(''); setAgeUnit('years'); setReproductiveStatus('None');
     setConditions([]); setAllergies([]); setRenalStatus('Unknown'); setHeptaticStatus('Unknown');
     setCreatinine(''); setAlt('');
-    setDrugs([]); setResults(null); setStep('input');
+    setDrugs([]); setResults(null); setStep('input'); setLastAnalyzedSignature(null);
     setDontSavePatientChecked(false); setImportBanner(false); setImportedFields(new Set()); setSaveSuccess(false);
     setMissingRequired({ species: false, weight: false, drugs: false });
   };
@@ -967,22 +1093,14 @@ export default function FullSystem() {
 
       <NavigationBar />
 
-      <div className="shrink-0 border-b border-slate-200 bg-white/90 px-4 py-3 backdrop-blur-sm sm:px-6">
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-3 animate-nav-margin-settle">
-          <div className="flex items-center gap-2">
-            <span className="text-sm font-semibold text-slate-900">{t.fullSystemLabel}</span>
-            <span className="hidden sm:inline rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-500">
-              {step === 'input' ? 'Input' : step === 'analyzing' ? 'Analyzing' : 'Results'}
-            </span>
-          </div>
-          {step === 'input' && (drugs.length > 0 || patientName) && (
-            <button onClick={handleReset} className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-700" title="Reset">
-              <RotateCcw size={14} />
-              <span>Reset</span>
-            </button>
-          )}
-        </div>
-      </div>
+      <AnalysisStepBar
+        step={step}
+        analysisIsAvailable={analysisIsAvailable}
+        analysisIsStale={analysisIsStale}
+        onOpenPrescription={handleOpenPrescription}
+        onOpenAnalysis={handleOpenAnalysis}
+        onReset={handleReset}
+      />
 
       {/* Save toast */}
       {saveSuccess && (
@@ -1371,7 +1489,7 @@ export default function FullSystem() {
               <ResultsDisplay
                 results={results}
                 onBack={() => setStep('input')}
-                onNewAnalysis={() => { setDrugs([]); setResults(null); setStep('input'); }}
+                onNewAnalysis={() => { setDrugs([]); setResults(null); setLastAnalyzedSignature(null); setStep('input'); }}
                 isFullSystem
                 drugs={drugs}
                 species={species}

@@ -120,12 +120,10 @@ html, body, #root {
 
 @keyframes navMarginSettle {
   from {
-    padding-left: 24px;
-    padding-right: 24px;
+    width: calc(100% - 56px);
   }
   to {
-    padding-left: 0;
-    padding-right: 0;
+    width: 100%;
   }
 }
 
