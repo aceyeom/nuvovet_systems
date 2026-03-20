@@ -1,0 +1,72 @@
+--- PMC 레퍼런스 수집 테스트 결과 ---
+
+■ Drug Name: Ketoconazole
+  [1] Title: Uncaria rhynchophylla: an ethnopharmacological review integrating traditional Chinese medicine uses with phytochemical and pharmacological evidence.
+     URL: URL Not Found
+  [2] Title: In vitro liver models for toxicological research.
+     URL: URL Not Found
+------------------------------
+
+■ Drug Name: Aspirin
+  [1] Title: Multidimensional transcriptome dataset for systematic evaluation of Jakyakgamcho-tang-induced cell signatures.
+     URL: URL Not Found
+  [2] Title: Evaluating the Safety of Combining Tyrosine Kinase Inhibitors with Anticoagulants in Chronic Myeloid Leukemia: A Systematic Review.
+     URL: URL Not Found
+------------------------------
+
+■ Drug Name: Metformin
+  [1] Title: Novel drugs targeting genetic variants: current applications and future prospects in heart failure treatment.
+     URL: URL Not Found
+  [2] Title: Smart microdevices for biomedical drug delivery: endogenous stimuli as the key to safer therapeutics.
+     URL: URL Not Found
+------------------------------
+
+■ Drug Name: Prednisone
+  [1] Title: Emodin and the Anthraquinone Scaffold: Therapeutic Promise and Strategies to Overcome Translational Barriers.
+     URL: URL Not Found
+  [2] Title: Therapeutic drug monitoring of itraconazole in treatment of blastomycosis in dogs.
+     URL: URL Not Found
+------------------------------
+
+■ Drug Name: Amoxicillin
+  [1] Title: Current hPSC-derived liver organoids for toxicity testing: Cytochrome P450 enzymes and drug metabolism.
+     URL: URL Not Found
+  [2] Title: Cardioprotective Effects of the Natural Antioxidant Epigallocatechin Gallate.
+     URL: URL Not Found
+------------------------------
+
+■ Drug Name: Gabapentin
+  [1] Title: Revealing Pharmacokinetic Interactions of Tramadol, Tapentadol, and Venlafaxine: A Cutting-Edge Liquid Chromatography-Tandem Mass Spectrometry Analytical Approach in Rat Plasma.
+     URL: URL Not Found
+  [2] Title: Efficacy, pharmacokinetics and safety of liposomal synthetic cannabidiol injected subcutaneously in dogs: a randomized, blinded, placebo-controlled, crossover clinical trial.
+     URL: URL Not Found
+------------------------------
+
+■ Drug Name: Tramadol
+  [1] Title: Revealing Pharmacokinetic Interactions of Tramadol, Tapentadol, and Venlafaxine: A Cutting-Edge Liquid Chromatography-Tandem Mass Spectrometry Analytical Approach in Rat Plasma.
+     URL: URL Not Found
+  [2] Title: Nitrite supplementation alleviates cerebrovascular dysfunction in chronically stressed mice, but cognitive decline remains.
+     URL: URL Not Found
+------------------------------
+
+■ Drug Name: Famotidine
+  [1] Title: Population Pharmacokinetics of Atogepant for the Prevention of Migraine.
+     URL: URL Not Found
+  [2] Title: Predicting OCT2/MATEs-Mediated Drug Interactions in Healthy Volunteers and Patients with Chronic Kidney Disease: Insights from Extended Clearance Concept, Endogenous Biomarkers, and In Vitro Inhibition Studies (Perspectives from the International Transporter Consortium).
+     URL: URL Not Found
+------------------------------
+
+■ Drug Name: Clavulanic acid
+  [1] Title: Deep Fungal Infection of the Skin with Two Rare Fungi in a Dog Being Treated with Immunosuppressant Therapy: A Case Report.
+     URL: URL Not Found
+  [2] Title: Toward better cures for Mycobacterium abscessus lung disease.
+     URL: URL Not Found
+------------------------------
+
+■ Drug Name: Insulin
+  [1] Title: Uncaria rhynchophylla: an ethnopharmacological review integrating traditional Chinese medicine uses with phytochemical and pharmacological evidence.
+     URL: URL Not Found
+  [2] Title: Mutual solubilization of rosiglitazone and ibuprofen: Investigation and mechanistic insight.
+     URL: URL Not Found
+------------------------------
+
