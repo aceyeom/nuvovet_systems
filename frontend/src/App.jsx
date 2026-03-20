@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { I18nProvider } from './i18n';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import Landing from './pages/Landing';
@@ -8,6 +8,7 @@ import FullSystem from './pages/FullSystem';
 import Patients from './pages/Patients';
 import Pricing from './pages/Pricing';
 import Account from './pages/Account';
+import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 
 // Protect /system — redirect to /system with login if unauthenticated
@@ -32,6 +33,7 @@ function AppRoutes() {
       <Routes location={location}>
         <Route path="/" element={<Landing />} />
         <Route path="/demo" element={<Demo />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/system" element={
           <ProtectedRoute>
             <FullSystem />

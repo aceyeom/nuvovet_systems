@@ -4,7 +4,7 @@ import {
   ArrowLeft, Search, ChevronDown, ChevronUp, Edit2, Trash2,
   Plus, Clock, AlertTriangle, CheckCircle, Zap, User,
 } from 'lucide-react';
-import { NuvovetWordmark } from '../components/NuvovetLogo';
+import NavigationBar from '../components/NavigationBar';
 import { useI18n, LangToggle } from '../i18n';
 import {
   getAllPatients,
@@ -12,6 +12,7 @@ import {
   savePatient,
   sortPatients,
 } from '../lib/patientStorage';
+import { ensureSeedData } from '../data/seedData';
 
 // ── Severity badge ────────────────────────────────────────────────
 function SeverityDot({ severity }) {
@@ -232,6 +233,7 @@ export default function Patients() {
   const [selectedPatient, setSelectedPatient] = useState(null);
 
   const reload = useCallback(() => {
+    ensureSeedData();
     const all = getAllPatients();
     setPatients(all);
   }, []);
@@ -266,28 +268,10 @@ export default function Patients() {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen bg-[#f5f7fb] flex flex-col">
 
       {/* Header */}
-      <header className="sticky top-0 z-30 bg-white border-b border-slate-200 shadow-[0_1px_3px_rgba(15,23,42,0.07)]">
-        <div className="px-4 sm:px-6 h-[58px] flex items-center gap-3">
-          <button
-            onClick={() => navigate('/system')}
-            className="p-2 -ml-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-50 transition-colors"
-          >
-            <ArrowLeft size={18} />
-          </button>
-          <div className="flex items-center gap-2">
-            <NuvovetWordmark />
-            <span className="hidden sm:inline text-xs text-slate-400 font-medium bg-slate-100 px-2 py-0.5 rounded-full">
-              환자 목록 / Patients
-            </span>
-          </div>
-          <div className="ml-auto flex items-center gap-2">
-            <LangToggle />
-          </div>
-        </div>
-      </header>
+      <NavigationBar />
 
       {/* Detail overlay */}
       {selectedPatient && (
@@ -301,15 +285,18 @@ export default function Patients() {
       )}
 
       {/* Main content */}
-      <main className="flex-1 max-w-3xl mx-auto w-full px-4 py-6 space-y-5">
+      <main className="flex-1 max-w-4xl mx-auto w-full px-4 sm:px-8 py-6 space-y-5">
         <div className="flex items-center justify-between gap-3">
-          <h1 className="text-lg font-semibold text-slate-900">환자 목록</h1>
+          <div>
+            <h1 className="text-lg font-bold text-slate-900">{lang === 'ko' ? '환자 목록' : 'Patient Records'}</h1>
+            <p className="text-[11px] text-slate-400">{lang === 'ko' ? '환자 기록 / Patient Records' : 'Patient Records'}</p>
+          </div>
           <button
             onClick={() => navigate('/system')}
             className="flex items-center gap-1.5 px-3 py-2 bg-slate-900 text-white text-[13px] font-medium rounded-lg hover:bg-slate-800 transition-colors"
           >
             <Plus size={14} />
-            새 환자
+            {lang === 'ko' ? '새 환자' : 'New Patient'}
           </button>
         </div>
 
