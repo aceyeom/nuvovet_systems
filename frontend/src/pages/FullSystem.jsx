@@ -968,7 +968,7 @@ export default function FullSystem() {
       <NavigationBar />
 
       <div className="shrink-0 border-b border-slate-200 bg-white/90 px-4 py-3 backdrop-blur-sm sm:px-6">
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-3">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-3 animate-nav-margin-settle">
           <div className="flex items-center gap-2">
             <span className="text-sm font-semibold text-slate-900">{t.fullSystemLabel}</span>
             <span className="hidden sm:inline rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-500">

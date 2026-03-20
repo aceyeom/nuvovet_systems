@@ -10,6 +10,7 @@ import { NuvovetLogo } from '../components/NuvovetLogo';
 import { MolecularBackground } from '../components/MolecularBackground';
 import { RequestAccessModal } from '../components/RequestAccessModal';
 import { useI18n } from '../i18n';
+import { useAuth } from '../context/AuthContext';
 import { TopBarControls } from '../components/TopBarControls';
 import AnatomyDiagram from '../components/charts/AnatomyDiagram';
 
@@ -893,6 +894,7 @@ function WashoutShowcase({ visible }) {
 export default function Landing() {
   const navigate = useNavigate();
   const { t, lang } = useI18n();
+  const { isAuthenticated, loading } = useAuth();
   const [showAccessModal, setShowAccessModal] = useState(false);
   const [heroVisible, setHeroVisible] = useState(false);
 
@@ -900,6 +902,12 @@ export default function Landing() {
     const timer = setTimeout(() => setHeroVisible(true), 100);
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (!loading && isAuthenticated) {
+      navigate('/dashboard', { replace: true });
+    }
+  }, [isAuthenticated, loading, navigate]);
 
   return (
     <div className="min-h-screen bg-[#f5f7fb]">

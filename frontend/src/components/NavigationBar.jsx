@@ -41,6 +41,7 @@ export default function NavigationBar() {
   }, []);
 
   const isActive = (path) => location.pathname === path;
+  const isSystemPage = location.pathname === '/system';
 
   const navLinkClass = (path) =>
     `relative px-3 py-1.5 text-[13px] font-semibold rounded-lg transition-colors ${
@@ -51,14 +52,14 @@ export default function NavigationBar() {
 
   return (
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-[0_1px_3px_rgba(15,23,42,0.07)]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 h-[58px] flex items-center gap-6">
+      <div className={`max-w-7xl mx-auto px-4 sm:px-8 h-[58px] flex items-center gap-6 ${isSystemPage ? 'animate-nav-margin-settle' : ''}`}>
 
         {/* ── Logo ── */}
         <button
           onClick={() => navigate(isAuthenticated ? '/dashboard' : '/')}
           className="flex items-center shrink-0"
         >
-          <NuvovetWordmark className="text-[20px] sm:text-[20px]" />
+          <NuvovetWordmark className="text-[23px] sm:text-[23px]" />
         </button>
 
         {/* ── Center nav links ── */}

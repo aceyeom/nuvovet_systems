@@ -15,7 +15,7 @@ export function NuvovetLogo({ size = 28, className = '' }) {
 
 export function NuvovetWordmark({ className = '' }) {
   return (
-    <span className={`text-[22px] font-black tracking-[-0.045em] text-slate-900 leading-none select-none ${className}`}>
+    <span className={`text-[24px] font-black tracking-[-0.045em] text-slate-900 leading-none select-none ${className}`}>
       nuvovet
     </span>
   );
