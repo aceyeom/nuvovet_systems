@@ -381,16 +381,18 @@ function AnalysisStepBar({
   const isSummaryActive = currentStage === 'summary';
 
   return (
-    <div className="shrink-0 border-b border-slate-200 bg-white px-4 py-1.5 sm:px-6">
-      <div className="mx-auto w-full">
-        <div className="relative grid grid-cols-3 items-center text-center">
-          <div className="pointer-events-none absolute left-[16.66%] right-[16.66%] top-1/2 -translate-y-1/2 border-t border-dotted border-slate-300" />
+    <div className="shrink-0 border-b border-slate-200 bg-white px-4 py-1 sm:px-6">
+      <div className="w-full">
+        <div className="relative grid w-full grid-cols-3 overflow-hidden rounded-lg border border-slate-200 bg-white text-center">
+          <div className="pointer-events-none absolute left-[10%] right-[10%] top-1/2 -translate-y-1/2 h-[2px] [background-image:repeating-linear-gradient(to_right,rgba(100,116,139,0.45)_0_8px,transparent_8px_14px)]" />
 
           <button
             type="button"
             onClick={onOpenPatient}
-            className={`relative z-10 inline-flex items-center justify-center gap-2 py-1 text-sm transition-colors ${
-              isPatientActive ? 'font-black text-slate-900' : 'font-semibold text-slate-400 hover:text-slate-600'
+            className={`relative z-10 inline-flex items-center justify-center gap-2 border-r border-slate-200/80 px-3 py-2 text-sm transition-colors ${
+              isPatientActive
+                ? 'bg-slate-50 font-bold text-slate-900 shadow-[inset_0_-2px_0_0_rgb(15,23,42)]'
+                : 'font-medium text-slate-500 hover:bg-slate-50/70 hover:text-slate-700'
             }`}
           >
             <span className={`h-1.5 w-1.5 rounded-full ${isPatientActive ? 'bg-slate-900' : 'bg-slate-300'}`} />
@@ -400,8 +402,10 @@ function AnalysisStepBar({
           <button
             type="button"
             onClick={onOpenPrescription}
-            className={`relative z-10 inline-flex items-center justify-center gap-2 py-1 text-sm transition-colors ${
-              isPrescriptionActive ? 'font-black text-slate-900' : 'font-semibold text-slate-400 hover:text-slate-600'
+            className={`relative z-10 inline-flex items-center justify-center gap-2 border-r border-slate-200/80 px-3 py-2 text-sm transition-colors ${
+              isPrescriptionActive
+                ? 'bg-slate-50 font-bold text-slate-900 shadow-[inset_0_-2px_0_0_rgb(15,23,42)]'
+                : 'font-medium text-slate-500 hover:bg-slate-50/70 hover:text-slate-700'
             }`}
           >
             <span className={`h-1.5 w-1.5 rounded-full ${isPrescriptionActive ? 'bg-slate-900' : 'bg-slate-300'}`} />
@@ -411,8 +415,10 @@ function AnalysisStepBar({
           <button
             type="button"
             onClick={onOpenSummary}
-            className={`relative z-10 inline-flex items-center justify-center gap-2 py-1 text-sm transition-colors ${
-              isSummaryActive ? 'font-black text-slate-900' : 'font-semibold text-slate-400 hover:text-slate-600'
+            className={`relative z-10 inline-flex items-center justify-center gap-2 px-3 py-2 text-sm transition-colors ${
+              isSummaryActive
+                ? 'bg-slate-50 font-bold text-slate-900 shadow-[inset_0_-2px_0_0_rgb(15,23,42)]'
+                : 'font-medium text-slate-500 hover:bg-slate-50/70 hover:text-slate-700'
             }`}
           >
             <span className={`h-1.5 w-1.5 rounded-full ${isSummaryActive ? 'bg-slate-900' : 'bg-slate-300'}`} />
@@ -720,7 +726,7 @@ function ExistingPatientPanel({ onSelect }) {
 export default function FullSystem() {
   const navigate = useNavigate();
   const { t, lang } = useI18n();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
 
   // ── Patient state ──────────────────────────────────────────────
   const [patientId, setPatientId] = useState(null);
@@ -753,8 +759,6 @@ export default function FullSystem() {
   const [importBanner, setImportBanner] = useState(false);
   const [importedFields, setImportedFields] = useState(new Set());
   const [patientTab, setPatientTab] = useState('new'); // 'new' | 'existing'
-  const [leftPanelWidth, setLeftPanelWidth] = useState(460);
-  const [isResizingPanels, setIsResizingPanels] = useState(false);
   const [missingRequired, setMissingRequired] = useState({ species: false, weight: false, drugs: false });
   const [validationShakeTick, setValidationShakeTick] = useState(0);
 
@@ -771,8 +775,6 @@ export default function FullSystem() {
   const [allergySuggestions, setAllergySuggestions] = useState([]);
 
   const pollRef = useRef(null);
-  const debounceRef = useRef(null);
-  const inputPanelsRef = useRef(null);
   const patientSectionRef = useRef(null);
   const prescriptionSectionRef = useRef(null);
 
@@ -860,7 +862,6 @@ export default function FullSystem() {
       setImportBanner(!!draft.importBanner);
       setImportedFields(new Set(Array.isArray(draft.importedFields) ? draft.importedFields : []));
       setPatientTab(draft.patientTab === 'existing' ? 'existing' : 'new');
-      setLeftPanelWidth(typeof draft.leftPanelWidth === 'number' ? draft.leftPanelWidth : 460);
 
       setResults(draft.results ?? null);
       setLastAnalyzedSignature(draft.lastAnalyzedSignature ?? null);
@@ -904,7 +905,6 @@ export default function FullSystem() {
         importBanner,
         importedFields: Array.from(importedFields),
         patientTab,
-        leftPanelWidth,
         step: step === 'results' ? 'results' : 'input',
         workflowStage,
         results: step === 'results' ? results : null,
@@ -940,7 +940,6 @@ export default function FullSystem() {
     importBanner,
     importedFields,
     patientTab,
-    leftPanelWidth,
     step,
     workflowStage,
     results,
@@ -960,30 +959,6 @@ export default function FullSystem() {
     getConditionsApi().then(setConditionSuggestions).catch(() => {});
     getAllergiesApi().then(setAllergySuggestions).catch(() => {});
   }, []);
-
-  useEffect(() => {
-    if (!isResizingPanels) return;
-
-    const onMouseMove = (e) => {
-      const container = inputPanelsRef.current;
-      if (!container) return;
-
-      const rect = container.getBoundingClientRect();
-      const maxWidth = Math.max(540, rect.width - 420);
-      const nextWidth = e.clientX - rect.left;
-      const clamped = Math.min(Math.max(nextWidth, 380), maxWidth);
-      setLeftPanelWidth(clamped);
-    };
-
-    const onMouseUp = () => setIsResizingPanels(false);
-
-    window.addEventListener('mousemove', onMouseMove);
-    window.addEventListener('mouseup', onMouseUp);
-    return () => {
-      window.removeEventListener('mousemove', onMouseMove);
-      window.removeEventListener('mouseup', onMouseUp);
-    };
-  }, [isResizingPanels]);
 
   // ── Drug callbacks ─────────────────────────────────────────────
   const handleAddDrug = useCallback((drug) => setDrugs((prev) => [...prev, drug]), []);
@@ -1268,9 +1243,7 @@ export default function FullSystem() {
         {/* INPUT — Two-panel layout */}
         {step === 'input' && (
           <div
-            ref={inputPanelsRef}
-            className="flex-1 overflow-hidden flex flex-col lg:grid"
-            style={{ gridTemplateColumns: `${leftPanelWidth}px 10px minmax(0, 1fr)` }}
+            className="flex-1 overflow-hidden grid grid-cols-1 lg:grid-cols-2"
           >
 
             {/* ── LEFT PANEL: Patient Information ── */}
@@ -1278,7 +1251,7 @@ export default function FullSystem() {
               ref={patientSectionRef}
               onClickCapture={() => setWorkflowStage('patient')}
               onFocusCapture={() => setWorkflowStage('patient')}
-              className="w-full lg:shrink-0 border-b lg:border-b-0 border-slate-200 flex flex-col overflow-hidden bg-white"
+              className="w-full border-b lg:border-b-0 lg:border-r border-slate-200 flex flex-col overflow-hidden bg-white min-h-0"
             >
 
               {/* Tab bar */}
@@ -1355,10 +1328,13 @@ export default function FullSystem() {
                               className={`w-full px-3 py-2.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white placeholder:text-slate-300 transition-all ${fieldHighlight('name')}`} />
                           </div>
                           <div className="space-y-1">
-                            <label className="block text-[11px] font-semibold text-slate-500">Patient ID</label>
-                            <input type="text" value={patientId || ''} onChange={e => setPatientId(e.target.value)}
-                              placeholder="Auto-generated"
-                              className="w-full px-3 py-2.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white placeholder:text-slate-300 transition-all" />
+                            <label className="block text-[11px] font-semibold text-slate-500">Doctor in Charge</label>
+                            <input
+                              type="text"
+                              value={user?.username || ''}
+                              readOnly
+                              className="w-full px-3 py-2.5 text-sm border border-slate-200 rounded-lg bg-slate-50 text-slate-700"
+                            />
                           </div>
                         </div>
                         <div className="grid grid-cols-2 gap-3">
@@ -1554,21 +1530,12 @@ export default function FullSystem() {
 
             </div>
 
-            {/* Resizable divider */}
-            <div
-              onMouseDown={() => setIsResizingPanels(true)}
-              className="hidden lg:flex items-stretch justify-center bg-white border-r border-slate-200 cursor-col-resize select-none group"
-              title="Drag to resize panels"
-            >
-              <div className="w-1 my-2 rounded-full bg-slate-200 group-hover:bg-slate-400 transition-colors" />
-            </div>
-
             {/* ── RIGHT PANEL: Drug Prescription ── */}
             <div
               ref={prescriptionSectionRef}
               onClickCapture={() => setWorkflowStage('prescription')}
               onFocusCapture={() => setWorkflowStage('prescription')}
-              className="flex-1 overflow-y-auto bg-slate-50/30"
+              className="w-full overflow-y-auto bg-slate-50/30 min-h-0"
             >
               <div className="px-7 py-6 space-y-5">
 

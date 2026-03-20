@@ -98,6 +98,7 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
 
   // Duration
   const [duration, setDuration] = useState(drug.prescriptionDays || 7);
+  const [durationInput, setDurationInput] = useState(String(drug.prescriptionDays || 7));
   const [memo, setMemo] = useState(drug.memo || '');
 
   // Dose state — pre-fill with species default
@@ -105,6 +106,11 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
   const [dosePerKg, setDosePerKg] = useState(
     drug.dosePerKg !== undefined && drug.dosePerKg !== '' ? drug.dosePerKg : defaultDose
   );
+
+  useEffect(() => {
+    setDuration(drug.prescriptionDays || 7);
+    setDurationInput(String(drug.prescriptionDays || 7));
+  }, [drug.prescriptionDays]);
 
   // Expanded state
   const [expanded, setExpanded] = useState(true);
@@ -142,10 +148,10 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
   // Push updates to parent whenever key state changes
   useEffect(() => {
     onUpdateDrug(drug.id, {
-      dosePerKg: doseNum || '',
+      dosePerKg,
       route,
       freq,
-      prescriptionDays: duration,
+      prescriptionDays: duration || '',
       memo,
       doseStatus,
       _selectedStrengthIdx: selectedStrengthIdx,
@@ -194,7 +200,7 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
         {!expanded && (
           <div className="flex-1 min-w-0 flex flex-col items-center justify-center px-2 pt-1">
             <p className="text-[13px] font-semibold text-slate-700 tracking-wide whitespace-nowrap">
-              {freq} · {route} · {duration}d
+              {freq} · {route}{duration ? ` · ${duration}d` : ''}
             </p>
             {memo && <p className="text-[11px] text-slate-400 italic leading-snug mt-0.5 text-center">{memo}</p>}
           </div>
@@ -288,11 +294,35 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
                 <div>
                   <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Duration (days)</label>
                   <input
-                    type="number"
-                    value={duration}
-                    onChange={e => setDuration(parseInt(e.target.value) || 1)}
-                    min={1}
-                    max={365}
+                    type="text"
+                    inputMode="numeric"
+                    value={durationInput}
+                    onChange={(e) => {
+                      const next = e.target.value;
+                      if (!/^\d*$/.test(next)) return;
+                      setDurationInput(next);
+                      if (next === '') {
+                        setDuration('');
+                        return;
+                      }
+                      setDuration(parseInt(next, 10));
+                    }}
+                    onBlur={() => {
+                      if (durationInput === '') return;
+                      const parsed = parseInt(durationInput, 10);
+                      if (Number.isNaN(parsed) || parsed < 1) {
+                        setDuration(1);
+                        setDurationInput('1');
+                        return;
+                      }
+                      if (parsed > 365) {
+                        setDuration(365);
+                        setDurationInput('365');
+                        return;
+                      }
+                      setDuration(parsed);
+                      setDurationInput(String(parsed));
+                    }}
                     className="w-full px-2.5 py-1.5 text-[12px] border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white text-slate-700"
                   />
                 </div>
