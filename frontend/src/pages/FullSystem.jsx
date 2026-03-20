@@ -20,6 +20,8 @@ import { useAuth } from '../context/AuthContext';
 import AnatomyDiagram from '../components/charts/AnatomyDiagram';
 import { aggregateOrganBurden } from '../components/charts/organBurdenAggregator';
 
+const SYSTEM_DRAFT_STORAGE_KEY = 'nuvovet_system_draft_v1';
+
 // ── Decimal number input ──────────────────────────────────────────
 function DecimalInput({ value, onChange, onBlur, placeholder, className, min, max }) {
   const [localVal, setLocalVal] = useState(
@@ -369,70 +371,52 @@ function LoadPatientModal({ onClose, onSelect }) {
 }
 
 function AnalysisStepBar({
-  step,
-  analysisIsAvailable,
-  analysisIsStale,
+  currentStage,
+  onOpenPatient,
   onOpenPrescription,
-  onOpenAnalysis,
-  onReset,
+  onOpenSummary,
 }) {
-  const isPrescriptionActive = step === 'input';
-  const isAnalysisActive = step === 'analyzing' || step === 'results';
+  const isPatientActive = currentStage === 'patient';
+  const isPrescriptionActive = currentStage === 'prescription';
+  const isSummaryActive = currentStage === 'summary';
 
   return (
-    <div className="shrink-0 border-b border-slate-200 bg-white/90 px-4 py-3 backdrop-blur-sm sm:px-6">
-      <div className="mx-auto flex w-full items-center justify-between gap-4 animate-nav-margin-settle">
-        <div className="inline-flex items-center rounded-2xl border border-slate-200 bg-slate-50 p-1 shadow-sm">
+    <div className="shrink-0 border-b border-slate-200 bg-white px-4 py-1.5 sm:px-6">
+      <div className="mx-auto w-full">
+        <div className="relative grid grid-cols-3 items-center text-center">
+          <div className="pointer-events-none absolute left-[16.66%] right-[16.66%] top-1/2 -translate-y-1/2 border-t border-dotted border-slate-300" />
+
+          <button
+            type="button"
+            onClick={onOpenPatient}
+            className={`relative z-10 inline-flex items-center justify-center gap-2 py-1 text-sm transition-colors ${
+              isPatientActive ? 'font-black text-slate-900' : 'font-semibold text-slate-400 hover:text-slate-600'
+            }`}
+          >
+            <span className={`h-1.5 w-1.5 rounded-full ${isPatientActive ? 'bg-slate-900' : 'bg-slate-300'}`} />
+            <span>Patient Information</span>
+          </button>
+
           <button
             type="button"
             onClick={onOpenPrescription}
-            className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold transition-colors ${
-              isPrescriptionActive
-                ? 'bg-white text-slate-900 shadow-sm'
-                : 'text-slate-500 hover:text-slate-700'
+            className={`relative z-10 inline-flex items-center justify-center gap-2 py-1 text-sm transition-colors ${
+              isPrescriptionActive ? 'font-black text-slate-900' : 'font-semibold text-slate-400 hover:text-slate-600'
             }`}
           >
-            <span className={`h-2 w-2 rounded-full ${isPrescriptionActive ? 'bg-slate-900' : 'bg-slate-300'}`} />
+            <span className={`h-1.5 w-1.5 rounded-full ${isPrescriptionActive ? 'bg-slate-900' : 'bg-slate-300'}`} />
             <span>Prescription</span>
           </button>
+
           <button
             type="button"
-            onClick={onOpenAnalysis}
-            className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold transition-colors ${
-              isAnalysisActive
-                ? 'bg-white text-slate-900 shadow-sm'
-                : 'text-slate-500 hover:text-slate-700'
+            onClick={onOpenSummary}
+            className={`relative z-10 inline-flex items-center justify-center gap-2 py-1 text-sm transition-colors ${
+              isSummaryActive ? 'font-black text-slate-900' : 'font-semibold text-slate-400 hover:text-slate-600'
             }`}
           >
-            <span className={`h-2 w-2 rounded-full ${step === 'analyzing' ? 'bg-emerald-500 animate-pulse' : analysisIsAvailable && !analysisIsStale ? 'bg-slate-900' : 'bg-slate-300'}`} />
-            <span>Analysis</span>
-            {analysisIsStale && step !== 'analyzing' && (
-              <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-amber-700">
-                Refresh
-              </span>
-            )}
-          </button>
-        </div>
-
-        <div className="flex items-center gap-2">
-          {analysisIsAvailable && !analysisIsStale && step === 'results' && (
-            <span className="hidden sm:inline rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-medium text-emerald-700">
-              Analysis ready
-            </span>
-          )}
-          {analysisIsStale && step !== 'analyzing' && (
-            <span className="hidden sm:inline rounded-full bg-amber-50 px-2.5 py-1 text-[11px] font-medium text-amber-700">
-              Prescription changed
-            </span>
-          )}
-          <button
-            type="button"
-            onClick={onReset}
-            className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-700"
-            title="Reset"
-          >
-            <RotateCcw size={14} />
-            <span>Reset</span>
+            <span className={`h-1.5 w-1.5 rounded-full ${isSummaryActive ? 'bg-slate-900' : 'bg-slate-300'}`} />
+            <span>Summary</span>
           </button>
         </div>
       </div>
@@ -776,8 +760,10 @@ export default function FullSystem() {
 
   // ── Flow state ─────────────────────────────────────────────────
   const [step, setStep] = useState('input');
+  const [workflowStage, setWorkflowStage] = useState('patient');
   const [results, setResults] = useState(null);
   const [lastAnalyzedSignature, setLastAnalyzedSignature] = useState(null);
+  const [hasDraftHydrated, setHasDraftHydrated] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
 
   // ── Suggestions ────────────────────────────────────────────────
@@ -787,6 +773,8 @@ export default function FullSystem() {
   const pollRef = useRef(null);
   const debounceRef = useRef(null);
   const inputPanelsRef = useRef(null);
+  const patientSectionRef = useRef(null);
+  const prescriptionSectionRef = useRef(null);
 
   const analysisSignature = useMemo(() => JSON.stringify({
     species,
@@ -833,6 +821,131 @@ export default function FullSystem() {
 
   const analysisIsAvailable = !!results && !!lastAnalyzedSignature;
   const analysisIsStale = analysisIsAvailable && lastAnalyzedSignature !== analysisSignature;
+
+  useEffect(() => {
+    try {
+      const rawDraft = sessionStorage.getItem(SYSTEM_DRAFT_STORAGE_KEY);
+      if (!rawDraft) {
+        setHasDraftHydrated(true);
+        return;
+      }
+
+      const draft = JSON.parse(rawDraft);
+      if (!draft || typeof draft !== 'object') {
+        setHasDraftHydrated(true);
+        return;
+      }
+
+      setPatientId(draft.patientId ?? null);
+      setPatientName(draft.patientName ?? '');
+      setOwnerName(draft.ownerName ?? '');
+      setOwnerContact(draft.ownerContact ?? '');
+      setSpecies(draft.species ?? null);
+      setWeight(draft.weight ?? '');
+      setWeightUnit(draft.weightUnit ?? 'kg');
+      setSex(draft.sex ?? 'Unknown');
+      setBreed(draft.breed ?? '');
+      setAgeNum(draft.ageNum ?? '');
+      setAgeUnit(draft.ageUnit ?? 'years');
+      setReproductiveStatus(draft.reproductiveStatus ?? 'None');
+      setConditions(Array.isArray(draft.conditions) ? draft.conditions : []);
+      setAllergies(Array.isArray(draft.allergies) ? draft.allergies : []);
+      setRenalStatus(draft.renalStatus ?? 'Unknown');
+      setHeptaticStatus(draft.hepaticStatus ?? 'Unknown');
+      setCreatinine(draft.creatinine ?? '');
+      setAlt(draft.alt ?? '');
+      setDrugs(Array.isArray(draft.drugs) ? draft.drugs : []);
+
+      setDontSavePatientChecked(!!draft.dontSavePatientChecked);
+      setImportBanner(!!draft.importBanner);
+      setImportedFields(new Set(Array.isArray(draft.importedFields) ? draft.importedFields : []));
+      setPatientTab(draft.patientTab === 'existing' ? 'existing' : 'new');
+      setLeftPanelWidth(typeof draft.leftPanelWidth === 'number' ? draft.leftPanelWidth : 460);
+
+      setResults(draft.results ?? null);
+      setLastAnalyzedSignature(draft.lastAnalyzedSignature ?? null);
+      setWorkflowStage(
+        draft.workflowStage === 'summary' || draft.workflowStage === 'prescription'
+          ? draft.workflowStage
+          : 'patient'
+      );
+      setStep(draft.step === 'results' && draft.results ? 'results' : 'input');
+    } catch {
+      // ignore malformed drafts
+    } finally {
+      setHasDraftHydrated(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!hasDraftHydrated) return;
+    try {
+      const draft = {
+        patientId,
+        patientName,
+        ownerName,
+        ownerContact,
+        species,
+        weight,
+        weightUnit,
+        sex,
+        breed,
+        ageNum,
+        ageUnit,
+        reproductiveStatus,
+        conditions,
+        allergies,
+        renalStatus,
+        hepaticStatus,
+        creatinine,
+        alt,
+        drugs,
+        dontSavePatientChecked,
+        importBanner,
+        importedFields: Array.from(importedFields),
+        patientTab,
+        leftPanelWidth,
+        step: step === 'results' ? 'results' : 'input',
+        workflowStage,
+        results: step === 'results' ? results : null,
+        lastAnalyzedSignature,
+      };
+
+      sessionStorage.setItem(SYSTEM_DRAFT_STORAGE_KEY, JSON.stringify(draft));
+    } catch {
+      // ignore storage failures
+    }
+  }, [
+    hasDraftHydrated,
+    patientId,
+    patientName,
+    ownerName,
+    ownerContact,
+    species,
+    weight,
+    weightUnit,
+    sex,
+    breed,
+    ageNum,
+    ageUnit,
+    reproductiveStatus,
+    conditions,
+    allergies,
+    renalStatus,
+    hepaticStatus,
+    creatinine,
+    alt,
+    drugs,
+    dontSavePatientChecked,
+    importBanner,
+    importedFields,
+    patientTab,
+    leftPanelWidth,
+    step,
+    workflowStage,
+    results,
+    lastAnalyzedSignature,
+  ]);
 
   // ── Backend polling ────────────────────────────────────────────
   useEffect(() => {
@@ -983,6 +1096,7 @@ export default function FullSystem() {
       return;
     }
     if (!dontSavePatientChecked) handleSavePatient();
+    setWorkflowStage('summary');
     setStep('analyzing');
   };
 
@@ -991,26 +1105,43 @@ export default function FullSystem() {
     const analysisResults = runFullDURAnalysis(drugs, species, weightKg, patientCtx);
     setResults(analysisResults);
     setLastAnalyzedSignature(analysisSignature);
+    setWorkflowStage('summary');
     setStep('results');
+  };
+
+  const scrollToSection = (sectionRef) => {
+    if (!sectionRef?.current) return;
+    sectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const handleOpenPatient = () => {
+    setStep('input');
+    setWorkflowStage('patient');
+    setTimeout(() => scrollToSection(patientSectionRef), 0);
   };
 
   const handleOpenPrescription = () => {
     setStep('input');
+    setWorkflowStage('prescription');
+    setTimeout(() => scrollToSection(prescriptionSectionRef), 0);
   };
 
-  const handleOpenAnalysis = () => {
+  const handleOpenSummary = () => {
     if (step === 'analyzing') return;
     if (!canRun) {
       setStep('input');
+      setWorkflowStage('prescription');
       setMissingRequired({ species: isSpeciesMissing, weight: isWeightMissing, drugs: isDrugsMissing });
       setValidationShakeTick(v => v + 1);
       return;
     }
     if (analysisIsAvailable && !analysisIsStale) {
+      setWorkflowStage('summary');
       setStep('results');
       return;
     }
     if (!dontSavePatientChecked) handleSavePatient();
+    setWorkflowStage('summary');
     setStep('analyzing');
   };
 
@@ -1075,9 +1206,17 @@ export default function FullSystem() {
     setConditions([]); setAllergies([]); setRenalStatus('Unknown'); setHeptaticStatus('Unknown');
     setCreatinine(''); setAlt('');
     setDrugs([]); setResults(null); setStep('input'); setLastAnalyzedSignature(null);
+    setWorkflowStage('patient');
     setDontSavePatientChecked(false); setImportBanner(false); setImportedFields(new Set()); setSaveSuccess(false);
     setMissingRequired({ species: false, weight: false, drugs: false });
+    try { sessionStorage.removeItem(SYSTEM_DRAFT_STORAGE_KEY); } catch {}
   };
+
+  useEffect(() => {
+    if (step === 'analyzing' || step === 'results') {
+      setWorkflowStage('summary');
+    }
+  }, [step]);
 
   useEffect(() => {
     setMissingRequired(prev => ({
@@ -1094,12 +1233,10 @@ export default function FullSystem() {
       <NavigationBar />
 
       <AnalysisStepBar
-        step={step}
-        analysisIsAvailable={analysisIsAvailable}
-        analysisIsStale={analysisIsStale}
+        currentStage={workflowStage}
+        onOpenPatient={handleOpenPatient}
         onOpenPrescription={handleOpenPrescription}
-        onOpenAnalysis={handleOpenAnalysis}
-        onReset={handleReset}
+        onOpenSummary={handleOpenSummary}
       />
 
       {/* Save toast */}
@@ -1137,7 +1274,12 @@ export default function FullSystem() {
           >
 
             {/* ── LEFT PANEL: Patient Information ── */}
-            <div className="w-full lg:shrink-0 border-b lg:border-b-0 border-slate-200 flex flex-col overflow-hidden bg-white">
+            <div
+              ref={patientSectionRef}
+              onClickCapture={() => setWorkflowStage('patient')}
+              onFocusCapture={() => setWorkflowStage('patient')}
+              className="w-full lg:shrink-0 border-b lg:border-b-0 border-slate-200 flex flex-col overflow-hidden bg-white"
+            >
 
               {/* Tab bar */}
               <div className="shrink-0 border-b border-slate-200 flex items-stretch bg-white">
@@ -1422,7 +1564,12 @@ export default function FullSystem() {
             </div>
 
             {/* ── RIGHT PANEL: Drug Prescription ── */}
-            <div className="flex-1 overflow-y-auto bg-slate-50/30">
+            <div
+              ref={prescriptionSectionRef}
+              onClickCapture={() => setWorkflowStage('prescription')}
+              onFocusCapture={() => setWorkflowStage('prescription')}
+              className="flex-1 overflow-y-auto bg-slate-50/30"
+            >
               <div className="px-7 py-6 space-y-5">
 
                 <div>

@@ -1,7 +1,7 @@
 /**
  * NavigationBar — Unified top navigation for authenticated pages.
  *
- * Layout:  Logo | Dashboard | Analytics | Patient Records  ···  Start Diagnosis | Settings icon | Profile icon
+ * Layout:  Logo | Dashboard | Diagnosis | Analytics | Patient Records  ···  Settings icon | Profile icon
  *
  * Used on Dashboard, Analytics, Patients, and FullSystem pages.
  * On unauthenticated pages (Landing, Demo, Pricing, Login) the old TopBarControls is still used.
@@ -41,14 +41,6 @@ export default function NavigationBar() {
   }, []);
 
   const isActive = (path) => location.pathname === path;
-  const isSystemPage = location.pathname === '/system';
-  const isPatientsPage = location.pathname === '/patients';
-
-  const containerClass = isSystemPage
-    ? 'mx-auto w-full px-4 sm:px-6 animate-nav-margin-settle'
-    : isPatientsPage
-    ? 'max-w-4xl mx-auto px-4 sm:px-8'
-    : 'max-w-7xl mx-auto px-4 sm:px-8';
 
   const navLinkClass = (path) =>
     `relative px-3 py-1.5 text-[13px] font-semibold rounded-lg transition-colors ${
@@ -59,7 +51,7 @@ export default function NavigationBar() {
 
   return (
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-[0_1px_3px_rgba(15,23,42,0.07)]">
-      <div className={`${containerClass} h-[58px] flex items-center gap-6`}>
+      <div className="mx-auto w-full px-4 sm:px-6 h-[58px] flex items-center gap-6">
 
         {/* ── Logo ── */}
         <button
@@ -76,6 +68,12 @@ export default function NavigationBar() {
               <span className="flex items-center gap-1.5">
                 <LayoutDashboard size={14} />
                 {lang === 'ko' ? '대시보드' : 'Dashboard'}
+              </span>
+            </button>
+            <button onClick={() => navigate('/system')} className={navLinkClass('/system')}>
+              <span className="flex items-center gap-1.5">
+                <Zap size={14} />
+                {lang === 'ko' ? '진단' : 'Diagnosis'}
               </span>
             </button>
             <button onClick={() => navigate('/analytics')} className={navLinkClass('/analytics')}>
@@ -98,21 +96,6 @@ export default function NavigationBar() {
 
         {/* ── Right controls ── */}
         <div className="flex items-center gap-1.5">
-          {isAuthenticated && (
-            <button
-              type="button"
-              onClick={() => navigate('/system')}
-              className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-[13px] font-semibold transition-colors ${
-                isActive('/system')
-                  ? 'bg-slate-900 text-white'
-                  : 'bg-slate-900 text-white hover:bg-slate-800'
-              }`}
-            >
-              <Zap size={14} />
-              {lang === 'ko' ? '진단 시작' : 'Start Diagnosis'}
-            </button>
-          )}
-
           {/* Settings dropdown */}
           <div className="relative" ref={settingsRef}>
             <button
