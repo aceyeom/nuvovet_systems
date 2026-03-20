@@ -10,7 +10,7 @@ Structure:
     clinical.py        ← /api/breeds, /api/conditions, /api/allergies
     ocr.py             ← /api/ocr/extract-patient
   services/
-    drug_loader.py     ← JSONL loading, caching, search index
+    drug_loader.py     ← PostgreSQL loading, caching, search index
     drug_mapper.py     ← raw JSONL → frontend Drug contract
 """
 
