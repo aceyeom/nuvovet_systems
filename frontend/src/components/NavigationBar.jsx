@@ -1,16 +1,16 @@
 /**
  * NavigationBar — Unified top navigation for authenticated pages.
  *
- * Layout:  Logo | Dashboard | Patient Records | Start Diagnosis  ···  Settings icon | Profile icon
+ * Layout:  Logo | Dashboard | Analytics | Patient Records  ···  Start Diagnosis | Settings icon | Profile icon
  *
- * Used on Dashboard, Patients, FullSystem, and Account pages.
+ * Used on Dashboard, Analytics, Patients, and FullSystem pages.
  * On unauthenticated pages (Landing, Demo, Pricing, Login) the old TopBarControls is still used.
  */
 
 import React, { useEffect, useRef, useState } from 'react';
-import { CreditCard, LogOut, Settings, UserCircle, Zap, LayoutDashboard, ClipboardList } from 'lucide-react';
+import { CreditCard, LogOut, Settings, UserCircle, Zap, LayoutDashboard, ClipboardList, BarChart3 } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { NuvovetLogo } from './NuvovetLogo';
+import { NuvovetWordmark } from './NuvovetLogo';
 import { useI18n } from '../i18n';
 import { useAuth } from '../context/AuthContext';
 
@@ -56,12 +56,9 @@ export default function NavigationBar() {
         {/* ── Logo ── */}
         <button
           onClick={() => navigate(isAuthenticated ? '/dashboard' : '/')}
-          className="flex items-center gap-2 shrink-0"
+          className="flex items-center shrink-0"
         >
-          <NuvovetLogo size={24} />
-          <span className="text-[20px] font-black tracking-[-0.045em] text-slate-900 leading-none select-none hidden sm:inline">
-            nuvovet
-          </span>
+          <NuvovetWordmark className="text-[20px] sm:text-[20px]" />
         </button>
 
         {/* ── Center nav links ── */}
@@ -73,22 +70,17 @@ export default function NavigationBar() {
                 {lang === 'ko' ? '대시보드' : 'Dashboard'}
               </span>
             </button>
+            <button onClick={() => navigate('/analytics')} className={navLinkClass('/analytics')}>
+              <span className="flex items-center gap-1.5">
+                <BarChart3 size={14} />
+                {lang === 'ko' ? '애널리틱스' : 'Analytics'}
+              </span>
+            </button>
             <button onClick={() => navigate('/patients')} className={navLinkClass('/patients')}>
               <span className="flex items-center gap-1.5">
                 <ClipboardList size={14} />
                 {lang === 'ko' ? '환자 기록' : 'Patient Records'}
               </span>
-            </button>
-            <button
-              onClick={() => navigate('/system')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 text-[13px] font-semibold rounded-lg transition-colors ${
-                isActive('/system')
-                  ? 'text-white bg-slate-900'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-              }`}
-            >
-              <Zap size={14} />
-              {lang === 'ko' ? '진단 시작' : 'Start Diagnosis'}
             </button>
           </nav>
         )}
@@ -98,6 +90,21 @@ export default function NavigationBar() {
 
         {/* ── Right controls ── */}
         <div className="flex items-center gap-1.5">
+          {isAuthenticated && (
+            <button
+              type="button"
+              onClick={() => navigate('/system')}
+              className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-[13px] font-semibold transition-colors ${
+                isActive('/system')
+                  ? 'bg-slate-900 text-white'
+                  : 'bg-slate-900 text-white hover:bg-slate-800'
+              }`}
+            >
+              <Zap size={14} />
+              {lang === 'ko' ? '진단 시작' : 'Start Diagnosis'}
+            </button>
+          )}
+
           {/* Settings dropdown */}
           <div className="relative" ref={settingsRef}>
             <button
@@ -163,7 +170,7 @@ export default function NavigationBar() {
                 type="button"
                 onClick={() => { setProfileOpen(v => !v); setSettingsOpen(false); }}
                 className={`inline-flex h-9 w-9 items-center justify-center rounded-lg border transition-colors ${
-                  profileOpen || isActive('/account')
+                  profileOpen
                     ? 'border-slate-300 bg-slate-100 text-slate-900'
                     : 'border-slate-200 bg-white text-slate-400 hover:bg-slate-50 hover:text-slate-700'
                 }`}
@@ -188,11 +195,11 @@ export default function NavigationBar() {
                   <div className="space-y-0.5 p-1.5">
                     <button
                       type="button"
-                      onClick={() => { setProfileOpen(false); navigate('/account'); }}
+                      onClick={() => { setProfileOpen(false); navigate('/dashboard'); }}
                       className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-[13px] text-slate-700 transition-colors hover:bg-slate-50"
                     >
                       <Settings size={14} className="text-slate-400" />
-                      <span>{lang === 'ko' ? '계정 설정' : 'Account Settings'}</span>
+                      <span>{lang === 'ko' ? '대시보드' : 'Dashboard'}</span>
                     </button>
                     <button
                       type="button"

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { I18nProvider } from './i18n';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import Landing from './pages/Landing';
@@ -26,14 +26,12 @@ function ProtectedRoute({ children }) {
 }
 
 function AppRoutes() {
-  const location = useLocation();
-
   return (
-    <div key={location.pathname} className="route-enter">
-      <Routes location={location}>
+      <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/demo" element={<Demo />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Account />} />
+        <Route path="/analytics" element={<Dashboard />} />
         <Route path="/system" element={
           <ProtectedRoute>
             <FullSystem />
@@ -41,10 +39,9 @@ function AppRoutes() {
         } />
         <Route path="/patients" element={<Patients />} />
         <Route path="/pricing" element={<Pricing />} />
-        <Route path="/account" element={<Account />} />
+        <Route path="/account" element={<Navigate to="/dashboard" replace />} />
         <Route path="/login" element={<Login />} />
       </Routes>
-    </div>
   );
 }
 

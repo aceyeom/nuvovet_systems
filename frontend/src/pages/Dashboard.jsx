@@ -212,7 +212,7 @@ function ScoreRing({ score, label, size = 80 }) {
 }
 
 // ═════════════════════════════════════════════════════════════════════
-// MAIN DASHBOARD
+// ANALYTICS PAGE
 // ═════════════════════════════════════════════════════════════════════
 
 export default function Dashboard() {
@@ -330,10 +330,10 @@ export default function Dashboard() {
               {lang === 'ko' ? '로그인이 필요합니다' : 'Sign in required'}
             </h1>
             <p className="text-sm text-slate-500 mb-5">
-              {lang === 'ko' ? '대시보드를 보려면 먼저 로그인하세요.' : 'Please sign in to view your dashboard.'}
+              {lang === 'ko' ? '애널리틱스를 보려면 먼저 로그인하세요.' : 'Please sign in to view analytics.'}
             </p>
             <button
-              onClick={() => navigate('/login?redirect=/dashboard')}
+              onClick={() => navigate('/login?redirect=/analytics')}
               className="px-5 py-2.5 bg-slate-900 text-white text-sm font-semibold rounded-xl hover:bg-slate-800 transition-colors"
             >
               {lang === 'ko' ? '로그인' : 'Sign in'}
@@ -362,7 +362,7 @@ export default function Dashboard() {
               {lang === 'ko' ? `${displayName}님, 안녕하세요` : `Welcome, ${displayName}`}
             </h1>
             <p className="text-[13px] text-slate-400 mt-0.5">
-              {lang === 'ko' ? 'NuvoVet 대시보드 / Dashboard Overview' : 'Dashboard Overview'}
+              {lang === 'ko' ? 'NuvoVet 애널리틱스 / Analytics Overview' : 'Analytics Overview'}
             </p>
           </div>
           <button

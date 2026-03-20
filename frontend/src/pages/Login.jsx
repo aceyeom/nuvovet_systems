@@ -17,7 +17,10 @@ export default function Login() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
 
-  const redirectTo = useMemo(() => '/dashboard', []);
+  const redirectTo = useMemo(() => {
+    const params = new URLSearchParams(location.search);
+    return params.get('redirect') || '/dashboard';
+  }, [location.search]);
 
   useEffect(() => {
     if (isAuthenticated) navigate(redirectTo, { replace: true });

@@ -132,7 +132,7 @@ export function TopBarControls({ className = '' }) {
                 setSettingsOpen(false);
               }}
               className={`inline-flex h-10 w-10 items-center justify-center rounded-xl border transition-colors ${
-                profileOpen || location.pathname === '/account'
+                profileOpen || location.pathname === '/dashboard'
                   ? 'border-slate-300 bg-slate-100 text-slate-900'
                   : 'border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:text-slate-700'
               }`}
@@ -159,12 +159,12 @@ export function TopBarControls({ className = '' }) {
                     type="button"
                     onClick={() => {
                       setProfileOpen(false);
-                      navigate('/account');
+                      navigate('/dashboard');
                     }}
                     className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-slate-700 transition-colors hover:bg-slate-50"
                   >
                     <Settings size={15} className="text-slate-400" />
-                    <span>{lang === 'ko' ? '계정' : 'Account'}</span>
+                    <span>{lang === 'ko' ? '대시보드' : 'Dashboard'}</span>
                   </button>
                   <button
                     type="button"

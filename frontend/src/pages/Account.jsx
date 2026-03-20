@@ -77,7 +77,7 @@ function PatientRow({ patient, onClick }) {
   );
 }
 
-// ── Main Account Page ───────────────────────────────────────────
+// ── Main Dashboard Page ─────────────────────────────────────────
 export default function Account() {
   const navigate = useNavigate();
   const { lang } = useI18n();
@@ -144,18 +144,18 @@ export default function Account() {
         <div className="mx-auto flex min-h-[calc(100vh-62px)] max-w-2xl items-center justify-center px-6 text-center">
           <div className="rounded-3xl border border-slate-200 bg-white px-8 py-12 shadow-sm">
             <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-slate-400">
-              {lang === 'ko' ? '계정' : 'Account'}
+              {lang === 'ko' ? '대시보드' : 'Dashboard'}
             </p>
             <h1 className="mt-3 text-2xl font-black tracking-tight text-slate-900">
-              {lang === 'ko' ? '계정을 보려면 로그인하세요.' : 'Sign in to open your account.'}
+              {lang === 'ko' ? '대시보드를 보려면 로그인하세요.' : 'Sign in to open your dashboard.'}
             </h1>
             <p className="mt-3 text-sm leading-relaxed text-slate-500">
               {lang === 'ko'
-                ? '로그인 페이지에서 계정으로 로그인해 주세요.'
+                ? '로그인 페이지에서 대시보드로 이동해 주세요.'
                 : 'Please sign in from the login page.'}
             </p>
             <button
-              onClick={() => navigate('/login?redirect=/account')}
+              onClick={() => navigate('/login?redirect=/dashboard')}
               className="mt-5 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
             >
               {lang === 'ko' ? '로그인 페이지로 이동' : 'Go to Login'}

@@ -7,6 +7,7 @@ import {
   Filter, SortAsc, ChevronRight,
 } from 'lucide-react';
 import { NuvovetWordmark } from '../components/NuvovetLogo';
+import NavigationBar from '../components/NavigationBar';
 import { useI18n } from '../i18n';
 import { DrugInput } from '../components/DrugInput';
 import { AnalysisScreen } from '../components/AnalysisScreen';
@@ -18,7 +19,6 @@ import { searchPatients, savePatient, addVisitRecord, getAllPatients, sortPatien
 import { useAuth } from '../context/AuthContext';
 import AnatomyDiagram from '../components/charts/AnatomyDiagram';
 import { aggregateOrganBurden } from '../components/charts/organBurdenAggregator';
-import { TopBarControls } from '../components/TopBarControls';
 
 // ── Decimal number input ──────────────────────────────────────────
 function DecimalInput({ value, onChange, onBlur, placeholder, className, min, max }) {
@@ -168,7 +168,7 @@ function AuthGate({ onAuthenticated }) {
     setSubmitting(true);
     const result = await login(username.trim(), password);
     setSubmitting(false);
-    if (result.ok) { navigate('/account', { replace: true }); }
+    if (result.ok) { navigate('/dashboard', { replace: true }); }
     else { setError(result.error || 'Authentication failed'); }
   };
 
@@ -965,30 +965,24 @@ export default function FullSystem() {
   return (
     <div className="h-screen flex flex-col bg-white overflow-hidden">
 
-      {/* Sticky Header */}
-      <header className="sticky top-0 z-30 bg-white border-b border-slate-200 shadow-[0_1px_3px_rgba(15,23,42,0.07)] shrink-0">
-        <div className="px-4 sm:px-6 h-[58px] flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <button onClick={() => navigate('/')} className="p-2 -ml-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-50 transition-colors">
-              <ArrowLeft size={18} />
-            </button>
-            <div className="flex items-center gap-2">
-              <NuvovetWordmark />
-              <span className="hidden sm:inline text-xs text-slate-400 font-medium bg-slate-100 px-2 py-0.5 rounded-full">
-                {t.fullSystemLabel}
-              </span>
-            </div>
-          </div>
+      <NavigationBar />
+
+      <div className="shrink-0 border-b border-slate-200 bg-white/90 px-4 py-3 backdrop-blur-sm sm:px-6">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-3">
           <div className="flex items-center gap-2">
-            {step === 'input' && (drugs.length > 0 || patientName) && (
-              <button onClick={handleReset} className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-50 rounded-lg transition-colors" title="Reset">
-                <RotateCcw size={14} />
-              </button>
-            )}
-            <TopBarControls />
+            <span className="text-sm font-semibold text-slate-900">{t.fullSystemLabel}</span>
+            <span className="hidden sm:inline rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-500">
+              {step === 'input' ? 'Input' : step === 'analyzing' ? 'Analyzing' : 'Results'}
+            </span>
           </div>
+          {step === 'input' && (drugs.length > 0 || patientName) && (
+            <button onClick={handleReset} className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-700" title="Reset">
+              <RotateCcw size={14} />
+              <span>Reset</span>
+            </button>
+          )}
         </div>
-      </header>
+      </div>
 
       {/* Save toast */}
       {saveSuccess && (
