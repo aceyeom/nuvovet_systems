@@ -5,11 +5,10 @@ import {
   ArrowRight, Clock, Beaker, ChevronRight, AlertCircle, CheckCircle,
   AlertTriangle, Shield
 } from 'lucide-react';
-import { NuvovetWordmark } from '../components/NuvovetLogo';
+import NavigationBar from '../components/NavigationBar';
 import { useI18n } from '../i18n';
 import { getAllPatients } from '../lib/patientStorage';
 import { useAuth } from '../context/AuthContext';
-import { TopBarControls } from '../components/TopBarControls';
 
 // ── Risk Badge ──────────────────────────────────────────────────
 function RiskBadge({ level }) {
@@ -135,14 +134,7 @@ export default function Account() {
     <div className="min-h-screen bg-[#f5f7fb]">
 
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-[0_1px_3px_rgba(15,23,42,0.07)]">
-        <div className="max-w-7xl mx-auto px-5 sm:px-8 h-[62px] flex items-center justify-between">
-          <button onClick={() => navigate('/')} className="text-left">
-            <NuvovetWordmark />
-          </button>
-          <TopBarControls />
-        </div>
-      </header>
+      <NavigationBar />
 
       {loading ? (
         <div className="flex min-h-[calc(100vh-62px)] items-center justify-center px-6">
