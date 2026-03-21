@@ -61,6 +61,9 @@ def insert_drug_data():
         """)
         print("테이블 세팅 완료.")
 
+        cursor.execute("TRUNCATE TABLE drugs")
+        print("기존 데이터 삭제 완료.")
+
         inserted_count = 0
         skipped_count = 0
         file_count = 0
@@ -88,17 +91,13 @@ def insert_drug_data():
                 cursor.execute("""
                     INSERT INTO drugs (drug_id, name_ko, drug_class, full_data)
                     VALUES (%s, %s, %s, %s)
-                    ON CONFLICT (drug_id) DO UPDATE
-                    SET name_ko = EXCLUDED.name_ko,
-                        drug_class = EXCLUDED.drug_class,
-                        full_data = EXCLUDED.full_data;
                 """, (drug_id, name_ko, drug_class, json.dumps(drug, ensure_ascii=False)))
                 inserted_count += 1
 
             print(f"✅ 처리 완료: {file_path}")
 
         conn.commit()
-        print(f"🎉 완료: 파일 {file_count}개 처리, 레코드 {inserted_count}건 upsert, {skipped_count}건 건너뜀")
+        print(f"🎉 완료: 파일 {file_count}개 처리, 레코드 {inserted_count}건 insert, {skipped_count}건 건너뜀")
 
     except Exception as error:
         print(f"❌ 오류가 발생했습니다: {error}")
