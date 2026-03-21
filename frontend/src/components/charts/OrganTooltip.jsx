@@ -57,17 +57,6 @@ export default function OrganTooltip({ organ, data, position, containerRef, cont
           </p>
         )}
 
-        {/* Keywords */}
-        {data.keywords?.length > 0 && (
-          <div className="flex flex-wrap gap-1 mb-1.5">
-            {data.keywords.map((kw, i) => (
-              <span key={i} className="text-[9px] px-1.5 py-0.5 bg-amber-50 text-amber-700 border border-amber-200 rounded-full">
-                {kw}
-              </span>
-            ))}
-          </div>
-        )}
-
         {/* Hint to click */}
         {drugCount > 0 && (
           <p className="text-[9px] text-slate-400 text-center pt-1 border-t border-slate-100">

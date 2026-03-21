@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { Maximize2 } from 'lucide-react';
+import { Maximize2, Info } from 'lucide-react';
 import { isMdr1SensitiveBreed } from './organBurdenAggregator';
 import { useI18n } from '../../i18n';
 import {
@@ -29,6 +29,7 @@ export default function AnatomyDiagram({
   const [imageFailed, setImageFailed] = useState(false);
   const [islandOpen, setIslandOpen] = useState(false);
   const [islandOrgan, setIslandOrgan] = useState(null);
+  const [showHeaderInfo, setShowHeaderInfo] = useState(false);
   const containerRef = useRef(null);
   const { t, lang } = useI18n();
   const anatomyConfig = species === 'cat' ? ANATOMY_IMAGE_CONFIG.cat : ANATOMY_IMAGE_CONFIG.dog;
@@ -78,9 +79,25 @@ export default function AnatomyDiagram({
       {/* Header */}
       <div className="mb-2">
         <div className="flex items-center justify-between">
-          <h3 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-            {t.anatomy?.organInvolvement || '장기 관여도'}
-          </h3>
+          <div className="relative flex items-center gap-1">
+            <h3 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">
+              {t.anatomy?.organInvolvement || '장기 관여도'}
+            </h3>
+            <button
+              className="text-slate-400 hover:text-slate-600"
+              onClick={() => setShowHeaderInfo(!showHeaderInfo)}
+            >
+              <Info size={11} />
+            </button>
+            {showHeaderInfo && (
+              <div className="absolute z-40 left-0 top-5 w-60 bg-white border border-slate-200 rounded-lg shadow-lg p-2.5 text-[10px] text-slate-600 leading-relaxed">
+                <button onClick={() => setShowHeaderInfo(false)} className="absolute top-1 right-1.5 text-slate-400 hover:text-slate-600 text-xs">&times;</button>
+                {lang === 'ko'
+                  ? '이 다이어그램은 처방된 약물이 어떤 장기에서 대사/배설되는지 보여줍니다. 블루 색상이 진할수록 해당 장기에 대한 약물 부하가 높습니다.'
+                  : 'This diagram shows which organs metabolize/eliminate the prescribed drugs. Darker blue = higher drug burden on that organ.'}
+              </div>
+            )}
+          </div>
           <div className="flex items-center gap-2">
             <span className="text-[10px] text-slate-400">
               {species === 'dog' ? '🐕' : '🐈'} {species === 'dog' ? t.species.dog : t.species.cat}

@@ -51,7 +51,7 @@ export const ANATOMY_IMAGE_CONFIG = {
       heart:  { x: 105, y: 230, organCx: 148, organCy: 180 },
       liver:  { x: 280, y: 230, organCx: 222, organCy: 192 },
       kidney: { x: 340, y: 160, organCx: 286, organCy: 190 },
-      blood:  { x: 390, y: 218, organCx: 346, organCy: 160 },
+      blood:  { x: 430, y: 265, organCx: 380, organCy: 172 },
     },
   },
   cat: {
@@ -65,14 +65,14 @@ export const ANATOMY_IMAGE_CONFIG = {
       heart:  { type: 'path', d: 'M 112 96 C 116 89, 126 88, 131 95 C 134 99, 134 105, 132 110 C 129 116, 124 119, 118 120 C 113 120, 108 116, 106 110 C 104 105, 106 99, 112 96 Z' },
       liver:  { type: 'path', d: 'M 149 100 C 163 93, 183 93, 196 99 C 201 102, 203 108, 200 114 C 196 121, 185 125, 174 126 C 163 126, 153 122, 148 116 C 143 111, 143 105, 149 100 Z' },
       kidney: { type: 'path', d: 'M 213 98 C 219 93, 227 92, 234 95 C 240 98, 244 104, 244 110 C 244 117, 240 122, 234 125 C 228 128, 219 127, 213 123 C 208 119, 205 113, 206 107 C 207 102, 209 99, 213 98 Z' },
-      blood:  { type: 'line', d: 'M 74 49 C 85 51, 94 56, 101 64 C 113 76, 138 82, 168 84 C 198 86, 226 88, 253 92 C 276 95, 295 101, 312 112', strokeWidth: 7, hitWidth: 20 },
+      blood:  { type: 'line', d: 'M 74 49 C 85 51, 94 56, 101 64 C 113 76, 138 82, 168 84 C 198 86, 226 88, 253 92 C 270 94, 283 98, 295 104', strokeWidth: 7, hitWidth: 20 },
     },
     labelAnchors: {
       brain:  { x: 40,  y: 25,  organCx: 69,  organCy: 48 },
       heart:  { x: 82,  y: 140, organCx: 118, organCy: 106 },
       liver:  { x: 210, y: 142, organCx: 174, organCy: 112 },
       kidney: { x: 270, y: 88,  organCx: 228, organCy: 110 },
-      blood:  { x: 296, y: 134, organCx: 246, organCy: 102 },
+      blood:  { x: 320, y: 160, organCx: 260, organCy: 92 },
     },
   },
 };
