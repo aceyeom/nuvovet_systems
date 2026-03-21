@@ -122,7 +122,7 @@ export function OrganLoadIndicator({ drugs = [], patientInfo, species = 'dog' })
         <div className="flex items-center gap-2">
           <Activity size={14} className={renalRisk.text} />
           <span className="text-[12px] font-semibold text-slate-700 uppercase tracking-wider">
-            {t.results.cumulativeOrganLoad}
+            {t.anatomy?.eliminationNotes || t.results.cumulativeOrganLoad || '배설 경로 및 주의사항'}
           </span>
           {isCritical && (
             <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-red-700 bg-red-100 px-2 py-0.5 rounded-full border border-red-200">

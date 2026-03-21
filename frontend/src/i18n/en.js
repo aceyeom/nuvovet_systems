@@ -558,12 +558,25 @@ const en = {
   // ── Anatomy Diagram ────────────────────────────────────────────
   anatomy: {
     organInvolvement: 'Organ Involvement',
-    addDrugsPrompt: 'Add drugs to see organ involvement',
+    monitoringPriorities: 'Monitoring Priorities',
+    monitoringSubtitle: 'Monitoring recommendations by organ based on prescribed drugs',
+    addDrugsPrompt: 'Add drugs to see monitoring priorities',
     contributingDrugs: 'Contributing drugs',
     triggeredEffects: 'Triggered effects',
     evidence: 'Evidence',
     noDose: '(no dose)',
     singleDrug: 'Single drug',
+    recommendedAction: 'Recommended Action',
+    showAllOrgans: 'Show all organs',
+    hideRoutine: 'Hide routine',
+    expandDetails: 'View details',
+    eliminationNotes: 'Elimination & Monitoring Notes',
+    monitoringChecklist: 'Monitoring Checklist',
+    drugsInvolved: 'Drugs involved',
+    closeModal: 'Close',
+    organDetail: 'Organ Detail',
+    fullEvidence: 'Full Evidence',
+    noActionNeeded: 'No specific monitoring needed at this level',
   },
 
   // ── Landing Scroll Panels ──────────────────────────────────────
