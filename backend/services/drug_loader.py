@@ -1,13 +1,16 @@
 """
-Drug database loader — reads drug records from PostgreSQL and builds
-a search index for fast lookups by name, ingredient, or brand.
+Drug database loader — reads drug records from PostgreSQL (production) or
+local JSONL files (fallback for dev) and builds a search index.
 """
 
+import json
 import logging
 import os
+from pathlib import Path
 from typing import Optional, Dict, List, Any
 
 import psycopg2
+from psycopg2 import errors as pg_errors
 
 logger = logging.getLogger("nuvovet")
 
@@ -40,6 +43,40 @@ def _normalize_drug_record(drug_id: str, full_data: Any) -> Optional[Dict[str, A
     return data
 
 
+def _load_from_local_jsonl() -> Dict[str, Any]:
+    """Fall back to local JSONL files under data/converted/ when PostgreSQL
+    drugs table is not available (local dev environment)."""
+    drugs: Dict[str, Any] = {}
+    data_dir = Path(__file__).parent.parent / "data" / "converted"
+    if not data_dir.exists():
+        logger.warning("Local drug data directory not found: %s", data_dir)
+        return drugs
+
+    loaded = 0
+    skipped = 0
+    for jsonl_file in sorted(data_dir.rglob("*.jsonl")):
+        try:
+            raw = jsonl_file.read_text(encoding="utf-8").strip()
+            if not raw:
+                continue
+            record = json.loads(raw)
+            if not isinstance(record, dict):
+                skipped += 1
+                continue
+            drug_id = record.get("id") or jsonl_file.stem
+            record.setdefault("id", drug_id)
+            drugs[drug_id] = record
+            loaded += 1
+        except Exception as exc:
+            logger.debug("Skipping %s: %s", jsonl_file.name, exc)
+            skipped += 1
+
+    logger.info(
+        "Loaded %d drugs from local JSONL files (%d skipped)", loaded, skipped
+    )
+    return drugs
+
+
 def _load_all_drugs() -> Dict[str, Any]:
     drugs: Dict[str, Any] = {}
     loaded = 0
@@ -57,12 +94,19 @@ def _load_all_drugs() -> Dict[str, Any]:
                         continue
                     drugs[record["id"]] = record
                     loaded += 1
+        logger.info(f"Loaded {loaded} drugs from PostgreSQL ({skipped} skipped)")
+        return drugs
+    except pg_errors.UndefinedTable:
+        logger.warning(
+            "PostgreSQL 'drugs' table not found — falling back to local JSONL files."
+        )
+        return _load_from_local_jsonl()
     except Exception as error:
-        logger.exception("Failed to load drugs from PostgreSQL: %s", error)
-        raise
-
-    logger.info(f"Loaded {loaded} drugs ({skipped} skipped)")
-    return drugs
+        logger.warning(
+            "Failed to load drugs from PostgreSQL (%s) — falling back to local JSONL files.",
+            error,
+        )
+        return _load_from_local_jsonl()
 
 
 def _build_search_index(db: Dict[str, Any]) -> List[Dict[str, Any]]:
