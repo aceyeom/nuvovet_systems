@@ -10,6 +10,7 @@ import Pricing from './pages/Pricing';
 import Account from './pages/Account';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
+import Register from './pages/Register';
 
 // Protect /system — redirect to /system with login if unauthenticated
 function ProtectedRoute({ children }) {
@@ -41,6 +42,7 @@ function AppRoutes() {
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/account" element={<Navigate to="/dashboard" replace />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
   );
 }

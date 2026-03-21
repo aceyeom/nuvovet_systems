@@ -20,6 +20,7 @@ export function AuthProvider({ children }) {
     const userPayload = {
       username: data.username,
       plan: data.plan || 'free',
+      plan_status: data.plan_status || 'trial_not_started',
       account_valid_until: data.account_valid_until || null,
     };
     setToken(data.access_token);
@@ -56,6 +57,7 @@ export function AuthProvider({ children }) {
           setUser({
             username: data.username,
             plan: data.plan || 'free',
+            plan_status: data.plan_status || 'trial_not_started',
             account_valid_until: data.account_valid_until || null,
           });
           setToken(storedToken);
@@ -69,12 +71,12 @@ export function AuthProvider({ children }) {
       .finally(() => setLoading(false));
   }, [_clearAuth]);
 
-  const login = useCallback(async (username, password) => {
+  const login = useCallback(async (email, password) => {
     try {
       const res = await fetch(`${BASE_URL}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ username: email, password }),
       });
       const data = await res.json();
       if (!res.ok) return { ok: false, error: data.detail || 'Login failed' };
@@ -85,12 +87,12 @@ export function AuthProvider({ children }) {
     }
   }, [_setAuth]);
 
-  const signup = useCallback(async (username, password) => {
+  const signup = useCallback(async (email, password) => {
     try {
       const res = await fetch(`${BASE_URL}/api/auth/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ username: email, password }),
       });
       const data = await res.json();
       if (!res.ok) return { ok: false, error: data.detail || 'Sign up failed' };
@@ -105,8 +107,29 @@ export function AuthProvider({ children }) {
     _clearAuth();
   }, [_clearAuth]);
 
+  const startTrial = useCallback(async () => {
+    try {
+      const res = await fetch(`${BASE_URL}/api/auth/start-trial`, {
+        method: 'POST',
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+      });
+      const data = await res.json();
+      if (!res.ok) return { ok: false, error: data.detail || 'Could not start trial' };
+
+      setUser((prev) => ({
+        ...(prev || {}),
+        plan: data.plan || prev?.plan || 'free',
+        plan_status: data.plan_status || prev?.plan_status || 'active',
+        account_valid_until: data.account_valid_until || prev?.account_valid_until || null,
+      }));
+      return { ok: true };
+    } catch {
+      return { ok: false, error: 'Network error — check your connection' };
+    }
+  }, [token]);
+
   return (
-    <AuthContext.Provider value={{ user, token, loading, login, logout, signup, isAuthenticated: !!user }}>
+    <AuthContext.Provider value={{ user, token, loading, login, logout, signup, startTrial, isAuthenticated: !!user }}>
       {children}
     </AuthContext.Provider>
   );

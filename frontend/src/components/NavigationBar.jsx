@@ -149,7 +149,7 @@ export default function NavigationBar() {
               </button>
               <button
                 type="button"
-                onClick={() => navigate('/pricing')}
+                onClick={() => navigate(`/register?redirect=${encodeURIComponent(location.pathname)}`)}
                 className="rounded-lg bg-slate-900 px-3 py-2 text-[13px] font-semibold text-white transition-colors hover:bg-slate-800"
               >
                 {lang === 'ko' ? '회원가입' : 'Sign up'}

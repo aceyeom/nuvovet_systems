@@ -104,7 +104,7 @@ export function TopBarControls({ className = '' }) {
           </button>
           <button
             type="button"
-            onClick={() => navigate('/pricing')}
+            onClick={() => navigate(`/register?redirect=${encodeURIComponent(location.pathname)}`)}
             className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
           >
             {lang === 'ko' ? '회원가입' : 'Sign up'}

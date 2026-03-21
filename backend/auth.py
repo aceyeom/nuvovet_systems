@@ -8,6 +8,7 @@ Patient records are stored per account in PostgreSQL as well.
 
 import logging
 import os
+import re
 import uuid
 from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, List, Optional
@@ -30,6 +31,7 @@ SECRET_KEY = os.environ.get(
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_DAYS = 7
 FREE_PLAN_DAYS = 30
+EMAIL_REGEX = re.compile(r"^[^\s@]+@[^\s@]+\.[^\s@]+$")
 
 # ── JWT bearer ────────────────────────────────────────────────────
 security = HTTPBearer(auto_error=False)
@@ -64,6 +66,10 @@ def _normalize_username(username: str) -> str:
     return (username or "").strip().lower()
 
 
+def _is_valid_email(value: str) -> bool:
+    return bool(EMAIL_REGEX.match(value or ""))
+
+
 def init_db() -> None:
     """Initialize account/patient tables and seed a default admin account."""
     db_url = _get_db_url()
@@ -77,11 +83,34 @@ def init_db() -> None:
                     username TEXT UNIQUE NOT NULL,
                     password_hash TEXT NOT NULL,
                     plan_tier TEXT NOT NULL DEFAULT 'free',
-                    plan_status TEXT NOT NULL DEFAULT 'active',
+                    plan_status TEXT NOT NULL DEFAULT 'trial_not_started',
                     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-                    trial_ends_at TIMESTAMPTZ NOT NULL,
+                    trial_starts_at TIMESTAMPTZ,
+                    trial_ends_at TIMESTAMPTZ,
                     account_data JSONB NOT NULL DEFAULT '{}'::jsonb
                 )
+                """
+            )
+            cur.execute(
+                """
+                ALTER TABLE accounts
+                ADD COLUMN IF NOT EXISTS trial_starts_at TIMESTAMPTZ
+                """
+            )
+            cur.execute(
+                """
+                ALTER TABLE accounts
+                ALTER COLUMN trial_ends_at DROP NOT NULL
+                """
+            )
+            cur.execute(
+                """
+                UPDATE accounts
+                SET username = 'admin@nuvovet.local'
+                WHERE username = 'admin'
+                  AND NOT EXISTS (
+                    SELECT 1 FROM accounts a2 WHERE a2.username = 'admin@nuvovet.local'
+                  )
                 """
             )
             cur.execute(
@@ -105,7 +134,7 @@ def init_db() -> None:
 
             cur.execute(
                 "SELECT id FROM accounts WHERE username = %s",
-                ("admin",),
+                ("admin@nuvovet.local",),
             )
             admin = cur.fetchone()
             if admin is None:
@@ -114,20 +143,21 @@ def init_db() -> None:
                 cur.execute(
                     """
                     INSERT INTO accounts (
-                        id, username, password_hash, plan_tier, plan_status, created_at, trial_ends_at
-                    ) VALUES (%s, %s, %s, %s, %s, %s, %s)
+                        id, username, password_hash, plan_tier, plan_status, created_at, trial_starts_at, trial_ends_at
+                    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
                     """,
                     (
                         str(uuid.uuid4()),
-                        "admin",
+                        "admin@nuvovet.local",
                         bcrypt.hashpw(b"admin", bcrypt.gensalt(12)).decode(),
                         "free",
                         "active",
                         now,
+                        now,
                         trial_end,
                     ),
                 )
-                logger.info("Seeded default admin account (username: admin, password: admin)")
+                logger.info("Seeded default admin account (email: admin@nuvovet.local, password: admin)")
 
 
 # ── Pydantic models ───────────────────────────────────────────────
@@ -147,6 +177,7 @@ class TokenResponse(BaseModel):
     token_type: str = "bearer"
     username: str
     plan: str = "free"
+    plan_status: str = "trial_not_started"
     account_valid_until: str
 
 
@@ -223,7 +254,7 @@ def _fetch_account_by_id(account_id: str) -> Optional[Dict[str, Any]]:
         with conn.cursor() as cur:
             cur.execute(
                 """
-                SELECT id, username, plan_tier, plan_status, created_at, trial_ends_at
+                SELECT id, username, plan_tier, plan_status, created_at, trial_starts_at, trial_ends_at
                 FROM accounts
                 WHERE id = %s
                 """,
@@ -238,15 +269,22 @@ def _fetch_account_by_id(account_id: str) -> Optional[Dict[str, Any]]:
                 "plan_tier": row[2],
                 "plan_status": row[3],
                 "created_at": row[4],
-                "trial_ends_at": row[5],
+                "trial_starts_at": row[5],
+                "trial_ends_at": row[6],
             }
 
 
 def _is_trial_active(account: Dict[str, Any]) -> bool:
-    return _utcnow() <= account["trial_ends_at"]
+    trial_end = account.get("trial_ends_at")
+    if trial_end is None:
+        return False
+    return _utcnow() <= trial_end
 
 
 def _ensure_active_account(account: Dict[str, Any]) -> None:
+    plan_status = account.get("plan_status")
+    if plan_status == "trial_not_started":
+        return
     if _is_trial_active(account):
         return
     db_url = _get_db_url()
@@ -269,7 +307,7 @@ def _serialize_account(account: Dict[str, Any]) -> Dict[str, Any]:
         "plan": account["plan_tier"],
         "plan_status": account["plan_status"],
         "created_at": _dt_to_iso(account["created_at"]),
-        "account_valid_until": _dt_to_iso(account["trial_ends_at"]),
+        "account_valid_until": _dt_to_iso(account["trial_ends_at"]) if account.get("trial_ends_at") else "",
     }
 
 
@@ -324,7 +362,9 @@ router = APIRouter(prefix="/api/auth", tags=["auth"])
 def login(req: LoginRequest):
     username = _normalize_username(req.username)
     if not username or not req.password:
-        raise HTTPException(status_code=400, detail="Username and password are required")
+        raise HTTPException(status_code=400, detail="Email and password are required")
+    if not _is_valid_email(username):
+        raise HTTPException(status_code=400, detail="Please enter a valid email address")
 
     account = _fetch_account_by_username(username)
     if not account or not bcrypt.checkpw(req.password.encode(), account["password_hash"].encode()):
@@ -336,7 +376,8 @@ def login(req: LoginRequest):
         access_token=token,
         username=account["username"],
         plan=account["plan_tier"],
-        account_valid_until=_dt_to_iso(account["trial_ends_at"]),
+        plan_status=account["plan_status"],
+        account_valid_until=_dt_to_iso(account["trial_ends_at"]) if account.get("trial_ends_at") else "",
     )
 
 
@@ -344,9 +385,9 @@ def login(req: LoginRequest):
 def signup(req: SignupRequest):
     username = _normalize_username(req.username)
     if not username:
-        raise HTTPException(status_code=400, detail="Username is required")
-    if len(username) < 3:
-        raise HTTPException(status_code=400, detail="Username must be at least 3 characters")
+        raise HTTPException(status_code=400, detail="Email is required")
+    if not _is_valid_email(username):
+        raise HTTPException(status_code=400, detail="Please enter a valid email address")
     if not req.password or len(req.password) < 6:
         raise HTTPException(status_code=400, detail="Password must be at least 6 characters")
 
@@ -354,7 +395,6 @@ def signup(req: SignupRequest):
         raise HTTPException(status_code=409, detail="Username already exists")
 
     now = _utcnow()
-    trial_end = now + timedelta(days=FREE_PLAN_DAYS)
     account_id = str(uuid.uuid4())
     password_hash = bcrypt.hashpw(req.password.encode(), bcrypt.gensalt(12)).decode()
 
@@ -364,10 +404,10 @@ def signup(req: SignupRequest):
             cur.execute(
                 """
                 INSERT INTO accounts (
-                    id, username, password_hash, plan_tier, plan_status, created_at, trial_ends_at
-                ) VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    id, username, password_hash, plan_tier, plan_status, created_at, trial_starts_at, trial_ends_at
+                ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
                 """,
-                (account_id, username, password_hash, "free", "active", now, trial_end),
+                (account_id, username, password_hash, "free", "trial_not_started", now, None, None),
             )
 
     token = create_access_token(account_id, username)
@@ -375,7 +415,8 @@ def signup(req: SignupRequest):
         access_token=token,
         username=username,
         plan="free",
-        account_valid_until=_dt_to_iso(trial_end),
+        plan_status="trial_not_started",
+        account_valid_until="",
     )
 
 
@@ -386,7 +427,43 @@ def get_me(account: Dict[str, Any] = Depends(get_current_user)):
         "authenticated": True,
         "plan": account["plan_tier"],
         "plan_status": account["plan_status"],
-        "account_valid_until": _dt_to_iso(account["trial_ends_at"]),
+        "account_valid_until": _dt_to_iso(account["trial_ends_at"]) if account.get("trial_ends_at") else "",
+    }
+
+
+@router.post("/start-trial")
+def start_free_trial(account: Dict[str, Any] = Depends(get_current_user)):
+    if account.get("plan_tier") != "free":
+        raise HTTPException(status_code=400, detail="Only free plan accounts can start the free trial")
+    if account.get("plan_status") == "active" and _is_trial_active(account):
+        return {
+            "ok": True,
+            "plan": account["plan_tier"],
+            "plan_status": account["plan_status"],
+            "account_valid_until": _dt_to_iso(account["trial_ends_at"]) if account.get("trial_ends_at") else "",
+        }
+    if account.get("plan_status") == "expired" or account.get("trial_starts_at"):
+        raise HTTPException(status_code=409, detail="Free trial has already been used for this account")
+
+    now = _utcnow()
+    trial_end = now + timedelta(days=FREE_PLAN_DAYS)
+    db_url = _get_db_url()
+    with psycopg2.connect(db_url) as conn:
+        with conn.cursor() as cur:
+            cur.execute(
+                """
+                UPDATE accounts
+                SET plan_status = 'active', trial_starts_at = %s, trial_ends_at = %s
+                WHERE id = %s
+                """,
+                (now, trial_end, account["id"]),
+            )
+
+    return {
+        "ok": True,
+        "plan": "free",
+        "plan_status": "active",
+        "account_valid_until": _dt_to_iso(trial_end),
     }
 
 

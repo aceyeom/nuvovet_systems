@@ -4,6 +4,7 @@ import { Check, X, ChevronDown, ChevronUp, Star } from 'lucide-react';
 import { NuvovetWordmark } from '../components/NuvovetLogo';
 import { useI18n } from '../i18n';
 import { TopBarControls } from '../components/TopBarControls';
+import { useAuth } from '../context/AuthContext';
 
 // ── Coming Soon Modal ───────────────────────────────────────────
 function ComingSoonModal({ type, onClose }) {
@@ -143,7 +144,12 @@ function PlanCard({ plan, onCTA, recommended }) {
 export default function Pricing() {
   const navigate = useNavigate();
   const { lang } = useI18n();
+  const { isAuthenticated, user, startTrial } = useAuth();
   const [modal, setModal] = useState(null); // 'google' | 'payment' | null
+  const [trialError, setTrialError] = useState('');
+
+  const isTrialNotStarted = isAuthenticated && user?.plan === 'free' && user?.plan_status === 'trial_not_started';
+  const isTrialActive = isAuthenticated && user?.plan === 'free' && user?.plan_status === 'active';
 
   const plans = [
     {
@@ -156,12 +162,16 @@ export default function Pricing() {
         { text: lang === 'ko' ? '1개월 무료 이용' : 'One month free', included: true },
         { text: lang === 'ko' ? '핵심 DUR 검사' : 'Core DUR check', included: true },
         { text: lang === 'ko' ? '환자 저장 제한' : 'Limited patient saves', included: true },
-        { text: lang === 'ko' ? 'Google 계정 로그인 필요' : 'Requires Google account login', included: true },
+        { text: lang === 'ko' ? '계정 로그인 필요' : 'Requires account login', included: true },
         { text: lang === 'ko' ? '전체 DUR 엔진 제외' : 'Full DUR engine', included: false },
         { text: lang === 'ko' ? 'EMR 스크린샷 불포함' : 'EMR screenshot import', included: false },
       ],
-      cta: 'Google로 시작하기 / Start with Google',
-      ctaType: 'google',
+      cta: isTrialNotStarted
+        ? (lang === 'ko' ? '무료 체험 시작 / Start Trial' : 'Start Trial')
+        : isTrialActive
+        ? (lang === 'ko' ? '체험 진행 중 / Trial Active' : 'Trial Active')
+        : (lang === 'ko' ? '계정 만들기 / Create Account' : 'Create Account'),
+      ctaType: isTrialNotStarted ? 'start_trial' : isTrialActive ? 'active_trial' : 'register',
       muted: false,
     },
     {
@@ -206,8 +216,8 @@ export default function Pricing() {
     {
       question: lang === 'ko' ? '환자 데이터는 안전하게 저장되나요?' : 'Is patient data stored securely?',
       answer: lang === 'ko'
-        ? '환자 데이터는 현재 브라우저의 로컬 저장소에 저장되며, 외부 서버로 전송되지 않습니다. 향후 클라우드 동기화 기능이 추가될 예정입니다.'
-        : 'Patient data is currently stored in your browser\'s local storage and is not transmitted to external servers. Cloud sync is planned for a future update.',
+        ? '환자 데이터는 계정별로 서버 데이터베이스에 저장되며 인증 토큰으로 보호됩니다.'
+        : 'Patient data is stored per account in the server database and protected with authenticated access.',
     },
     {
       question: lang === 'ko' ? '한 계정으로 여러 수의사가 사용할 수 있나요?' : 'Can multiple vets use one account?',
@@ -218,8 +228,24 @@ export default function Pricing() {
   ];
 
   const handleCTA = (plan) => {
-    if (plan.ctaType === 'google') setModal('google');
-    else if (plan.ctaType === 'payment') setModal('payment');
+    setTrialError('');
+    if (!isAuthenticated) {
+      navigate(`/register?redirect=${encodeURIComponent('/pricing')}`);
+      return;
+    }
+
+    if (plan.ctaType === 'start_trial') {
+      startTrial().then((result) => {
+        if (!result.ok) {
+          setTrialError(result.error || (lang === 'ko' ? '무료 체험 시작에 실패했습니다.' : 'Could not start trial.'));
+        }
+      });
+    } else if (plan.ctaType === 'active_trial') {
+      return;
+    } else if (plan.ctaType === 'payment') setModal('payment');
+    else if (plan.ctaType === 'register') {
+      navigate(`/register?redirect=${encodeURIComponent('/pricing')}`);
+    }
     else if (plan.ctaType === 'contact') {
       window.location.href = 'mailto:contact@nuvovet.com';
     }
@@ -256,6 +282,11 @@ export default function Pricing() {
         </div>
 
         {/* Plan cards */}
+        {trialError && (
+          <div className="mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+            {trialError}
+          </div>
+        )}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch mb-20 pt-5">
           {plans.map((plan, i) => (
             <PlanCard
