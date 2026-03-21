@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { getBurdenLevel, isMdr1SensitiveBreed } from './organBurdenAggregator';
+import { Maximize2 } from 'lucide-react';
+import { isMdr1SensitiveBreed } from './organBurdenAggregator';
 import { useI18n } from '../../i18n';
 import {
   ORGAN_LABELS,
@@ -9,10 +10,10 @@ import {
   getSectionFill,
   getSectionStroke,
 } from './anatomyConstants';
-import { getOrganLoads, getRenalRisk, getHepaticRisk } from './anatomyEliminationCalc';
+import { getOrganLoads } from './anatomyEliminationCalc';
 import OrganTooltip from './OrganTooltip';
 import OrganChecklist from './OrganChecklist';
-import EliminationRoutePanel from './EliminationRoutePanel';
+import OrganIslandOverlay from './OrganIslandOverlay';
 
 export default function AnatomyDiagram({
   species,
@@ -26,6 +27,8 @@ export default function AnatomyDiagram({
   const [hoveredOrgan, setHoveredOrgan] = useState(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
   const [imageFailed, setImageFailed] = useState(false);
+  const [islandOpen, setIslandOpen] = useState(false);
+  const [islandOrgan, setIslandOrgan] = useState(null);
   const containerRef = useRef(null);
   const { t, lang } = useI18n();
   const anatomyConfig = species === 'cat' ? ANATOMY_IMAGE_CONFIG.cat : ANATOMY_IMAGE_CONFIG.dog;
@@ -38,19 +41,10 @@ export default function AnatomyDiagram({
   );
 
   // Elimination pathway data
-  const { renal, hepatic, contributions } = drugs.length > 0
+  const { contributions } = drugs.length > 0
     ? getOrganLoads(drugs, species)
-    : { renal: 0, hepatic: 0, contributions: [] };
+    : { contributions: [] };
 
-  const elevatedCreatinine = patientInfo?.flaggedLabs?.some(
-    (lab) =>
-      (lab.key?.toLowerCase().includes('creatinine') || lab.key?.toLowerCase().includes('bun')) &&
-      lab.status === 'high',
-  );
-
-  const renalRisk = getRenalRisk(renal, elevatedCreatinine);
-  const hepaticRisk = getHepaticRisk(hepatic);
-  const isCritical = renalRisk.level === 'critical';
   const isContraindicated = overallRisk === 'contraindicated';
 
   const handleMouseEnter = useCallback((organ, e) => {
@@ -66,6 +60,11 @@ export default function AnatomyDiagram({
     setHoveredOrgan(null);
   }, []);
 
+  const handleOrganClick = useCallback((organ) => {
+    setIslandOrgan(organ);
+    setIslandOpen(true);
+  }, []);
+
   useEffect(() => {
     setImageFailed(false);
   }, [species]);
@@ -76,22 +75,35 @@ export default function AnatomyDiagram({
 
   return (
     <div ref={containerRef} className="select-none">
-      {/* Header — reframed as monitoring priorities */}
+      {/* Header */}
       <div className="mb-2">
         <div className="flex items-center justify-between">
           <h3 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-            {t.anatomy?.monitoringPriorities || '모니터링 권고'}
+            {t.anatomy?.organInvolvement || '장기 관여도'}
           </h3>
-          <span className="text-[10px] text-slate-400">
-            {species === 'dog' ? '🐕' : '🐈'} {species === 'dog' ? t.species.dog : t.species.cat}
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] text-slate-400">
+              {species === 'dog' ? '🐕' : '🐈'} {species === 'dog' ? t.species.dog : t.species.cat}
+            </span>
+            {hasData && (
+              <button
+                onClick={() => { setIslandOrgan(null); setIslandOpen(true); }}
+                className="p-1 rounded hover:bg-slate-100 transition-colors"
+                title={lang === 'ko' ? '확대 보기' : 'Expand view'}
+              >
+                <Maximize2 size={12} className="text-slate-400" />
+              </button>
+            )}
+          </div>
         </div>
         <p className="text-[9px] text-slate-400 mt-0.5">
-          {t.anatomy?.monitoringSubtitle || '처방 약물의 장기별 모니터링 권고사항'}
+          {lang === 'ko'
+            ? '약물이 대사되는 장기를 표시합니다'
+            : 'Shows which organs are processing your prescribed drugs'}
         </p>
       </div>
 
-      {/* SVG heatmap diagram */}
+      {/* SVG diagram */}
       <div className="relative bg-slate-50 rounded-lg border border-slate-100 p-2 mb-2">
         <svg
           className="w-full max-h-[220px] rounded-md bg-slate-100"
@@ -127,62 +139,37 @@ export default function AnatomyDiagram({
             if (section.type === 'line') {
               return (
                 <g key={`section-${organ}`}>
-                  <path
-                    d={section.d}
-                    fill="none"
-                    stroke={fill}
-                    strokeWidth={section.strokeWidth}
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="organ-section"
-                    opacity={0.7}
-                  />
-                  <path
-                    d={section.d}
-                    fill="none"
+                  <path d={section.d} fill="none" stroke={fill}
+                    strokeWidth={section.strokeWidth} strokeLinecap="round"
+                    strokeLinejoin="round" className="organ-section" opacity={0.7} />
+                  <path d={section.d} fill="none"
                     stroke={showRedOutline ? '#dc2626' : (hovered ? '#1e293b' : '#475569')}
-                    strokeWidth={hovered ? 2 : 1.2}
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeDasharray={score == null ? '6 4' : undefined}
-                    opacity={0.6}
-                    pointerEvents="none"
-                  />
-                  <path
-                    d={section.d}
-                    fill="none"
-                    stroke="transparent"
-                    strokeWidth={section.hitWidth}
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="organ-region"
+                    strokeWidth={hovered ? 2 : 1.2} strokeLinecap="round"
+                    strokeLinejoin="round" strokeDasharray={score == null ? '6 4' : undefined}
+                    opacity={0.6} pointerEvents="none" />
+                  <path d={section.d} fill="none" stroke="transparent"
+                    strokeWidth={section.hitWidth} strokeLinecap="round"
+                    strokeLinejoin="round" className="organ-region cursor-pointer"
                     onMouseEnter={(e) => handleMouseEnter(organ, e)}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
-                  />
+                    onClick={() => handleOrganClick(organ)} />
                 </g>
               );
             }
 
             return (
               <g key={`section-${organ}`}>
-                <path
-                  d={section.d}
-                  fill={fill}
-                  stroke={finalStroke}
-                  strokeWidth={finalStrokeWidth}
-                  strokeLinejoin="round"
+                <path d={section.d} fill={fill} stroke={finalStroke}
+                  strokeWidth={finalStrokeWidth} strokeLinejoin="round"
                   strokeDasharray={score == null ? '4 3' : undefined}
-                  className="organ-section"
-                />
-                <path
-                  d={section.d}
-                  fill="transparent"
-                  className="organ-region"
+                  className="organ-section" />
+                <path d={section.d} fill="transparent"
+                  className="organ-region cursor-pointer"
                   onMouseEnter={(e) => handleMouseEnter(organ, e)}
                   onMouseMove={handleMouseMove}
                   onMouseLeave={handleMouseLeave}
-                />
+                  onClick={() => handleOrganClick(organ)} />
               </g>
             );
           })}
@@ -201,17 +188,12 @@ export default function AnatomyDiagram({
                 y={anatomyConfig.mdr1.y * anatomyConfig.height - anatomyConfig.height * 0.13}
                 width={anatomyConfig.width * 0.09}
                 height={anatomyConfig.height * 0.05}
-                rx="3"
-                fill="#f59e0b"
-                opacity="0.92"
+                rx="3" fill="#f59e0b" opacity="0.92"
               />
               <text
                 x={anatomyConfig.mdr1.x * anatomyConfig.width}
                 y={anatomyConfig.mdr1.y * anatomyConfig.height - anatomyConfig.height * 0.095}
-                textAnchor="middle"
-                fill="white"
-                fontSize="8"
-                fontWeight="700"
+                textAnchor="middle" fill="white" fontSize="8" fontWeight="700"
               >
                 MDR1
               </text>
@@ -227,36 +209,18 @@ export default function AnatomyDiagram({
 
             return (
               <g key={`label-${organ}`} pointerEvents="none">
-                <line
-                  x1={anchor.organCx}
-                  y1={anchor.organCy}
-                  x2={anchor.x}
-                  y2={anchor.y}
-                  stroke={hovered ? '#334155' : '#94a3b8'}
-                  strokeWidth="1.6"
-                  strokeDasharray="3 2"
-                  opacity={hovered ? 0.9 : 0.65}
-                />
-                <circle
-                  cx={anchor.organCx}
-                  cy={anchor.organCy}
-                  r="3"
-                  fill={hovered ? '#334155' : '#94a3b8'}
-                  opacity={hovered ? 0.9 : 0.65}
-                />
-                <text
-                  x={anchor.x}
-                  y={anchor.y}
+                <line x1={anchor.organCx} y1={anchor.organCy} x2={anchor.x} y2={anchor.y}
+                  stroke={hovered ? '#334155' : '#94a3b8'} strokeWidth="1.6"
+                  strokeDasharray="3 2" opacity={hovered ? 0.9 : 0.65} />
+                <circle cx={anchor.organCx} cy={anchor.organCy} r="3"
+                  fill={hovered ? '#334155' : '#94a3b8'} opacity={hovered ? 0.9 : 0.65} />
+                <text x={anchor.x} y={anchor.y}
                   textAnchor={anchor.x < anatomyConfig.width / 2 ? 'end' : 'start'}
                   fill={hovered ? '#0f172a' : '#475569'}
-                  fontSize={hovered ? '14' : '12.5'}
-                  fontWeight="700"
+                  fontSize={hovered ? '14' : '12.5'} fontWeight="700"
                   fontFamily="system-ui, -apple-system, sans-serif"
-                  stroke="rgba(255,255,255,0.92)"
-                  strokeWidth="2.5"
-                  paintOrder="stroke"
-                  letterSpacing="0.2"
-                >
+                  stroke="rgba(255,255,255,0.92)" strokeWidth="2.5" paintOrder="stroke"
+                  letterSpacing="0.2">
                   {organLabel.ko}
                 </text>
               </g>
@@ -275,7 +239,7 @@ export default function AnatomyDiagram({
         {/* Empty state */}
         {!hasData && (
           <div className="absolute inset-0 flex items-center justify-center bg-white/60 rounded-lg">
-            <p className="text-[11px] text-slate-400">{t.anatomy?.addDrugsPrompt || '약물을 추가하면 모니터링 권고가 표시됩니다'}</p>
+            <p className="text-[11px] text-slate-400">{t.anatomy?.addDrugsPrompt || '약물을 추가하면 장기 관여도가 표시됩니다'}</p>
           </div>
         )}
 
@@ -285,12 +249,8 @@ export default function AnatomyDiagram({
             <span className="shrink-0 text-[10px] font-medium text-slate-400">
               {lang === 'ko' ? '낮음' : 'Low'}
             </span>
-            <div
-              className="h-2 flex-1 rounded-full border border-slate-200"
-              style={{
-                background: 'linear-gradient(90deg, #dbeafe 0%, #93c5fd 25%, #3b82f6 55%, #1d4ed8 78%, #1e3a5f 100%)',
-              }}
-            />
+            <div className="h-2 flex-1 rounded-full border border-slate-200"
+              style={{ background: 'linear-gradient(90deg, #dbeafe 0%, #93c5fd 25%, #3b82f6 55%, #1d4ed8 78%, #1e3a5f 100%)' }} />
             <span className="shrink-0 text-[10px] font-medium text-slate-500">
               {lang === 'ko' ? '높음' : 'High'}
             </span>
@@ -298,7 +258,7 @@ export default function AnatomyDiagram({
         </div>
       </div>
 
-      {/* Clinical monitoring checklist */}
+      {/* Ranked organ list with expand-in-place (replaces old checklist + elimination panel) */}
       <OrganChecklist
         organScores={organScores}
         showMdr1={showMdr1}
@@ -308,20 +268,9 @@ export default function AnatomyDiagram({
         onLeave={handleMouseLeave}
         t={t}
         lang={lang}
+        drugs={drugs}
+        species={species}
       />
-
-      {/* Elimination route panel */}
-      {drugs.length > 0 && (
-        <EliminationRoutePanel
-          renal={renal}
-          hepatic={hepatic}
-          renalRisk={renalRisk}
-          hepaticRisk={hepaticRisk}
-          isCritical={isCritical}
-          contributions={contributions}
-          t={t}
-        />
-      )}
 
       {/* Tooltip */}
       {hoveredOrgan && organScores?.[hoveredOrgan] && (
@@ -332,6 +281,20 @@ export default function AnatomyDiagram({
           containerRef={containerRef}
           contributions={contributions}
           t={t}
+        />
+      )}
+
+      {/* Island overlay */}
+      {islandOpen && (
+        <OrganIslandOverlay
+          species={species}
+          organScores={organScores}
+          drugs={drugs}
+          selectedOrgan={islandOrgan}
+          onSelectOrgan={setIslandOrgan}
+          onClose={() => setIslandOpen(false)}
+          showMdr1={showMdr1}
+          patientBreed={patientBreed}
         />
       )}
     </div>
