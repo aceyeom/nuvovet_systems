@@ -470,6 +470,22 @@ function AnalysisStepBar({
   );
 }
 
+function normalizeSexValue(value) {
+  if (!value) return 'Unknown';
+
+  const normalized = String(value).trim().toLowerCase();
+
+  if (normalized.includes('female') || normalized.includes('암컷') || normalized.includes('spayed')) {
+    return 'Female';
+  }
+
+  if (normalized.includes('male') || normalized.includes('수컷') || normalized.includes('neutered')) {
+    return 'Male';
+  }
+
+  return 'Unknown';
+}
+
 // ── Editable Patient Summary (left col on results) ────────────────
 function PatientEditPanel({ patient, drugs, results, onUpdate, conditionSuggestions = [], allergySuggestions = [] }) {
   const RENAL_OPTIONS = ['Unknown','Normal','Mild impairment','Moderate impairment','Severe impairment'];
@@ -526,7 +542,7 @@ function PatientEditPanel({ patient, drugs, results, onUpdate, conditionSuggesti
           options={['dog','cat']} />
         {patient.breed && <Field label="Breed" value={patient.breed} fieldKey="breed" />}
         <Field label="Weight" value={patient.weight ? `${patient.weight} kg` : ''} fieldKey="weight" type="number" />
-        {patient.sex && <Field label="Sex" value={patient.sex} fieldKey="sex" options={['Male intact','Male neutered','Female intact','Female spayed','Unknown']} />}
+        {patient.sex && <Field label="Sex" value={patient.sex} fieldKey="sex" options={['Male','Female','Unknown']} />}
         {patient.age && <Field label="Age" value={patient.age} fieldKey="age" />}
       </div>
 
@@ -778,6 +794,7 @@ export default function FullSystem() {
   // ── Patient state ──────────────────────────────────────────────
   const [patientId, setPatientId] = useState(null);
   const [patientName, setPatientName] = useState('');
+  const [doctorInCharge, setDoctorInCharge] = useState('');
   const [ownerName, setOwnerName] = useState('');
   const [ownerContact, setOwnerContact] = useState('');
   const [species, setSpecies] = useState(null);
@@ -886,12 +903,13 @@ export default function FullSystem() {
 
       setPatientId(draft.patientId ?? null);
       setPatientName(draft.patientName ?? '');
+      setDoctorInCharge(draft.doctorInCharge ?? '');
       setOwnerName(draft.ownerName ?? '');
       setOwnerContact(draft.ownerContact ?? '');
       setSpecies(draft.species ?? null);
       setWeight(draft.weight ?? '');
       setWeightUnit(draft.weightUnit ?? 'kg');
-      setSex(draft.sex ?? 'Unknown');
+      setSex(normalizeSexValue(draft.sex));
       setBreed(draft.breed ?? '');
       setAgeNum(draft.ageNum ?? '');
       setAgeUnit(draft.ageUnit ?? 'years');
@@ -929,6 +947,7 @@ export default function FullSystem() {
       const draft = {
         patientId,
         patientName,
+        doctorInCharge,
         ownerName,
         ownerContact,
         species,
@@ -963,6 +982,7 @@ export default function FullSystem() {
     hasDraftHydrated,
     patientId,
     patientName,
+    doctorInCharge,
     ownerName,
     ownerContact,
     species,
@@ -1003,6 +1023,12 @@ export default function FullSystem() {
     getAllergiesApi().then(setAllergySuggestions).catch(() => {});
   }, []);
 
+  useEffect(() => {
+    if (!doctorInCharge && user?.username) {
+      setDoctorInCharge(user.username);
+    }
+  }, [doctorInCharge, user?.username]);
+
   // ── Drug callbacks ─────────────────────────────────────────────
   const handleAddDrug = useCallback((drug) => setDrugs((prev) => [...prev, drug]), []);
   const handleRemoveDrug = useCallback((drugId) => setDrugs((prev) => prev.filter((d) => d.id !== drugId)), []);
@@ -1026,7 +1052,7 @@ export default function FullSystem() {
   const isWeightMissing = !(weightKg > 0);
   const isDrugsMissing = drugs.length === 0;
   const shakeClass = validationShakeTick % 2 === 0 ? 'animate-field-shake-a' : 'animate-field-shake-b';
-  const isIntactFemale = sex === 'Intact Female' || sex === 'Female intact';
+  const isFemale = sex === 'Female';
 
   const SPECIES_OPTIONS = [
     { value: 'dog', label: '개 / Canine' },
@@ -1034,10 +1060,8 @@ export default function FullSystem() {
   ];
 
   const SEX_OPTIONS = [
-    { value: 'Male intact',    label: '수컷 / Male intact' },
-    { value: 'Male neutered',  label: '중성수컷 / Male neutered' },
-    { value: 'Female intact',  label: '암컷 / Female intact' },
-    { value: 'Female spayed',  label: '중성암컷 / Female spayed' },
+    { value: 'Male', label: '수컷 / Male' },
+    { value: 'Female', label: '암컷 / Female' },
   ];
 
   const RENAL_OPTIONS  = ['Unknown','Normal','Mild impairment','Moderate impairment','Severe impairment'];
@@ -1051,6 +1075,7 @@ export default function FullSystem() {
 
   const patientInfo = {
     name: patientName,
+    doctorInCharge,
     species,
     breed,
     weight: weightKg,
@@ -1078,7 +1103,7 @@ export default function FullSystem() {
     setWeight(p.weight_kg != null ? String(p.weight_kg) : '');
     setWeightUnit('kg');
     setBreed(p.breed || '');
-    setSex(p.sex || 'Unknown');
+    setSex(normalizeSexValue(p.sex));
     setAgeNum(p.age_years != null ? String(p.age_years) : '');
     setAgeUnit('years');
     setConditions(p.conditions || []);
@@ -1193,7 +1218,7 @@ export default function FullSystem() {
     if (patch.species !== undefined) setSpecies(patch.species);
     if (patch.weight !== undefined) setWeight(String(patch.weight));
     if (patch.breed !== undefined) setBreed(patch.breed);
-    if (patch.sex !== undefined) setSex(patch.sex);
+    if (patch.sex !== undefined) setSex(normalizeSexValue(patch.sex));
     if (patch.conditions !== undefined) setConditions(patch.conditions);
     if (patch.allergies !== undefined) setAllergies(patch.allergies);
     if (patch.renalStatus !== undefined) setRenalStatus(patch.renalStatus);
@@ -1207,7 +1232,7 @@ export default function FullSystem() {
     if (data.species === 'dog' || data.species === 'cat') { setSpecies(data.species); filled.add('species'); }
     if (data.breed) { setBreed(data.breed); filled.add('breed'); }
     if (data.weight_kg != null) { setWeight(String(data.weight_kg)); filled.add('weight'); }
-    if (data.sex) { setSex(data.sex); filled.add('sex'); }
+    if (data.sex) { setSex(normalizeSexValue(data.sex)); filled.add('sex'); }
     if (data.age_years != null) { setAgeNum(String(data.age_years)); filled.add('age'); }
     if (data.conditions?.length) { setConditions(data.conditions); filled.add('conditions'); }
     if (data.allergies?.length) { setAllergies(data.allergies); filled.add('allergies'); }
@@ -1224,7 +1249,7 @@ export default function FullSystem() {
   };
 
   const handleReset = () => {
-    setPatientId(null); setPatientName(''); setOwnerName(''); setOwnerContact('');
+    setPatientId(null); setPatientName(''); setDoctorInCharge(user?.username || ''); setOwnerName(''); setOwnerContact('');
     setSpecies(null); setWeight(''); setWeightUnit('kg'); setSex('Unknown');
     setBreed(''); setAgeNum(''); setAgeUnit('years'); setReproductiveStatus('None');
     setConditions([]); setAllergies([]); setRenalStatus('Unknown'); setHeptaticStatus('Unknown');
@@ -1302,7 +1327,7 @@ export default function FullSystem() {
               ref={patientSectionRef}
               onClickCapture={() => setWorkflowStage('patient')}
               onFocusCapture={() => setWorkflowStage('patient')}
-              className="w-full xl:w-[54%] xl:shrink-0 overflow-y-auto border-b xl:border-b-0 xl:border-r border-slate-200 bg-white min-h-0"
+              className="w-full xl:w-[44%] xl:shrink-0 overflow-y-auto border-b xl:border-b-0 xl:border-r border-slate-200 bg-white min-h-0"
             >
 
               {/* Header */}
@@ -1369,17 +1394,27 @@ export default function FullSystem() {
                     )}
 
                     {/* ── IDENTIFICATION card ── */}
-                    <div className="overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-sm">
-                      <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50/80 px-4 py-2.5">
+                    <div className="overflow-hidden rounded-xl border border-slate-200/90 bg-white">
+                      <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50/70 px-4 py-2">
                         <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Identification</span>
                         <span className="text-[10px] text-slate-300">Core profile</span>
                       </div>
-                      <div className="grid gap-2.5 px-4 py-3.5 bg-white md:grid-cols-2 xl:grid-cols-[1.1fr_0.9fr]">
+                      <div className="grid gap-x-2.5 gap-y-2 px-4 py-3 bg-white md:grid-cols-2 xl:grid-cols-4">
                         <div className="space-y-1">
                           <label className="block text-[11px] font-semibold text-slate-500">Patient Name</label>
                           <input type="text" value={patientName} onChange={e => setPatientName(e.target.value)}
                             placeholder="e.g. 뽀삐"
                             className={`w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white placeholder:text-slate-300 transition-all ${fieldHighlight('name')}`} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="block text-[11px] font-semibold text-slate-500">Doctor in Charge</label>
+                          <input
+                            type="text"
+                            value={doctorInCharge}
+                            onChange={e => setDoctorInCharge(e.target.value)}
+                            placeholder="Doctor name"
+                            className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white placeholder:text-slate-300 transition-all text-slate-700"
+                          />
                         </div>
                         <div className="space-y-1">
                           <label className="block text-[11px] font-semibold text-slate-500">Owner Name</label>
@@ -1392,15 +1427,6 @@ export default function FullSystem() {
                           <input type="text" value={ownerContact} onChange={e => setOwnerContact(e.target.value)}
                             placeholder="010-0000-0000"
                             className={`w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white placeholder:text-slate-300 transition-all ${fieldHighlight('phone')}`} />
-                        </div>
-                        <div className="space-y-1">
-                          <label className="block text-[11px] font-semibold text-slate-500">Doctor in Charge</label>
-                          <input
-                            type="text"
-                            value={user?.username || ''}
-                            readOnly
-                            className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg bg-slate-50 text-slate-700"
-                          />
                         </div>
                       </div>
                     </div>
@@ -1457,7 +1483,7 @@ export default function FullSystem() {
                           </div>
                         </div>
 
-                        {isIntactFemale && (
+                        {isFemale && (
                           <div className="space-y-1">
                             <label className="block text-[11px] font-semibold text-slate-600">Reproductive Status</label>
                             <div className="grid grid-cols-3 gap-2">
