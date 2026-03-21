@@ -15,7 +15,7 @@ import { ResultsDisplay } from '../components/ResultsDisplay';
 import { runFullDURAnalysis } from '../utils/durEngine';
 import { searchDrugsApi, isBackendAvailable, getBreedsApi, getConditionsApi, getAllergiesApi } from '../lib/api';
 import { EMRImportModal } from '../components/EMRImportModal';
-import { searchPatients, savePatient, addVisitRecord, getAllPatients, sortPatients } from '../lib/patientStorage';
+import { savePatient, addVisitRecord, getAllPatients, sortPatients } from '../lib/patientStorage';
 import { useAuth } from '../context/AuthContext';
 import AnatomyDiagram from '../components/charts/AnatomyDiagram';
 import { aggregateOrganBurden } from '../components/charts/organBurdenAggregator';
@@ -254,18 +254,25 @@ function LoadPatientModal({ onClose, onSelect }) {
   const [patients, setPatients] = useState([]);
 
   useEffect(() => {
-    let all = getAllPatients();
-    if (filterSpecies) all = all.filter(p => p.species === filterSpecies);
-    if (query.trim()) {
-      const q = query.toLowerCase();
-      all = all.filter(p =>
-        p.name?.toLowerCase().includes(q) ||
-        (p.owner_phone || '').toLowerCase().includes(q) ||
-        (p.species || '').toLowerCase().includes(q) ||
-        (p.id || '').toLowerCase().includes(q)
-      );
-    }
-    setPatients(sortPatients(all, sortBy));
+    let cancelled = false;
+    const loadPatients = async () => {
+      let all = await getAllPatients();
+      if (filterSpecies) all = all.filter(p => p.species === filterSpecies);
+      if (query.trim()) {
+        const q = query.toLowerCase();
+        all = all.filter(p =>
+          p.name?.toLowerCase().includes(q) ||
+          (p.owner_phone || '').toLowerCase().includes(q) ||
+          (p.species || '').toLowerCase().includes(q) ||
+          (p.id || '').toLowerCase().includes(q)
+        );
+      }
+      if (!cancelled) setPatients(sortPatients(all, sortBy));
+    };
+    void loadPatients();
+    return () => {
+      cancelled = true;
+    };
   }, [query, sortBy, filterSpecies]);
 
   const speciesLabel = (sp) => {
@@ -672,17 +679,24 @@ function ExistingPatientPanel({ onSelect }) {
   const [patients, setPatients] = useState([]);
 
   useEffect(() => {
-    let all = getAllPatients();
-    if (filterSpecies) all = all.filter(p => p.species === filterSpecies);
-    if (query.trim()) {
-      const q = query.toLowerCase();
-      all = all.filter(p =>
-        p.name?.toLowerCase().includes(q) ||
-        (p.owner_phone || '').toLowerCase().includes(q) ||
-        (p.id || '').toLowerCase().includes(q)
-      );
-    }
-    setPatients(sortPatients(all, sortBy));
+    let cancelled = false;
+    const loadPatients = async () => {
+      let all = await getAllPatients();
+      if (filterSpecies) all = all.filter(p => p.species === filterSpecies);
+      if (query.trim()) {
+        const q = query.toLowerCase();
+        all = all.filter(p =>
+          p.name?.toLowerCase().includes(q) ||
+          (p.owner_phone || '').toLowerCase().includes(q) ||
+          (p.id || '').toLowerCase().includes(q)
+        );
+      }
+      if (!cancelled) setPatients(sortPatients(all, sortBy));
+    };
+    void loadPatients();
+    return () => {
+      cancelled = true;
+    };
   }, [query, sortBy, filterSpecies]);
 
   return (
@@ -1073,33 +1087,39 @@ export default function FullSystem() {
     setAlt(p.alt_u_L != null ? String(p.alt_u_L) : '');
   };
 
-  const handleSavePatient = () => {
-    const profile = savePatient({
-      id: patientId || undefined,
-      name: patientName || 'Patient',
-      owner_phone: ownerContact || null,
-      species: species || 'dog',
-      breed: breed || null,
-      weight_kg: weightKg || null,
-      sex: sex !== 'Unknown' ? sex : null,
-      age_years: ageNum ? parseFloat(ageNum) : null,
-      allergies,
-      conditions,
-      creatinine_mg_dL: creatinine ? parseFloat(creatinine) : null,
-      alt_u_L: alt ? parseFloat(alt) : null,
-    });
-    setPatientId(profile.id);
-    setSaveSuccess(true);
-    setTimeout(() => setSaveSuccess(false), 3000);
+  const handleSavePatient = async () => {
+    try {
+      const profile = await savePatient({
+        id: patientId || undefined,
+        name: patientName || 'Patient',
+        owner_phone: ownerContact || null,
+        species: species || 'dog',
+        breed: breed || null,
+        weight_kg: weightKg || null,
+        sex: sex !== 'Unknown' ? sex : null,
+        age_years: ageNum ? parseFloat(ageNum) : null,
+        allergies,
+        conditions,
+        creatinine_mg_dL: creatinine ? parseFloat(creatinine) : null,
+        alt_u_L: alt ? parseFloat(alt) : null,
+      });
+      setPatientId(profile.id);
+      setSaveSuccess(true);
+      setTimeout(() => setSaveSuccess(false), 3000);
+      return profile;
+    } catch (error) {
+      console.error('Failed to save patient', error);
+      return null;
+    }
   };
 
-  const handleRunAnalysis = () => {
+  const handleRunAnalysis = async () => {
     if (!canRun) {
       setMissingRequired({ species: isSpeciesMissing, weight: isWeightMissing, drugs: isDrugsMissing });
       setValidationShakeTick(v => v + 1);
       return;
     }
-    handleSavePatient();
+    if (!dontSavePatientChecked) await handleSavePatient();
     setWorkflowStage('summary');
     setStep('analyzing');
   };
@@ -1130,7 +1150,7 @@ export default function FullSystem() {
     setTimeout(() => scrollToSection(prescriptionSectionRef), 0);
   };
 
-  const handleOpenSummary = () => {
+  const handleOpenSummary = async () => {
     if (step === 'analyzing') return;
     if (!canRun) {
       setStep('input');
@@ -1144,14 +1164,14 @@ export default function FullSystem() {
       setStep('results');
       return;
     }
-    handleSavePatient();
+    if (!dontSavePatientChecked) await handleSavePatient();
     setWorkflowStage('summary');
     setStep('analyzing');
   };
 
-  const handleUpdatePatientRecord = () => {
+  const handleUpdatePatientRecord = async () => {
     if (!patientId || !results) return;
-    addVisitRecord(patientId, {
+    await addVisitRecord(patientId, {
       date: new Date().toISOString(),
       drugs: drugs.map((d) => d.id),
       dur_summary: results?.overallSeverity?.label || 'Unknown',
@@ -1165,7 +1185,7 @@ export default function FullSystem() {
         };
       }),
     });
-    handleSavePatient();
+    await handleSavePatient();
   };
 
   const handlePatientEditUpdate = (patch) => {

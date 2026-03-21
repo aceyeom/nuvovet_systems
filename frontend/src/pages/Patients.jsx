@@ -12,7 +12,6 @@ import {
   savePatient,
   sortPatients,
 } from '../lib/patientStorage';
-import { ensureSeedData } from '../data/seedData';
 
 // ── Severity badge ────────────────────────────────────────────────
 function SeverityDot({ severity }) {
@@ -232,13 +231,14 @@ export default function Patients() {
   const [sortBy, setSortBy] = useState('last_visit');
   const [selectedPatient, setSelectedPatient] = useState(null);
 
-  const reload = useCallback(() => {
-    ensureSeedData();
-    const all = getAllPatients();
+  const reload = useCallback(async () => {
+    const all = await getAllPatients();
     setPatients(all);
   }, []);
 
-  useEffect(() => { reload(); }, [reload]);
+  useEffect(() => {
+    void reload();
+  }, [reload]);
 
   const filtered = patients.filter((p) => {
     if (!query.trim()) return true;
@@ -251,15 +251,15 @@ export default function Patients() {
 
   const sorted = sortPatients(filtered, sortBy);
 
-  const handleDelete = (id) => {
-    deletePatient(id);
-    reload();
+  const handleDelete = async (id) => {
+    await deletePatient(id);
+    await reload();
   };
 
-  const handleUpdate = (updated) => {
-    savePatient(updated);
-    reload();
-    setSelectedPatient(updated);
+  const handleUpdate = async (updated) => {
+    const saved = await savePatient(updated);
+    await reload();
+    setSelectedPatient(saved);
   };
 
   const handleStartVisit = (patient) => {

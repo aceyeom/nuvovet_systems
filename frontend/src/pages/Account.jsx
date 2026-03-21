@@ -86,8 +86,15 @@ export default function Account() {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    const all = getAllPatients();
-    setPatients(all);
+    let cancelled = false;
+    const loadPatients = async () => {
+      const all = await getAllPatients();
+      if (!cancelled) setPatients(all);
+    };
+    void loadPatients();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const handleLogout = () => {
@@ -97,7 +104,7 @@ export default function Account() {
 
   const displayName = user?.username || 'Guest';
   const initials = displayName.slice(0, 2).toUpperCase();
-  const plan = 'Free'; // placeholder plan
+  const plan = user?.plan === 'free' ? 'Free' : (user?.plan || 'Free');
 
   const planBadge = {
     Free: 'bg-slate-100 text-slate-600',

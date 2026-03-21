@@ -17,12 +17,17 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   const _setAuth = useCallback((data) => {
+    const userPayload = {
+      username: data.username,
+      plan: data.plan || 'free',
+      account_valid_until: data.account_valid_until || null,
+    };
     setToken(data.access_token);
-    setUser({ username: data.username });
+    setUser(userPayload);
     setAuthToken(data.access_token);
     try {
       localStorage.setItem(TOKEN_KEY, data.access_token);
-      localStorage.setItem(USER_KEY, JSON.stringify({ username: data.username }));
+      localStorage.setItem(USER_KEY, JSON.stringify(userPayload));
     } catch { /* quota exceeded */ }
   }, []);
 
@@ -48,7 +53,11 @@ export function AuthProvider({ children }) {
       .then(r => (r.ok ? r.json() : null))
       .then(data => {
         if (data?.authenticated) {
-          setUser({ username: data.username });
+          setUser({
+            username: data.username,
+            plan: data.plan || 'free',
+            account_valid_until: data.account_valid_until || null,
+          });
           setToken(storedToken);
         } else {
           _clearAuth();
@@ -76,9 +85,21 @@ export function AuthProvider({ children }) {
     }
   }, [_setAuth]);
 
-  const signup = useCallback(async () => {
-    return { ok: false, error: 'Sign up is available from the pricing page' };
-  }, []);
+  const signup = useCallback(async (username, password) => {
+    try {
+      const res = await fetch(`${BASE_URL}/api/auth/signup`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      });
+      const data = await res.json();
+      if (!res.ok) return { ok: false, error: data.detail || 'Sign up failed' };
+      _setAuth(data);
+      return { ok: true };
+    } catch {
+      return { ok: false, error: 'Network error — check your connection' };
+    }
+  }, [_setAuth]);
 
   const logout = useCallback(() => {
     _clearAuth();

@@ -139,6 +139,49 @@ export async function extractPatientFromImageApi(imageFile) {
   }
 }
 
+// ── Account-scoped patient records ───────────────────────────────
+
+export async function getPatientsApi() {
+  const data = await apiFetch('/api/auth/patients');
+  return data?.patients ?? null;
+}
+
+export async function upsertPatientApi(profile) {
+  const data = await apiFetch('/api/auth/patients', {
+    method: 'POST',
+    body: JSON.stringify(profile),
+  });
+  return data?.patient ?? null;
+}
+
+export async function addPatientVisitApi(patientId, visit) {
+  const data = await apiFetch(`/api/auth/patients/${encodeURIComponent(patientId)}/visits`, {
+    method: 'POST',
+    body: JSON.stringify(visit),
+  });
+  return data?.patient ?? null;
+}
+
+export async function deletePatientApi(patientId) {
+  const data = await apiFetch(`/api/auth/patients/${encodeURIComponent(patientId)}`, {
+    method: 'DELETE',
+  });
+  return Boolean(data?.ok);
+}
+
+export async function getAccountStateApi() {
+  const data = await apiFetch('/api/auth/state');
+  return data?.data ?? null;
+}
+
+export async function saveAccountStateApi(state) {
+  const data = await apiFetch('/api/auth/state', {
+    method: 'PUT',
+    body: JSON.stringify({ data: state || {} }),
+  });
+  return data?.data ?? null;
+}
+
 // ── Health check ─────────────────────────────────────────────────
 
 /**

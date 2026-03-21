@@ -225,8 +225,15 @@ export default function Dashboard() {
 
   const [patients, setPatients] = useState([]);
   useEffect(() => {
-    const all = getAllPatients();
-    setPatients(all);
+    let cancelled = false;
+    const loadPatients = async () => {
+      const all = await getAllPatients();
+      if (!cancelled) setPatients(all);
+    };
+    void loadPatients();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   // Analytics from seed + real data

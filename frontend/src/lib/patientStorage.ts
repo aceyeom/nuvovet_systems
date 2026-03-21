@@ -1,19 +1,20 @@
 /**
- * Patient Profile Storage
+ * Patient Profile Storage (server-backed)
  *
- * Manages patient profiles in localStorage under the key 'nuvovet_patients'.
- * Each profile conforms to the PatientProfile interface below.
- *
- * TODO: Migrate to backend API for persistence across devices and sessions.
- *       See docs/cleanup_log.md for details.
+ * Persists patient profiles in the backend database under the authenticated account.
  */
 
-const STORAGE_KEY = 'nuvovet_patients';
+import {
+  addPatientVisitApi,
+  deletePatientApi,
+  getPatientsApi,
+  upsertPatientApi,
+} from './api';
 
 export interface VisitRecord {
-  date: string;         // ISO 8601
-  drugs: string[];      // drug_id[]
-  dur_summary: string;  // overall_risk value from DUR result
+  date: string;
+  drugs: string[];
+  dur_summary: string;
   prescribed_drugs?: {
     id: string;
     name: string;
@@ -35,124 +36,83 @@ export interface PatientProfile {
   conditions: string[];
   creatinine_mg_dL: number | null;
   alt_u_L: number | null;
-  created_at: string;   // ISO 8601
-  updated_at: string;   // ISO 8601
+  created_at: string;
+  updated_at: string;
   visit_history: VisitRecord[];
 }
 
-function generateId(): string {
-  return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 9)}`;
+function normalizePatient(raw: any): PatientProfile {
+  const nowIso = new Date().toISOString();
+  return {
+    id: String(raw?.id || ''),
+    name: String(raw?.name || 'Patient'),
+    owner_phone: raw?.owner_phone ?? null,
+    species: raw?.species === 'cat' ? 'cat' : 'dog',
+    breed: raw?.breed ?? null,
+    weight_kg: typeof raw?.weight_kg === 'number' ? raw.weight_kg : null,
+    sex: raw?.sex ?? null,
+    age_years: typeof raw?.age_years === 'number' ? raw.age_years : null,
+    allergies: Array.isArray(raw?.allergies) ? raw.allergies : [],
+    conditions: Array.isArray(raw?.conditions) ? raw.conditions : [],
+    creatinine_mg_dL: typeof raw?.creatinine_mg_dL === 'number' ? raw.creatinine_mg_dL : null,
+    alt_u_L: typeof raw?.alt_u_L === 'number' ? raw.alt_u_L : null,
+    created_at: typeof raw?.created_at === 'string' ? raw.created_at : nowIso,
+    updated_at: typeof raw?.updated_at === 'string' ? raw.updated_at : nowIso,
+    visit_history: Array.isArray(raw?.visit_history) ? raw.visit_history : [],
+  };
 }
 
-function readAll(): PatientProfile[] {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return [];
-    const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : [];
-  } catch {
-    return [];
-  }
+export async function getAllPatients(): Promise<PatientProfile[]> {
+  const rows = await getPatientsApi();
+  if (!Array.isArray(rows)) return [];
+  return rows.map(normalizePatient);
 }
 
-function writeAll(profiles: PatientProfile[]): void {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(profiles));
-  } catch {
-    // localStorage quota exceeded or unavailable
-  }
-}
-
-export function getAllPatients(): PatientProfile[] {
-  return readAll();
-}
-
-export function searchPatients(query: string): PatientProfile[] {
-  if (!query.trim()) return [];
+export async function searchPatients(query: string): Promise<PatientProfile[]> {
+  const all = await getAllPatients();
+  if (!query.trim()) return all;
   const q = query.toLowerCase();
-  return readAll().filter(
+  return all.filter(
     (p) =>
       p.name.toLowerCase().includes(q) ||
       (p.owner_phone ?? '').toLowerCase().includes(q),
   );
 }
 
-export function getPatientById(id: string): PatientProfile | null {
-  return readAll().find((p) => p.id === id) ?? null;
+export async function getPatientById(id: string): Promise<PatientProfile | null> {
+  const all = await getAllPatients();
+  return all.find((p) => p.id === id) ?? null;
 }
 
-export function savePatient(
+export async function savePatient(
   partial: Omit<PatientProfile, 'id' | 'created_at' | 'updated_at' | 'visit_history'> & {
     id?: string;
     visit_history?: VisitRecord[];
   },
-): PatientProfile {
-  const all = readAll();
-  const now = new Date().toISOString();
-
-  if (partial.id) {
-    // Update existing
-    const idx = all.findIndex((p) => p.id === partial.id);
-    if (idx >= 0) {
-      const updated: PatientProfile = {
-        ...all[idx],
-        ...partial,
-        id: all[idx].id,
-        created_at: all[idx].created_at,
-        updated_at: now,
-        visit_history: partial.visit_history ?? all[idx].visit_history,
-      };
-      all[idx] = updated;
-      writeAll(all);
-      return updated;
-    }
-  }
-
-  // Create new
-  const profile: PatientProfile = {
-    id: partial.id ?? generateId(),
-    name: partial.name,
-    owner_phone: partial.owner_phone ?? null,
-    species: partial.species,
-    breed: partial.breed ?? null,
-    weight_kg: partial.weight_kg ?? null,
-    sex: partial.sex ?? null,
-    age_years: partial.age_years ?? null,
-    allergies: partial.allergies ?? [],
-    conditions: partial.conditions ?? [],
-    creatinine_mg_dL: partial.creatinine_mg_dL ?? null,
-    alt_u_L: partial.alt_u_L ?? null,
-    created_at: now,
-    updated_at: now,
+): Promise<PatientProfile> {
+  const payload = {
+    ...partial,
+    id: partial.id,
     visit_history: partial.visit_history ?? [],
   };
 
-  all.unshift(profile);
-  writeAll(all);
-  return profile;
+  const saved = await upsertPatientApi(payload);
+  if (!saved) {
+    throw new Error('Failed to save patient profile');
+  }
+  return normalizePatient(saved);
 }
 
-export function addVisitRecord(
+export async function addVisitRecord(
   patientId: string,
   visit: VisitRecord,
-): PatientProfile | null {
-  const all = readAll();
-  const idx = all.findIndex((p) => p.id === patientId);
-  if (idx < 0) return null;
-
-  const updated: PatientProfile = {
-    ...all[idx],
-    updated_at: new Date().toISOString(),
-    visit_history: [visit, ...all[idx].visit_history],
-  };
-  all[idx] = updated;
-  writeAll(all);
-  return updated;
+): Promise<PatientProfile | null> {
+  const saved = await addPatientVisitApi(patientId, visit);
+  return saved ? normalizePatient(saved) : null;
 }
 
-export function deletePatient(id: string): void {
-  const all = readAll().filter((p) => p.id !== id);
-  writeAll(all);
+export async function deletePatient(id: string): Promise<void> {
+  await deletePatientApi(id);
 }
 
 export function sortPatients(
@@ -162,7 +122,6 @@ export function sortPatients(
   return [...profiles].sort((a, b) => {
     if (by === 'name') return a.name.localeCompare(b.name);
     if (by === 'species') return a.species.localeCompare(b.species);
-    // last_visit (default)
     const aDate = a.visit_history[0]?.date ?? a.updated_at;
     const bDate = b.visit_history[0]?.date ?? b.updated_at;
     return bDate.localeCompare(aDate);
