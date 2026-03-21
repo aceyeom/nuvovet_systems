@@ -419,10 +419,8 @@ function AnalysisStepBar({
   ];
 
   return (
-    <div className="shrink-0 border-b border-slate-200/80 bg-[linear-gradient(180deg,#f8fafc_0%,#f3f6f8_100%)] px-4 py-3 sm:px-6">
-      <div className="mx-auto max-w-[1480px]">
-        <div className="rounded-[24px] border border-slate-200/80 bg-white/90 p-2 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur">
-          <div className="grid grid-cols-1 gap-2 md:grid-cols-3">
+    <div className="shrink-0 border-b border-slate-200 bg-white px-3 py-2 sm:px-4">
+      <div className="grid grid-cols-1 gap-1.5 md:grid-cols-3">
             {stages.map((stage) => {
               const isActive = currentStage === stage.key;
 
@@ -431,28 +429,28 @@ function AnalysisStepBar({
                   key={stage.key}
                   type="button"
                   onClick={stage.onClick}
-                  className={`rounded-[18px] border px-4 py-3 text-left transition-all ${
+                  className={`rounded-xl border px-3 py-2 text-left transition-all ${
                     isActive
-                      ? 'border-slate-300 bg-slate-50 shadow-[0_6px_18px_rgba(15,23,42,0.06)]'
+                      ? 'border-slate-300 bg-slate-50'
                       : 'border-transparent bg-transparent hover:border-slate-200 hover:bg-slate-50/70'
                   }`}
                 >
-                  <div className="flex items-start gap-3">
-                    <span className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[10px] font-bold tracking-[0.18em] ${
+                  <div className="flex items-start gap-2.5">
+                    <span className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[9px] font-bold tracking-[0.14em] ${
                       isActive ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-500'
                     }`}>
                       {stage.index}
                     </span>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center justify-between gap-2">
-                        <p className={`text-sm ${isActive ? 'font-semibold text-slate-900' : 'font-medium text-slate-700'}`}>
+                        <p className={`text-[13px] ${isActive ? 'font-semibold text-slate-900' : 'font-medium text-slate-700'}`}>
                           {stage.title}
                         </p>
-                        <span className={`rounded-full border px-2.5 py-1 text-[10px] font-semibold tracking-wide ${stage.statusTone}`}>
+                        <span className={`rounded-full border px-2 py-0.5 text-[9px] font-semibold tracking-wide ${stage.statusTone}`}>
                           {stage.status}
                         </span>
                       </div>
-                      <p className="mt-1 text-[12px] leading-relaxed text-slate-400">
+                      <p className="mt-0.5 text-[11px] leading-snug text-slate-400">
                         {stage.subtitle}
                       </p>
                     </div>
@@ -460,8 +458,6 @@ function AnalysisStepBar({
                 </button>
               );
             })}
-          </div>
-        </div>
       </div>
     </div>
   );
@@ -1279,20 +1275,18 @@ export default function FullSystem() {
 
         {/* INPUT — Two-panel layout */}
         {step === 'input' && (
-          <div className="flex-1 overflow-y-auto bg-[radial-gradient(circle_at_top_left,rgba(226,232,240,0.35),transparent_30%),linear-gradient(180deg,#f8fafc_0%,#f1f5f9_100%)]">
-            <div className="mx-auto flex min-h-full max-w-[1480px] flex-col px-4 py-4 sm:px-6 sm:py-5">
-              <div className="grid flex-1 grid-cols-1 gap-4 xl:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)]">
+          <div className="flex-1 overflow-hidden flex flex-col xl:flex-row">
 
             {/* ── LEFT PANEL: Patient Information ── */}
             <div
               ref={patientSectionRef}
               onClickCapture={() => setWorkflowStage('patient')}
               onFocusCapture={() => setWorkflowStage('patient')}
-              className="min-h-0 w-full overflow-hidden rounded-[28px] border border-slate-200/80 bg-white/92 shadow-[0_18px_40px_rgba(15,23,42,0.06)] backdrop-blur"
+              className="w-full xl:w-[54%] xl:shrink-0 overflow-y-auto border-b xl:border-b-0 xl:border-r border-slate-200 bg-white min-h-0"
             >
 
               {/* Header */}
-              <div className="shrink-0 border-b border-slate-200/80 bg-[linear-gradient(180deg,rgba(248,250,252,0.98),rgba(255,255,255,0.98))] px-5 py-4 sm:px-6">
+              <div className="shrink-0 border-b border-slate-200 bg-white px-5 py-3 sm:px-6">
                 <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
                   <div>
                     <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-slate-400">Patient workspace</p>
@@ -1341,8 +1335,7 @@ export default function FullSystem() {
 
               {/* ── NEW PATIENT form ── */}
               {patientTab === 'new' && (
-                <div className="flex-1 overflow-y-auto">
-                  <div className="px-5 py-5 sm:px-6 sm:py-6 space-y-3.5">
+                <div className="px-5 py-4 sm:px-6 sm:py-5 space-y-3.5">
 
                     {importBanner && (
                       <div className="flex items-start gap-3 px-4 py-3 bg-indigo-50 border border-indigo-200 rounded-xl">
@@ -1357,28 +1350,28 @@ export default function FullSystem() {
 
                     {/* ── IDENTIFICATION card ── */}
                     <div className="overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-sm">
-                      <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50/80 px-4 py-3">
+                      <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50/80 px-4 py-2.5">
                         <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Identification</span>
                         <span className="text-[10px] text-slate-300">Core profile</span>
                       </div>
-                      <div className="grid gap-3 px-4 py-4 bg-white md:grid-cols-2">
+                      <div className="grid gap-2.5 px-4 py-3.5 bg-white md:grid-cols-2 xl:grid-cols-[1.1fr_0.9fr]">
                         <div className="space-y-1">
                           <label className="block text-[11px] font-semibold text-slate-500">Patient Name</label>
                           <input type="text" value={patientName} onChange={e => setPatientName(e.target.value)}
                             placeholder="e.g. 뽀삐"
-                            className={`w-full px-3 py-2.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white placeholder:text-slate-300 transition-all ${fieldHighlight('name')}`} />
+                            className={`w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white placeholder:text-slate-300 transition-all ${fieldHighlight('name')}`} />
                         </div>
                         <div className="space-y-1">
                           <label className="block text-[11px] font-semibold text-slate-500">Owner Name</label>
                           <input type="text" value={ownerName} onChange={e => setOwnerName(e.target.value)}
                             placeholder="Owner name"
-                            className="w-full px-3 py-2.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white placeholder:text-slate-300 transition-all" />
+                            className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white placeholder:text-slate-300 transition-all" />
                         </div>
                         <div className="space-y-1">
                           <label className="block text-[11px] font-semibold text-slate-500">Owner Contact</label>
                           <input type="text" value={ownerContact} onChange={e => setOwnerContact(e.target.value)}
                             placeholder="010-0000-0000"
-                            className={`w-full px-3 py-2.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white placeholder:text-slate-300 transition-all ${fieldHighlight('phone')}`} />
+                            className={`w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white placeholder:text-slate-300 transition-all ${fieldHighlight('phone')}`} />
                         </div>
                         <div className="space-y-1">
                           <label className="block text-[11px] font-semibold text-slate-500">Doctor in Charge</label>
@@ -1386,7 +1379,7 @@ export default function FullSystem() {
                             type="text"
                             value={user?.username || ''}
                             readOnly
-                            className="w-full px-3 py-2.5 text-sm border border-slate-200 rounded-lg bg-slate-50 text-slate-700"
+                            className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg bg-slate-50 text-slate-700"
                           />
                         </div>
                       </div>
@@ -1401,47 +1394,66 @@ export default function FullSystem() {
                         </div>
                         <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[10px] font-semibold text-slate-500">Required</span>
                       </div>
-                      <div className="px-4 py-4 space-y-3">
-                        <div className="grid gap-3 lg:grid-cols-[1.15fr_0.85fr]">
-                          <div className={`space-y-1.5 ${missingRequired.species ? shakeClass : ''}`}>
-                            <label className={`block text-[11px] font-semibold ${missingRequired.species ? 'text-red-600' : 'text-slate-600'}`}>Species</label>
-                            <div className="grid grid-cols-2 gap-2">
-                              {SPECIES_OPTIONS.map((sp) => (
-                                <button key={sp.value} onClick={() => setSpecies(sp.value)}
-                                  className={`py-2.5 px-3 rounded-lg border-2 font-medium text-[12px] transition-all text-left ${
-                                    species === sp.value
-                                      ? 'border-slate-800 bg-slate-800 text-white shadow-sm'
-                                      : missingRequired.species
-                                      ? 'border-red-300 bg-red-50 text-red-700 hover:border-red-400 hover:bg-red-50'
-                                      : 'border-slate-200 bg-white text-slate-600 hover:border-slate-400 hover:bg-slate-50'
-                                  } ${fieldHighlight('species')}`}>
-                                  {sp.label}
-                                </button>
-                              ))}
-                            </div>
+                      <div className="px-4 py-4 space-y-3.5 bg-white">
+
+                        <div className={`space-y-1.5 ${missingRequired.species ? shakeClass : ''}`}>
+                          <label className={`block text-[11px] font-semibold ${missingRequired.species ? 'text-red-600' : 'text-slate-600'}`}>Species</label>
+                          <div className="grid grid-cols-2 gap-2">
+                            {SPECIES_OPTIONS.map((sp) => (
+                              <button key={sp.value} onClick={() => setSpecies(sp.value)}
+                                className={`py-2.5 px-3 rounded-lg border-2 font-medium text-[12px] transition-all text-left ${
+                                  species === sp.value
+                                    ? 'border-slate-800 bg-slate-800 text-white shadow-sm'
+                                    : missingRequired.species
+                                    ? 'border-red-300 bg-red-50 text-red-700 hover:border-red-400 hover:bg-red-50'
+                                    : 'border-slate-200 bg-white text-slate-600 hover:border-slate-400 hover:bg-slate-50'
+                                } ${fieldHighlight('species')}`}>
+                                {sp.label}
+                              </button>
+                            ))}
                           </div>
+                        </div>
+
+                        {species && (
                           <div className="space-y-1">
                             <label className="block text-[11px] font-semibold text-slate-600">Breed</label>
                             <div className={fieldHighlight('breed') || ''}>
                               <BreedInput value={breed} onChange={setBreed} species={species} />
                             </div>
                           </div>
+                        )}
+
+                        <div className="space-y-1.5">
+                          <label className="block text-[11px] font-semibold text-slate-600">Sex</label>
+                          <div className="grid grid-cols-2 gap-2">
+                            {SEX_OPTIONS.map((opt) => (
+                              <button key={opt.value} onClick={() => setSex(sex === opt.value ? 'Unknown' : opt.value)}
+                                className={`px-3 py-2 text-[12px] rounded-lg border transition-all ${
+                                  sex === opt.value ? 'bg-slate-800 text-white border-slate-800' : 'bg-white text-slate-600 border-slate-200 hover:border-slate-400'
+                                } ${fieldHighlight('sex')}`}>
+                                {opt.label}
+                              </button>
+                            ))}
+                          </div>
                         </div>
 
-                        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+                        {isIntactFemale && (
                           <div className="space-y-1">
-                            <label className="block text-[11px] font-semibold text-slate-600">Sex</label>
-                            <div className="grid grid-cols-2 gap-2">
-                              {SEX_OPTIONS.map((opt) => (
-                                <button key={opt.value} onClick={() => setSex(sex === opt.value ? 'Unknown' : opt.value)}
-                                  className={`px-3 py-2 text-[12px] rounded-lg border transition-all ${
-                                    sex === opt.value ? 'bg-slate-800 text-white border-slate-800' : 'bg-white text-slate-600 border-slate-200 hover:border-slate-400'
-                                  } ${fieldHighlight('sex')}`}>
-                                  {opt.label}
+                            <label className="block text-[11px] font-semibold text-slate-600">Reproductive Status</label>
+                            <div className="grid grid-cols-3 gap-2">
+                              {['None','Pregnant','Lactating'].map(s => (
+                                <button key={s} onClick={() => setReproductiveStatus(s)}
+                                  className={`py-2 px-2 text-[11px] rounded-lg border transition-all font-medium ${
+                                    reproductiveStatus === s ? 'bg-violet-800 text-white border-violet-800' : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
+                                  }`}>
+                                  {s}
                                 </button>
                               ))}
                             </div>
                           </div>
+                        )}
+
+                        <div className="grid grid-cols-2 gap-3">
                           <div className="space-y-1">
                             <label className="block text-[11px] font-semibold text-slate-600">Age</label>
                             <div className="flex gap-1.5">
@@ -1467,26 +1479,6 @@ export default function FullSystem() {
                               </select>
                             </div>
                             {missingRequired.weight && <p className="text-[11px] text-red-600">Enter a valid weight</p>}
-                          </div>
-
-                          <div className="space-y-1">
-                            <label className="block text-[11px] font-semibold text-slate-600">Reproductive Status</label>
-                            <div className="grid grid-cols-3 gap-2">
-                              {['None','Pregnant','Lactating'].map(s => (
-                                <button key={s} onClick={() => setReproductiveStatus(s)}
-                                  disabled={!isIntactFemale}
-                                  className={`py-2 px-2 text-[11px] rounded-lg border transition-all font-medium ${
-                                    reproductiveStatus === s && isIntactFemale
-                                      ? 'bg-violet-800 text-white border-violet-800'
-                                      : isIntactFemale
-                                      ? 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
-                                      : 'bg-slate-50 text-slate-300 border-slate-200 cursor-not-allowed'
-                                  }`}>
-                                  {s}
-                                </button>
-                              ))}
-                            </div>
-                            {!isIntactFemale && <p className="text-[11px] text-slate-400">Available for intact female patients.</p>}
                           </div>
                         </div>
                       </div>
@@ -1553,12 +1545,11 @@ export default function FullSystem() {
                     </div>
 
                   </div>
-                </div>
               )}
 
               {/* ── EXISTING PATIENT inline browser ── */}
               {patientTab === 'existing' && (
-                <div className="flex-1 overflow-y-auto px-5 py-5 sm:px-6 sm:py-6">
+                <div className="px-5 py-4 sm:px-6 sm:py-5">
                   <ExistingPatientPanel
                     onSelect={(p) => { handleSelectPatient(p); setPatientTab('new'); }}
                   />
@@ -1572,40 +1563,13 @@ export default function FullSystem() {
               ref={prescriptionSectionRef}
               onClickCapture={() => setWorkflowStage('prescription')}
               onFocusCapture={() => setWorkflowStage('prescription')}
-              className="min-h-0 w-full overflow-hidden rounded-[28px] border border-slate-200/80 bg-white/92 shadow-[0_18px_40px_rgba(15,23,42,0.06)] backdrop-blur"
+              className="w-full overflow-y-auto bg-white min-h-0 xl:border-l border-slate-200"
             >
-              <div className="flex h-full flex-col">
+              <div className="px-5 py-4 sm:px-6 sm:py-5 space-y-5">
 
-                <div className="shrink-0 border-b border-slate-200/80 bg-[linear-gradient(180deg,rgba(248,250,252,0.98),rgba(255,255,255,0.98))] px-5 py-4 sm:px-6">
-                  <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
-                    <div>
-                      <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-slate-400">Prescription workspace</p>
-                      <h2 className="mt-1 text-base font-semibold text-slate-900">Prescription</h2>
-                      <p className="mt-1 text-[12px] leading-relaxed text-slate-500">Select medications and tune regimen details without losing patient context.</p>
-                    </div>
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-medium text-slate-500">
-                        {drugs.length > 0 ? `${drugs.length} drug${drugs.length > 1 ? 's' : ''} selected` : 'No active regimen'}
-                      </span>
-                      <span className={`rounded-full border px-3 py-1 text-[11px] font-medium ${canRun ? 'border-emerald-200 bg-emerald-50 text-emerald-700' : 'border-slate-200 bg-slate-50 text-slate-500'}`}>
-                        {canRun ? 'Ready to scan' : 'Awaiting required inputs'}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex-1 overflow-y-auto px-5 py-5 sm:px-6 sm:py-6 space-y-5">
-
-                <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_220px]">
-                  <div className="rounded-2xl border border-slate-200 bg-slate-50/70 px-4 py-3">
-                    <p className="text-[11px] font-semibold text-slate-700">{t.fullSystem.sectionDrugs}</p>
-                    <p className="mt-1 text-[12px] text-slate-500">Search, add and refine each prescription entry before running DUR.</p>
-                  </div>
-                  <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Linked patient</p>
-                    <p className="mt-1 text-sm font-medium text-slate-900">{patientName || 'Unnamed patient'}</p>
-                    <p className="mt-1 text-[12px] text-slate-500">{species ? `${species}${weightKg > 0 ? ` · ${weightKg} kg` : ''}` : 'Complete signalment to improve scan quality.'}</p>
-                  </div>
+                <div>
+                  <h2 className="text-sm font-semibold text-slate-900">{t.fullSystem.sectionDrugs}</h2>
+                  <p className="text-[12px] text-slate-400 mt-0.5">Select drugs, configure dose</p>
                 </div>
 
                 <div className={`${missingRequired.drugs ? `rounded-xl border border-red-300 bg-red-50/30 p-1 ${shakeClass}` : ''}`}>
@@ -1623,18 +1587,7 @@ export default function FullSystem() {
                   <p className="-mt-3 text-[11px] text-red-600">Add at least one drug to run DUR</p>
                 )}
 
-                <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4">
-                  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                    <div>
-                      <p className="text-[11px] font-semibold text-slate-700">Summary handoff</p>
-                      <p className="mt-1 text-[12px] text-slate-500">Run the scan when patient signalment and at least one prescription are ready.</p>
-                    </div>
-                    <span className={`rounded-full border px-3 py-1 text-[11px] font-medium ${canRun ? 'border-emerald-200 bg-emerald-50 text-emerald-700' : 'border-slate-200 bg-white text-slate-500'}`}>
-                      {canRun ? 'DUR ready' : 'Incomplete setup'}
-                    </span>
-                  </div>
-
-                  <div className="mt-4 space-y-3">
+                <div className="border-t border-slate-200 pt-5 space-y-3">
                   <button
                     onClick={handleRunAnalysis}
                     aria-disabled={!canRun}
@@ -1650,14 +1603,7 @@ export default function FullSystem() {
                     <p className="text-center text-[12px] text-slate-400">{t.fullSystem.runDurDisabledHint}</p>
                   )}
                 </div>
-
-                </div>
-
               </div>
-            </div>
-
-              </div>
-            </div>
             </div>
           </div>
         )}
