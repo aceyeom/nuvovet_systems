@@ -91,6 +91,10 @@ def insert_drug_data():
                 cursor.execute("""
                     INSERT INTO drugs (drug_id, name_ko, drug_class, full_data)
                     VALUES (%s, %s, %s, %s)
+                    ON CONFLICT (drug_id) DO UPDATE
+                    SET name_ko = EXCLUDED.name_ko,
+                        drug_class = EXCLUDED.drug_class,
+                        full_data = EXCLUDED.full_data
                 """, (drug_id, name_ko, drug_class, json.dumps(drug, ensure_ascii=False)))
                 inserted_count += 1
 
