@@ -1,0 +1,637 @@
+{
+  "id": "prednisolone_prednisone",
+  "drug_identity": {
+    "name_ko": "프레드니솔론/프레드니손",
+    "name_en": "PrednisoLONE/Prednisone/PrednisoLONE Sodium Succinate",
+    "active_ingredient": "Prednisolone, Prednisone, Prednisolone Sodium Succinate",
+    "brand_names": [
+      "Prednis-Tab",
+      "Meticortelone Acetate",
+      "Solu-Delta-Cortef",
+      "Hydeltrone-TBA",
+      "Meticorten",
+      "Temaril-P",
+      "Millipred",
+      "Orapred ODT",
+      "Pediapred",
+      "Flo-Pred",
+      "Veripred 20",
+      "Deltasone",
+      "Rayos",
+      "Prednisone Intensol"
+    ],
+    "allergy_class": "Glucocorticoids",
+    "class": "Glucocorticoid",
+    "source": "kr_vet",
+    "formulary_status": null,
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": "Currently, there are no injectable prednisone/prednisolone products available for use in animals in the United States. Unless cited by a veterinary-approved product, all dosages should be considered extra-label.",
+    "dosage_form": [
+      "Tab",
+      "Inj",
+      "Susp",
+      "Sol"
+    ],
+    "available_strengths": [
+      {
+        "value": 5.0,
+        "unit": "mg"
+      },
+      {
+        "value": 20.0,
+        "unit": "mg"
+      },
+      {
+        "value": 25.0,
+        "unit": "mg/mL"
+      },
+      {
+        "value": 10.0,
+        "unit": "mg/mL"
+      },
+      {
+        "value": 50.0,
+        "unit": "mg/mL"
+      },
+      {
+        "value": 40.0,
+        "unit": "mg/mL"
+      },
+      {
+        "value": 1.0,
+        "unit": "mg/mL"
+      },
+      {
+        "value": 2.0,
+        "unit": "mg/mL"
+      },
+      {
+        "value": 3.0,
+        "unit": "mg/mL"
+      },
+      {
+        "value": 4.0,
+        "unit": "mg/mL"
+      },
+      {
+        "value": 5.0,
+        "unit": "mg/mL"
+      },
+      {
+        "value": 1.0,
+        "unit": "mg"
+      },
+      {
+        "value": 2.5,
+        "unit": "mg"
+      },
+      {
+        "value": 10.0,
+        "unit": "mg"
+      },
+      {
+        "value": 50.0,
+        "unit": "mg"
+      },
+      {
+        "value": 2.0,
+        "unit": "mg"
+      }
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Liver",
+    "clearance_organ": "Kidney",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": "Prednisone is a prodrug and requires hepatic bioactivation. In humans, prednisoLONE is hepatically conjugated and metabolites are primarily excreted in the urine."
+  },
+  "organ_burden_logic": {
+    "note": "Glucocorticoids have effects on almost every cell type and system.",
+    "dog": {
+      "brain": {
+        "calculated_score": 2,
+        "triggered_keywords": [
+          "seizure threshold",
+          "alter mood",
+          "behavior changes"
+        ],
+        "index": 2,
+        "evidence": "Can lower the seizure threshold, alter mood and behavior. Behavior changes (e.g., depression, lethargy, aggression) can occur."
+      },
+      "blood": {
+        "calculated_score": 2,
+        "triggered_keywords": [
+          "hypercoagulability",
+          "platelets",
+          "neutrophils"
+        ],
+        "index": 2,
+        "evidence": "Can increase the number of circulating platelets, neutrophils, and RBCs, but platelet aggregation is inhibited. Hypercoagulability can occur."
+      },
+      "kidney": {
+        "calculated_score": 2,
+        "triggered_keywords": [
+          "polyuria",
+          "potassium",
+          "calcium excretion"
+        ],
+        "index": 2,
+        "evidence": "Vasopressin (ADH) activity is reduced at the renal tubules and diuresis may occur. Can increase renal potassium and calcium excretion."
+      },
+      "liver": {
+        "calculated_score": 2,
+        "triggered_keywords": [
+          "ALT",
+          "GGT",
+          "ALP",
+          "glycogen"
+        ],
+        "index": 2,
+        "evidence": "Hepatic changes can include increased fat and glycogen deposits, increased serum levels of ALT, GGT, and significant increases in ALP."
+      },
+      "heart": {
+        "calculated_score": 2,
+        "triggered_keywords": [
+          "blood pressure",
+          "fluid retention"
+        ],
+        "index": 2,
+        "evidence": "Vasoconstrictive properties and increased blood volume can result in increased blood pressure. Caution in patients with cardiovascular disease due to fluid retention."
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 2,
+        "triggered_keywords": [
+          "seizure threshold",
+          "depression"
+        ],
+        "index": 2,
+        "evidence": "Can lower the seizure threshold. Depression may be present occasionally."
+      },
+      "blood": {
+        "calculated_score": 2,
+        "triggered_keywords": [
+          "hypercoagulability",
+          "platelets"
+        ],
+        "index": 2,
+        "evidence": "Can increase the number of circulating platelets, neutrophils, and RBCs, but platelet aggregation is inhibited."
+      },
+      "kidney": {
+        "calculated_score": 2,
+        "triggered_keywords": [
+          "polyuria",
+          "potassium"
+        ],
+        "index": 2,
+        "evidence": "Vasopressin (ADH) activity is reduced at the renal tubules and diuresis may occur."
+      },
+      "liver": {
+        "calculated_score": 1,
+        "triggered_keywords": [
+          "ALP"
+        ],
+        "index": 1,
+        "evidence": "In cats, increases in ALP are not attributable to glucocorticoid administration due to lack of a steroid-induced ALP isoenzyme."
+      },
+      "heart": {
+        "calculated_score": 2,
+        "triggered_keywords": [
+          "blood pressure",
+          "fluid retention"
+        ],
+        "index": 2,
+        "evidence": "Vasoconstrictive properties and increased blood volume can result in increased blood pressure."
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": 12.0,
+      "max": 36.0,
+      "mean": null,
+      "species": null
+    },
+    "f_percent": 100.0,
+    "protein_binding_percent": null,
+    "evidence": "PrednisoLONE and prednisone are intermediate-acting corticosteroids with biologic half-lives of 12 to 36 hours. In cats, oral prednisoLONE bioavailability is 100%, while oral prednisone is 21%."
+  },
+  "_ddi_note": null,
+  "drug_interactions": [
+    {
+      "drug": "Amphotericin B",
+      "severity": 2,
+      "keywords": [
+        "hypokalemia"
+      ],
+      "evidence": "May cause hypokalemia when administered concomitantly with glucocorticoids."
+    },
+    {
+      "drug": "Anticholinesterase Agents (e.g., neostigmine, pyridostigmine)",
+      "severity": 3,
+      "keywords": [
+        "muscle weakness"
+      ],
+      "evidence": "In animals with myasthenia gravis, concomitant glucocorticoid use may lead to profound muscle weakness. Discontinue at least 24 hours before corticosteroid administration."
+    },
+    {
+      "drug": "Aspirin (salicylates) / NSAIDs",
+      "severity": 2,
+      "keywords": [
+        "GI ulcers"
+      ],
+      "evidence": "May increase the risk for GI ulcers or erosions. Glucocorticoids may reduce salicylate blood levels."
+    },
+    {
+      "drug": "Barbiturates",
+      "severity": 2,
+      "keywords": [
+        "increase metabolism"
+      ],
+      "evidence": "May increase the metabolism of glucocorticoids."
+    },
+    {
+      "drug": "Cholestyramine",
+      "severity": 2,
+      "keywords": [
+        "reduce absorption"
+      ],
+      "evidence": "May reduce prednis(ol)one absorption."
+    },
+    {
+      "drug": "Cyclophosphamide",
+      "severity": 2,
+      "keywords": [
+        "inhibit metabolism"
+      ],
+      "evidence": "Glucocorticoids may inhibit the hepatic metabolism of cyclophosphamide."
+    },
+    {
+      "drug": "Cyclosporine",
+      "severity": 2,
+      "keywords": [
+        "increase blood levels"
+      ],
+      "evidence": "Concomitant administration may increase the blood levels of each by mutually inhibiting the hepatic metabolism."
+    },
+    {
+      "drug": "Digoxin",
+      "severity": 2,
+      "keywords": [
+        "arrhythmias",
+        "hypokalemia"
+      ],
+      "evidence": "Secondary to hypokalemia, increased risk for arrhythmias."
+    },
+    {
+      "drug": "Diuretics, Potassium-Depleting",
+      "severity": 2,
+      "keywords": [
+        "hypokalemia"
+      ],
+      "evidence": "May cause hypokalemia when administered concomitantly."
+    },
+    {
+      "drug": "Ephedrine",
+      "severity": 2,
+      "keywords": [
+        "increase metabolism"
+      ],
+      "evidence": "May increase metabolism of glucocorticoids."
+    },
+    {
+      "drug": "Estrogens",
+      "severity": 2,
+      "keywords": [
+        "potentiated"
+      ],
+      "evidence": "Effects of glucocorticoids may be potentiated by concomitant administration with estrogens."
+    },
+    {
+      "drug": "Fluoroquinolones",
+      "severity": 2,
+      "keywords": [
+        "tendon rupture"
+      ],
+      "evidence": "Concurrent use may increase risk for tendinitis and tendon rupture."
+    },
+    {
+      "drug": "Insulin",
+      "severity": 2,
+      "keywords": [
+        "requirements may increase"
+      ],
+      "evidence": "Insulin requirements may increase in animals receiving glucocorticoids."
+    },
+    {
+      "drug": "Ketoconazole / Macrolide Antibiotics",
+      "severity": 2,
+      "keywords": [
+        "decrease metabolism"
+      ],
+      "evidence": "May decrease the metabolism of glucocorticoids."
+    },
+    {
+      "drug": "Mitotane",
+      "severity": 2,
+      "keywords": [
+        "alter metabolism"
+      ],
+      "evidence": "May alter the metabolism of steroids; higher than usual doses of steroids may be necessary."
+    },
+    {
+      "drug": "Phenobarbital, Primidone, Rifampin",
+      "severity": 2,
+      "keywords": [
+        "increase metabolism"
+      ],
+      "evidence": "May increase the metabolism of glucocorticoids."
+    },
+    {
+      "drug": "Vaccines",
+      "severity": 3,
+      "keywords": [
+        "virus replication",
+        "diminished immune response"
+      ],
+      "evidence": "Animals receiving immunosuppressive dosages should generally not receive live attenuated-virus vaccines."
+    },
+    {
+      "drug": "Warfarin",
+      "severity": 2,
+      "keywords": [
+        "clotting times"
+      ],
+      "evidence": "Glucocorticoids may affect clotting times."
+    }
+  ],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": true,
+    "gi_ulcer": true,
+    "bleeding": true,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "low",
+    "gi_ulcer": "high",
+    "bleeding": "low",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": "hypokalemia, hypocalcemia",
+    "narrow_therapeutic_index": false,
+    "washout_period_days": 14.0
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "Extra-label",
+          "context": "Anti-inflammatory agent",
+          "value": "0.5-1",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "q24h",
+          "max_dose_mg_kg": 1.0,
+          "duration_note": "Not to exceed 40 mg/dog in large breed dogs. Can be divided and given twice daily.",
+          "evidence": "General guide."
+        },
+        {
+          "logic_type": "Extra-label",
+          "context": "Immunosuppressive agent",
+          "value": "2-4",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "q24h",
+          "max_dose_mg_kg": 4.0,
+          "duration_note": "Many suggest dividing the total dose and giving it twice daily. Prednisone total daily dose should not exceed 60 - 80 mg.",
+          "evidence": "General guide."
+        },
+        {
+          "logic_type": "Extra-label",
+          "context": "Antineoplastic/cytotoxic agent",
+          "value": "2",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "q24h",
+          "max_dose_mg_kg": 2.0,
+          "duration_note": "Consultations with a veterinary oncologist strongly recommended.",
+          "evidence": "General guide."
+        },
+        {
+          "logic_type": "Extra-label",
+          "context": "Adjunctive treatment for hypoadrenocorticism (Acute)",
+          "value": "1-2",
+          "unit": "mg/kg",
+          "route": "IV",
+          "frequency": "Once",
+          "max_dose_mg_kg": 2.0,
+          "duration_note": "Using prednisoLONE sodium succinate after second blood draw for cortisol measurement.",
+          "evidence": "Acute management."
+        },
+        {
+          "logic_type": "Extra-label",
+          "context": "Adjunctive treatment for hypoadrenocorticism (Oral replacement)",
+          "value": "0.1-0.22",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "q24h",
+          "max_dose_mg_kg": 0.22,
+          "duration_note": "Tapered to the lowest dose to control clinical signs.",
+          "evidence": "Maintenance."
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "Extra-label",
+          "context": "Anti-inflammatory agent",
+          "value": "1-2",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "q24h",
+          "max_dose_mg_kg": 2.0,
+          "duration_note": "PrednisoLONE should be used.",
+          "evidence": "General guide."
+        },
+        {
+          "logic_type": "Extra-label",
+          "context": "Immunosuppressive agent",
+          "value": "2-8",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "q24h",
+          "max_dose_mg_kg": 8.0,
+          "duration_note": "PrednisoLONE should be used. Many start with 4 mg/kg PO daily then dividing the total dose and giving it twice daily.",
+          "evidence": "General guide."
+        }
+      ]
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "monitor",
+    "adjustment_factor": null,
+    "note": "Caution is advised when using in animals with concomitant renal disease, as they may be at increased risk for adverse GI effects."
+  },
+  "hepatic_dose_adjustment": {
+    "applies": true,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "avoid",
+    "note": "Animals with hepatic dysfunction may have impaired ability to metabolize prednisone to prednisoLONE. PrednisoLONE should be used."
+  },
+  "contraindications": [
+    {
+      "condition": "Systemic Fungal Infections",
+      "match_terms": [
+        "systemic fungal infections"
+      ],
+      "severity": "high",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "Active Bacterial Infection / Viral Infections",
+      "match_terms": [
+        "active bacterial infection",
+        "viral infections"
+      ],
+      "severity": "high",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "Diabetes Mellitus",
+      "match_terms": [
+        "diabetes mellitus"
+      ],
+      "severity": "high",
+      "action": "monitor",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    }
+  ],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": "Intermediate-acting corticosteroids. Reduce capillary permeability, enhance vasoconstriction, suppress ACTH release, alter lipid, carbohydrate, and protein metabolism. Can inhibit immune response and inflammatory mediators.",
+    "common_extra_effects": [
+      "Polydipsia (PD)",
+      "Polyphagia (PP)",
+      "Polyuria (PU)",
+      "Weight gain",
+      "GI ulceration",
+      "Elevated liver enzymes",
+      "Hyperglycemia"
+    ],
+    "dog_mechanism": null,
+    "dog_extra_effects": [
+      "Panting",
+      "Dull/dry coat",
+      "Behavior changes"
+    ],
+    "cat_mechanism": null,
+    "cat_extra_effects": [
+      "Acute bullous keratopathy"
+    ]
+  },
+  "species_notes": {
+    "dog": "In healthy dogs, immunosuppressive dosages did not enhance platelet function or coagulation or produce clinical evidence of pancreatitis.",
+    "cat": "Cats generally require higher doses than dogs for clinical effects but typically develop fewer adverse effects. PrednisoLONE is recommended because of the poor bioavailability of prednisone."
+  },
+  "precautions": {
+    "dog": {
+      "status": 3,
+      "evidence": "Caution advised with diabetes, hyperadrenocorticism, renal insufficiency, congestive heart failure. Do not abruptly discontinue chronic therapy; taper slowly."
+    },
+    "cat": {
+      "status": 3,
+      "evidence": "Caution advised with diabetes, hyperadrenocorticism, renal insufficiency, congestive heart failure. Do not abruptly discontinue chronic therapy; taper slowly."
+    }
+  },
+  "storage_and_forms": {
+    "storage": "Store tablets in tightly closed containers below 40°C (104°F). PrednisoLONE sodium succinate should be stored at room temperature and protected from light; after reconstitution, use immediately.",
+    "forms": [
+      "Tablets",
+      "Injection",
+      "Oral Solution/Syrup"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "Used to treat many conditions in a variety of species. Prednisone’s anti-inflammatory activity is 4 times more potent than hydrocortisone. Contraindications include systemic fungal infections. Goal of therapy should be to use the lowest dose possible for the least amount of time. PrednisoLONE is recommended for use in cats and horses.",
+    "indications": "4 primary uses: 1) replacement/supplementation for hypoadrenocorticism, 2) anti-inflammatory agent, 3) immunosuppression, and 4) antineoplastic agent.",
+    "client_info": "Give with food. Goal of treatment is to find the lowest dose possible and use it for the shortest period of time. Most common side effects are increased appetite, thirst, and need to urinate. Do not suddenly stop giving this medicine without talking to your veterinarian."
+  },
+  "_data_quality": {
+    "overall_confidence": 5,
+    "renal_adjustment_confidence": "high",
+    "hepatic_adjustment_confidence": "high",
+    "organ_burden_confidence": "high",
+    "ddi_source": "Plumb's Veterinary Drugs",
+    "plumbs_sections_found": [
+      "Prescriber Highlights",
+      "Uses/Indications",
+      "Pharmacology/Actions",
+      "Pharmacokinetics",
+      "Contraindications/Precautions/Warnings",
+      "Adverse Effects",
+      "Reproductive/Nursing Safety",
+      "Overdose/Acute Toxicity",
+      "Drug Interactions",
+      "Laboratory Considerations",
+      "Dosages",
+      "Monitoring",
+      "Client Information",
+      "Chemistry/Synonyms",
+      "Storage/Stability",
+      "Compatibility/Compounding Considerations",
+      "Dosage Forms/Regulatory Status"
+    ],
+    "missing_sections": [],
+    "requires_pmc_rag": false,
+    "pmc_rag_fields": []
+  },
+  "_extraction_metadata": {
+    "model_used": "Gemini 3.1 Pro",
+    "extraction_pass": 1,
+    "source_file": "PrednisoLONE/Prednisone/PrednisoLONE Sodium Succinate",
+    "extracted_at": "2026-03-21T13:42:15+09:00",
+    "reviewer": null
+  }
+}

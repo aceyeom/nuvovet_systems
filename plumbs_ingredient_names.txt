@@ -1,0 +1,682 @@
+SYSTEMIC MONOGRAPHS
+Acarbose 
+Acepromazine 2
+Acetaminophen 7
+Acetazolamide 9
+Acetic Acid 11
+Acetylcysteine 12
+Acyclovir 14
+Afoxolaner 16
+Aglepristone 18
+Albendazole 20
+Albumin, Human 22
+Albuterol 24
+Alendronate 27
+Alfaxalone 29
+Alfentanil 35
+Allopurinol 37
+Alprazolam 39
+Altrenogest 41
+Aluminum Hydroxide 44
+Amantadine 45
+Amikacin, Systemic 47
+Aminocaproic Acid 51
+Aminophylline 53
+Amiodarone 56
+Amitriptyline 58
+Amlodipine 62
+Ammonium Chloride 65
+Amoxicillin 67
+Amoxicillin/Clavulanate 70
+Amphotericin B 74
+Ampicillin 78
+Ampicillin/Sulbactam 82
+Amprolium 84
+Antivenom, Latrodectus mactans 86
+Antivenom, Crotalidae 87
+Antivenom, North American Coral Snake 90
+Apomorphine 92
+Apramycin 94
+Ascorbic Acid 96
+Asparaginase 98
+Aspirin 100
+Atenolol 103
+Atipamezole 106
+Atovaquone 108
+Atracurium 109
+Atropine 112
+Auranofin 116
+Azathioprine 118
+Azithromycin 120
+Benazepril 123
+Betamethasone (Systemic) 127
+Bethanechol 130
+Bisacodyl 132
+Bismuth Subsalicylate 133
+Bleomycin 135
+Bromides 137
+Bromocriptine 140
+Budesonide 142
+Bupivacaine 144
+Bupivacaine Liposome 147
+Buprenorphine 150
+Buspirone 155
+Butorphanol 157
+Butylscopolamine 164
+Cabergoline 165
+Caffeine 167
+Calcitonin 169
+Calcitriol 170
+Calcium Acetate 172
+Calcium, IV (-Borogluconate, -Chloride, -Gluconate) 174
+Calcium, Oral (-Carbonate, -Gluconate, -Lactate) 177
+Cannabidiol (CBD) 179
+Capromorelin 182
+Carbimazole 184
+Carboplatin 186
+Carnitine 189
+Carprofen 190
+Carvedilol 193
+Caspofungin 195
+Cefaclor 197
+Cefadroxil 198
+Cefazolin 201
+Cefepime 203
+Cefixime 205
+Cefotaxime 206
+Cefotetan 208
+Cefovecin 210
+Cefoxitin 212
+Cefpodoxime 214
+Cefquinome 216
+Ceftazidime 219
+Ceftiofur Crystalline Free Acid 221
+Ceftiofur HCl 224
+Ceftiofur Sodium 227
+Ceftriaxone 230
+Cefuroxime 232
+Cephalexin 234
+Cephapirin 237
+Cetirizine 238
+Charcoal, Activated 240
+Chlorambucil 243
+Chloramphenicol 245
+Chlorothiazide 249
+Chlorpheniramine 251
+Chlorpromazine 253
+Chlortetracycline 255
+Cholestyramine 257
+Chorionic Gonadotropin 259
+Ciclesonide 261
+Cimetidine 263
+Ciprofloxacin 265
+Cisapride 269
+Cisplatin 271
+Citrate, Potassium 274
+Clarithromycin 276
+Clemastine 279
+Clenbuterol 280
+Clindamycin 282
+Clodronate 286
+Clofazimine 288
+Clomipramine 289
+Clonazepam 292
+Clonidine 294
+Clopidogrel 297
+Cloprostenol 299
+Clorazepate 301
+Cloxacillin 303
+Cobalamin 304
+Codeine 307
+Colchicine 309
+Corticotropin 311
+Cortisone 312
+Cosyntropin 314
+Crofelemer 316
+Cromolyn (Inhaled) 317
+Cyclophosphamide 318
+Cyclosporine (Systemic) 322
+Cyproheptadine 327
+Cytarabine 329
+Dacarbazine (DTIC) 332
+Dactinomycin 334
+Dalteparin 335
+Danofloxacin 337
+Dantrolene 339
+Dapsone 341
+Darbepoetin Alfa 342
+Decoquinate 344
+Deferoxamine 346
+Deracoxib 347
+Desflurane 349
+Deslorelin 351
+Desmopressin 352
+Desoxycorticosterone Pivalate (DOCP) 355
+Detomidine 358
+Dexamethasone 361
+Dexmedetomidine 367
+Dexrazoxane 372
+Dextran 70 373
+Dextromethorphan 375
+Dextrose 50% Injection 376
+Diazepam 378
+Diazoxide 382
+Dichlorphenamide 384
+Diclazuril 385
+Diclofenac, Topical 387
+Dicloxacillin 389
+Diethylstilbestrol (DES) 390
+Digoxin 392
+Diltiazem 396
+Dimenhydrinate 399
+Dimercaprol (BAL) 400
+Dimethyl Sulfoxide 402
+Diminazene 404
+Dinoprost 405
+Diphenhydramine 409
+Diphenoxylate/Atropine 412
+Dipyrone 413
+Dobutamine 416
+Docusate 418
+Dolasetron 419
+Domperidone 420
+Dopamine 422
+Doramectin 424
+Doxapram 426
+Doxepin 429
+Doxorubicin 430
+Doxycycline 433
+Edetate Calcium Disodium (CaEDTA) 438
+Edrophonium 440
+Emodepside/Praziquantel 442
+Enalapril 445
+Enoxaparin 448
+Enrofloxacin 450
+Ephedrine 455
+Epinephrine 457
+Epirubicin 460
+Epoetin Alfa 463
+Eprinomectin/Praziquantel 465
+Eprinomectin 467
+Epsiprantel 469
+Ergocalciferol 470
+Ertapenem 472
+Erythromycin 473
+Esmolol 477
+Esomeprazole 478
+Estradiol 481
+Estriol 483
+Ethambutol 485
+Ethanol 487
+Etodolac 489
+Etomidate 491
+Euthanasia Agents with Pentobarbital 493
+Exenatide 494
+Famciclovir 498
+Famotidine 499
+Fatty Acids, Omega- 3 501
+Felbamate 503
+Fenbendazole 505
+Fenofibrate 508
+Fenoldopam 510
+Fentanyl, Injection 512
+Fentanyl, Transdermal Patch 515
+Ferrous Sulfate 519
+Fexofenadine 521
+Filgrastim (Granulocyte Colony Stimulating Factor; GCSF) 522
+Finasteride 524
+Firocoxib 525
+Florfenicol 528
+Fluconazole 530
+Flucytosine 534
+Fludrocortisone 535
+Flumazenil 537
+Flumethasone 539
+Flunixin 541
+Fluorouracil 544
+Fluoxetine 547
+Fluralaner 549
+Fluticasone 552
+Fluvoxamine 554
+Folic Acid 556
+Fomepizole 558
+Fosfomycin 559
+Frunevetmab 561
+Furazolidone 562
+Furosemide 563
+Gabapentin 568
+Gamithromycin 571
+Gemcitabine 572
+Gemfibrozil 574
+Gentamicin, Systemic 576
+Glipizide 580
+Glucagon 582
+Glucosamine/Chondroitin Sulfate 583
+Glyburide 585
+Glycerin, Oral 587
+Glycopyrrolate 588
+Gonadorelin 591
+Granisetron 593
+Grapiprant 594
+Griseofulvin 596
+Guaifenesin, Intravenous 598
+Hemoglobin Glutamer-200 (Bovine) 601
+Heparin 603
+Hyaluronate 606
+Hydralazine 607
+Hydrochlorothiazide 610
+Hydrocodone Combinations 612
+Hydrocortisone 615
+Hydrogen Peroxide 3% (Oral) 618
+Hydromorphone 619
+Hydroxychloroquine 623
+Hydroxyethyl Starch (HES) Colloids 625
+
+Hydroxyurea 628
+Hydroxyzine 629
+Hyoscyamine 632
+Hypertonic Saline (7% to 7.5%) 633
+Ifosfamide 635
+Imepitoin 637
+Imidacloprid, Systemic 639
+Imidapril 640
+Imidocarb 642
+Imipenem/Cilastatin Sodium 644
+Imipramine 646
+Immune Globulin (Human), Intravenous 649
+Insulin, Aspart 651
+Insulin, Detemir 655
+Insulin, Glargine 658
+Insulin, Lente 662
+Insulin, Lispro 666
+Insulin, NPH 670
+Insulin, Protamine Zinc 674
+Insulin, Regular (Crystalline Zinc) 677
+Interferon Alfa, Human Recombinant 681
+Interferon Omega, Feline Origin 683
+Iodide (Potassium-, Sodium-) 685
+Iohexol 687
+Ipratropium 689
+Irbesartan 690
+Iron Dextran 692
+Isoflupredone 693
+Isoflurane 695
+Isoniazid (INH) 698
+Isoproterenol 700
+Isotretinoin 701
+Isoxsuprine 703
+Itraconazole 704
+Ivermectin 709
+Ivermectin/Clorsulon 714
+Kaolin/Pectin 715
+Ketamine 717
+Ketoconazole, Systemic 725
+Ketoprofen 729
+Ketorolac 732
+L- Theanine 733
+Lactulose 735
+Lanthanum 736
+Leflunomide 738
+Leucovorin 740
+Leuprolide 741
+Levamisole 743
+Levetiracetam 746
+Levothyroxine 749
+Lidocaine, Local Anesthetic 752
+Lidocaine (Intravenous; Systemic) 756
+Lincomycin 760
+Linezolid 762
+Liothyronine 764
+Lipid Emulsion, Intravenous (ILE) 766
+Lisinopril 769
+Lokivetmab 771
+Lomustine 773
+Loperamide 775
+Loratadine 777
+Lorazepam 778
+Losartan 781
+Lotilaner 783
+Lufenuron/Lufenuron Combination Products 785
+Lysine 788
+Magnesium Hydroxide 789
+Magnesium, IV 791
+Mannitol 793
+Marbofloxacin 796
+Maropitant 799
+Mavacoxib 802
+Mechlorethamine 804
+Meclizine 805
+Medetomidine 807
+Medetomidine/Vatinoxan 811
+Medium Chain Triglycerides; (MCT) Oil 814
+Medroxyprogesterone 815
+Megestrol 817
+Meglumine Antimoniate 819
+Melarsomine 821
+Melatonin 823
+Meloxicam 825
+Melphalan 829
+Meperidine 831
+Mepivacaine 834
+Meropenem 837
+Metergoline 839
+Metformin 840
+Methadone 842
+Methazolamide 846
+Methenamine 848
+Methimazole 849
+Methionine 852
+Methocarbamol 854
+Methotrexate 856
+Methylene Blue 859
+Methylphenidate 861
+Methylprednisolone 863
+Metoclopramide 867
+Metoprolol 870
+Metronidazole 873
+Metyrapone 877
+Mexiletine 878
+Midazolam 880
+Milbemycin Oxime 885
+Miltefosine 887
+Mineral Oil 889
+Minocycline 890
+Mirtazapine 893
+Misoprostol 896
+Mitotane 899
+Mitoxantrone 902
+Molybdates 904
+Montelukast 905
+Morantel 906
+Morphine 907
+Moxidectin/Moxidectin Combination Products 912
+Mycobacterial Cell Wall Fraction Immunomodulator 918
+Mycophenolate 920
+Nalbuphine 923
+Naloxone 924
+Naltrexone 926
+Neomycin 928
+Neostigmine 930
+Niacinamide 932
+Nitazoxanide 933
+Nitenpyram 935
+Nitrofurantoin 936
+Nitroglycerin, Transdermal 938
+Nitroprusside 939
+Nizatidine 941
+Norepinephrine 943
+Novobiocin 945
+Nystatin 946
+Oclacitinib 947
+Octreotide 950
+Olsalazine 952
+Omeprazole 953
+Ondansetron 956
+Orbifloxacin 958
+Osaterone 960
+Oseltamivir 961
+Oxacillin 963
+Oxazepam 964
+Oxfendazole 966
+Oxibendazole 967
+Oxybutynin 968
+Oxymorphone 969
+Oxytetracycline 972
+Oxytocin 977
+Pamidronate 980
+Pancrelipase 981
+Pantoprazole 983
+Parapox Ovis Virus Immunomodulator 985
+Paromomycin 986
+Paroxetine 988
+Penicillamine 990
+Penicillin G 992
+Penicillin V 996
+Pentobarbital 998
+Pentosan Polysulfate (PPS) 1000
+Pentoxifylline 1002
+Pergolide 1004
+Phenobarbital 1006
+Phenoxybenzamine 1011
+Phenylbutazone 1013
+Phenylephrine 1015
+Phenylpropanolamine 1017
+Pheromones 1019
+Phosphate (Potassium-, Sodium-), IV 1021
+Physostigmine 1022
+Phytonadione 1024
+Pimobendan 1026
+Piperacillin/Tazobactam 1029
+Piperazine 1031
+Pirlimycin 1032
+Piroxicam 1033
+Polyethylene Glycol 3350 (PEG 3350) 1035
+Polymyxin B, Systemic 1037
+Polysulfated Glycosaminoglycan 1039
+Ponazuril 1041
+Posaconazole 1043
+Potassium (-Acetate, -Chloride,-Gluconate) 1045
+Pradofloxacin 1048
+Pralidoxime (2- PAM) 1051
+Praziquantel/Praziquantel Combination Products 1053
+Prazosin 1057
+
+PrednisoLONE/Prednisone/PrednisoLONE Sodium Succinate 1058
+Pregabalin 1064
+Primaquine 1065
+Probenecid 1067
+Procainamide 1068
+Procarbazine 1071
+Prochlorperazine 1073
+Promethazine 1075
+Propantheline 1077
+Propionibacterium Acnes Injection 1079
+Propofol 1080
+Propranolol 1086
+Pseudoephedrine 1089
+Psyllium 1090
+Pyrantel 1092
+Pyridostigmine 1094
+Pyridoxine 1096
+Pyrilamine 1098
+Pyrimethamine 1099
+Pyrimethamine/Sulfadiazine 1101
+Quinacrine 1103
+Quinidine 1104
+Rabacfosadine 1107
+Ramipril 1109
+Ranitidine 1111
+Remifentanil 1114
+Reserpine 1116
+Rifampin 1118
+Rifaximin 1121
+Rivaroxaban 1122
+Robenacoxib 1124
+Rocuronium 1127
+Romifidine 1129
+Ronidazole 1131
+Ropinirole 1132
+Ropivacaine 1135
+S- Adenosyl-Methionine (SAMe) 1137
+S- Adenosyl-Methionine (SAMe)/Silybin 1139
+Saline Cathartics 1143
+Sarolaner 1144
+Selamectin 1147
+Selamectin/Sarolaner 1149
+Selegiline 1151
+Sertraline 1153
+Sevelamer 1155
+Sevoflurane 1156
+Sildenafil 1159
+Sodium Bicarbonate 1161
+Sodium Stibogluconate 1164
+Sodium Thiosulfate 1165
+Somatotropin 1166
+Sorbitol 1168
+Sotalol 1169
+Spectinomycin 1171
+Spinosad 1173
+Spironolactone 1175
+Spironolactone/Benazepril 1177
+Stanozolol 1180
+Staphylococcus Aureus Phage Lysate 1182
+Streptozocin 1184
+Succimer 1185
+Succinylcholine 1187
+Sucralfate 1189
+Sufentanil 1190
+Sulfa-/Trimethoprim 1193
+Sulfadimethoxine 1197
+Sulfadimethoxine/Ormetoprim 1200
+Sulfasalazine 1202
+Tadalafil 1204
+Tamsulosin 1205
+Taurine 1207
+Telmisartan 1208
+Terbinafine 1210
+Terbutaline 1213
+Testosterone 1215
+Tetracycline 1217
+Theophylline 1220
+Thiamine 1223
+Thiopental 1225
+Thyrotropin Alfa 1227
+Thyrotropin-Releasing Hormone (TRH) 1228
+Tiamulin 1230
+Tigilanol Tiglate 1232
+Tildipirosin 1235
+Tiletamine/Zolazepam 1236
+Tilmicosin 1240
+Tiludronate 1242
+Tinidazole 1244
+Tiopronin 1245
+Tobramycin, Systemic 1247
+Toceranib 1249
+Tolazoline 1252
+Tolfenamic Acid 1254
+Toltrazuril 1255
+Topiramate 1257
+Torsemide 1259
+Tramadol 1261
+Tranexamic Acid 1264
+Trazodone 1266
+Triamcinolone 1269
+Triamterene 1273
+Trientine 1274
+Trilostane 1275
+Trimeprazine/Prednisolone 1279
+Tripelennamine 1281
+Tulathromycin 1282
+Tylosin 1284
+Ursodiol 1287
+Valacyclovir 1289
+Vancomycin 1291
+Vasopressin 1293
+Vecuronium 1295
+Verapamil 1297
+Verdinexor 1300
+Vinblastine 1302
+Vincristine 1304
+Vinorelbine 1307
+Vitamin A 1310
+Vitamin E Selenium 1311
+Voriconazole 1314
+Warfarin 1317
+Xylazine 1319
+Yohimbine 1324
+Zidovudine 1326
+Zinc (Systemic) 1327
+Zoledronate 1329
+Zonisamide 1331
+Ophthalmic Agents, Topical 1334
+Routes of Administration for Ophthalmic Drugs 1334
+Principles of Compounding Ophthalmic Products 1335
+General Principles of Ocular Penetration 1337
+Topical Ophthalmic Agents Listed by Class/Indication 1338
+Acetylcysteine Ophthalmic 1339
+Acyclovir Ophthalmic 1339
+Alcaftadine Ophthalmic 1340
+Alteplase Ophthalmic 1340
+Amikacin Ophthalmic 1341
+Amphotericin B Ophthalmic 1342
+Apraclonidine Ophthalmic 1343
+Atropine Ophthalmic 1343
+Azelastine Ophthalmic 1344
+Azithromycin Ophthalmic 1345
+Benoxinate Ophthalmic 1345
+Bepotastine Ophthalmic 1346
+Besifloxacin Ophthalmic 1347
+Betaxolol Ophthalmic 1347
+Bimatoprost Ophthalmic 1348
+Brimonidine Ophthalmic 1349
+Brinzolamide Ophthalmic 1350
+Bromfenac Ophthalmic 1351
+Carteolol Ophthalmic 1352
+Chloramphenicol Ophthalmic 1353
+Cidofovir Ophthalmic 1353
+Ciprofloxacin Ophthalmic 1354
+Cromolyn Ophthalmic 1355
+Cyclopentolate Ophthalmic 1356
+Cyclosporine Ophthalmic 1357
+Demecarium Ophthalmic 1358
+Dexamethasone Ophthalmic 1359
+Diclofenac Ophthalmic 1360
+Difluprednate Ophthalmic 1361
+Dorzolamide Ophthalmic 1362
+Edetate Disodium Ophthalmic 1363
+Epinastine Ophthalmic 1364
+Erythromycin Ophthalmic 1364
+Fluorescein Stain Ophthalmic 1365
+Fluorometholone Ophthalmic 1366
+Fluorouracil Ophthalmic 1367
+Flurbiprofen Ophthalmic 1368
+Ganciclovir Ophthalmic 1369
+Gatifloxacin Ophthalmic 1370
+Gentamicin Ophthalmic 1370
+Hydrocortisone Ophthalmic 1371
+Idoxuridine Ophthalmic 1372
+Irrigating Solutions, Ophthalmic 1373
+Itraconazole Ophthalmic 1374
+Ketorolac Ophthalmic 1375
+Ketotifen Ophthalmic 1376
+Latanoprost Ophthalmic 1376
+Levobunolol Ophthalmic 1377
+Levofloxacin Ophthalmic 1378
+Lidocaine Ophthalmic 1379
+Lissamine Green Ophthalmic 1380
+Lodoxamide Ophthalmic 1380
+Loteprednol Ophthalmic 1381
+Miconazole Ophthalmic 1382
+Mitomycin Ophthalmic 1383
+
+Morphine Ophthalmic 1384
+Moxifloxacin Ophthalmic 1385
+Nalbuphine Ophthalmic 1385
+Natamycin Ophthalmic 1386
+Nedocromil Ophthalmic 1387
+Nepafenac Ophthalmic 1387
+Ocular Lubricants 1388
+Ofloxacin Ophthalmic 1391
+Olopatadine Ophthalmic 1392
+Oxytetracycline/Polymyxin B Ophthalmic 1392
+Phenylephrine Ophthalmic 1393
+Pilocarpine Ophthalmic 1394
+Pimecrolimus Ophthalmic 1395
+Povidone-Iodine Ophthalmic 1396
+Prednisolone Ophthalmic 1397
+Proparacaine Ophthalmic 1398
+Rose Bengal Stain, Ophthalmic 1399
+Silver Sulfadiazine (SSD) Ophthalmic 1399
+Sodium Chloride (Hypertonic) Ophthalmic 1400
+Sulfacetamide Ophthalmic 1401
+Tacrolimus Ophthalmic 1402
+Tafluprost Ophthalmic 1403
+Tetracaine Ophthalmic 1404
+Timolol Ophthalmic 1405
+Tobramycin Ophthalmic 1406
+Travoprost Ophthalmic 1407
+Trifluridine Ophthalmic 1408
+Triple Antibiotic Ophthalmic 1409
+Tropicamide Ophthalmic 1410
+Vancomycin Ophthalmic 1411
+Voriconazole Ophthalmic 1412

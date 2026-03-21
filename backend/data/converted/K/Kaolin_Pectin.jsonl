@@ -1,0 +1,368 @@
+{
+  "id": "kaolin_pectin",
+  "drug_identity": {
+    "name_ko": "카올린/펙틴",
+    "name_en": "Kaolin/Pectin",
+    "active_ingredient": "Kaolin, Pectin",
+    "brand_names": [
+      "Kaopectolin",
+      "Kao-Pec",
+      "Kao-Pect",
+      "Kao-Pront",
+      "Kaogel"
+    ],
+    "allergy_class": null,
+    "class": "GI Adsorbent/Protectant",
+    "source": "kr_vet",
+    "formulary_status": "OTC",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": "Evidence to support the efficacy of kaolin/pectin is weak. All dosages are anecdotal and extra-label as no products have undergone the FDA approval process for use in animals.",
+    "dosage_form": [
+      "Susp"
+    ],
+    "available_strengths": [
+      {
+        "value": 5.8,
+        "unit": "g kaolin + 0.268 g pectin per 30 mL"
+      },
+      {
+        "value": 5.8,
+        "unit": "g kaolin + 0.13 g pectin per 30 mL"
+      },
+      {
+        "value": 800.0,
+        "unit": "mg kaolin + 80 mg pectin per 5 mL"
+      },
+      {
+        "value": 900.0,
+        "unit": "mg kaolin + 50 mg pectin per 5 mL"
+      },
+      {
+        "value": 90.0,
+        "unit": "g kaolin + 2 g pectin per 30 mL"
+      }
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Mixed",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": "Neither kaolin nor pectin is absorbed after oral administration. Up to 90% of the pectin administered may be decomposed in the gut."
+  },
+  "organ_burden_logic": {
+    "note": "Highly insoluble and not absorbed systemically; overdose unlikely to cause serious systemic effects.",
+    "dog": {
+      "brain": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No neurologic burden noted."
+      },
+      "blood": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No hematologic burden noted."
+      },
+      "kidney": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No renal burden noted."
+      },
+      "liver": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No hepatic burden noted."
+      },
+      "heart": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No cardiovascular burden noted."
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No neurologic burden noted."
+      },
+      "blood": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No hematologic burden noted."
+      },
+      "kidney": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No renal burden noted."
+      },
+      "liver": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No hepatic burden noted."
+      },
+      "heart": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No cardiovascular burden noted."
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": null
+    },
+    "f_percent": 0.0,
+    "protein_binding_percent": null,
+    "evidence": "Neither kaolin nor pectin is absorbed after oral administration. Can improve stool consistency within 24 to 48 hours."
+  },
+  "_ddi_note": "Kaolin/pectin may inhibit the oral absorption of concurrently administered drugs.",
+  "drug_interactions": [
+    {
+      "drug": "Digoxin",
+      "severity": 2,
+      "keywords": [
+        "impair",
+        "oral absorption",
+        "separate doses"
+      ],
+      "evidence": "May impair oral absorption. Separate doses by at least 2 hours."
+    },
+    {
+      "drug": "Clindamycin, Lincomycin",
+      "severity": 2,
+      "keywords": [
+        "inhibit",
+        "oral absorption",
+        "separate doses"
+      ],
+      "evidence": "May inhibit oral absorption. Administer at least 2 hours before or 3 to 4 hours after the antibiotic dose."
+    },
+    {
+      "drug": "Penicillamine",
+      "severity": 2,
+      "keywords": [
+        "inhibit",
+        "oral absorption",
+        "separate doses"
+      ],
+      "evidence": "May inhibit oral absorption. Separate doses by at least 2 hours."
+    },
+    {
+      "drug": "Sulfa-/Trimethoprim",
+      "severity": 2,
+      "keywords": [
+        "inhibit",
+        "oral absorption",
+        "separate doses"
+      ],
+      "evidence": "May inhibit oral absorption. Separate doses by at least 2 hours."
+    }
+  ],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "Extra-label",
+          "context": "Diarrhea and loose stools",
+          "value": "1-2",
+          "unit": "mL/kg",
+          "route": "PO",
+          "frequency": "q4-6h",
+          "max_dose_mg_kg": null,
+          "duration_note": "4 to 6 times daily as needed.",
+          "evidence": "Extra-label."
+        },
+        {
+          "logic_type": "Extra-label",
+          "context": "Noninfectious diarrhea",
+          "value": "15-45",
+          "unit": "mL/animal",
+          "route": "PO",
+          "frequency": "Variable",
+          "max_dose_mg_kg": null,
+          "duration_note": "As needed at the first sign of diarrhea and after each loose bowel movement.",
+          "evidence": "Extra-label."
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "Extra-label",
+          "context": "Diarrhea and loose stools",
+          "value": "1-2",
+          "unit": "mL/kg",
+          "route": "PO",
+          "frequency": "q4-6h",
+          "max_dose_mg_kg": null,
+          "duration_note": "4 to 6 times daily as needed. Ensure the product does not contain bismuth subsalicylate.",
+          "evidence": "Extra-label."
+        },
+        {
+          "logic_type": "Extra-label",
+          "context": "Noninfectious diarrhea",
+          "value": "15-45",
+          "unit": "mL/animal",
+          "route": "PO",
+          "frequency": "Variable",
+          "max_dose_mg_kg": null,
+          "duration_note": "As needed at the first sign of diarrhea and after each loose bowel movement.",
+          "evidence": "Extra-label."
+        }
+      ]
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "none",
+    "adjustment_factor": null,
+    "note": "Should not replace adequate fluid and electrolyte monitoring or replacement therapy in severe or chronic diarrheas."
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "none",
+    "note": null
+  },
+  "contraindications": [
+    {
+      "condition": "Severe Diarrhea",
+      "match_terms": [
+        "severe diarrheas"
+      ],
+      "severity": "medium",
+      "action": "monitor",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    }
+  ],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": "Kaolin/pectin is thought to possess adsorbent and protective qualities. Bacteria and toxins are adsorbed in the gut, and the coating action protects inflamed GI mucosa. Pectin decreases pH in the intestinal lumen. Does not reduce the ions or amount of fluid lost.",
+    "common_extra_effects": [
+      "Constipation (usually transient and associated with high dosages)",
+      "Fecal impaction (at high dosages in debilitated, very old, or young patients)"
+    ],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "No species-specific notes.",
+    "cat": "Many branded products (e.g., Kaopectate) now contain bismuth subsalicylate, which should be used cautiously, if at all, in cats. Always read the product label carefully."
+  },
+  "precautions": {
+    "dog": {
+      "status": 1,
+      "evidence": "There are no absolute contraindications to kaolin/pectin therapy, but it should not be relied on to control severe diarrheas. Constipation may occur."
+    },
+    "cat": {
+      "status": 3,
+      "evidence": "Extreme caution to ensure the commercial product chosen does not contain bismuth subsalicylate, as this ingredient can be toxic to cats."
+    }
+  },
+  "storage_and_forms": {
+    "storage": "Store in airtight containers at room temperature between 15°C and 30°C (59°F-86°F); protect from freezing. Shake well before using.",
+    "forms": [
+      "Oral Suspension"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "Adsorbent for treatment of diarrhea and GI toxins; no studies to support efficacy. Most products marketed in the US contain bismuth subsalicylate, which may be contraindicated in some species. Should not replace adequate fluids/electrolytes. Adverse effects include transient constipation.",
+    "indications": "Used primarily in veterinary medicine as an oral antidiarrheal agent. Also used as an adsorbent agent following the ingestion of certain toxins.",
+    "client_info": "Used as an aid in the treatment of noninfectious diarrhea, upset stomach, or nausea. Constipation is the most common side effect. Shake suspensions well. When using in cats, ensure the product label does not contain bismuth subsalicylate."
+  },
+  "_data_quality": {
+    "overall_confidence": 5,
+    "renal_adjustment_confidence": "high",
+    "hepatic_adjustment_confidence": "high",
+    "organ_burden_confidence": "high",
+    "ddi_source": "Plumb's Veterinary Drugs",
+    "plumbs_sections_found": [
+      "Prescriber Highlights",
+      "Uses/Indications",
+      "Pharmacology/Actions",
+      "Pharmacokinetics",
+      "Contraindications/Precautions/Warnings",
+      "Adverse Effects",
+      "Reproductive/Nursing Safety",
+      "Overdose/Acute Toxicity",
+      "Drug Interactions",
+      "Laboratory Considerations",
+      "Dosages",
+      "Monitoring",
+      "Client Information",
+      "Chemistry/Synonyms",
+      "Storage/Stability",
+      "Compatibility/Compounding Considerations",
+      "Dosage Forms/Regulatory Status"
+    ],
+    "missing_sections": [],
+    "requires_pmc_rag": false,
+    "pmc_rag_fields": []
+  },
+  "_extraction_metadata": {
+    "model_used": "Gemini 3.1 Pro",
+    "extraction_pass": 1,
+    "source_file": "Kaolin/Pectin text extract",
+    "extracted_at": "2026-03-21T13:18:24+09:00",
+    "reviewer": null
+  }
+}

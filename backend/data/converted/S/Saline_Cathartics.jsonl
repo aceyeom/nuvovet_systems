@@ -1,0 +1,400 @@
+{
+  "id": "saline_cathartics",
+  "drug_identity": {
+    "name_ko": "염류성 하제 (마그네슘, 나트륨 염)",
+    "name_en": "Saline Cathartics (Magnesium Citrate, Hydroxide, Oxide, Sulfate; Sodium Sulfate)",
+    "active_ingredient": "Magnesium Citrate, Magnesium Hydroxide, Magnesium Oxide, Magnesium Sulfate, Sodium Sulfate",
+    "brand_names": [
+      "Milk of Magnesia",
+      "Epsom Salt",
+      "Glauber's Salt"
+    ],
+    "allergy_class": null,
+    "class": "Laxative/Cathartic",
+    "source": "kr_vet",
+    "formulary_status": "OTC",
+    "has_reversal": true,
+    "reversal_agent": "Calcium",
+    "reversal_evidence": "Calcium has been suggested to help antagonize the CNS effects of magnesium during an overdose.",
+    "off_label_note": "Saline cathartic products are not FDA-approved for use in veterinary species. All dosages listed are extra-label.",
+    "dosage_form": [
+      "Susp",
+      "Sol",
+      "Powder"
+    ],
+    "available_strengths": [
+      {
+        "value": 80.0,
+        "unit": "mg/mL (Magnesium Hydroxide)"
+      },
+      {
+        "value": 160.0,
+        "unit": "mg/mL (Magnesium Hydroxide concentrated)"
+      },
+      {
+        "value": 1.75,
+        "unit": "g/30 mL (Magnesium Citrate Solution)"
+      }
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Kidney",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": "Up to 30% of an orally administered dose of magnesium salts can be absorbed. Concurrent furosemide may be used to enhance the renal excretion of excess magnesium during an overdose."
+  },
+  "organ_burden_logic": {
+    "note": "Based on precautions, contraindications, and overdose effects.",
+    "dog": {
+      "brain": {
+        "calculated_score": 2,
+        "triggered_keywords": [
+          "CNS depression"
+        ],
+        "index": 2,
+        "evidence": "Hypermagnesemia (from chronic use or overdose) may manifest as CNS depression."
+      },
+      "blood": {
+        "calculated_score": 3,
+        "triggered_keywords": [
+          "hypernatremia",
+          "hypermagnesemia",
+          "electrolyte disturbances"
+        ],
+        "index": 3,
+        "evidence": "Electrolyte disturbances are possible. Use with extreme caution in patients with electrolyte abnormalities."
+      },
+      "kidney": {
+        "calculated_score": 3,
+        "triggered_keywords": [
+          "renal insufficiency"
+        ],
+        "index": 3,
+        "evidence": "Use with extreme caution in patients with renal insufficiency."
+      },
+      "liver": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No primary hepatic burden noted."
+      },
+      "heart": {
+        "calculated_score": 3,
+        "triggered_keywords": [
+          "congestive heart failure",
+          "cardiac disease",
+          "ECG changes"
+        ],
+        "index": 3,
+        "evidence": "Sodium-containing laxatives are contraindicated in patients with congestive heart failure. Use with extreme caution in cardiac disease. Hypermagnesemia can cause ECG changes."
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 2,
+        "triggered_keywords": [
+          "CNS depression"
+        ],
+        "index": 2,
+        "evidence": "Hypermagnesemia may manifest as CNS depression."
+      },
+      "blood": {
+        "calculated_score": 3,
+        "triggered_keywords": [
+          "hypernatremia",
+          "hypermagnesemia"
+        ],
+        "index": 3,
+        "evidence": "Electrolyte disturbances are possible."
+      },
+      "kidney": {
+        "calculated_score": 3,
+        "triggered_keywords": [
+          "renal insufficiency"
+        ],
+        "index": 3,
+        "evidence": "Use with extreme caution in patients with renal insufficiency."
+      },
+      "liver": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No primary hepatic burden noted."
+      },
+      "heart": {
+        "calculated_score": 3,
+        "triggered_keywords": [
+          "congestive heart failure",
+          "cardiac disease"
+        ],
+        "index": 3,
+        "evidence": "Contraindicated in CHF (sodium sulfate); extreme caution in cardiac disease."
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": 180,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": null
+    },
+    "f_percent": 30.0,
+    "protein_binding_percent": null,
+    "evidence": "Up to 30% of an orally administered dose of magnesium salts can be absorbed. Onset of action in monogastric animals is typically 3 to 12 hours."
+  },
+  "_ddi_note": "May alter the rate and extent of absorption of other orally administered drugs by shortening intestinal transit times.",
+  "drug_interactions": [
+    {
+      "drug": "Quinidine",
+      "severity": 2,
+      "keywords": [
+        "toxicity",
+        "reduced oral bioavailability"
+      ],
+      "evidence": "Increased risk for quinidine toxicity. Also listed as having reduced oral bioavailability if administered with magnesium-containing cathartics (separate by 2 hours)."
+    },
+    {
+      "drug": "Sodium Polystyrene Sulfonate",
+      "severity": 2,
+      "keywords": [
+        "metabolic acidosis"
+      ],
+      "evidence": "Increased risk for metabolic acidosis."
+    },
+    {
+      "drug": "Oral Drugs (e.g., Fluoroquinolones, Digoxin, Tetracyclines, Ketoconazole, Iron, Sucralfate)",
+      "severity": 2,
+      "keywords": [
+        "reduced oral bioavailability",
+        "separate dosages"
+      ],
+      "evidence": "May have reduced oral bioavailability if administered with magnesium-containing cathartics; separate dosages by at least 2 hours."
+    }
+  ],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": true,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": "hypernatremia, hypermagnesemia",
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "Extra-label",
+          "context": "Cathartic to enhance toxin removal (Magnesium hydroxide)",
+          "value": "5-15",
+          "unit": "mL/dog",
+          "route": "PO",
+          "frequency": "Once",
+          "max_dose_mg_kg": null,
+          "duration_note": "Rarely used as a laxative but recommended for zinc phosphide ingestions.",
+          "evidence": "Extra-label."
+        },
+        {
+          "logic_type": "Extra-label",
+          "context": "Cathartic to enhance toxin removal (Magnesium sulfate or Sodium sulfate)",
+          "value": "250",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "Once",
+          "max_dose_mg_kg": 250.0,
+          "duration_note": "Administered as a suspension in water up to 20%. May be combined with activated charcoal. If repeated AC doses are needed, cathartic should only be given with the initial dose.",
+          "evidence": "Extra-label."
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "Extra-label",
+          "context": "Cathartic to enhance toxin removal (Magnesium hydroxide)",
+          "value": "5-15",
+          "unit": "mL/cat",
+          "route": "PO",
+          "frequency": "Once",
+          "max_dose_mg_kg": null,
+          "duration_note": "Rarely used as a laxative but recommended for zinc phosphide ingestions.",
+          "evidence": "Extra-label."
+        },
+        {
+          "logic_type": "Extra-label",
+          "context": "Cathartic to enhance toxin removal (Magnesium sulfate or Sodium sulfate)",
+          "value": "250",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "Once",
+          "max_dose_mg_kg": 250.0,
+          "duration_note": "Administered as a suspension in water up to 20%. May be combined with activated charcoal.",
+          "evidence": "Extra-label."
+        }
+      ]
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "monitor",
+    "adjustment_factor": null,
+    "note": "Use with extreme caution in patients with renal insufficiency."
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "none",
+    "note": null
+  },
+  "contraindications": [
+    {
+      "condition": "Dehydration",
+      "match_terms": [
+        "dehydration",
+        "dehydrated"
+      ],
+      "severity": "high",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "Congestive Heart Failure",
+      "match_terms": [
+        "congestive heart failure",
+        "CHF"
+      ],
+      "severity": "high",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "Congenital Megacolon",
+      "match_terms": [
+        "congenital megacolon"
+      ],
+      "severity": "high",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    }
+  ],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": "Hyperosmotic effect of poorly absorbed magnesium cations causes water retention, stimulates stretch receptors, and enhances peristalsis. Shortens transit times and increases cholecystokinin release.",
+    "common_extra_effects": [
+      "Cramping",
+      "Nausea",
+      "Muscle weakness (with hypermagnesemia)",
+      "CNS depression (with hypermagnesemia)"
+    ],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "Sodium sulfate is typically preferred to magnesium sulfate in small animal species. Rarely recommended for treating constipation in small animals, but used for toxin removal.",
+    "cat": "Sodium sulfate is typically preferred to magnesium sulfate in small animal species."
+  },
+  "precautions": {
+    "dog": {
+      "status": 3,
+      "evidence": "Contraindicated in dehydration and long-term use. Sodium sulfate contraindicated in CHF or congenital megacolon. Extreme caution with renal insufficiency, water imbalance, electrolyte abnormalities, cardiac disease, or severe depression."
+    },
+    "cat": {
+      "status": 3,
+      "evidence": "Contraindicated in dehydration and long-term use. Sodium sulfate contraindicated in CHF or congenital megacolon. Extreme caution with renal insufficiency, water imbalance, electrolyte abnormalities, cardiac disease, or severe depression."
+    }
+  },
+  "storage_and_forms": {
+    "storage": "Store milk of magnesia at temperatures less than 35°C (95°F), but do not freeze.",
+    "forms": [
+      "Suspension",
+      "Solution",
+      "Granules/Powder"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "Hyperosmotic agents used for constipation or to increase elimination of GI toxins. Contraindications include dehydration and long-term use. Sodium sulfate contraindicated in CHF or congenital megacolon. Adverse effects include cramping and nausea. Hypermagnesemia can occur with chronic use.",
+    "indications": "Relieve constipation or shorten intestinal transit time to reduce absorption of orally ingested toxicants. In small animals, rarely recommended for constipation but used to enhance toxin removal.",
+    "client_info": "Give as directed by your veterinarian. Contact your veterinarian if your animal begins vomiting."
+  },
+  "_data_quality": {
+    "overall_confidence": 5,
+    "renal_adjustment_confidence": "high",
+    "hepatic_adjustment_confidence": "high",
+    "organ_burden_confidence": "high",
+    "ddi_source": "Plumb's Veterinary Drugs",
+    "plumbs_sections_found": [
+      "Prescriber Highlights",
+      "Uses/Indications",
+      "Pharmacology/Actions",
+      "Pharmacokinetics",
+      "Contraindications/Precautions/Warnings",
+      "Adverse Effects",
+      "Reproductive/Nursing Safety",
+      "Overdose/Acute Toxicity",
+      "Drug Interactions",
+      "Laboratory Considerations",
+      "Dosages",
+      "Monitoring",
+      "Client Information",
+      "Chemistry/Synonyms",
+      "Storage/Stability",
+      "Compatibility/Compounding Considerations",
+      "Dosage Forms/Regulatory Status"
+    ],
+    "missing_sections": [],
+    "requires_pmc_rag": false,
+    "pmc_rag_fields": []
+  },
+  "_extraction_metadata": {
+    "model_used": "Gemini 3.1 Pro",
+    "extraction_pass": 1,
+    "source_file": "Saline Cathartics text extract",
+    "extracted_at": "2026-03-21T13:45:10+09:00",
+    "reviewer": null
+  }
+}

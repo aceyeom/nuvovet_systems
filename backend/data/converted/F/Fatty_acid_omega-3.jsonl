@@ -1,0 +1,417 @@
+{
+  "id": "fatty_acids_omega_3",
+  "drug_identity": {
+    "name_ko": "오메가-3 지방산",
+    "name_en": "Fatty Acids, Omega-3",
+    "active_ingredient": "Eicosapentaenoic acid (EPA), Docosahexaenoic acid (DHA)",
+    "brand_names": [
+      "Dermapet Eicosderm",
+      "Dermapet OFA plus EZ-C Caps",
+      "F.A. Caps",
+      "Omega EFA",
+      "Performer OFA Gel Capsules",
+      "Aliera"
+    ],
+    "allergy_class": null,
+    "class": "Nutritional Supplement",
+    "source": "kr_vet",
+    "formulary_status": "OTC",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": "Specific therapeutic dosages are generally considered extra-label or supplemental.",
+    "dosage_form": [
+      "Cap",
+      "Susp"
+    ],
+    "available_strengths": []
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Mixed",
+    "clearance_organ": "Mixed",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": "Essential fatty acids are an integral part of the cellular framework of all cells and help to maintain normal cellular function."
+  },
+  "organ_burden_logic": {
+    "note": "Based on reported adverse effects and precautions.",
+    "dog": {
+      "brain": {
+        "calculated_score": 1,
+        "triggered_keywords": [
+          "lethargic"
+        ],
+        "index": 1,
+        "evidence": "Rarely, some dogs may become lethargic."
+      },
+      "blood": {
+        "calculated_score": 2,
+        "triggered_keywords": [
+          "platelet function",
+          "bleeding times",
+          "platelet activity"
+        ],
+        "index": 2,
+        "evidence": "May affect platelet function and bleeding times; may decrease platelet activity and increase the risk of bleeding."
+      },
+      "kidney": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "Used as adjunctive treatment for chronic kidney disease to decrease magnitude of proteinuria."
+      },
+      "liver": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "May be beneficial for hepatic fibrosis and steatosis."
+      },
+      "heart": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "Beneficial for cardiovascular disease, heart failure, dysrhythmias, and arrhythmogenic right ventricular cardiomyopathy."
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No significant feline-specific neurologic burden noted."
+      },
+      "blood": {
+        "calculated_score": 2,
+        "triggered_keywords": [
+          "platelet function",
+          "bleeding times"
+        ],
+        "index": 2,
+        "evidence": "May affect platelet function and bleeding times in cats."
+      },
+      "kidney": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "Used for adjunctive treatment of kidney disease."
+      },
+      "liver": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No significant primary hepatic burden noted."
+      },
+      "heart": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "Used for adjunctive treatment of CHF."
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": null
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": "Prolonged periods (ie, weeks to months) are required for their actions to take effect when used for pruritus."
+  },
+  "_ddi_note": "Omega-3 fatty acids may augment the antiplatelet effect of aspirin.",
+  "drug_interactions": [
+    {
+      "drug": "Anticoagulants (e.g., aspirin, clopidogrel, warfarin, heparin)",
+      "severity": 2,
+      "keywords": [
+        "bleeding times",
+        "antiplatelet"
+      ],
+      "evidence": "Potential effects on bleeding times; omega-3 fatty acids have been shown to augment the antiplatelet effect of aspirin."
+    },
+    {
+      "drug": "Corticosteroids (e.g., prednisolone)",
+      "severity": 1,
+      "keywords": [
+        "steroid-sparing"
+      ],
+      "evidence": "May have a steroid-sparing effect in dogs with atopic dermatitis."
+    },
+    {
+      "drug": "Cyclosporine",
+      "severity": 1,
+      "keywords": [
+        "cyclosporine-sparing"
+      ],
+      "evidence": "May have a cyclosporine-sparing effect in dogs with atopic dermatitis."
+    },
+    {
+      "drug": "Nonsteroidal Anti-inflammatory Drugs (NSAIDs)",
+      "severity": 2,
+      "keywords": [
+        "bleeding"
+      ],
+      "evidence": "May increase the risk of bleeding."
+    }
+  ],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": true,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "low",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "Extra-label",
+          "context": "Idiopathic hyperlipidemia",
+          "value": "120",
+          "unit": "mg/kg^0.75 combined EPA/DHA",
+          "route": "PO",
+          "frequency": "q24h",
+          "max_dose_mg_kg": null,
+          "duration_note": "Alternatively, 200-300 mg/kg PO once daily, with a suggested upper limit of 4-5 g daily.",
+          "evidence": "Extra-label."
+        },
+        {
+          "logic_type": "Extra-label",
+          "context": "Kidney disease",
+          "value": "140",
+          "unit": "mg/kg^0.75 combined EPA/DHA",
+          "route": "PO",
+          "frequency": "Once daily",
+          "max_dose_mg_kg": null,
+          "duration_note": "May be increased to the NRC safe upper limit (370 mg/kg^0.75).",
+          "evidence": "Extra-label."
+        },
+        {
+          "logic_type": "Extra-label",
+          "context": "Cardiovascular disorder",
+          "value": "EPA 40 mg/kg + DHA 25 mg/kg",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "q24h",
+          "max_dose_mg_kg": null,
+          "duration_note": null,
+          "evidence": "Extra-label."
+        },
+        {
+          "logic_type": "Extra-label",
+          "context": "Osteoarthritis",
+          "value": "310",
+          "unit": "mg/kg^0.75 combined EPA/DHA",
+          "route": "PO",
+          "frequency": "Once daily",
+          "max_dose_mg_kg": null,
+          "duration_note": "Alternatively, EPA 90 mg/kg in combination with DHA 20 mg/kg PO once daily.",
+          "evidence": "Extra-label."
+        },
+        {
+          "logic_type": "Extra-label",
+          "context": "Inflammatory or immunologic disorders (e.g., IBD, atopy)",
+          "value": "125",
+          "unit": "mg/kg^0.75 combined EPA/DHA",
+          "route": "PO",
+          "frequency": "Once daily",
+          "max_dose_mg_kg": null,
+          "duration_note": null,
+          "evidence": "Extra-label."
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "Extra-label",
+          "context": "Kidney disease / Proteinuria",
+          "value": "1",
+          "unit": "g/4.55 kg body weight",
+          "route": "PO",
+          "frequency": "q24h",
+          "max_dose_mg_kg": null,
+          "duration_note": "Dosages greater than EPA + DHA 75 mg/kg^0.67 per day should be used with caution.",
+          "evidence": "Anecdotal dosage extrapolated from human data."
+        },
+        {
+          "logic_type": "Extra-label",
+          "context": "Adjunctive treatment of CHF",
+          "value": "EPA 40 mg/kg + DHA 25 mg/kg",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "q24h",
+          "max_dose_mg_kg": null,
+          "duration_note": "Practically, 1 capsule (approx 180mg EPA / 120mg DHA) per 4.5 kg (10 lb) body weight.",
+          "evidence": "Extra-label."
+        }
+      ]
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "none",
+    "adjustment_factor": null,
+    "note": "Used as an adjunctive treatment for chronic kidney disease to decrease the magnitude of proteinuria."
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "none",
+    "note": "May be beneficial for hepatic fibrosis and steatosis."
+  },
+  "contraindications": [
+    {
+      "condition": "Hemostatic Disorders",
+      "match_terms": [
+        "hemostatic disorders",
+        "bleeding"
+      ],
+      "severity": "high",
+      "action": "monitor",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "History of Pancreatitis",
+      "match_terms": [
+        "pancreatitis"
+      ],
+      "severity": "medium",
+      "action": "monitor",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "Protracted Diarrhea",
+      "match_terms": [
+        "diarrhea"
+      ],
+      "severity": "medium",
+      "action": "monitor",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    }
+  ],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": "Affects arachidonic acid concentrations in plasma lipids and cellular membranes, and affects the degree of inflammatory prostaglandins, leukotrienes, and thromboxane production.",
+    "common_extra_effects": [
+      "GI distress (belching, vomiting, diarrhea) at high doses",
+      "Decreased platelet activity",
+      "Increased bleeding risk",
+      "Altered immune function"
+    ],
+    "dog_mechanism": null,
+    "dog_extra_effects": [
+      "Lethargy (rare)",
+      "Impaired wound healing (rare)",
+      "Increased pruritus (rare)"
+    ],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "Dosages often determined using metabolic weight (kg^0.75) and combined weight of EPA/DHA. Omega-3 supplementation may reduce the incidence of lipemic aqueous in miniature schnauzers.",
+    "cat": "Less evidence supporting safety and efficacy in cats than in dogs. Dosages greater than EPA + DHA 75 mg/kg^0.67 per day should be used with caution."
+  },
+  "precautions": {
+    "dog": {
+      "status": 2,
+      "evidence": "Use with caution in patients with primary or secondary hemostatic disorders, previous bouts of pancreatitis, or protracted diarrhea."
+    },
+    "cat": {
+      "status": 2,
+      "evidence": "Use caution with primary/secondary hemostatic disorders. Dosages > 75 mg/kg^0.67 per day should be used with caution and under veterinary supervision."
+    }
+  },
+  "storage_and_forms": {
+    "storage": "Products should be stored in an airtight container in a cool, dry place, protected from heat, light, and air as fatty acids are susceptible to oxidation and breakdown.",
+    "forms": [
+      "Capsules",
+      "Oral Liquids"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "Most commonly used orally for adjunctive treatment of pruritus associated with inflammatory skin conditions in dogs and cats. May be useful as an anti-inflammatory for chronic conditions (e.g., CKD, osteoarthritis). May affect platelet function and bleeding times.",
+    "indications": "Adjunctive treatment of pruritus (atopy, idiopathic seborrhea, miliary dermatitis, eosinophilic granuloma complex). Adjunctive anti-inflammatory treatment for CKD, arthritis, cardiovascular disease, IBD, hepatic fibrosis, steatosis, neoplastic diseases. Lower airway disease in horses.",
+    "client_info": "Treatment for itching may require 2 to 3 months to see effectiveness. Upset stomach and loose stools are the most common side effects. Some animals may bruise or bleed more easily."
+  },
+  "_data_quality": {
+    "overall_confidence": 5,
+    "renal_adjustment_confidence": "high",
+    "hepatic_adjustment_confidence": "high",
+    "organ_burden_confidence": "high",
+    "ddi_source": "Plumb's Veterinary Drugs",
+    "plumbs_sections_found": [
+      "Prescriber Highlights",
+      "Uses/Indications",
+      "Pharmacology/Actions",
+      "Contraindications/Precautions/Warnings",
+      "Adverse Effects",
+      "Reproductive/Nursing Safety",
+      "Overdose/Acute Toxicity",
+      "Drug Interactions",
+      "Laboratory Considerations",
+      "Dosages",
+      "Monitoring",
+      "Client Information",
+      "Chemistry/Synonyms",
+      "Storage/Stability",
+      "Compatibility/Compounding Considerations",
+      "Dosage Forms/Regulatory Status"
+    ],
+    "missing_sections": [],
+    "requires_pmc_rag": false,
+    "pmc_rag_fields": []
+  },
+  "_extraction_metadata": {
+    "model_used": "Gemini 3.1 Pro",
+    "extraction_pass": 1,
+    "source_file": "Fatty Acids, Omega-3 text extract",
+    "extracted_at": "2026-03-21T13:02:01+09:00",
+    "reviewer": null
+  }
+}
