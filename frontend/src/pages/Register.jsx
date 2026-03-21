@@ -34,12 +34,13 @@ export default function Register() {
 
     const normalizedEmail = email.trim().toLowerCase();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const usernameRegex = /^[a-zA-Z0-9_]{3,30}$/;
     if (!normalizedEmail || !password) {
-      setError(lang === 'ko' ? '이메일과 비밀번호를 입력하세요.' : 'Please enter both email and password.');
+      setError(lang === 'ko' ? '이메일 또는 사용자명과 비밀번호를 입력하세요.' : 'Please enter your email or username and password.');
       return;
     }
-    if (!emailRegex.test(normalizedEmail)) {
-      setError(lang === 'ko' ? '유효한 이메일 주소를 입력하세요.' : 'Please enter a valid email address.');
+    if (!emailRegex.test(normalizedEmail) && !usernameRegex.test(normalizedEmail)) {
+      setError(lang === 'ko' ? '유효한 이메일 또는 사용자명(3~30자 영문/숫자/_)을 입력하세요.' : 'Please enter a valid email address or username (3–30 alphanumeric characters / underscores).');
       return;
     }
     if (password.length < 6) {
@@ -95,15 +96,15 @@ export default function Register() {
           <form onSubmit={handleSubmit} className="space-y-3">
             <div>
               <label className="mb-1 block text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">
-                {lang === 'ko' ? '이메일' : 'Email'}
+                {lang === 'ko' ? '이메일 또는 사용자명' : 'Email or Username'}
               </label>
               <input
-                type="email"
+                type="text"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
-                autoComplete="email"
+                autoComplete="username"
                 autoFocus
-                placeholder={lang === 'ko' ? 'example@clinic.com' : 'example@clinic.com'}
+                placeholder={lang === 'ko' ? 'example@clinic.com 또는 사용자명' : 'example@clinic.com or username'}
                 className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-300 focus:ring-2 focus:ring-slate-900/10"
               />
             </div>

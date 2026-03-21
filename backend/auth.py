@@ -32,6 +32,7 @@ ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_DAYS = 7
 FREE_PLAN_DAYS = 30
 EMAIL_REGEX = re.compile(r"^[^\s@]+@[^\s@]+\.[^\s@]+$")
+USERNAME_REGEX = re.compile(r"^[a-zA-Z0-9_]{3,30}$")
 
 # ── JWT bearer ────────────────────────────────────────────────────
 security = HTTPBearer(auto_error=False)
@@ -70,6 +71,11 @@ def _is_valid_email(value: str) -> bool:
     return bool(EMAIL_REGEX.match(value or ""))
 
 
+def _is_valid_identifier(value: str) -> bool:
+    """Return True if value is a valid email OR a plain username (3-30 alphanumeric/underscore)."""
+    return _is_valid_email(value) or bool(USERNAME_REGEX.match(value or ""))
+
+
 def init_db() -> None:
     """Initialize account/patient tables and seed a default admin account."""
     db_url = _get_db_url()
@@ -106,10 +112,10 @@ def init_db() -> None:
             cur.execute(
                 """
                 UPDATE accounts
-                SET username = 'admin@nuvovet.local'
-                WHERE username = 'admin'
+                SET username = 'admin'
+                WHERE username = 'admin@nuvovet.local'
                   AND NOT EXISTS (
-                    SELECT 1 FROM accounts a2 WHERE a2.username = 'admin@nuvovet.local'
+                    SELECT 1 FROM accounts a2 WHERE a2.username = 'admin'
                   )
                 """
             )
@@ -134,7 +140,7 @@ def init_db() -> None:
 
             cur.execute(
                 "SELECT id FROM accounts WHERE username = %s",
-                ("admin@nuvovet.local",),
+                ("admin",),
             )
             admin = cur.fetchone()
             if admin is None:
@@ -148,7 +154,7 @@ def init_db() -> None:
                     """,
                     (
                         str(uuid.uuid4()),
-                        "admin@nuvovet.local",
+                        "admin",
                         bcrypt.hashpw(b"admin", bcrypt.gensalt(12)).decode(),
                         "free",
                         "active",
@@ -157,7 +163,7 @@ def init_db() -> None:
                         trial_end,
                     ),
                 )
-                logger.info("Seeded default admin account (email: admin@nuvovet.local, password: admin)")
+                logger.info("Seeded default admin account (username: admin, password: admin)")
 
 
 # ── Pydantic models ───────────────────────────────────────────────
@@ -362,9 +368,9 @@ router = APIRouter(prefix="/api/auth", tags=["auth"])
 def login(req: LoginRequest):
     username = _normalize_username(req.username)
     if not username or not req.password:
-        raise HTTPException(status_code=400, detail="Email and password are required")
-    if not _is_valid_email(username):
-        raise HTTPException(status_code=400, detail="Please enter a valid email address")
+        raise HTTPException(status_code=400, detail="Username/email and password are required")
+    if not _is_valid_identifier(username):
+        raise HTTPException(status_code=400, detail="Please enter a valid email address or username (3–30 alphanumeric characters / underscores)")
 
     account = _fetch_account_by_username(username)
     if not account or not bcrypt.checkpw(req.password.encode(), account["password_hash"].encode()):
@@ -385,9 +391,9 @@ def login(req: LoginRequest):
 def signup(req: SignupRequest):
     username = _normalize_username(req.username)
     if not username:
-        raise HTTPException(status_code=400, detail="Email is required")
-    if not _is_valid_email(username):
-        raise HTTPException(status_code=400, detail="Please enter a valid email address")
+        raise HTTPException(status_code=400, detail="Username or email is required")
+    if not _is_valid_identifier(username):
+        raise HTTPException(status_code=400, detail="Please enter a valid email address or username (3–30 alphanumeric characters / underscores)")
     if not req.password or len(req.password) < 6:
         raise HTTPException(status_code=400, detail="Password must be at least 6 characters")
 

@@ -198,14 +198,14 @@ function AuthGate({ onAuthenticated }) {
 
           <form onSubmit={handleSubmit} className="space-y-3">
             <div>
-              <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1">Email</label>
+              <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1">Email or Username</label>
               <input
-                type="email"
+                type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="example@clinic.com"
+                placeholder="example@clinic.com or username"
                 autoFocus
-                autoComplete="email"
+                autoComplete="username"
                 className="w-full px-4 py-3 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 transition-all"
               />
             </div>
@@ -228,7 +228,7 @@ function AuthGate({ onAuthenticated }) {
             </div>
             {error && <p className="text-xs text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">{error}</p>}
             <p className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-500">
-              Sign in with your account email to continue.
+              Sign in with your email or username. Demo: <strong>admin</strong> / <strong>admin</strong>
             </p>
             <button type="submit" disabled={submitting}
               className="w-full px-4 py-3 bg-slate-900 text-white text-sm font-medium rounded-lg hover:bg-slate-800 disabled:opacity-60 transition-all">
@@ -1144,7 +1144,7 @@ export default function FullSystem() {
       setValidationShakeTick(v => v + 1);
       return;
     }
-    if (!dontSavePatientChecked) await handleSavePatient();
+    await handleSavePatient();
     setWorkflowStage('summary');
     setStep('analyzing');
   };
@@ -1189,7 +1189,7 @@ export default function FullSystem() {
       setStep('results');
       return;
     }
-    if (!dontSavePatientChecked) await handleSavePatient();
+    await handleSavePatient();
     setWorkflowStage('summary');
     setStep('analyzing');
   };
