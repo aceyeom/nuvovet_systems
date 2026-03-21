@@ -1,0 +1,117 @@
+--- PMC 레퍼런스 수집 테스트 결과 ---
+
+■ Drug Name: Phenylephrine
+  Query: "Phenylephrine"[Title/Abstract] AND (dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR "half-life"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR "drug interaction"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT ("vehicle control"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR "cell line"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])
+  PMC 보강 필드: timing_profile.half_life_hr.min, timing_profile.half_life_hr.max, timing_profile.half_life_hr.mean, timing_profile.t_max_hr, timing_profile.protein_binding_percent, metabolism_and_clearance.renal_elimination_fraction, cyp_profile.substrates, cyp_profile.inhibitors, cyp_profile.inducers, renal_dose_adjustment.creatinine_threshold_dog_mg_dL, renal_dose_adjustment.creatinine_threshold_cat_mg_dL, renal_dose_adjustment.adjustment_factor, hepatic_dose_adjustment.alt_threshold_multiplier, species_flags.washout_period_days, drug_identity.available_strengths
+  FDA 라벨 보강 필드: contraindications, dosage_and_kinetics.*.dosage_list[*].evidence, dosage_and_kinetics.cat.dosage_list, dosage_and_kinetics.dog.dosage_list, drug_identity.available_strengths, drug_identity.brand_names, drug_identity.dosage_form, drug_identity.formulary_status, precautions, section_1_2_10.client_info, section_1_2_10.indications, storage_and_forms.forms
+  [1] Score: 15
+     Title: Treatment of verapamil toxicity in intact dogs.
+     URL: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC370537/
+     Match: title_or_abstract_contains_drug, species:dogs, relevance:dose, toxicity, treatment, high_signal_title
+  [2] Score: 13
+     Title: Validation of canine uterine and testicular arteries for the functional characterisation of receptor-mediated contraction as a replacement for laboratory animal tissues in teaching.
+     URL: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7250439/
+     Match: title_or_abstract_contains_drug, species:canine, dogs, relevance:dose, pharmacology, treatment
+------------------------------
+
+■ Drug Name: Sertraline
+  Query: "Sertraline"[Title/Abstract] AND (dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR "half-life"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR "drug interaction"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT ("vehicle control"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR "cell line"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])
+  PMC 보강 필드: timing_profile.onset_min, timing_profile.f_percent, timing_profile.half_life_hr (dog/cat specific), metabolism_and_clearance.renal_elimination_fraction, cyp_profile.substrates (specific CYP isoforms beyond CYP3A), cyp_profile.inhibitors, renal_dose_adjustment.creatinine_threshold_dog_mg_dL, renal_dose_adjustment.creatinine_threshold_cat_mg_dL, renal_dose_adjustment.adjustment_factor, hepatic_dose_adjustment.alt_threshold_multiplier
+  FDA 라벨 보강 필드: contraindications, dosage_and_kinetics.cat.dosage_list, dosage_and_kinetics.dog.dosage_list, drug_identity.available_strengths, drug_identity.brand_names, drug_identity.dosage_form, drug_identity.formulary_status, precautions, section_1_2_10.client_info, section_1_2_10.indications, storage_and_forms.forms
+  [1] Score: 14
+     Title: Rifampicin-Induced Panic Disorder in a 70-Year-Old Woman With Brucellosis: A Case Report.
+     URL: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12260711/
+     Match: title_or_abstract_contains_drug, species:canine, dog, relevance:drug interaction, interaction, metabolism, treatment
+  [2] Score: 13
+     Title: Differential effects of sertraline in a predator exposure animal model of post-traumatic stress disorder.
+     URL: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4115632/
+     Match: title_or_abstract_contains_drug, species:cat, relevance:approved, efficacy, treatment
+------------------------------
+
+■ Drug Name: Metoclopramide
+  Query: "Metoclopramide"[Title/Abstract] AND (dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR "half-life"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR "drug interaction"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT ("vehicle control"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR "cell line"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])
+  PMC 보강 필드: timing_profile.onset_min, timing_profile.f_percent, timing_profile.half_life_hr (cat-specific), cyp_profile.substrates, cyp_profile.inhibitors, cyp_profile.inducers, renal_dose_adjustment.creatinine_threshold_dog_mg_dL, renal_dose_adjustment.creatinine_threshold_cat_mg_dL, hepatic_dose_adjustment.alt_threshold_multiplier, drug_identity.available_strengths (veterinary)
+  FDA 라벨 보강 필드: contraindications, dosage_and_kinetics.cat.dosage_list, dosage_and_kinetics.dog.dosage_list, drug_identity.available_strengths, drug_identity.brand_names, drug_identity.dosage_form, drug_identity.formulary_status, precautions, section_1_2_10.client_info, section_1_2_10.indications, storage_and_forms.forms
+  [1] Score: 17
+     Title: The pharmacokinetics of metoclopramide in man with observations in the dog.
+     URL: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1429975/
+     Match: title_or_abstract_contains_drug, species:dog, relevance:bioavailability, dose, dosing, half-life, high_signal_title
+  [2] Score: 16
+     Title: Anti-nausea effects and pharmacokinetics of ondansetron, maropitant and metoclopramide in a low-dose cisplatin model of nausea and vomiting in the dog: a blinded crossover study.
+     URL: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5559813/
+     Match: title_or_abstract_contains_drug, species:dog, dogs, relevance:dose, efficacy, pharmacokinetics, treatment, high_signal_title
+------------------------------
+
+■ Drug Name: Bleomycin
+  Query: "Bleomycin"[Title/Abstract] AND (dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR "half-life"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR "drug interaction"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT ("vehicle control"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR "cell line"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])
+  PMC 보강 필드: timing_profile.onset_min, timing_profile.protein_binding_percent, timing_profile.f_percent (veterinary), cyp_profile.substrates, cyp_profile.inhibitors, cyp_profile.inducers, renal_dose_adjustment.creatinine_threshold_dog_mg_dL, renal_dose_adjustment.creatinine_threshold_cat_mg_dL, renal_dose_adjustment.adjustment_factor, hepatic_dose_adjustment.alt_threshold_multiplier, organ_burden_logic.dog (veterinary PK data), organ_burden_logic.cat (veterinary PK data), genetic_sensitivity
+  FDA 라벨 보강 필드: contraindications, dosage_and_kinetics.*.dosage_list[*].evidence, dosage_and_kinetics.cat.dosage_list, dosage_and_kinetics.dog.dosage_list, drug_identity.available_strengths, drug_identity.brand_names, drug_identity.dosage_form, drug_identity.formulary_status, precautions, section_1_2_10.client_info, section_1_2_10.indications, storage_and_forms.forms
+  [1] Score: 15
+     Title: Retrospective Evaluation of a Combination of Carboplatin and Bleomycin for the Treatment of Canine Carcinomas.
+     URL: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9495018/
+     Match: title_or_abstract_contains_drug, species:canine, dogs, relevance:adverse, dose, efficacy, safety
+  [2] Score: 15
+     Title: Evaluation of the safety and feasibility of electrochemotherapy with intravenous bleomycin as local treatment of bladder cancer in dogs.
+     URL: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10687251/
+     Match: title_or_abstract_contains_drug, species:canine, dogs, relevance:adverse, safety, treatment, high_signal_title
+------------------------------
+
+■ Drug Name: Butylscopolamine
+  Query: "Butylscopolamine"[Title/Abstract] AND (dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR "half-life"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR "drug interaction"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT ("vehicle control"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR "cell line"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])
+  PMC 보강 필드: cyp_profile.substrates, cyp_profile.inhibitors, cyp_profile.inducers, timing_profile.t_max_hr, timing_profile.f_percent, timing_profile.protein_binding_percent, timing_profile.half_life_hr.min, timing_profile.half_life_hr.max, renal_dose_adjustment.creatinine_threshold_dog_mg_dL, renal_dose_adjustment.creatinine_threshold_cat_mg_dL, renal_dose_adjustment.adjustment_factor, hepatic_dose_adjustment.alt_threshold_multiplier, dosage_and_kinetics.dog.dosage_list, dosage_and_kinetics.cat.dosage_list, metabolism_and_clearance.primary_metabolic_organ
+  FDA 라벨 보강 필드: contraindications, dosage_and_kinetics.cat.dosage_list, dosage_and_kinetics.dog.dosage_list, drug_identity.available_strengths, drug_identity.brand_names, drug_identity.dosage_form, drug_identity.formulary_status, precautions, section_1_2_10.client_info, section_1_2_10.indications, storage_and_forms.forms
+  [1] Score: 12
+     Title: Case report: Successful treatment of a thallium sulfate intoxication in a dog with use of Prussian blue.
+     URL: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11835880/
+     Match: title_or_abstract_contains_drug, species:dog, relevance:half-life, treatment
+------------------------------
+
+■ Drug Name: Naltrexone
+  Query: "Naltrexone"[Title/Abstract] AND (dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR "half-life"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR "drug interaction"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT ("vehicle control"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR "cell line"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])
+  PMC 보강 필드: cyp_profile.substrates, cyp_profile.inhibitors, cyp_profile.inducers, timing_profile.onset_min, timing_profile.t_max_hr, timing_profile.half_life_hr (dog/cat specific), timing_profile.f_percent (dog/cat specific), renal_dose_adjustment.creatinine_threshold_dog_mg_dL, renal_dose_adjustment.creatinine_threshold_cat_mg_dL, renal_dose_adjustment.adjustment_factor, metabolism_and_clearance.renal_elimination_fraction
+  FDA 라벨 보강 필드: contraindications, dosage_and_kinetics.cat.dosage_list, dosage_and_kinetics.dog.dosage_list, drug_identity.available_strengths, drug_identity.brand_names, drug_identity.dosage_form, drug_identity.formulary_status, precautions, section_1_2_10.client_info, section_1_2_10.indications, storage_and_forms.forms
+  [1] Score: 16
+     Title: Pharmacokinetic Interaction between Naloxone and Naltrexone Following Intranasal Administration to Healthy Subjects.
+     URL: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6548978/
+     Match: title_or_abstract_contains_drug, species:canine, relevance:half-life, interaction, pharmacokinetic, treatment, high_signal_title
+  [2] Score: 14
+     Title: A Randomized, Blinded, Placebo-Controlled Crossover Study of the Pharmacokinetics and Pharmacodynamics of Naloxone, Naltrexone, and Nalmefene in Methadone-Sedated Working Dogs.
+     URL: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12415812/
+     Match: title_or_abstract_contains_drug, species:dogs, relevance:pharmacokinetic, pharmacokinetics, high_signal_title
+------------------------------
+
+■ Drug Name: Ceftiofur Hcl
+  Query: "Ceftiofur Hcl"[Title/Abstract] AND (dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR "half-life"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR "drug interaction"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT ("vehicle control"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR "cell line"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])
+  PMC 보강 필드: cyp_profile.substrates, cyp_profile.inhibitors, cyp_profile.inducers, timing_profile.onset_min, timing_profile.f_percent, timing_profile.protein_binding_percent, metabolism_and_clearance.renal_elimination_fraction, metabolism_and_clearance.primary_metabolic_organ, renal_dose_adjustment.creatinine_threshold_dog_mg_dL, renal_dose_adjustment.creatinine_threshold_cat_mg_dL, renal_dose_adjustment.adjustment_factor, hepatic_dose_adjustment.alt_threshold_multiplier, dosage_and_kinetics.dog.dosage_list, dosage_and_kinetics.cat.dosage_list
+  FDA 라벨 보강 필드: contraindications, dosage_and_kinetics.cat.dosage_list, dosage_and_kinetics.dog.dosage_list, drug_identity.available_strengths, drug_identity.brand_names, drug_identity.dosage_form, drug_identity.formulary_status, precautions, section_1_2_10.client_info, section_1_2_10.indications, storage_and_forms.forms
+  -> 제목 또는 초록에 약물명과 개/고양이 종 언급이 동시에 있는 직접 관련 레퍼런스를 찾지 못했습니다.
+------------------------------
+
+■ Drug Name: Trimeprazine Prednisolone
+  Query: "Trimeprazine Prednisolone"[Title/Abstract] AND (dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR "half-life"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR "drug interaction"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT ("vehicle control"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR "cell line"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])
+  PMC 보강 필드: pharmacokinetics, renal_dose_adjustment, hepatic_dose_adjustment
+  FDA 라벨 보강 필드: contraindications, dosage_and_kinetics.*.dosage_list[*].evidence, dosage_and_kinetics.cat.dosage_list, dosage_and_kinetics.dog.dosage_list, drug_identity.available_strengths, drug_identity.brand_names, drug_identity.dosage_form, drug_identity.formulary_status, precautions, section_1_2_10.client_info, section_1_2_10.indications, storage_and_forms.forms
+  -> 제목 또는 초록에 약물명과 개/고양이 종 언급이 동시에 있는 직접 관련 레퍼런스를 찾지 못했습니다.
+------------------------------
+
+■ Drug Name: Dobutamine
+  Query: "Dobutamine"[Title/Abstract] AND (dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR "half-life"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR "drug interaction"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT ("vehicle control"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR "cell line"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])
+  PMC 보강 필드: cyp_profile.substrates, cyp_profile.inhibitors, cyp_profile.inducers, timing_profile.protein_binding_percent, timing_profile.half_life_hr (veterinary species), metabolism_and_clearance.renal_elimination_fraction, renal_dose_adjustment.creatinine_threshold_dog_mg_dL, renal_dose_adjustment.creatinine_threshold_cat_mg_dL, renal_dose_adjustment.adjustment_factor, hepatic_dose_adjustment.alt_threshold_multiplier
+  FDA 라벨 보강 필드: contraindications, dosage_and_kinetics.cat.dosage_list, dosage_and_kinetics.dog.dosage_list, drug_identity.available_strengths, drug_identity.brand_names, drug_identity.dosage_form, drug_identity.formulary_status, precautions, section_1_2_10.client_info, section_1_2_10.indications, storage_and_forms.forms
+  [1] Score: 13
+     Title: The cardiovascular pharmacology of 7-propyl-theo-phylline-dopamine (D4975); comparison with dopamine and dobutamine.
+     URL: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2043880/
+     Match: title_or_abstract_contains_drug, species:cats, relevance:dose, pharmacology, treatment
+  [2] Score: 13
+     Title: A Comparison of Dobutamine, Norepinephrine, Vasopressin, and Hetastarch for the Treatment of Isoflurane-Induced Hypotension in Healthy, Normovolemic Dogs.
+     URL: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10451654/
+     Match: title_or_abstract_contains_drug, species:dogs, relevance:dosage, dose, treatment
+------------------------------
+
+■ Drug Name: Pralidoxime, 2-Pam
+  Query: "Pralidoxime, 2-Pam"[Title/Abstract] AND (dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR "half-life"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR "drug interaction"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT ("vehicle control"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR "cell line"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])
+  PMC 보강 필드: cyp_profile.substrates, cyp_profile.inhibitors, cyp_profile.inducers, timing_profile.onset_min, timing_profile.t_max_hr, timing_profile.f_percent, timing_profile.protein_binding_percent, timing_profile.half_life_hr (dog/cat specific), renal_dose_adjustment.creatinine_threshold_dog_mg_dL, renal_dose_adjustment.creatinine_threshold_cat_mg_dL, renal_dose_adjustment.adjustment_factor, metabolism_and_clearance.renal_elimination_fraction
+  FDA 라벨 보강 필드: contraindications, dosage_and_kinetics.cat.dosage_list, dosage_and_kinetics.dog.dosage_list, drug_identity.available_strengths, drug_identity.brand_names, drug_identity.dosage_form, drug_identity.formulary_status, precautions, section_1_2_10.client_info, section_1_2_10.indications, storage_and_forms.forms
+  -> 제목 또는 초록에 약물명과 개/고양이 종 언급이 동시에 있는 직접 관련 레퍼런스를 찾지 못했습니다.
+------------------------------
+

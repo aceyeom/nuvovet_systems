@@ -1,0 +1,836 @@
+[
+  {
+    "drug_name": "Phenylephrine",
+    "drug_id": "phenylephrine",
+    "drug_file": "/workspaces/nuvovet_systems/backend/data/converted/P/phenylephrine.jsonl",
+    "query": "\"Phenylephrine\"[Title/Abstract] AND (dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR \"half-life\"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR \"drug interaction\"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT (\"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+    "evidence_targets": {
+      "pmc_fields": [
+        "timing_profile.half_life_hr.min",
+        "timing_profile.half_life_hr.max",
+        "timing_profile.half_life_hr.mean",
+        "timing_profile.t_max_hr",
+        "timing_profile.protein_binding_percent",
+        "metabolism_and_clearance.renal_elimination_fraction",
+        "cyp_profile.substrates",
+        "cyp_profile.inhibitors",
+        "cyp_profile.inducers",
+        "renal_dose_adjustment.creatinine_threshold_dog_mg_dL",
+        "renal_dose_adjustment.creatinine_threshold_cat_mg_dL",
+        "renal_dose_adjustment.adjustment_factor",
+        "hepatic_dose_adjustment.alt_threshold_multiplier",
+        "species_flags.washout_period_days",
+        "drug_identity.available_strengths"
+      ],
+      "fda_label_fields": [
+        "contraindications",
+        "dosage_and_kinetics.*.dosage_list[*].evidence",
+        "dosage_and_kinetics.cat.dosage_list",
+        "dosage_and_kinetics.dog.dosage_list",
+        "drug_identity.available_strengths",
+        "drug_identity.brand_names",
+        "drug_identity.dosage_form",
+        "drug_identity.formulary_status",
+        "precautions",
+        "section_1_2_10.client_info",
+        "section_1_2_10.indications",
+        "storage_and_forms.forms"
+      ],
+      "file_path": "/workspaces/nuvovet_systems/backend/data/converted/P/phenylephrine.jsonl"
+    },
+    "accepted_references": [
+      {
+        "pmc_id": "370537",
+        "title": "Treatment of verapamil toxicity in intact dogs.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC370537/",
+        "abstract": "The treatment of verapamil toxicity was examined in lightly sedated dogs. Verapamil, administered as a bolus (0.72 mg/kg) followed by a continuous infusion (0.11 mg/kg per min), decreased cardiac output (CO) from 3.1 +/- 0.1 to 1.7 +/- 0.1 liter/min (P less than 0.001), heart rate (HR) from 85 +/- 4 to 57 +/- 3 beats/min (P less than 0.001), left ventricular derivative of pressure with respect to time (LV dP/dt) from 2,085 +/- 828 to 783 +/- 78 mm Hg/s (P less than 0.001), mean aortic pressure (AO) from 77 +/- 4 to 38 +/- 2 mm Hg (P less than 0.001) and stroke volume from 39 +/- 3 to 28 +/- 2 ml/beat (P less than 0.01). In verapamil-toxic animals isoproterenol increased HR, CO, LV dP/dt, and AO; calcium chloride increased LV dP/dt and AO; norepinephrine, epinephrine, and dopamine increased CO, AO, and LV dP/dt, atropine increased HR, CO, and AO. Phenylephrine (13-55 micrograms/kg per min) produced no changes except a small increase in AO while very high dose phenylephrine (300 micrograms/kg per min) increased AO, CO, and LV dP/dt. 4-Aminopyridine (4-AP) increased HR, CO, LV dP/dt, and AO. When administered prior to verapamil, 4-AP prevented the development of verapamil toxicity as shown by the significantly higher AO (P less than 0.001), CO (P less than 0.01), and LV dP/dt (P less than 0.01) when 4-AP followed by verapamil was compared to verapamil alone. In conclusion, there does not appear to be a single specific therapy for verapamil toxicity, however it can be partially corrected by presently available pharmacologic therapy and 4-AP.",
+        "score": 15,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:dogs",
+          "relevance:dose, toxicity, treatment",
+          "high_signal_title"
+        ],
+        "ddi_relevant": false,
+        "fda_relevant": false
+      },
+      {
+        "pmc_id": "7250439",
+        "title": "Validation of canine uterine and testicular arteries for the functional characterisation of receptor-mediated contraction as a replacement for laboratory animal tissues in teaching.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7250439/",
+        "abstract": "Teaching practicals for receptor physiology/pharmacology in medical and veterinary schools have involved the use of in vitro experiments using tissues from laboratory animals, which have been killed for isolated vascular strip or ring preparations. However, the use of scavenged tissues has been advocated to reduce animal use. Utilising discarded tissues from routine surgical procedures, such as canine neutering, has not previously been investigated. Canine testicular and uterine tissues (discarded tissues) were obtained from routine neutering procedures performed by the veterinary team at a local animal neutering clinic for stray dogs. Rings of uterine and testicular artery were dissected and mounted on a Mulvany-Halpern wire myograph in order to characterize the adrenergic and serotonergic receptors mediating vasoconstriction. Cumulative contractile concentration-response curves were constructed for the alpha adrenoceptor agonists epinephrine (α 1 and α 2 receptors), phenylephrine (α 1 selective) and UK14304 (α 2 selective). Pre-treatment with the α 1 -selective antagonist, prazosin, was also investigated. The response to serotonin (5-HT) receptor agonists were also investigated, including 5-HT (acting at both 5-HT 1 and 5-HT 2 receptors), 5-carboxamidotryptamine (5-CT; 5-HT 1 selective) and α-methyl 5-HT (5-HT 2 selective). A contractile response was observed in both canine uterine and testicular arteries to epinephrine and phenylephrine, and prazosin caused a dose-dependent parallel rightward shift in the phenylephrine dose-response curve (pA 2 values of 7.97 and 8.39, respectively). UK14304 caused a contractile response in canine testicular arteries but very little appreciable contractile response in uterine arteries. The maximum responses produced by the uterine arteries to 5-HT was significantly lower than those of the testicular arteries. In the testicular artery, the 5-HT 2 receptor selective agonist, α-methyl 5-HT, produced a similar contractile response to 5-HT but the administration of 5-CT failed to produce a response in either the testicular or uterine artery segments. These results validate the use of discarded tissue from routine canine neutering procedures as a useful source of vascular tissue for pharmacological teaching, for characterizing alpha and 5-HT receptor contractile responses.",
+        "score": 13,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:canine, dogs",
+          "relevance:dose, pharmacology, treatment"
+        ],
+        "ddi_relevant": false,
+        "fda_relevant": false
+      }
+    ],
+    "proposed_metadata_updates": {
+      "_data_quality.ddi_source": {
+        "current": "plumbs_direct",
+        "suggested": "plumbs_direct"
+      },
+      "_extraction_metadata.source_file": {
+        "current": "plumbs_output/19.jsonl",
+        "suggested": "plumbs_output/19.jsonl + PMC strict vet references"
+      },
+      "fda_label": {
+        "available_now": false,
+        "candidate_fields": [
+          "contraindications",
+          "dosage_and_kinetics.*.dosage_list[*].evidence",
+          "dosage_and_kinetics.cat.dosage_list",
+          "dosage_and_kinetics.dog.dosage_list",
+          "drug_identity.available_strengths",
+          "drug_identity.brand_names",
+          "drug_identity.dosage_form",
+          "drug_identity.formulary_status",
+          "precautions",
+          "section_1_2_10.client_info",
+          "section_1_2_10.indications",
+          "storage_and_forms.forms"
+        ],
+        "status": "pending_manual_label_ingest"
+      }
+    }
+  },
+  {
+    "drug_name": "Sertraline",
+    "drug_id": "sertraline",
+    "drug_file": "/workspaces/nuvovet_systems/backend/data/converted/S/sertraline.jsonl",
+    "query": "\"Sertraline\"[Title/Abstract] AND (dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR \"half-life\"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR \"drug interaction\"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT (\"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+    "evidence_targets": {
+      "pmc_fields": [
+        "timing_profile.onset_min",
+        "timing_profile.f_percent",
+        "timing_profile.half_life_hr (dog/cat specific)",
+        "metabolism_and_clearance.renal_elimination_fraction",
+        "cyp_profile.substrates (specific CYP isoforms beyond CYP3A)",
+        "cyp_profile.inhibitors",
+        "renal_dose_adjustment.creatinine_threshold_dog_mg_dL",
+        "renal_dose_adjustment.creatinine_threshold_cat_mg_dL",
+        "renal_dose_adjustment.adjustment_factor",
+        "hepatic_dose_adjustment.alt_threshold_multiplier"
+      ],
+      "fda_label_fields": [
+        "contraindications",
+        "dosage_and_kinetics.cat.dosage_list",
+        "dosage_and_kinetics.dog.dosage_list",
+        "drug_identity.available_strengths",
+        "drug_identity.brand_names",
+        "drug_identity.dosage_form",
+        "drug_identity.formulary_status",
+        "precautions",
+        "section_1_2_10.client_info",
+        "section_1_2_10.indications",
+        "storage_and_forms.forms"
+      ],
+      "file_path": "/workspaces/nuvovet_systems/backend/data/converted/S/sertraline.jsonl"
+    },
+    "accepted_references": [
+      {
+        "pmc_id": "12260711",
+        "title": "Rifampicin-Induced Panic Disorder in a 70-Year-Old Woman With Brucellosis: A Case Report.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12260711/",
+        "abstract": "Aims: Panic disorder, also known as paroxysmal episodic anxiety, is a severe, unpredictable, and debilitating form of anxiety that is characterised by sudden onset of palpitations, chest pain, choking sensations, dizziness, and feelings of unreality (depersonalization or derealization). People that suffer from panic attack often have a secondary fear of dying or losing control. Like many other mental illnesses, the causes of panic disorder are unknown, but some predisposing factors have been identified including genetics, neurobiology, medications, psychiatric disorders, psychosocial factors and medical conditions. Brucellosis is an infective medical condition caused by Brucella. In the UK, it is a very rare notifiable disease and transmission is usually from consumption of unpasteurised milk and cheese or from contact with infected animals. Brucellosis is considered a public health problem by many countries not only because of the economic loss it brings but it also causes chronic pain, anxiety, and depression, affecting the life quality of patients. Treatment for human brucellosis is based on combinations of antibiotics such as doxycycline, streptomycin, gentamicin, ciprofloxacin, and trimethoprim–sulfamethoxazole and rifampicin over a period of about 6 weeks. Rifampicin on the other hand has been implicated in worsening mental health conditions like anxiety and depression in many previous literatures. The mechanism by which this occurs has been put to the drug-to-drug interaction that rifampicin might have with other medication patients are taking and the effect of rifampicin as cytochrome p450 enzyme inducers. This case report presents another perspective of rifampicin inducing and worsening panic disorder in a patient that has not previously been diagnosed with anxiety disorder. Methods: This patient was a 70-year-old woman with background of depression, stable on sertraline, who contracted canine brucellosis from her dog. While on isolation ward in physical health hospital, she was commenced on rifampicin intravenously and oral doxycycline. She developed new onset panic attack five days into the treatment. was referred by the General practitioner following reports of new onset panic attacks. She continued to suffer from these panic attacks even when rifampicin was changed to oral after discharge from hospital. This affected her quality of life significantly. She was commenced on short course benzodiazepine after risk and benefit explained to her. Her sertraline was increased from 50 mg to 100 mg daily. Other psychological options were also explored. Patient reported good improvement within two weeks of commencement of treatment. She reported good improvement during four-week follow up visit. She had not had panic attacks two weeks prior to the review. She had been tapered off the diazepam and she was one week left in completing her antibiotic regimen. Patient was followed up for two more weeks and discharged back to the GP. Results: This patient presented with new onset panic attacks following commencement on rifampicin in the treatment of brucellosis. There have been reports that anxiety and depression are the commonest mental health conditions associated with brucellosis. It is therefore a possibility that the new severe debilitating form of anxiety is due to the infection with Brucella. On the other hand, there have been reports that patients treated for tuberculosis with rifampicin have increased incidence of anxiety. The mechanism of this has been linked to the inducing effect rifampicin has on liver enzyme cytochrome P450 which plays a crucial role in the metabolism of most medications. In the case of index patient, rifampicin might have had a drug-drug interaction with sertraline this patient was taking for depression. Though the sertraline was intended for treatment of depression, it is obvious that it was also helpful for premorbid anxiety for this patient. Once the beneficial effect of sertraline was reduced by the rifampicin, it led to the onset of severe and debilitating anxiety. Similar reports about interaction between rifampicin and citalopram have been reported. Conclusion: The follow-up to this report would be to conduct a case series and observe the occurrence of drug-drug interaction between rifampicin and other common psychotropics.",
+        "score": 14,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:canine, dog",
+          "relevance:drug interaction, interaction, metabolism, treatment"
+        ],
+        "ddi_relevant": true,
+        "fda_relevant": false
+      },
+      {
+        "pmc_id": "4115632",
+        "title": "Differential effects of sertraline in a predator exposure animal model of post-traumatic stress disorder.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4115632/",
+        "abstract": "Serotonin (5-HT), norepinephrine (NE), and other neurotransmitters are modulated in post-traumatic stress disorder (PTSD). In addition, pro-inflammatory cytokines (PIC) are elevated during the progression of the disorder. Currently, the only approved pharmacologic treatments for PTSD are the selective-serotonin reuptake inhibitors (SSRI) sertraline and paroxetine, but their efficacy in treating PTSD is marginal at best. In combat-related PTSD, SSRIs are of limited effectiveness. Thus, this study sought to analyze the effects of the SSRI sertraline on inflammation and neurotransmitter modulation via a predator exposure/psychosocial stress animal model of PTSD. We hypothesized that sertraline would diminish inflammatory components and increase 5-HT but might also affect levels of other neurotransmitters, particularly NE. PTSD-like effects were induced in male Sprague-Dawley rats ( n = 6/group × 4 groups). The rats were secured in Plexiglas cylinders and placed in a cage with a cat for 1 h on days 1 and 11 of a 31-day stress regimen. PTSD rats were also subjected to psychosocial stress via daily cage cohort changes. At the conclusion of the stress regimen, treatment group animals were injected intraperitoneally (i.p.) with sertraline HCl at 10 mg/kg for 7 consecutive days, while controls received i.p. vehicle. The animals were subsequently sacrificed on day 8. Sertraline attenuated inflammatory markers and normalized 5-HT levels in the central nervous system (CNS). In contrast, sertraline produced elevations in NE in the CNS and systemic circulation of SSRI treated PTSD and control groups. This increase in NE suggests SSRIs produce a heightened noradrenergic response, which might elevate anxiety in a clinical setting.",
+        "score": 13,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:cat",
+          "relevance:approved, efficacy, treatment"
+        ],
+        "ddi_relevant": false,
+        "fda_relevant": true
+      }
+    ],
+    "proposed_metadata_updates": {
+      "_data_quality.ddi_source": {
+        "current": "plumbs_direct",
+        "suggested": "PMC_strict_vet"
+      },
+      "_extraction_metadata.source_file": {
+        "current": "plumbs_output/34.jsonl",
+        "suggested": "plumbs_output/34.jsonl + PMC strict vet references"
+      },
+      "fda_label": {
+        "available_now": true,
+        "candidate_fields": [
+          "contraindications",
+          "dosage_and_kinetics.cat.dosage_list",
+          "dosage_and_kinetics.dog.dosage_list",
+          "drug_identity.available_strengths",
+          "drug_identity.brand_names",
+          "drug_identity.dosage_form",
+          "drug_identity.formulary_status",
+          "precautions",
+          "section_1_2_10.client_info",
+          "section_1_2_10.indications",
+          "storage_and_forms.forms"
+        ],
+        "status": "pending_manual_label_ingest"
+      }
+    }
+  },
+  {
+    "drug_name": "Metoclopramide",
+    "drug_id": "metoclopramide",
+    "drug_file": "/workspaces/nuvovet_systems/backend/data/converted/M/metoclopramide.jsonl",
+    "query": "\"Metoclopramide\"[Title/Abstract] AND (dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR \"half-life\"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR \"drug interaction\"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT (\"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+    "evidence_targets": {
+      "pmc_fields": [
+        "timing_profile.onset_min",
+        "timing_profile.f_percent",
+        "timing_profile.half_life_hr (cat-specific)",
+        "cyp_profile.substrates",
+        "cyp_profile.inhibitors",
+        "cyp_profile.inducers",
+        "renal_dose_adjustment.creatinine_threshold_dog_mg_dL",
+        "renal_dose_adjustment.creatinine_threshold_cat_mg_dL",
+        "hepatic_dose_adjustment.alt_threshold_multiplier",
+        "drug_identity.available_strengths (veterinary)"
+      ],
+      "fda_label_fields": [
+        "contraindications",
+        "dosage_and_kinetics.cat.dosage_list",
+        "dosage_and_kinetics.dog.dosage_list",
+        "drug_identity.available_strengths",
+        "drug_identity.brand_names",
+        "drug_identity.dosage_form",
+        "drug_identity.formulary_status",
+        "precautions",
+        "section_1_2_10.client_info",
+        "section_1_2_10.indications",
+        "storage_and_forms.forms"
+      ],
+      "file_path": "/workspaces/nuvovet_systems/backend/data/converted/M/metoclopramide.jsonl"
+    },
+    "accepted_references": [
+      {
+        "pmc_id": "1429975",
+        "title": "The pharmacokinetics of metoclopramide in man with observations in the dog.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1429975/",
+        "abstract": "1 The pharmacokinetics of metoclopramide have been studied in eight normal male volunteers. 2 The mean plasma beta half-life was 156.7 min after i.v. administration of 10 mg metoclopramide. 3 After oral dosing of 10 mg the mean half-life was 196.6 min and after 20 mg 317.5 min (P less than 0.05). 4 Bioavailability of a 10 mg oral dose of metoclopramide varied between 32 and 97%. 5 A major urinary metabolite was metoclopramide-N-4-sulphate and the amounts of conjugates appearing in urine to 24 h correlated significantly with the bioavailability. 6 In the dog the metabolic fate of metoclopramide is different to man with conjugation being a minor metabolic pathway. The half-life in the dog does not appear to be dose dependent. 7 The wide differences in bioavailability of metoclopramide in man may contribute to the unpredictable occurrence of side effects.",
+        "score": 17,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:dog",
+          "relevance:bioavailability, dose, dosing, half-life",
+          "high_signal_title"
+        ],
+        "ddi_relevant": false,
+        "fda_relevant": false
+      },
+      {
+        "pmc_id": "5559813",
+        "title": "Anti-nausea effects and pharmacokinetics of ondansetron, maropitant and metoclopramide in a low-dose cisplatin model of nausea and vomiting in the dog: a blinded crossover study.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5559813/",
+        "abstract": "Background Nausea is a subjective sensation which is difficult to measure in non-verbal species. The aims of this study were to determine the efficacy of three classes of antiemetic drugs in a novel low dose cisplatin model of nausea and vomiting and measure change in potential nausea biomarkers arginine vasopressin (AVP) and cortisol. A four period cross-over blinded study was conducted in eight healthy beagle dogs of both genders. Dogs were administered 18 mg/m 2 cisplatin intravenously, followed 45 min later by a 15 min infusion of either placebo (saline) or antiemetic treatment with ondansetron (0.5 mg/kg; 5-HT 3 antagonist), maropitant (1 mg/kg; NK 1 antagonist) or metoclopramide (0.5 mg/kg; D 2 antagonist). The number of vomits and nausea associated behaviours, scored on a visual analogue scale, were recorded every 15 min for 8 h following cisplatin administration. Plasma samples were collected to measure AVP, cortisol and antiemetic drug concentrations. Results The placebo treated group vomited an average number of 7 times (range 2–13). None of the dogs in either the ondansetron or maropitant treated groups vomited during the observation period. The onset of nausea-like behaviour in the placebo-treated group occurred at t 3.5h and peaked at t 4.75h with nausea behaviour score of 58.5 ± 4.6 mm. Ondansetron and maropitant reduced overall the area under the curve of nausea behaviour score by 90% and 25%, respectively. Metoclopramide had no effect on either vomiting or nausea. Cisplatin-induced nausea and vomiting caused concomitant increases in AVP and cortisol. In the placebo-treated group, AVP and cortisol increased from t 2.5h , peaked at t 5h (11.3 ± 2.9 pmol L −1 and 334.0 ± 46.7 nmol/L, respectively) and returned to baseline by t 8h . AVP and cortisol increases were completely prevented by ondansetron and only partially by maropitant, while metoclopramide had no effect. The terminal half-lives (harmonic mean ± pseudo SD) for ondansetron, maropitant and metoclopramide were 1.21 ± 0.51, 5.62 ± 0.77 and 0.87 ± 0.17 h respectively. Conclusions 5-HT 3 receptor antagonist ondansetron demonstrates the greatest anti-emetic and anti-nausea efficacy of the three drugs. AVP and cortisol appear to be selective biomarkers of nausea rather than emesis, providing a means of objectively measuring of nausea in the dog.",
+        "score": 16,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:dog, dogs",
+          "relevance:dose, efficacy, pharmacokinetics, treatment",
+          "high_signal_title"
+        ],
+        "ddi_relevant": false,
+        "fda_relevant": false
+      }
+    ],
+    "proposed_metadata_updates": {
+      "_data_quality.ddi_source": {
+        "current": "plumbs_direct",
+        "suggested": "plumbs_direct"
+      },
+      "_extraction_metadata.source_file": {
+        "current": "plumbs_output/64.jsonl",
+        "suggested": "plumbs_output/64.jsonl + PMC strict vet references"
+      },
+      "fda_label": {
+        "available_now": false,
+        "candidate_fields": [
+          "contraindications",
+          "dosage_and_kinetics.cat.dosage_list",
+          "dosage_and_kinetics.dog.dosage_list",
+          "drug_identity.available_strengths",
+          "drug_identity.brand_names",
+          "drug_identity.dosage_form",
+          "drug_identity.formulary_status",
+          "precautions",
+          "section_1_2_10.client_info",
+          "section_1_2_10.indications",
+          "storage_and_forms.forms"
+        ],
+        "status": "pending_manual_label_ingest"
+      }
+    }
+  },
+  {
+    "drug_name": "Bleomycin",
+    "drug_id": "bleomycin",
+    "drug_file": "/workspaces/nuvovet_systems/backend/data/converted/B/bleomycin.jsonl",
+    "query": "\"Bleomycin\"[Title/Abstract] AND (dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR \"half-life\"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR \"drug interaction\"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT (\"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+    "evidence_targets": {
+      "pmc_fields": [
+        "timing_profile.onset_min",
+        "timing_profile.protein_binding_percent",
+        "timing_profile.f_percent (veterinary)",
+        "cyp_profile.substrates",
+        "cyp_profile.inhibitors",
+        "cyp_profile.inducers",
+        "renal_dose_adjustment.creatinine_threshold_dog_mg_dL",
+        "renal_dose_adjustment.creatinine_threshold_cat_mg_dL",
+        "renal_dose_adjustment.adjustment_factor",
+        "hepatic_dose_adjustment.alt_threshold_multiplier",
+        "organ_burden_logic.dog (veterinary PK data)",
+        "organ_burden_logic.cat (veterinary PK data)",
+        "genetic_sensitivity"
+      ],
+      "fda_label_fields": [
+        "contraindications",
+        "dosage_and_kinetics.*.dosage_list[*].evidence",
+        "dosage_and_kinetics.cat.dosage_list",
+        "dosage_and_kinetics.dog.dosage_list",
+        "drug_identity.available_strengths",
+        "drug_identity.brand_names",
+        "drug_identity.dosage_form",
+        "drug_identity.formulary_status",
+        "precautions",
+        "section_1_2_10.client_info",
+        "section_1_2_10.indications",
+        "storage_and_forms.forms"
+      ],
+      "file_path": "/workspaces/nuvovet_systems/backend/data/converted/B/bleomycin.jsonl"
+    },
+    "accepted_references": [
+      {
+        "pmc_id": "9495018",
+        "title": "Retrospective Evaluation of a Combination of Carboplatin and Bleomycin for the Treatment of Canine Carcinomas.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9495018/",
+        "abstract": "Simple Summary The safety of combined carboplatin and bleomycin chemotherapy treatment has never been assessed in dogs. Thirty dogs diagnosed with various types of carcinomas and treated with carboplatin and bleomycin chemotherapy were retrospectively evaluated. The treatment with carboplatin and bleomycin was well tolerated, with sixteen patients (53%) developing mild side effects. Gastrointestinal signs developed in thirteen (46%) of the dogs and hematological abnormalities in nine (30%). Objective response was observed in 24% of the cases (six partial responses) and 76% of cases achieved clinical benefit (partial response + stable disease). The combination of bleomycin and carboplatin appears safe and potentially effective for some types of carcinomas. Abstract Carboplatin is a chemotherapy agent widely used in veterinary oncology to treat various types of tumors including carcinomas. Carboplatin has previously been used in combination with 5-Fluoro uracil (5-FU) or gemcitabine for the treatment of various carcinomas. Bleomycin is a chemotherapy drug commonly used in humans, but its use has been uncommonly reported in dogs. The combination of carboplatin and bleomycin chemotherapy treatment has never been reported in dogs. Dogs diagnosed with carcinoma and treated with a combination of carboplatin and bleomycin, at a single veterinary referral center, were retrospectively evaluated. Thirty patients met the inclusion criteria. The dose of carboplatin ranged from 200–250 mg/m 2 (median 240 mg/m 2 ) and the dose of bleomycin from 15–20 IU/m 2 (median 15 IU/m 2 ). The treatment with carboplatin and bleomycin was well tolerated, with sixteen patients (53%) developing side effects. Thirteen patients (46%) developed gastrointestinal signs and nine dogs (30%) developed hematological abnormalities. The most common side effects were grade-1 hyporexia and grade-1 neutropenia. Grade-2 neutropenia was rarely observed, and only one patient developed grade-3 neutropenia. None of the dogs developed grade-4 adverse events, or required hospitalization, or died due to the treatment. No signs of chronic side effects, including pulmonary toxicity, were observed. Objective response was observed in 24% of the cases (six partial responses) and 76% of cases achieved clinical benefit (partial response+ stable disease). Clinical signs improved in 24 of the 30 cases (80%). The main aim of this study was to evaluate the safety of bleomycin and carboplatin in combination for the treatment of various types of carcinomas. The combination of bleomycin and carboplatin appears safe and potentially effective for some types of carcinomas. Larger prospective studies are needed to confirm the safety and efficacy of combined carboplatin and bleomycin.",
+        "score": 15,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:canine, dogs",
+          "relevance:adverse, dose, efficacy, safety"
+        ],
+        "ddi_relevant": false,
+        "fda_relevant": false
+      },
+      {
+        "pmc_id": "10687251",
+        "title": "Evaluation of the safety and feasibility of electrochemotherapy with intravenous bleomycin as local treatment of bladder cancer in dogs.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10687251/",
+        "abstract": "Local treatment of canine urothelial carcinoma (UC) of the bladder is a challenge. More than 90% of the cases invade the muscular layer, more than 50% develop on bladder sites with a difficult surgical approach and often requiring radical surgical procedures. This study aims to evaluate the safety and feasibility of electrochemotherapy (ECT) with intravenous bleomycin (BLM) as a local therapy for bladder UC. This prospective study included 21 dogs with spontaneous bladder UC. Regional/distant metastases and neoplastic infiltration of the serosa was considered the main exclusion criteria. We had no deaths during ECT or in the immediate postoperative period, and no suture dehiscence. Most dogs (19/21) developed mild adverse effects, whereas two dogs developed ureteral stenosis. Complete response (CR) was achieved in 62% of the cases (13/21), while partial response (PR) was achieved in 24% (5/21). The median survival and disease-free survival times were 284 and 270 days, respectively. Overall survival was significantly better in the dogs who achieved a CR. In conclusion, ECT was well-tolerated in dogs with UC, demonstrating its safety and feasibility. These data pave the way for new studies aimed at evaluating the effectiveness of ECT in canine bladder UC as a translational model for human disease.",
+        "score": 15,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:canine, dogs",
+          "relevance:adverse, safety, treatment",
+          "high_signal_title"
+        ],
+        "ddi_relevant": false,
+        "fda_relevant": false
+      }
+    ],
+    "proposed_metadata_updates": {
+      "_data_quality.ddi_source": {
+        "current": "plumbs_direct",
+        "suggested": "plumbs_direct"
+      },
+      "_extraction_metadata.source_file": {
+        "current": "plumbs_output/50.jsonl",
+        "suggested": "plumbs_output/50.jsonl + PMC strict vet references"
+      },
+      "fda_label": {
+        "available_now": false,
+        "candidate_fields": [
+          "contraindications",
+          "dosage_and_kinetics.*.dosage_list[*].evidence",
+          "dosage_and_kinetics.cat.dosage_list",
+          "dosage_and_kinetics.dog.dosage_list",
+          "drug_identity.available_strengths",
+          "drug_identity.brand_names",
+          "drug_identity.dosage_form",
+          "drug_identity.formulary_status",
+          "precautions",
+          "section_1_2_10.client_info",
+          "section_1_2_10.indications",
+          "storage_and_forms.forms"
+        ],
+        "status": "pending_manual_label_ingest"
+      }
+    }
+  },
+  {
+    "drug_name": "Butylscopolamine",
+    "drug_id": "butylscopolamine",
+    "drug_file": "/workspaces/nuvovet_systems/backend/data/converted/B/butylscopolamine.jsonl",
+    "query": "\"Butylscopolamine\"[Title/Abstract] AND (dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR \"half-life\"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR \"drug interaction\"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT (\"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+    "evidence_targets": {
+      "pmc_fields": [
+        "cyp_profile.substrates",
+        "cyp_profile.inhibitors",
+        "cyp_profile.inducers",
+        "timing_profile.t_max_hr",
+        "timing_profile.f_percent",
+        "timing_profile.protein_binding_percent",
+        "timing_profile.half_life_hr.min",
+        "timing_profile.half_life_hr.max",
+        "renal_dose_adjustment.creatinine_threshold_dog_mg_dL",
+        "renal_dose_adjustment.creatinine_threshold_cat_mg_dL",
+        "renal_dose_adjustment.adjustment_factor",
+        "hepatic_dose_adjustment.alt_threshold_multiplier",
+        "dosage_and_kinetics.dog.dosage_list",
+        "dosage_and_kinetics.cat.dosage_list",
+        "metabolism_and_clearance.primary_metabolic_organ"
+      ],
+      "fda_label_fields": [
+        "contraindications",
+        "dosage_and_kinetics.cat.dosage_list",
+        "dosage_and_kinetics.dog.dosage_list",
+        "drug_identity.available_strengths",
+        "drug_identity.brand_names",
+        "drug_identity.dosage_form",
+        "drug_identity.formulary_status",
+        "precautions",
+        "section_1_2_10.client_info",
+        "section_1_2_10.indications",
+        "storage_and_forms.forms"
+      ],
+      "file_path": "/workspaces/nuvovet_systems/backend/data/converted/B/butylscopolamine.jsonl"
+    },
+    "accepted_references": [
+      {
+        "pmc_id": "11835880",
+        "title": "Case report: Successful treatment of a thallium sulfate intoxication in a dog with use of Prussian blue.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11835880/",
+        "abstract": "Soluble thallium salts are highly toxic, with mortality rates exceeding 70% in animals compared to 6%−15% in humans. Early identification of thallium intoxicated patients and decreasing the toxic load by targeted treatment using Prussian Blue are associated with a better outcome in humans. Prussian blue, however, is rarely available or used in veterinary settings. Here we present a rare report of the successful use of Prussian Blue in the management of a dog with a thallium intoxication. A 5-year-old miniature Schnauzer, ingested a thallium sulfate based rodenticide leading to lethargy, anorexia, regurgitation, abdominal pain, borborygmi, constipation, ataxia, dermatitis and progressive alopecia. Intervention involved supportive care with subcutaneous fluids, carprofen, butylscopolamine and dexamethasone in combination with targeted treatment using the chelating agent Prussian blue (15 days) followed by activated charcoal (4 days). The serum thallium concentration on the 5th day of the Prussian Blue treatment was 196 mcg/L confirming thallium intoxication. The serum thallium concentrations were 20.7 mcg/L and 21.5 mcg/L on days 14 and 34 of treatment, respectively. The calculated elimination half-life during the during PB treatment was 2.8 days. The patient showed gradual improvement over several weeks, achieving full recovery at 11 weeks. This case emphasizes the importance of a timely diagnosis and the early start of targeted therapy using Prussian blue, in the management of thallium intoxication in veterinary patients.",
+        "score": 12,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:dog",
+          "relevance:half-life, treatment"
+        ],
+        "ddi_relevant": false,
+        "fda_relevant": false
+      }
+    ],
+    "proposed_metadata_updates": {
+      "_data_quality.ddi_source": {
+        "current": "plumbs_direct",
+        "suggested": "plumbs_direct"
+      },
+      "_extraction_metadata.source_file": {
+        "current": "plumbs_output/51.jsonl",
+        "suggested": "plumbs_output/51.jsonl + PMC strict vet references"
+      },
+      "fda_label": {
+        "available_now": false,
+        "candidate_fields": [
+          "contraindications",
+          "dosage_and_kinetics.cat.dosage_list",
+          "dosage_and_kinetics.dog.dosage_list",
+          "drug_identity.available_strengths",
+          "drug_identity.brand_names",
+          "drug_identity.dosage_form",
+          "drug_identity.formulary_status",
+          "precautions",
+          "section_1_2_10.client_info",
+          "section_1_2_10.indications",
+          "storage_and_forms.forms"
+        ],
+        "status": "pending_manual_label_ingest"
+      }
+    }
+  },
+  {
+    "drug_name": "Naltrexone",
+    "drug_id": "naltrexone",
+    "drug_file": "/workspaces/nuvovet_systems/backend/data/converted/N/naltrexone.jsonl",
+    "query": "\"Naltrexone\"[Title/Abstract] AND (dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR \"half-life\"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR \"drug interaction\"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT (\"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+    "evidence_targets": {
+      "pmc_fields": [
+        "cyp_profile.substrates",
+        "cyp_profile.inhibitors",
+        "cyp_profile.inducers",
+        "timing_profile.onset_min",
+        "timing_profile.t_max_hr",
+        "timing_profile.half_life_hr (dog/cat specific)",
+        "timing_profile.f_percent (dog/cat specific)",
+        "renal_dose_adjustment.creatinine_threshold_dog_mg_dL",
+        "renal_dose_adjustment.creatinine_threshold_cat_mg_dL",
+        "renal_dose_adjustment.adjustment_factor",
+        "metabolism_and_clearance.renal_elimination_fraction"
+      ],
+      "fda_label_fields": [
+        "contraindications",
+        "dosage_and_kinetics.cat.dosage_list",
+        "dosage_and_kinetics.dog.dosage_list",
+        "drug_identity.available_strengths",
+        "drug_identity.brand_names",
+        "drug_identity.dosage_form",
+        "drug_identity.formulary_status",
+        "precautions",
+        "section_1_2_10.client_info",
+        "section_1_2_10.indications",
+        "storage_and_forms.forms"
+      ],
+      "file_path": "/workspaces/nuvovet_systems/backend/data/converted/N/naltrexone.jsonl"
+    },
+    "accepted_references": [
+      {
+        "pmc_id": "6548978",
+        "title": "Pharmacokinetic Interaction between Naloxone and Naltrexone Following Intranasal Administration to Healthy Subjects.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6548978/",
+        "abstract": "Naloxone (17-allyl-4,5 α -epoxy-3,14-dihydroxymorphinan-6-one HCl), a μ -opioid receptor antagonist, is administered intranasally to reverse an opioid overdose but its short half-life may necessitate subsequent doses. The addition of naltrexone [17-(cyclopropylmethyl)-4,5 α -epoxy-3,14-dihydroxymorphinan-6-one], another μ -receptor antagonist, which has a reported half-life of 3 1/2 hours, may extend the available time to receive medical treatment. In a phase 1 pharmacokinetic study, healthy adults were administered naloxone and naltrexone intranasally, separately and in combination. When administered with naloxone, the C max value of naltrexone decreased 62% and the area under the concentration-time curve from time zero to infinity (AUC 0–inf ) decreased 38% compared with when it was given separately; lower concentrations of naltrexone were observed as early as 5 minutes postdose. In contrast, the C max and AUC 0–inf values of naloxone decreased only 18% and 16%, respectively, when given with naltrexone. This apparent interaction was investigated further to determine if naloxone and naltrexone shared a transporter. Neither compound was a substrate for organic cation transporter (OCT) 1, OCT2, OCT3, OCTN1, or OCTN2. There was no evidence of the involvement of a transmembrane transporter when they were tested separately or in combination at concentrations of 10 and 500 µ M using Madin-Darby canine kidney II cell monolayers at pH 7.4. The efflux ratios of naloxone and naltrexone increased to six or greater when the apical solution was pH 5.5, the approximate pH of the nasal cavity; there was no apparent interaction when the two were coincubated. The importance of understanding how opioid antagonists are absorbed by the nasal epithelium is magnified by the rise in overdose deaths attributed to long-lived synthetic opioids and the realization that better strategies are needed to treat opioid overdoses.",
+        "score": 16,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:canine",
+          "relevance:half-life, interaction, pharmacokinetic, treatment",
+          "high_signal_title"
+        ],
+        "ddi_relevant": true,
+        "fda_relevant": false
+      },
+      {
+        "pmc_id": "12415812",
+        "title": "A Randomized, Blinded, Placebo-Controlled Crossover Study of the Pharmacokinetics and Pharmacodynamics of Naloxone, Naltrexone, and Nalmefene in Methadone-Sedated Working Dogs.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12415812/",
+        "abstract": "ABSTRACT A randomized, blinded, placebo‐controlled crossover study was performed with eight professional working dogs to evaluate the pharmacokinetics and pharmacodynamics of three opioid reversal agents. Following sedation with 1 mg kg −1 methadone HCl IV, dogs were randomly assigned to receive naloxone, naltrexone, or nalmefene at 0.1 mg kg −1 IM, or saline (0.1 mL kg −1 ). Sedation scores and vital signs were obtained for 6 h, and blood samples were obtained for 72 h. Across all groups and phases, the mean sedation score prior to methadone was 0.93/14, and prior to reversal/placebo was 11.45/14. Mean sedation scores 1 min post reversal/placebo were 7.6, 7.4, 8.1, and 10.6; and at 5 min were 2.2, 1.9, 1.9, and 11.8 for nalmefene, naloxone, naltrexone, and saline, respectively. Dogs with a sedation score ≥ 10/14 at 20 min after reversal/placebo were administered 0.1 mg kg −1 of naloxone IM and included all dogs that received saline. The reversal agents significantly decreased sedation scores within 5 min ( p < 0.001) and reversal was maintained for the duration of the study. A previously undetected slower terminal elimination phase was observed for all analytes between 24 and 72 h; however, future studies with additional time points between 6 and 24 h are needed to generate pharmacokinetic estimates for this phase. These reversal agents may be useful for treating sedation in professional working dogs exposed to opioids prior to seeking veterinary care. Pharmacological differences between methadone and higher potency opioids (fentanyl and its derivatives) preclude interpretation of these findings to non‐methadone opioids, and further studies are needed.",
+        "score": 14,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:dogs",
+          "relevance:pharmacokinetic, pharmacokinetics",
+          "high_signal_title"
+        ],
+        "ddi_relevant": false,
+        "fda_relevant": false
+      }
+    ],
+    "proposed_metadata_updates": {
+      "_data_quality.ddi_source": {
+        "current": "plumbs_direct",
+        "suggested": "PMC_strict_vet"
+      },
+      "_extraction_metadata.source_file": {
+        "current": "plumbs_output/28.jsonl",
+        "suggested": "plumbs_output/28.jsonl + PMC strict vet references"
+      },
+      "fda_label": {
+        "available_now": false,
+        "candidate_fields": [
+          "contraindications",
+          "dosage_and_kinetics.cat.dosage_list",
+          "dosage_and_kinetics.dog.dosage_list",
+          "drug_identity.available_strengths",
+          "drug_identity.brand_names",
+          "drug_identity.dosage_form",
+          "drug_identity.formulary_status",
+          "precautions",
+          "section_1_2_10.client_info",
+          "section_1_2_10.indications",
+          "storage_and_forms.forms"
+        ],
+        "status": "pending_manual_label_ingest"
+      }
+    }
+  },
+  {
+    "drug_name": "Ceftiofur Hcl",
+    "drug_id": "ceftiofur_hcl",
+    "drug_file": "/workspaces/nuvovet_systems/backend/data/converted/C/ceftiofur_hcl.jsonl",
+    "query": "\"Ceftiofur Hcl\"[Title/Abstract] AND (dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR \"half-life\"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR \"drug interaction\"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT (\"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+    "evidence_targets": {
+      "pmc_fields": [
+        "cyp_profile.substrates",
+        "cyp_profile.inhibitors",
+        "cyp_profile.inducers",
+        "timing_profile.onset_min",
+        "timing_profile.f_percent",
+        "timing_profile.protein_binding_percent",
+        "metabolism_and_clearance.renal_elimination_fraction",
+        "metabolism_and_clearance.primary_metabolic_organ",
+        "renal_dose_adjustment.creatinine_threshold_dog_mg_dL",
+        "renal_dose_adjustment.creatinine_threshold_cat_mg_dL",
+        "renal_dose_adjustment.adjustment_factor",
+        "hepatic_dose_adjustment.alt_threshold_multiplier",
+        "dosage_and_kinetics.dog.dosage_list",
+        "dosage_and_kinetics.cat.dosage_list"
+      ],
+      "fda_label_fields": [
+        "contraindications",
+        "dosage_and_kinetics.cat.dosage_list",
+        "dosage_and_kinetics.dog.dosage_list",
+        "drug_identity.available_strengths",
+        "drug_identity.brand_names",
+        "drug_identity.dosage_form",
+        "drug_identity.formulary_status",
+        "precautions",
+        "section_1_2_10.client_info",
+        "section_1_2_10.indications",
+        "storage_and_forms.forms"
+      ],
+      "file_path": "/workspaces/nuvovet_systems/backend/data/converted/C/ceftiofur_hcl.jsonl"
+    },
+    "accepted_references": [],
+    "proposed_metadata_updates": {
+      "_data_quality.ddi_source": {
+        "current": "plumbs_direct",
+        "suggested": "plumbs_direct"
+      },
+      "_extraction_metadata.source_file": {
+        "current": "plumbs_output/23.jsonl",
+        "suggested": "plumbs_output/23.jsonl"
+      },
+      "fda_label": {
+        "available_now": false,
+        "candidate_fields": [
+          "contraindications",
+          "dosage_and_kinetics.cat.dosage_list",
+          "dosage_and_kinetics.dog.dosage_list",
+          "drug_identity.available_strengths",
+          "drug_identity.brand_names",
+          "drug_identity.dosage_form",
+          "drug_identity.formulary_status",
+          "precautions",
+          "section_1_2_10.client_info",
+          "section_1_2_10.indications",
+          "storage_and_forms.forms"
+        ],
+        "status": "pending_manual_label_ingest"
+      }
+    }
+  },
+  {
+    "drug_name": "Trimeprazine Prednisolone",
+    "drug_id": "trimeprazine_prednisolone",
+    "drug_file": "/workspaces/nuvovet_systems/backend/data/converted/T/Trimeprazine_Prednisolone.jsonl",
+    "query": "\"Trimeprazine Prednisolone\"[Title/Abstract] AND (dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR \"half-life\"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR \"drug interaction\"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT (\"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+    "evidence_targets": {
+      "pmc_fields": [
+        "pharmacokinetics",
+        "renal_dose_adjustment",
+        "hepatic_dose_adjustment"
+      ],
+      "fda_label_fields": [
+        "contraindications",
+        "dosage_and_kinetics.*.dosage_list[*].evidence",
+        "dosage_and_kinetics.cat.dosage_list",
+        "dosage_and_kinetics.dog.dosage_list",
+        "drug_identity.available_strengths",
+        "drug_identity.brand_names",
+        "drug_identity.dosage_form",
+        "drug_identity.formulary_status",
+        "precautions",
+        "section_1_2_10.client_info",
+        "section_1_2_10.indications",
+        "storage_and_forms.forms"
+      ],
+      "file_path": "/workspaces/nuvovet_systems/backend/data/converted/T/Trimeprazine_Prednisolone.jsonl"
+    },
+    "accepted_references": [],
+    "proposed_metadata_updates": {
+      "_data_quality.ddi_source": {
+        "current": "Plumbs",
+        "suggested": "Plumbs"
+      },
+      "_extraction_metadata.source_file": {
+        "current": "Plumbs Veterinary Drugs",
+        "suggested": "Plumbs Veterinary Drugs"
+      },
+      "fda_label": {
+        "available_now": false,
+        "candidate_fields": [
+          "contraindications",
+          "dosage_and_kinetics.*.dosage_list[*].evidence",
+          "dosage_and_kinetics.cat.dosage_list",
+          "dosage_and_kinetics.dog.dosage_list",
+          "drug_identity.available_strengths",
+          "drug_identity.brand_names",
+          "drug_identity.dosage_form",
+          "drug_identity.formulary_status",
+          "precautions",
+          "section_1_2_10.client_info",
+          "section_1_2_10.indications",
+          "storage_and_forms.forms"
+        ],
+        "status": "pending_manual_label_ingest"
+      }
+    }
+  },
+  {
+    "drug_name": "Dobutamine",
+    "drug_id": "dobutamine",
+    "drug_file": "/workspaces/nuvovet_systems/backend/data/converted/D/dobutamine.jsonl",
+    "query": "\"Dobutamine\"[Title/Abstract] AND (dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR \"half-life\"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR \"drug interaction\"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT (\"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+    "evidence_targets": {
+      "pmc_fields": [
+        "cyp_profile.substrates",
+        "cyp_profile.inhibitors",
+        "cyp_profile.inducers",
+        "timing_profile.protein_binding_percent",
+        "timing_profile.half_life_hr (veterinary species)",
+        "metabolism_and_clearance.renal_elimination_fraction",
+        "renal_dose_adjustment.creatinine_threshold_dog_mg_dL",
+        "renal_dose_adjustment.creatinine_threshold_cat_mg_dL",
+        "renal_dose_adjustment.adjustment_factor",
+        "hepatic_dose_adjustment.alt_threshold_multiplier"
+      ],
+      "fda_label_fields": [
+        "contraindications",
+        "dosage_and_kinetics.cat.dosage_list",
+        "dosage_and_kinetics.dog.dosage_list",
+        "drug_identity.available_strengths",
+        "drug_identity.brand_names",
+        "drug_identity.dosage_form",
+        "drug_identity.formulary_status",
+        "precautions",
+        "section_1_2_10.client_info",
+        "section_1_2_10.indications",
+        "storage_and_forms.forms"
+      ],
+      "file_path": "/workspaces/nuvovet_systems/backend/data/converted/D/dobutamine.jsonl"
+    },
+    "accepted_references": [
+      {
+        "pmc_id": "2043880",
+        "title": "The cardiovascular pharmacology of 7-propyl-theo-phylline-dopamine (D4975); comparison with dopamine and dobutamine.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2043880/",
+        "abstract": "1 The effects of a newly developed dopamine-xanthine derivative, 7-propyl-theophylline-dopamine (D4975), have been examined in cats anaesthetized with sodium pentobarbitone. When administered intravenously (in doses as low as 0.5 to 1.0 micrograms/kg) it increased systemic arterial pressure, left ventricular (LV) dP/dtmax, dP/dt at fixed ventricular isovolumic pressures and cardiac output. Heart rate effects were minimal. 2 D4975 was about 5 times more active than dopamine or dobutamine in elevating LV dP/dtmax or dP/dt at common peak isovolumic pressures (CPIP) and about 10 times more active than dopamine at increasing systemic arterial blood pressure. The effects of D4975 were also more prolonged than those of the other two agents. 3 The effects of D4975 on LV dP/dtmax were greatly reduced by the prior administration of propranolol. D4975 has no effect on peripheral beta 2-adrenoceptors. 4 It is suggested that the effects of D4975 on the myocardium involve both beta 1-adrenoceptor stimulation and inhibition of phosphodiesterase and that the marked and prolonged pressor response is due to resistance to enzymatic breakdown by monoamine oxidase. 5 The results suggest that D4975 might prove valuable in the treatment of the hypotension and reduced myocardial contractility of shock, especially as it is possible to select a dose that increases LV dP/dtmax without increasing either heart rate of systemic arterial pressure.",
+        "score": 13,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:cats",
+          "relevance:dose, pharmacology, treatment"
+        ],
+        "ddi_relevant": false,
+        "fda_relevant": false
+      },
+      {
+        "pmc_id": "10451654",
+        "title": "A Comparison of Dobutamine, Norepinephrine, Vasopressin, and Hetastarch for the Treatment of Isoflurane-Induced Hypotension in Healthy, Normovolemic Dogs.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10451654/",
+        "abstract": "Simple Summary In anesthetized dogs, hypotension, defined as a mean arterial pressure (MAP) of <60–70 mmHg, has an incidence of up to 60%. It is therefore imperative to avoid the occurrence of hypotension and undertake immediate strategies to treat it. Treatment protocols for the correction of isoflurane-mediated hypotension include lowering or terminating isoflurane administration; lowering isoflurane requirement by using anesthetic adjuncts and analgesics; intravenous crystalloid and/or colloid bolus; and delivering anticholinergics, positive inotropes, and vasopressor drugs. The present study evaluated and compared the hemodynamic effects of dobutamine (DOB), norepinephrine (NEP), vasopressin (VAS), and hetastarch (HES) for the treatment of isoflurane-induced hypotension and established the most effective dosage regimen for the correction of hypotension. In healthy, anesthetized Beagle dogs undergoing acute, severe isoflurane-induced hypotension, NEP administered as an infusion was the most efficient therapy for correcting MAP. However, the DOB, VAS, and HES treatments were unsuccessful in stabilizing the MAP to >65 mmHg, even at maximum doses. Abstract Isoflurane is a commonly used inhalation anesthetic in species undergoing veterinary care that induces hypotension, impacting organ perfusion, making it imperative to minimize its occurrence or identify effective strategies for treating it. This study evaluated and compared the hemodynamic effects of DOB, NEP, VAS, and HES in twelve isoflurane-anesthetized Beagle dogs. The order of the first three treatments was randomized. HES was administered last. Data were collected before treatments (baseline) and after 10 min of a sustained MAP of <45 mmHg induced by a high end-tidal isoflurane concentration (T0). Once treatment was initiated and the target MAP was achieved (65 to 80 mmHg) or the maximum dose reached, data were collected after 15 min of stabilization (T1) and 15 min after (T2). A 15 min washout period with a MAP of ≥65 mmHg was allowed between treatments. The intravenous dosage regimens started and were increased by 50% every five minutes until the target MAP or maximum dose was reached. The dosages were as follows: DOB, 5–15 μg/kg/min; NEP, 0.1–2 μg/kg/min; VAS, 0.5–5 mU/kg/min; and HET, 6% 1–20 mL/kg/min. DOB improved CO, DO 2 , and VO 2 , but reduced SVR. VAS elevated SVR, but decreased CO, DO 2 , and VO 2 . HES minimally changed BP and mildly augmented CO, DO 2 , and VO 2 . These treatments failed to reach the target MAP. NEP increased the arterial BP, CO, MPAP, and PAWP, but reduced HR. Norepinephrine infusion at 0.44 ± 0.19 μg/kg/min was the most efficient therapy for correcting isoflurane-induced hypotension.",
+        "score": 13,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:dogs",
+          "relevance:dosage, dose, treatment"
+        ],
+        "ddi_relevant": false,
+        "fda_relevant": false
+      }
+    ],
+    "proposed_metadata_updates": {
+      "_data_quality.ddi_source": {
+        "current": "plumbs_direct",
+        "suggested": "plumbs_direct"
+      },
+      "_extraction_metadata.source_file": {
+        "current": "plumbs_output/14.jsonl",
+        "suggested": "plumbs_output/14.jsonl + PMC strict vet references"
+      },
+      "fda_label": {
+        "available_now": false,
+        "candidate_fields": [
+          "contraindications",
+          "dosage_and_kinetics.cat.dosage_list",
+          "dosage_and_kinetics.dog.dosage_list",
+          "drug_identity.available_strengths",
+          "drug_identity.brand_names",
+          "drug_identity.dosage_form",
+          "drug_identity.formulary_status",
+          "precautions",
+          "section_1_2_10.client_info",
+          "section_1_2_10.indications",
+          "storage_and_forms.forms"
+        ],
+        "status": "pending_manual_label_ingest"
+      }
+    }
+  },
+  {
+    "drug_name": "Pralidoxime, 2-Pam",
+    "drug_id": "pralidoxime_2pam",
+    "drug_file": "/workspaces/nuvovet_systems/backend/data/converted/P/pralidoxime__2-pam.jsonl",
+    "query": "\"Pralidoxime, 2-Pam\"[Title/Abstract] AND (dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR \"half-life\"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR \"drug interaction\"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT (\"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+    "evidence_targets": {
+      "pmc_fields": [
+        "cyp_profile.substrates",
+        "cyp_profile.inhibitors",
+        "cyp_profile.inducers",
+        "timing_profile.onset_min",
+        "timing_profile.t_max_hr",
+        "timing_profile.f_percent",
+        "timing_profile.protein_binding_percent",
+        "timing_profile.half_life_hr (dog/cat specific)",
+        "renal_dose_adjustment.creatinine_threshold_dog_mg_dL",
+        "renal_dose_adjustment.creatinine_threshold_cat_mg_dL",
+        "renal_dose_adjustment.adjustment_factor",
+        "metabolism_and_clearance.renal_elimination_fraction"
+      ],
+      "fda_label_fields": [
+        "contraindications",
+        "dosage_and_kinetics.cat.dosage_list",
+        "dosage_and_kinetics.dog.dosage_list",
+        "drug_identity.available_strengths",
+        "drug_identity.brand_names",
+        "drug_identity.dosage_form",
+        "drug_identity.formulary_status",
+        "precautions",
+        "section_1_2_10.client_info",
+        "section_1_2_10.indications",
+        "storage_and_forms.forms"
+      ],
+      "file_path": "/workspaces/nuvovet_systems/backend/data/converted/P/pralidoxime__2-pam.jsonl"
+    },
+    "accepted_references": [],
+    "proposed_metadata_updates": {
+      "_data_quality.ddi_source": {
+        "current": "plumbs_direct",
+        "suggested": "plumbs_direct"
+      },
+      "_extraction_metadata.source_file": {
+        "current": "plumbs_output/20.jsonl",
+        "suggested": "plumbs_output/20.jsonl"
+      },
+      "fda_label": {
+        "available_now": false,
+        "candidate_fields": [
+          "contraindications",
+          "dosage_and_kinetics.cat.dosage_list",
+          "dosage_and_kinetics.dog.dosage_list",
+          "drug_identity.available_strengths",
+          "drug_identity.brand_names",
+          "drug_identity.dosage_form",
+          "drug_identity.formulary_status",
+          "precautions",
+          "section_1_2_10.client_info",
+          "section_1_2_10.indications",
+          "storage_and_forms.forms"
+        ],
+        "status": "pending_manual_label_ingest"
+      }
+    }
+  }
+]
