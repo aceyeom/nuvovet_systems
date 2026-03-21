@@ -559,12 +559,25 @@ const ko = {
   // ── 장기 관여 다이어그램 ──────────────────────────────────────
   anatomy: {
     organInvolvement: '장기 관여',
-    addDrugsPrompt: '약물을 추가하면 장기 관여도가 표시됩니다',
+    monitoringPriorities: '모니터링 권고',
+    monitoringSubtitle: '처방 약물의 장기별 모니터링 권고사항',
+    addDrugsPrompt: '약물을 추가하면 모니터링 권고가 표시됩니다',
     contributingDrugs: '관여 약물',
     triggeredEffects: '유발 효과',
     evidence: '근거',
     noDose: '(용량 없음)',
     singleDrug: '단일 약물',
+    recommendedAction: '권장 조치',
+    showAllOrgans: '모든 장기 보기',
+    hideRoutine: '정상 장기 숨김',
+    expandDetails: '상세 보기',
+    eliminationNotes: '배설 경로 및 주의사항',
+    monitoringChecklist: '모니터링 체크리스트',
+    drugsInvolved: '관련 약물',
+    closeModal: '닫기',
+    organDetail: '장기 상세 정보',
+    fullEvidence: '전체 근거',
+    noActionNeeded: '현재 수준에서 특별한 모니터링이 필요하지 않습니다',
   },
 
   // ── 랜딩 스크롤 패널 ──────────────────────────────────────────
