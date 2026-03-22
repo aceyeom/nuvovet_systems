@@ -39,6 +39,50 @@ function checkHardstop(drug, species) {
   return null;
 }
 
+// ── Form → Route mapping ────────────────────────────────────────
+const FORM_ROUTE_MAP = {
+  Tab: ['PO'],
+  Cap: ['PO'],
+  Susp: ['PO'],
+  Inj: ['IV', 'IM', 'SC'],
+  Drop: ['Ophthalmic', 'Otic'],
+  Oint: ['Topical'],
+  Topical: ['Topical'],
+  Ophthalmic: ['Ophthalmic'],
+};
+
+// ── Route-specific frequency options ────────────────────────────
+const PARENTERAL_ROUTES = new Set(['IV', 'IM', 'SC']);
+
+const FREQ_BY_ROUTE = {
+  PO:    ['SID', 'BID', 'TID', 'QID', 'PRN', 'Other'],
+  IV:    ['CRI', 'q2h', 'q4h', 'q6h', 'q8h', 'q12h', 'PRN', 'Other'],
+  IM:    ['SID', 'BID', 'q8h', 'q12h', 'PRN', 'Other'],
+  SC:    ['SID', 'BID', 'q8h', 'q12h', 'PRN', 'Other'],
+  _default: ['SID', 'BID', 'TID', 'QID', 'q8h', 'q12h', 'PRN', 'Other'],
+};
+
+/** Given a drug's dosageForms + dosageList, compute valid routes. */
+function getValidRoutes(drug, species) {
+  const routes = new Set();
+  // From dosage_list entries for this species
+  const dList = drug.dosageList?.[species] || [];
+  dList.forEach(e => { if (e.route) routes.add(e.route); });
+  // From form→route mapping
+  (drug.dosageForms || []).forEach(form => {
+    (FORM_ROUTE_MAP[form] || []).forEach(r => routes.add(r));
+  });
+  // Fallback: if nothing, use the drug's default route
+  if (routes.size === 0 && drug.route) routes.add(drug.route);
+  return [...routes];
+}
+
+/** Find the dosage_list entry matching a route for a species. */
+function findDosageForRoute(drug, species, route) {
+  const dList = drug.dosageList?.[species] || [];
+  return dList.find(e => e.route === route) || null;
+}
+
 // ── Source icon ─────────────────────────────────────────────────
 function SourceIcon({ source }) {
   if (source === 'human_offlabel') return <FlaskConical size={13} className="text-amber-500 shrink-0" />;
@@ -88,13 +132,34 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
   );
   const selectedStrength = strengths[selectedStrengthIdx] || null;
 
-  // Route state
-  const ROUTE_OPTIONS = ['PO', 'IV', 'IM', 'SC', 'Topical', 'Intranasal', 'Ophthalmic', 'Other'];
-  const [route, setRoute] = useState(drug.route || 'PO');
+  // ── Formulation → Route → Freq/Dose cascade ──────────────
+  const validRoutes = getValidRoutes(drug, species);
+  const [route, setRoute] = useState(() => {
+    // Initialise to the drug's data-backed route, or fall back
+    if (drug.route && validRoutes.includes(drug.route)) return drug.route;
+    return validRoutes[0] || 'PO';
+  });
+  const [isOffLabel, setIsOffLabel] = useState(false);
 
-  // Frequency
-  const FREQ_OPTIONS = ['SID', 'BID', 'TID', 'QID', 'q8h', 'q12h', 'PRN', 'Other'];
-  const [freq, setFreq] = useState(drug.freq || 'SID');
+  // Dosage entry for the currently-selected route
+  const activeDosage = findDosageForRoute(drug, species, route);
+
+  // Route options = data-backed + "Other (off-label)"
+  const routeOptions = [...validRoutes, 'Other (off-label)'];
+
+  // Frequency options depend on route
+  const freqOptions = FREQ_BY_ROUTE[route] || FREQ_BY_ROUTE._default;
+  const [freq, setFreq] = useState(() => {
+    const initial = activeDosage?.frequency || drug.freq || 'SID';
+    return freqOptions.includes(initial) ? initial : freqOptions[0];
+  });
+
+  // IV administration mode: bolus vs CRI
+  const isParenteral = PARENTERAL_ROUTES.has(route);
+  const isIV = route === 'IV';
+  const [adminMode, setAdminMode] = useState('bolus'); // 'bolus' | 'cri'
+  const [infusionRate, setInfusionRate] = useState('');
+  const [infusionDuration, setInfusionDuration] = useState('');
 
   // Duration
   const [duration, setDuration] = useState(drug.prescriptionDays || 7);
@@ -106,6 +171,60 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
   const [dosePerKg, setDosePerKg] = useState(
     drug.dosePerKg !== undefined && drug.dosePerKg !== '' ? drug.dosePerKg : defaultDose
   );
+
+  // ── Cascade: when route changes, update freq, dose, duration ──
+  const handleRouteChange = (newRoute) => {
+    if (newRoute === 'Other (off-label)') {
+      setIsOffLabel(true);
+      setRoute(newRoute);
+      return;
+    }
+    setIsOffLabel(false);
+    setRoute(newRoute);
+    const entry = findDosageForRoute(drug, species, newRoute);
+    if (entry) {
+      // Auto-fill freq from dosage_list
+      const newFreqOptions = FREQ_BY_ROUTE[newRoute] || FREQ_BY_ROUTE._default;
+      const entryFreq = entry.frequency || 'SID';
+      setFreq(newFreqOptions.includes(entryFreq) ? entryFreq : newFreqOptions[0]);
+      // Auto-fill dose
+      if (entry.value != null) {
+        const parts = String(entry.value).split(/\s*[-–]\s*/);
+        if (parts.length === 2) {
+          const avg = ((parseFloat(parts[0]) + parseFloat(parts[1])) / 2);
+          setDosePerKg(isNaN(avg) ? '' : avg);
+        } else {
+          const v = parseFloat(entry.value);
+          setDosePerKg(isNaN(v) ? '' : v);
+        }
+      }
+      // Auto-fill duration hint (parse leading number from durationNote)
+      if (entry.durationNote) {
+        const m = entry.durationNote.match(/(\d+)/);
+        if (m) { setDuration(parseInt(m[1], 10)); setDurationInput(m[1]); }
+      }
+    }
+    // Reset IV-specific fields when switching away
+    if (newRoute !== 'IV') {
+      setAdminMode('bolus');
+      setInfusionRate('');
+      setInfusionDuration('');
+    }
+  };
+
+  // ── Cascade: when formulation changes, update route ──────
+  const handleFormulationChange = (idx) => {
+    setSelectedStrengthIdx(idx);
+    // If the drug has dosageForms, determine which form this strength maps to
+    const forms = drug.dosageForms || [];
+    if (forms.length > 0) {
+      // Find routes for the first dosage form
+      const formRoutes = FORM_ROUTE_MAP[forms[0]] || [];
+      if (formRoutes.length > 0 && !formRoutes.includes(route) && route !== 'Other (off-label)') {
+        handleRouteChange(formRoutes[0]);
+      }
+    }
+  };
 
   useEffect(() => {
     setDuration(drug.prescriptionDays || 7);
@@ -149,15 +268,20 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
   useEffect(() => {
     onUpdateDrug(drug.id, {
       dosePerKg,
-      route,
+      route: isOffLabel ? 'Other' : route,
       freq,
       prescriptionDays: duration || '',
       memo,
       doseStatus,
       _selectedStrengthIdx: selectedStrengthIdx,
+      ...(isIV && adminMode === 'cri' ? {
+        adminMode: 'cri',
+        infusionRate,
+        infusionDuration,
+      } : { adminMode: 'bolus' }),
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dosePerKg, route, freq, duration, memo, selectedStrengthIdx]);
+  }, [dosePerKg, route, freq, duration, memo, selectedStrengthIdx, adminMode, infusionRate, infusionDuration]);
 
   const inputBorderClass = doseStatus === 'above'
     ? 'border-red-400 focus:ring-red-200'
@@ -175,6 +299,16 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
         <div className="flex items-start gap-2 px-3.5 py-2 bg-red-100 border-b border-red-200">
           <Ban size={13} className="text-red-600 shrink-0 mt-0.5" />
           <p className="text-[12px] text-red-800 leading-relaxed font-medium">{hardstop}</p>
+        </div>
+      )}
+
+      {/* Off-label route warning banner */}
+      {isOffLabel && (
+        <div className="flex items-start gap-2 px-3.5 py-2 bg-amber-50 border-b border-amber-200">
+          <AlertTriangle size={13} className="text-amber-600 shrink-0 mt-0.5" />
+          <p className="text-[12px] text-amber-800 leading-relaxed font-medium">
+            Off-label route — no dosage data available. All fields require manual entry.
+          </p>
         </div>
       )}
 
@@ -246,7 +380,7 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
 
       {/* Expanded content */}
       <div className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out ${
-        expanded ? 'max-h-[560px] opacity-100' : 'max-h-0 opacity-0'
+        expanded ? 'max-h-[720px] opacity-100' : 'max-h-0 opacity-0'
       }`}>
         <div className={`px-3.5 pb-3 pt-2.5 ${expanded ? 'border-t border-slate-100' : ''}`}>
           <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_220px] gap-3">
@@ -258,7 +392,7 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
                   <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Formulation</label>
                   <div className="flex flex-wrap gap-1">
                     {strengths.map((s, idx) => (
-                      <button key={idx} onClick={() => setSelectedStrengthIdx(idx)}
+                      <button key={idx} onClick={() => handleFormulationChange(idx)}
                         className={`px-2 py-0.5 text-[11px] font-medium rounded-md border transition-all ${
                           selectedStrengthIdx === idx
                             ? 'bg-slate-800 text-white border-slate-800'
@@ -279,20 +413,29 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
               <div className="grid grid-cols-3 gap-2">
                 <div>
                   <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Route</label>
-                  <select value={route} onChange={e => setRoute(e.target.value)}
-                    className="w-full px-2.5 py-1.5 text-[12px] border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white text-slate-700">
-                    {ROUTE_OPTIONS.map(r => <option key={r}>{r}</option>)}
+                  <select value={isOffLabel ? 'Other (off-label)' : route} onChange={e => handleRouteChange(e.target.value)}
+                    className={`w-full px-2.5 py-1.5 text-[12px] border rounded-md focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white text-slate-700 ${
+                      isOffLabel ? 'border-amber-300' : 'border-slate-200'
+                    }`}>
+                    {routeOptions.map(r => (
+                      <option key={r} value={r}>{r}</option>
+                    ))}
                   </select>
+                  {activeDosage?.context && (
+                    <p className="text-[9px] text-slate-400 mt-0.5 leading-tight">{activeDosage.context}</p>
+                  )}
                 </div>
                 <div>
                   <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Frequency</label>
                   <select value={freq} onChange={e => setFreq(e.target.value)}
                     className="w-full px-2.5 py-1.5 text-[12px] border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white text-slate-700">
-                    {FREQ_OPTIONS.map(f => <option key={f}>{f}</option>)}
+                    {freqOptions.map(f => <option key={f}>{f}</option>)}
                   </select>
                 </div>
                 <div>
-                  <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Duration (days)</label>
+                  <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">
+                    {isIV && adminMode === 'cri' ? 'Infusion (hrs)' : 'Duration (days)'}
+                  </label>
                   <input
                     type="text"
                     inputMode="numeric"
@@ -327,6 +470,68 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
                   />
                 </div>
               </div>
+
+              {/* IV Bolus / CRI toggle + infusion fields */}
+              {isIV && (
+                <div className="rounded-lg border border-blue-100 bg-blue-50/40 p-2.5 space-y-2">
+                  <div className="flex items-center gap-2">
+                    <label className="text-[9px] font-bold text-blue-500 uppercase tracking-widest">Administration</label>
+                    <div className="flex rounded-md border border-blue-200 overflow-hidden">
+                      <button
+                        onClick={() => setAdminMode('bolus')}
+                        className={`px-2.5 py-1 text-[11px] font-medium transition-all ${
+                          adminMode === 'bolus'
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-white text-blue-600 hover:bg-blue-50'
+                        }`}>
+                        Bolus
+                      </button>
+                      <button
+                        onClick={() => { setAdminMode('cri'); setFreq('CRI'); }}
+                        className={`px-2.5 py-1 text-[11px] font-medium transition-all ${
+                          adminMode === 'cri'
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-white text-blue-600 hover:bg-blue-50'
+                        }`}>
+                        CRI
+                      </button>
+                    </div>
+                  </div>
+                  {adminMode === 'cri' && (
+                    <div className="grid grid-cols-2 gap-2">
+                      <div>
+                        <label className="block text-[9px] font-bold text-blue-400 uppercase tracking-widest mb-1">Rate (ml/hr)</label>
+                        <input
+                          type="text"
+                          inputMode="decimal"
+                          value={infusionRate}
+                          onChange={(e) => setInfusionRate(e.target.value)}
+                          placeholder="e.g. 10"
+                          className="w-full px-2.5 py-1.5 text-[12px] border border-blue-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300/30 bg-white text-slate-700 placeholder:text-slate-300"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-[9px] font-bold text-blue-400 uppercase tracking-widest mb-1">Duration (hrs)</label>
+                        <input
+                          type="text"
+                          inputMode="decimal"
+                          value={infusionDuration}
+                          onChange={(e) => setInfusionDuration(e.target.value)}
+                          placeholder="e.g. 4"
+                          className="w-full px-2.5 py-1.5 text-[12px] border border-blue-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300/30 bg-white text-slate-700 placeholder:text-slate-300"
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Duration note from dosage data */}
+              {activeDosage?.durationNote && (
+                <p className="text-[10px] text-slate-500 italic flex items-center gap-1">
+                  <span className="text-slate-400">Duration guide:</span> {activeDosage.durationNote}
+                </p>
+              )}
 
               <div>
                 <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Memo</label>

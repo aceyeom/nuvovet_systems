@@ -262,6 +262,40 @@ def map_drug(raw: dict) -> dict:
             "cat": bool((dosage.get("cat") or {}).get("is_approved")),
         },
 
+        # Full dosage_list per species (for route-dependent cascading)
+        "dosageList": {
+            "dog": [
+                {
+                    "value": e.get("value"),
+                    "unit": e.get("unit", "mg/kg"),
+                    "route": e.get("route", "PO"),
+                    "frequency": e.get("frequency", "SID"),
+                    "maxDoseMgKg": e.get("max_dose_mg_kg"),
+                    "durationNote": e.get("duration_note"),
+                    "context": e.get("context"),
+                    "logicType": e.get("logic_type"),
+                    "evidence": e.get("evidence"),
+                }
+                for e in ((dosage.get("dog") or {}).get("dosage_list") or [])
+                if isinstance(e, dict)
+            ],
+            "cat": [
+                {
+                    "value": e.get("value"),
+                    "unit": e.get("unit", "mg/kg"),
+                    "route": e.get("route", "PO"),
+                    "frequency": e.get("frequency", "SID"),
+                    "maxDoseMgKg": e.get("max_dose_mg_kg"),
+                    "durationNote": e.get("duration_note"),
+                    "context": e.get("context"),
+                    "logicType": e.get("logic_type"),
+                    "evidence": e.get("evidence"),
+                }
+                for e in ((dosage.get("cat") or {}).get("dosage_list") or [])
+                if isinstance(e, dict)
+            ],
+        },
+
         # Clinical
         "speciesNotes": {
             "dog": _species_note("dog"),
