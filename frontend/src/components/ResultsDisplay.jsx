@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   AlertTriangle, AlertCircle, Info, CheckCircle, ChevronDown, ChevronUp,
@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import { SeverityBadge } from './SeverityBadge';
 import { DRUG_SOURCE } from '../data/drugDatabase';
-import { DrugTimeline } from './DrugTimeline';
+// DrugTimeline (PK graph) removed from results page per visualization overhaul
 import { NuvovetLogo } from './NuvovetLogo';
 import { OrganLoadIndicator } from './OrganLoadIndicator';
 import { ConfidenceProvenance } from './ConfidenceProvenance';
@@ -143,6 +143,100 @@ function SeverityBanner({ results, drugs = [] }) {
   );
 }
 
+// ── Map patient alert types to patient fields ───────────────────
+const ALERT_FIELD_MAP = {
+  'breed-risk':               'breed',
+  'mdr1-pgp-inhibitor':       'breed',
+  'species-pharmacogenetic':  'species',
+  'species-contraindication': 'species',
+  'excipient-toxicity':       'species',
+  'drug-disease':             'conditions',
+  'condition-drug-monitoring':'conditions',
+  'creatinine-adjustment':    'flaggedLabs',
+  'lab-interference':         'flaggedLabs',
+  'developmental':            'age',
+  'dose-exceeded':            'weight',
+  'species-dose-caution':     'weight',
+  'triple-nephrotoxic':       'conditions',
+  'triple-sedation':          'conditions',
+};
+
+const FIELD_LABELS = {
+  breed:      { ko: '품종', en: 'Breed' },
+  species:    { ko: '종', en: 'Species' },
+  conditions: { ko: '기저질환', en: 'Conditions' },
+  flaggedLabs:{ ko: '검사 수치', en: 'Lab Values' },
+  age:        { ko: '연령', en: 'Age' },
+  weight:     { ko: '체중/용량', en: 'Weight/Dose' },
+};
+
+// ── Patient Risk Profile (shows only fields that triggered alerts) ──
+function PatientRiskProfile({ patientAlerts = [], lang }) {
+  const fieldGroups = {};
+  patientAlerts.forEach(alert => {
+    const field = ALERT_FIELD_MAP[alert.type] || 'other';
+    if (!fieldGroups[field]) fieldGroups[field] = [];
+    fieldGroups[field].push(alert);
+  });
+
+  const activeFields = Object.entries(fieldGroups);
+  if (activeFields.length === 0) {
+    return (
+      <div className="flex items-center gap-1.5 mt-2 pt-2 border-t border-slate-100">
+        <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+        <span className="text-[11px] text-emerald-600 font-medium">
+          환자 특이 위험 요소 없음 / No patient-specific risk factors
+        </span>
+      </div>
+    );
+  }
+
+  return (
+    <div className="mt-3 pt-3 border-t border-slate-100">
+      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">
+        환자 위험 프로필 / Risk Profile
+      </p>
+      <div className="space-y-1.5">
+        {activeFields.map(([field, alerts]) => {
+          const label = FIELD_LABELS[field] || { ko: field, en: field };
+          const hasCritical = alerts.some(a => a.severity?.label === 'Critical');
+          const dotColor = hasCritical ? 'bg-red-500' : 'bg-amber-400';
+          const textColor = hasCritical ? 'text-red-700' : 'text-amber-700';
+          const bgColor = hasCritical ? 'bg-red-50' : 'bg-amber-50';
+
+          return (
+            <div key={field} className={`flex items-start gap-2 px-2 py-1.5 rounded-lg ${bgColor}`}>
+              <div className={`w-1.5 h-1.5 rounded-full ${dotColor} mt-1.5 shrink-0`} />
+              <div className="flex-1 min-w-0">
+                <span className={`text-[11px] font-semibold ${textColor}`}>
+                  {lang === 'ko' ? label.ko : label.en}
+                </span>
+                <span className="text-[10px] text-slate-400 ml-1">
+                  ({alerts.length})
+                </span>
+                <div className="flex flex-wrap gap-1 mt-0.5">
+                  {alerts.slice(0, 3).map((a, i) => (
+                    <span key={i} className={`text-[9px] font-medium px-1.5 py-0.5 rounded-full border ${
+                      a.severity?.label === 'Critical'
+                        ? 'text-red-600 bg-red-100 border-red-200'
+                        : 'text-amber-600 bg-amber-100 border-amber-200'
+                    }`}>
+                      {a.drug || a.rule?.slice(0, 30)}
+                    </span>
+                  ))}
+                  {alerts.length > 3 && (
+                    <span className="text-[9px] text-slate-400">+{alerts.length - 3}</span>
+                  )}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 // ── Patient Summary Panel (left panel) ────────────────────────
 // NOTE: Severity breakdown (critical/moderate/minor counts) is shown only in
 // the SeverityBanner (main content area) to avoid duplication. This panel
@@ -150,6 +244,7 @@ function SeverityBanner({ results, drugs = [] }) {
 function PatientSummaryPanel({ results, patientInfo, drugs = [], species = 'dog' }) {
   const { t, lang } = useI18n();
   const { interactions, drugFlags, confidenceScore } = results;
+  const patientAlerts = results.patientAlerts || [];
 
   return (
     <div className="space-y-3">
@@ -213,6 +308,9 @@ function PatientSummaryPanel({ results, patientInfo, drugs = [], species = 'dog'
               </div>
             </div>
           )}
+
+          {/* Patient Risk Profile — only shows fields that triggered alerts */}
+          <PatientRiskProfile patientAlerts={patientAlerts} lang={lang} />
         </div>
       )}
 
@@ -414,13 +512,6 @@ function InteractionCard({ interaction, index, acknowledged, noted, onAcknowledg
           {/* "Why is this dangerous?" — severity Moderate + Critical only */}
           {isSignificant && (
             <WhyDangerousPanel interaction={interaction} t={t} />
-          )}
-
-          {/* PK Timeline */}
-          {interaction.drugAData && interaction.drugBData && (
-            <div className="px-4 py-2 bg-white border-t border-slate-100/50">
-              <DrugTimeline drugA={interaction.drugAData} drugB={interaction.drugBData} />
-            </div>
           )}
 
           {/* Zone 3: Recommendation */}
@@ -689,6 +780,427 @@ function PatientAlertCard({ alert, index }) {
   );
 }
 
+// ── Helper: truncate mechanism text to ~1 sentence ─────────────
+function truncateMechanism(text, maxLen = 120) {
+  if (!text || text.length <= maxLen) return text || '';
+  const sentenceEnd = text.indexOf('.', 60);
+  if (sentenceEnd > 0 && sentenceEnd <= maxLen) return text.slice(0, sentenceEnd + 1);
+  return text.slice(0, maxLen).replace(/\s+\S*$/, '') + '…';
+}
+
+// ── Unified Alert Card for the Priority Stack ──────────────────
+function UnifiedAlertCard({ alert, index, acknowledged, noted, onAcknowledge, onNote, isFullSystem, wasRefined, lang }) {
+  const isCritical = alert.severity?.label === 'Critical';
+  const isModerate = alert.severity?.label === 'Moderate';
+  const forceOpen = isCritical || isModerate;
+  const [expanded, setExpanded] = useState(forceOpen);
+
+  const cardBg = isCritical
+    ? 'bg-red-50 border-red-200'
+    : isModerate
+    ? 'bg-amber-50/60 border-amber-200'
+    : 'bg-white border-slate-200';
+
+  const accentBorder = isCritical
+    ? 'border-l-[3px] border-l-red-500'
+    : isModerate
+    ? 'border-l-[3px] border-l-amber-400'
+    : '';
+
+  const headerBg = isCritical
+    ? 'bg-red-50'
+    : isModerate
+    ? 'bg-amber-50/40'
+    : 'bg-white';
+
+  // Determine title and subtitle based on alert source
+  const title = alert._src === 'interaction'
+    ? `${alert.drugA} + ${alert.drugB}`
+    : alert._src === 'patientAlert'
+    ? (alert.rule || alert.drug)
+    : alert._src === 'drugFlag'
+    ? alert.drugName
+    : alert.drug || alert.rule || '';
+
+  const subtitle = alert._src === 'interaction'
+    ? alert.rule
+    : alert._src === 'patientAlert'
+    ? (alert.drug ? `약물: ${alert.drug}` : '')
+    : alert._src === 'drugFlag'
+    ? (alert.flags || []).map(f => f.label).join(', ')
+    : '';
+
+  const mechanism = alert.mechanism || alert.note || '';
+  const recommendation = alert.recommendation || '';
+
+  return (
+    <div
+      id={`alert-${alert._uid}`}
+      className={`rounded-xl border overflow-hidden transition-all duration-200 shadow-sm hover:shadow-md ${accentBorder} ${cardBg} animate-stagger-fade-in`}
+      style={{ animationDelay: `${index * 40}ms` }}
+    >
+      {/* Header */}
+      <div className={`px-4 py-3 cursor-pointer ${headerBg}`} onClick={() => !forceOpen && setExpanded(!expanded)}>
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 mb-1 flex-wrap">
+              <SeverityBadge severity={alert.severity} />
+              {alert._src === 'interaction' && alert.drugAClass && (
+                <>
+                  <ClassChip label={alert.drugAClass} />
+                  <span className="text-slate-300 text-[10px]">+</span>
+                  <ClassChip label={alert.drugBClass} />
+                </>
+              )}
+              {wasRefined && alert._src === 'interaction' && (
+                <span className="text-[9px] font-medium text-purple-600 bg-purple-50 border border-purple-100 px-1.5 py-0.5 rounded-full">
+                  ✦ Refined
+                </span>
+              )}
+            </div>
+            <p className="typo-drug-name text-[13px] break-words leading-snug">{title}</p>
+            {subtitle && <p className="text-[11px] text-slate-500 mt-0.5">{subtitle}</p>}
+            {/* Inline mechanism preview for collapsed minor alerts */}
+            {!expanded && mechanism && (
+              <p className="text-[11px] text-slate-500 mt-1 leading-relaxed">{truncateMechanism(mechanism)}</p>
+            )}
+          </div>
+          <div className="shrink-0 mt-0.5">
+            {!forceOpen && (expanded ? <ChevronUp size={14} className="text-slate-400" /> : <ChevronDown size={14} className="text-slate-400" />)}
+          </div>
+        </div>
+      </div>
+
+      {/* Expanded content */}
+      {(expanded || forceOpen) && (
+        <div className="animate-fade-in">
+          {/* Mechanism */}
+          {mechanism && (
+            <div className="px-4 py-3 bg-white border-t border-slate-100/50">
+              <h4 className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
+                기전 / Mechanism
+              </h4>
+              <p className="text-[12px] text-slate-700 leading-relaxed">{mechanism}</p>
+            </div>
+          )}
+
+          {/* Recommendation */}
+          {recommendation && (
+            <div className="px-4 py-3 border-t border-slate-100/50">
+              <div className={`rounded-lg border px-3.5 py-3 ${
+                isCritical ? 'bg-red-100/70 border-red-200' :
+                isModerate ? 'bg-amber-100/50 border-amber-200' :
+                'bg-blue-50 border-blue-100'
+              }`}>
+                <h4 className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
+                  권장 조치 / Recommended Action
+                </h4>
+                <p className="typo-rec text-slate-800 leading-relaxed text-[12px]">{recommendation}</p>
+              </div>
+            </div>
+          )}
+
+          {/* Alternative suggestion — Critical interactions only */}
+          {alert._src === 'interaction' && alert.alternativeSuggestion && isCritical && (
+            <div className="px-4 pb-3">
+              <div className="flex items-start gap-2 bg-emerald-50 border border-emerald-100 rounded-lg px-3 py-2.5">
+                <Lightbulb size={13} className="text-emerald-600 shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-[11px] font-semibold text-emerald-700 uppercase tracking-wider mb-0.5">
+                    대안 제안 / Alternative
+                  </p>
+                  <p className="text-[12px] text-emerald-800 font-medium leading-relaxed">{alert.alternativeSuggestion}</p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Acknowledgment row — Full System only, interactions only */}
+          {isFullSystem && alert._src === 'interaction' && (
+            <div className="px-4 pb-3 flex items-center gap-2 flex-wrap border-t border-slate-100/50 pt-2">
+              <button
+                onClick={(e) => { e.stopPropagation(); onAcknowledge?.(); }}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-medium transition-all ${acknowledged ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-white text-slate-500 border border-slate-200 hover:border-slate-300'}`}
+              >
+                <Check size={12} className={acknowledged ? 'text-emerald-600' : 'text-slate-400'} />
+                확인됨 / Reviewed
+              </button>
+              <button
+                onClick={(e) => { e.stopPropagation(); onNote?.(); }}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-medium transition-all ${noted ? 'bg-slate-100 text-slate-600 border border-slate-300' : 'bg-white text-slate-400 border border-slate-200 hover:border-slate-300'}`}
+              >
+                <Flag size={10} />
+                메모됨 / Noted
+              </button>
+              <span className="text-[10px] text-slate-400 ml-auto italic">임상 판단이 우선합니다</span>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── Alert Priority Stack ───────────────────────────────────────
+function AlertPriorityStack({
+  interactions, patientAlerts, drugFlags, speciesNotes, flaggedDrugs,
+  acknowledged, noted, setAcknowledged, setNoted,
+  isFullSystem, wasRefined, species, lang, t,
+}) {
+  // Build unified alert list with deduplication
+  const allAlerts = useMemo(() => {
+    const alerts = [];
+    const coveredDrugs = new Set(); // track drug names covered by interactions/patient alerts
+
+    // 1. Interactions (richest data — always included)
+    interactions.forEach((ix, i) => {
+      alerts.push({
+        ...ix,
+        _src: 'interaction',
+        _idx: i,
+        _uid: `ix-${i}`,
+        severity: ix.severity || { label: 'Unknown', score: 30, color: 'gray' },
+      });
+      coveredDrugs.add(ix.drugA?.toLowerCase());
+      coveredDrugs.add(ix.drugB?.toLowerCase());
+    });
+
+    // 2. Patient alerts
+    patientAlerts.forEach((pa, i) => {
+      alerts.push({
+        ...pa,
+        _src: 'patientAlert',
+        _idx: i,
+        _uid: `pa-${i}`,
+        severity: pa.severity || { label: 'Minor', score: 20, color: 'yellow' },
+      });
+      if (pa.drug) coveredDrugs.add(pa.drug.toLowerCase());
+    });
+
+    // 3. Drug flags — only if not already covered by interactions/patient alerts
+    (flaggedDrugs || []).forEach((df, i) => {
+      // Skip if no meaningful flags
+      if (df.flags.length === 0 && !df.speciesNote) return;
+      // Skip if this drug's issues are already covered
+      const drugCovered = coveredDrugs.has(df.drugName?.toLowerCase());
+      // Include if has flags not represented elsewhere (off-label, foreign, etc)
+      const hasUniqueFlags = df.flags.some(f => f.type === 'off-label' || f.type === 'foreign' || f.type === 'unknown');
+      if (drugCovered && !hasUniqueFlags) return;
+
+      const worstFlag = df.flags.reduce((w, f) => {
+        if (f.severity === 'critical') return 'Critical';
+        if (f.severity === 'warning' && w !== 'Critical') return 'Moderate';
+        return w;
+      }, 'Minor');
+
+      alerts.push({
+        ...df,
+        _src: 'drugFlag',
+        _uid: `df-${i}`,
+        severity: { label: worstFlag, score: worstFlag === 'Critical' ? 100 : worstFlag === 'Moderate' ? 50 : 20, color: worstFlag === 'Critical' ? 'red' : worstFlag === 'Moderate' ? 'orange' : 'yellow' },
+        mechanism: df.flags.map(f => f.description).filter(Boolean).join(' '),
+        recommendation: df.speciesNote || '',
+      });
+      coveredDrugs.add(df.drugName?.toLowerCase());
+    });
+
+    // 4. Species notes — only if not already covered
+    (speciesNotes || []).forEach((sn, i) => {
+      const drugLower = sn.drug?.toLowerCase();
+      if (coveredDrugs.has(drugLower)) return; // already covered
+      alerts.push({
+        ...sn,
+        _src: 'speciesNote',
+        _uid: `sn-${i}`,
+        severity: { label: 'Minor', score: 20, color: 'yellow' },
+        mechanism: sn.note,
+        recommendation: '',
+      });
+    });
+
+    return alerts;
+  }, [interactions, patientAlerts, flaggedDrugs, speciesNotes]);
+
+  // Tier the alerts
+  const tier1 = allAlerts.filter(a => a.severity?.label === 'Critical');
+  const tier2 = allAlerts.filter(a => a.severity?.label === 'Moderate');
+  const tier3 = allAlerts.filter(a => a.severity?.label !== 'Critical' && a.severity?.label !== 'Moderate');
+
+  const totalAlerts = allAlerts.length;
+  if (totalAlerts === 0) {
+    return (
+      <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-6 text-center">
+        <CheckCircle size={32} className="text-emerald-500 mx-auto mb-3" />
+        <p className="typo-drug-name text-emerald-800 mb-1">{t.results.noInteractions}</p>
+        <p className="typo-body text-emerald-600">
+          {t.results.noContraindicationsDetail}
+        </p>
+      </div>
+    );
+  }
+
+  const renderAlertCard = (alert, idx) => {
+    const isIx = alert._src === 'interaction';
+    const ixIdx = alert._idx;
+    return (
+      <UnifiedAlertCard
+        key={alert._uid}
+        alert={alert}
+        index={idx}
+        acknowledged={isIx ? !!acknowledged[ixIdx] : false}
+        noted={isIx ? !!noted[ixIdx] : false}
+        onAcknowledge={isIx ? () => setAcknowledged(prev => ({ ...prev, [ixIdx]: !prev[ixIdx] })) : undefined}
+        onNote={isIx ? () => setNoted(prev => ({ ...prev, [ixIdx]: !prev[ixIdx] })) : undefined}
+        isFullSystem={isFullSystem}
+        wasRefined={wasRefined}
+        lang={lang}
+      />
+    );
+  };
+
+  const TierSection = ({ title, alerts, color, icon: Icon }) => {
+    if (alerts.length === 0) return null;
+    const bgMap = { red: 'bg-red-50 border-red-200', amber: 'bg-amber-50 border-amber-200', slate: 'bg-slate-50 border-slate-200' };
+    const textMap = { red: 'text-red-700', amber: 'text-amber-700', slate: 'text-slate-600' };
+    const badgeMap = { red: 'bg-red-100 text-red-700', amber: 'bg-amber-100 text-amber-700', slate: 'bg-slate-200 text-slate-600' };
+
+    return (
+      <div className="space-y-3">
+        <div className={`flex items-center gap-2 px-3 py-2 rounded-lg border ${bgMap[color]}`}>
+          <Icon size={14} className={textMap[color]} />
+          <span className={`text-[12px] font-bold ${textMap[color]}`}>{title}</span>
+          <span className={`text-[11px] font-bold px-2 py-0.5 rounded-full ${badgeMap[color]}`}>{alerts.length}</span>
+        </div>
+        <div className="space-y-2.5">
+          {alerts.map((a, i) => renderAlertCard(a, i))}
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="space-y-5">
+      <TierSection
+        title="즉시 확인 필요 / Requires Immediate Review"
+        alerts={tier1}
+        color="red"
+        icon={AlertTriangle}
+      />
+      <TierSection
+        title="모니터링 필요 / Monitor Closely"
+        alerts={tier2}
+        color="amber"
+        icon={AlertCircle}
+      />
+      <TierSection
+        title="참고 사항 / Notes"
+        alerts={tier3}
+        color="slate"
+        icon={Info}
+      />
+    </div>
+  );
+}
+
+// ── Interaction Severity Matrix ────────────────────────────────
+function InteractionMatrix({ drugs, interactions, lang }) {
+  const drugNames = drugs.map(d => lang === 'ko' && d.nameKr ? d.nameKr : d.name);
+  const drugIds = drugs.map(d => d.name);
+
+  // Build lookup: (drugA, drugB) → severity
+  const severityMap = {};
+  interactions.forEach((ix, idx) => {
+    const key1 = `${ix.drugA}|${ix.drugB}`;
+    const key2 = `${ix.drugB}|${ix.drugA}`;
+    severityMap[key1] = { severity: ix.severity, idx };
+    severityMap[key2] = { severity: ix.severity, idx };
+  });
+
+  const cellColor = (severity) => {
+    if (!severity) return 'bg-slate-100 text-slate-300';
+    if (severity.label === 'Critical') return 'bg-red-100 text-red-700 hover:bg-red-200';
+    if (severity.label === 'Moderate') return 'bg-amber-100 text-amber-700 hover:bg-amber-200';
+    if (severity.label === 'Minor' || severity.label === 'Unknown') return 'bg-blue-100 text-blue-600 hover:bg-blue-200';
+    return 'bg-slate-100 text-slate-300';
+  };
+
+  const cellLabel = (severity) => {
+    if (!severity) return '—';
+    if (severity.label === 'Critical') return '3';
+    if (severity.label === 'Moderate') return '2';
+    return '1';
+  };
+
+  const handleCellClick = (idx) => {
+    if (idx === undefined) return;
+    const el = document.getElementById(`alert-ix-${idx}`);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      el.classList.add('ring-2', 'ring-blue-400');
+      setTimeout(() => el.classList.remove('ring-2', 'ring-blue-400'), 1500);
+    }
+  };
+
+  return (
+    <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-3">
+        상호작용 매트릭스 / Interaction Matrix
+      </p>
+      <div className="overflow-x-auto">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr>
+              <th className="w-20" />
+              {drugNames.map((name, i) => (
+                <th key={i} className="text-[10px] font-semibold text-slate-600 px-1 py-1.5 text-center" style={{ minWidth: '40px' }}>
+                  <span className="block truncate max-w-[60px]">{name}</span>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {drugNames.map((rowName, ri) => (
+              <tr key={ri}>
+                <td className="text-[10px] font-semibold text-slate-600 pr-2 py-1 text-right truncate max-w-[80px]">{rowName}</td>
+                {drugIds.map((_, ci) => {
+                  if (ri === ci) {
+                    return <td key={ci} className="p-0.5"><div className="w-full h-7 bg-slate-50 rounded" /></td>;
+                  }
+                  if (ri > ci) {
+                    // Mirror of upper triangle
+                    return <td key={ci} className="p-0.5"><div className="w-full h-7 bg-slate-50 rounded" /></td>;
+                  }
+                  const lookup = severityMap[`${drugIds[ri]}|${drugIds[ci]}`];
+                  const sev = lookup?.severity;
+                  const ixIdx = lookup?.idx;
+                  return (
+                    <td key={ci} className="p-0.5">
+                      <button
+                        onClick={() => handleCellClick(ixIdx)}
+                        className={`w-full h-7 rounded text-[11px] font-bold transition-colors ${cellColor(sev)} ${sev ? 'cursor-pointer' : 'cursor-default'}`}
+                        title={sev ? `${drugIds[ri]} + ${drugIds[ci]}: ${sev.label}` : ''}
+                      >
+                        {cellLabel(sev)}
+                      </button>
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {/* Legend */}
+      <div className="flex items-center gap-3 mt-3 pt-2 border-t border-slate-100">
+        <div className="flex items-center gap-1"><div className="w-3 h-3 rounded bg-red-100 border border-red-200" /><span className="text-[9px] text-slate-500">3 심각</span></div>
+        <div className="flex items-center gap-1"><div className="w-3 h-3 rounded bg-amber-100 border border-amber-200" /><span className="text-[9px] text-slate-500">2 주의</span></div>
+        <div className="flex items-center gap-1"><div className="w-3 h-3 rounded bg-blue-100 border border-blue-200" /><span className="text-[9px] text-slate-500">1 참고</span></div>
+        <div className="flex items-center gap-1"><div className="w-3 h-3 rounded bg-slate-100 border border-slate-200" /><span className="text-[9px] text-slate-500">— 없음</span></div>
+      </div>
+    </div>
+  );
+}
+
 // ── Main Results Display ────────────────────────────────────────
 export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, isFullSystem = false, drugs = [], species = 'dog', onUpdatePatientRecord, hideSidebar = false, demoMode = false }) {
   const { t, lang } = useI18n();
@@ -809,75 +1321,31 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
             {/* Prominent severity banner */}
             <SeverityBanner results={results} drugs={drugs} />
 
-            {hasInteractions ? (
-              <div>
-                <h3 className="typo-section-header mb-3">{t.results.interactionReport}</h3>
-                <div className="space-y-3">
-                  {interactions.map((interaction, i) => (
-                    <InteractionCard
-                      key={i}
-                      interaction={interaction}
-                      index={i}
-                      acknowledged={!!acknowledged[i]}
-                      noted={!!noted[i]}
-                      onAcknowledge={() => setAcknowledged(prev => ({ ...prev, [i]: !prev[i] }))}
-                      onNote={() => setNoted(prev => ({ ...prev, [i]: !prev[i] }))}
-                      isFullSystem={isFullSystem}
-                      wasRefined={!!results.wasRefined}
-                    />
-                  ))}
-                </div>
-              </div>
-            ) : (
-              <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-6 text-center">
-                <CheckCircle size={32} className="text-emerald-500 mx-auto mb-3" />
-                <p className="typo-drug-name text-emerald-800 mb-1">{t.results.noInteractions}</p>
-                <p className="typo-body text-emerald-600">
-                  {t.results.noContraindicationsDetail}
-                </p>
-              </div>
-            )}
+            {/* Unified Alert Priority Stack */}
+            <AlertPriorityStack
+              interactions={interactions}
+              patientAlerts={patientAlerts}
+              drugFlags={drugFlags}
+              speciesNotes={speciesNotes}
+              flaggedDrugs={flaggedDrugs}
+              acknowledged={acknowledged}
+              noted={noted}
+              setAcknowledged={setAcknowledged}
+              setNoted={setNoted}
+              isFullSystem={isFullSystem}
+              wasRefined={!!results.wasRefined}
+              species={species}
+              lang={lang}
+              t={t}
+            />
 
-            {/* Patient-context clinical alerts — breed, age, condition, dose, lab */}
-            {patientAlerts.length > 0 && (
-              <div>
-                <h3 className="typo-section-header mb-3 flex items-center gap-1.5">
-                  <Flag size={12} className="text-red-500" />
-                  Patient-Specific Clinical Alerts
-                  <span className="text-[10px] font-normal text-slate-400 ml-1">
-                    ({patientAlerts.filter(a => a.severity?.label === 'Critical').length} critical,{' '}
-                    {patientAlerts.filter(a => a.severity?.label === 'Moderate').length} moderate)
-                  </span>
-                </h3>
-                <div className="space-y-3">
-                  {patientAlerts.map((alert, i) => (
-                    <PatientAlertCard key={`${alert.type}-${i}`} alert={alert} index={i} />
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {flaggedDrugs.length > 0 && (
-              <div>
-                <h3 className="typo-section-header mb-3">{t.results.drugAdvisory}</h3>
-                <div className="space-y-2">
-                  {flaggedDrugs.map((flag, i) => <DrugFlagCard key={i} drugFlag={flag} species={patientInfo?.species} />)}
-                </div>
-              </div>
-            )}
-
-            {speciesNotes.length > 0 && (
-              <div>
-                <h3 className="typo-section-header mb-3 flex items-center gap-1.5"><Dna size={12} /> {t.results.speciesNotes}</h3>
-                <div className="bg-white border border-slate-200 rounded-lg divide-y divide-slate-100 shadow-sm">
-                  {speciesNotes.map((note, i) => (
-                    <div key={i} className="px-4 py-3">
-                      <p className="text-[12px] font-medium text-slate-600 mb-0.5">{note.drug}</p>
-                      <p className="typo-body">{note.note}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+            {/* Interaction Severity Matrix — 3+ drugs AND at least 1 interaction */}
+            {drugs.length >= 3 && interactions.length > 0 && (
+              <InteractionMatrix
+                drugs={drugs}
+                interactions={interactions}
+                lang={lang}
+              />
             )}
 
             {/* Always-visible action bar (full system only) */}

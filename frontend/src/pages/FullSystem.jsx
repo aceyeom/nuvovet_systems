@@ -19,6 +19,7 @@ import { savePatient, addVisitRecord, getAllPatients, sortPatients } from '../li
 import { useAuth } from '../context/AuthContext';
 import AnatomyDiagram from '../components/charts/AnatomyDiagram';
 import { aggregateOrganBurden } from '../components/charts/organBurdenAggregator';
+import { DoseTrackIndicator } from '../components/DoseTrackIndicator';
 
 const SYSTEM_DRAFT_STORAGE_KEY = 'nuvovet_system_draft_v1';
 
@@ -597,10 +598,13 @@ function PatientEditPanel({ patient, drugs, results, onUpdate, conditionSuggesti
 // ── Dosage Summary Panel (right col on results) ───────────────────
 function DosageSummaryPanel({ results, drugs, species, patientInfo, onUpdateDrug }) {
   const { drugFlags } = results;
+  const { lang } = useI18n();
 
   return (
     <div className="p-4 space-y-4">
-      <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest">Dosage Summary</h3>
+      <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest">
+        용량 요약 / Dosage Summary
+      </h3>
 
       {drugs.length > 0 ? (
         <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
@@ -609,46 +613,35 @@ function DosageSummaryPanel({ results, drugs, species, patientInfo, onUpdateDrug
             const weight = patientInfo?.weight || 0;
             const totalMg = dosePerKg > 0 && weight > 0 ? +(dosePerKg * weight).toFixed(2) : null;
             const range = drug.doseRange?.[species];
-            const status = drug.doseStatus || (range && dosePerKg > 0
-              ? dosePerKg < range[0] ? 'below' : dosePerKg > range[1] ? 'above' : 'within'
-              : null);
-
-            const statusTone = status === 'above'
-              ? 'text-red-600'
-              : status === 'below'
-              ? 'text-orange-600'
-              : status === 'within'
-              ? 'text-emerald-600'
-              : 'text-slate-300';
-
-            const statusLabel = status === 'above'
-              ? 'Above range'
-              : status === 'below'
-              ? 'Below range'
-              : status === 'within'
-              ? 'Within range'
-              : null;
+            const ceiling = drug.speciesDoseCeil?.[species] || null;
 
             return (
-              <div key={drug.id} className={`px-3 py-2 ${idx !== drugs.length - 1 ? 'border-b border-slate-100' : ''}`}>
+              <div key={drug.id} className={`px-3 py-2.5 ${idx !== drugs.length - 1 ? 'border-b border-slate-100' : ''}`}>
                 <div className="flex items-center gap-2">
-                  <span className={`text-[10px] leading-none ${statusTone}`}>●</span>
                   <p className="text-[12px] font-semibold text-slate-900 truncate">{drug.name}</p>
-                  {statusLabel && (
-                    <span className={`ml-auto text-[10px] font-medium ${statusTone}`}>{statusLabel}</span>
+                  {dosePerKg > 0 && totalMg && (
+                    <span className="ml-auto text-[11px] font-bold text-slate-700 shrink-0">{totalMg} mg</span>
                   )}
                 </div>
 
-                <div className="mt-1 flex flex-wrap items-center gap-x-2.5 gap-y-0.5 text-[11px] text-slate-500">
-                  {dosePerKg > 0 && <span>Dose {dosePerKg} mg/kg</span>}
-                  {totalMg && <span>Total {totalMg} mg</span>}
-                  {range && <span>Range {range[0]}–{range[1]} mg/kg</span>}
+                <div className="mt-0.5 flex flex-wrap items-center gap-x-2.5 gap-y-0.5 text-[11px] text-slate-500">
+                  {dosePerKg > 0 && <span>{dosePerKg} {drug.unit || 'mg/kg'}</span>}
+                  {range && <span>범위 {range[0]}–{range[1]}</span>}
                   {drug.freq && (
                     <span>
                       {drug.freq}{drug.route ? ` · ${drug.route}` : ''}{drug.prescriptionDays ? ` · ${drug.prescriptionDays}d` : ''}
                     </span>
                   )}
                 </div>
+
+                {/* Dose Track Indicator */}
+                <DoseTrackIndicator
+                  dosePerKg={dosePerKg > 0 ? dosePerKg : null}
+                  range={range}
+                  ceiling={ceiling}
+                  unit={drug.unit || 'mg/kg'}
+                  lang={lang}
+                />
               </div>
             );
           })}
