@@ -1,3 +1,4 @@
+import csv
 import json
 import random
 import re
@@ -6,6 +7,10 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 import requests
+try:
+    from openpyxl import load_workbook
+except ImportError:
+    load_workbook = None
 
 # --- [설정 세션] ---
 NCBI_EMAIL = "donghyun040720@gmail.com"
@@ -13,6 +18,8 @@ NCBI_TOOL = "nuvovet_reference_sampler"
 NCBI_EUTILS_BASE = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
 
 DATA_DIR = Path(__file__).resolve().parent / "backend" / "data" / "converted"
+JCR_XLSX_PATH = Path(__file__).resolve().parent / "2025JCRIMPACTFACTORS.xlsx"
+SCIMAGO_CSV_PATH = Path(__file__).resolve().parent / "scimagojr 2024.csv"
 TEXT_OUTPUT_FILENAME = "test_pmc_references.txt"
 JSON_OUTPUT_FILENAME = "test_pmc_references.json"
 RANDOM_SAMPLE_SIZE = 10
@@ -20,6 +27,8 @@ SEARCH_CANDIDATE_COUNT = 12
 SELECT_REFERENCE_COUNT = 2
 API_DELAY_SECONDS = 0.5
 REQUEST_TIMEOUT_SECONDS = 20
+JCR_METRIC_YEAR = "2025"
+SCIMAGO_METRIC_YEAR = "2024"
 
 DOG_CAT_SPECIES_TERMS = {
     "dog",
@@ -117,6 +126,228 @@ FDA_LABEL_FIELDS = [
 
 def normalize_text(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", " ", text.lower()).strip()
+
+
+def normalize_issn(issn: str) -> str:
+    return re.sub(r"[^0-9Xx]+", "", str(issn or "").upper())
+
+
+def split_issns(raw_issn_field: str):
+    return [normalized for part in str(raw_issn_field or "").split(",") if (normalized := normalize_issn(part))]
+
+
+def load_scimago_metrics(csv_path: Path):
+    by_issn = {}
+    by_title = {}
+
+    if not csv_path.exists():
+        return {
+            "by_issn": by_issn,
+            "by_title": by_title,
+            "source_file": str(csv_path),
+            "metric_year": SCIMAGO_METRIC_YEAR,
+        }
+
+    with csv_path.open("r", encoding="utf-8-sig", newline="") as file_obj:
+        reader = csv.DictReader(file_obj, delimiter=";")
+        for row in reader:
+            title = (row.get("Title") or "").strip()
+            normalized_title = normalize_text(title)
+            issns = split_issns(row.get("Issn", ""))
+            metric_record = {
+                "journal_title": title,
+                "sourceid": (row.get("Sourceid") or "").strip(),
+                "type": (row.get("Type") or "").strip(),
+                "issns": issns,
+                "sjr": (row.get("SJR") or "").strip(),
+                "sjr_best_quartile": (row.get("SJR Best Quartile") or "").strip(),
+                "h_index": (row.get("H index") or "").strip(),
+                "citations_per_doc_2years": (row.get("Citations / Doc. (2years)") or "").strip(),
+                "categories": (row.get("Categories") or "").strip(),
+                "areas": (row.get("Areas") or "").strip(),
+                "coverage": (row.get("Coverage") or "").strip(),
+                "publisher": (row.get("Publisher") or "").strip(),
+                "country": (row.get("Country") or "").strip(),
+                "metric_year": SCIMAGO_METRIC_YEAR,
+                "metric_source": "SCImago Journal Rank",
+            }
+
+            if normalized_title and normalized_title not in by_title:
+                by_title[normalized_title] = metric_record
+
+            for issn in issns:
+                by_issn.setdefault(issn, metric_record)
+
+    return {
+        "by_issn": by_issn,
+        "by_title": by_title,
+        "source_file": str(csv_path),
+        "metric_year": SCIMAGO_METRIC_YEAR,
+    }
+
+
+def load_jcr_metrics(xlsx_path: Path):
+    by_issn = {}
+    by_title = {}
+
+    if not xlsx_path.exists() or load_workbook is None:
+        return {
+            "by_issn": by_issn,
+            "by_title": by_title,
+            "source_file": str(xlsx_path),
+            "metric_year": JCR_METRIC_YEAR,
+        }
+
+    workbook = load_workbook(xlsx_path, read_only=True, data_only=True)
+    try:
+        worksheet = workbook[workbook.sheetnames[0]]
+        rows = worksheet.iter_rows(values_only=True)
+        headers = next(rows, None)
+        if not headers:
+            return {
+                "by_issn": by_issn,
+                "by_title": by_title,
+                "source_file": str(xlsx_path),
+                "metric_year": JCR_METRIC_YEAR,
+            }
+
+        normalized_headers = [str(header).strip() if header is not None else "" for header in headers]
+        for row in rows:
+            record = dict(zip(normalized_headers, row))
+            journal_name = str(record.get("Journal Name") or "").strip()
+            abbreviated_journal = str(record.get("Abbreviated Journal") or "").strip()
+            issn_values = {
+                normalize_issn(record.get("ISSN")),
+                normalize_issn(record.get("eISSN")),
+            }
+            issns = sorted(value for value in issn_values if value)
+
+            metric_record = {
+                "journal_title": journal_name,
+                "abbreviated_journal": abbreviated_journal,
+                "publisher": str(record.get("Publisher") or "").strip(),
+                "issns": issns,
+                "jif": str(record.get("JIF") or "").strip(),
+                "five_year_jif": str(record.get("5-Year JIF") or "").strip(),
+                "jif_without_self_cites": str(record.get("JIF Without Self-Cites") or "").strip(),
+                "jci": str(record.get("JCI") or "").strip(),
+                "jif_quartile": str(record.get("JIF Quartile") or "").strip(),
+                "category": str(record.get("Category") or "").strip(),
+                "jif_rank": str(record.get("JIF Rank") or "").strip(),
+                "total_cites": str(record.get("Total Cites") or "").strip(),
+                "total_articles": str(record.get("Total Articles") or "").strip(),
+                "citable_items": str(record.get("Citable Items") or "").strip(),
+                "metric_year": JCR_METRIC_YEAR,
+                "metric_source": "Journal Citation Reports",
+            }
+
+            for title_variant in (journal_name, abbreviated_journal):
+                normalized_title = normalize_text(title_variant)
+                if normalized_title and normalized_title not in by_title:
+                    by_title[normalized_title] = metric_record
+
+            for issn in issns:
+                by_issn.setdefault(issn, metric_record)
+    finally:
+        workbook.close()
+
+    return {
+        "by_issn": by_issn,
+        "by_title": by_title,
+        "source_file": str(xlsx_path),
+        "metric_year": JCR_METRIC_YEAR,
+    }
+
+
+JCR_METRICS_INDEX = load_jcr_metrics(JCR_XLSX_PATH)
+SCIMAGO_METRICS_INDEX = load_scimago_metrics(SCIMAGO_CSV_PATH)
+
+
+def lookup_jcr_metrics(journal_title: str, journal_issns):
+    for issn in journal_issns or []:
+        normalized_issn = normalize_issn(issn)
+        matched = JCR_METRICS_INDEX["by_issn"].get(normalized_issn)
+        if matched:
+            return {
+                **matched,
+                "match_method": "issn",
+                "matched_value": normalized_issn,
+            }
+
+    normalized_title = normalize_text(journal_title)
+    if normalized_title:
+        matched = JCR_METRICS_INDEX["by_title"].get(normalized_title)
+        if matched:
+            return {
+                **matched,
+                "match_method": "title",
+                "matched_value": journal_title,
+            }
+
+    return None
+
+
+def lookup_scimago_metrics(journal_title: str, journal_issns):
+    for issn in journal_issns or []:
+        normalized_issn = normalize_issn(issn)
+        matched = SCIMAGO_METRICS_INDEX["by_issn"].get(normalized_issn)
+        if matched:
+            return {
+                **matched,
+                "match_method": "issn",
+                "matched_value": normalized_issn,
+            }
+
+    normalized_title = normalize_text(journal_title)
+    if normalized_title:
+        matched = SCIMAGO_METRICS_INDEX["by_title"].get(normalized_title)
+        if matched:
+            return {
+                **matched,
+                "match_method": "title",
+                "matched_value": journal_title,
+            }
+
+    return None
+
+
+def build_journal_metrics(journal_title: str, journal_issns):
+    jcr_metrics = lookup_jcr_metrics(journal_title=journal_title, journal_issns=journal_issns)
+    scimago_metrics = lookup_scimago_metrics(journal_title=journal_title, journal_issns=journal_issns)
+
+    primary_metrics = jcr_metrics or scimago_metrics
+    if not primary_metrics:
+        return None
+
+    metric_summary = {
+        "primary_metric_source": primary_metrics.get("metric_source"),
+        "match_method": primary_metrics.get("match_method"),
+        "matched_value": primary_metrics.get("matched_value"),
+        "metric_year": primary_metrics.get("metric_year"),
+        "jcr": jcr_metrics,
+        "scimago": scimago_metrics,
+    }
+
+    if jcr_metrics:
+        metric_summary.update(
+            {
+                "impact_factor": jcr_metrics.get("jif"),
+                "impact_factor_5year": jcr_metrics.get("five_year_jif"),
+                "impact_factor_quartile": jcr_metrics.get("jif_quartile"),
+                "journal_citation_indicator": jcr_metrics.get("jci"),
+            }
+        )
+
+    if scimago_metrics:
+        metric_summary.update(
+            {
+                "sjr": scimago_metrics.get("sjr"),
+                "sjr_best_quartile": scimago_metrics.get("sjr_best_quartile"),
+                "h_index": scimago_metrics.get("h_index"),
+            }
+        )
+
+    return metric_summary
 
 
 def contains_normalized_term(normalized_text: str, term: str) -> bool:
@@ -254,7 +485,7 @@ def join_text(element):
     return " ".join(part.strip() for part in element.itertext() if part and part.strip())
 
 
-def fetch_article_abstracts(pmc_ids):
+def fetch_article_metadata(pmc_ids):
     if not pmc_ids:
         return {}
 
@@ -280,8 +511,20 @@ def fetch_article_abstracts(pmc_ids):
             raw_pmcid = join_text(article.find(".//front/article-meta/article-id[@pub-id-type='pmcid']"))
             pmc_id = raw_pmcid.replace("PMC", "").strip()
         abstract_text = join_text(article.find(".//front/article-meta/abstract"))
+        journal_title = join_text(article.find(".//front/journal-meta/journal-title-group/journal-title"))
+        journal_issns = [
+            issn_text
+            for issn_text in (
+                join_text(node) for node in article.findall(".//front/journal-meta/issn")
+            )
+            if issn_text
+        ]
         if pmc_id:
-            article_map[pmc_id] = {"abstract": abstract_text}
+            article_map[pmc_id] = {
+                "abstract": abstract_text,
+                "journal_title": journal_title,
+                "journal_issns": journal_issns,
+            }
     return article_map
 
 
@@ -413,17 +656,22 @@ def get_pmc_references(drug_name: str):
             return query, []
 
         summaries = fetch_summaries(pmc_ids)
-        article_abstracts = fetch_article_abstracts(pmc_ids)
+        article_metadata = fetch_article_metadata(pmc_ids)
 
         candidates = []
         for pmc_id in pmc_ids:
             summary = summaries.get(pmc_id, {})
             title = summary.get("title", "Title Not Found")
-            abstract_text = article_abstracts.get(pmc_id, {}).get("abstract", "")
+            article_record = article_metadata.get(pmc_id, {})
+            abstract_text = article_record.get("abstract", "")
+            journal_title = article_record.get("journal_title", "")
+            journal_issns = article_record.get("journal_issns", [])
             evaluation = evaluate_candidate(drug_name=drug_name, title=title, abstract_text=abstract_text)
 
             if evaluation["excluded"] or evaluation["score"] < 4:
                 continue
+
+            journal_metrics = build_journal_metrics(journal_title=journal_title, journal_issns=journal_issns)
 
             candidates.append(
                 {
@@ -431,6 +679,9 @@ def get_pmc_references(drug_name: str):
                     "title": title,
                     "url": summary.get("url", "URL Not Found"),
                     "abstract": abstract_text,
+                    "journal_title": journal_title,
+                    "journal_issns": journal_issns,
+                    "journal_metrics": journal_metrics,
                     "score": evaluation["score"],
                     "reasons": evaluation["reasons"],
                     "ddi_relevant": evaluation["ddi_relevant"],
@@ -470,6 +721,48 @@ def write_text_report(result_rows):
                 for index, reference in enumerate(row["accepted_references"], start=1):
                     file_obj.write(f"  [{index}] Score: {reference['score']}\n")
                     file_obj.write(f"     Title: {reference['title']}\n")
+                    file_obj.write(
+                        f"     Journal: {reference.get('journal_title') or 'Unknown Journal'}"
+                        + (
+                            f" | ISSN: {', '.join(reference.get('journal_issns') or [])}"
+                            if reference.get("journal_issns")
+                            else ""
+                        )
+                        + "\n"
+                    )
+                    journal_metrics = reference.get("journal_metrics") or {}
+                    if journal_metrics:
+                        if journal_metrics.get("jcr"):
+                            jcr_metrics = journal_metrics.get("jcr") or {}
+                            file_obj.write(
+                                "     JCR: "
+                                f"JIF {journal_metrics.get('impact_factor') or 'N/A'}"
+                                f", 5Y JIF {journal_metrics.get('impact_factor_5year') or 'N/A'}"
+                                f", JCI {journal_metrics.get('journal_citation_indicator') or 'N/A'}"
+                                f", Quartile {journal_metrics.get('impact_factor_quartile') or 'N/A'}"
+                                f", match={jcr_metrics.get('match_method') or journal_metrics.get('match_method') or 'unknown'}"
+                                f", source_year={jcr_metrics.get('metric_year') or journal_metrics.get('metric_year') or 'N/A'}"
+                                + "\n"
+                            )
+                        else:
+                            file_obj.write("     JCR: 매핑 없음\n")
+
+                        if journal_metrics.get("scimago"):
+                            scimago_metrics = journal_metrics.get("scimago") or {}
+                            file_obj.write(
+                                "     SCImago: "
+                                f"SJR {scimago_metrics.get('sjr') or 'N/A'}"
+                                f" ({scimago_metrics.get('sjr_best_quartile') or 'N/A'})"
+                                f", H-index {scimago_metrics.get('h_index') or 'N/A'}"
+                                f", match={scimago_metrics.get('match_method') or 'unknown'}"
+                                f", source_year={scimago_metrics.get('metric_year') or 'N/A'}"
+                                + "\n"
+                            )
+                        else:
+                            file_obj.write("     SCImago: 매핑 없음\n")
+                    else:
+                        file_obj.write("     JCR: 매핑 없음\n")
+                        file_obj.write("     SCImago: 매핑 없음\n")
                     file_obj.write(f"     URL: {reference['url']}\n")
                     file_obj.write(f"     Match: {', '.join(reference['reasons'])}\n")
 

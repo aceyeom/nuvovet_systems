@@ -1,1 +1,7 @@
+가환 설정
 source /workspaces/nuvovet_systems/.venv/bin/activate
+
+refer설정
+
+python on_computer.py
+python goto_db.py --mode references --result-json test_pmc_references.json

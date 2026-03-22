@@ -86,12 +86,54 @@ def _load_all_drugs() -> Dict[str, Any]:
     try:
         with psycopg2.connect(db_url) as conn:
             with conn.cursor() as cursor:
-                cursor.execute("SELECT drug_id, full_data FROM drugs")
-                for drug_id, full_data in cursor.fetchall():
+                cursor.execute("SELECT to_regclass('public.drug_references')")
+                has_reference_table = cursor.fetchone()[0] is not None
+
+                if has_reference_table:
+                    cursor.execute(
+                        """
+                        SELECT
+                            d.drug_id,
+                            d.full_data,
+                            COALESCE(
+                                (
+                                    SELECT jsonb_agg(
+                                        jsonb_build_object(
+                                            'pmc_id', r.pmc_id,
+                                            'title', r.title,
+                                            'url', r.url,
+                                            'issn', r.issn,
+                                            'if_score', r.if_score,
+                                            'relevance_score', r.relevance_score,
+                                            'match_reasons', r.match_reasons
+                                        )
+                                        ORDER BY r.relevance_score DESC NULLS LAST, r.if_score DESC NULLS LAST, r.inserted_at DESC
+                                    )
+                                    FROM drug_references r
+                                    WHERE r.drug_id = d.drug_id
+                                ),
+                                '[]'::jsonb
+                            ) AS references
+                        FROM drugs d
+                        """
+                    )
+                    rows = cursor.fetchall()
+                else:
+                    cursor.execute("SELECT drug_id, full_data FROM drugs")
+                    rows = [(drug_id, full_data, []) for drug_id, full_data in cursor.fetchall()]
+
+                for drug_id, full_data, references in rows:
                     record = _normalize_drug_record(drug_id, full_data)
                     if record is None:
                         skipped += 1
                         continue
+
+                    if isinstance(references, list):
+                        record["_reference_context"] = {
+                            "references": references,
+                            "reference_count": len(references),
+                        }
+
                     drugs[record["id"]] = record
                     loaded += 1
         logger.info(f"Loaded {loaded} drugs from PostgreSQL ({skipped} skipped)")

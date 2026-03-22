@@ -1,0 +1,1047 @@
+[
+  {
+    "drug_name": "Clarithromycin",
+    "query": "(\"Clarithromycin\"[Title/Abstract] OR \"Clarithromycin\"[Name of Substance]) AND (\"Dogs\"[Mesh] OR \"Cats\"[Mesh] OR dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (\"Pharmacokinetics\"[Mesh] OR \"Drug Interactions\"[Mesh] OR \"Toxicity\"[Mesh] OR pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR \"half-life\"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR \"drug interaction\"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT (\"In Vitro Techniques\"[Mesh] OR \"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+    "accepted_references": [
+      {
+        "pmc_id": "10822512",
+        "title": "Interaction of clarithromycin with cyclosporine in cats: pharmacokinetic study and case report.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10822512/",
+        "abstract": "Clarithromycin (CLM) has been known to increase the cyclosporine (CsA) trough levels in human transplant patients. However, the interaction of CLM with CsA has not been reported in cats. In this study, the effects of oral dosing of CLM on the pharmacokinetics and dosing of CsA in cats were investigated. Co-administration of CLM with CsA resulted in significant increases of oral bioavailability of CsA. In addition, CLM reduced the CsA dosage required to maintain the therapeutic CsA trough levels to almost 35% of the initial CsA therapy and the dose frequency was successfully replaced from a twice a day schedule to once a day in a feline kidney transplant patient. The addition of CLM to the regular CsA-based immunosuppression could be used as an effective alternative to classical ketoconazole treatment in feline kidney transplant patients and may result in substantial cost saving and convenience for the cat owners.",
+        "journal_title": "Journal of Feline Medicine and Surgery",
+        "journal_issns": [
+          "1098-612X",
+          "1532-2750"
+        ],
+        "journal_metrics": {
+          "primary_metric_source": "Journal Citation Reports",
+          "metric_year": "2025",
+          "match_method": "issn",
+          "matched_value": "1098612X",
+          "jcr": {
+            "journal_title": "JOURNAL OF FELINE MEDICINE AND SURGERY",
+            "abbreviated_journal": "J FELINE MED SURG",
+            "issns": [
+              "1098612X",
+              "15322750"
+            ],
+            "publisher": "SAGE PUBLICATIONS LTD",
+            "jif": "2.1",
+            "five_year_jif": "2.2",
+            "jif_without_self_cites": "1.7",
+            "jci": "0.95",
+            "jif_quartile": "Q1",
+            "category": "VETERINARY SCIENCES|Q2|46/167",
+            "jif_rank": "42/170",
+            "metric_year": "2025",
+            "metric_source": "Journal Citation Reports",
+            "match_method": "issn",
+            "matched_value": "1098612X"
+          },
+          "scimago": {
+            "journal_title": "Journal of Feline Medicine and Surgery",
+            "sjr": "0,768",
+            "sjr_best_quartile": "Q1",
+            "h_index": "81",
+            "metric_year": "2024",
+            "match_method": "issn",
+            "matched_value": "1098612X"
+          },
+          "impact_factor": "2.1",
+          "impact_factor_5year": "2.2",
+          "impact_factor_quartile": "Q1",
+          "journal_citation_indicator": "0.95",
+          "sjr": "0,768",
+          "sjr_best_quartile": "Q1",
+          "h_index": "81"
+        },
+        "score": 20,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:cat, cats, feline",
+          "context_distance_match",
+          "relevance:bioavailability, dosage, dose, dosing",
+          "high_signal_title",
+          "llm_validated_in_vivo"
+        ],
+        "ddi_relevant": true,
+        "fda_relevant": false
+      },
+      {
+        "pmc_id": "4013371",
+        "title": "Preliminary study of effects of multiple oral dosing of clarithromycin on the pharmacokinetics of cyclosporine in dogs.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4013371/",
+        "abstract": "ABSTRACT Clarithromycin (CLM) has been known to increase the cyclosporine (CsA) trough\nlevel in human and feline organ transplant patients. However, the interaction of CLM with\nCsA has not been reported in dogs. In this study, the effects of multiple dosing of CLM on\nthe pharmacokinetics of CsA in three healthy beagles were investigated. The treatments\nincluded CsA 10 mg/kg alone and CsA 10 mg/kg + multiple-dose of CLM 10 mg/kg.\nCo-administration of CLM with CsA resulted in significant increases of oral\nbioavailability of CsA. The results of our study suggest that administration of multiple\ntherapeutic doses of CLM may decrease the required CsA dosage in CsA-based\nimmunosuppressive therapy in renal transplanted dogs.",
+        "journal_title": "The Journal of Veterinary Medical Science",
+        "journal_issns": [
+          "0916-7250",
+          "1347-7439"
+        ],
+        "journal_metrics": {
+          "primary_metric_source": "Journal Citation Reports",
+          "metric_year": "2025",
+          "match_method": "issn",
+          "matched_value": "09167250",
+          "jcr": {
+            "journal_title": "JOURNAL OF VETERINARY MEDICAL SCIENCE",
+            "abbreviated_journal": "J VET MED SCI",
+            "issns": [
+              "09167250",
+              "13477439"
+            ],
+            "publisher": "JAPAN SOC VET SCI",
+            "jif": "1.1",
+            "five_year_jif": "1.1",
+            "jif_without_self_cites": "1.0",
+            "jci": "0.60",
+            "jif_quartile": "Q3",
+            "category": "VETERINARY SCIENCES|Q3|96/167",
+            "jif_rank": "95/170",
+            "metric_year": "2025",
+            "metric_source": "Journal Citation Reports",
+            "match_method": "issn",
+            "matched_value": "09167250"
+          },
+          "scimago": {
+            "journal_title": "Journal of Veterinary Medical Science",
+            "sjr": "0,399",
+            "sjr_best_quartile": "Q2",
+            "h_index": "72",
+            "metric_year": "2024",
+            "match_method": "issn",
+            "matched_value": "09167250"
+          },
+          "impact_factor": "1.1",
+          "impact_factor_5year": "1.1",
+          "impact_factor_quartile": "Q3",
+          "journal_citation_indicator": "0.60",
+          "sjr": "0,399",
+          "sjr_best_quartile": "Q2",
+          "h_index": "72"
+        },
+        "score": 20,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:dogs, feline",
+          "context_distance_match",
+          "relevance:bioavailability, dosage, dose, dosing",
+          "high_signal_title",
+          "llm_validated_in_vivo"
+        ],
+        "ddi_relevant": true,
+        "fda_relevant": false
+      }
+    ]
+  },
+  {
+    "drug_name": "Amlodipine",
+    "query": "(\"Amlodipine\"[Title/Abstract] OR \"Amlodipine\"[Name of Substance]) AND (\"Dogs\"[Mesh] OR \"Cats\"[Mesh] OR dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (\"Pharmacokinetics\"[Mesh] OR \"Drug Interactions\"[Mesh] OR \"Toxicity\"[Mesh] OR pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR \"half-life\"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR \"drug interaction\"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT (\"In Vitro Techniques\"[Mesh] OR \"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+    "accepted_references": [
+      {
+        "pmc_id": "12861456",
+        "title": "Systemic gene expression mapping of voltage-gated calcium channel α1-subunits in cats.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12861456/",
+        "abstract": "Background: In veterinary medicine, voltage-gated calcium channels (VGCCs) are key drug targets. Calcium channel blockers (CCBs) are the standard treatment for common feline diseases, such as systemic hypertension and hypertrophic cardiomyopathy. However, therapeutic strategies are limited due to the adverse effects of existing drugs like amlodipine, such as activation of the renin-angiotensin-aldosterone system. A critical lack of feline-specific data on the tissue distribution of VGCC subtypes fundamentally hinders the safe and effective application of CCBs in cats. This is because knowledge from other species is often not translatable due to the unique metabolic pathways in cats. Aim: To fill this critical data gap, the present study created the first baseline quantitative map of the mRNA expression of seven major VGCC α1-subunits across a comprehensive range of feline tissues. Methods: Twelve tissue types were collected from a single 16-month-old male cat. Using a validated TaqMan probe-based quantitative real-time PCR assay, we measured the relative mRNA expression of seven CaV α1-subunit genes: CACNA1S (CaV1.1), CACNA1C (CaV1.2), CACNA1D (CaV1.3), CACNA1F (CaV1.4), CACNA1B (CaV2.2), CACNA1G (CaV3.1), and CACNA1H (CaV3.2). Relative transcript abundance was calculated using the 2-ΔCt method with 18S rRNA as the endogenous control for normalization. Results: The seven VGCC genes exhibited distinct, tissue-specific expression patterns. CACNA1S expression was predominantly localized to skeletal muscle. The heart showed the highest expression of CACNA1C and CACNA1H . The brain displayed prominent CACNA1B , CACNA1C , and CACNA1G expression. The mesenteric lymph node also showed significant CACNA1C , CACNA1F , and CACNA1G expression. Conversely, the liver and pancreas consistently displayed very low expression for most of the channel genes investigated. Conclusion: This study provides the first foundational mRNA expression map of major VGCC α1-subunits in feline tissues. The results reveal unique expression profiles that highlight both conserved physiological functions and significant differences compared to other species, particularly in cardiac and lymphoid tissues. These molecular data are vital for advancing feline pharmacology by enabling more accurate predictions of the therapeutic and adverse effects of CCBs and provide a critical resource for future investigations into feline channelopathies.",
+        "journal_title": "Open Veterinary Journal",
+        "journal_issns": [
+          "2226-4485",
+          "2218-6050"
+        ],
+        "journal_metrics": {
+          "primary_metric_source": "Journal Citation Reports",
+          "metric_year": "2025",
+          "match_method": "issn",
+          "matched_value": "22264485",
+          "jcr": {
+            "journal_title": "Open Veterinary Journal",
+            "abbreviated_journal": "OPEN VET J",
+            "issns": [
+              "22186050",
+              "22264485"
+            ],
+            "publisher": "UNIV TRIPOLI, FAC VET MED",
+            "jif": "1.0",
+            "five_year_jif": "1.2",
+            "jif_without_self_cites": "1.0",
+            "jci": "0.47",
+            "jif_quartile": "Q3",
+            "category": "VETERINARY SCIENCES|Q3|105/167",
+            "jif_rank": "106/170",
+            "metric_year": "2025",
+            "metric_source": "Journal Citation Reports",
+            "match_method": "issn",
+            "matched_value": "22264485"
+          },
+          "scimago": {
+            "journal_title": "Open Veterinary Journal",
+            "sjr": "0,362",
+            "sjr_best_quartile": "Q2",
+            "h_index": "22",
+            "metric_year": "2024",
+            "match_method": "issn",
+            "matched_value": "22264485"
+          },
+          "impact_factor": "1.0",
+          "impact_factor_5year": "1.2",
+          "impact_factor_quartile": "Q3",
+          "journal_citation_indicator": "0.47",
+          "sjr": "0,362",
+          "sjr_best_quartile": "Q2",
+          "h_index": "22"
+        },
+        "score": 17,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:cat, cats, feline",
+          "context_distance_match",
+          "relevance:adverse, distribution, pharmacology, treatment",
+          "llm_validated_in_vivo"
+        ],
+        "ddi_relevant": false,
+        "fda_relevant": false
+      },
+      {
+        "pmc_id": "4895406",
+        "title": "Randomized placebo-controlled clinical trial of a chewable formulation of amlodipine for the treatment of hypertension in client-owned cats.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4895406/",
+        "abstract": "Background There is an unmet clinical need for a cat‐specific formulation of amlodipine to treat hypertensive cats. Objectives To assess the efficacy of chewable amlodipine tablets in reducing systolic blood pressure (SBP) in cats diagnosed with systemic arterial hypertension. Animals Seventy‐seven client‐owned cats with systemic hypertension were included (median age 14 years). Methods The study was randomized, double‐blinded, and placebo‐controlled. Forty‐two cats received 0.125–0.50 mg/kg amlodipine once daily for 28 days; 35 cats received placebo. After 28 days all cats continued with amlodipine for 2–3 months in an open‐label phase. Blood pressure was measured using high definition oscillometry. A responder was defined as a cat showing a decrease of SBP to <150 mmHg at 28 days or a decrease from baseline ≥15%. Results Sixty‐one cats completed the study. The responder rate was 63% in amlodipine group and 18% in placebo group. Cats receiving amlodipine were 7.9 (95% CI 2.6–24.1) times more likely to be classified as responders when compared to those receiving placebo ( P < .001). From a mean (±SD) baseline value of 181 (±12) mmHg, SBP decreased to 154 (±17) mmHg with amlodipine and to 170 (±21) mmHg with placebo ( P < .001). The voluntary acceptance rate of amlodipine formulation was 73%. Conclusions and Clinical Importance The chewable amlodipine tablet effectively reduced SBP compared with placebo in hypertensive cats, and was well‐tolerated. It can be used concomitantly with angiotensin‐converting enzyme inhibitors and in cats with chronic kidney disease.",
+        "journal_title": "Journal of Veterinary Internal Medicine",
+        "journal_issns": [
+          "0891-6640",
+          "1939-1676"
+        ],
+        "journal_metrics": {
+          "primary_metric_source": "Journal Citation Reports",
+          "metric_year": "2025",
+          "match_method": "issn",
+          "matched_value": "08916640",
+          "jcr": {
+            "journal_title": "JOURNAL OF VETERINARY INTERNAL MEDICINE",
+            "abbreviated_journal": "J VET INTERN MED",
+            "issns": [
+              "08916640",
+              "19391676"
+            ],
+            "publisher": "WILEY",
+            "jif": "2.2",
+            "five_year_jif": "2.8",
+            "jif_without_self_cites": "1.9",
+            "jci": "1.12",
+            "jif_quartile": "Q1",
+            "category": "VETERINARY SCIENCES|Q1|40/167",
+            "jif_rank": "36/170",
+            "metric_year": "2025",
+            "metric_source": "Journal Citation Reports",
+            "match_method": "issn",
+            "matched_value": "08916640"
+          },
+          "scimago": {
+            "journal_title": "Journal of Veterinary Internal Medicine",
+            "sjr": "0,971",
+            "sjr_best_quartile": "Q1",
+            "h_index": "130",
+            "metric_year": "2024",
+            "match_method": "issn",
+            "matched_value": "08916640"
+          },
+          "impact_factor": "2.2",
+          "impact_factor_5year": "2.8",
+          "impact_factor_quartile": "Q1",
+          "journal_citation_indicator": "1.12",
+          "sjr": "0,971",
+          "sjr_best_quartile": "Q1",
+          "h_index": "130"
+        },
+        "score": 16,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:cat, cats",
+          "context_distance_match",
+          "relevance:efficacy, label, treatment",
+          "llm_validated_in_vivo"
+        ],
+        "ddi_relevant": false,
+        "fda_relevant": true
+      }
+    ]
+  },
+  {
+    "drug_name": "Imepitoin",
+    "query": "(\"Imepitoin\"[Title/Abstract] OR \"Imepitoin\"[Name of Substance]) AND (\"Dogs\"[Mesh] OR \"Cats\"[Mesh] OR dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (\"Pharmacokinetics\"[Mesh] OR \"Drug Interactions\"[Mesh] OR \"Toxicity\"[Mesh] OR pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR \"half-life\"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR \"drug interaction\"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT (\"In Vitro Techniques\"[Mesh] OR \"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+    "accepted_references": [
+      {
+        "pmc_id": "4556053",
+        "title": "Efficacy, safety, and tolerability of imepitoin in dogs with newly diagnosed epilepsy in a randomized controlled clinical study with long-term follow up.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4556053/",
+        "abstract": "Background Imepitoin is a novel antiepileptic drug for the treatment of canine idiopathic epilepsy. The present study was conducted to demonstrate superior antiepileptic activity of a high dose of 30 mg/kg BID over a low dose of 1 mg/kg BID of imepitoin during 12 weeks of treatment under double blind conditions in a field population of dogs with previously untreated epilepsy. In a consecutive 12 weeks open label follow up (phase 2), all animals received 30 mg/kg BID, to evaluate the persistence of the antiepileptic activity, and to evaluate the effect of a dose step up to 30 mg/kg in the former low-dose animals. Results A treatment with 30 mg/kg BID resulted in a significantly greater reduction in monthly seizure frequency relative to baseline data as compared to the 1 mg/kg dose. Both generalized and partial seizures but not cluster seizures were significantly less frequent in the high dose group. The antiepileptic activity was maintained during study phase 2 in the high dose group. An increase to 30 mg/kg BID in the low- dose animals resulted in a significant reduction in generalized and partial seizures, but not cluster seizures. At the end of study phase 2, 32.1 and 46.8 % of dogs of the former high and former low-dose groups respectively, remained free of generalized tonic-clonic seizures. Imepitoin was well tolerated. The frequency of dogs with any adverse drug reactions was higher in the 30 mg/kg BID dose (59 % vs. 41 %, p = 0.041), and the main target organ was the central nervous system (CNS). The occurrence of CNS related adverse reactions was transient and findings were mostly restricted to the first weeks of treatment. No hepatic enzyme increase and no other organ toxicity were observed. Conclusion The administration of imepitoin twice daily at a dose of 30 mg/kg results in significant and persistent antiepileptic effects in patients with newly diagnosed epilepsy and generalized tonic-clonic seizures, as observed over a study period of up to 6 months. Imepitoin was well tolerated. Most CNS related adverse drug reactions were transient. Both the antiepileptic activity and the safety profile make the drug suitable for long-term clinical use.",
+        "journal_title": "BMC Veterinary Research",
+        "journal_issns": [
+          "1746-6148"
+        ],
+        "journal_metrics": {
+          "primary_metric_source": "Journal Citation Reports",
+          "metric_year": "2025",
+          "match_method": "issn",
+          "matched_value": "17466148",
+          "jcr": {
+            "journal_title": "BMC Veterinary Research",
+            "abbreviated_journal": "BMC VET RES",
+            "issns": [
+              "17466148"
+            ],
+            "publisher": "BMC",
+            "jif": "2.6",
+            "five_year_jif": "2.7",
+            "jif_without_self_cites": "2.5",
+            "jci": "1.28",
+            "jif_quartile": "Q1",
+            "category": "VETERINARY SCIENCES|Q1|28/167",
+            "jif_rank": "23/170",
+            "metric_year": "2025",
+            "metric_source": "Journal Citation Reports",
+            "match_method": "issn",
+            "matched_value": "17466148"
+          },
+          "scimago": {
+            "journal_title": "BMC Veterinary Research",
+            "sjr": "0,723",
+            "sjr_best_quartile": "Q1",
+            "h_index": "86",
+            "metric_year": "2024",
+            "match_method": "issn",
+            "matched_value": "17466148"
+          },
+          "impact_factor": "2.6",
+          "impact_factor_5year": "2.7",
+          "impact_factor_quartile": "Q1",
+          "journal_citation_indicator": "1.28",
+          "sjr": "0,723",
+          "sjr_best_quartile": "Q1",
+          "h_index": "86"
+        },
+        "score": 20,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:canine, dogs",
+          "context_distance_match",
+          "relevance:adverse, dose, efficacy, label",
+          "high_signal_title",
+          "llm_validated_in_vivo"
+        ],
+        "ddi_relevant": false,
+        "fda_relevant": true
+      },
+      {
+        "pmc_id": "4280904",
+        "title": "Imepitoin as novel treatment option for canine idiopathic epilepsy: pharmacokinetics, distribution, and metabolism in dogs.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4280904/",
+        "abstract": "Imepitoin is a novel anti-epileptic licensed in the European Union for the treatment of canine idiopathic epilepsy. The aim of this study was to characterize the pharmacokinetics of imepitoin in dogs and to evaluate the interaction with drug metabolizing enzymes. Upon administration of imepitoin tablets at a dose of 30 mg/kg to beagle dogs, high plasma levels were observed within 30 min following oral dosing, with maximal plasma concentrations of 14.9–17.2 μg/mL reached after 2–3 h. In a crossover study, co-administration of imepitoin tablets with food reduced the total AUC by 30%, but it did not result in significant changes in T max and C max , indicating lack of clinical relevance. No clinically relevant effects of sex and no accumulation or metabolic tolerance were observed upon twice daily dosing. Following single dose administration of 10–100 mg/kg, dose linearity was found. Administering [ 14 C] imepitoin, high enteral absorption of 92% and primary fecal excretion were identified. Plasma protein binding was only 55%. At therapeutic plasma concentrations, imepitoin did not inhibit microsomal cytochrome P450 family liver enzymes in vitro . In rats, no relevant induction of liver enzymes was found. Therefore, protein binding or metabolism-derived drug–drug interactions are unlikely. Based on these data, imepitoin can be dosed twice daily, but the timing of tablet administration in relation to feeding should be kept consistent.",
+        "journal_title": "Journal of Veterinary Pharmacology and Therapeutics",
+        "journal_issns": [
+          "0140-7783",
+          "1365-2885"
+        ],
+        "journal_metrics": {
+          "primary_metric_source": "Journal Citation Reports",
+          "metric_year": "2025",
+          "match_method": "issn",
+          "matched_value": "01407783",
+          "jcr": {
+            "journal_title": "JOURNAL OF VETERINARY PHARMACOLOGY AND THERAPEUTICS",
+            "abbreviated_journal": "J VET PHARMACOL THER",
+            "issns": [
+              "01407783",
+              "13652885"
+            ],
+            "publisher": "WILEY",
+            "jif": "1.7",
+            "five_year_jif": "1.7",
+            "jif_without_self_cites": "1.5",
+            "jci": "0.61",
+            "jif_quartile": "Q2",
+            "category": "VETERINARY SCIENCES|Q2|66/167",
+            "jif_rank": "58/170",
+            "metric_year": "2025",
+            "metric_source": "Journal Citation Reports",
+            "match_method": "issn",
+            "matched_value": "01407783"
+          },
+          "scimago": {
+            "journal_title": "Journal of Veterinary Pharmacology and Therapeutics",
+            "sjr": "0,386",
+            "sjr_best_quartile": "Q2",
+            "h_index": "70",
+            "metric_year": "2024",
+            "match_method": "issn",
+            "matched_value": "01407783"
+          },
+          "impact_factor": "1.7",
+          "impact_factor_5year": "1.7",
+          "impact_factor_quartile": "Q2",
+          "journal_citation_indicator": "0.61",
+          "sjr": "0,386",
+          "sjr_best_quartile": "Q2",
+          "h_index": "70"
+        },
+        "score": 20,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:canine, dogs",
+          "context_distance_match",
+          "relevance:absorption, distribution, dose, dosing",
+          "high_signal_title",
+          "llm_validated_in_vivo"
+        ],
+        "ddi_relevant": true,
+        "fda_relevant": false
+      }
+    ]
+  },
+  {
+    "drug_name": "Gentamicin, Systemic",
+    "query": "(\"Gentamicin, Systemic\"[Title/Abstract] OR \"Gentamicin, Systemic\"[Name of Substance]) AND (\"Dogs\"[Mesh] OR \"Cats\"[Mesh] OR dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (\"Pharmacokinetics\"[Mesh] OR \"Drug Interactions\"[Mesh] OR \"Toxicity\"[Mesh] OR pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR \"half-life\"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR \"drug interaction\"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT (\"In Vitro Techniques\"[Mesh] OR \"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+    "accepted_references": []
+  },
+  {
+    "drug_name": "Fluconazole",
+    "query": "(\"Fluconazole\"[Title/Abstract] OR \"Fluconazole\"[Name of Substance]) AND (\"Dogs\"[Mesh] OR \"Cats\"[Mesh] OR dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (\"Pharmacokinetics\"[Mesh] OR \"Drug Interactions\"[Mesh] OR \"Toxicity\"[Mesh] OR pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR \"half-life\"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR \"drug interaction\"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT (\"In Vitro Techniques\"[Mesh] OR \"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+    "accepted_references": [
+      {
+        "pmc_id": "8642003",
+        "title": "Effect of Sijunzi Pills on Pharmacokinetics of Omeprazole in Beagle Dogs by HPLC-UV: A Herb-Drug Interaction Study.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8642003/",
+        "abstract": "A sensitive high-performance liquid chromatography (HPLC-UV) method for determination of omeprazole in beagle dog plasma was developed and to investigate the effect of Sijunzi pills (SJZPs) on the pharmacokinetics of omeprazole in beagle dogs. The beagle dog plasma was extracted with ethyl acetate and n-hexane under alkaline conditions. Omeprazole and internal standard (IS, fluconazole) were separated on an XDB-C18 column, and acetonitrile and 0.1% trifluoroacetic acid were used as the mobile phase. Omeprazole and IS were detected by using a diode array detector. This experiment adopts the experimental design of double-cycle self-control. In the first cycle (group A), six beagle dogs were given omeprazole 0.67 mg/kg orally in a single dose. In the second period (group B), the same six beagle dogs were orally given SJZPs 0.2 g/kg twice a day for 7 consecutive days, and then, omeprazole was orally given. At the different time points after omeprazole was given in the two periods, the blood samples were collected. The concentration of omeprazole was detected by the developed HPLC method. DAS 2.0 was used to calculate the pharmacokinetic parameters of omeprazole. Under the current experimental conditions, this UPLC method showed good linearity in the detection of omeprazole. Interday and intraday precision did not exceed 10%, and the range of accuracy values were from −1.43% to 2.76%. The results of extraction recovery and stability met the requirements of FDA approval guidelines of bioanalytical method validation. The C max of omeprazole in group B was 61.55% higher than that in group A, and the AUC (0− t ) and AUC (0−∞) of omeprazole in group B were 63.96% and 63.65% higher those that in group A, respectively. At the same time, the clearance (CL) and apparent volume of distribution (Vd) decreased in group B. In this study, an HPLC method for the determination of plasma omeprazole concentration was established. SJZPs could inhibit the metabolism of omeprazole and increase the concentration of omeprazole in beagle dogs. It is suggested that when SJZPs are combined with omeprazole, attention should be paid to the herb-drug interactions and possible adverse reactions.",
+        "journal_title": "Evidence-based Complementary and Alternative Medicine : eCAM",
+        "journal_issns": [
+          "1741-427X",
+          "1741-4288"
+        ],
+        "journal_metrics": null,
+        "score": 20,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:dog, dogs",
+          "context_distance_match",
+          "relevance:adverse, clearance, distribution, dose",
+          "high_signal_title",
+          "llm_validated_in_vivo"
+        ],
+        "ddi_relevant": true,
+        "fda_relevant": false
+      },
+      {
+        "pmc_id": "176350",
+        "title": "Pharmacokinetic evaluation of UK-49,858, a metabolically stable triazole antifungal drug, in animals and humans.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC176350/",
+        "abstract": "The pharmacokinetic profile of UK-49,858 (fluconazole), a novel triazole antifungal agent which is being developed for oral and intravenous use, was determined in mice, rats, dogs, and humans. Comparative data following oral and intravenous administration showed that bioavailability was essentially complete in all four species. Peak concentrations in plasma of drug normalized to a 1-mg/kg dose level following oral administration, were relatively high: 0.7, 0.6, 1.1, and 1.4 micrograms/ml in mice, rats, dogs, and humans, respectively. The volumes of distribution ranged between 1.1 liter/kg in mice and 0.7 liter/kg in humans, which are approximate to the values for total body water. Whole body autoradiography studies in mice following intravenous administration of [14C]UK-49,858 demonstrated that the drug was evenly distributed throughout the tissues, including the central nervous system and the gastrointestinal tract. Plasma protein binding was low (11 to 12%) in all species. Marked species differences were observed in elimination half-lives, with mean values of 4.8, 4.0, 14, and 22 h in mice, rats, dogs, and humans, respectively. The major route of elimination of the drug was renal clearance, with about 70% of the dose being excreted unchanged in the urine in each species. Studies with [14C]UK-49,858 on metabolism and excretion (intravenous and oral) in mice and dogs showed that about 90% of the dose was recovered as unchanged drug in urine and feces, confirming the metabolic stability of the drug. This pharmacokinetic profile is markedly different from that of imidazole antifungal drugs and undoubtedly contributes to the excellent efficacy of UK-49,858 in vivo. Images",
+        "journal_title": "Antimicrobial Agents and Chemotherapy",
+        "journal_issns": [
+          "0066-4804",
+          "1098-6596"
+        ],
+        "journal_metrics": {
+          "primary_metric_source": "Journal Citation Reports",
+          "metric_year": "2025",
+          "match_method": "issn",
+          "matched_value": "00664804",
+          "jcr": {
+            "journal_title": "ANTIMICROBIAL AGENTS AND CHEMOTHERAPY",
+            "abbreviated_journal": "ANTIMICROB AGENTS CH",
+            "issns": [
+              "00664804",
+              "10986596"
+            ],
+            "publisher": "AMER SOC MICROBIOLOGY",
+            "jif": "4.5",
+            "five_year_jif": "4.4",
+            "jif_without_self_cites": "4.1",
+            "jci": "1.17",
+            "jif_quartile": "Q1",
+            "category": "PHARMACOLOGY & PHARMACY|Q1|78/354",
+            "jif_rank": "64/352",
+            "metric_year": "2025",
+            "metric_source": "Journal Citation Reports",
+            "match_method": "issn",
+            "matched_value": "00664804"
+          },
+          "scimago": {
+            "journal_title": "Antimicrobial Agents and Chemotherapy",
+            "sjr": "1,431",
+            "sjr_best_quartile": "Q1",
+            "h_index": "299",
+            "metric_year": "2024",
+            "match_method": "issn",
+            "matched_value": "00664804"
+          },
+          "impact_factor": "4.5",
+          "impact_factor_5year": "4.4",
+          "impact_factor_quartile": "Q1",
+          "journal_citation_indicator": "1.17",
+          "sjr": "1,431",
+          "sjr_best_quartile": "Q1",
+          "h_index": "299"
+        },
+        "score": 20,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:dogs",
+          "context_distance_match",
+          "relevance:bioavailability, clearance, distribution, dose",
+          "high_signal_title",
+          "llm_validated_in_vivo"
+        ],
+        "ddi_relevant": false,
+        "fda_relevant": false
+      }
+    ]
+  },
+  {
+    "drug_name": "Dalteparin",
+    "query": "(\"Dalteparin\"[Title/Abstract] OR \"Dalteparin\"[Name of Substance]) AND (\"Dogs\"[Mesh] OR \"Cats\"[Mesh] OR dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (\"Pharmacokinetics\"[Mesh] OR \"Drug Interactions\"[Mesh] OR \"Toxicity\"[Mesh] OR pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR \"half-life\"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR \"drug interaction\"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT (\"In Vitro Techniques\"[Mesh] OR \"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+    "accepted_references": [
+      {
+        "pmc_id": "12226864",
+        "title": "Indications and outcomes of rivaroxaban use in cats.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12226864/",
+        "abstract": "Introduction The use of rivaroxaban, an oral direct factor Xa inhibitor, has only been described in a small number of publications in cats. The study objective was to describe the use of rivaroxaban in a large population of hospitalised cats. Methods Cases were retrospectively identified from June 2017 to July 2024 at seven veterinary specialty hospitals. Any cat prescribed rivaroxaban was eligible for inclusion. Data extracted from the medical records included signalment (age, sex, breed), body weight, reason for commencing rivaroxaban, dose and duration of rivaroxaban, concurrent anticoagulant and antiplatelet therapies, potential rivaroxaban adverse effects, and outcome. Non-parametric descriptive statistics are reported. Results In total, 66 cats were included. Median rivaroxaban dose was 2.5 mg (Min-Max 1.25–10, Q1-Q3 2.5–5.0), equal to 0.73 mg/kg/day (Min-Max 0.28–1.87, Q1-Q3 0.53–1.0). A total of 36 cats (54.5%) were within the suggested dose range of 0.5–1 mg/kg/day of the Consensus on the Rational Use of Antithrombotics in Veterinary Critical Care (CURATIVE) guidelines, 14 (21.2%) were below, while 16 (24.2%) were above. Median duration of rivaroxaban was 26.5 days (Min-Max 0–442, Q1-Q3 2–60), although followup was variable. The indication for rivaroxaban administration was confirmed thrombosis (48, 72.7%), strong clinical suspicion of thrombosis (6, 9.1%), and prophylaxis (12, 18.2%). Most thrombi were arterial, including aortic thromboembolism affecting both pelvic limbs (25/54 cats with thrombosis, 46.3%), arterial thrombosis affecting a single limb (16, 29.6%), and cardiac chamber thrombus (7, 13%). Cardiac disease was the most common thrombosis risk factor (53/66, 80.3%). Other CURATIVE defined risk factors included immune-mediated haemolytic anaemia in four cats (6.1%) and sepsis in one cat. Other thromboprophylaxis administered included clopidogrel in 58 cats (87.9%), dalteparin in 8 cats (12.1%), and aspirin in 4 cats (6.1%). Potential adverse effects prompting rivaroxaban discontinuation included one case each of vomiting, a cerebrovascular accident, gastrointestinal bleeding, and haemorrhagic pleural effusion. Forty-five cats (68.2%) survived to hospital discharge, 14 (21.2%) were euthanised, two (3%) died, and five (7.6%) were taken home against medical advice. Conclusion Rivaroxaban was well tolerated in a large population of cats, predominantly prescribed for arterial thrombosis associated with cardiac disease.",
+        "journal_title": "Frontiers in Veterinary Science",
+        "journal_issns": [
+          "2297-1769"
+        ],
+        "journal_metrics": {
+          "primary_metric_source": "Journal Citation Reports",
+          "metric_year": "2025",
+          "match_method": "issn",
+          "matched_value": "22971769",
+          "jcr": {
+            "journal_title": "Frontiers in Veterinary Science",
+            "abbreviated_journal": "FRONT VET SCI",
+            "issns": [
+              "22971769"
+            ],
+            "publisher": "FRONTIERS MEDIA SA",
+            "jif": "2.9",
+            "five_year_jif": "3.3",
+            "jif_without_self_cites": "2.6",
+            "jci": "1.28",
+            "jif_quartile": "Q1",
+            "category": "VETERINARY SCIENCES|Q1|22/167",
+            "jif_rank": "19/170",
+            "metric_year": "2025",
+            "metric_source": "Journal Citation Reports",
+            "match_method": "issn",
+            "matched_value": "22971769"
+          },
+          "scimago": {
+            "journal_title": "Frontiers in Veterinary Science",
+            "sjr": "0,783",
+            "sjr_best_quartile": "Q1",
+            "h_index": "85",
+            "metric_year": "2024",
+            "match_method": "issn",
+            "matched_value": "22971769"
+          },
+          "impact_factor": "2.9",
+          "impact_factor_5year": "3.3",
+          "impact_factor_quartile": "Q1",
+          "journal_citation_indicator": "1.28",
+          "sjr": "0,783",
+          "sjr_best_quartile": "Q1",
+          "h_index": "85"
+        },
+        "score": 15,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:cat, cats",
+          "context_distance_match",
+          "relevance:adverse, dose",
+          "llm_validated_in_vivo"
+        ],
+        "ddi_relevant": false,
+        "fda_relevant": false
+      },
+      {
+        "pmc_id": "7538330",
+        "title": "Treatment with rivaroxaban and monitoring of coagulation profiles in two dogs with venous thromboembolism.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7538330/",
+        "abstract": "Two dogs with immune-mediated hemolytic anemia complicated with thromboembolism were presented. Both of the dogs were initially treated with immunosuppressive therapy in conjunction with dalteparin and clopidogrel. Although the immunosuppressive therapy was effective, peritoneal effusion due to thromboembolism was observed during the course of the disease in these dogs. After initiation of rivaroxaban treatment, peritoneal effusion decreased immediately in parallel with the normalization of D-dimer, antithrombin (AT), and thrombin-antithrombin complex (TAT). Hematochezia, cutaneous hemorrhage, and hematuria were observed as adverse events after administration of rivaroxaban in one case. Rivaroxaban was effective for the control of thromboembolism secondary to immune-mediated hemolytic anemia, and D-dimer, AT, and TAT were useful to monitor the status of thromboembolic disease in dogs.",
+        "journal_title": "The Journal of Veterinary Medical Science",
+        "journal_issns": [
+          "0916-7250",
+          "1347-7439"
+        ],
+        "journal_metrics": {
+          "primary_metric_source": "Journal Citation Reports",
+          "metric_year": "2025",
+          "match_method": "issn",
+          "matched_value": "09167250",
+          "jcr": {
+            "journal_title": "JOURNAL OF VETERINARY MEDICAL SCIENCE",
+            "abbreviated_journal": "J VET MED SCI",
+            "issns": [
+              "09167250",
+              "13477439"
+            ],
+            "publisher": "JAPAN SOC VET SCI",
+            "jif": "1.1",
+            "five_year_jif": "1.1",
+            "jif_without_self_cites": "1.0",
+            "jci": "0.60",
+            "jif_quartile": "Q3",
+            "category": "VETERINARY SCIENCES|Q3|96/167",
+            "jif_rank": "95/170",
+            "metric_year": "2025",
+            "metric_source": "Journal Citation Reports",
+            "match_method": "issn",
+            "matched_value": "09167250"
+          },
+          "scimago": {
+            "journal_title": "Journal of Veterinary Medical Science",
+            "sjr": "0,399",
+            "sjr_best_quartile": "Q2",
+            "h_index": "72",
+            "metric_year": "2024",
+            "match_method": "issn",
+            "matched_value": "09167250"
+          },
+          "impact_factor": "1.1",
+          "impact_factor_5year": "1.1",
+          "impact_factor_quartile": "Q3",
+          "journal_citation_indicator": "0.60",
+          "sjr": "0,399",
+          "sjr_best_quartile": "Q2",
+          "h_index": "72"
+        },
+        "score": 15,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:dogs",
+          "context_distance_match",
+          "relevance:adverse, treatment",
+          "llm_validated_in_vivo"
+        ],
+        "ddi_relevant": false,
+        "fda_relevant": false
+      }
+    ]
+  },
+  {
+    "drug_name": "Chlorpromazine",
+    "query": "(\"Chlorpromazine\"[Title/Abstract] OR \"Chlorpromazine\"[Name of Substance]) AND (\"Dogs\"[Mesh] OR \"Cats\"[Mesh] OR dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (\"Pharmacokinetics\"[Mesh] OR \"Drug Interactions\"[Mesh] OR \"Toxicity\"[Mesh] OR pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR \"half-life\"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR \"drug interaction\"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT (\"In Vitro Techniques\"[Mesh] OR \"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+    "accepted_references": [
+      {
+        "pmc_id": "1702793",
+        "title": "Effect of drugs used in psychoses on cerebral dopamine metabolism.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1702793/",
+        "abstract": "1. Chlorpromazine 15 mg/kg, given daily to cats for 2 weeks, produced a rise in homovanillic acid (HVA) content of the caudate nucleus, whereas the same dose of thioridazine lacked this effect. Of these two drugs, only chlorpromazine causes a high incidence of drug-induced Parkinsonism in man. 2. In the mouse, chlorpromazine, thioridazine and haloperidol increased striatal concentrations of HVA and accelerated the disappearance of dopamine (DA) after inhibition of catecholamine synthesis with α-methyltyrosine. Low doses of the three compounds increased, whereas high doses reduced, the concentration of DA in the striatum. In their effects on the DA metabolism of the mouse, chlorpromazine and thioridazine had the same potency, but haloperidol was between 10 and 100 times more active than the other two drugs. In producing hypothermia and sedation, the three compounds were equiactive. 3. Oxypertine, another drug apt to produce Parkinsonism in man, caused a severe reduction in striatal DA and hypothalamic noradrenaline (NA). Though the clinical signs produced in the mouse were indistinguishable from those seen after the same dose of chlorpromazine, the biochemical changes in the brain were thus quite different. 4. Though all the drugs used caused temporary motor disabilities in animals, these bore no resemblance to human Parkinsonism, even when treatment was continued for 7 weeks or more as it was in cats and monkeys. The latter were treated with chlorpromazine 7·5 mg/kg daily, a dose chosen to avoid loss of weight and which may have been too small to produce toxic side-effects. It caused no changes in striatal DA turnover. 5. Even at the high dose of 50 mg/kg, phenoxybenzamine did not increase DA turnover in mouse brain, but it sedated the mice as did the tranquillizers. 6. Atropine sulphate, 25 mg/kg, reduced the HVA content of mouse striatum and partially antagonized the rise in HVA produced by phenothiazines. The effect was surmountable. Possible modes of action of atropine are discussed. 7. At present we know of two types of biochemical changes which may occur in the brain of animals after treatment with drugs apt to cause Parkinsonism in man: a loss of cerebral catecholamines, as seen after reserpine or oxypertine, or an increase in turnover of DA as after phenothiazines and butyrophenones.",
+        "journal_title": "British Journal of Pharmacology",
+        "journal_issns": [
+          "0007-1188",
+          "1476-5381"
+        ],
+        "journal_metrics": {
+          "primary_metric_source": "Journal Citation Reports",
+          "metric_year": "2025",
+          "match_method": "issn",
+          "matched_value": "00071188",
+          "jcr": {
+            "journal_title": "BRITISH JOURNAL OF PHARMACOLOGY",
+            "abbreviated_journal": "BRIT J PHARMACOL",
+            "issns": [
+              "00071188",
+              "14765381"
+            ],
+            "publisher": "WILEY",
+            "jif": "7.7",
+            "five_year_jif": "7.3",
+            "jif_without_self_cites": "5.9",
+            "jci": "1.88",
+            "jif_quartile": "Q1",
+            "category": "PHARMACOLOGY & PHARMACY|Q1|18/354",
+            "jif_rank": "18/352",
+            "metric_year": "2025",
+            "metric_source": "Journal Citation Reports",
+            "match_method": "issn",
+            "matched_value": "00071188"
+          },
+          "scimago": {
+            "journal_title": "British Journal of Pharmacology",
+            "sjr": "2,344",
+            "sjr_best_quartile": "Q1",
+            "h_index": "252",
+            "metric_year": "2024",
+            "match_method": "issn",
+            "matched_value": "00071188"
+          },
+          "impact_factor": "7.7",
+          "impact_factor_5year": "7.3",
+          "impact_factor_quartile": "Q1",
+          "journal_citation_indicator": "1.88",
+          "sjr": "2,344",
+          "sjr_best_quartile": "Q1",
+          "h_index": "252"
+        },
+        "score": 16,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:cats",
+          "context_distance_match",
+          "relevance:dose, metabolism, treatment",
+          "llm_validated_in_vivo"
+        ],
+        "ddi_relevant": false,
+        "fda_relevant": false
+      },
+      {
+        "pmc_id": "1703976",
+        "title": "SOME PHARMACOLOGICAL PROPERTIES OF THIOPROPERAZINE AND THEIR MODIFICATION BY ANTI-PARKINSONIAN DRUGS.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1703976/",
+        "abstract": "The pharmacological properties of a phenothiazine derivative thioproperazine have been compared with those of chlorpromazine, and the modifications by some anti-Parkinsonian drugs of its actions on the central nervous system have been studied. Thioproperazine was less potent than chlorpromazine in lowering blood pressure and antagonizing adrenaline in the cat, in depressing respiratory rate in the rabbit, in producing hypothermia and analgesia and in reducing the minimum anaesthetic dose of hexobarbitone in mice, and in protecting rats from convulsions induced by tryptamine. It was roughly equipotent to chlorpromazine in reducing locomotor activity of mice. Thioproperazine was more potent than chlorpromazine in protecting grouped mice from the acute toxicity of dexamphetamine, in preventing the acute behavioural disturbances produced by dexamphetamine in the rat, in producing a state of experimental catatonia in the rat and in preventing the emetic action of apomorphine in the dog. Hyoscine, benztropine or promethazine greatly reduced the ability of thioproperazine to prevent behavioural changes due to dexamphetamine in the rat and also abolished symptoms of experimental catatonia produced by thioproperazine. In contrast, the antiapomorphine activity of thioproperazine in the dog was not reduced to any extent by hyoscine or benztropine.",
+        "journal_title": "British Journal of Pharmacology and Chemotherapy",
+        "journal_issns": [
+          "0366-0826"
+        ],
+        "journal_metrics": null,
+        "score": 15,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:cat, dog",
+          "context_distance_match",
+          "relevance:dose, toxicity",
+          "llm_validated_in_vivo"
+        ],
+        "ddi_relevant": false,
+        "fda_relevant": false
+      }
+    ]
+  },
+  {
+    "drug_name": "Tramadol",
+    "query": "(\"Tramadol\"[Title/Abstract] OR \"Tramadol\"[Name of Substance]) AND (\"Dogs\"[Mesh] OR \"Cats\"[Mesh] OR dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (\"Pharmacokinetics\"[Mesh] OR \"Drug Interactions\"[Mesh] OR \"Toxicity\"[Mesh] OR pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR \"half-life\"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR \"drug interaction\"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT (\"In Vitro Techniques\"[Mesh] OR \"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+    "accepted_references": [
+      {
+        "pmc_id": "2442675",
+        "title": "Pharmacokinetics of intravenous tramadol in dogs.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2442675/",
+        "abstract": "The purpose of this study was to determine the pharmacokinetics of tramadol and the active metabolite mono-O-desmethyltramadol (M1) in 6 healthy male mixed breed dogs following intravenous injection of tramadol at 3 different dose levels. Verification of the metabolism to the active metabolite M1, to which most of the analgesic activity of this agent is attributed to, was a primary goal. Quantification of the parent compound and the M1 metabolite was performed using gas chromatography. Pharmacodynamic evaluations were performed at the time of patient sampling and included assessment of sedation, and evaluation for depression of heart and respiratory rates. This study confirmed that while these dogs were able to produce the active M1 metabolite following intravenous administration of tramadol, the M1 concentrations were lower than previously reported in research beagles. Adverse effects were minimal, with mild dose-related sedation in all dogs and nausea in 1 dog. Analgesia was not documented with the method of assessment used in this study. Tramadol may be useful in canine patients, but additional studies in the canine population are required to more accurately determine the effective clinical use of the drug in dogs and quantification of M1 concentrations in a wider population of patients.",
+        "journal_title": "Canadian Journal of Veterinary Research",
+        "journal_issns": [
+          "0830-9000",
+          "1928-9022"
+        ],
+        "journal_metrics": {
+          "primary_metric_source": "Journal Citation Reports",
+          "metric_year": "2025",
+          "match_method": "issn",
+          "matched_value": "19289022",
+          "jcr": {
+            "journal_title": "CANADIAN JOURNAL OF VETERINARY RESEARCH-REVUE CANADIENNE DE RECHERCHE VETERINAIRE",
+            "abbreviated_journal": "CAN J VET RES",
+            "issns": [
+              "19289022"
+            ],
+            "publisher": "CANADIAN VET MED ASSOC",
+            "jif": "1.1",
+            "five_year_jif": "1.2",
+            "jif_without_self_cites": "1.1",
+            "jci": "0.51",
+            "jif_quartile": "Q3",
+            "category": "VETERINARY SCIENCES|Q3|108/167",
+            "jif_rank": "95/170",
+            "metric_year": "2025",
+            "metric_source": "Journal Citation Reports",
+            "match_method": "issn",
+            "matched_value": "19289022"
+          },
+          "scimago": {
+            "journal_title": "Canadian Journal of Veterinary Research",
+            "sjr": "0,343",
+            "sjr_best_quartile": "Q2",
+            "h_index": "58",
+            "metric_year": "2024",
+            "match_method": "issn",
+            "matched_value": "08309000"
+          },
+          "impact_factor": "1.1",
+          "impact_factor_5year": "1.2",
+          "impact_factor_quartile": "Q3",
+          "journal_citation_indicator": "0.51",
+          "sjr": "0,343",
+          "sjr_best_quartile": "Q2",
+          "h_index": "58"
+        },
+        "score": 20,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:canine, dog, dogs",
+          "context_distance_match",
+          "relevance:adverse, dose, metabolism, pharmacodynamic",
+          "high_signal_title",
+          "llm_validated_in_vivo"
+        ],
+        "ddi_relevant": false,
+        "fda_relevant": false
+      },
+      {
+        "pmc_id": "6591828",
+        "title": "Safety and efficacy of reduced dosage ketoprofen with or without tramadol for long-term treatment of osteoarthritis in dogs: a randomized clinical trial.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6591828/",
+        "abstract": "Background This study aimed to evaluate the safety and efficacy of reduced-dosage ketoprofen with or without tramadol in dogs. Five healthy dogs receiving standard-dosage ketoprofen (2 mg/kg SC, then 1 mg/kg PO daily) comprised Group A. Twenty dogs with osteoarthritis were randomized to receive reduced-dosage ketoprofen (0.5 mg/kg SC once; 0.25 mg/kg PO daily) alone (Group B) or in combination with tramadol (5 mg/kg/day PO) (Group C). Treatments were administered for 28 days. Platelet aggregation time (PAT), gastrointestinal (GI) endoscopy and glomerular filtration rate (GFR) were performed up to 60 days after treatment initiation. Pain was scored using a validated clinical metrology instrument up to D120. Data were analyzed with general linear mixed model for repeated measures (α = 0.05). Results PAT was not different between groups but was increased with time for all groups. GI lesion scores were higher in Group A than Groups B and C (day 28; P = 0.005) and were increased with time for Group A ( P = 0.005). GFR was lower in Group A than Groups B and C (day 28; P < 0.01) and were decreased with time for group A ( P < 0.001). Standard-dosage ketoprofen administration resulted in clinically relevant adverse effects. Pain score decreased in both treated groups (B and C) from D0 to D28. Need of rescue analgesia from D29 to D120 was higher in Group B than in Group C ( P = 0.039). Conclusions The long-term safety profile of reduced-dosage ketoprofen is similar whether the drug is administered alone or in combination with tramadol to dogs with osteoarthritis. Analgesic efficacy of the combination looks attractive. Electronic supplementary material The online version of this article (10.1186/s12917-019-1960-3) contains supplementary material, which is available to authorized users.",
+        "journal_title": "BMC Veterinary Research",
+        "journal_issns": [
+          "1746-6148"
+        ],
+        "journal_metrics": {
+          "primary_metric_source": "Journal Citation Reports",
+          "metric_year": "2025",
+          "match_method": "issn",
+          "matched_value": "17466148",
+          "jcr": {
+            "journal_title": "BMC Veterinary Research",
+            "abbreviated_journal": "BMC VET RES",
+            "issns": [
+              "17466148"
+            ],
+            "publisher": "BMC",
+            "jif": "2.6",
+            "five_year_jif": "2.7",
+            "jif_without_self_cites": "2.5",
+            "jci": "1.28",
+            "jif_quartile": "Q1",
+            "category": "VETERINARY SCIENCES|Q1|28/167",
+            "jif_rank": "23/170",
+            "metric_year": "2025",
+            "metric_source": "Journal Citation Reports",
+            "match_method": "issn",
+            "matched_value": "17466148"
+          },
+          "scimago": {
+            "journal_title": "BMC Veterinary Research",
+            "sjr": "0,723",
+            "sjr_best_quartile": "Q1",
+            "h_index": "86",
+            "metric_year": "2024",
+            "match_method": "issn",
+            "matched_value": "17466148"
+          },
+          "impact_factor": "2.6",
+          "impact_factor_5year": "2.7",
+          "impact_factor_quartile": "Q1",
+          "journal_citation_indicator": "1.28",
+          "sjr": "0,723",
+          "sjr_best_quartile": "Q1",
+          "h_index": "86"
+        },
+        "score": 20,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:dogs",
+          "context_distance_match",
+          "relevance:adverse, dosage, efficacy, safety",
+          "high_signal_title",
+          "llm_validated_in_vivo"
+        ],
+        "ddi_relevant": false,
+        "fda_relevant": false
+      }
+    ]
+  },
+  {
+    "drug_name": "Cefquinome",
+    "query": "(\"Cefquinome\"[Title/Abstract] OR \"Cefquinome\"[Name of Substance]) AND (\"Dogs\"[Mesh] OR \"Cats\"[Mesh] OR dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (\"Pharmacokinetics\"[Mesh] OR \"Drug Interactions\"[Mesh] OR \"Toxicity\"[Mesh] OR pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR \"half-life\"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR \"drug interaction\"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT (\"In Vitro Techniques\"[Mesh] OR \"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+    "accepted_references": [
+      {
+        "pmc_id": "244934",
+        "title": "Antibacterial activities in vitro and in vivo and pharmacokinetics of cefquinome (HR 111V), a new broad-spectrum cephalosporin.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC244934/",
+        "abstract": "Cefquinome is a new injectable aminothiazolyl cephalosporin derivative. It is stable against chromosomally and plasmid-encoded beta-lactamases and has a broad antibacterial spectrum. Staphylococcus aureus, streptococci, Pseudomonas aeruginosa, and members of the family Enterobacteriaceae (Escherichia coli, Salmonella spp., Klebsiella spp., Enterobacter spp., Citrobacter spp., and Serratia marcescens) are inhibited at low concentrations. Cefquinome is also active against many strains of methicillin-resistant staphylococci and enterococci. Its in vitro activity against gram-negative anaerobes is very limited. The high in vitro activity of cefquinome is reflected by its high in vivo efficacy against experimental septicemia due to different gram-positive and gram-negative bacteria. We studied the pharmacokinetic properties of cefquinome in mice, dogs, pigs, and calves. After single parenteral administrations, cefquinome displayed high peak levels, declining with half-lives of about 0.5, 0.9, 1.2, and 1.3 h, respectively. The areas under the concentration-time curve determined for dogs and mice showed linear correlations to the given doses. In dogs the urinary recovery was more than 70% within 24 h of dosing. Images",
+        "journal_title": "Antimicrobial Agents and Chemotherapy",
+        "journal_issns": [
+          "0066-4804",
+          "1098-6596"
+        ],
+        "journal_metrics": {
+          "primary_metric_source": "Journal Citation Reports",
+          "metric_year": "2025",
+          "match_method": "issn",
+          "matched_value": "00664804",
+          "jcr": {
+            "journal_title": "ANTIMICROBIAL AGENTS AND CHEMOTHERAPY",
+            "abbreviated_journal": "ANTIMICROB AGENTS CH",
+            "issns": [
+              "00664804",
+              "10986596"
+            ],
+            "publisher": "AMER SOC MICROBIOLOGY",
+            "jif": "4.5",
+            "five_year_jif": "4.4",
+            "jif_without_self_cites": "4.1",
+            "jci": "1.17",
+            "jif_quartile": "Q1",
+            "category": "PHARMACOLOGY & PHARMACY|Q1|78/354",
+            "jif_rank": "64/352",
+            "metric_year": "2025",
+            "metric_source": "Journal Citation Reports",
+            "match_method": "issn",
+            "matched_value": "00664804"
+          },
+          "scimago": {
+            "journal_title": "Antimicrobial Agents and Chemotherapy",
+            "sjr": "1,431",
+            "sjr_best_quartile": "Q1",
+            "h_index": "299",
+            "metric_year": "2024",
+            "match_method": "issn",
+            "matched_value": "00664804"
+          },
+          "impact_factor": "4.5",
+          "impact_factor_5year": "4.4",
+          "impact_factor_quartile": "Q1",
+          "journal_citation_indicator": "1.17",
+          "sjr": "1,431",
+          "sjr_best_quartile": "Q1",
+          "h_index": "299"
+        },
+        "score": 19,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:dogs",
+          "context_distance_match",
+          "relevance:dosing, efficacy, pharmacokinetic, pharmacokinetics",
+          "high_signal_title",
+          "llm_validated_in_vivo"
+        ],
+        "ddi_relevant": false,
+        "fda_relevant": false
+      },
+      {
+        "pmc_id": "11339896",
+        "title": "Adjunctive intravesical EDTA-tromethamine treatment of a biofilm-associated recurrent Escherichia coli cystitis in a dog.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11339896/",
+        "abstract": "A 15-month-old spayed female greater Swiss mountain dog was brought to our clinic because of relapsing episodes of urinary tract infection, present since her adoption at 2 mo of age. A diagnosis of chronic bacterial cystitis associated with an invasive, biofilm-forming uropathogenic Escherichia coli was made with bladder-wall histology and fluorescent in situ hybridization analysis. Local treatment with EDTA-tromethamine (EDTA-Tris) infusions along with parenteral cefquinome and prophylactic measures (Type-A proanthocyanidins and probiotics) coincided with clinical and bacterial remission. The dog has been free of clinical signs of urinary tract infection for >4 y. Biofilm-forming uropathogenic E. coli can cause chronic, recurrent cystitis due to low antibiotic efficacy and should be considered in cases of recurrent cystitis in dogs, especially in the absence of identified predisposing factors. This case report describes the diagnostic and therapeutic options that were used to manage a case of this type. Key clinical message: Fluorescent in situ hybridization analysis may be considered in the diagnosis of chronic bacterial cystitis in dogs, and intravesical instillations of EDTA-Tris may be helpful in managing such cases.",
+        "journal_title": "The Canadian Veterinary Journal",
+        "journal_issns": [
+          "0008-5286"
+        ],
+        "journal_metrics": {
+          "primary_metric_source": "Journal Citation Reports",
+          "metric_year": "2025",
+          "match_method": "issn",
+          "matched_value": "00085286",
+          "jcr": {
+            "journal_title": "CANADIAN VETERINARY JOURNAL-REVUE VETERINAIRE CANADIENNE",
+            "abbreviated_journal": "CAN VET J",
+            "issns": [
+              "00085286"
+            ],
+            "publisher": "CANADIAN VET MED ASSOC",
+            "jif": "1.0",
+            "five_year_jif": "1.3",
+            "jif_without_self_cites": "0.9",
+            "jci": "0.37",
+            "jif_quartile": "Q3",
+            "category": "VETERINARY SCIENCES|Q3|105/167",
+            "jif_rank": "106/170",
+            "metric_year": "2025",
+            "metric_source": "Journal Citation Reports",
+            "match_method": "issn",
+            "matched_value": "00085286"
+          },
+          "scimago": {
+            "journal_title": "Canadian Veterinary Journal",
+            "sjr": "0,319",
+            "sjr_best_quartile": "Q2",
+            "h_index": "74",
+            "metric_year": "2024",
+            "match_method": "issn",
+            "matched_value": "00085286"
+          },
+          "impact_factor": "1.0",
+          "impact_factor_5year": "1.3",
+          "impact_factor_quartile": "Q3",
+          "journal_citation_indicator": "0.37",
+          "sjr": "0,319",
+          "sjr_best_quartile": "Q2",
+          "h_index": "74"
+        },
+        "score": 15,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:dog, dogs",
+          "context_distance_match",
+          "relevance:efficacy, treatment",
+          "llm_validated_in_vivo"
+        ],
+        "ddi_relevant": false,
+        "fda_relevant": false
+      }
+    ]
+  },
+  {
+    "drug_name": "Penicillin G",
+    "query": "(\"Penicillin G\"[Title/Abstract] OR \"Penicillin G\"[Name of Substance]) AND (\"Dogs\"[Mesh] OR \"Cats\"[Mesh] OR dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (\"Pharmacokinetics\"[Mesh] OR \"Drug Interactions\"[Mesh] OR \"Toxicity\"[Mesh] OR pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR \"half-life\"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR \"drug interaction\"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT (\"In Vitro Techniques\"[Mesh] OR \"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+    "accepted_references": [
+      {
+        "pmc_id": "10376885",
+        "title": "Occurrence of Antimicrobial Resistance in Canine and Feline Bacterial Pathogens in Germany under the Impact of the TÄHAV Amendment in 2018.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10376885/",
+        "abstract": "The occurrence of antimicrobial resistance due to the use of antimicrobials is considered to be a main cause for treatment failure of bacterial infections in humans and animals. The right of German veterinarians to use and prescribe medications such as antimicrobials is regulated by the Regulation of Veterinary Pharmacies (TÄHAV). The aim of this study was to investigate the impact of the second amendment to the TÄHAV in 2018 on the occurrence of antimicrobial resistance in selected bacterial pathogens isolated from dogs and cats in Germany. For this purpose, we analyzed antimicrobial susceptibility data from 38 German small animal practices gathered between 2015 and 2021 in cooperation with Laboklin (Labor für klinische Diagnostik GmbH & Co.KG, Bad Kissingen, Germany). Annual cumulative susceptibility data of eight bacterial species were analyzed and compared. The mean value of resistant isolates was determined for each year and supplemented by 95% confidence intervals. Encouraged by the amendment, an increase in sample submissions was observed in Germany. The highest resistance rates to the analyzed substances penicillin G, ampicillin, amoxicillin-clavulanic acid, cefovecin, and enrofloxacin were found for Staphylococcus pseudintermedius ( S. pseudintermedius ), S. aureus , and Escherichia coli (E. coli) . In contrast, resistance rates were low for Pasteurella multocida ( P. multocida ) and β-hemolytic streptococci. Significant resistance trends ( p < 0.05) assumed as influenced by the TÄHAV amendment could be the significant decreases in resistance rates of S. pseudintermedius against penicillin G to 67% (n = 322/479), and ampicillin to 63% (n = 286/453), as well as S. felis against amoxicillin-clavulanic acid and cefovecin to 2% (n = 2/109), furthermore, the reduction in the occurrence of resistance of S. aureus against enrofloxacin to 4% (n = 3/76) in 2021. Moreover, for all species, the efficacy against the analyzed substances was maintained over the study period.",
+        "journal_title": "Antibiotics",
+        "journal_issns": [
+          "2079-6382"
+        ],
+        "journal_metrics": {
+          "primary_metric_source": "Journal Citation Reports",
+          "metric_year": "2025",
+          "match_method": "issn",
+          "matched_value": "20796382",
+          "jcr": {
+            "journal_title": "Antibiotics-Basel",
+            "abbreviated_journal": "ANTIBIOTICS-BASEL",
+            "issns": [
+              "20796382"
+            ],
+            "publisher": "MDPI",
+            "jif": "4.6",
+            "five_year_jif": "4.9",
+            "jif_without_self_cites": "4.2",
+            "jci": "1.14",
+            "jif_quartile": "Q1",
+            "category": "PHARMACOLOGY & PHARMACY|Q1|69/354",
+            "jif_rank": "17/137",
+            "metric_year": "2025",
+            "metric_source": "Journal Citation Reports",
+            "match_method": "issn",
+            "matched_value": "20796382"
+          },
+          "scimago": {
+            "journal_title": "Antibiotics",
+            "sjr": "1,114",
+            "sjr_best_quartile": "Q1",
+            "h_index": "99",
+            "metric_year": "2024",
+            "match_method": "issn",
+            "matched_value": "20796382"
+          },
+          "impact_factor": "4.6",
+          "impact_factor_5year": "4.9",
+          "impact_factor_quartile": "Q1",
+          "journal_citation_indicator": "1.14",
+          "sjr": "1,114",
+          "sjr_best_quartile": "Q1",
+          "h_index": "99"
+        },
+        "score": 10,
+        "reasons": [
+          "title_or_abstract_contains_drug",
+          "species:canine, cats, dogs",
+          "context_distance_penalty",
+          "relevance:efficacy, treatment",
+          "llm_validated_in_vivo"
+        ],
+        "ddi_relevant": false,
+        "fda_relevant": false
+      }
+    ]
+  }
+]

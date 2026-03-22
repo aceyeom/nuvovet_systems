@@ -1,0 +1,851 @@
+■ Drug Name: Epsiprantel
+  - Title: Elimination of probable praziquantel-resistant Dipylidium caninum with nitroscanate in a mixed-breed dog: a case report.
+    Journal: Parasites & Vectors
+    JCR: JIF 3.5, 5Y JIF 3.5, JCI 1.21, Quartile Q1
+    SCImago: SJR 1,036 (Q1), H-index 120
+    Match: title_or_abstract_contains_drug, species:dog, dogs, context_distance_penalty, relevance:dose, efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Ergocalciferol
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Ertapenem
+  - Title: Design, synthesis, and evaluation of prodrugs of ertapenem.
+    Journal: ACS Medicinal Chemistry Letters
+    JCR: JIF 4.0, 5Y JIF 4.0, JCI 0.95, Quartile Q2
+    SCImago: SJR 0,805 (Q1), H-index 93
+    Match: title_or_abstract_contains_drug, species:dog, context_distance_penalty, relevance:absorption, dosing, pharmacokinetic, llm_validated_in_vivo
+  - Title: Ceftaroline versus isolates from animal bite wounds: comparative in vitro activities against 243 isolates, including 156 Pasteurella species isolates.
+    Journal: Antimicrobial Agents and Chemotherapy
+    JCR: JIF 4.5, 5Y JIF 4.4, JCI 1.17, Quartile Q1
+    SCImago: SJR 1,431 (Q1), H-index 299
+    Match: title_or_abstract_contains_drug, species:dogs, context_distance_penalty, relevance:approved, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Erythromycin
+  - Title: Ultrasonographic assessment of the effect of metoclopramide, erythromycin, and exenatide on solid-phase gastric emptying in healthy cats.
+    Journal: Journal of Veterinary Internal Medicine
+    JCR: JIF 2.2, 5Y JIF 2.8, JCI 1.12, Quartile Q1
+    SCImago: SJR 0,971 (Q1), H-index 130
+    Match: title_or_abstract_contains_drug, species:cat, cats, context_distance_match, relevance:dosage, llm_validated_in_vivo
+  - Title: Use of erythromycin and metoclopramide in hospitalized dogs: a multicenter historical cohort study.
+    Journal: Frontiers in Veterinary Science
+    JCR: JIF 2.9, 5Y JIF 3.3, JCI 1.28, Quartile Q1
+    SCImago: SJR 0,783 (Q1), H-index 85
+    Match: title_or_abstract_contains_drug, species:dog, dogs, context_distance_match, relevance:safety, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Esmolol
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Esomeprazole
+  - Title: Pharmacokinetics and Acid Suppressant Efficacy of Esomeprazole after Intravenous, Oral, and Subcutaneous Administration to Healthy Beagle Dogs.
+    Journal: Journal of Veterinary Internal Medicine
+    JCR: JIF 2.2, 5Y JIF 2.8, JCI 1.12, Quartile Q1
+    SCImago: SJR 0,971 (Q1), H-index 130
+    Match: title_or_abstract_contains_drug, species:dogs, context_distance_match, relevance:adverse, bioavailability, dosing, efficacy, high_signal_title, llm_validated_in_vivo
+  - Title: Pharmacokinetics and pharmacodynamics of intravenous esomeprazole at 2 different dosages in dogs.
+    Journal: Journal of Veterinary Internal Medicine
+    JCR: JIF 2.2, 5Y JIF 2.8, JCI 1.12, Quartile Q1
+    SCImago: SJR 0,971 (Q1), H-index 130
+    Match: title_or_abstract_contains_drug, species:dogs, context_distance_match, relevance:dosage, dosing, efficacy, label, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Estradiol
+  - Title: Estradiol-17β Pharmacokinetics and Histological Assessment of the Ovaries and Uterine Horns following Intramuscular Administration of Estradiol Cypionate in Feral Cats.
+    Journal: Animals : an Open Access Journal from MDPI
+    JCR: JIF 2.7, 5Y JIF 3.2, JCI 1.31, Quartile Q1
+    SCImago: SJR 0,733 (Q1), H-index 95
+    Match: title_or_abstract_contains_drug, species:cat, cats, context_distance_match, relevance:dose, pharmacokinetics, toxicity, high_signal_title, llm_validated_in_vivo
+  - Title: Discovery and Preclinical Development of Orally Active Small Molecules that Exhibit Highly Selective Follicle Stimulating Hormone Receptor Agonism.
+    Journal: Frontiers in Pharmacology
+    JCR: JIF 4.8, 5Y JIF 5.2, JCI 1.12, Quartile Q1
+    SCImago: SJR 1,220 (Q1), H-index 175
+    Match: title_or_abstract_contains_drug, species:dog, context_distance_match, relevance:dose, efficacy, metabolism, pharmacokinetics, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Estriol
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Ethambutol
+  - Title: Expanding metabolism for total biosynthesis of the nonnatural amino acid L-homoalanine.
+    Journal: Proceedings of the National Academy of Sciences of the United States of America
+    JCR: JIF 9.1, 5Y JIF 10.6, JCI 2.30, Quartile Q1
+    SCImago: SJR 3,414 (Q1), H-index 896
+    Match: title_or_abstract_contains_drug, species:cat, context_distance_penalty, relevance:metabolism, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Ethanol
+  - Title: The effect of ethanol on oral cocaine pharmacokinetics reveals an unrecognized class of ethanol-mediated drug interactions.
+    Journal: Drug Metabolism and Disposition
+    JCR: JIF 4.0, 5Y JIF 3.6, JCI 1.10, Quartile Q1
+    SCImago: SJR 1,245 (Q1), H-index 198
+    Match: title_or_abstract_contains_drug, species:dog, dogs, context_distance_match, relevance:bioavailability, clearance, interaction, metabolism, high_signal_title, llm_validated_in_vivo
+  - Title: 305 The battle of yeasts: Ethanol or brewer’s yeast? How yeast processing impacts feline food preferences and flavor enhancement.
+    Journal: Journal of Animal Science
+    JCR: JIF 2.9, 5Y JIF 3.3, JCI 1.09, Quartile Q1
+    SCImago: SJR 0,755 (Q1), H-index 191
+    Match: title_or_abstract_contains_drug, species:cat, cats, feline, context_distance_match, relevance:bioavailability, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Etodolac
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Etomidate
+  - Title: Metabolite identification, tissue distribution, excretion and preclinical pharmacokinetic studies of ET-26-HCl, a new analogue of etomidate.
+    Journal: Royal Society Open Science
+    JCR: JIF 2.9, 5Y JIF 3.2, JCI 0.90, Quartile Q2
+    SCImago: SJR 0,795 (Q1), H-index 92
+    Match: title_or_abstract_contains_drug, species:dogs, context_distance_match, relevance:clearance, distribution, excretion, pharmacokinetic, high_signal_title, llm_validated_in_vivo
+  - Title: Advancing novel anesthetics: pharmacodynamic and pharmacokinetic studies of cyclopropyl-methoxycarbonyl metomidate in dogs.
+    Journal: Anesthesiology
+    JCR: JIF 9.1, 5Y JIF 9.1, JCI 3.63, Quartile Q1
+    SCImago: SJR 1,946 (Q1), H-index 277
+    Match: title_or_abstract_contains_drug, species:dogs, context_distance_match, relevance:pharmacodynamic, pharmacokinetic, pharmacokinetics, pharmacology, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Exenatide
+  - Title: Ultra-sensitive bioanalysis of the therapeutic peptide exenatide for accurate pharmacokinetic analyses at effective plasma concentrations utilizing UPLC-MS/MS.
+    Journal: Journal of Pharmaceutical Analysis
+    JCR: JIF 8.9, 5Y JIF 8.4, JCI 2.01, Quartile Q1
+    SCImago: SJR 1,452 (Q1), H-index 60
+    Match: title_or_abstract_contains_drug, species:dogs, context_distance_match, relevance:approved, pharmacokinetic, pharmacokinetics, treatment, high_signal_title, llm_validated_in_vivo
+  - Title: Safety, Tolerability, and Proof-Of-Concept Study of OKV-119, a Novel Exenatide Long-Term Drug Delivery System, in Healthy Cats.
+    Journal: Frontiers in Veterinary Science
+    JCR: JIF 2.9, 5Y JIF 3.3, JCI 1.28, Quartile Q1
+    SCImago: SJR 0,783 (Q1), H-index 85
+    Match: title_or_abstract_contains_drug, species:cats, feline, context_distance_match, relevance:safety, treatment, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Fatty Acid Omega-3
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Famciclovir
+  - Title: Non-linear pharmacokinetics of penciclovir in healthy cats after single and multiple oral administration of famciclovir.
+    Journal: Frontiers in Veterinary Science
+    JCR: JIF 2.9, 5Y JIF 3.3, JCI 1.28, Quartile Q1
+    SCImago: SJR 0,783 (Q1), H-index 85
+    Match: title_or_abstract_contains_drug, species:cat, cats, feline, context_distance_match, relevance:absorption, bioavailability, dosage, dose, high_signal_title, llm_validated_in_vivo
+  - Title: Treatment of feline herpesvirus-1 associated disease in cats with famciclovir and related drugs.
+    Journal: Journal of Feline Medicine and Surgery
+    JCR: JIF 2.1, 5Y JIF 2.2, JCI 0.95, Quartile Q1
+    SCImago: SJR 0,768 (Q1), H-index 81
+    Match: title_or_abstract_contains_drug, species:cat, cats, feline, context_distance_match, relevance:dosing, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Famotidine
+  - Title: The frequency of oral famotidine administration influences its effect on gastric pH in cats over time.
+    Journal: Journal of Veterinary Internal Medicine
+    JCR: JIF 2.2, 5Y JIF 2.8, JCI 1.12, Quartile Q1
+    SCImago: SJR 0,971 (Q1), H-index 130
+    Match: title_or_abstract_contains_drug, species:cats, dogs, context_distance_match, relevance:efficacy, interaction, treatment, llm_validated_in_vivo
+  - Title: Evaluation of the effect of a famotidine continuous rate infusion on intragastric pH in healthy dogs.
+    Journal: Journal of Veterinary Internal Medicine
+    JCR: JIF 2.2, 5Y JIF 2.8, JCI 1.12, Quartile Q1
+    SCImago: SJR 0,971 (Q1), H-index 130
+    Match: title_or_abstract_contains_drug, species:dogs, context_distance_match, relevance:dose, efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Felbamate
+  - Title: Felbamate as an oral add-on therapy in six dogs with presumptive idiopathic epilepsy and generalized seizures resistant to drug therapy.
+    Journal: Open Veterinary Journal
+    JCR: JIF 1.0, 5Y JIF 1.2, JCI 0.47, Quartile Q3
+    SCImago: SJR 0,362 (Q2), H-index 22
+    Match: title_or_abstract_contains_drug, species:canine, dog, dogs, context_distance_match, relevance:adverse, efficacy, pharmacokinetic, safety, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Fenbendazole
+  - Title: Efficacy evaluation of anthelmintic products against an infection with the canine hookworm (Ancylostoma caninum) isolate Worthy 4.1F3P in dogs.
+    Journal: International Journal for Parasitology: Drugs and Drug Resistance
+    JCR: JIF 3.4, 5Y JIF 3.9, JCI 1.17, Quartile Q1
+    SCImago: SJR 0,962 (Q1), H-index 52
+    Match: title_or_abstract_contains_drug, species:canine, dogs, context_distance_match, relevance:approved, efficacy, label, treatment, llm_validated_in_vivo
+  - Title: Lack of efficacy of fenbendazole against Giardia duodenalis in a naturally infected population of dogs in France.
+    Journal: Parasite
+    JCR: JIF 2.4, 5Y JIF 2.7, JCI 0.73, Quartile Q2
+    SCImago: SJR 0,650 (Q1), H-index 58
+    Match: title_or_abstract_contains_drug, species:canine, dogs, context_distance_match, relevance:approved, efficacy, excretion, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Fenofibrate
+  - Title: Therapy for feline secondary hypertriglyceridemia with fenofibrate.
+    Journal: Journal of Feline Medicine and Surgery
+    JCR: JIF 2.1, 5Y JIF 2.2, JCI 0.95, Quartile Q1
+    SCImago: SJR 0,768 (Q1), H-index 81
+    Match: title_or_abstract_contains_drug, species:cats, feline, context_distance_match, relevance:adverse, dose, efficacy, safety, llm_validated_in_vivo
+  - Title: Fenofibrate modified-release pellets with lag phase and high oral bioavailability.
+    Journal: Drug Design, Development and Therapy
+    JCR: JIF 5.1, 5Y JIF 5.2, JCI 1.16, Quartile Q1
+    SCImago: SJR 1,190 (Q1), H-index 108
+    Match: title_or_abstract_contains_drug, species:dogs, context_distance_match, relevance:bioavailability, pharmacokinetic, safety, toxicity, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Fenoldopam
+  - Title: Preliminary pharmacokinetics and cardiovascular effects of fenoldopam continuous rate infusion in six healthy dogs.
+    Journal: Journal of Veterinary Pharmacology and Therapeutics
+    JCR: JIF 1.7, 5Y JIF 1.7, JCI 0.61, Quartile Q2
+    SCImago: SJR 0,386 (Q2), H-index 70
+    Match: title_or_abstract_contains_drug, species:dogs, context_distance_match, relevance:clearance, pharmacokinetic, pharmacokinetics, high_signal_title, llm_validated_in_vivo
+  - Title: Effect of Fenoldopam Continuous Infusion on Glomerular Filtration Rate and Fractional Excretion of Sodium in Healthy Dogs.
+    Journal: Journal of Veterinary Internal Medicine
+    JCR: JIF 2.2, 5Y JIF 2.8, JCI 1.12, Quartile Q1
+    SCImago: SJR 0,971 (Q1), H-index 130
+    Match: title_or_abstract_contains_drug, species:cats, dogs, context_distance_match, relevance:adverse, clearance, excretion, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Fentanyl, Injection
+  - Title: Is Fentanyl Rebound an Intrinsic Feature of Naloxone Reversal?
+    Journal: Pharmaceuticals
+    JCR: JIF 4.8, 5Y JIF 4.9, JCI 1.06, Quartile Q1
+    SCImago: SJR 1,019 (Q1), H-index 103
+    Match: title_or_abstract_contains_drug, species:dog, dogs, context_distance_penalty, relevance:distribution, dose, half-life, pharmacokinetic, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Fentanyl, Transdermal Patch
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Ferrous Sulfate
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Fexofenadine
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Filgrastim, Granulocyte Colony Stimulating Factor, Gcsf
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Finasteride
+  - Title: Doppler Ultrasonography in the Diagnosis of Dogs With Benign Prostatic Hyperplasia and Investigation of the Efficacy of Finasteride in Treatment.
+    Journal: Veterinary Medicine and Science
+    JCR: JIF 1.7, 5Y JIF 2.0, JCI 0.84, Quartile Q2
+    SCImago: SJR 0,551 (Q1), H-index 30
+    Match: title_or_abstract_contains_drug, species:canine, dogs, context_distance_match, relevance:efficacy, treatment, llm_validated_in_vivo
+  - Title: Finasteride-Induced Inhibition of 5α-Reductase Type 2 Could Lead to Kidney Damage-Animal, Experimental Study.
+    Journal: International Journal of Environmental Research and Public Health
+    JCR: 매핑 없음
+    SCImago: SJR 0,919 (Q2), H-index 229
+    Match: title_or_abstract_contains_drug, species:cat, context_distance_penalty, relevance:adverse, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Firocoxib
+  - Title: Synopsis of the pharmacokinetics, pharmacodynamics, applications, and safety of firocoxib in horses.
+    Journal: Veterinary and Animal Science
+    JCR: JIF 2.2, 5Y JIF 2.3, JCI 0.95, Quartile Q1
+    SCImago: SJR 0,540 (Q1), H-index 23
+    Match: title_or_abstract_contains_drug, species:dogs, context_distance_match, relevance:approved, bioavailability, distribution, dose, high_signal_title, llm_validated_in_vivo
+  - Title: Efficacy of cyclo-oxygenase inhibition by two commercially available firocoxib products in horses.
+    Journal: Equine veterinary journal
+    JCR: JIF 2.2, 5Y JIF 2.3, JCI 1.18, Quartile Q1
+    SCImago: SJR 0,738 (Q1), H-index 105
+    Match: title_or_abstract_contains_drug, species:canine, context_distance_match, relevance:approved, dosing, efficacy, label, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Florfenicol
+  - Title: A randomized, controlled, single-blinded, multicenter evaluation of the efficacy and safety of a once weekly two dose otic gel containing florfenicol, terbinafine and betamethasone administered for the treatment of canine otitis externa.
+    Journal: BMC Veterinary Research
+    JCR: JIF 2.6, 5Y JIF 2.7, JCI 1.28, Quartile Q1
+    SCImago: SJR 0,723 (Q1), H-index 86
+    Match: title_or_abstract_contains_drug, species:canine, dogs, context_distance_match, relevance:adverse, dose, efficacy, safety, high_signal_title, llm_validated_in_vivo
+  - Title: A randomized placebo-controlled trial of the efficacy and safety of a terbinafine, florfenicol and betamethasone topical ear formulation in dogs for the treatment of bacterial and/or fungal otitis externa.
+    Journal: BMC Veterinary Research
+    JCR: JIF 2.6, 5Y JIF 2.7, JCI 1.28, Quartile Q1
+    SCImago: SJR 0,723 (Q1), H-index 86
+    Match: title_or_abstract_contains_drug, species:dogs, context_distance_match, relevance:adverse, efficacy, interaction, safety, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Fluconazole
+  - Title: Effect of Sijunzi Pills on Pharmacokinetics of Omeprazole in Beagle Dogs by HPLC-UV: A Herb-Drug Interaction Study.
+    Journal: Evidence-based Complementary and Alternative Medicine : eCAM
+    JCR: 매핑 없음
+    SCImago: 매핑 없음
+    Match: title_or_abstract_contains_drug, species:dog, dogs, context_distance_match, relevance:adverse, clearance, distribution, dose, high_signal_title, llm_validated_in_vivo
+  - Title: Pharmacokinetic evaluation of UK-49,858, a metabolically stable triazole antifungal drug, in animals and humans.
+    Journal: Antimicrobial Agents and Chemotherapy
+    JCR: JIF 4.5, 5Y JIF 4.4, JCI 1.17, Quartile Q1
+    SCImago: SJR 1,431 (Q1), H-index 299
+    Match: title_or_abstract_contains_drug, species:dogs, context_distance_match, relevance:bioavailability, clearance, distribution, dose, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Flucytosine
+  - Title: Invasive fungal infections and oomycoses in cats 2. Antifungal therapy.
+    Journal: Journal of Feline Medicine and Surgery
+    JCR: JIF 2.1, 5Y JIF 2.2, JCI 0.95, Quartile Q1
+    SCImago: SJR 0,768 (Q1), H-index 81
+    Match: title_or_abstract_contains_drug, species:cats, feline, context_distance_match, relevance:adverse, pharmacodynamic, pharmacokinetic, treatment, llm_validated_in_vivo
+  - Title: Feline cryptococcosis: impact of current research on clinical management.
+    Journal: Journal of Feline Medicine and Surgery
+    JCR: JIF 2.1, 5Y JIF 2.2, JCI 0.95, Quartile Q1
+    SCImago: SJR 0,768 (Q1), H-index 81
+    Match: title_or_abstract_contains_drug, species:cats, feline, context_distance_match, relevance:toxicity, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Fludrocortisone
+  - Title: Evaluation of a low-dose desoxycorticosterone pivalate treatment protocol for long-term management of dogs with primary hypoadrenocorticism.
+    Journal: Journal of Veterinary Internal Medicine
+    JCR: JIF 2.2, 5Y JIF 2.8, JCI 1.12, Quartile Q1
+    SCImago: SJR 0,971 (Q1), H-index 130
+    Match: title_or_abstract_contains_drug, species:dogs, context_distance_match, relevance:dosage, dose, efficacy, treatment, llm_validated_in_vivo
+  - Title: Efficacy and side effects of long-term treatment strategies of canine primary hypoadrenocorticism.
+    Journal: Frontiers in Veterinary Science
+    JCR: JIF 2.9, 5Y JIF 3.3, JCI 1.28, Quartile Q1
+    SCImago: SJR 0,783 (Q1), H-index 85
+    Match: title_or_abstract_contains_drug, species:canine, dog, dogs, context_distance_match, relevance:dose, efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Flumazenil
+  - Title: Could Flumazenil Be Used Pre-hospital by Intramuscular Injection for Coma due to Mixed Drug Overdose Not Responding to Naloxone?: A Systematic Review of the Evidence.
+    Journal: Basic & Clinical Pharmacology & Toxicology
+    JCR: JIF 3.3, 5Y JIF 3.3, JCI 0.78, Quartile Q2
+    SCImago: SJR 0,822 (Q2), H-index 108
+    Match: title_or_abstract_contains_drug, species:canine, context_distance_match, relevance:adverse, efficacy, safety, treatment, high_signal_title, llm_validated_in_vivo
+  - Title: Prolonged Anesthetic Recovery after Continuous Infusion of Midazolam in 2 Domestic Cats (Felis catus).
+    Journal: Comparative Medicine
+    JCR: JIF 1.1, 5Y JIF 1.5, JCI 0.62, Quartile Q3
+    SCImago: SJR 0,425 (Q2), H-index 77
+    Match: title_or_abstract_contains_drug, species:cats, context_distance_match, relevance:dose, efficacy, pharmacokinetic, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Flumethasone
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Flunixin
+  - Title: A comparison of ketorolac with flunixin, butorphanol, and oxymorphone in controlling postoperative pain in dogs.
+    Journal: The Canadian Veterinary Journal
+    JCR: JIF 1.0, 5Y JIF 1.3, JCI 0.37, Quartile Q3
+    SCImago: SJR 0,319 (Q2), H-index 74
+    Match: title_or_abstract_contains_drug, species:dog, dogs, context_distance_match, relevance:efficacy, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Fluorouracil
+  - Title: Pharmacokinetics and tolerance of repeated oral administration of 5-fluorocytosine in healthy dogs.
+    Journal: BMC Veterinary Research
+    JCR: JIF 2.6, 5Y JIF 2.7, JCI 1.28, Quartile Q1
+    SCImago: SJR 0,723 (Q1), H-index 86
+    Match: title_or_abstract_contains_drug, species:dogs, context_distance_match, relevance:adverse, clearance, half-life, pharmacokinetics, high_signal_title, llm_validated_in_vivo
+  - Title: A pilot study investigating plasma pharmacokinetics and tolerance of oral capecitabine in carcinoma-bearing dogs.
+    Journal: BMC Veterinary Research
+    JCR: JIF 2.6, 5Y JIF 2.7, JCI 1.28, Quartile Q1
+    SCImago: SJR 0,723 (Q1), H-index 86
+    Match: title_or_abstract_contains_drug, species:dogs, context_distance_match, relevance:adverse, dosage, dose, dosing, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Fluoxetine
+  - Title: Owner-Directed Feline Aggression in Thailand: Characteristics, Associated Factors, and a Clinical Comparison of Treatments.
+    Journal: Life
+    JCR: JIF 3.4, 5Y JIF 3.4, JCI 0.75, Quartile Q1
+    SCImago: SJR 0,824 (Q1), H-index 69
+    Match: title_or_abstract_contains_drug, species:cat, cats, feline, context_distance_match, relevance:adverse, efficacy, treatment, llm_validated_in_vivo
+  - Title: Behavioral Therapy and Fluoxetine Treatment in Aggressive Dogs: A Case Study.
+    Journal: Animals : an Open Access Journal from MDPI
+    JCR: JIF 2.7, 5Y JIF 3.2, JCI 1.31, Quartile Q1
+    SCImago: SJR 0,733 (Q1), H-index 95
+    Match: title_or_abstract_contains_drug, species:canine, dog, dogs, context_distance_match, relevance:dosage, efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Fluralaner
+  - Title: Safety of topical administration of fluralaner plus moxidectin concurrently with praziquantel in cats.
+    Journal: Parasites & Vectors
+    JCR: JIF 3.5, 5Y JIF 3.5, JCI 1.21, Quartile Q1
+    SCImago: SJR 1,036 (Q1), H-index 120
+    Match: title_or_abstract_contains_drug, species:cats, feline, context_distance_match, relevance:adverse, dose, efficacy, safety, high_signal_title, llm_validated_in_vivo
+  - Title: Comparative pharmacokinetics of fluralaner in dogs and cats following single topical or intravenous administration.
+    Journal: Parasites & Vectors
+    JCR: JIF 3.5, 5Y JIF 3.5, JCI 1.21, Quartile Q1
+    SCImago: SJR 1,036 (Q1), H-index 120
+    Match: title_or_abstract_contains_drug, species:cats, dogs, context_distance_match, relevance:clearance, distribution, dose, efficacy, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Fluticasone
+  - Title: Pharmacokinetic Profile of Intra-articular Fluticasone Propionate Microparticles in Beagle Dog Knees.
+    Journal: Cartilage
+    JCR: JIF 2.7, 5Y JIF 3.3, JCI 1.23, Quartile Q2
+    SCImago: SJR 1,064 (Q1), H-index 52
+    Match: title_or_abstract_contains_drug, species:dog, dogs, context_distance_match, relevance:dose, dosing, half-life, pharmacokinetic, high_signal_title, llm_validated_in_vivo
+  - Title: Prospective evaluation of the efficacy of inhaled steroids administered via the AeroDawg spacing chamber in management of dogs with chronic cough.
+    Journal: Journal of Veterinary Internal Medicine
+    JCR: JIF 2.2, 5Y JIF 2.8, JCI 1.12, Quartile Q1
+    SCImago: SJR 0,971 (Q1), H-index 130
+    Match: title_or_abstract_contains_drug, species:dog, dogs, context_distance_match, relevance:adverse, efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Fluvoxamine
+  - Title: Review of the animal pharmacology and pharmacokinetics of fluvoxamine.
+    Journal: British Journal of Clinical Pharmacology
+    JCR: JIF 3.0, 5Y JIF 3.4, JCI 0.79, Quartile Q2
+    SCImago: SJR 1,155 (Q1), H-index 176
+    Match: title_or_abstract_contains_drug, species:dog, dogs, context_distance_match, relevance:pharmacokinetics, pharmacology, high_signal_title, llm_validated_in_vivo
+  - Title: Metabolism of ropinirole is mediated by several canine CYP enzymes.
+    Journal: Veterinary Medicine and Science
+    JCR: JIF 1.7, 5Y JIF 2.0, JCI 0.84, Quartile Q2
+    SCImago: SJR 0,551 (Q1), H-index 30
+    Match: title_or_abstract_contains_drug, species:canine, dog, dogs, context_distance_penalty, relevance:clearance, metabolism, pharmacokinetics, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Folic Acid
+  - Title: Hypospermia Improvement in Dogs Fed on a Nutraceutical Diet.
+    Journal: The Scientific World Journal
+    JCR: 매핑 없음
+    SCImago: SJR 0,653 (Q2), H-index 136
+    Match: title_or_abstract_contains_drug, species:canine, dog, dogs, context_distance_match, relevance:adverse, efficacy, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Fomepizole
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Fosfomycin
+  - Title: Plasma and Urine Pharmacokinetics of Oral Fosfomycin Tromethamine in Dogs.
+    Journal: Veterinary Sciences
+    JCR: JIF 2.3, 5Y JIF 2.4, JCI 1.07, Quartile Q1
+    SCImago: SJR 0,653 (Q1), H-index 38
+    Match: title_or_abstract_contains_drug, species:canine, dogs, context_distance_match, relevance:adverse, bioavailability, dose, pharmacokinetic, high_signal_title, llm_validated_in_vivo
+  - Title: Urinary Pharmacokinetic and Pharmacodynamic Profiles of Fosfomycin against Extended-Spectrum β-Lactamase-Producing Escherichia coli with Canine Ex Vivo Modeling: A Pilot Study.
+    Journal: Antibiotics
+    JCR: JIF 4.6, 5Y JIF 4.9, JCI 1.14, Quartile Q1
+    SCImago: SJR 1,114 (Q1), H-index 99
+    Match: title_or_abstract_contains_drug, species:canine, dogs, context_distance_match, relevance:efficacy, pharmacodynamic, pharmacokinetic, treatment, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Frunevetmab
+  - Title: Pharmacokinetics and Immunogenicity of Frunevetmab in Osteoarthritic Cats Following Intravenous and Subcutaneous Administration.
+    Journal: Frontiers in Veterinary Science
+    JCR: JIF 2.9, 5Y JIF 3.3, JCI 1.28, Quartile Q1
+    SCImago: SJR 0,783 (Q1), H-index 85
+    Match: title_or_abstract_contains_drug, species:cats, feline, context_distance_match, relevance:adverse, bioavailability, dosing, efficacy, high_signal_title, llm_validated_in_vivo
+  - Title: Safety assessment of frunevetmab for osteoarthritis pain in cats: disproportionality analysis of the Food and Drug Administration Animal Drug Adverse Events database.
+    Journal: Journal of Veterinary Internal Medicine
+    JCR: JIF 2.2, 5Y JIF 2.8, JCI 1.12, Quartile Q1
+    SCImago: SJR 0,971 (Q1), H-index 130
+    Match: title_or_abstract_contains_drug, species:cats, feline, context_distance_match, relevance:adverse, efficacy, package insert, safety, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Furazolidone
+  - Title: Myocardial diseases of animals.
+    Journal: The American Journal of Pathology
+    JCR: JIF 3.6, 5Y JIF 4.8, JCI 1.64, Quartile Q1
+    SCImago: SJR 1,313 (Q1), H-index 313
+    Match: title_or_abstract_contains_drug, species:canine, cats, dogs, context_distance_match, relevance:toxicity, llm_validated_in_vivo
+  - Title: Characterization of the NAD(P)H oxidase and metronidazole reductase activities of the RdxA nitroreductase of Helicobacter pylori.
+    Journal: The FEBS journal
+    JCR: JIF 4.2, 5Y JIF 5.6, JCI 0.75, Quartile Q2
+    SCImago: SJR 2,212 (Q1), H-index 239
+    Match: title_or_abstract_contains_drug, species:cat, context_distance_match, relevance:toxicity, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Furosemide
+  - Title: Pharmacokinetic and pharmacodynamic properties of orally administered torasemide in healthy cats.
+    Journal: Journal of Veterinary Internal Medicine
+    JCR: JIF 2.2, 5Y JIF 2.8, JCI 1.12, Quartile Q1
+    SCImago: SJR 0,971 (Q1), H-index 130
+    Match: title_or_abstract_contains_drug, species:cats, dogs, context_distance_match, relevance:adverse, bioavailability, clearance, dose, high_signal_title, llm_validated_in_vivo
+  - Title: Pharmacokinetics of furosemide after intravenous, oral and transdermal administration to cats.
+    Journal: Journal of Feline Medicine and Surgery
+    JCR: JIF 2.1, 5Y JIF 2.2, JCI 0.95, Quartile Q1
+    SCImago: SJR 0,768 (Q1), H-index 81
+    Match: title_or_abstract_contains_drug, species:cats, context_distance_match, relevance:absorption, bioavailability, clearance, distribution, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Glucosamine Chondroitin Sulfate
+  - Title: Clinical efficacy of Curcuvet and Boswellic acid combined with conventional nutraceutical product: An aid to canine osteoarthritis.
+    Journal: PLoS ONE
+    JCR: JIF 2.6, 5Y JIF 3.2, JCI 0.85, Quartile Q2
+    SCImago: SJR 0,803 (Q1), H-index 467
+    Match: title_or_abstract_contains_drug, species:canine, dogs, context_distance_penalty, relevance:efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Gabapentin
+  - Title: Gabapentin: Clinical Use and Pharmacokinetics in Dogs, Cats, and Horses.
+    Journal: Animals : an Open Access Journal from MDPI
+    JCR: JIF 2.7, 5Y JIF 3.2, JCI 1.31, Quartile Q1
+    SCImago: SJR 0,733 (Q1), H-index 95
+    Match: title_or_abstract_contains_drug, species:cats, dogs, context_distance_match, relevance:dosage, efficacy, label, pharmacodynamic, high_signal_title, llm_validated_in_vivo
+  - Title: The pharmacokinetics of gabapentin in cats.
+    Journal: Journal of Veterinary Internal Medicine
+    JCR: JIF 2.2, 5Y JIF 2.8, JCI 1.12, Quartile Q1
+    SCImago: SJR 0,971 (Q1), H-index 130
+    Match: title_or_abstract_contains_drug, species:cats, context_distance_match, relevance:bioavailability, dose, dosing, efficacy, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Gamithromycin
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Gemcitabine
+  - Title: Novel Approaches to Monitor Pharmacokinetics and Metabolism of Gemcitabine-Ibandronate Conjugate in Mice and Dogs.
+    Journal: Molecules
+    JCR: JIF 4.6, 5Y JIF 5.0, JCI 0.72, Quartile Q2
+    SCImago: SJR 0,865 (Q1), H-index 261
+    Match: title_or_abstract_contains_drug, species:dog, dogs, context_distance_match, relevance:distribution, metabolism, pharmacokinetic, pharmacokinetics, high_signal_title, llm_validated_in_vivo
+  - Title: Aerosol gemcitabine: preclinical safety and in vivo antitumor activity in osteosarcoma-bearing dogs.
+    Journal: Journal of Aerosol Medicine and Pulmonary Drug Delivery
+    JCR: JIF 1.8, 5Y JIF 2.6, JCI 0.44, Quartile Q3
+    SCImago: SJR 0,352 (Q2), H-index 86
+    Match: title_or_abstract_contains_drug, species:dog, dogs, context_distance_match, relevance:safety, toxicity, treatment, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Gemfibrozil
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Gentamicin, Systemic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Glipizide
+  - Title: Pharmacokinetics Study of Herb-Drug Interaction of Berberine and Glipizide in Beagle Dogs Using UPLC-MS/MS.
+    Journal: International Journal of Analytical Chemistry
+    JCR: JIF 1.7, 5Y JIF 1.9, JCI 0.43, Quartile Q3
+    SCImago: SJR 0,414 (Q3), H-index 34
+    Match: title_or_abstract_contains_drug, species:dogs, context_distance_match, relevance:drug interaction, interaction, pharmacokinetic, pharmacokinetics, high_signal_title, llm_validated_in_vivo
+  - Title: Efficacy and Safety of Non-Insulin Antidiabetic Drugs in Cats: A Systematic Review.
+    Journal: Animals : an Open Access Journal from MDPI
+    JCR: JIF 2.7, 5Y JIF 3.2, JCI 1.31, Quartile Q1
+    SCImago: SJR 0,733 (Q1), H-index 95
+    Match: title_or_abstract_contains_drug, species:cat, cats, feline, context_distance_match, relevance:efficacy, safety, treatment, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Glucagon
+  - Title: Comparative Pharmacological and Pharmaceutical Perspectives on Antidiabetic Therapies in Humans, Dogs, and Cats.
+    Journal: Pharmaceutics
+    JCR: JIF 5.5, 5Y JIF 5.8, JCI 1.30, Quartile Q1
+    SCImago: SJR 1,075 (Q1), H-index 129
+    Match: title_or_abstract_contains_drug, species:canine, cats, dogs, context_distance_match, relevance:efficacy, label, metabolism, pharmacokinetic, llm_validated_in_vivo
+  - Title: Gcg-XTEN: an improved glucagon capable of preventing hypoglycemia without increasing baseline blood glucose.
+    Journal: PLoS ONE
+    JCR: JIF 2.6, 5Y JIF 3.2, JCI 0.85, Quartile Q2
+    SCImago: SJR 0,803 (Q1), H-index 467
+    Match: title_or_abstract_contains_drug, species:dogs, context_distance_match, relevance:clearance, dose, dosing, efficacy, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Glyburide
+  - Title: Pharmacokinetics and safety of oral glyburide in dogs with acute spinal cord injury.
+    Journal: PeerJ
+    JCR: JIF 2.4, 5Y JIF 2.7, JCI 0.69, Quartile Q2
+    SCImago: SJR 0,625 (Q1), H-index 124
+    Match: title_or_abstract_contains_drug, species:canine, dog, dogs, context_distance_match, relevance:dose, dosing, half-life, pharmacokinetic, high_signal_title, llm_validated_in_vivo
+  - Title: The ATP-sensitive K+ channel mediates hypotension in endotoxemia and hypoxic lactic acidosis in dog.
+    Journal: Journal of Clinical Investigation
+    JCR: JIF 13.6, 5Y JIF 14.4, JCI 3.18, Quartile Q1
+    SCImago: SJR 4,721 (Q1), H-index 558
+    Match: title_or_abstract_contains_drug, species:dog, context_distance_penalty, relevance:metabolism, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Glycerin, Oral
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Glycopyrrolate
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Gonadorelin
+  - Title: Disappearance of signs of heat and induction of ovulation in oestrous queens with gonadorelin: a clinical study.
+    Journal: Journal of Feline Medicine and Surgery
+    JCR: JIF 2.1, 5Y JIF 2.2, JCI 0.95, Quartile Q1
+    SCImago: SJR 0,768 (Q1), H-index 81
+    Match: title_or_abstract_contains_drug, species:cat, context_distance_match, relevance:dose, efficacy, treatment, llm_validated_in_vivo
+  - Title: Semen quality and interval to sterility in tom cats treated with a 9.4 mg deslorelin implant.
+    Journal: Journal of Feline Medicine and Surgery
+    JCR: JIF 2.1, 5Y JIF 2.2, JCI 0.95, Quartile Q1
+    SCImago: SJR 0,768 (Q1), H-index 81
+    Match: title_or_abstract_contains_drug, species:cat, cats, feline, context_distance_match, relevance:efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Granisetron
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Grapiprant
+  - Title: Tolerance and Pharmacokinetics of Galliprant™ Administered Orally to Collies Homozygous for MDR1-1Δ.
+    Journal: Journal of Veterinary Pharmacology and Therapeutics
+    JCR: JIF 1.7, 5Y JIF 1.7, JCI 0.61, Quartile Q2
+    SCImago: SJR 0,386 (Q2), H-index 70
+    Match: title_or_abstract_contains_drug, species:dog, dogs, context_distance_match, relevance:absorption, clearance, dosage, dose, high_signal_title, llm_validated_in_vivo
+  - Title: Single-Dose Pharmacokinetics of Grapiprant in Rhesus Macaques (Macaca mulatta).
+    Journal: Journal of the American Association for Laboratory Animal Science : JAALAS
+    JCR: JIF 1.7, 5Y JIF 1.8, JCI 0.79, Quartile Q2
+    SCImago: SJR 0,574 (Q1), H-index 70
+    Match: title_or_abstract_contains_drug, species:dogs, context_distance_match, relevance:adverse, approved, dose, dosing, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Griseofulvin
+  - Title: Solubility and Pharmacokinetic Profile Improvement of Griseofulvin through Supercritical Carbon Dioxide-Assisted Complexation with HP-γ-Cyclodextrin.
+    Journal: Molecules
+    JCR: JIF 4.6, 5Y JIF 5.0, JCI 0.72, Quartile Q2
+    SCImago: SJR 0,865 (Q1), H-index 261
+    Match: title_or_abstract_contains_drug, species:dog, context_distance_match, relevance:clearance, half-life, pharmacokinetic, high_signal_title, llm_validated_in_vivo
+  - Title: A study of the efficacy of topical and systemic therapy for the treatment of feline Microsporum canis infection.
+    Journal: Journal of Feline Medicine and Surgery
+    JCR: JIF 2.1, 5Y JIF 2.2, JCI 0.95, Quartile Q1
+    SCImago: SJR 0,768 (Q1), H-index 81
+    Match: title_or_abstract_contains_drug, species:cat, cats, feline, context_distance_match, relevance:efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Guaifenesin, Intravenous
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Hemoglobin Glutamer-200, Bovine
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Heparin
+  - Title: Low molecular weight protamine as nontoxic heparin/low molecular weight heparin antidote (III): preliminary in vivo evaluation of efficacy and toxicity using a canine model.
+    Journal: AAPS PharmSci
+    JCR: 매핑 없음
+    SCImago: 매핑 없음
+    Match: title_or_abstract_contains_drug, species:canine, dogs, context_distance_match, relevance:adverse, efficacy, toxicity, high_signal_title, llm_validated_in_vivo
+  - Title: Dose Escalation Trial of Desulfated Heparin (ODSH) in Septic Peritonitis.
+    Journal: Frontiers in Veterinary Science
+    JCR: JIF 2.9, 5Y JIF 3.3, JCI 1.28, Quartile Q1
+    SCImago: SJR 0,783 (Q1), H-index 85
+    Match: title_or_abstract_contains_drug, species:dog, dogs, context_distance_penalty, relevance:adverse, approved, dosage, dose, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Hyaluronate
+  - Title: Tacrolimus and Hyaluronate Therapy Enhance Tear Film Stability in Canine Evaporative Dry Eye Disease.
+    Journal: Veterinary Ophthalmology
+    JCR: JIF 1.3, 5Y JIF 1.8, JCI 0.55, Quartile Q2
+    SCImago: SJR 0,568 (Q1), H-index 64
+    Match: title_or_abstract_contains_drug, species:canine, dogs, context_distance_match, relevance:dosing, efficacy, treatment, llm_validated_in_vivo
+  - Title: Efficacy of an oral hyaluronate and collagen supplement as a preventive treatment of elbow dysplasia.
+    Journal: Journal of Veterinary Science
+    JCR: JIF 1.5, 5Y JIF 1.7, JCI 0.77, Quartile Q2
+    SCImago: SJR 0,425 (Q2), H-index 59
+    Match: title_or_abstract_contains_drug, species:dogs, context_distance_match, relevance:adverse, efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Hydralazine
+  - Title: Cardiovascular effects of the novel arteriovenous dilator agent, flosequinan in conscious dogs and cats.
+    Journal: British Journal of Pharmacology
+    JCR: JIF 7.7, 5Y JIF 7.3, JCI 1.88, Quartile Q1
+    SCImago: SJR 2,344 (Q1), H-index 252
+    Match: title_or_abstract_contains_drug, species:cat, cats, dog, context_distance_match, relevance:clearance, excretion, llm_validated_in_vivo
+  - Title: Efficacy Assessment of Cerebral Perfusion Augmentation through Functional Connectivity in an Acute Canine Stroke Model.
+    Journal: AJNR: American Journal of Neuroradiology
+    JCR: JIF 3.7, 5Y JIF 3.7, JCI 1.02, Quartile Q1
+    SCImago: SJR 1,130 (Q1), H-index 205
+    Match: title_or_abstract_contains_drug, species:canine, context_distance_match, relevance:efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Hydrochlorothiazide
+  - Title: Hydrochlorothiazide/Losartan Potassium Tablet Prepared by Direct Compression.
+    Journal: Pharmaceutics
+    JCR: JIF 5.5, 5Y JIF 5.8, JCI 1.30, Quartile Q1
+    SCImago: SJR 1,075 (Q1), H-index 129
+    Match: title_or_abstract_contains_drug, species:dogs, context_distance_penalty, relevance:bioavailability, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Hydrocodone Combinations
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Hydrocortisone
+  - Title: A randomized, controlled, single-blinded, multicenter evaluation of the efficacy and safety of a once weekly two dose otic gel containing florfenicol, terbinafine and betamethasone administered for the treatment of canine otitis externa.
+    Journal: BMC Veterinary Research
+    JCR: JIF 2.6, 5Y JIF 2.7, JCI 1.28, Quartile Q1
+    SCImago: SJR 0,723 (Q1), H-index 86
+    Match: title_or_abstract_contains_drug, species:canine, dogs, context_distance_match, relevance:adverse, dose, efficacy, safety, high_signal_title, llm_validated_in_vivo
+  - Title: Comparison of prednisolone and alternative glucocorticoid dosing protocols for canine hypoadrenocorticism: insights from a survey-based study.
+    Journal: Frontiers in Veterinary Science
+    JCR: JIF 2.9, 5Y JIF 3.3, JCI 1.28, Quartile Q1
+    SCImago: SJR 0,783 (Q1), H-index 85
+    Match: title_or_abstract_contains_drug, species:canine, dogs, context_distance_match, relevance:dosage, dosing, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Hydrogen Peroxide 3, Oral
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Hydromorphone
+  - Title: Pharmacokinetics of a continuous intravenous infusion of hydromorphone in healthy dogs.
+    Journal: Frontiers in Veterinary Science
+    JCR: JIF 2.9, 5Y JIF 3.3, JCI 1.28, Quartile Q1
+    SCImago: SJR 0,783 (Q1), H-index 85
+    Match: title_or_abstract_contains_drug, species:dogs, context_distance_match, relevance:clearance, distribution, dose, dosing, high_signal_title, llm_validated_in_vivo
+  - Title: Pharmacokinetics of a controlled-release liposome-encapsulated hydromorphone administered to healthy dogs.
+    Journal: Journal of veterinary pharmacology and therapeutics
+    JCR: JIF 1.7, 5Y JIF 1.7, JCI 0.61, Quartile Q2
+    SCImago: SJR 0,386 (Q2), H-index 70
+    Match: title_or_abstract_contains_drug, species:dogs, context_distance_match, relevance:clearance, distribution, dose, half-life, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Hydroxychloroquine
+  - Title: Pharmacokinetics and Toxicokinetics of Artemisinin-Hydroxychloroquine Sulfate Tablets in Rats and Dogs.
+    Journal: Evidence-based Complementary and Alternative Medicine : eCAM
+    JCR: 매핑 없음
+    SCImago: 매핑 없음
+    Match: title_or_abstract_contains_drug, species:dogs, context_distance_match, relevance:absorption, dosage, dose, dosing, high_signal_title, llm_validated_in_vivo
+  - Title: Phase I clinical trial and pharmacodynamic evaluation of combination hydroxychloroquine and doxorubicin treatment in pet dogs treated for spontaneously occurring lymphoma.
+    Journal: Autophagy
+    JCR: JIF 14.3, 5Y JIF 17.1, JCI 1.75, Quartile Q1
+    SCImago: SJR 4,447 (Q1), H-index 202
+    Match: title_or_abstract_contains_drug, species:canine, dogs, context_distance_match, relevance:adverse, dose, pharmacodynamic, pharmacokinetic, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Hydroxyethyl Starch, Hes, Colloids
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Hydroxyurea
+  - Title: Clinical methemoglobinemia secondary to administration of hydroxyurea at therapeutic doses in a dog.
+    Journal: Journal of Veterinary Internal Medicine
+    JCR: JIF 2.2, 5Y JIF 2.8, JCI 1.12, Quartile Q1
+    SCImago: SJR 0,971 (Q1), H-index 130
+    Match: title_or_abstract_contains_drug, species:dog, context_distance_match, relevance:dosage, dose, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Hydroxyzine
+  - Title: Efficacy of dimetinden and hydroxyzine/chlorpheniramine in atopic dogs: a randomised, controlled, double-blinded trial.
+    Journal: The Veterinary Record
+    JCR: JIF 1.4, 5Y JIF 2.0, JCI 0.72, Quartile Q2
+    SCImago: SJR 0,403 (Q2), H-index 116
+    Match: title_or_abstract_contains_drug, species:canine, dogs, context_distance_match, relevance:efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Hyoscyamine
+  - Title: Pharmacological analysis of salivary and blood flow responses to histamine of the submandibular gland of the dog.
+    Journal: British Journal of Pharmacology
+    JCR: JIF 7.7, 5Y JIF 7.3, JCI 1.88, Quartile Q1
+    SCImago: SJR 2,344 (Q1), H-index 252
+    Match: title_or_abstract_contains_drug, species:dog, dogs, context_distance_penalty, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Hypertonic Saline, 7, To 7 5
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Insulin Aspart
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Insulin Glargine
+  - Title: An ultra-long-acting recombinant insulin for the treatment of diabetes mellitus in cats.
+    Journal: Journal of Veterinary Internal Medicine
+    JCR: JIF 2.2, 5Y JIF 2.8, JCI 1.12, Quartile Q1
+    SCImago: SJR 0,971 (Q1), H-index 130
+    Match: title_or_abstract_contains_drug, species:cats, feline, context_distance_match, relevance:adverse, dose, efficacy, half-life, llm_validated_in_vivo
+  - Title: Insulin glargine 300 U/ml for the treatment of feline diabetes mellitus.
+    Journal: Journal of Feline Medicine and Surgery
+    JCR: JIF 2.1, 5Y JIF 2.2, JCI 0.95, Quartile Q1
+    SCImago: SJR 0,768 (Q1), H-index 81
+    Match: title_or_abstract_contains_drug, species:cats, feline, context_distance_match, relevance:dosage, efficacy, safety, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Insulin Lispro
+  - Title: Efficacy and Safety of Intramuscular Insulin Lispro vs. Continuous Intravenous Regular Insulin for the Treatment of Dogs With Diabetic Ketoacidosis.
+    Journal: Frontiers in Veterinary Science
+    JCR: JIF 2.9, 5Y JIF 3.3, JCI 1.28, Quartile Q1
+    SCImago: SJR 0,783 (Q1), H-index 85
+    Match: title_or_abstract_contains_drug, species:canine, dogs, context_distance_match, relevance:adverse, dose, efficacy, safety, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Insulin Regular (Crystalline Zinc)
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Ifosfamide
+  - Title: Isophosphoramide mustard, a metabolite of ifosfamide with activity against murine tumours comparable to cyclophosphamide.
+    Journal: British Journal of Cancer
+    JCR: JIF 6.8, 5Y JIF 8.6, JCI 1.40, Quartile Q1
+    SCImago: SJR 3,144 (Q1), H-index 281
+    Match: title_or_abstract_contains_drug, species:dog, context_distance_match, relevance:metabolism, pharmacokinetic, treatment, llm_validated_in_vivo
+  - Title: Re-engineering cytochrome P450 2B11dH for enhanced metabolism of several substrates including the anti-cancer prodrugs cyclophosphamide and ifosfamide.
+    Journal: Archives of biochemistry and biophysics
+    JCR: JIF 3.0, 5Y JIF 3.6, JCI 0.82, Quartile Q2
+    SCImago: SJR 0,912 (Q1), H-index 198
+    Match: title_or_abstract_contains_drug, species:cat, context_distance_match, relevance:metabolism, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Imepitoin
+  - Title: Efficacy, safety, and tolerability of imepitoin in dogs with newly diagnosed epilepsy in a randomized controlled clinical study with long-term follow up.
+    Journal: BMC Veterinary Research
+    JCR: JIF 2.6, 5Y JIF 2.7, JCI 1.28, Quartile Q1
+    SCImago: SJR 0,723 (Q1), H-index 86
+    Match: title_or_abstract_contains_drug, species:canine, dogs, context_distance_match, relevance:adverse, dose, efficacy, label, high_signal_title, llm_validated_in_vivo
+  - Title: Imepitoin as novel treatment option for canine idiopathic epilepsy: pharmacokinetics, distribution, and metabolism in dogs.
+    Journal: Journal of Veterinary Pharmacology and Therapeutics
+    JCR: JIF 1.7, 5Y JIF 1.7, JCI 0.61, Quartile Q2
+    SCImago: SJR 0,386 (Q2), H-index 70
+    Match: title_or_abstract_contains_drug, species:canine, dogs, context_distance_match, relevance:absorption, distribution, dose, dosing, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Imidacloprid, Systemic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Imidapril
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Imidocarb
+  - Title: Efficacy, safety and tolerance of imidocarb dipropionate versus atovaquone or buparvaquone plus azithromycin used to treat sick dogs naturally infected with the Babesia microti-like piroplasm.
+    Journal: Parasites & Vectors
+    JCR: JIF 3.5, 5Y JIF 3.5, JCI 1.21, Quartile Q1
+    SCImago: SJR 1,036 (Q1), H-index 120
+    Match: title_or_abstract_contains_drug, species:dogs, context_distance_match, relevance:adverse, dosage, dose, efficacy, high_signal_title, llm_validated_in_vivo
+  - Title: Clinical Efficacy and Safety of Malarone(®), Azithromycin and Artesunate Combination for Treatment of Babesia gibsoni in Naturally Infected Dogs.
+    Journal: Animals : an Open Access Journal from MDPI
+    JCR: JIF 2.7, 5Y JIF 3.2, JCI 1.31, Quartile Q1
+    SCImago: SJR 0,733 (Q1), H-index 95
+    Match: title_or_abstract_contains_drug, species:canine, dogs, context_distance_match, relevance:adverse, efficacy, safety, treatment, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Imipenem Cilastatin Sodium
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Imipramine
+  - Title: Modulating the Activity of the Human Organic Cation Transporter 2 Emerges as a Potential Strategy to Mitigate Unwanted Toxicities Associated with Cisplatin Chemotherapy.
+    Journal: International Journal of Molecular Sciences
+    JCR: JIF 4.9, 5Y JIF 5.7, JCI 0.71, Quartile Q1
+    SCImago: SJR 1,273 (Q1), H-index 314
+    Match: title_or_abstract_contains_drug, species:canine, context_distance_match, relevance:adverse, approved, interaction, toxicity, llm_validated_in_vivo
+  - Title: Effects of imipramine and desipramine on responses of single cortical neurones to noradrenaline and 5-hydroxytryptamine.
+    Journal: British Journal of Pharmacology
+    JCR: JIF 7.7, 5Y JIF 7.3, JCI 1.88, Quartile Q1
+    SCImago: SJR 2,344 (Q1), H-index 252
+    Match: title_or_abstract_contains_drug, species:cat, context_distance_match, relevance:dose, drug interaction, interaction, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Immune Globulin, Human, Intravenous
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Insulin, Detemir
+  - Title: ISFM consensus guidelines on the practical management of diabetes mellitus in cats.
+    Journal: Journal of Feline Medicine and Surgery
+    JCR: JIF 2.1, 5Y JIF 2.2, JCI 0.95, Quartile Q1
+    SCImago: SJR 0,768 (Q1), H-index 81
+    Match: title_or_abstract_contains_drug, species:cats, context_distance_penalty, relevance:toxicity, treatment, high_signal_title, llm_validated_in_vivo
+  - Title: Insulin detemir treatment in diabetic cats in a practice setting.
+    Journal: Journal of Feline Medicine and Surgery
+    JCR: JIF 2.1, 5Y JIF 2.2, JCI 0.95, Quartile Q1
+    SCImago: SJR 0,768 (Q1), H-index 81
+    Match: title_or_abstract_contains_drug, species:cat, cats, context_distance_penalty, relevance:safety, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Insulin, Lente
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Insulin, Nph
+  - Title: Effect of the sodium-glucose cotransporter-2 inhibitor, DWP16001, as an add-on therapy to insulin for diabetic dogs: A pilot study.
+    Journal: Veterinary Medicine and Science
+    JCR: JIF 1.7, 5Y JIF 2.0, JCI 0.84, Quartile Q2
+    SCImago: SJR 0,551 (Q1), H-index 30
+    Match: title_or_abstract_contains_drug, species:dogs, context_distance_penalty, relevance:adverse, dose, dosing, safety, llm_validated_in_vivo
+  - Title: Toward once-monthly insulin therapy via synergy in two pharmacokinetic protractors: Fc-conjugation and fatty acid acylation.
+    Journal: RSC Chemical Biology
+    JCR: JIF 3.1, 5Y JIF 3.9, JCI 0.55, Quartile Q2
+    SCImago: SJR 1,160 (Q1), H-index 29
+    Match: title_or_abstract_contains_drug, species:dog, context_distance_penalty, relevance:half-life, pharmacodynamic, pharmacokinetic, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Insulin, Protamine Zinc
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Interferon Alfa, Human
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Interferon Omega, Feline Origin
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Iodide, Potassium-, Sodium-
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Iohexol
+  - Title: Canine preclinical safety evaluation of a multimodal nanoparticle agent (Nanotrast-CF800) for image-guided cancer surgery.
+    Journal: PLOS ONE
+    JCR: JIF 2.6, 5Y JIF 3.2, JCI 0.85, Quartile Q2
+    SCImago: SJR 0,803 (Q1), H-index 467
+    Match: title_or_abstract_contains_drug, species:canine, dogs, context_distance_match, relevance:adverse, dose, efficacy, safety, high_signal_title, llm_validated_in_vivo
+  - Title: Intra-arterial renal infusion of autologous mesenchymal stem cells for treatment of chronic kidney disease in cats: Phase I clinical trial.
+    Journal: Journal of Veterinary Internal Medicine
+    JCR: JIF 2.2, 5Y JIF 2.8, JCI 1.12, Quartile Q1
+    SCImago: SJR 0,971 (Q1), H-index 130
+    Match: title_or_abstract_contains_drug, species:cat, cats, context_distance_match, relevance:adverse, clearance, efficacy, safety, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Ipratropium
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Irbesartan
+  - Title: Hydroxypropyl-β-cyclodextrin functionalized calcium carbonate microparticles as a potential carrier for enhancing oral delivery of water-insoluble drugs.
+    Journal: International Journal of Nanomedicine
+    JCR: JIF 6.5, 5Y JIF 7.7, JCI 1.24, Quartile Q1
+    SCImago: SJR 1,306 (Q1), H-index 193
+    Match: title_or_abstract_contains_drug, species:dogs, context_distance_penalty, relevance:absorption, bioavailability, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Iron Dextran
+  - Title: Intravenous iron-dextran: studies on unsaturated iron-binding capacity.
+    Journal: Journal of Clinical Pathology
+    JCR: JIF 2.0, 5Y JIF 2.3, JCI 0.93, Quartile Q2
+    SCImago: SJR 0,802 (Q1), H-index 158
+    Match: title_or_abstract_contains_drug, species:dogs, context_distance_penalty, relevance:dose, label, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Isoflupredone
+  -> 적합한 논문 없음
+------------------------------
+
+========================================
+📊 레퍼런스 수집 결과 요약
+========================================
+▶ 총 테스트 약물: 100개
+▶ 수집 성공: 64개
+▶ 수집 실패: 36개
+
+❌ 실패한 약물 리스트:
+  - Ergocalciferol
+  - Esmolol
+  - Estriol
+  - Etodolac
+  - Fatty Acid Omega-3
+  - Fentanyl, Transdermal Patch
+  - Ferrous Sulfate
+  - Fexofenadine
+  - Filgrastim, Granulocyte Colony Stimulating Factor, Gcsf
+  - Flumethasone
+  - Fomepizole
+  - Gamithromycin
+  - Gemfibrozil
+  - Gentamicin, Systemic
+  - Glycerin, Oral
+  - Glycopyrrolate
+  - Granisetron
+  - Guaifenesin, Intravenous
+  - Hemoglobin Glutamer-200, Bovine
+  - Hydrocodone Combinations
+  - Hydrogen Peroxide 3, Oral
+  - Hydroxyethyl Starch, Hes, Colloids
+  - Hypertonic Saline, 7, To 7 5
+  - Insulin Aspart
+  - Insulin Regular (Crystalline Zinc)
+  - Imidacloprid, Systemic
+  - Imidapril
+  - Imipenem Cilastatin Sodium
+  - Immune Globulin, Human, Intravenous
+  - Insulin, Lente
+  - Insulin, Protamine Zinc
+  - Interferon Alfa, Human
+  - Interferon Omega, Feline Origin
+  - Iodide, Potassium-, Sodium-
+  - Ipratropium
+  - Isoflupredone

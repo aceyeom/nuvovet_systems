@@ -121,6 +121,49 @@ def _get_dose_range(dosage_kinetics: Optional[dict], species: str) -> Optional[L
     return [v, v] if v is not None else None
 
 
+def _safe_float(value: Any) -> Optional[float]:
+    if value is None:
+        return None
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def _infer_ddi_source(data_quality: dict, reference_count: int, raw_interactions: list) -> str:
+    # Stage-2 deprecation prep: keep legacy field only as fallback.
+    legacy = data_quality.get("ddi_source")
+    if isinstance(legacy, str) and legacy.strip():
+        return legacy.strip()
+    if reference_count > 0:
+        return "pmc_rag"
+    if raw_interactions:
+        return "rule_based"
+    return "unknown"
+
+
+def _build_reference_summary(raw: dict, data_quality: dict) -> tuple[list, int, Optional[float]]:
+    context = raw.get("_reference_context") or {}
+    references = context.get("references") if isinstance(context, dict) else None
+    references = references if isinstance(references, list) else []
+
+    ref_count = data_quality.get("pmc_reference_count")
+    if ref_count is None:
+        ref_count = len(references)
+    try:
+        ref_count = int(ref_count or 0)
+    except (TypeError, ValueError):
+        ref_count = len(references)
+
+    avg_if = _safe_float(data_quality.get("average_if_score"))
+    if avg_if is None:
+        scores = [_safe_float(ref.get("if_score")) for ref in references]
+        scores = [s for s in scores if s is not None]
+        avg_if = (sum(scores) / len(scores)) if scores else None
+
+    return references, ref_count, avg_if
+
+
 def map_drug(raw: dict) -> dict:
     """Map a JSONL drug record → frontend Drug contract."""
     identity = raw.get("drug_identity") or {}
@@ -138,6 +181,8 @@ def map_drug(raw: dict) -> dict:
     data_quality = raw.get("_data_quality") or {}
     genetic = raw.get("genetic_sensitivity") or {}
     effects = raw.get("effects_and_mechanisms") or {}
+    raw_interactions = raw.get("drug_interactions") or []
+    references, reference_count, average_if_score = _build_reference_summary(raw, data_quality)
 
     # Organ burden scores
     dog_organ = organ.get("dog") or {}
@@ -349,7 +394,7 @@ def map_drug(raw: dict) -> dict:
         },
 
         # Raw interactions
-        "rawInteractions": raw.get("drug_interactions") or [],
+        "rawInteractions": raw_interactions,
 
         # Full contraindication objects (with match_terms) for patient condition matching
         "rawContraindications": [
@@ -381,6 +426,13 @@ def map_drug(raw: dict) -> dict:
             "renalConfidence": data_quality.get("renal_adjustment_confidence", "medium"),
             "hepaticConfidence": data_quality.get("hepatic_adjustment_confidence", "medium"),
             "organBurdenConfidence": data_quality.get("organ_burden_confidence", "medium"),
-            "ddiSource": data_quality.get("ddi_source", "unknown"),
+            "ddiSource": _infer_ddi_source(data_quality, reference_count, raw_interactions),
+            "pmcReferenceCount": reference_count,
+            "averageIfScore": average_if_score,
+            "deprecated": {
+                "ddiSourceField": data_quality.get("ddi_source"),
+                "sourceFileField": raw.get("source_file"),
+            },
         },
+        "evidenceReferences": references,
     }
