@@ -12,6 +12,7 @@ import { aggregateOrganBurden } from '../components/charts/organBurdenAggregator
 import { runFullDURAnalysis } from '../utils/durEngine';
 import { useI18n, LangToggle } from '../i18n';
 import { DRUG_SOURCE } from '../data/drugDatabase';
+import { DoseTrackIndicator } from '../components/DoseTrackIndicator';
 
 // ── Demo Drug Catalogue ────────────────────────────────────────────
 const DEMO_DRUGS_CATALOGUE = [
@@ -929,6 +930,8 @@ function DemoResultsRightPanel({ drugs, profile, results }) {
           {drugs.map((drug) => {
             const dose = drug.defaultDose?.[species] ?? drug.defaultDose?.dog;
             const totalMg = dose ? (dose * weight) : null;
+            const range = drug.doseRange?.[species];
+            const ceiling = drug.speciesDoseCeil?.[species] || null;
             return (
               <div key={drug.id} className="py-2 border-b border-slate-50 last:border-0">
                 <div className="flex items-baseline justify-between gap-2">
@@ -942,6 +945,13 @@ function DemoResultsRightPanel({ drugs, profile, results }) {
                 <p className="text-[10px] text-slate-400 mt-0.5">
                   {dose} {drug.unit} × {weight} kg · {drug.freq} · {drug.route}
                 </p>
+                <DoseTrackIndicator
+                  dosePerKg={dose}
+                  range={range}
+                  ceiling={ceiling}
+                  unit={drug.unit || 'mg/kg'}
+                  lang={lang}
+                />
               </div>
             );
           })}
