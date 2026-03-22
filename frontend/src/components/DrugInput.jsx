@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import {
   Search, X, AlertTriangle, Globe, FlaskConical, HelpCircle,
   Pill, Ban, Loader2, ChevronDown, ChevronUp, SlidersHorizontal,
+  Check,
 } from 'lucide-react';
 import { createUnknownDrug } from '../data/drugDatabase';
 import { useI18n } from '../i18n';
@@ -61,6 +62,21 @@ const FREQ_BY_ROUTE = {
   SC:    ['SID', 'BID', 'q8h', 'q12h', 'PRN', 'Other'],
   _default: ['SID', 'BID', 'TID', 'QID', 'q8h', 'q12h', 'PRN', 'Other'],
 };
+
+// ── Route-aware dose unit labels ────────────────────────────────
+const ROUTE_UNIT_LABEL = {
+  PO: '정',       // tablets
+  IV: 'ml',
+  IM: 'ml',
+  SC: 'ml',
+  Topical: '도포',  // application
+  Ophthalmic: '방울', // drops
+  Otic: '방울',
+};
+
+function getDoseUnitLabel(route) {
+  return ROUTE_UNIT_LABEL[route] || 'units';
+}
 
 /** Given a drug's dosageForms + dosageList, compute valid routes. */
 function getValidRoutes(drug, species) {
@@ -326,6 +342,15 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
             {drug.activeSubstance && drug.activeSubstance !== drug.name && (
               <span className="text-[10px] text-slate-400">{drug.activeSubstance}</span>
             )}
+            {drug.isApproved?.[species] ? (
+              <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[9px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full">
+                <Check size={9} strokeWidth={3} /> 국내허가
+              </span>
+            ) : (
+              <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[9px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 rounded-full">
+                <AlertTriangle size={9} /> 미허가
+              </span>
+            )}
           </div>
           {!expanded && (
             <></>
@@ -349,10 +374,10 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
               }`}>
                 {totalDoseDisplay || '—'}
               </div>
-              <div className="text-[9px] text-slate-500">Total dose</div>
+              <div className="text-[9px] text-slate-500">총 투여량</div>
               {tabletsNeeded && selectedStrength && (
                 <div className="text-[10px] font-semibold text-slate-600 mt-0.5">
-                  {tabletsNeeded.toFixed(2)} tabs × {selectedStrength.value} {selectedStrength.unit}
+                  {tabletsNeeded.toFixed(2)} {getDoseUnitLabel(route)} × {selectedStrength.value}{selectedStrength.unit}
                 </div>
               )}
             </div>
@@ -389,7 +414,7 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
             <div className="space-y-2.5">
               {strengths.length > 0 && (
                 <div>
-                  <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Formulation</label>
+                  <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">제형 Formulation</label>
                   <div className="flex flex-wrap gap-1">
                     {strengths.map((s, idx) => (
                       <button key={idx} onClick={() => handleFormulationChange(idx)}
@@ -412,7 +437,7 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
 
               <div className="grid grid-cols-3 gap-2">
                 <div>
-                  <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Route</label>
+                  <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">투여경로 Route</label>
                   <select value={isOffLabel ? 'Other (off-label)' : route} onChange={e => handleRouteChange(e.target.value)}
                     className={`w-full px-2.5 py-1.5 text-[12px] border rounded-md focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white text-slate-700 ${
                       isOffLabel ? 'border-amber-300' : 'border-slate-200'
@@ -426,7 +451,7 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
                   )}
                 </div>
                 <div>
-                  <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Frequency</label>
+                  <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">투여빈도 Freq</label>
                   <select value={freq} onChange={e => setFreq(e.target.value)}
                     className="w-full px-2.5 py-1.5 text-[12px] border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white text-slate-700">
                     {freqOptions.map(f => <option key={f}>{f}</option>)}
@@ -434,7 +459,7 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
                 </div>
                 <div>
                   <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">
-                    {isIV && adminMode === 'cri' ? 'Infusion (hrs)' : 'Duration (days)'}
+                    {isIV && adminMode === 'cri' ? '주입시간 (hrs)' : '투여기간 (일)'}
                   </label>
                   <input
                     type="text"
@@ -475,7 +500,7 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
               {isIV && (
                 <div className="rounded-lg border border-blue-100 bg-blue-50/40 p-2.5 space-y-2">
                   <div className="flex items-center gap-2">
-                    <label className="text-[9px] font-bold text-blue-500 uppercase tracking-widest">Administration</label>
+                    <label className="text-[9px] font-bold text-blue-500 uppercase tracking-widest">투여방법</label>
                     <div className="flex rounded-md border border-blue-200 overflow-hidden">
                       <button
                         onClick={() => setAdminMode('bolus')}
@@ -500,7 +525,7 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
                   {adminMode === 'cri' && (
                     <div className="grid grid-cols-2 gap-2">
                       <div>
-                        <label className="block text-[9px] font-bold text-blue-400 uppercase tracking-widest mb-1">Rate (ml/hr)</label>
+                        <label className="block text-[9px] font-bold text-blue-400 uppercase tracking-widest mb-1">주입속도 (ml/hr)</label>
                         <input
                           type="text"
                           inputMode="decimal"
@@ -511,7 +536,7 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
                         />
                       </div>
                       <div>
-                        <label className="block text-[9px] font-bold text-blue-400 uppercase tracking-widest mb-1">Duration (hrs)</label>
+                        <label className="block text-[9px] font-bold text-blue-400 uppercase tracking-widest mb-1">주입시간 (hrs)</label>
                         <input
                           type="text"
                           inputMode="decimal"
@@ -528,13 +553,14 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
 
               {/* Duration note from dosage data */}
               {activeDosage?.durationNote && (
-                <p className="text-[10px] text-slate-500 italic flex items-center gap-1">
-                  <span className="text-slate-400">Duration guide:</span> {activeDosage.durationNote}
-                </p>
+                <div className="rounded-md border border-sky-100 bg-sky-50/50 px-2.5 py-1.5">
+                  <p className="text-[9px] font-semibold text-sky-500 mb-0.5">투여기간 안내</p>
+                  <p className="text-[11px] text-sky-800 leading-snug">{activeDosage.durationNote}</p>
+                </div>
               )}
 
               <div>
-                <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Memo</label>
+                <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">메모 Memo</label>
                 <textarea
                   value={memo}
                   onChange={(e) => setMemo(e.target.value)}
@@ -547,7 +573,7 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
 
             {/* Right: dose-related info */}
             <div className="rounded-lg border border-slate-200 bg-white p-2.5 space-y-2">
-              <label className="block text-[9px] font-bold text-slate-500 uppercase tracking-widest">Dose</label>
+              <label className="block text-[9px] font-bold text-slate-500 uppercase tracking-widest">용량 Dose</label>
               <div className="flex items-center gap-1.5">
                 <DoseInput
                   value={dosePerKg}
@@ -569,7 +595,7 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
                       }`}>
                         {totalDoseDisplay}
                       </div>
-                      <div className="text-[9px] text-slate-400">Total dose</div>
+                      <div className="text-[9px] text-slate-400">총 투여량</div>
                       {doseStatus && (
                         <div className={`mt-1 inline-flex items-center justify-center rounded-full border px-1.5 py-0.5 text-[9px] font-semibold ${
                           doseStatus === 'above'
@@ -578,33 +604,33 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
                             ? 'border-orange-200 bg-orange-50 text-orange-700'
                             : 'border-slate-200 bg-white text-slate-600'
                         }`}>
-                          {doseStatus === 'above' ? 'Above range' : doseStatus === 'below' ? 'Below range' : 'In range'}
+                          {doseStatus === 'above' ? '범위 초과' : doseStatus === 'below' ? '범위 미달' : '적정 범위'}
                         </div>
                       )}
                       {tabletsNeeded && (
                         <div className="text-[11px] font-semibold text-slate-600 mt-0.5">
-                          {tabletsNeeded.toFixed(2)} tabs × {selectedStrength.value} {selectedStrength.unit}
+                          {tabletsNeeded.toFixed(2)} {getDoseUnitLabel(route)} × {selectedStrength.value}{selectedStrength.unit}
                         </div>
                       )}
                     </>
                   ) : (
-                    <div className="text-[10px] text-slate-400">Enter weight to calculate</div>
+                    <div className="text-[10px] text-slate-400">체중을 입력하세요</div>
                   )}
                 </div>
               ) : null}
 
               {doseStatus === 'above' && range && (
                 <p className="text-[10px] text-red-600 font-medium flex items-center gap-1">
-                  <AlertTriangle size={10} /> Above {range[0]}–{range[1]} mg/kg
+                  <AlertTriangle size={10} /> {range[0]}–{range[1]} mg/kg 초과
                 </p>
               )}
               {doseStatus === 'below' && range && (
                 <p className="text-[10px] text-orange-600 font-medium flex items-center gap-1">
-                  <AlertTriangle size={10} /> Below {range[0]}–{range[1]} mg/kg
+                  <AlertTriangle size={10} /> {range[0]}–{range[1]} mg/kg 미달
                 </p>
               )}
               {range && !doseStatus && (
-                <p className="text-[10px] text-slate-400">Recommended: {range[0]}–{range[1]} mg/kg</p>
+                <p className="text-[10px] text-slate-400">권장: {range[0]}–{range[1]} mg/kg</p>
               )}
             </div>
           </div>
