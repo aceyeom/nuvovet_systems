@@ -78,6 +78,31 @@ function getDoseUnitLabel(route) {
   return ROUTE_UNIT_LABEL[route] || 'units';
 }
 
+// ── Strength grouping by unit (mg = oral, mg/mL = injectable) ──
+const UNIT_ORAL = new Set(['mg', 'g', 'mcg', 'µg']);
+const UNIT_INJECTABLE = new Set(['mg/mL', 'mg/ml', 'IU/mL', 'iu/mL', 'mcg/mL', 'µg/mL', 'U/mL']);
+
+function classifyStrengthUnit(unit) {
+  if (!unit) return 'oral';
+  const u = unit.trim();
+  if (UNIT_INJECTABLE.has(u) || u.toLowerCase().includes('/ml')) return 'injectable';
+  return 'oral';
+}
+
+function groupStrengthsByForm(strengths) {
+  const oral = [];
+  const injectable = [];
+  (strengths || []).forEach((s, idx) => {
+    const group = classifyStrengthUnit(s.unit);
+    if (group === 'injectable') injectable.push({ ...s, _idx: idx });
+    else oral.push({ ...s, _idx: idx });
+  });
+  return { oral, injectable };
+}
+
+// ── Dose unit options ───────────────────────────────────────────
+const DOSE_UNIT_OPTIONS = ['mg/kg', 'mcg/kg', 'µg/kg', 'IU/kg', 'mg/m²', 'mL/kg', 'mg', 'mL'];
+
 /** Given a drug's dosageForms + dosageList, compute valid routes. */
 function getValidRoutes(drug, species) {
   const routes = new Set();
@@ -188,7 +213,15 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
     drug.dosePerKg !== undefined && drug.dosePerKg !== '' ? drug.dosePerKg : defaultDose
   );
 
-  // ── Cascade: when route changes, update freq, dose, duration ──
+  // Dose unit — auto from dosageList, manually overridable
+  const [doseUnit, setDoseUnit] = useState(() => {
+    return activeDosage?.unit || drug.unit || 'mg/kg';
+  });
+
+  // Grouped strengths for form-based display
+  const strengthGroups = groupStrengthsByForm(strengths);
+
+  // ── Cascade: when route changes, update freq, dose, duration, unit ──
   const handleRouteChange = (newRoute) => {
     if (newRoute === 'Other (off-label)') {
       setIsOffLabel(true);
@@ -214,6 +247,8 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
           setDosePerKg(isNaN(v) ? '' : v);
         }
       }
+      // Auto-fill dose unit
+      if (entry.unit) setDoseUnit(entry.unit);
       // Auto-fill duration hint (parse leading number from durationNote)
       if (entry.durationNote) {
         const m = entry.durationNote.match(/(\d+)/);
@@ -228,17 +263,19 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
     }
   };
 
-  // ── Cascade: when formulation changes, update route ──────
+  // ── Cascade: when formulation (strength) clicked, auto-switch route ──
   const handleFormulationChange = (idx) => {
     setSelectedStrengthIdx(idx);
-    // If the drug has dosageForms, determine which form this strength maps to
-    const forms = drug.dosageForms || [];
-    if (forms.length > 0) {
-      // Find routes for the first dosage form
-      const formRoutes = FORM_ROUTE_MAP[forms[0]] || [];
-      if (formRoutes.length > 0 && !formRoutes.includes(route) && route !== 'Other (off-label)') {
-        handleRouteChange(formRoutes[0]);
-      }
+    const s = strengths[idx];
+    if (!s) return;
+    const group = classifyStrengthUnit(s.unit);
+    if (group === 'injectable') {
+      // Auto-select first parenteral route
+      const parenteralRoute = validRoutes.find(r => PARENTERAL_ROUTES.has(r));
+      if (parenteralRoute && route !== parenteralRoute) handleRouteChange(parenteralRoute);
+    } else {
+      // Auto-select PO if available
+      if (validRoutes.includes('PO') && route !== 'PO') handleRouteChange('PO');
     }
   };
 
@@ -284,6 +321,7 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
   useEffect(() => {
     onUpdateDrug(drug.id, {
       dosePerKg,
+      doseUnit,
       route: isOffLabel ? 'Other' : route,
       freq,
       prescriptionDays: duration || '',
@@ -297,7 +335,7 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
       } : { adminMode: 'bolus' }),
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dosePerKg, route, freq, duration, memo, selectedStrengthIdx, adminMode, infusionRate, infusionDuration]);
+  }, [dosePerKg, doseUnit, route, freq, duration, memo, selectedStrengthIdx, adminMode, infusionRate, infusionDuration]);
 
   const inputBorderClass = doseStatus === 'above'
     ? 'border-red-400 focus:ring-red-200'
@@ -415,21 +453,36 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
               {strengths.length > 0 && (
                 <div>
                   <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">제형 Formulation</label>
-                  <div className="flex flex-wrap gap-1">
-                    {strengths.map((s, idx) => (
-                      <button key={idx} onClick={() => handleFormulationChange(idx)}
-                        className={`px-2 py-0.5 text-[11px] font-medium rounded-md border transition-all ${
-                          selectedStrengthIdx === idx
-                            ? 'bg-slate-800 text-white border-slate-800'
-                            : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
-                        }`}>
-                        {s.value} {s.unit}
-                      </button>
-                    ))}
-                    {drug.dosageForms?.length > 0 && (
-                      <span className="px-1.5 py-0.5 text-[10px] text-slate-400 bg-slate-50 rounded-md border border-slate-100">
-                        {drug.dosageForms.join(', ')}
-                      </span>
+                  <div className="space-y-1">
+                    {strengthGroups.oral.length > 0 && (
+                      <div className="flex items-center gap-1 flex-wrap">
+                        <span className="text-[9px] font-semibold text-slate-400 w-8 shrink-0">경구</span>
+                        {strengthGroups.oral.map((s) => (
+                          <button key={s._idx} onClick={() => handleFormulationChange(s._idx)}
+                            className={`px-2 py-0.5 text-[11px] font-medium rounded-md border transition-all ${
+                              selectedStrengthIdx === s._idx
+                                ? 'bg-slate-800 text-white border-slate-800'
+                                : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
+                            }`}>
+                            {s.value}{s.unit}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                    {strengthGroups.injectable.length > 0 && (
+                      <div className="flex items-center gap-1 flex-wrap">
+                        <span className="text-[9px] font-semibold text-blue-400 w-8 shrink-0">주사</span>
+                        {strengthGroups.injectable.map((s) => (
+                          <button key={s._idx} onClick={() => handleFormulationChange(s._idx)}
+                            className={`px-2 py-0.5 text-[11px] font-medium rounded-md border transition-all ${
+                              selectedStrengthIdx === s._idx
+                                ? 'bg-blue-600 text-white border-blue-600'
+                                : 'bg-white text-blue-600 border-blue-200 hover:border-blue-300'
+                            }`}>
+                            {s.value}{s.unit}
+                          </button>
+                        ))}
+                      </div>
                     )}
                   </div>
                 </div>
@@ -574,15 +627,38 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
             {/* Right: dose-related info */}
             <div className="rounded-lg border border-slate-200 bg-white p-2.5 space-y-2">
               <label className="block text-[9px] font-bold text-slate-500 uppercase tracking-widest">용량 Dose</label>
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1">
                 <DoseInput
                   value={dosePerKg}
                   onChange={(v) => setDosePerKg(v)}
-                  placeholder={range ? `${range[0]}–${range[1]}` : 'mg/kg'}
+                  placeholder={range ? `${range[0]}–${range[1]}` : ''}
                   className={`w-full px-2.5 py-1.5 text-[12px] border rounded-md focus:outline-none focus:ring-2 bg-white placeholder:text-slate-300 transition-all ${inputBorderClass}`}
                 />
-                <span className="text-[10px] text-slate-400 shrink-0">mg/kg</span>
+                <select
+                  value={doseUnit}
+                  onChange={(e) => setDoseUnit(e.target.value)}
+                  className="shrink-0 px-1.5 py-1.5 text-[10px] border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white text-slate-500 font-medium"
+                >
+                  {DOSE_UNIT_OPTIONS.map(u => <option key={u} value={u}>{u}</option>)}
+                </select>
               </div>
+
+              {/* Always-visible dose range */}
+              {range && (
+                <div className={`text-[10px] flex items-center gap-1 ${
+                  doseStatus === 'above' ? 'text-red-600 font-medium' :
+                  doseStatus === 'below' ? 'text-orange-600 font-medium' :
+                  doseStatus === 'within' ? 'text-emerald-600' :
+                  'text-slate-400'
+                }`}>
+                  {doseStatus === 'above' && <AlertTriangle size={10} />}
+                  {doseStatus === 'below' && <AlertTriangle size={10} />}
+                  {doseStatus === 'within' && <Check size={9} strokeWidth={3} />}
+                  <span>권장 {range[0]}–{range[1]} {doseUnit}</span>
+                  {doseStatus === 'above' && <span>· 초과</span>}
+                  {doseStatus === 'below' && <span>· 미달</span>}
+                </div>
+              )}
 
               {(totalDoseMg || doseNum > 0) ? (
                 <div className="rounded-md p-2 text-center border border-slate-200 bg-slate-50/60">
@@ -618,20 +694,6 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
                   )}
                 </div>
               ) : null}
-
-              {doseStatus === 'above' && range && (
-                <p className="text-[10px] text-red-600 font-medium flex items-center gap-1">
-                  <AlertTriangle size={10} /> {range[0]}–{range[1]} mg/kg 초과
-                </p>
-              )}
-              {doseStatus === 'below' && range && (
-                <p className="text-[10px] text-orange-600 font-medium flex items-center gap-1">
-                  <AlertTriangle size={10} /> {range[0]}–{range[1]} mg/kg 미달
-                </p>
-              )}
-              {range && !doseStatus && (
-                <p className="text-[10px] text-slate-400">권장: {range[0]}–{range[1]} mg/kg</p>
-              )}
             </div>
           </div>
         </div>
