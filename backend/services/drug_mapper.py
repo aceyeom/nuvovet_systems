@@ -74,7 +74,7 @@ def _parse_dose_value(val: Any) -> Optional[float]:
         return float(val)
     except (ValueError, TypeError):
         val_str = str(val).strip()
-        parts = re.split(r"\s*[-–]\s*", val_str)
+        parts = re.split(r"\s*(?:[-–]|\bto\b)\s*", val_str)
         if len(parts) == 2:
             try:
                 return (float(parts[0]) + float(parts[1])) / 2
@@ -111,7 +111,7 @@ def _get_dose_range(dosage_kinetics: Optional[dict], species: str) -> Optional[L
     if not dl:
         return None
     val_str = str(dl[0].get("value", "")).strip()
-    parts = re.split(r"\s*[-–]\s*", val_str)
+    parts = re.split(r"\s*(?:[-–]|\bto\b)\s*", val_str)
     if len(parts) == 2:
         try:
             return [float(parts[0]), float(parts[1])]
