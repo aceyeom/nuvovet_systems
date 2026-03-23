@@ -1,0 +1,231 @@
+{
+  "id": "string — unique slug, snake_case e.g. 'quinacrine'",
+
+  "drug_identity": {
+    "name_ko": "string — Korean INN name e.g. '퀴나크린'",
+    "name_en": "string — English INN name e.g. 'Quinacrine'",
+    "active_ingredient": "string | null",
+    "brand_names": ["string"],
+    "allergy_class": "string | null",
+    "class": "string — e.g. 'Antiparasitic'",
+    "source": "string — enum: kr_vet | human_offlabel | foreign | unknown",
+    "formulary_status": "string | null — e.g. 'discontinued'",
+    "has_reversal": "boolean",
+    "reversal_agent": "string | null",
+    "reversal_evidence": "string | null",
+    "off_label_note": "string | null",
+    "dosage_form": ["string — enum: Tab | Inj | Cap | Susp | Drop | Oint | Topical | Ophthalmic"],
+    "available_strengths": [
+      { "value": "float", "unit": "string" }
+    ]
+  },
+
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "string — enum: Liver | Kidney | Mixed | Unknown",
+    "clearance_organ": "string — enum: Kidney | Liver | Biliary | Mixed",
+    "renal_elimination_fraction": "float 0–1 | null",
+    "cyp_profile": {
+      "substrates": ["string"],
+      "inhibitors": ["string"],
+      "inducers": ["string"],
+      "pathway_evidence": "string | null"
+    },
+    "extra_information": "string | null"
+  },
+
+  "organ_burden_logic": {
+    "note": "string",
+    "dog": {
+      "brain": { "calculated_score": "integer", "triggered_keywords": ["string"], "index": "integer", "evidence": "string" },
+      "blood": { "calculated_score": "integer", "triggered_keywords": ["string"], "index": "integer", "evidence": "string" },
+      "kidney": { "calculated_score": "integer", "triggered_keywords": ["string"], "index": "integer", "evidence": "string" },
+      "liver": { "calculated_score": "integer", "triggered_keywords": ["string"], "index": "integer", "evidence": "string" },
+      "heart": { "calculated_score": "integer", "triggered_keywords": ["string"], "index": "integer", "evidence": "string" }
+    },
+    "cat": {
+      "brain": { "calculated_score": "integer", "triggered_keywords": ["string"], "index": "integer", "evidence": "string" },
+      "blood": { "calculated_score": "integer", "triggered_keywords": ["string"], "index": "integer", "evidence": "string" },
+      "kidney": { "calculated_score": "integer", "triggered_keywords": ["string"], "index": "integer", "evidence": "string" },
+      "liver": { "calculated_score": "integer", "triggered_keywords": ["string"], "index": "integer", "evidence": "string" },
+      "heart": { "calculated_score": "integer", "triggered_keywords": ["string"], "index": "integer", "evidence": "string" }
+    }
+  },
+
+  "timing_profile": {
+    "onset_min": "integer | null",
+    "t_max_hr": "float | null",
+    "half_life_hr": {
+      "min": "float | null",
+      "max": "float | null",
+      "mean": "float | null",
+      "species": "string | null"
+    },
+    "f_percent": "float | null",
+    "protein_binding_percent": "float | null",
+    "evidence": "string | null"
+  },
+
+  "_ddi_note": "string | null",
+
+  "drug_interactions": [
+    {
+      "drug": "string",
+      "severity": "integer — 1=minor | 2=moderate | 3=critical/avoid",
+      "keywords": ["string"],
+      "evidence": "string"
+    }
+  ],
+
+  "additive_risks": {
+    "nephrotoxic": "boolean",
+    "hepatotoxic": "boolean",
+    "gi_ulcer": "boolean",
+    "bleeding": "boolean",
+    "sedation": "boolean",
+    "qt_prolongation": "boolean"
+  },
+
+  "risk_flags": {
+    "nephrotoxic": "string — e.g. 'none', 'low', 'high'",
+    "hepatotoxic": "string",
+    "gi_ulcer": "string",
+    "bleeding": "string",
+    "qt_prolongation": "string"
+  },
+
+  "species_flags": {
+    "species_contraindicated": ["string"],
+    "mdr1_sensitive": "boolean",
+    "serotonin_syndrome_risk": "boolean",
+    "electrolyte_effect": "string | null",
+    "narrow_therapeutic_index": "boolean",
+    "washout_period_days": "float | null"
+  },
+
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": "boolean",
+      "dosage_list": [
+        {
+          "logic_type": "string",
+          "context": "string",
+          "value": "string",
+          "unit": "string",
+          "route": "string",
+          "frequency": "string",
+          "max_dose_mg_kg": "float | null",
+          "duration_note": "string | null",
+          "evidence": "string | null"
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": "boolean",
+      "dosage_list": [
+        {
+          "logic_type": "string",
+          "context": "string",
+          "value": "string",
+          "unit": "string",
+          "route": "string",
+          "frequency": "string",
+          "max_dose_mg_kg": "float | null",
+          "duration_note": "string | null",
+          "evidence": "string | null"
+        }
+      ]
+    }
+  },
+
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": "float | null",
+    "creatinine_threshold_cat_mg_dL": "float | null",
+    "adjustment_type": "string",
+    "adjustment_factor": "float | null",
+    "note": "string | null"
+  },
+
+  "hepatic_dose_adjustment": {
+    "applies": "boolean",
+    "alt_threshold_multiplier": "float | null",
+    "adjustment_type": "string",
+    "note": "string | null"
+  },
+
+  "contraindications": [
+    {
+      "condition": "string",
+      "match_terms": ["string"],
+      "severity": "string",
+      "action": "string",
+      "lab_trigger": {
+        "marker": "string | null",
+        "threshold": "float | null",
+        "unit": "string | null"
+      }
+    }
+  ],
+
+  "genetic_sensitivity": {
+    "has_genetic_risk": "boolean",
+    "affected_breeds": ["string"],
+    "gene": "string | null",
+    "evidence": "string | null"
+  },
+
+  "effects_and_mechanisms": {
+    "common_mechanism": "string | null",
+    "common_extra_effects": ["string"],
+    "dog_mechanism": "string | null",
+    "dog_extra_effects": ["string"],
+    "cat_mechanism": "string | null",
+    "cat_extra_effects": ["string"]
+  },
+
+  "species_notes": {
+    "dog": "string",
+    "cat": "string"
+  },
+
+  "precautions": {
+    "dog": {
+      "status": "integer",
+      "evidence": "string"
+    },
+    "cat": {
+      "status": "integer",
+      "evidence": "string"
+    }
+  },
+
+  "storage_and_forms": {
+    "storage": "string",
+    "forms": ["string"]
+  },
+
+  "section_1_2_10": {
+    "highlights": "string",
+    "indications": "string",
+    "client_info": "string"
+  },
+
+  "_data_quality": {
+    "overall_confidence": "integer",
+    "renal_adjustment_confidence": "string",
+    "hepatic_adjustment_confidence": "string",
+    "organ_burden_confidence": "string",
+    "ddi_source": "string",
+    "plumbs_sections_found": ["string"],
+    "missing_sections": ["string"],
+    "requires_pmc_rag": "boolean",
+    "pmc_rag_fields": ["string"]
+  },
+
+  "_extraction_metadata": {
+    "model_used": "string",
+    "extraction_pass": "integer",
+    "source_file": "string",
+    "extracted_at": "string — ISO 8601 datetime",
+    "reviewer": "string | null"
+  }
+}

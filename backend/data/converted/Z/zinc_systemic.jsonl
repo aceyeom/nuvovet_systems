@@ -1,0 +1,497 @@
+{
+  "id": "zinc_systemic",
+
+  "drug_identity": {
+    "name_ko": "아연 (전신용)",
+    "name_en": "Zinc (Systemic)",
+    "active_ingredient": "Zinc sulfate, Zinc acetate, Zinc gluconate, Zinc methionine",
+    "brand_names": [
+      "Galzin",
+      "NutriVed Chewable Zinpro"
+    ],
+    "allergy_class": "Trace Element",
+    "class": "Nutritional / Trace Element",
+    "source": "human_offlabel",
+    "formulary_status": null,
+    "has_reversal": true,
+    "reversal_agent": "edetate calcium disodium, penicillamine, or succimer",
+    "reversal_evidence": "Treatment involves removing the source of zinc, chelation therapy (edetate calcium disodium, penicillamine, or succimer), and supportive care.",
+    "off_label_note": "Used in veterinary medicine for primary copper hepatopathy, hepatic fibrosis, severe hepatic lipidosis, and zinc-responsive dermatosis.",
+    "dosage_form": [
+      "Tab",
+      "Cap",
+      "Inj"
+    ],
+    "available_strengths": [
+      {
+        "value": 10.0,
+        "unit": "mg elemental zinc"
+      },
+      {
+        "value": 15.0,
+        "unit": "mg elemental zinc"
+      },
+      {
+        "value": 25.0,
+        "unit": "mg elemental zinc"
+      },
+      {
+        "value": 30.0,
+        "unit": "mg elemental zinc"
+      },
+      {
+        "value": 50.0,
+        "unit": "mg elemental zinc"
+      },
+      {
+        "value": 1.0,
+        "unit": "mg/mL elemental zinc"
+      },
+      {
+        "value": 3.0,
+        "unit": "mg/mL elemental zinc"
+      },
+      {
+        "value": 5.0,
+        "unit": "mg/mL elemental zinc"
+      }
+    ]
+  },
+
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Mixed",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": "Elimination is primarily via the feces, but some zinc is also excreted by the kidneys and in sweat."
+    },
+    "extra_information": "About 20% to 30% of dietary zinc is absorbed. Serum zinc is bound to albumin and amino acids."
+  },
+
+  "organ_burden_logic": {
+    "note": "Zinc is generally safe at recommended doses but overdose can cause severe systemic effects including hemolysis and organ damage.",
+    "dog": {
+      "brain": {
+        "calculated_score": 1,
+        "triggered_keywords": [
+          "lethargy",
+          "seizures"
+        ],
+        "index": 1,
+        "evidence": "Lethargy reported in overdose. Seizures reported in birds, though CNS signs in mammals generally include depression/lethargy."
+      },
+      "blood": {
+        "calculated_score": 3,
+        "triggered_keywords": [
+          "hemolysis",
+          "hemolytic anemia",
+          "neutropenia"
+        ],
+        "index": 2,
+        "evidence": "Hematologic abnormalities (usually hemolysis) may occur with large doses. Overdose can cause hemolytic anemia and neutropenia."
+      },
+      "kidney": {
+        "calculated_score": 1,
+        "triggered_keywords": [
+          "renal insufficiency"
+        ],
+        "index": 3,
+        "evidence": "Zinc sulfate injection contains aluminum; prolonged administration may lead to aluminum toxicity, particularly in animals with renal insufficiency."
+      },
+      "liver": {
+        "calculated_score": 2,
+        "triggered_keywords": [
+          "jaundice"
+        ],
+        "index": 4,
+        "evidence": "Used therapeutically for liver disease, but acute overdose can cause jaundice."
+      },
+      "heart": {
+        "calculated_score": 1,
+        "triggered_keywords": [
+          "hypotension"
+        ],
+        "index": 5,
+        "evidence": "Hypotension reported with overdoses."
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 1,
+        "triggered_keywords": [
+          "lethargy"
+        ],
+        "index": 1,
+        "evidence": "Lethargy reported in overdose."
+      },
+      "blood": {
+        "calculated_score": 3,
+        "triggered_keywords": [
+          "hemolysis",
+          "hemolytic anemia"
+        ],
+        "index": 2,
+        "evidence": "Potential for hemolysis and hemolytic anemia with overdose."
+      },
+      "kidney": {
+        "calculated_score": 1,
+        "triggered_keywords": [
+          "polyuria"
+        ],
+        "index": 3,
+        "evidence": "Can cause polyuria/polydipsia."
+      },
+      "liver": {
+        "calculated_score": 2,
+        "triggered_keywords": [
+          "jaundice"
+        ],
+        "index": 4,
+        "evidence": "Jaundice is a potential sign of severe overdose."
+      },
+      "heart": {
+        "calculated_score": 1,
+        "triggered_keywords": [
+          "hypotension"
+        ],
+        "index": 5,
+        "evidence": "Hypotension reported with overdoses."
+      }
+    }
+  },
+
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": null
+    },
+    "f_percent": 25.0,
+    "protein_binding_percent": null,
+    "evidence": "About 20% to 30% of dietary zinc is absorbed. Bioavailability depends heavily on the presence of food and chelators (e.g., phytates, calcium)."
+  },
+
+  "_ddi_note": "Zinc can inhibit the absorption of copper and vice versa. It can also chelate and reduce the absorption of oral tetracyclines, fluoroquinolones, and iron.",
+
+  "drug_interactions": [
+    {
+      "drug": "Copper",
+      "severity": 2,
+      "keywords": [
+        "inhibit absorption"
+      ],
+      "evidence": "Large doses of zinc can inhibit copper absorption in the intestine; separate supplements by at least 2 hours."
+    },
+    {
+      "drug": "Penicillamine",
+      "severity": 3,
+      "keywords": [
+        "contraindicated",
+        "inhibit absorption"
+      ],
+      "evidence": "Zinc salts may reduce oral absorption of penicillamine; the combination is considered contraindicated in dogs with hepatopathy."
+    },
+    {
+      "drug": "Tetracyclines",
+      "severity": 2,
+      "keywords": [
+        "chelate",
+        "reduce absorption"
+      ],
+      "evidence": "Zinc salts may chelate oral tetracyclines and reduce their absorption; separate doses by at least 2 hours."
+    },
+    {
+      "drug": "Fluoroquinolones (e.g., enrofloxacin, ciprofloxacin)",
+      "severity": 2,
+      "keywords": [
+        "reduce absorption"
+      ],
+      "evidence": "Zinc salts may reduce the oral absorption of some fluoroquinolones."
+    },
+    {
+      "drug": "Calcium Supplements, Oral",
+      "severity": 1,
+      "keywords": [
+        "inhibit absorption"
+      ],
+      "evidence": "May potentially inhibit oral zinc absorption."
+    },
+    {
+      "drug": "Iron Supplements, Oral",
+      "severity": 1,
+      "keywords": [
+        "reduce absorption"
+      ],
+      "evidence": "May potentially inhibit oral zinc absorption; zinc salts may reduce the oral absorption of iron."
+    }
+  ],
+
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "low",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "per_weight",
+          "context": "Adjunctive treatment and prophylaxis of primary copper hepatopathy (extra-label)",
+          "value": "8 to 10",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "q12h",
+          "max_dose_mg_kg": null,
+          "duration_note": "Separate dose from meals by 1 to 2 hours. Monitor every 2-3 months.",
+          "evidence": "Extra-label"
+        },
+        {
+          "logic_type": "per_weight",
+          "context": "Hepatic fibrosis (extra-label)",
+          "value": "15",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "q24h",
+          "max_dose_mg_kg": null,
+          "duration_note": "Empirical dosage. Tapered to 50-100 mg/dog based on serum zinc.",
+          "evidence": "Extra-label"
+        },
+        {
+          "logic_type": "fixed_dose",
+          "context": "Prevention of copper accumulation associated with chronic hepatitis (extra-label)",
+          "value": "100",
+          "unit": "mg/dog",
+          "route": "PO",
+          "frequency": "q24h",
+          "max_dose_mg_kg": null,
+          "duration_note": "For 3 to 6 months, then reduce to 50 mg elemental zinc/dog PO daily.",
+          "evidence": "Extra-label"
+        },
+        {
+          "logic_type": "per_weight",
+          "context": "Adjunctive therapy for superficial necrolytic dermatitis or zinc-responsive dermatosis (extra-label)",
+          "value": "2 to 3",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "q24h or divided q12h",
+          "max_dose_mg_kg": null,
+          "duration_note": "Give with food. Syndrome I patients require lifelong therapy.",
+          "evidence": "Extra-label"
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "per_weight",
+          "context": "Adjunctive therapy of severe hepatic lipidosis (extra-label)",
+          "value": "7 to 10",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "q24h",
+          "max_dose_mg_kg": null,
+          "duration_note": "In B-complex mixture if possible.",
+          "evidence": "Extra-label"
+        },
+        {
+          "logic_type": "per_weight",
+          "context": "Primary copper hepatopathy (extra-label)",
+          "value": "2 to 4",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "q12h to q24h",
+          "max_dose_mg_kg": null,
+          "duration_note": null,
+          "evidence": "Extra-label"
+        }
+      ]
+    }
+  },
+
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "none specified",
+    "adjustment_factor": null,
+    "note": "Zinc sulfate injection contains aluminum; prolonged administration may lead to aluminum toxicity in animals with renal insufficiency."
+  },
+
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "none specified",
+    "note": "Therapeutically used to manage primary copper hepatopathy and hepatic fibrosis."
+  },
+
+  "contraindications": [
+    {
+      "condition": "Concurrent Penicillamine Therapy",
+      "match_terms": [
+        "penicillamine"
+      ],
+      "severity": "high",
+      "action": "Avoid",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "Copper Deficiency",
+      "match_terms": [
+        "copper deficiency"
+      ],
+      "severity": "high",
+      "action": "Use with caution or avoid",
+      "lab_trigger": {
+        "marker": "copper",
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "Known Hypersensitivity",
+      "match_terms": [
+        "hypersensitive"
+      ],
+      "severity": "high",
+      "action": "Avoid",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    }
+  ],
+
+  "genetic_sensitivity": {
+    "has_genetic_risk": true,
+    "affected_breeds": [
+      "Bedlington terriers",
+      "West Highland white terriers"
+    ],
+    "gene": null,
+    "evidence": "Oral zinc acetate has been shown to reduce copper toxicity in dog breeds that are susceptible to hepatic copper toxicosis (eg, Bedlington terriers, West Highland white terriers)."
+  },
+
+  "effects_and_mechanisms": {
+    "common_mechanism": "Required by over 200 metalloenzymes. Necessary to maintain the structural integrity of cell membranes and nucleic acids. In dogs with hepatitis, it induces the intestinal copper-binding protein metallothionein, resulting in antifibrotic and hepatoprotective properties.",
+    "common_extra_effects": [
+      "GI disturbances",
+      "vomiting"
+    ],
+    "dog_mechanism": null,
+    "dog_extra_effects": [
+      "hemolysis",
+      "hemolytic anemia",
+      "diarrhea",
+      "polydipsia",
+      "lethargy"
+    ],
+    "cat_mechanism": null,
+    "cat_extra_effects": [
+      "hemolysis",
+      "hemolytic anemia",
+      "diarrhea",
+      "polydipsia",
+      "lethargy"
+    ]
+  },
+
+  "species_notes": {
+    "dog": "Useful for reducing copper toxicity in susceptible breeds, treating hepatic fibrosis, and managing zinc-responsive dermatosis.",
+    "cat": "Dosages are less well described. Can be used as adjunctive therapy for severe hepatic lipidosis and primary copper hepatopathy."
+  },
+
+  "precautions": {
+    "dog": {
+      "status": 2,
+      "evidence": "Use caution in animals with copper deficiency. Hematologic abnormalities (usually hemolysis) may occur with large doses."
+    },
+    "cat": {
+      "status": 2,
+      "evidence": "Similar toxicity risks as in dogs; large doses may cause severe GI distress and hemolysis."
+    }
+  },
+
+  "storage_and_forms": {
+    "storage": "Store zinc acetate crystals in tight containers. Store zinc sulfate products in tight containers at room temperature of 15°C to 30°C (59°F-86°F).",
+    "forms": [
+      "Capsules",
+      "Tablets",
+      "Chewable Tablets",
+      "Injection"
+    ]
+  },
+
+  "section_1_2_10": {
+    "highlights": "Nutritional agent for zinc deficiency, treating copper toxicity in susceptible dog breeds, and hepatic fibrosis. Contraindicated with penicillamine. Use caution with concurrent copper deficiency. Adverse effects include GI upset and potentially fatal hemolysis.",
+    "indications": "Adjunctive treatment for primary copper hepatopathy, hepatic fibrosis, severe hepatic lipidosis, superficial necrolytic dermatitis, and zinc-responsive dermatosis.",
+    "client_info": "Give on an empty stomach if possible, but mix with hamburger or tuna fish if vomiting occurs. Do not exceed the prescribed dose; zinc overdoses can be severely toxic. Return for mandatory blood tests."
+  },
+
+  "_data_quality": {
+    "overall_confidence": 4,
+    "renal_adjustment_confidence": "low",
+    "hepatic_adjustment_confidence": "low",
+    "organ_burden_confidence": "high",
+    "ddi_source": "Plumbs",
+    "plumbs_sections_found": [
+      "Prescriber Highlights",
+      "Uses/Indications",
+      "Pharmacology/Actions",
+      "Pharmacokinetics",
+      "Contraindications/Precautions/Warnings",
+      "Adverse Effects",
+      "Reproductive/Nursing Safety",
+      "Overdose/Acute Toxicity",
+      "Drug Interactions",
+      "Dosages",
+      "Monitoring",
+      "Client Information",
+      "Storage/Stability",
+      "Dosage Forms/Regulatory Status"
+    ],
+    "missing_sections": [],
+    "requires_pmc_rag": false,
+    "pmc_rag_fields": []
+  },
+
+  "_extraction_metadata": {
+    "model_used": "Gemini 3.1 Pro",
+    "extraction_pass": 1,
+    "source_file": "Plumbs Veterinary Drugs",
+    "extracted_at": "2026-03-21T14:00:14Z",
+    "reviewer": null
+  }
+}

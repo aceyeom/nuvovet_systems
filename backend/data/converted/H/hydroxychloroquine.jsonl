@@ -1,0 +1,516 @@
+{
+  "id": "hydroxychloroquine",
+  "drug_identity": {
+    "name_ko": "하이드록시클로로퀸",
+    "name_en": "Hydroxychloroquine",
+    "active_ingredient": "Hydroxychloroquine sulfate",
+    "brand_names": [
+      "Plaquenil"
+    ],
+    "allergy_class": "4-aminoquinoline",
+    "class": "Immunosuppressant",
+    "source": "human_offlabel",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": "수의학적 허가 제품 없음. 개의 루푸스 피부염 치료에 사람용 제품을 오프라벨로 사용하며, 현재 실험적 사용으로 간주됨.",
+    "dosage_form": [
+      "Tab"
+    ],
+    "available_strengths": [
+      {
+        "value": 200,
+        "unit": "mg"
+      }
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Liver",
+    "clearance_organ": "Kidney",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": "사람에서 간에서 광범위하게 대사됨. 소변 산성화로 신장 배설 증가 가능. 개에서의 대사 경로 정보 없음."
+    },
+    "extra_information": "개에서의 약동학 정보 없음. 사람에서 경구 생체이용률 74%, 반감기 약 40일(960시간)로 매우 길다. 소변 산성화 시 신장 배설 증가."
+  },
+  "organ_burden_logic": {
+    "note": "점수는 모노그래프에서 언급된 키워드 기반으로 산출. 개에서의 수의학적 PK 데이터 없음; 주로 사람 데이터 및 제한적 증례 보고에 근거.",
+    "dog": {
+      "brain": {
+        "calculated_score": 30,
+        "triggered_keywords": [
+          "lethargy",
+          "decreased seizure threshold",
+          "CNS effects",
+          "headache",
+          "dizziness"
+        ],
+        "index": 1,
+        "evidence": "사람에서 두통, 어지럼증, 경련 역치 감소 등 CNS 부작용 보고. 개에서는 기면(lethargy) 보고됨."
+      },
+      "blood": {
+        "calculated_score": 35,
+        "triggered_keywords": [
+          "hematologic toxicity",
+          "hypokalemia",
+          "antiplatelet",
+          "QT prolongation"
+        ],
+        "index": 1,
+        "evidence": "답손과 병용 시 혈액독성 위험 증가. 과용량 시 심각한 저칼륨혈증, QT 연장, 심실빈맥 등 심혈관 독성 보고."
+      },
+      "kidney": {
+        "calculated_score": 25,
+        "triggered_keywords": [
+          "renal disease",
+          "reduced renal function",
+          "retinopathy risk"
+        ],
+        "index": 1,
+        "evidence": "신장 기능 저하 시 망막병증 위험 증가. 신장 질환 환자에서 주의 사용 권고. 소변 산성화로 신장 배설 증가 가능."
+      },
+      "liver": {
+        "calculated_score": 40,
+        "triggered_keywords": [
+          "extensively metabolized by the liver",
+          "hepatic disease",
+          "hepatotoxic drugs"
+        ],
+        "index": 1,
+        "evidence": "간에서 광범위하게 대사됨. 간 질환 환자에서 주의 사용 권고. 간독성 약물과 병용 시 간독성 위험 증가."
+      },
+      "heart": {
+        "calculated_score": 45,
+        "triggered_keywords": [
+          "QT prolongation",
+          "torsades de pointes",
+          "ventricular tachycardia",
+          "ventricular fibrillation",
+          "cardiac arrest",
+          "cardiomyopathy",
+          "rhythm disturbances"
+        ],
+        "index": 1,
+        "evidence": "과용량 시 QT 연장, 심실빈맥, 심실세동, 심정지 등 심각한 심혈관 독성 보고. 기존 심장 이상 환자에서 주의 사용 권고."
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "고양이에서의 사용 정보 없음. 점수 산출 불가."
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "고양이에서의 사용 정보 없음. 점수 산출 불가."
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "고양이에서의 사용 정보 없음. 점수 산출 불가."
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "고양이에서의 사용 정보 없음. 점수 산출 불가."
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "고양이에서의 사용 정보 없음. 점수 산출 불가."
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": 960.0,
+      "species": "human"
+    },
+    "f_percent": 74,
+    "protein_binding_percent": null,
+    "evidence": "사람에서 경구 생체이용률 74%, 반감기 약 40일(960시간). 개에서의 약동학 정보 없음."
+  },
+  "_ddi_note": "Plumb's Drug Interactions 섹션에서 직접 추출. 중증도: 금기→3, 주요→3, 중등도→2, 경미→1.",
+  "drug_interactions": [
+    {
+      "drug": "Antacids (aluminum hydroxide, calcium carbonate, magnesium hydroxide)",
+      "severity": 2,
+      "keywords": [
+        "reduced absorption",
+        "separate dosing"
+      ],
+      "evidence": "Antacids may reduce hydroxychloroquine absorption; separate dosing by 4 hours."
+    },
+    {
+      "drug": "Cimetidine",
+      "severity": 2,
+      "keywords": [
+        "increased pharmacological effects",
+        "dosage adjustment"
+      ],
+      "evidence": "Cimetidine potentially increases pharmacological effects of hydroxychloroquine; dosage adjustment may be required."
+    },
+    {
+      "drug": "Cyclosporine",
+      "severity": 2,
+      "keywords": [
+        "increased serum levels"
+      ],
+      "evidence": "Hydroxychloroquine may increase serum levels of cyclosporine."
+    },
+    {
+      "drug": "Dapsone",
+      "severity": 2,
+      "keywords": [
+        "hematologic toxicity"
+      ],
+      "evidence": "Combination of hydroxychloroquine and dapsone may increase risk for hematologic toxicity."
+    },
+    {
+      "drug": "Digoxin",
+      "severity": 2,
+      "keywords": [
+        "increased digoxin levels",
+        "increased effects"
+      ],
+      "evidence": "Hydroxychloroquine may increase digoxin levels and effects."
+    },
+    {
+      "drug": "Hepatotoxic Drugs (androgens, azole antifungals, estrogens, NSAIDs)",
+      "severity": 2,
+      "keywords": [
+        "hepatotoxicity",
+        "additive hepatic toxicity"
+      ],
+      "evidence": "Concurrent use with hepatotoxic drugs increases risk for hepatotoxicity."
+    },
+    {
+      "drug": "Hypoglycemic Agents (glipizide, insulin)",
+      "severity": 2,
+      "keywords": [
+        "enhanced glucose-lowering",
+        "hypoglycemia"
+      ],
+      "evidence": "Hydroxychloroquine may enhance glucose-lowering effects of hypoglycemic agents."
+    },
+    {
+      "drug": "Kaolin",
+      "severity": 1,
+      "keywords": [
+        "reduced absorption",
+        "separate dosing"
+      ],
+      "evidence": "Kaolin may reduce hydroxychloroquine absorption; separate dosages by at least 4 hours."
+    },
+    {
+      "drug": "Metoprolol",
+      "severity": 2,
+      "keywords": [
+        "increased beta-blocker effects"
+      ],
+      "evidence": "Hydroxychloroquine may increase the effects of metoprolol."
+    },
+    {
+      "drug": "Praziquantel",
+      "severity": 1,
+      "keywords": [
+        "reduced praziquantel absorption"
+      ],
+      "evidence": "Hydroxychloroquine may reduce praziquantel absorption."
+    },
+    {
+      "drug": "QT Prolonging Drugs (amiodarone, cisapride, sotalol)",
+      "severity": 3,
+      "keywords": [
+        "QT prolongation",
+        "torsades de pointes",
+        "cardiac arrhythmia"
+      ],
+      "evidence": "Concurrent use with QT prolonging drugs may increase risk for QT prolongation and serious cardiac arrhythmias."
+    },
+    {
+      "drug": "Rabies Vaccine",
+      "severity": 1,
+      "keywords": [
+        "decreased immune response",
+        "vaccine efficacy"
+      ],
+      "evidence": "In human patients, hydroxychloroquine may decrease immune response to rabies vaccine. Veterinary significance is unknown."
+    }
+  ],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": true,
+    "gi_ulcer": false,
+    "bleeding": true,
+    "sedation": true,
+    "qt_prolongation": true
+  },
+  "risk_flags": {
+    "nephrotoxic": "low",
+    "hepatotoxic": "moderate",
+    "gi_ulcer": "low",
+    "bleeding": "low",
+    "qt_prolongation": "high"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": "k_depleting",
+    "narrow_therapeutic_index": true,
+    "washout_period_days": 200.0
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "linear",
+          "context": "개 박탈성 피부 루푸스 홍반증(exfoliative cutaneous lupus erythematosus) 보조 치료 (오프라벨)",
+          "value": "5 - 10",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "SID",
+          "max_dose_mg_kg": 10.0,
+          "duration_note": "독일 단모 포인터 3마리, 차이니즈 크레스티드 1마리 총 4마리 증례 보고에서 도출된 용량",
+          "evidence": "2건의 증례 보고(총 4마리 개)에서 도출. 오프라벨 사용."
+        },
+        {
+          "logic_type": "fixed",
+          "context": "개 전신성 원판상 루푸스 홍반증(generalized discoid lupus erythematosus) 보조 치료 (오프라벨)",
+          "value": "5",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "SID",
+          "max_dose_mg_kg": 5.0,
+          "duration_note": "타크로리무스 0.1% 연고 1일 2회 국소 도포와 병용. 3마리 중 2마리 완전 관해, 1마리 75% 부분 관해.",
+          "evidence": "3마리 개 치료 보고에서 도출. 오프라벨 사용."
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": []
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": "신장 기능 저하 시 망막병증 위험 증가 및 주의 사용 권고되나, 구체적인 용량 조절 지침은 모노그래프에 명시되지 않음. 소변 산성화로 신장 배설 증가 가능."
+  },
+  "hepatic_dose_adjustment": {
+    "applies": true,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "monitor",
+    "note": "간에서 광범위하게 대사되며 간 질환 환자에서 주의 사용 권고되나, 구체적인 용량 조절 지침은 모노그래프에 명시되지 않음."
+  },
+  "contraindications": [
+    {
+      "condition": "4-아미노퀴놀린 계열 약물 과민증",
+      "match_terms": [
+        "hypersensitivity to hydroxychloroquine",
+        "hypersensitivity to 4-aminoquinoline",
+        "chloroquine allergy",
+        "amodiaquine allergy"
+      ],
+      "severity": "absolute",
+      "action": "contraindicated",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "기존 심장 이상 (심근병증, 부정맥)",
+      "match_terms": [
+        "cardiomyopathy",
+        "cardiac arrhythmia",
+        "rhythm disturbance",
+        "pre-existing cardiac abnormality"
+      ],
+      "severity": "relative",
+      "action": "monitor",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "신장 질환",
+      "match_terms": [
+        "renal disease",
+        "renal failure",
+        "CKD",
+        "reduced renal function"
+      ],
+      "severity": "relative",
+      "action": "monitor",
+      "lab_trigger": {
+        "marker": "creatinine",
+        "threshold": null,
+        "unit": "mg/dL"
+      }
+    },
+    {
+      "condition": "간 질환",
+      "match_terms": [
+        "hepatic disease",
+        "liver disease",
+        "hepatic failure"
+      ],
+      "severity": "relative",
+      "action": "monitor",
+      "lab_trigger": {
+        "marker": "alt",
+        "threshold": null,
+        "unit": "U/L"
+      }
+    },
+    {
+      "condition": "임신",
+      "match_terms": [
+        "pregnancy",
+        "gravid"
+      ],
+      "severity": "relative",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    }
+  ],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": "4-아미노퀴놀린 계열 항말라리아 및 면역조절제. 호중구 식균작용 및 초산화물 생성 억제, 화학주성 억제, TLR-9 자극 억제를 통해 면역조절 효과 발휘. 자외선 감수성 감소, 항혈소판 및 항고지혈증 효과도 기여. 항말라리아 효과는 기생충의 소화 공포에 농축되어 헤모글로빈 대사를 방해함으로써 나타남.",
+    "common_extra_effects": [
+      "기면(lethargy)",
+      "구토(vomiting)",
+      "설사(diarrhea)",
+      "광과민성(sun sensitivity)",
+      "망막병증(retinopathy, 사람)",
+      "근병증/신경근병증(myopathy/neuromyopathy, 사람)",
+      "식욕부진(anorexia, 사람)",
+      "두통(headache, 사람)",
+      "어지럼증(dizziness, 사람)",
+      "경련 역치 감소(decreased seizure threshold, 사람)",
+      "저혈당(hypoglycemia, 사람)",
+      "QT 연장(QT prolongation, 과용량 시)"
+    ],
+    "dog_mechanism": "개에서의 정확한 작용 기전은 확립되지 않았으나, 사람과 유사한 면역조절 기전으로 추정됨. 개 루푸스 피부염 치료에 보조적으로 사용.",
+    "dog_extra_effects": [
+      "기면(lethargy)",
+      "구토(vomiting)",
+      "설사(diarrhea)"
+    ],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "개에서의 임상 경험이 매우 제한적이며, 현재까지 소수의 증례 보고만 존재함. 박탈성 피부 루푸스 홍반증 및 전신성 원판상 루푸스 홍반증에 보조 치료로 사용 가능성이 있으나 실험적 사용으로 간주해야 함. 5kg 미만 소형견은 정확한 용량 투여를 위해 조제가 필요함(1/4정 ≈ 50mg). 얇은 털을 가진 개는 과도한 햇빛 노출을 피해야 함. 정기적인 안과 검사, CBC, 혈청 화학 검사(CK 포함) 모니터링 권장.",
+    "cat": "고양이에서의 사용에 대한 정보가 없음. 안전성 및 유효성이 확립되지 않아 사용을 권장하지 않음."
+  },
+  "precautions": {
+    "dog": {
+      "status": 1,
+      "evidence": "개에서 임상 경험이 매우 제한적이며 실험적 사용으로 간주됨. 기존 심장 이상이 있는 경우 ECG 및 심장 검사 권장. 정기적인 안과 검사, CBC, 혈청 화학 검사 모니터링 필요. 얇은 털을 가진 개는 과도한 햇빛 노출 주의."
+    },
+    "cat": {
+      "status": 1,
+      "evidence": "고양이에서의 사용에 대한 정보가 없으며, 안전성이 확립되지 않음."
+    }
+  },
+  "storage_and_forms": {
+    "storage": "20°C~25°C(68°F~77°F) 실온, 차광 용기, 어린이 안전 마개 사용. 어린이 및 반려동물의 손이 닿지 않는 곳에 보관.",
+    "forms": [
+      "Hydroxychloroquine Sulfate 경구정 200mg (Plaquenil®, 제네릭)"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "하이드록시클로로퀸은 항말라리아 및 면역조절 특성을 가진 경구용 4-아미노퀴놀린 계열 약물로, 개의 루푸스 피부염 치료에 오프라벨로 사용됨. 수의학적 허가 제품 없음. 임상 경험이 매우 제한적이며 실험적 사용으로 간주해야 함. 반감기가 매우 길어(사람 기준 40일) 약물 축적 및 독성에 주의 필요. 과용량 시 QT 연장, 심실빈맥, 심정지 등 심각한 심혈관 독성 발생 가능. 정기적인 모니터링(안과 검사, CBC, 혈청 화학, 심전도) 필수.",
+    "indications": "개의 박탈성 피부 루푸스 홍반증(exfoliative cutaneous lupus erythematosus) 및 전신성 원판상 루푸스 홍반증(generalized discoid lupus erythematosus) 보조 치료 (오프라벨, 실험적). 사람에서는 말라리아 예방 및 치료, 류마티스 관절염, 전신성 루푸스 홍반증 치료에 허가됨.",
+    "client_info": "이 약은 음식과 함께 투여하세요. 동물에서의 사용 경험이 많지 않으므로 부작용(기면, 구토, 설사, 근육통, 허약감 등)이 나타나면 즉시 수의사에게 알리세요. 어린이와 다른 동물의 손이 닿지 않는 곳에 보관하세요. 과용량은 매우 위험할 수 있습니다. 투약 중에는 정기적인 검진과 혈액 검사를 위해 수의사 방문을 빠뜨리지 마세요. 얇은 털을 가진 개는 햇빛에 과도하게 노출되지 않도록 주의하세요."
+  },
+  "_data_quality": {
+    "overall_confidence": 35,
+    "renal_adjustment_confidence": "low",
+    "hepatic_adjustment_confidence": "low",
+    "organ_burden_confidence": "low",
+    "ddi_source": "plumbs_direct",
+    "plumbs_sections_found": [
+      "Uses/Indications",
+      "Pharmacology/Actions",
+      "Pharmacokinetics",
+      "Contraindications/Precautions/Warnings",
+      "Adverse Effects",
+      "Reproductive/Nursing Safety",
+      "Overdose/Acute Toxicity",
+      "Drug Interactions",
+      "Dosages",
+      "Monitoring",
+      "Client Information",
+      "Chemistry/Synonyms",
+      "Storage/Stability",
+      "Compatibility/Compounding Considerations",
+      "Dosage Forms/Regulatory Status"
+    ],
+    "missing_sections": [
+      "Veterinary pharmacokinetics (dog/cat)",
+      "Cat dosage",
+      "CYP profile",
+      "Protein binding",
+      "Onset of action",
+      "T_max",
+      "Renal elimination fraction",
+      "Specific renal/hepatic dose adjustment guidelines"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile.onset_min",
+      "timing_profile.t_max_hr",
+      "timing_profile.half_life_hr (dog/cat specific)",
+      "timing_profile.protein_binding_percent",
+      "metabolism_and_clearance.renal_elimination_fraction",
+      "cyp_profile.substrates",
+      "cyp_profile.inhibitors",
+      "cyp_profile.inducers",
+      "renal_dose_adjustment.creatinine_threshold_dog_mg_dL",
+      "renal_dose_adjustment.adjustment_factor",
+      "hepatic_dose_adjustment.alt_threshold_multiplier",
+      "dosage_and_kinetics.cat.dosage_list",
+      "genetic_sensitivity"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "claude-sonnet-4-6",
+    "extraction_pass": 1,
+    "source_file": "plumbs_output/1.jsonl",
+    "extracted_at": "2026-03-11T11:13:57.230927+00:00",
+    "reviewer": null
+  }
+}

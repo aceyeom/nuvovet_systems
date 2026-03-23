@@ -1,0 +1,379 @@
+{
+  "id": "insulin_glargine",
+  "drug_identity": {
+    "name_ko": "인슐린 글라진",
+    "name_en": "Insulin, Glargine",
+    "active_ingredient": "Insulin glargine",
+    "brand_names": [
+      "Lantus",
+      "Basaglar",
+      "Semglee",
+      "Toujeo",
+      "Rezvoglar",
+      "Abasaglar",
+      "Lusduna",
+      "Soliqua",
+      "Suliqua"
+    ],
+    "allergy_class": "Insulins",
+    "class": "Insulin, Long-Acting",
+    "source": "kr_vet",
+    "formulary_status": "High Alert Medication",
+    "has_reversal": true,
+    "reversal_agent": "Dextrose, Glucagon",
+    "reversal_evidence": "Mild hypoglycemia can be treated by offering usual food. More serious signs (e.g., seizures) should be treated with oral dextrose solutions or IV 50% dextrose solutions.",
+    "off_label_note": "All veterinary usages are extra-label.",
+    "dosage_form": [
+      "Inj"
+    ],
+    "available_strengths": [
+      {
+        "value": 100.0,
+        "unit": "units/mL"
+      },
+      {
+        "value": 300.0,
+        "unit": "units/mL"
+      }
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Mixed",
+    "clearance_organ": "Mixed",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": "After SC injection, the acidic solution is neutralized, forming microprecipitates that slowly release insulin glargine. In humans, cleavage at the injection site results in 2 active metabolites (M1 and M2); dogs only form the M1 metabolite."
+  },
+  "organ_burden_logic": {
+    "note": "Based on pharmacodynamics and adverse effects related to glucose and electrolyte shifts.",
+    "dog": {
+      "brain": {
+        "calculated_score": 3,
+        "triggered_keywords": [
+          "seizures",
+          "coma",
+          "brain damage"
+        ],
+        "index": 3,
+        "evidence": "Insulin overdose can lead to hypoglycemia causing weakness, ataxia, seizures, coma, permanent brain damage, or death."
+      },
+      "blood": {
+        "calculated_score": 3,
+        "triggered_keywords": [
+          "hypokalemia",
+          "hypophosphatemia"
+        ],
+        "index": 3,
+        "evidence": "Shifts extracellular potassium into the intracellular space causing hypokalemia. Can cause hypophosphatemia in DKA."
+      },
+      "kidney": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No primary nephrotoxic burden noted."
+      },
+      "liver": {
+        "calculated_score": 2,
+        "triggered_keywords": [
+          "glycogen",
+          "gluconeogenesis"
+        ],
+        "index": 2,
+        "evidence": "Increases glucose storage (glycogen) and inhibits gluconeogenesis in the liver."
+      },
+      "heart": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No primary direct cardiotoxicity noted, though severe electrolyte shifts can affect the heart."
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 3,
+        "triggered_keywords": [
+          "seizures",
+          "coma"
+        ],
+        "index": 3,
+        "evidence": "Hypoglycemia from overdose can cause severe neurologic signs."
+      },
+      "blood": {
+        "calculated_score": 3,
+        "triggered_keywords": [
+          "hypokalemia",
+          "hypophosphatemia"
+        ],
+        "index": 3,
+        "evidence": "Risk of hypokalemia and hypophosphatemia."
+      },
+      "kidney": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No primary nephrotoxic burden."
+      },
+      "liver": {
+        "calculated_score": 2,
+        "triggered_keywords": [
+          "gluconeogenesis"
+        ],
+        "index": 2,
+        "evidence": "Alters hepatic glucose metabolism."
+      },
+      "heart": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No primary direct cardiotoxicity noted."
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": 48,
+    "t_max_hr": 14.0,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": null
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": "In diabetic dogs receiving SC U100, hypoglycemic effect was noted 2 hours after administration and persisted for 12 hours. In cats, onset is 0.8 to 1.8 hours, time to reach nadir is ~14 hours, and duration is 22 hours."
+  },
+  "_ddi_note": "Many potential drug interactions. Insulin is considered a high alert medication.",
+  "drug_interactions": [
+    {
+      "drug": "Beta-Adrenergic Antagonists, Clonidine, Reserpine",
+      "severity": 2,
+      "keywords": [
+        "mask the signs",
+        "hypoglycemia"
+      ],
+      "evidence": "Can mask the signs associated with hypoglycemia. Beta-blockers also have variable effects on glycemic control."
+    },
+    {
+      "drug": "Digoxin, Diuretics",
+      "severity": 2,
+      "keywords": [
+        "potassium",
+        "hypokalemia"
+      ],
+      "evidence": "Insulin reduces serum potassium; patients on concurrent digoxin or diuretics should be closely monitored. Diuretics may also decrease hypoglycemic activity."
+    },
+    {
+      "drug": "Hypoglycemic Potentiators (e.g., ACEIs, ARBs, MAOIs, Fluoroquinolones, Sulfonamides, Salicylates)",
+      "severity": 2,
+      "keywords": [
+        "potentiate",
+        "hypoglycemic"
+      ],
+      "evidence": "May potentiate the hypoglycemic activity of insulin (i.e., decrease insulin requirements)."
+    },
+    {
+      "drug": "Hypoglycemic Antagonists (e.g., Corticosteroids, Alpha-2 Agonists, Estrogens, Progestins, Thyroid Hormones)",
+      "severity": 2,
+      "keywords": [
+        "decrease",
+        "hypoglycemic"
+      ],
+      "evidence": "May decrease the hypoglycemic activity of insulin (i.e., increase insulin requirements)."
+    }
+  ],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": true,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": "hypokalemia, hypophosphatemia",
+    "narrow_therapeutic_index": true,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "Extra-label",
+          "context": "Initial insulin treatment of uncomplicated diabetes mellitus",
+          "value": "0.3",
+          "unit": "units/kg",
+          "route": "SC",
+          "frequency": "q12h",
+          "max_dose_mg_kg": null,
+          "duration_note": "Alternatively, 0.25 - 0.5 unit/kg SC every 12 hours.",
+          "evidence": "Extra-label."
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "Extra-label",
+          "context": "Initial insulin treatment of uncomplicated diabetes mellitus",
+          "value": "0.5 unit/kg (BG >360) or 0.25 unit/kg (BG <360)",
+          "unit": "units/kg",
+          "route": "SC",
+          "frequency": "q12h",
+          "max_dose_mg_kg": null,
+          "duration_note": "Equates to 1-2 units/cat. Initial dose should not exceed 2 units/cat q12h regardless of size.",
+          "evidence": "Extra-label."
+        },
+        {
+          "logic_type": "Extra-label",
+          "context": "Adjunctive therapy for DKA (Combined IM/SC protocol)",
+          "value": "1-2 units IM + 1-3 units SC",
+          "unit": "units/cat",
+          "route": "IM/SC",
+          "frequency": "Initial",
+          "max_dose_mg_kg": null,
+          "duration_note": "Subsequent IM doses to maintain BG 180-252; SC continued q12h.",
+          "evidence": "Extra-label."
+        },
+        {
+          "logic_type": "Extra-label",
+          "context": "Adjunctive therapy for DKA (Glargine + regular insulin)",
+          "value": "0.25 units/kg glargine SC q12h + 1 unit/cat regular insulin IM",
+          "unit": "units",
+          "route": "SC/IM",
+          "frequency": "Variable",
+          "max_dose_mg_kg": null,
+          "duration_note": "Regular insulin IM up to q6h for BG > 250.",
+          "evidence": "Extra-label."
+        }
+      ]
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "none",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "none",
+    "note": null
+  },
+  "contraindications": [
+    {
+      "condition": "Hypoglycemia",
+      "match_terms": [
+        "hypoglycemia"
+      ],
+      "severity": "high",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": "Glucose",
+        "threshold": 60.0,
+        "unit": "mg/dL"
+      }
+    }
+  ],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": "Regulates glucose metabolism; lowers blood glucose by increasing glucose uptake in peripheral tissues (skeletal muscle, fat). Inhibits gluconeogenesis, lipolysis, and proteolysis.",
+    "common_extra_effects": [
+      "Hypoglycemia",
+      "Hypokalemia",
+      "Hypophosphatemia (in DKA)",
+      "Insulin-induced rebound hyperglycemia (Somogyi effect)",
+      "Weight gain",
+      "Local/allergic reactions"
+    ],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "For obese patients, dose calculations should be based on ideal body weight. Intermediate-acting insulins are usually first-choice for dogs, but glargine can be considered if longer duration is needed.",
+    "cat": "U100 glargine is recommended as a first-choice insulin in newly diagnosed diabetic cats."
+  },
+  "precautions": {
+    "dog": {
+      "status": 3,
+      "evidence": "Crucial to use the correct syringe for the correct concentration (U100 vs U300). Must not be diluted or mixed with any other insulin, as pH change transforms it to rapid-acting."
+    },
+    "cat": {
+      "status": 3,
+      "evidence": "Crucial to use the correct syringe for the correct concentration (U100 vs U300). Must not be diluted or mixed with any other insulin, as pH change transforms it to rapid-acting."
+    }
+  },
+  "storage_and_forms": {
+    "storage": "Unopened vials/pens in refrigerator at 2°C to 8°C (36°F-46°F). Do not freeze. In-use U100 vials may be refrigerated or room temp for 28 days. In-use U100 pens room temp only for 28 days. In-use U300 pens room temp only for 56 days.",
+    "forms": [
+      "Injection Solution: 100 units/mL in 10 mL vials and 3 mL prefilled pens",
+      "Injection Solution: 300 units/mL in 1.5 mL and 3 mL prefilled pens"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "Long-acting insulin used for treatment in patients newly diagnosed with diabetes mellitus and for long-term maintenance therapy. Can be considered for DKA management. Do not confuse U100 and U300 strengths/syringes.",
+    "indications": "Initial treatment and long-term management of diabetes mellitus, especially in cats. Alternative to regular insulin for DKA.",
+    "client_info": "Glargine solutions should be clear and colorless. Mixing/shaking is not needed. Overdoses may be fatal. Treat low blood sugar with corn syrup/honey on gums."
+  },
+  "_data_quality": {
+    "overall_confidence": 5,
+    "renal_adjustment_confidence": "high",
+    "hepatic_adjustment_confidence": "high",
+    "organ_burden_confidence": "high",
+    "ddi_source": "Plumb's Veterinary Drugs",
+    "plumbs_sections_found": [
+      "Prescriber Highlights",
+      "Uses/Indications",
+      "Pharmacology/Actions",
+      "Pharmacokinetics",
+      "Contraindications/Precautions/Warnings",
+      "Adverse Effects",
+      "Reproductive/Nursing Safety",
+      "Overdose/Acute Toxicity",
+      "Drug Interactions",
+      "Laboratory Considerations",
+      "Dosages",
+      "Monitoring",
+      "Client Information",
+      "Chemistry/Synonyms",
+      "Storage/Stability",
+      "Compatibility/Compounding Considerations",
+      "Dosage Forms/Regulatory Status"
+    ],
+    "missing_sections": [],
+    "requires_pmc_rag": false,
+    "pmc_rag_fields": []
+  },
+  "_extraction_metadata": {
+    "model_used": "Gemini 3.1 Pro",
+    "extraction_pass": 1,
+    "source_file": "Insulin, Glargine text extract",
+    "extracted_at": "2026-03-21T13:12:35+09:00",
+    "reviewer": null
+  }
+}

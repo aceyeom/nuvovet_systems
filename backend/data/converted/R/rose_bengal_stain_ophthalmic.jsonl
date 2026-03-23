@@ -1,0 +1,262 @@
+{
+  "id": "rose_bengal_stain_ophthalmic",
+
+  "drug_identity": {
+    "name_ko": "로즈 벵갈 염색 (안과용)",
+    "name_en": "Rose Bengal Stain, Ophthalmic",
+    "active_ingredient": "Rose bengal",
+    "brand_names": [
+      "Glostrips"
+    ],
+    "allergy_class": "Ocular Diagnostic Agent",
+    "class": "Ocular Diagnostic Agent",
+    "source": "human_offlabel",
+    "formulary_status": null,
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": "Used extra-label for detecting corneal and conjunctival cell damage and evaluating tear film deficiencies.",
+    "dosage_form": [
+      "Ophthalmic",
+      "Drop"
+    ],
+    "available_strengths": [
+      {
+        "value": 1.3,
+        "unit": "mg/strip (0.13%)"
+      },
+      {
+        "value": 1.0,
+        "unit": "% (compounded solution)"
+      }
+    ]
+  },
+
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Mixed",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": "Topical diagnostic agent. Flushed from the eye after application; systemic absorption is minimal."
+    },
+    "extra_information": "Stains both the nuclei and cell walls of dead or degenerated epithelial cells."
+  },
+
+  "organ_burden_logic": {
+    "note": "Topical ophthalmic administration. Systemic organ burden is negligible. The primary concern is local toxicity to the cornea.",
+    "dog": {
+      "brain": { "calculated_score": 0, "triggered_keywords": [], "index": 1, "evidence": null },
+      "blood": { "calculated_score": 0, "triggered_keywords": [], "index": 2, "evidence": null },
+      "kidney": { "calculated_score": 0, "triggered_keywords": [], "index": 3, "evidence": null },
+      "liver": { "calculated_score": 0, "triggered_keywords": [], "index": 4, "evidence": null },
+      "heart": { "calculated_score": 0, "triggered_keywords": [], "index": 5, "evidence": null }
+    },
+    "cat": {
+      "brain": { "calculated_score": 0, "triggered_keywords": [], "index": 1, "evidence": null },
+      "blood": { "calculated_score": 0, "triggered_keywords": [], "index": 2, "evidence": null },
+      "kidney": { "calculated_score": 0, "triggered_keywords": [], "index": 3, "evidence": null },
+      "liver": { "calculated_score": 0, "triggered_keywords": [], "index": 4, "evidence": null },
+      "heart": { "calculated_score": 0, "triggered_keywords": [], "index": 5, "evidence": null }
+    }
+  },
+
+  "timing_profile": {
+    "onset_min": 0,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": null
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": "Acts locally and immediately stains damaged cells upon application."
+  },
+
+  "_ddi_note": "Ophthalmic preparations should not be mixed directly with any other ophthalmic medications. Rose bengal is virucidal and may confound diagnostic tests for viral keratitis; culture first.",
+
+  "drug_interactions": [],
+
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "prn",
+          "context": "Detection of corneal and conjunctival cell damage (extra-label)",
+          "value": "1",
+          "unit": "strip or drop",
+          "route": "Ophthalmic",
+          "frequency": "Once",
+          "max_dose_mg_kg": null,
+          "duration_note": "Wet the surface of the strip with 1-2 drops of normal saline, or instill 1 drop of 1% solution. Flush eye(s) thoroughly after exposure.",
+          "evidence": "Extra-label"
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "prn",
+          "context": "Detection of corneal and conjunctival cell damage (extra-label)",
+          "value": "1",
+          "unit": "strip or drop",
+          "route": "Ophthalmic",
+          "frequency": "Once",
+          "max_dose_mg_kg": null,
+          "duration_note": "Wet the surface of the strip with 1-2 drops of normal saline, or instill 1 drop of 1% solution. Flush eye(s) thoroughly after exposure.",
+          "evidence": "Extra-label"
+        }
+      ]
+    }
+  },
+
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "none specified",
+    "adjustment_factor": null,
+    "note": null
+  },
+
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "none specified",
+    "note": null
+  },
+
+  "contraindications": [
+    {
+      "condition": "History of hypersensitivity",
+      "match_terms": [
+        "hypersensitivity"
+      ],
+      "severity": "high",
+      "action": "Avoid",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    }
+  ],
+
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+
+  "effects_and_mechanisms": {
+    "common_mechanism": "Vital dye that stains both the nuclei and cell walls of dead or degenerated epithelial cells of the cornea and conjunctiva. Uptake is decreased in cells covered appropriately by mucin.",
+    "common_extra_effects": [
+      "burning",
+      "stinging",
+      "corneal toxicity"
+    ],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+
+  "species_notes": {
+    "dog": "Has been demonstrated to be an effective adjunctive diagnostic test for evaluation of quantitative tear film deficiencies in dogs.",
+    "cat": ""
+  },
+
+  "precautions": {
+    "dog": {
+      "status": 2,
+      "evidence": "Very toxic to the cornea; treated eye(s) should be thoroughly irrigated after exposure. Virucidal property may confound viral cultures."
+    },
+    "cat": {
+      "status": 2,
+      "evidence": "Very toxic to the cornea; treated eye(s) should be thoroughly irrigated after exposure. Virucidal property may confound viral cultures."
+    }
+  },
+
+  "storage_and_forms": {
+    "storage": "Store in the refrigerator or at controlled room temperature (below 30°C) away from moisture and sunlight. Do not freeze.",
+    "forms": [
+      "Rose Bengal 0.13% Strips (1.3 mg/strip)",
+      "1% sterile solution (Compounded)"
+    ]
+  },
+
+  "section_1_2_10": {
+    "highlights": "Vital dye that demonstrates corneal/conjunctival epithelial cell damage and mucin deficiency. Very toxic to cornea; irrigate eye(s) well after use. Stings upon application.",
+    "indications": "Detect epithelial cell damage prior to full-thickness epithelial cell loss (ulceration), evaluate qualitative (mucin) and quantitative tear deficiency syndromes.",
+    "client_info": "Rose bengal strips should not be used by pet owners at home. Applied by a veterinarian."
+  },
+
+  "_data_quality": {
+    "overall_confidence": 4,
+    "renal_adjustment_confidence": "high",
+    "hepatic_adjustment_confidence": "high",
+    "organ_burden_confidence": "high",
+    "ddi_source": "Plumbs",
+    "plumbs_sections_found": [
+      "Prescriber Highlights",
+      "Uses/Indications",
+      "Pharmacology/Actions",
+      "Contraindications/Precautions/Warnings",
+      "Adverse Effects",
+      "Dosages",
+      "Monitoring",
+      "Client Information",
+      "Storage/Stability",
+      "Compatibility/Compounding Considerations",
+      "Dosage Forms/Regulatory Status"
+    ],
+    "missing_sections": [
+      "Pharmacokinetics",
+      "Reproductive/Nursing Safety",
+      "Overdose/Acute Toxicity",
+      "Drug Interactions"
+    ],
+    "requires_pmc_rag": false,
+    "pmc_rag_fields": []
+  },
+
+  "_extraction_metadata": {
+    "model_used": "Gemini 3.1 Pro",
+    "extraction_pass": 1,
+    "source_file": "Plumbs Veterinary Drugs",
+    "extracted_at": "2026-03-21T14:09:49Z",
+    "reviewer": null
+  }
+}

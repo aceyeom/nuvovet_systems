@@ -1,0 +1,371 @@
+{
+  "id": "insulin_detemir",
+  "drug_identity": {
+    "name_ko": "인슐린 데테미르",
+    "name_en": "Insulin detemir",
+    "active_ingredient": "Insulin detemir",
+    "brand_names": [
+      "Levemir"
+    ],
+    "allergy_class": "Insulin",
+    "class": "Long-Acting Insulin",
+    "source": "human_offlabel",
+    "formulary_status": null,
+    "has_reversal": true,
+    "reversal_agent": "Dextrose (or Glucagon)",
+    "reversal_evidence": "Mild hypoglycemia can be treated by offering usual food. More serious signs should be treated with oral dextrose solutions or IV injections of 50% dextrose solutions. Glucagon may also be considered.",
+    "off_label_note": "Human U100 product used extensively off-label in veterinary medicine for diabetes mellitus.",
+    "dosage_form": [
+      "Inj"
+    ],
+    "available_strengths": [
+      {
+        "value": 100.0,
+        "unit": "units/mL"
+      }
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Liver",
+    "clearance_organ": "Mixed",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": "In circulation, it is 98% protein-bound to albumin and has an elimination half-life of ≈6 hours."
+  },
+  "organ_burden_logic": {
+    "note": "Primary risk is hypoglycemia. Does not have direct classical organ toxicity, but requires monitoring of potassium (hypokalemia).",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 0,
+        "evidence": ""
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 0,
+        "evidence": ""
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 0,
+        "evidence": ""
+      },
+      "liver": {
+        "calculated_score": 1,
+        "triggered_keywords": [
+          "liver",
+          "glycogen",
+          "gluconeogenesis"
+        ],
+        "index": 0,
+        "evidence": "In the liver, insulin increases glucose storage while also inhibiting gluconeogenesis."
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 0,
+        "evidence": ""
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 0,
+        "evidence": ""
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 0,
+        "evidence": ""
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 0,
+        "evidence": ""
+      },
+      "liver": {
+        "calculated_score": 1,
+        "triggered_keywords": [
+          "liver",
+          "glycogen",
+          "gluconeogenesis"
+        ],
+        "index": 0,
+        "evidence": "In the liver, insulin increases glucose storage while also inhibiting gluconeogenesis."
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 0,
+        "evidence": ""
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": 108,
+    "t_max_hr": 6.9,
+    "half_life_hr": {
+      "min": 6.0,
+      "max": 6.0,
+      "mean": 6.0,
+      "species": "Human"
+    },
+    "f_percent": null,
+    "protein_binding_percent": 98.0,
+    "evidence": "Cat SC onset: 1.8 ± 0.8 hours. Cat time-to-peak: 6.9 ± 3.1 hours. Dog SC nadir: ≈8 hours (range 4-10 hours). Human elimination half-life ≈6 hours."
+  },
+  "_ddi_note": "Numerous drugs can increase or decrease insulin requirements.",
+  "drug_interactions": [
+    {
+      "drug": "Beta-Adrenergic Antagonists (e.g., atenolol, propranolol)",
+      "severity": 2,
+      "keywords": [
+        "mask hypoglycemia"
+      ],
+      "evidence": "Can have variable effects on glycemic control and can mask the signs associated with hypoglycemia."
+    },
+    {
+      "drug": "Digoxin",
+      "severity": 3,
+      "keywords": [
+        "reduce serum potassium",
+        "toxicity"
+      ],
+      "evidence": "Because insulin can reduce serum potassium levels, patients receiving concomitant digoxin therapy should be closely monitored."
+    },
+    {
+      "drug": "Diuretics (e.g., furosemide)",
+      "severity": 2,
+      "keywords": [
+        "potassium",
+        "decrease hypoglycemic activity"
+      ],
+      "evidence": "Insulin shifts extracellular potassium into the intracellular space... Diuretics may also decrease the hypoglycemic activity of insulin."
+    },
+    {
+      "drug": "Corticosteroids",
+      "severity": 2,
+      "keywords": [
+        "decrease hypoglycemic activity",
+        "increase insulin requirements"
+      ],
+      "evidence": "May decrease the hypoglycemic activity of insulin (i.e., increase insulin requirements)."
+    },
+    {
+      "drug": "Fluoroquinolones, ACEIs, MAOIs, Sulfonamides",
+      "severity": 2,
+      "keywords": [
+        "potentiate hypoglycemic activity"
+      ],
+      "evidence": "May potentiate the hypoglycemic activity of insulin (i.e., decrease insulin requirements)."
+    },
+    {
+      "drug": "Alpha-2-Adrenergic Agonists (e.g., dexmedetomidine, xylazine)",
+      "severity": 2,
+      "keywords": [
+        "hyperglycemia",
+        "interfere with glycemic control"
+      ],
+      "evidence": "May cause hyperglycemia and temporarily interfere with glycemic control."
+    }
+  ],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": "hypokalemia",
+    "narrow_therapeutic_index": true,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "standard",
+          "context": "Uncomplicated diabetes mellitus (Initial)",
+          "value": "0.1",
+          "unit": "unit/kg",
+          "route": "SC",
+          "frequency": "q12h",
+          "max_dose_mg_kg": null,
+          "duration_note": "Long-term maintenance",
+          "evidence": "0.1 unit/kg SC every 12 hours. Alternatively, 1 unit/dog (NOT unit/kg) SC every 12 hours, regardless of the size of the dog."
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "standard",
+          "context": "Uncomplicated diabetes mellitus (BG > 360 mg/dL)",
+          "value": "0.5",
+          "unit": "unit/kg",
+          "route": "SC",
+          "frequency": "q12h",
+          "max_dose_mg_kg": null,
+          "duration_note": "Initial dose, max 2 units/cat",
+          "evidence": "0.5 unit/kg SC every 12 hours if blood glucose is more than 360 mg/dL (on initial presentation)."
+        },
+        {
+          "logic_type": "standard",
+          "context": "Uncomplicated diabetes mellitus (BG < 360 mg/dL)",
+          "value": "0.25",
+          "unit": "unit/kg",
+          "route": "SC",
+          "frequency": "q12h",
+          "max_dose_mg_kg": null,
+          "duration_note": "Initial dose, max 2 units/cat",
+          "evidence": "0.25 unit/kg SC every 12 hours if blood glucose is less than 360 mg/dL (on initial presentation)."
+        }
+      ]
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "none",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "none",
+    "note": null
+  },
+  "contraindications": [
+    {
+      "condition": "Hypoglycemia",
+      "match_terms": [
+        "episodes of hypoglycemia"
+      ],
+      "severity": "contraindicated",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": "Glucose",
+        "threshold": null,
+        "unit": "mg/dL"
+      }
+    },
+    {
+      "condition": "Severe Ketoacidosis (DKA)",
+      "match_terms": [
+        "ketoacidosis",
+        "anorexia",
+        "lethargy",
+        "vomiting"
+      ],
+      "severity": "contraindicated",
+      "action": "use short-acting insulin instead",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    }
+  ],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": "Regulates glucose metabolism. Lowers blood glucose by increasing glucose uptake in peripheral tissues (skeletal muscle, fat) and increasing glucose storage (glycogen) in the liver while inhibiting gluconeogenesis.",
+    "common_extra_effects": [
+      "hypoglycemia",
+      "hypokalemia",
+      "Somogyi effect"
+    ],
+    "dog_mechanism": "Strongly self-associates and binds protein at injection site, slowing absorption.",
+    "dog_extra_effects": [
+      "Greater hypoglycemic response compared to humans and cats."
+    ],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "Dogs show a stronger hypoglycemic response with insulin detemir and should start treatment at a much lower dose than other insulins. Not recommended in dogs weighing < 10-15 kg without a specific diluent.",
+    "cat": "Cats often require a lower dose of insulin detemir for glycemic control as compared with glargine insulin."
+  },
+  "precautions": {
+    "dog": {
+      "status": 3,
+      "evidence": "High risk of severe hypoglycemia if dosed identically to other insulins. Requires specific U100 syringes. High molar concentration necessitates strict precision."
+    },
+    "cat": {
+      "status": 2,
+      "evidence": "Requires U100 syringes. Hypoglycemia risk if overdosed."
+    }
+  },
+  "storage_and_forms": {
+    "storage": "Unopened: Refrigerator (2°C to 8°C). Do not freeze. In-use vials: Refrigerator or room temp, discard 42 days after first use (experts suggest up to 3-6 months if handled carefully). In-use pens: Room temp only (do not refrigerate).",
+    "forms": [
+      "Injection 100 units/mL (Vials)",
+      "Prefilled Pen System"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "Modified long-acting insulin. Starting dose for dogs is much lower than with other insulins. Do not confuse insulin types; detemir is a U100 product, use U100 syringes ONLY. Stabilize ketoacidosis with short-acting insulin first.",
+    "indications": "Initial treatment and long-term management of uncomplicated diabetes mellitus in dogs and cats.",
+    "client_info": "Always double-check the dose and only use U100 syringes. Prior to using, inspect solution (should be clear and colorless). Watch closely for signs of low blood sugar (weakness, staggering, seizures) and keep Karo syrup on hand. Do not change doses without consulting a veterinarian."
+  },
+  "_data_quality": {
+    "overall_confidence": 9,
+    "renal_adjustment_confidence": "high",
+    "hepatic_adjustment_confidence": "high",
+    "organ_burden_confidence": "moderate",
+    "ddi_source": "text",
+    "plumbs_sections_found": [
+      "Highlights",
+      "Uses/Indications",
+      "Pharmacology/Actions",
+      "Pharmacokinetics",
+      "Contraindications/Precautions/Warnings",
+      "Adverse Effects",
+      "Reproductive/Nursing Safety",
+      "Overdose/Acute Toxicity",
+      "Drug Interactions",
+      "Dosages",
+      "Storage/Stability"
+    ],
+    "missing_sections": [],
+    "requires_pmc_rag": false,
+    "pmc_rag_fields": []
+  },
+  "_extraction_metadata": {
+    "model_used": "gemini-3.1-pro",
+    "extraction_pass": 1,
+    "source_file": "insulin_detemir_monograph.txt",
+    "extracted_at": "2026-03-23T14:19:31+09:00",
+    "reviewer": null
+  }
+}

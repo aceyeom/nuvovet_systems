@@ -1,0 +1,297 @@
+{
+  "id": "triple_antibiotic_ophthalmic",
+
+  "drug_identity": {
+    "name_ko": "트리플 항생제 안과용 제제 (네오마이신/폴리믹신 B/바시트라신 등)",
+    "name_en": "Triple Antibiotic Ophthalmic",
+    "active_ingredient": "Neomycin sulfate, Polymyxin B sulfate, Bacitracin zinc (ointment) / Gramicidin (solution)",
+    "brand_names": [
+      "Vetropolycin",
+      "Vetropolycin HC",
+      "Neosporin",
+      "Lumi-Sporyn",
+      "AK-Poly-Bac",
+      "Maxitrol",
+      "Dexasporin"
+    ],
+    "allergy_class": "Aminoglycoside / Polymyxin / Polypeptide Antibiotic",
+    "class": "Broad-Spectrum Antimicrobial Combination Agent",
+    "source": "foreign",
+    "formulary_status": null,
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": "First choice for prophylactic and therapeutic antimicrobial coverage in dogs and horses for ulcerative keratitis until culture results are available.",
+    "dosage_form": [
+      "Oint",
+      "Drop",
+      "Ophthalmic"
+    ],
+    "available_strengths": [
+      {
+        "value": 3.5,
+        "unit": "mg/g Neomycin"
+      },
+      {
+        "value": 10000.0,
+        "unit": "units/g Polymyxin B"
+      },
+      {
+        "value": 400.0,
+        "unit": "units/g Bacitracin"
+      },
+      {
+        "value": 0.025,
+        "unit": "mg/mL Gramicidin"
+      }
+    ]
+  },
+
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Mixed",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": "Topical ophthalmic application results in localized action; systemic absorption is minimal under normal conditions."
+    },
+    "extra_information": "Aminoglycosides (Neomycin) are primarily effective against aerobic gram-negative bacteria."
+  },
+
+  "organ_burden_logic": {
+    "note": "Topical application limits systemic burden. The primary risk is severe hypersensitivity/anaphylaxis in cats.",
+    "dog": {
+      "brain": { "calculated_score": 0, "triggered_keywords": [], "index": 1, "evidence": null },
+      "blood": { "calculated_score": 0, "triggered_keywords": [], "index": 2, "evidence": null },
+      "kidney": { "calculated_score": 0, "triggered_keywords": [], "index": 3, "evidence": null },
+      "liver": { "calculated_score": 0, "triggered_keywords": [], "index": 4, "evidence": null },
+      "heart": { "calculated_score": 0, "triggered_keywords": [], "index": 5, "evidence": null }
+    },
+    "cat": {
+      "brain": { "calculated_score": 0, "triggered_keywords": [], "index": 1, "evidence": null },
+      "blood": { "calculated_score": 2, "triggered_keywords": ["anaphylaxis"], "index": 2, "evidence": "Ophthalmic antibiotics containing neomycin and polymyxin B may cause cutaneous sensitization and anaphylaxis in cats." },
+      "kidney": { "calculated_score": 0, "triggered_keywords": [], "index": 3, "evidence": null },
+      "liver": { "calculated_score": 0, "triggered_keywords": [], "index": 4, "evidence": null },
+      "heart": { "calculated_score": 3, "triggered_keywords": ["anaphylaxis"], "index": 5, "evidence": "Rare reports of death in cats following anaphylactic reactions to neomycin/polymyxin B." }
+    }
+  },
+
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": null
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": "Acts locally on the ocular surface."
+  },
+
+  "_ddi_note": "Triple antibiotic ophthalmic preparations should not be mixed directly with any other ophthalmic medications. Wait 5-10 minutes between different eye medications.",
+
+  "drug_interactions": [],
+
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "fixed_dose",
+          "context": "Ulcerative/Nonulcerative conjunctivitis or keratitis",
+          "value": "1",
+          "unit": "drop (or 1/4 inch strip)",
+          "route": "Ophthalmic",
+          "frequency": "q6h to q8h",
+          "max_dose_mg_kg": null,
+          "duration_note": "Apply 3 to 4 times daily until resolution.",
+          "evidence": "Therapeutic and prophylactic coverage."
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "fixed_dose",
+          "context": "Conjunctivitis or keratitis (Use with caution)",
+          "value": "1",
+          "unit": "drop (or 1/4 inch strip)",
+          "route": "Ophthalmic",
+          "frequency": "q6h to q8h",
+          "max_dose_mg_kg": null,
+          "duration_note": "Monitor closely for signs of hypersensitivity or anaphylaxis.",
+          "evidence": "Commonly used but neomycin/polymyxin B pose high allergy risk in cats."
+        }
+      ]
+    }
+  },
+
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "none specified",
+    "adjustment_factor": null,
+    "note": null
+  },
+
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "none specified",
+    "note": null
+  },
+
+  "contraindications": [
+    {
+      "condition": "History of hypersensitivity",
+      "match_terms": [
+        "hypersensitivity"
+      ],
+      "severity": "high",
+      "action": "Avoid",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "Ulcerative keratitis (for corticosteroid-containing products only)",
+      "match_terms": [
+        "ulcerative keratitis",
+        "steroid"
+      ],
+      "severity": "high",
+      "action": "Avoid",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    }
+  ],
+
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+
+  "effects_and_mechanisms": {
+    "common_mechanism": "Neomycin interferes with 30S ribosomal subunits to inhibit protein synthesis (bactericidal). Polymyxin B increases cell membrane permeability. Bacitracin inhibits cell wall synthesis. Combination covers gram-positive and gram-negative organisms.",
+    "common_extra_effects": [
+      "irritation",
+      "swelling upon instillation",
+      "overgrowth of nonsusceptible organisms (e.g. fungi) with prolonged use"
+    ],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": [
+      "cutaneous sensitization",
+      "anaphylaxis",
+      "facial swelling",
+      "difficulty breathing"
+    ]
+  },
+
+  "species_notes": {
+    "dog": "First choice for prophylactic and therapeutic antimicrobial coverage in ocular surface inflammatory conditions.",
+    "cat": "High sensitivity to neomycin and polymyxin B. Monitor for anaphylaxis (itching, reddening, edema of eyelids, difficulty breathing)."
+  },
+
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": "Generally safe and well-tolerated."
+    },
+    "cat": {
+      "status": 3,
+      "evidence": "Severe hypersensitivity and anaphylaxis risk, primarily due to neomycin or polymyxin components."
+    }
+  },
+
+  "storage_and_forms": {
+    "storage": "Store at controlled room temperature (20°C-25°C [68°F-77°F]) away from moisture and sunlight. Do not freeze.",
+    "forms": [
+      "Ophthalmic Ointment (Neomycin/Polymyxin B/Bacitracin)",
+      "Ophthalmic Solution (Neomycin/Polymyxin B/Gramicidin)",
+      "Corticosteroid-containing Ophthalmic Ointment (e.g. with Hydrocortisone or Dexamethasone)"
+    ]
+  },
+
+  "section_1_2_10": {
+    "highlights": "Prophylactic and therapeutic first choice for ulcerative keratitis in dogs/horses. Some animals (especially cats) may have severe hypersensitivity. Avoid corticosteroid versions in patients with ulcers.",
+    "indications": "Topical treatment of superficial infections of the external eye, antimicrobial prophylaxis for surgeries and corneal injuries.",
+    "client_info": "Cats may have severe allergic reactions; contact vet if breathing difficulty or facial swelling occurs. Wait 5-10 minutes between different medications. Do not touch the tip to any surface."
+  },
+
+  "_data_quality": {
+    "overall_confidence": 4,
+    "renal_adjustment_confidence": "high",
+    "hepatic_adjustment_confidence": "high",
+    "organ_burden_confidence": "high",
+    "ddi_source": "Plumbs",
+    "plumbs_sections_found": [
+      "Prescriber Highlights",
+      "Uses/Indications",
+      "Pharmacology/Actions",
+      "Contraindications/Precautions/Warnings",
+      "Adverse Effects",
+      "Dosages",
+      "Monitoring",
+      "Client Information",
+      "Storage/Stability",
+      "Compatibility/Compounding Considerations",
+      "Dosage Forms/Regulatory Status"
+    ],
+    "missing_sections": [
+      "Pharmacokinetics",
+      "Reproductive/Nursing Safety",
+      "Overdose/Acute Toxicity",
+      "Drug Interactions"
+    ],
+    "requires_pmc_rag": false,
+    "pmc_rag_fields": []
+  },
+
+  "_extraction_metadata": {
+    "model_used": "Gemini 3.1 Pro",
+    "extraction_pass": 1,
+    "source_file": "Plumbs Veterinary Drugs",
+    "extracted_at": "2026-03-21T14:11:05Z",
+    "reviewer": null
+  }
+}

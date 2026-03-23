@@ -1,0 +1,370 @@
+{
+  "id": "glucosamine_chondroitin_sulfate",
+  "drug_identity": {
+    "name_ko": "글루코사민/콘드로이친 황산염",
+    "name_en": "Glucosamine/Chondroitin Sulfate",
+    "active_ingredient": "Glucosamine, Chondroitin Sulfate",
+    "brand_names": [
+      "Cosequin",
+      "Glycoflex",
+      "NutriVet",
+      "Next Level",
+      "AniFlex",
+      "Phycox",
+      "Restor-A-Flex",
+      "OsteO-3",
+      "Arthri-Nu",
+      "ProMotion",
+      "Seraquin",
+      "Oste-O-Guard",
+      "Caniflex",
+      "Equi-Phar Flex"
+    ],
+    "allergy_class": null,
+    "class": "Nutritional Supplement",
+    "source": "kr_vet",
+    "formulary_status": "Dietary supplement",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": "Dietary supplement (not an FDA-approved drug). All dosages are anecdotal/extra-label.",
+    "dosage_form": [
+      "Tab",
+      "Cap",
+      "Powder",
+      "Chewable",
+      "Susp"
+    ],
+    "available_strengths": []
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Mixed",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": "Both glucosamine HCl and sulfate can be absorbed in the gut, but bioavailability may be very low and highly variable. Chondrocytes can use exogenously administered glucosamine."
+  },
+  "organ_burden_logic": {
+    "note": "Based on reported adverse effects and lack of significant organ toxicity.",
+    "dog": {
+      "brain": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No neurologic burden noted."
+      },
+      "blood": {
+        "calculated_score": 2,
+        "triggered_keywords": [
+          "coagulation parameters",
+          "thrombus formation"
+        ],
+        "index": 2,
+        "evidence": "Changes in coagulation parameters could occur at overdoses. High doses may enhance the effects of anticoagulants. In vitro, does not affect canine platelet aggregation."
+      },
+      "kidney": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No primary renal burden noted."
+      },
+      "liver": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No primary hepatic burden noted."
+      },
+      "heart": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No cardiovascular burden noted."
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No neurologic burden noted."
+      },
+      "blood": {
+        "calculated_score": 2,
+        "triggered_keywords": [
+          "coagulation parameters"
+        ],
+        "index": 2,
+        "evidence": "Changes in coagulation parameters could occur at high doses."
+      },
+      "kidney": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No primary renal burden noted."
+      },
+      "liver": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No primary hepatic burden noted."
+      },
+      "heart": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No cardiovascular burden noted."
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": null
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": "Onset of any clinical efficacy may require 2 to 6 weeks of treatment."
+  },
+  "_ddi_note": null,
+  "drug_interactions": [
+    {
+      "drug": "Anticoagulants (e.g., heparin, rivaroxaban, warfarin)",
+      "severity": 2,
+      "keywords": [
+        "enhance",
+        "coagulation"
+      ],
+      "evidence": "A high dose of chondroitin sulfate and/or glucosamine potentially could enhance the effects of drugs that affect coagulation."
+    },
+    {
+      "drug": "Antidiabetic Agents (e.g., glipizide, insulin, metformin)",
+      "severity": 2,
+      "keywords": [
+        "decrease the efficacy",
+        "hypoglycemic"
+      ],
+      "evidence": "Glucosamine may decrease the efficacy of hypoglycemic agents."
+    },
+    {
+      "drug": "Doxorubicin",
+      "severity": 2,
+      "keywords": [
+        "induce resistance"
+      ],
+      "evidence": "Glucosamine may induce resistance by reducing inhibition of topoisomerase II."
+    }
+  ],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": true,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "low",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "Extra-label",
+          "context": "Adjunctive treatment of chronic pain conditions",
+          "value": "15-30",
+          "unit": "mg/kg of the chondroitin component",
+          "route": "PO",
+          "frequency": "Initial",
+          "max_dose_mg_kg": null,
+          "duration_note": "After 4 to 6 weeks, if a positive response is seen, dosage may be halved or given every other day.",
+          "evidence": "Anecdotal recommendations."
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "Extra-label",
+          "context": "Adjunctive treatment of chronic pain conditions",
+          "value": "15-30",
+          "unit": "mg/kg of the chondroitin component",
+          "route": "PO",
+          "frequency": "Initial",
+          "max_dose_mg_kg": null,
+          "duration_note": "After 4 to 6 weeks, if a positive response is seen, dosage may be halved or given every other day.",
+          "evidence": "Anecdotal recommendations."
+        },
+        {
+          "logic_type": "Extra-label",
+          "context": "Feline idiopathic cystitis",
+          "value": "250",
+          "unit": "mg/cat N-acetyl glucosamine",
+          "route": "PO",
+          "frequency": "q24h",
+          "max_dose_mg_kg": null,
+          "duration_note": null,
+          "evidence": "Anecdotal."
+        }
+      ]
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "none",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "none",
+    "note": null
+  },
+  "contraindications": [
+    {
+      "condition": "Hypersensitivity",
+      "match_terms": [
+        "hypersensitivity"
+      ],
+      "severity": "high",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "Potassium-Restricted Diet",
+      "match_terms": [
+        "potassium-restricted diet"
+      ],
+      "severity": "medium",
+      "action": "monitor",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "Asthma/Bronchoconstriction",
+      "match_terms": [
+        "asthma",
+        "bronchoconstrictive"
+      ],
+      "severity": "medium",
+      "action": "monitor",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    }
+  ],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": "Glucosamine provides glycosaminoglycan building blocks to strengthen cartilage, regulates synthesis of collagen/proteoglycans, and has mild anti-inflammatory effects. Chondroitin sulfate inhibits destructive enzymes in joint fluid/cartilage and stimulates GAG/proteoglycan production.",
+    "common_extra_effects": [
+      "Flatulence",
+      "Stool softening",
+      "Decreased appetite"
+    ],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "Can be administered long-term, even to dogs with comorbidities, unlike NSAIDs. Well tolerated.",
+    "cat": "Glucosamine and chondroitin improved mobility and lameness scores in cats with osteoarthritis."
+  },
+  "precautions": {
+    "dog": {
+      "status": 1,
+      "evidence": "Well tolerated. Caution in patients on a potassium-restricted diet or with bronchoconstrictive conditions."
+    },
+    "cat": {
+      "status": 1,
+      "evidence": "Well tolerated. Caution in patients on a potassium-restricted diet or with bronchoconstrictive conditions."
+    }
+  },
+  "storage_and_forms": {
+    "storage": "Chondroitin sulfate is extremely hygroscopic. Store in tight containers at room temperature. Avoid direct sunlight and keep away from moisture.",
+    "forms": [
+      "Tablets",
+      "Capsules",
+      "Powder"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "Dietary supplement (not an FDA-approved drug) that may be useful as an adjunctive treatment for osteoarthritis or other painful conditions. Well tolerated, but efficacy is uncertain. Large variation in commercially available products.",
+    "indications": "Adjunctive treatment for osteoarthritis or other painful conditions. N-acetyl-d-glucosamine has been tested in cats with FLUTD.",
+    "client_info": "May take 2 to 6 weeks (or longer) of treatment to see if this supplement is helping. Mild gastrointestinal upset (eg, decreased appetite) has been reported. May be given with or without food."
+  },
+  "_data_quality": {
+    "overall_confidence": 5,
+    "renal_adjustment_confidence": "high",
+    "hepatic_adjustment_confidence": "high",
+    "organ_burden_confidence": "high",
+    "ddi_source": "Plumb's Veterinary Drugs",
+    "plumbs_sections_found": [
+      "Prescriber Highlights",
+      "Uses/Indications",
+      "Pharmacology/Actions",
+      "Pharmacokinetics",
+      "Contraindications/Precautions/Warnings",
+      "Adverse Effects",
+      "Reproductive/Nursing Safety",
+      "Overdose/Acute Toxicity",
+      "Drug Interactions",
+      "Laboratory Considerations",
+      "Dosages",
+      "Monitoring",
+      "Client Information",
+      "Chemistry/Synonyms",
+      "Storage/Stability",
+      "Compatibility/Compounding Considerations",
+      "Dosage Forms/Regulatory Status"
+    ],
+    "missing_sections": [],
+    "requires_pmc_rag": false,
+    "pmc_rag_fields": []
+  },
+  "_extraction_metadata": {
+    "model_used": "Gemini 3.1 Pro",
+    "extraction_pass": 1,
+    "source_file": "Glucosamine/Chondroitin Sulfate text extract",
+    "extracted_at": "2026-03-21T13:06:00+09:00",
+    "reviewer": null
+  }
+}

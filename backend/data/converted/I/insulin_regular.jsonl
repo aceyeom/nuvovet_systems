@@ -1,0 +1,426 @@
+{
+  "id": "insulin_regular",
+  "drug_identity": {
+    "name_ko": "인슐린, 레귤러 (결정성 아연)",
+    "name_en": "Insulin, Regular (Crystalline Zinc)",
+    "active_ingredient": "Regular insulin (recombinant human)",
+    "brand_names": [
+      "Humulin R",
+      "Novolin R"
+    ],
+    "allergy_class": "Insulins",
+    "class": "Insulin, Rapid/Short-Acting",
+    "source": "kr_vet",
+    "formulary_status": "High Alert Medication",
+    "has_reversal": true,
+    "reversal_agent": "Dextrose, Glucagon",
+    "reversal_evidence": "Mild hypoglycemia can be treated by offering usual food. More serious signs (e.g., seizures) should be treated with oral dextrose solutions or IV 50% dextrose solutions. Glucagon may also be considered.",
+    "off_label_note": "All dosages are extra-label.",
+    "dosage_form": [
+      "Inj"
+    ],
+    "available_strengths": [
+      {
+        "value": 100.0,
+        "unit": "units/mL"
+      },
+      {
+        "value": 500.0,
+        "unit": "units/mL"
+      }
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Mixed",
+    "clearance_organ": "Mixed",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": "Insulin formulations contain insulin hexamers. Insulin is absorbed from the administration site only after insulin hexamers break down into insulin monomers or dimers. The rate of hexamer breakdown is largely responsible for differences of time to peak effect and duration."
+  },
+  "organ_burden_logic": {
+    "note": "Based on pharmacodynamics and adverse effects related to glucose and electrolyte shifts.",
+    "dog": {
+      "brain": {
+        "calculated_score": 3,
+        "triggered_keywords": [
+          "seizures",
+          "coma",
+          "brain damage"
+        ],
+        "index": 3,
+        "evidence": "Insulin overdose can lead to hypoglycemia causing weakness, ataxia, seizures, coma, permanent brain damage, or death."
+      },
+      "blood": {
+        "calculated_score": 3,
+        "triggered_keywords": [
+          "hypokalemia",
+          "hypophosphatemia"
+        ],
+        "index": 3,
+        "evidence": "Shifts extracellular potassium into the intracellular space causing hypokalemia. Can cause hypophosphatemia in DKA."
+      },
+      "kidney": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No primary nephrotoxic burden noted."
+      },
+      "liver": {
+        "calculated_score": 2,
+        "triggered_keywords": [
+          "glycogen",
+          "gluconeogenesis"
+        ],
+        "index": 2,
+        "evidence": "Increases glucose storage (glycogen) and inhibits gluconeogenesis in the liver."
+      },
+      "heart": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No primary direct cardiotoxicity noted, though severe electrolyte shifts can affect the heart."
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 3,
+        "triggered_keywords": [
+          "seizures",
+          "coma"
+        ],
+        "index": 3,
+        "evidence": "Hypoglycemia from overdose can cause severe neurologic signs."
+      },
+      "blood": {
+        "calculated_score": 3,
+        "triggered_keywords": [
+          "hypokalemia",
+          "hypophosphatemia"
+        ],
+        "index": 3,
+        "evidence": "Risk of hypokalemia and hypophosphatemia."
+      },
+      "kidney": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No primary nephrotoxic burden."
+      },
+      "liver": {
+        "calculated_score": 2,
+        "triggered_keywords": [
+          "gluconeogenesis"
+        ],
+        "index": 2,
+        "evidence": "Alters hepatic glucose metabolism."
+      },
+      "heart": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No primary direct cardiotoxicity noted."
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": 15,
+    "t_max_hr": 1.5,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": 0.28,
+      "species": "dog/cat"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": "IV: immediate onset, max effect at 15 mins, duration 1-4 hours. SC: onset 10-30 mins, peak 1-2 hours, duration 5-6 hours. Half-life is 16-18 mins. IM: onset 10-30 mins, peak 1-4 hours, duration 3-8 hours."
+  },
+  "_ddi_note": "Many potential drug interactions. Insulin is considered a high alert medication.",
+  "drug_interactions": [
+    {
+      "drug": "Beta-Adrenergic Antagonists, Clonidine, Reserpine",
+      "severity": 2,
+      "keywords": [
+        "mask the signs",
+        "hypoglycemia"
+      ],
+      "evidence": "Can mask the signs associated with hypoglycemia. Beta-blockers also have variable effects on glycemic control."
+    },
+    {
+      "drug": "Digoxin, Diuretics",
+      "severity": 2,
+      "keywords": [
+        "potassium",
+        "hypokalemia"
+      ],
+      "evidence": "Insulin reduces serum potassium; patients on concurrent digoxin or diuretics should be closely monitored. Diuretics may also decrease hypoglycemic activity."
+    },
+    {
+      "drug": "Hypoglycemic Potentiators (e.g., ACEIs, ARBs, MAOIs, Fluoroquinolones, Sulfonamides, Salicylates)",
+      "severity": 2,
+      "keywords": [
+        "potentiate",
+        "hypoglycemic"
+      ],
+      "evidence": "May potentiate the hypoglycemic activity of insulin (i.e., decrease insulin requirements)."
+    },
+    {
+      "drug": "Hypoglycemic Antagonists (e.g., Corticosteroids, Alpha-2 Agonists, Estrogens, Progestins, Thyroid Hormones)",
+      "severity": 2,
+      "keywords": [
+        "decrease",
+        "hypoglycemic"
+      ],
+      "evidence": "May decrease the hypoglycemic activity of insulin (i.e., increase insulin requirements)."
+    }
+  ],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": true,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": "hypokalemia, hypophosphatemia",
+    "narrow_therapeutic_index": true,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "Extra-label",
+          "context": "Adjunctive therapy of DKA (Intermittent IM protocol)",
+          "value": "0.1-0.2",
+          "unit": "units/kg",
+          "route": "IM",
+          "frequency": "Initial",
+          "max_dose_mg_kg": null,
+          "duration_note": "Repeat dose of 0.1 units/kg IM every 1 to 2 hours until BG approaches 250 mg/dL.",
+          "evidence": "Extra-label."
+        },
+        {
+          "logic_type": "Extra-label",
+          "context": "Adjunctive therapy of DKA (Constant low-dose IV infusion)",
+          "value": "0.1",
+          "unit": "units/kg/hour",
+          "route": "IV CRI",
+          "frequency": "Continuous",
+          "max_dose_mg_kg": null,
+          "duration_note": "Prepared by adding 2.2 units/kg to 240 mL 0.9% NaCl. Initial rate 10 mL/hour. Adjust based on hourly BG.",
+          "evidence": "Extra-label. Discard first 50 mL through tubing to saturate binding sites."
+        },
+        {
+          "logic_type": "Extra-label",
+          "context": "Adjunctive treatment of hyperkalemia",
+          "value": "0.25-0.5",
+          "unit": "units/kg",
+          "route": "Slow IV",
+          "frequency": "Once",
+          "max_dose_mg_kg": null,
+          "duration_note": "Followed by dextrose 50% (4 mL/unit of administered insulin).",
+          "evidence": "Extra-label."
+        },
+        {
+          "logic_type": "Extra-label",
+          "context": "Adjunctive treatment of hyperkalemia (Alternative)",
+          "value": "0.5-1",
+          "unit": "units/kg",
+          "route": "IV",
+          "frequency": "Once",
+          "max_dose_mg_kg": null,
+          "duration_note": "In parenteral fluids plus 2 g dextrose per unit insulin administered.",
+          "evidence": "Extra-label."
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "Extra-label",
+          "context": "Adjunctive therapy of DKA (Intermittent IM protocol)",
+          "value": "0.1-0.2",
+          "unit": "units/kg",
+          "route": "IM",
+          "frequency": "Initial",
+          "max_dose_mg_kg": null,
+          "duration_note": "Repeat dose of 0.1 units/kg IM every 1 to 2 hours. May reduce initial doses if hypokalemia is a concern.",
+          "evidence": "Extra-label."
+        },
+        {
+          "logic_type": "Extra-label",
+          "context": "Adjunctive therapy of DKA (Constant low-dose IV infusion)",
+          "value": "0.05-0.1",
+          "unit": "units/kg/hour",
+          "route": "IV CRI",
+          "frequency": "Continuous",
+          "max_dose_mg_kg": null,
+          "duration_note": "Prepared by adding 1.1 or 2.2 units/kg to 250 mL 0.9% NaCl. Flush first 50 mL.",
+          "evidence": "Extra-label."
+        },
+        {
+          "logic_type": "Extra-label",
+          "context": "Adjunctive therapy of DKA (with glargine)",
+          "value": "1",
+          "unit": "unit/cat",
+          "route": "IM",
+          "frequency": "Variable",
+          "max_dose_mg_kg": null,
+          "duration_note": "Up to every 6 hours while BG > 250 mg/dL; combined with glargine 0.25 units/kg SC q12h.",
+          "evidence": "Extra-label."
+        },
+        {
+          "logic_type": "Extra-label",
+          "context": "Adjunctive treatment of hyperkalemia",
+          "value": "0.5-1",
+          "unit": "units/kg",
+          "route": "IM",
+          "frequency": "Once",
+          "max_dose_mg_kg": null,
+          "duration_note": "With dextrose 2 g/insulin unit administered as a slow IV bolus.",
+          "evidence": "Extra-label."
+        },
+        {
+          "logic_type": "Extra-label",
+          "context": "Adjunctive treatment of hyperkalemia (Alternative)",
+          "value": "0.25-0.5",
+          "unit": "units/kg",
+          "route": "Slow IV",
+          "frequency": "Once",
+          "max_dose_mg_kg": null,
+          "duration_note": "With dextrose 0.5 g/kg slow IV bolus.",
+          "evidence": "Extra-label."
+        }
+      ]
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "none",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "none",
+    "note": null
+  },
+  "contraindications": [
+    {
+      "condition": "Hypoglycemia",
+      "match_terms": [
+        "hypoglycemia"
+      ],
+      "severity": "high",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": "Glucose",
+        "threshold": 60.0,
+        "unit": "mg/dL"
+      }
+    }
+  ],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": "Regulates glucose metabolism; lowers blood glucose by increasing glucose uptake in peripheral tissues (skeletal muscle, fat). Inhibits gluconeogenesis, lipolysis, and proteolysis.",
+    "common_extra_effects": [
+      "Hypoglycemia",
+      "Hypokalemia",
+      "Hypophosphatemia (in DKA)",
+      "Insulin-induced rebound hyperglycemia (Somogyi effect)",
+      "Local/allergic reactions"
+    ],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "For obese patients, dose calculations should be based on ideal body weight. Regular insulin is the rapid/short-acting insulin most often used in DKA.",
+    "cat": "Regular insulin is the rapid/short-acting insulin most often used in DKA."
+  },
+  "precautions": {
+    "dog": {
+      "status": 3,
+      "evidence": "Crucial to use U100 syringes only. Insulin is a high-alert medication. Hypoglycemia is an absolute contraindication."
+    },
+    "cat": {
+      "status": 3,
+      "evidence": "Crucial to use U100 syringes only. Insulin is a high-alert medication. Hypoglycemia is an absolute contraindication."
+    }
+  },
+  "storage_and_forms": {
+    "storage": "Unopened products refrigerate at 2°C to 8°C (36°F-46°F). Do not freeze. Humulin R in-use: 31 days (room temp/fridge). Novolin R in-use: 42 days for vials, 28 days for pens (room temp only). Syringes can be stored 28 days refrigerated.",
+    "forms": [
+      "Injection Solution: 100 units/mL in 3 mL vials and pens/devices, and 10 mL vials (Humulin R, Novolin R)"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "Rapid/short-acting insulin used to treat diabetic ketoacidosis (DKA) and as adjunctive therapy to treat hyperkalemia. No absolute contraindications except hypoglycemia. Use only U100 insulin syringes. High alert medication.",
+    "indications": "Commonly used for diabetic emergencies (e.g., DKA). Administered by IM, SC, or IV infusion. Recommended IV in patients with poor tissue perfusion or shock. Adjunctive therapy for hyperkalemia.",
+    "client_info": "Treatment requires continuous and aggressive monitoring of blood glucose and electrolytes in a hospital setting for DKA. Overdose can cause severe weakness, shaking, seizures, or coma, which should be treated immediately with dextrose solutions or food."
+  },
+  "_data_quality": {
+    "overall_confidence": 5,
+    "renal_adjustment_confidence": "high",
+    "hepatic_adjustment_confidence": "high",
+    "organ_burden_confidence": "high",
+    "ddi_source": "Plumb's Veterinary Drugs",
+    "plumbs_sections_found": [
+      "Prescriber Highlights",
+      "Uses/Indications",
+      "Pharmacology/Actions",
+      "Pharmacokinetics",
+      "Contraindications/Precautions/Warnings",
+      "Adverse Effects",
+      "Reproductive/Nursing Safety",
+      "Overdose/Acute Toxicity",
+      "Drug Interactions",
+      "Laboratory Considerations",
+      "Dosages",
+      "Monitoring",
+      "Chemistry/Synonyms",
+      "Storage/Stability",
+      "Compatibility/Compounding Considerations",
+      "Dosage Forms/Regulatory Status"
+    ],
+    "missing_sections": [
+      "Client Information (Extracted implicitly from Monitoring and Toxicity)"
+    ],
+    "requires_pmc_rag": false,
+    "pmc_rag_fields": []
+  },
+  "_extraction_metadata": {
+    "model_used": "Gemini 3.1 Pro",
+    "extraction_pass": 1,
+    "source_file": "Insulin, Regular (Crystalline Zinc) text extract",
+    "extracted_at": "2026-03-21T13:16:00+09:00",
+    "reviewer": null
+  }
+}

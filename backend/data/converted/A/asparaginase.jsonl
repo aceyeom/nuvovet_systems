@@ -1,0 +1,599 @@
+{
+  "id": "asparaginase",
+  "drug_identity": {
+    "name_ko": "아스파라기나제",
+    "name_en": "Asparaginase",
+    "active_ingredient": "Asparaginase",
+    "brand_names": [
+      "Erwinaze",
+      "Elspar",
+      "Kidrolase",
+      "Crasnitin",
+      "Crasnitine",
+      "Erwinase",
+      "L-Asp",
+      "Laspar",
+      "Leucogen",
+      "Leunase",
+      "Paronal",
+      "Serasa"
+    ],
+    "allergy_class": null,
+    "class": "Antineoplastic Agent",
+    "source": "human_offlabel",
+    "formulary_status": "restricted",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": "수의학적으로 승인된 제품 없음. 개와 고양이의 림프종 및 백혈병 치료에 extra-label로 사용됨. E. coli 유래 아스파라기나제는 상업적으로 이용 불가하며 조제 약국을 통해 구해야 할 수 있음.",
+    "dosage_form": [
+      "Inj"
+    ],
+    "available_strengths": [
+      {
+        "value": 10000,
+        "unit": "IU"
+      }
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": "아스파라기나제는 효소 단백질로, 표준 CYP450 경로를 통해 대사되지 않음. 구체적인 대사 경로는 문헌에 기술되지 않음."
+    },
+    "extra_information": "아스파라기나제는 위장관에서 흡수되지 않아 SC 또는 IM으로 투여해야 함. IM 투여 후 혈청 농도는 IV 투여 시의 약 1/2 수준임. 분자량이 높아 모세혈관 밖으로 쉽게 확산되지 않으며, 약 80%가 혈관 내 공간에 잔류함. 고양이에서 IM 투여 시 2일 이내에 아스파라긴 농도가 유의하게 감소하나, 7일 이내에 효과가 소실됨."
+  },
+  "organ_burden_logic": {
+    "note": "키워드 기반 점수 산정. 독성 및 부작용 기술에서 장기별 영향 키워드를 추출하여 점수화함. 수의학 종별 PK 데이터 제한적.",
+    "dog": {
+      "brain": {
+        "calculated_score": 20,
+        "triggered_keywords": [
+          "CNS dysfunction",
+          "hyperammonemia"
+        ],
+        "index": 1,
+        "evidence": "CNS 기능 이상 환자에서 주의 사용 권고. 개에서 급성 고암모니아혈증 증례 보고됨."
+      },
+      "blood": {
+        "calculated_score": 55,
+        "triggered_keywords": [
+          "coagulation disorders",
+          "hemorrhagic events",
+          "thrombosis",
+          "myelosuppression"
+        ],
+        "index": 2,
+        "evidence": "응고 장애, 혈전증, 출혈성 사건이 금기 및 부작용으로 기술됨. 골수 억제는 드물지만 빈크리스틴 병용 시 소수에서 보고됨."
+      },
+      "kidney": {
+        "calculated_score": 20,
+        "triggered_keywords": [
+          "renal dysfunction"
+        ],
+        "index": 1,
+        "evidence": "기존 신장 기능 이상 환자에서 주의 사용 권고. 과용량 시 신장 기형 유발 가능성(생식 독성 데이터)."
+      },
+      "liver": {
+        "calculated_score": 65,
+        "triggered_keywords": [
+          "hepatotoxicity",
+          "hyperbilirubinemia",
+          "elevated transaminases"
+        ],
+        "index": 3,
+        "evidence": "단백질 합성 억제 효과로 인한 간독성이 주요 부작용으로 기술됨. 고빌리루빈혈증 및 트랜스아미나제 상승 보고됨."
+      },
+      "heart": {
+        "calculated_score": 10,
+        "triggered_keywords": [
+          "hypotension",
+          "collapse"
+        ],
+        "index": 1,
+        "evidence": "과민반응 시 저혈압 및 허탈이 발생할 수 있으나, 직접적인 심장 독성은 기술되지 않음."
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 15,
+        "triggered_keywords": [
+          "CNS dysfunction"
+        ],
+        "index": 1,
+        "evidence": "CNS 기능 이상 환자에서 주의 사용 권고. 고양이 특이적 CNS 독성 데이터는 제한적."
+      },
+      "blood": {
+        "calculated_score": 45,
+        "triggered_keywords": [
+          "coagulation disorders",
+          "hemorrhagic events"
+        ],
+        "index": 2,
+        "evidence": "응고 장애 및 출혈성 사건이 금기로 기술됨. 고양이에서 과민반응은 드문 것으로 간주됨."
+      },
+      "kidney": {
+        "calculated_score": 20,
+        "triggered_keywords": [
+          "renal dysfunction"
+        ],
+        "index": 1,
+        "evidence": "기존 신장 기능 이상 환자에서 주의 사용 권고."
+      },
+      "liver": {
+        "calculated_score": 60,
+        "triggered_keywords": [
+          "hepatotoxicity",
+          "elevated transaminases"
+        ],
+        "index": 3,
+        "evidence": "단백질 합성 억제로 인한 간독성이 부작용으로 기술됨. 고양이 특이적 데이터는 제한적이나 동일 기전 적용."
+      },
+      "heart": {
+        "calculated_score": 5,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "고양이에서 직접적인 심장 독성은 기술되지 않음."
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": 0,
+    "protein_binding_percent": null,
+    "evidence": "위장관에서 흡수되지 않음(경구 생체이용률 0%). IM 투여 후 혈청 농도는 IV의 약 50%. 약 80%가 혈관 내 공간에 잔류. 반감기 데이터는 본 문헌에 기술되지 않음."
+  },
+  "_ddi_note": "Plumb's Drug Interactions 섹션에서 직접 추출. 중증도 분류: 금기→3, 주요→3, 중등도→2, 경미→1.",
+  "drug_interactions": [
+    {
+      "drug": "Anticoagulants (clopidogrel, heparin, rivaroxaban, warfarin)",
+      "severity": 2,
+      "keywords": [
+        "bleeding",
+        "coagulation"
+      ],
+      "evidence": "Increased risk for bleeding when used concurrently with asparaginase."
+    },
+    {
+      "drug": "Aspirin and Other Salicylates (bismuth subsalicylate)",
+      "severity": 2,
+      "keywords": [
+        "bleeding"
+      ],
+      "evidence": "Increased risk for bleeding when used concurrently with asparaginase."
+    },
+    {
+      "drug": "Corticosteroids (dexamethasone, predniso(lo)ne)",
+      "severity": 2,
+      "keywords": [
+        "hyperglycemia",
+        "increased dexamethasone concentration"
+      ],
+      "evidence": "Concurrent use may increase risk for hyperglycemia. Asparaginase may increase dexamethasone concentration. In humans, asparaginase is usually administered after the corticosteroid."
+    },
+    {
+      "drug": "Cytarabine",
+      "severity": 2,
+      "keywords": [
+        "reduced efficacy",
+        "asparagine depletion"
+      ],
+      "evidence": "Asparaginase may reduce cytarabine effectiveness against tumor cells until serum asparagine concentrations return to normal."
+    },
+    {
+      "drug": "Immunosuppressants (cyclosporine, mycophenolate)",
+      "severity": 2,
+      "keywords": [
+        "excessive immunosuppression",
+        "infection risk",
+        "lymphoproliferation"
+      ],
+      "evidence": "Excessive immune suppression may increase the risk for infection or lymphoproliferation."
+    },
+    {
+      "drug": "Methotrexate",
+      "severity": 2,
+      "keywords": [
+        "reduced efficacy",
+        "asparagine depletion"
+      ],
+      "evidence": "Asparaginase may reduce methotrexate effectiveness against tumor cells until serum asparagine concentrations return to normal."
+    },
+    {
+      "drug": "NSAIDs (carprofen, meloxicam, robenacoxib)",
+      "severity": 2,
+      "keywords": [
+        "bleeding"
+      ],
+      "evidence": "Increased risk for bleeding when used concurrently with asparaginase."
+    },
+    {
+      "drug": "Vaccines, Modified Live Virus",
+      "severity": 2,
+      "keywords": [
+        "immunosuppression",
+        "chemotherapy"
+      ],
+      "evidence": "Use with caution during chemotherapy protocols due to immunosuppressive effects."
+    },
+    {
+      "drug": "Vincristine",
+      "severity": 2,
+      "keywords": [
+        "neuropathy",
+        "erythropoiesis disruption",
+        "myelosuppression"
+      ],
+      "evidence": "In humans, increased toxicity (neuropathy and erythropoiesis disruption) may occur when asparaginase is given IV concurrently with or before vincristine. Myelosuppression reported in a minority of dogs treated with asparaginase (IM or SC) and vincristine (IV). Some veterinary oncologists separate administration by a few days to a week."
+    }
+  ],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": true,
+    "gi_ulcer": false,
+    "bleeding": true,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "low",
+    "hepatotoxic": "high",
+    "gi_ulcer": "none",
+    "bleeding": "high",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": true,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "max_capped",
+          "context": "림프세망 악성종양 (림프종, 백혈병) - extra-label",
+          "value": "400",
+          "unit": "IU/kg",
+          "route": "IM",
+          "frequency": "Once",
+          "max_dose_mg_kg": null,
+          "duration_note": "최대 용량 10,000 units/환자. 많은 종양 전문의들이 투여 전 디펜히드라민 2 mg/kg IM 또는 SC 전처치 권고.",
+          "evidence": "Plumb's Veterinary Drug Handbook, extra-label use. 400 units/kg 또는 10,000 units/m2 (units/kg 아님) IM 또는 SC."
+        },
+        {
+          "logic_type": "max_capped",
+          "context": "림프세망 악성종양 (림프종, 백혈병) - 체표면적 기준 - extra-label",
+          "value": "10000",
+          "unit": "IU/kg",
+          "route": "SC",
+          "frequency": "Once",
+          "max_dose_mg_kg": null,
+          "duration_note": "최대 용량 10,000 units/환자. 단위 주의: 10,000 units/m2 (units/kg 아님).",
+          "evidence": "Plumb's Veterinary Drug Handbook, extra-label use. 400 units/kg 또는 10,000 units/m2 IM 또는 SC."
+        },
+        {
+          "logic_type": "linear",
+          "context": "전이성 성병성 종양 (TVT) - extra-label",
+          "value": "200",
+          "unit": "IU/kg",
+          "route": "SC",
+          "frequency": "Once",
+          "max_dose_mg_kg": null,
+          "duration_note": "1주차에 SC 투여, 2주차에 빈크리스틴 0.025 mg/kg IV. 2주 사이클 반복, 총 2~5주. 13마리 중 12마리 완전 반응.",
+          "evidence": "Plumb's Veterinary Drug Handbook, extra-label use. 200 units/kg 또는 5,000 units/m2 SC."
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "max_capped",
+          "context": "림프세망 악성종양 (림프종, 백혈병) - extra-label",
+          "value": "400",
+          "unit": "IU/kg",
+          "route": "IM",
+          "frequency": "Once",
+          "max_dose_mg_kg": null,
+          "duration_note": "최대 용량 10,000 units/환자. 고양이 CHOP 프로토콜 초기에 일반적으로 사용됨.",
+          "evidence": "Plumb's Veterinary Drug Handbook, extra-label use. 400 units/kg 또는 10,000 units/m2 (units/kg 아님) IM 또는 SC."
+        },
+        {
+          "logic_type": "max_capped",
+          "context": "림프세망 악성종양 (림프종, 백혈병) - 체표면적 기준 - extra-label",
+          "value": "10000",
+          "unit": "IU/kg",
+          "route": "SC",
+          "frequency": "Once",
+          "max_dose_mg_kg": null,
+          "duration_note": "최대 용량 10,000 units/환자. 단위 주의: 10,000 units/m2 (units/kg 아님).",
+          "evidence": "Plumb's Veterinary Drug Handbook, extra-label use. 400 units/kg 또는 10,000 units/m2 IM 또는 SC."
+        }
+      ]
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": "기존 신장 기능 이상 환자에서 주의 사용 권고되나, 구체적인 용량 조절 지침은 문헌에 기술되지 않음."
+  },
+  "hepatic_dose_adjustment": {
+    "applies": true,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "monitor",
+    "note": "기존 간 기능 이상 환자에서 주의 사용 권고. 간독성이 주요 부작용이므로 간 기능 모니터링 필요. 구체적인 용량 조절 지침은 기술되지 않음."
+  },
+  "contraindications": [
+    {
+      "condition": "아나필락시스 과거력",
+      "match_terms": [
+        "anaphylaxis",
+        "hypersensitivity reaction",
+        "prior asparaginase reaction"
+      ],
+      "severity": "absolute",
+      "action": "contraindicated",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "췌장염",
+      "match_terms": [
+        "pancreatitis",
+        "hemorrhagic pancreatitis"
+      ],
+      "severity": "absolute",
+      "action": "contraindicated",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "혈전증",
+      "match_terms": [
+        "thrombosis",
+        "thromboembolic disease"
+      ],
+      "severity": "absolute",
+      "action": "contraindicated",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "출혈성 사건",
+      "match_terms": [
+        "hemorrhagic event",
+        "active bleeding",
+        "coagulopathy"
+      ],
+      "severity": "absolute",
+      "action": "contraindicated",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "기존 간 기능 이상",
+      "match_terms": [
+        "hepatic dysfunction",
+        "liver disease",
+        "hepatopathy"
+      ],
+      "severity": "relative",
+      "action": "monitor",
+      "lab_trigger": {
+        "marker": "alt",
+        "threshold": null,
+        "unit": "U/L"
+      }
+    },
+    {
+      "condition": "기존 신장 기능 이상",
+      "match_terms": [
+        "renal dysfunction",
+        "CKD",
+        "renal disease"
+      ],
+      "severity": "relative",
+      "action": "monitor",
+      "lab_trigger": {
+        "marker": "creatinine",
+        "threshold": null,
+        "unit": "mg/dL"
+      }
+    },
+    {
+      "condition": "혈액학적 기능 이상",
+      "match_terms": [
+        "hematologic dysfunction",
+        "bone marrow suppression",
+        "cytopenias"
+      ],
+      "severity": "relative",
+      "action": "monitor",
+      "lab_trigger": {
+        "marker": "hct",
+        "threshold": null,
+        "unit": "%"
+      }
+    },
+    {
+      "condition": "CNS 기능 이상",
+      "match_terms": [
+        "CNS dysfunction",
+        "neurological disease",
+        "seizures"
+      ],
+      "severity": "relative",
+      "action": "monitor",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "임신",
+      "match_terms": [
+        "pregnancy",
+        "pregnant",
+        "gravid"
+      ],
+      "severity": "relative",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    }
+  ],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": "아스파라기나제는 아스파라긴을 암모니아와 아스파르트산으로 분해하는 효소임. 일부 악성 세포는 아스파라긴을 자체 합성하지 못하고 외부 공급에 의존하므로, 아스파라긴 고갈로 인해 DNA 및 단백질 합성이 억제되어 세포 사멸이 유도됨. 항종양 활성은 분열 후기(G1) 세포 주기에서 가장 강함.",
+    "common_extra_effects": [
+      "과민반응 (구토, 설사, 두드러기, 소양증, 호흡곤란, 불안, 저혈압, 허탈)",
+      "출혈성 췌장염",
+      "간독성",
+      "응고 장애",
+      "고혈당증 (인슐린 합성 변화로 인한)",
+      "고암모니아혈증",
+      "골수 억제 (드묾)"
+    ],
+    "dog_mechanism": "개에서 아스파라기나제는 림프종 및 백혈병 치료를 위한 복합 프로토콜에서 사용됨. 최대 내성 용량은 10,000 units/kg, LD50은 50,000 units/kg으로 보고됨.",
+    "dog_extra_effects": [
+      "과민반응 (반복 투여 시 위험 증가)",
+      "출혈성 췌장염",
+      "간독성",
+      "응고 장애",
+      "고혈당증",
+      "급성 고암모니아혈증 (증례 보고)",
+      "빈크리스틴 병용 시 소수에서 골수 억제"
+    ],
+    "cat_mechanism": "고양이에서 IM 투여 시 2일 이내에 아스파라긴 농도가 유의하게 감소하나 7일 이내에 효과 소실. 고양이 CHOP 프로토콜 초기에 일반적으로 사용됨.",
+    "cat_extra_effects": [
+      "과민반응 (고양이에서는 드문 것으로 간주됨)",
+      "출혈성 췌장염",
+      "간독성",
+      "응고 장애",
+      "고혈당증"
+    ]
+  },
+  "species_notes": {
+    "dog": "개에서 아스파라기나제는 표준 CHOP 프로토콜의 선택적 구성 요소임. 후향적 연구에서 아스파라기나제 포함 여부에 따른 반응률, 관해 또는 생존율, 관해 또는 생존 기간, 독성 및 치료 지연 발생률에 통계적 차이가 없었음. 반복 투여 시 과민반응 위험이 증가하므로 2번째 투여부터 디펜히드라민 2 mg/kg 전처치 권고. 투여 후 1시간 동안 과민반응 모니터링 필요. 에피네프린, 디펜히드라민, 코르티코스테로이드를 즉시 사용 가능한 상태로 준비해야 함.",
+    "cat": "고양이에서 아스파라기나제는 유리한 부작용 프로파일과 강력한 항암 활성으로 인해 CHOP 프로토콜 초기에 일반적으로 사용됨. 고양이에서 과민반응은 드문 것으로 간주됨. IM 투여 시 2일 이내에 아스파라긴 농도가 유의하게 감소하나 7일 이내에 효과가 소실됨."
+  },
+  "precautions": {
+    "dog": {
+      "status": 1,
+      "evidence": "반복 투여 시 과민반응 위험 증가. 기존 간, 신장, 혈액학적, 위장관, CNS 기능 이상 환자에서 주의 사용. 췌장염, 혈전증, 출혈성 사건 과거력 시 금기. 투여 후 1시간 모니터링 필요."
+    },
+    "cat": {
+      "status": 1,
+      "evidence": "기존 간, 신장, 혈액학적, 위장관, CNS 기능 이상 환자에서 주의 사용. 췌장염, 혈전증, 출혈성 사건 과거력 시 금기. 고양이에서 과민반응은 드물지만 모니터링 권고."
+    }
+  },
+  "storage_and_forms": {
+    "storage": "주사용 분말은 2°C~8°C(36°F~46°F)에서 보관. Kidrolase® 재구성 후 냉장 보관 시 72시간 이상 안정. 조제 약국 제품은 제품 라벨 지침에 따라 보관. 용액은 투명한 경우에만 사용하며 혼탁한 용액은 폐기. 젤라틴 섬유 발생 시 5마이크론 필터로 제거 가능(0.2마이크론 필터 사용 시 역가 손실 가능). 재구성 시 부드럽게 혼합하되 격렬한 진탕 금지.",
+    "forms": [
+      "Asparaginase Erwinia chrysanthemi 주사용 동결건조 분말 10,000 units/3 mL 바이알 (Erwinaze®)",
+      "Kidrolase® 10,000 unit 바이알 (캐나다 제품)",
+      "조제 약국 제조 E. coli 유래 아스파라기나제"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "아스파라기나제는 개와 고양이의 림프종 및 백혈병 치료를 위한 복합 항암 프로토콜에 사용되는 항종양 효소제임. 수의학적으로 승인된 제품은 없으며 extra-label로 사용됨. E. coli 유래 아스파라기나제는 상업적으로 이용 불가하여 조제 약국을 통해 구해야 할 수 있음. Erwinaze®(아스파라기나제 Erwinia chrysanthemi)는 E. coli 유래 아스파라기나제와 치료적으로 동등하지 않음. 주요 부작용으로 과민반응(반복 투여 시 위험 증가)과 단백질 합성 억제 효과(출혈성 췌장염, 간독성, 응고 장애)가 있음. IV 투여는 아나필락시스 위험 증가로 금기이며 IM 또는 SC로만 투여해야 함. 투여 후 1시간 모니터링 및 응급 약물(에피네프린, 디펜히드라민, 코르티코스테로이드) 준비 필수.",
+    "indications": "승인 적응증: 없음(수의학적 승인 제품 없음). Extra-label 적응증: 개와 고양이의 림프세망 악성종양(림프종, 백혈병), 특히 고등급 림프종의 관해 유도, 구제 프로토콜, 중증 동반 질환으로 전통적 세포독성 약물 사용이 어려운 취약 환자 치료. 개에서 전이성 성병성 종양(TVT) 치료에도 사용됨.",
+    "client_info": "이 약물은 심각한 독성(약물 관련 사망 포함)을 유발할 수 있습니다. 동물이 가려움증, 호흡 곤란, 극도의 무기력, 구토, 식욕 부진, 심한 설사, 비정상적 출혈(혈변 포함), 멍, 눈/피부/잇몸의 황달 증상을 보이면 즉시 수의사에게 연락하십시오. 이 약물을 투여받는 동안 수의사의 정기적인 모니터링이 필수적이므로 예약된 검진을 빠지지 마십시오. 항암 치료 중에는 다른 동물과의 접촉(반려견 공원, 동물 대회 등)이 감염 위험을 높일 수 있으므로, 이러한 활동을 재개해도 안전한 시기에 대해 수의사와 상담하십시오."
+  },
+  "_data_quality": {
+    "overall_confidence": 62,
+    "renal_adjustment_confidence": "low",
+    "hepatic_adjustment_confidence": "low",
+    "organ_burden_confidence": "medium",
+    "ddi_source": "plumbs_direct",
+    "plumbs_sections_found": [
+      "Uses/Indications",
+      "Pharmacology/Actions",
+      "Pharmacokinetics",
+      "Contraindications/Precautions/Warnings",
+      "Adverse Effects",
+      "Reproductive/Nursing Safety",
+      "Overdose/Acute Toxicity",
+      "Drug Interactions",
+      "Laboratory Considerations",
+      "Dosages",
+      "Monitoring",
+      "Client Information",
+      "Chemistry/Synonyms",
+      "Storage/Stability",
+      "Compatibility/Compounding Considerations",
+      "Dosage Forms/Regulatory Status"
+    ],
+    "missing_sections": [
+      "Detailed Pharmacokinetics (half-life, t_max, Vd)",
+      "CYP450 metabolism data",
+      "Renal dose adjustment guidelines",
+      "Hepatic dose adjustment guidelines",
+      "Protein binding data"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile.onset_min",
+      "timing_profile.t_max_hr",
+      "timing_profile.half_life_hr",
+      "timing_profile.protein_binding_percent",
+      "species_flags.washout_period_days",
+      "metabolism_and_clearance.cyp_profile.substrates",
+      "metabolism_and_clearance.cyp_profile.inhibitors",
+      "metabolism_and_clearance.cyp_profile.inducers",
+      "metabolism_and_clearance.renal_elimination_fraction",
+      "renal_dose_adjustment.creatinine_threshold_dog_mg_dL",
+      "renal_dose_adjustment.creatinine_threshold_cat_mg_dL",
+      "renal_dose_adjustment.adjustment_factor",
+      "hepatic_dose_adjustment.alt_threshold_multiplier",
+      "drug_identity.available_strengths"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "claude-sonnet-4-6",
+    "extraction_pass": 1,
+    "source_file": "plumbs_output/56.jsonl",
+    "extracted_at": "2026-03-11T11:27:51.200265+00:00",
+    "reviewer": null
+  }
+}

@@ -1,0 +1,770 @@
+{
+  "id": "exenatide",
+  "drug_identity": {
+    "name_ko": "엑세나타이드",
+    "name_en": "Exenatide",
+    "active_ingredient": "Exenatide",
+    "brand_names": [
+      "Byetta",
+      "Bydureon",
+      "Bydureon BCise"
+    ],
+    "allergy_class": null,
+    "class": "Unknown",
+    "source": "human_offlabel",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": "고양이의 당뇨병 보조 치료에 사용되는 인체용 의약품의 오프라벨 적용. 수의용 허가 제품 없음.",
+    "dosage_form": [
+      "Inj"
+    ],
+    "available_strengths": [
+      {
+        "value": 250,
+        "unit": "mcg/mL"
+      },
+      {
+        "value": 2,
+        "unit": "mg"
+      }
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Kidney",
+    "clearance_organ": "Kidney",
+    "renal_elimination_fraction": 1.0,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": "엑세나타이드는 사람에서 사구체 여과 및 단백질 분해(proteolytic degradation)를 통해 신장으로 배설된다. DPP-4는 엑세나타이드 대사에 관여하지 않는다."
+    },
+    "extra_information": "고양이에서 엑세나타이드 IR 피하 투여 후 45분에 최고 혈중 농도에 도달하며, 90분 후에는 기저치와 유의한 차이가 없어진다. 엑세나타이드 ER은 고양이에서 15분 후 측정 가능한 농도에 도달하고, 1시간 후 초기 최고 농도, 4주 후 두 번째 더 높은 최고 농도를 보이며, 6주 후 기저치와 유의한 차이가 없어진다. 사람에서 IR 반감기는 2.4시간, ER 반감기는 약 14일이다."
+  },
+  "organ_burden_logic": {
+    "note": "키워드 기반 점수 산정. 수의학적 종별 PK 데이터가 제한적이므로 주로 인체 데이터 및 고양이 소규모 연구에서 외삽함.",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "개에 대한 뇌 관련 데이터 없음."
+      },
+      "blood": {
+        "calculated_score": 10,
+        "triggered_keywords": [
+          "hypoglycemia"
+        ],
+        "index": -1,
+        "evidence": "개에 대한 직접적 데이터는 없으나, 저혈당 위험이 언급됨."
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "개에 대한 신장 관련 데이터 없음."
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "개에 대한 간 관련 데이터 없음."
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "개에 대한 심장 관련 데이터 없음."
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 15,
+        "triggered_keywords": [
+          "increased sleeping",
+          "hiding"
+        ],
+        "index": 1,
+        "evidence": "새로 진단된 당뇨 고양이에서 엑세나타이드 ER과 글라진 인슐린 병용 시 수면 증가 및 어두운 곳에 숨는 행동이 보고됨."
+      },
+      "blood": {
+        "calculated_score": 40,
+        "triggered_keywords": [
+          "hypoglycemia",
+          "subclinical hypoglycemia",
+          "antibodies"
+        ],
+        "index": 2,
+        "evidence": "엑세나타이드 IR과 글라진 병용 시 당뇨 고양이의 63%에서 무증상 저혈당 발생. 항체 형성 보고됨(인체 데이터)."
+      },
+      "kidney": {
+        "calculated_score": 35,
+        "triggered_keywords": [
+          "acute kidney injury",
+          "renal elimination",
+          "renal disease"
+        ],
+        "index": 3,
+        "evidence": "사람에서 급성 신손상 발생 보고. 신장 배설 약물로 중증 신질환 시 금기. 신기능 저하 환자에서 주의 사용 권고."
+      },
+      "liver": {
+        "calculated_score": 10,
+        "triggered_keywords": [
+          "hepatic gluconeogenesis"
+        ],
+        "index": -1,
+        "evidence": "엑세나타이드는 간 포도당 신생합성을 감소시키나, 직접적인 간독성 데이터는 없음."
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "고양이에서 심장 관련 직접적 데이터 없음."
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": 15,
+    "t_max_hr": 0.75,
+    "half_life_hr": {
+      "min": 2.4,
+      "max": 336.0,
+      "mean": 2.4,
+      "species": "human"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": "고양이에서 엑세나타이드 IR 피하 투여 후 45분(0.75시간)에 최고 농도 도달. 엑세나타이드 ER은 고양이에서 15분 후 측정 가능. 사람에서 IR 반감기 2.4시간, ER 반감기 약 14일(336시간). 경구 생체이용률 및 단백결합률 데이터 없음(피하 투여 약물)."
+  },
+  "_ddi_note": "Plumb's Drug Interactions 섹션에서 추출. 중증도: 금기→3, 주요→3, 중등도→2, 경미→1. MAOI 상호작용은 저혈당 강화 효과로 중증도 3 적용.",
+  "drug_interactions": [
+    {
+      "drug": "Beta-Adrenergic Receptor Antagonists (atenolol, propranolol)",
+      "severity": 2,
+      "keywords": [
+        "glycemic control",
+        "hypoglycemia masking"
+      ],
+      "evidence": "혈당 조절에 가변적 영향을 미치며 저혈당 증상을 은폐할 수 있음."
+    },
+    {
+      "drug": "Clonidine",
+      "severity": 2,
+      "keywords": [
+        "hypoglycemia masking"
+      ],
+      "evidence": "저혈당 관련 증상을 은폐할 수 있음."
+    },
+    {
+      "drug": "Digoxin",
+      "severity": 1,
+      "keywords": [
+        "delayed absorption",
+        "reduced peak concentration"
+      ],
+      "evidence": "최고 농도가 지연되고 감소할 수 있으나 전체 정상 상태 노출(AUC)은 변하지 않음."
+    },
+    {
+      "drug": "Orally Administered Medications",
+      "severity": 2,
+      "keywords": [
+        "delayed gastric emptying",
+        "altered absorption"
+      ],
+      "evidence": "위 배출 지연으로 경구 투여 약물의 흡수 속도 및 정도가 변할 수 있음. 경구 약물은 엑세나타이드 투여 최소 1시간 전에 투여해야 함."
+    },
+    {
+      "drug": "Reserpine",
+      "severity": 2,
+      "keywords": [
+        "hypoglycemia masking"
+      ],
+      "evidence": "저혈당 관련 증상을 은폐할 수 있음."
+    },
+    {
+      "drug": "Warfarin",
+      "severity": 2,
+      "keywords": [
+        "prolonged prothrombin time",
+        "bleeding risk"
+      ],
+      "evidence": "병용 시 프로트롬빈 시간이 연장될 수 있음."
+    },
+    {
+      "drug": "Anabolic Steroids (boldenone, stanozolol, testosterone)",
+      "severity": 2,
+      "keywords": [
+        "potentiated hypoglycemia"
+      ],
+      "evidence": "엑세나타이드의 저혈당 효과를 강화할 수 있음."
+    },
+    {
+      "drug": "Angiotensin II Receptor Blockers (ARBs; telmisartan)",
+      "severity": 2,
+      "keywords": [
+        "potentiated hypoglycemia"
+      ],
+      "evidence": "엑세나타이드의 저혈당 효과를 강화할 수 있음."
+    },
+    {
+      "drug": "ACE Inhibitors (benazepril, enalapril)",
+      "severity": 2,
+      "keywords": [
+        "potentiated hypoglycemia"
+      ],
+      "evidence": "엑세나타이드의 저혈당 효과를 강화할 수 있음."
+    },
+    {
+      "drug": "Disopyramide",
+      "severity": 2,
+      "keywords": [
+        "potentiated hypoglycemia"
+      ],
+      "evidence": "엑세나타이드의 저혈당 효과를 강화할 수 있음."
+    },
+    {
+      "drug": "Fenofibrate",
+      "severity": 2,
+      "keywords": [
+        "potentiated hypoglycemia"
+      ],
+      "evidence": "엑세나타이드의 저혈당 효과를 강화할 수 있음."
+    },
+    {
+      "drug": "Fluoroquinolones (ciprofloxacin, enrofloxacin, pradofloxacin)",
+      "severity": 2,
+      "keywords": [
+        "potentiated hypoglycemia"
+      ],
+      "evidence": "엑세나타이드의 저혈당 효과를 강화할 수 있음."
+    },
+    {
+      "drug": "Fluoxetine",
+      "severity": 2,
+      "keywords": [
+        "potentiated hypoglycemia"
+      ],
+      "evidence": "엑세나타이드의 저혈당 효과를 강화할 수 있음."
+    },
+    {
+      "drug": "Oral Hypoglycemics (acarbose, glipizide, metformin)",
+      "severity": 2,
+      "keywords": [
+        "potentiated hypoglycemia"
+      ],
+      "evidence": "엑세나타이드의 저혈당 효과를 강화할 수 있음."
+    },
+    {
+      "drug": "Monoamine Oxidase Inhibitors (MAOIs; amitraz, linezolid, selegiline)",
+      "severity": 3,
+      "keywords": [
+        "potentiated hypoglycemia",
+        "MAOI interaction"
+      ],
+      "evidence": "MAOI는 엑세나타이드의 저혈당 효과를 강화할 수 있음. 병용 시 심각한 저혈당 위험."
+    },
+    {
+      "drug": "Pentoxifylline",
+      "severity": 2,
+      "keywords": [
+        "potentiated hypoglycemia"
+      ],
+      "evidence": "엑세나타이드의 저혈당 효과를 강화할 수 있음."
+    },
+    {
+      "drug": "Salicylates (aspirin, bismuth subsalicylate)",
+      "severity": 2,
+      "keywords": [
+        "potentiated hypoglycemia"
+      ],
+      "evidence": "엑세나타이드의 저혈당 효과를 강화할 수 있음."
+    },
+    {
+      "drug": "Somatostatin Derivatives (octreotide)",
+      "severity": 2,
+      "keywords": [
+        "potentiated hypoglycemia"
+      ],
+      "evidence": "엑세나타이드의 저혈당 효과를 강화할 수 있음."
+    },
+    {
+      "drug": "Sulfonamides (sulfadimethoxine, sulfamethoxazole)",
+      "severity": 2,
+      "keywords": [
+        "potentiated hypoglycemia"
+      ],
+      "evidence": "엑세나타이드의 저혈당 효과를 강화할 수 있음."
+    },
+    {
+      "drug": "Alpha-2-Adrenergic Receptor Agonists (dexmedetomidine, xylazine)",
+      "severity": 2,
+      "keywords": [
+        "hyperglycemia",
+        "diminished glycemic control"
+      ],
+      "evidence": "고혈당을 유발하고 일시적으로 혈당 조절을 방해할 수 있어 엑세나타이드의 저혈당 효과를 감소시킴."
+    },
+    {
+      "drug": "Beta-Adrenergic Receptor Agonists (albuterol, terbutaline)",
+      "severity": 2,
+      "keywords": [
+        "diminished hypoglycemic activity"
+      ],
+      "evidence": "엑세나타이드의 저혈당 효과를 감소시킬 수 있음."
+    },
+    {
+      "drug": "Corticosteroids (dexamethasone, prednisolone)",
+      "severity": 2,
+      "keywords": [
+        "diminished hypoglycemic activity",
+        "hyperglycemia"
+      ],
+      "evidence": "엑세나타이드의 저혈당 효과를 감소시킬 수 있음."
+    },
+    {
+      "drug": "Cyclosporine",
+      "severity": 2,
+      "keywords": [
+        "diminished hypoglycemic activity"
+      ],
+      "evidence": "엑세나타이드의 저혈당 효과를 감소시킬 수 있음."
+    },
+    {
+      "drug": "Danazol",
+      "severity": 2,
+      "keywords": [
+        "diminished hypoglycemic activity"
+      ],
+      "evidence": "엑세나타이드의 저혈당 효과를 감소시킬 수 있음."
+    },
+    {
+      "drug": "Diazoxide",
+      "severity": 2,
+      "keywords": [
+        "diminished hypoglycemic activity"
+      ],
+      "evidence": "엑세나타이드의 저혈당 효과를 감소시킬 수 있음."
+    },
+    {
+      "drug": "Diuretics (furosemide, hydrochlorothiazide)",
+      "severity": 2,
+      "keywords": [
+        "diminished hypoglycemic activity"
+      ],
+      "evidence": "엑세나타이드의 저혈당 효과를 감소시킬 수 있음."
+    },
+    {
+      "drug": "Estrogens (diethylstilbestrol, estriol)",
+      "severity": 2,
+      "keywords": [
+        "diminished hypoglycemic activity"
+      ],
+      "evidence": "엑세나타이드의 저혈당 효과를 감소시킬 수 있음."
+    },
+    {
+      "drug": "Isoniazid",
+      "severity": 2,
+      "keywords": [
+        "diminished hypoglycemic activity"
+      ],
+      "evidence": "엑세나타이드의 저혈당 효과를 감소시킬 수 있음."
+    },
+    {
+      "drug": "Leuprolide",
+      "severity": 2,
+      "keywords": [
+        "diminished hypoglycemic activity"
+      ],
+      "evidence": "엑세나타이드의 저혈당 효과를 감소시킬 수 있음."
+    },
+    {
+      "drug": "Niacin",
+      "severity": 2,
+      "keywords": [
+        "diminished hypoglycemic activity"
+      ],
+      "evidence": "엑세나타이드의 저혈당 효과를 감소시킬 수 있음."
+    },
+    {
+      "drug": "Phenothiazines (acepromazine, chlorpromazine)",
+      "severity": 2,
+      "keywords": [
+        "diminished hypoglycemic activity"
+      ],
+      "evidence": "엑세나타이드의 저혈당 효과를 감소시킬 수 있음."
+    },
+    {
+      "drug": "Progestins (megestrol)",
+      "severity": 2,
+      "keywords": [
+        "diminished hypoglycemic activity"
+      ],
+      "evidence": "엑세나타이드의 저혈당 효과를 감소시킬 수 있음."
+    },
+    {
+      "drug": "Sympathomimetic Agents (epinephrine, phenylpropanolamine)",
+      "severity": 2,
+      "keywords": [
+        "diminished hypoglycemic activity"
+      ],
+      "evidence": "엑세나타이드의 저혈당 효과를 감소시킬 수 있음."
+    },
+    {
+      "drug": "Thyroid Hormones",
+      "severity": 2,
+      "keywords": [
+        "elevated blood glucose",
+        "diminished hypoglycemic activity"
+      ],
+      "evidence": "갑상선 호르몬 치료 초기 시작 시 당뇨 환자에서 혈당을 상승시킬 수 있음."
+    }
+  ],
+  "additive_risks": {
+    "nephrotoxic": true,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": true,
+    "sedation": true,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "moderate",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "low",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": 0.5
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": []
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "linear",
+          "context": "당뇨병 보조 치료 - 엑세나타이드 IR 사용 (오프라벨)",
+          "value": "1",
+          "unit": "mcg/kg",
+          "route": "SC",
+          "frequency": "BID",
+          "max_dose_mg_kg": null,
+          "duration_note": "글라진 인슐린 1일 2회 및 저탄수화물 식이와 병용. 식사 전 투여; 식사 후 투여 금지. 일부 고양이에서 글라진 용량 25~50% 감량 필요.",
+          "evidence": "엑세나타이드 IR을 글라진 인슐린 및 저탄수화물 식이와 병용하여 당뇨 고양이에서 사용한 소규모 연구 기반 오프라벨 용량."
+        },
+        {
+          "logic_type": "linear",
+          "context": "당뇨병 보조 치료 - 엑세나타이드 ER 사용 (오프라벨)",
+          "value": "200",
+          "unit": "mcg/kg",
+          "route": "SC",
+          "frequency": "q48h",
+          "max_dose_mg_kg": null,
+          "duration_note": "7일마다 1회 투여. 글라진 인슐린 1일 2회 및 저탄수화물 식이와 병용.",
+          "evidence": "엑세나타이드 ER을 글라진 인슐린 및 저탄수화물 식이와 병용하여 새로 진단된 당뇨 고양이에서 사용한 소규모 연구 기반 오프라벨 용량. 주 1회(매 7일) 투여."
+        }
+      ]
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "avoid",
+    "adjustment_factor": null,
+    "note": "중증 또는 말기 신질환 환자에서 금기(인체 데이터). 신기능 저하 환자 또는 신장 이식 수혜자에서 주의 사용 권고. 사람에서 급성 신손상 발생 보고. 구체적인 크레아티닌 역치 또는 용량 조절 계수는 명시되지 않음."
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": "간 용량 조절에 대한 정보가 모노그래프에 명시되지 않음. 엑세나타이드는 주로 신장으로 배설되므로 간기능 저하 시 용량 조절 필요성은 낮을 것으로 추정되나 확인된 데이터 없음."
+  },
+  "contraindications": [
+    {
+      "condition": "과민반응",
+      "match_terms": [
+        "hypersensitivity",
+        "allergy to exenatide"
+      ],
+      "severity": "absolute",
+      "action": "contraindicated",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "중증 또는 말기 신질환",
+      "match_terms": [
+        "severe renal disease",
+        "end-stage renal disease",
+        "ESRD",
+        "CKD stage 4",
+        "CKD stage 5"
+      ],
+      "severity": "absolute",
+      "action": "contraindicated",
+      "lab_trigger": {
+        "marker": "creatinine",
+        "threshold": null,
+        "unit": "mg/dL"
+      }
+    },
+    {
+      "condition": "중증 위장관 질환 (위마비, 염증성 장질환)",
+      "match_terms": [
+        "gastroparesis",
+        "inflammatory bowel disease",
+        "severe GI disease"
+      ],
+      "severity": "absolute",
+      "action": "contraindicated",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "수질 갑상선 암종",
+      "match_terms": [
+        "medullary thyroid carcinoma",
+        "MTC"
+      ],
+      "severity": "absolute",
+      "action": "contraindicated",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "다발성 내분비 종양 증후군 2형",
+      "match_terms": [
+        "multiple endocrine neoplasia type 2",
+        "MEN2"
+      ],
+      "severity": "absolute",
+      "action": "contraindicated",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "췌장염 발생 이력 (엑세나타이드 유발)",
+      "match_terms": [
+        "pancreatitis",
+        "exenatide-induced pancreatitis"
+      ],
+      "severity": "absolute",
+      "action": "contraindicated",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "약물 유발 면역 매개 혈소판 감소증 (DIIMT)",
+      "match_terms": [
+        "drug-induced immune-mediated thrombocytopenia",
+        "DIIMT"
+      ],
+      "severity": "absolute",
+      "action": "contraindicated",
+      "lab_trigger": {
+        "marker": "plt",
+        "threshold": null,
+        "unit": "x10^3/uL"
+      }
+    },
+    {
+      "condition": "당뇨병성 케톤산증",
+      "match_terms": [
+        "diabetic ketoacidosis",
+        "DKA"
+      ],
+      "severity": "absolute",
+      "action": "contraindicated",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "신기능 저하",
+      "match_terms": [
+        "impaired renal function",
+        "renal insufficiency",
+        "CKD"
+      ],
+      "severity": "relative",
+      "action": "monitor",
+      "lab_trigger": {
+        "marker": "creatinine",
+        "threshold": null,
+        "unit": "mg/dL"
+      }
+    },
+    {
+      "condition": "췌장염 병력",
+      "match_terms": [
+        "history of pancreatitis"
+      ],
+      "severity": "relative",
+      "action": "monitor",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "신장 이식 수혜자",
+      "match_terms": [
+        "renal transplant",
+        "kidney transplant"
+      ],
+      "severity": "relative",
+      "action": "monitor",
+      "lab_trigger": {
+        "marker": "creatinine",
+        "threshold": null,
+        "unit": "mg/dL"
+      }
+    }
+  ],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": "GLP-1 수용체 작용제(인크레틴 모방제)로서 포도당 의존적 인슐린 합성 및 분비를 증가시키고, 췌장 내분비 베타세포 증식 및 생존을 촉진하며, 글루카곤 분비를 억제한다(저혈당 시 글루카곤 분비는 유지). 근육의 인슐린 감수성을 개선하고 간 포도당 신생합성을 감소시킨다. 위 배출을 지연시켜 식후 고혈당을 완화한다.",
+    "common_extra_effects": [
+      "오심(nausea)",
+      "구토(vomiting)",
+      "설사(diarrhea)",
+      "식욕부진(anorexia)",
+      "체중 감소(weight loss)",
+      "저혈당(hypoglycemia, 다른 혈당강하제와 병용 시)",
+      "주사 부위 반응(injection site reactions, 인체)",
+      "췌장염(pancreatitis, 인체)",
+      "급성 신손상(acute kidney injury, 인체)",
+      "약물 유발 면역 매개 혈소판 감소증(DIIMT, 인체)",
+      "항체 형성(antibody formation, 인체)"
+    ],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": "고양이에서 GLP-1 수용체 작용을 통해 인슐린 분비 증가 및 글루카곤 분비 억제 효과가 연구됨. 위 배출 지연 효과 확인됨.",
+    "cat_extra_effects": [
+      "식욕 감소(reduced appetite)",
+      "체중 감소(weight loss, 약 0.7 kg)",
+      "구토(vomiting)",
+      "설사(diarrhea)",
+      "무증상 저혈당(subclinical hypoglycemia, 인슐린 병용 시)",
+      "수면 증가(increased sleeping)",
+      "어두운 곳에 숨는 행동(hiding in dark places)",
+      "주사 시 공격성 증가(increased aggression during injection)"
+    ]
+  },
+  "species_notes": {
+    "dog": "개에 대한 엑세나타이드 사용 데이터가 없으며, 현재 개에서의 사용은 권장되지 않음. 용량 정보 없음.",
+    "cat": "고양이의 당뇨병 보조 치료에 오프라벨로 사용됨. 엑세나타이드 IR(1 µg/kg SC BID) 또는 ER(200 µg/kg SC 주 1회)을 글라진 인슐린 및 저탄수화물 식이와 병용. 인슐린 대체제가 아니며 단독 요법으로 사용 불가. 소규모 연구에서 혈당 변동성 감소 및 관해율 개선 경향이 있었으나 통계적 유의성은 제한적. 인체용 제형에서 고양이 용량을 추출하는 것이 어려울 수 있음. NIOSH 위험 약물로 분류되어 취급 시 적절한 개인 보호 장비 착용 필요."
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": "개에 대한 사용 데이터 없음. 용량 미확립."
+    },
+    "cat": {
+      "status": 1,
+      "evidence": "고양이에서 안전성 프로파일이 아직 연구 중이며, 소규모 연구 및 인체 데이터 외삽에 의존함. 신기능 저하, 췌장염 병력, DIIMT 병력 시 주의 사용. 인슐린 대체제로 사용 불가. NIOSH 위험 약물."
+    }
+  },
+  "storage_and_forms": {
+    "storage": "미개봉 제품은 냉장 보관(2°C~8°C, 36°F~46°F). 빛과 동결로부터 보호; 동결된 경우 폐기. 엑세나타이드 IR 첫 사용 후 2°C~25°C(36°F~77°F) 보관; 바늘 부착 상태로 보관 금지; 첫 사용 후 30일 이내 폐기. 엑세나타이드 ER은 미혼합 상태로 실온에서 최대 4주 보관 가능; 재구성 후 즉시 투여.",
+    "forms": [
+      "엑세나타이드 IR 주사액: 250 µg/mL, 프리필드 펜(5 µg 60회 분량 1.2 mL 또는 10 µg 60회 분량 2.4 mL); Byetta®",
+      "엑세나타이드 ER 주사: 2 mg 단회용 바이알 (희석액 0.65 mL 프리필드 주사기, 바이알 커넥터, 전용 바늘 포함 키트); Bydureon®",
+      "엑세나타이드 ER 펜 장치 및 자동주사기(Bydureon BCise®) - 고양이 용량에는 실용적이지 않음"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "엑세나타이드는 GLP-1 수용체 작용제(인크레틴 모방제)로, 고양이의 당뇨병 보조 치료에 오프라벨로 사용됩니다. 인슐린 대체제가 아니며 반드시 인슐린(글라진)과 병용해야 합니다. 당뇨병성 케톤산증 치료에 사용할 수 없습니다. 중증 신질환, 중증 위장관 질환, 수질 갑상선 암종, MEN2 환자에서 금기입니다. NIOSH 위험 약물로 분류되어 취급 시 개인 보호 장비가 필요합니다. IR과 ER 제형은 상호 교환 불가합니다.",
+    "indications": "고양이의 합병증 없는 당뇨병 보조 치료(오프라벨). 엑세나타이드 IR: 1 µg/kg SC BID, 글라진 인슐린 및 저탄수화물 식이 병용. 엑세나타이드 ER: 200 µg/kg SC 주 1회, 글라진 인슐린 및 저탄수화물 식이 병용. 수의용 허가 제품 없음; 인체용 제형 사용.",
+    "client_info": "엑세나타이드는 피부 아래(피하) 주사로 투여합니다. 수의사가 올바른 주사 방법을 시연하고 연습할 수 있도록 도와드릴 것입니다. 주사 전 항상 주사기의 용량을 다시 확인하세요. 주사 부위는 자주 바꾸어야 하며, 주로 목 뒤쪽이나 어깨 부위를 사용합니다. 오심, 구토, 식욕 감소는 흔한 부작용입니다. 식욕의 현저하거나 지속적인 변화, 비정상적인 대변, 또는 체중 감소가 있으면 수의사에게 알려주세요. 이 약은 혈액 검사를 포함한 수의사의 정기적인 모니터링이 필요합니다. 중요한 추적 방문을 빠지지 마세요. 이 약은 NIOSH에서 위험 약물로 분류하였습니다. 취급 시 개인 보호 장비(장갑, 눈 보호대) 사용에 대해 수의사 또는 약사와 상담하세요. 사용한 바늘과 주사기는 즉시 날카로운 물건 전용 폐기 용기에 넣어 주세요."
+  },
+  "_data_quality": {
+    "overall_confidence": 55,
+    "renal_adjustment_confidence": "medium",
+    "hepatic_adjustment_confidence": "low",
+    "organ_burden_confidence": "low",
+    "ddi_source": "plumbs_direct",
+    "plumbs_sections_found": [
+      "Uses/Indications",
+      "Pharmacology/Actions",
+      "Pharmacokinetics",
+      "Contraindications/Precautions/Warnings",
+      "Adverse Effects",
+      "Reproductive/Nursing Safety",
+      "Overdose/Acute Toxicity",
+      "Drug Interactions",
+      "Dosages",
+      "Monitoring",
+      "Client Information",
+      "Chemistry/Synonyms",
+      "Storage/Stability",
+      "Compatibility/Compounding Considerations",
+      "Dosage Forms/Regulatory Status"
+    ],
+    "missing_sections": [
+      "Veterinary-labeled product information",
+      "Dog dosage data",
+      "CYP enzyme profile",
+      "Oral bioavailability (F%)",
+      "Protein binding data",
+      "Hepatic dose adjustment",
+      "Specific creatinine thresholds for dose adjustment"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "cyp_profile.substrates",
+      "cyp_profile.inhibitors",
+      "cyp_profile.inducers",
+      "timing_profile.f_percent",
+      "timing_profile.protein_binding_percent",
+      "timing_profile.onset_min (cat-specific)",
+      "renal_dose_adjustment.creatinine_threshold_cat_mg_dL",
+      "renal_dose_adjustment.adjustment_factor",
+      "hepatic_dose_adjustment.alt_threshold_multiplier",
+      "dosage_and_kinetics.dog.dosage_list",
+      "organ_burden_logic.cat.liver.calculated_score",
+      "organ_burden_logic.cat.heart.calculated_score"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "claude-sonnet-4-6",
+    "extraction_pass": 1,
+    "source_file": "plumbs_output/40.jsonl",
+    "extracted_at": "2026-03-11T11:22:38.653840+00:00",
+    "reviewer": null
+  }
+}

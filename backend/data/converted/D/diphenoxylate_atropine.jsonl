@@ -1,0 +1,471 @@
+{
+  "id": "diphenoxylate_atropine",
+  "drug_identity": {
+    "name_ko": "디페녹실레이트/아트로핀",
+    "name_en": "Diphenoxylate/Atropine",
+    "active_ingredient": "Diphenoxylate HCl, Atropine Sulfate",
+    "brand_names": [
+      "Lomotil"
+    ],
+    "allergy_class": "Opioids",
+    "class": "Opioid Agonist/Anticholinergic",
+    "source": "kr_vet",
+    "formulary_status": "DEA Schedule V",
+    "has_reversal": true,
+    "reversal_agent": "Naloxone",
+    "reversal_evidence": "Naloxone may reverse the opioid effects.",
+    "off_label_note": "All veterinary usages (antidiarrheal and antitussive in dogs and cats) are extra-label.",
+    "dosage_form": [
+      "Tab",
+      "Susp"
+    ],
+    "available_strengths": [
+      {
+        "value": 2.5,
+        "unit": "mg diphenoxylate and 0.025 mg atropine per tablet or per 5 mL liquid"
+      }
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Liver",
+    "clearance_organ": "Mixed",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": "In dogs, ≈72% of an oral dose is eliminated in the feces within 5 days of administration. In humans, diphenoxylate is metabolized into diphenoxylic acid, an active metabolite."
+  },
+  "organ_burden_logic": {
+    "note": "Based on reported adverse effects, precautions, and contraindications.",
+    "dog": {
+      "brain": {
+        "calculated_score": 3,
+        "triggered_keywords": [
+          "sedation",
+          "CNS depression",
+          "coma"
+        ],
+        "index": 3,
+        "evidence": "Adverse effects include sedation and CNS depression; use with extreme caution in patients with conditions that cause CNS depression as it may exacerbate it to the point of coma or death."
+      },
+      "blood": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No primary hematologic burden noted."
+      },
+      "kidney": {
+        "calculated_score": 2,
+        "triggered_keywords": [
+          "renal insufficiency"
+        ],
+        "index": 2,
+        "evidence": "All opioids should be used with caution in patients with renal insufficiency."
+      },
+      "liver": {
+        "calculated_score": 3,
+        "triggered_keywords": [
+          "biliary obstruction",
+          "hepatic encephalopathy"
+        ],
+        "index": 3,
+        "evidence": "Contraindicated in partial or complete biliary obstruction. Use with extreme caution in hepatic encephalopathy."
+      },
+      "heart": {
+        "calculated_score": 1,
+        "triggered_keywords": [
+          "cardiovascular toxicity"
+        ],
+        "index": 1,
+        "evidence": "Acute overdose could result in cardiovascular toxicity."
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 3,
+        "triggered_keywords": [
+          "excitatory behavior"
+        ],
+        "index": 3,
+        "evidence": "Cats may react with excitatory behavior; use is controversial."
+      },
+      "blood": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No primary hematologic burden noted."
+      },
+      "kidney": {
+        "calculated_score": 2,
+        "triggered_keywords": [
+          "renal insufficiency"
+        ],
+        "index": 2,
+        "evidence": "All opioids should be used with caution in patients with renal insufficiency."
+      },
+      "liver": {
+        "calculated_score": 3,
+        "triggered_keywords": [
+          "biliary obstruction"
+        ],
+        "index": 3,
+        "evidence": "Contraindicated in partial or complete biliary obstruction."
+      },
+      "heart": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "Acute overdose could result in cardiovascular toxicity."
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": 45,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": 2.5,
+      "max": 14.0,
+      "mean": null,
+      "species": "human"
+    },
+    "f_percent": 90.0,
+    "protein_binding_percent": null,
+    "evidence": "In humans, onset of action occurs within 45 to 60 minutes after administration and is sustained for 3 to 4 hours. Bioavailability of tablets is ≈90% of the solution. Serum half-lives of diphenoxylate and active metabolite diphenoxylic acid are ≈2.5 hours and 4 to 14 hours, respectively (in humans)."
+  },
+  "_ddi_note": "Opioids may increase biliary tract pressure, resulting in increased plasma amylase and lipase values up to 24 hours following their administration.",
+  "drug_interactions": [
+    {
+      "drug": "Anticholinergic Agents (e.g., glycopyrrolate, oxybutynin)",
+      "severity": 2,
+      "keywords": [
+        "additive anticholinergic effects"
+      ],
+      "evidence": "Additive anticholinergic effects (e.g., dry mucous membranes, tachycardia, constipation, urinary retention) may occur."
+    },
+    {
+      "drug": "Antihistamine H1 Receptor Antagonists, First Generation",
+      "severity": 2,
+      "keywords": [
+        "CNS depression",
+        "additive anticholinergic"
+      ],
+      "evidence": "Concurrent use may increase risk of CNS depression and have additive anticholinergic effects."
+    },
+    {
+      "drug": "CNS Depressant Drugs",
+      "severity": 3,
+      "keywords": [
+        "increased CNS or respiratory depression"
+      ],
+      "evidence": "Concurrent use may cause increased CNS or respiratory depression."
+    },
+    {
+      "drug": "Digoxin",
+      "severity": 2,
+      "keywords": [
+        "increased serum digoxin"
+      ],
+      "evidence": "Concurrent use may result in increased serum digoxin concentrations."
+    },
+    {
+      "drug": "Laxatives",
+      "severity": 2,
+      "keywords": [
+        "decrease efficacy"
+      ],
+      "evidence": "Concurrent use may decrease efficacy of diphenoxylate."
+    },
+    {
+      "drug": "Monoamine Oxidase Inhibitors (MAOIs)",
+      "severity": 3,
+      "keywords": [
+        "contraindicated",
+        "hypertensive crisis"
+      ],
+      "evidence": "Contraindicated in human patients receiving systemic MAOIs for at least 14 days due to an increased risk of a hypertensive crisis."
+    },
+    {
+      "drug": "Opioids",
+      "severity": 3,
+      "keywords": [
+        "therapeutic duplication",
+        "CNS or respiratory depression"
+      ],
+      "evidence": "Therapeutic duplication. Concurrent use may increase risk of CNS or respiratory depression and have additive anticholinergic effects."
+    },
+    {
+      "drug": "Phenothiazines",
+      "severity": 2,
+      "keywords": [
+        "CNS depression",
+        "additive anticholinergic"
+      ],
+      "evidence": "Concurrent use may increase risk of CNS depression and have additive anticholinergic effects."
+    },
+    {
+      "drug": "Potassium Salts, Oral",
+      "severity": 3,
+      "keywords": [
+        "contraindicated",
+        "GI irritation",
+        "ulceration"
+      ],
+      "evidence": "Reduced GI motility may increase the risk for GI irritation and ulceration caused by potassium salts; concurrent use of solid oral forms is contraindicated in humans."
+    },
+    {
+      "drug": "Prokinetic Agents",
+      "severity": 2,
+      "keywords": [
+        "decreased efficacy"
+      ],
+      "evidence": "Concurrent use may result in decreased efficacy of both agents."
+    },
+    {
+      "drug": "Tricyclic Antidepressants",
+      "severity": 2,
+      "keywords": [
+        "CNS depression",
+        "additive anticholinergic"
+      ],
+      "evidence": "Concurrent use may increase risk of CNS depression and have additive anticholinergic effects."
+    }
+  ],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": true,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": 14.0
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "Extra-label",
+          "context": "Antidiarrheal agent",
+          "value": "0.05-0.1",
+          "unit": "mg/kg diphenoxylate component",
+          "route": "PO",
+          "frequency": "q6-8h",
+          "max_dose_mg_kg": 0.1,
+          "duration_note": "3 to 4 times daily.",
+          "evidence": "Extra-label."
+        },
+        {
+          "logic_type": "Extra-label",
+          "context": "Antidiarrheal agent",
+          "value": "0.1-0.2",
+          "unit": "mg/kg diphenoxylate component",
+          "route": "PO",
+          "frequency": "q12h",
+          "max_dose_mg_kg": 0.2,
+          "duration_note": null,
+          "evidence": "Extra-label."
+        },
+        {
+          "logic_type": "Extra-label",
+          "context": "Antitussive agent",
+          "value": "0.2-0.5",
+          "unit": "mg/kg diphenoxylate component",
+          "route": "PO",
+          "frequency": "q8-12h",
+          "max_dose_mg_kg": 0.5,
+          "duration_note": null,
+          "evidence": "Extra-label."
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "Extra-label",
+          "context": "Antidiarrheal agent",
+          "value": "0.08-0.1",
+          "unit": "mg/kg diphenoxylate component",
+          "route": "PO",
+          "frequency": "q12h",
+          "max_dose_mg_kg": 0.1,
+          "duration_note": "Not usually recommended for cats.",
+          "evidence": "Extra-label."
+        }
+      ]
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "monitor",
+    "adjustment_factor": null,
+    "note": "All opioids should be used with caution in patients with renal insufficiency."
+  },
+  "hepatic_dose_adjustment": {
+    "applies": true,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "avoid",
+    "note": "Contraindicated in partial or complete biliary obstruction. Use with extreme caution in patients with conditions that cause CNS depression (e.g., hepatic encephalopathy)."
+  },
+  "contraindications": [
+    {
+      "condition": "Hypersensitivity",
+      "match_terms": [
+        "hypersensitivity",
+        "narcotic analgesics"
+      ],
+      "severity": "high",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "Biliary Obstruction",
+      "match_terms": [
+        "biliary obstruction"
+      ],
+      "severity": "high",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "Infectious or Toxic Diarrhea",
+      "match_terms": [
+        "infectious agent",
+        "toxic ingestion"
+      ],
+      "severity": "high",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "Intestinal Obstruction",
+      "match_terms": [
+        "intestinal obstruction"
+      ],
+      "severity": "high",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    }
+  ],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": "Opioids inhibit GI motility and propulsion, decrease intestinal secretions, and may enhance intestinal mucosal absorption. Atropine is present in subtherapeutic amounts to deter human abuse.",
+    "common_extra_effects": [
+      "Constipation",
+      "Bloating",
+      "Sedation",
+      "Paralytic ileus",
+      "Toxic megacolon",
+      "Pancreatitis"
+    ],
+    "dog_mechanism": "Directly affects smooth muscle in the GI tract by enhancing segmentation contractions and prolonging GI transit time.",
+    "dog_extra_effects": [
+      "Vomiting"
+    ],
+    "cat_mechanism": null,
+    "cat_extra_effects": [
+      "Excitatory behavior"
+    ]
+  },
+  "species_notes": {
+    "dog": "Primarily used in dogs for its antidiarrheal and antitussive properties. Dosage titration using liquid forms may allow safer dosing in dogs <10 kg.",
+    "cat": "Many clinicians do not recommend using this drug in cats due to excitatory behaviors."
+  },
+  "precautions": {
+    "dog": {
+      "status": 3,
+      "evidence": "Contraindicated in hypersensitivity, biliary obstruction, intestinal obstruction, and infectious/toxic diarrhea. Extreme caution in respiratory disease, CNS depression, renal insufficiency, hypothyroidism, Addisonian crisis, and acute abdominal conditions."
+    },
+    "cat": {
+      "status": 3,
+      "evidence": "Use is controversial as cats may exhibit excitable behaviors. Many clinicians do not recommend using this drug in cats."
+    }
+  },
+  "storage_and_forms": {
+    "storage": "Store tablets and oral solution at room temperature of 20°C to 25°C (68°F-77°F); avoid freezing the solution. Follow applicable rules for DEA Schedule V controlled drug storage.",
+    "forms": [
+      "Tablets: Diphenoxylate 2.5 mg and Atropine 0.025 mg",
+      "Liquid: Diphenoxylate 2.5 mg and Atropine Sulfate 0.025 mg per 5 mL"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "Opioid GI motility modifier with antitussive properties that is used primarily in dogs. Contraindications include partial/complete biliary obstruction, diarrhea caused by an infectious agent or toxic ingestion, and intestinal obstruction. DEA Schedule V controlled substance.",
+    "indications": "Used primarily in dogs for its antidiarrheal and antitussive properties, and for medical management of tracheal collapse. Many clinicians do not recommend using this drug in cats.",
+    "client_info": "Constipation and sleepiness are the most common side effects in dogs. Must use cautiously in cats as they can get overly excited. This medicine is a controlled drug."
+  },
+  "_data_quality": {
+    "overall_confidence": 5,
+    "renal_adjustment_confidence": "high",
+    "hepatic_adjustment_confidence": "high",
+    "organ_burden_confidence": "high",
+    "ddi_source": "Plumb's Veterinary Drugs",
+    "plumbs_sections_found": [
+      "Prescriber Highlights",
+      "Uses/Indications",
+      "Pharmacology/Actions",
+      "Pharmacokinetics",
+      "Contraindications/Precautions/Warnings",
+      "Adverse Effects",
+      "Reproductive/Nursing Safety",
+      "Overdose/Acute Toxicity",
+      "Drug Interactions",
+      "Laboratory Considerations",
+      "Dosages",
+      "Monitoring",
+      "Client Information",
+      "Chemistry/Synonyms",
+      "Compatibility/Compounding Considerations",
+      "Storage/Stability",
+      "Dosage Forms/Regulatory Status"
+    ],
+    "missing_sections": [],
+    "requires_pmc_rag": false,
+    "pmc_rag_fields": []
+  },
+  "_extraction_metadata": {
+    "model_used": "Gemini 3.1 Pro",
+    "extraction_pass": 1,
+    "source_file": "Diphenoxylate/Atropine text extract",
+    "extracted_at": "2026-03-21T12:57:23+09:00",
+    "reviewer": null
+  }
+}

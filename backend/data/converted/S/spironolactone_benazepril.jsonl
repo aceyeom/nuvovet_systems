@@ -1,0 +1,427 @@
+{
+  "id": "spironolactone_benazepril",
+  "drug_identity": {
+    "name_ko": "스피로노락톤/베나제프릴",
+    "name_en": "Spironolactone/Benazepril",
+    "active_ingredient": "Spironolactone, Benazepril HCl",
+    "brand_names": [
+      "Cardalis"
+    ],
+    "allergy_class": "ACE Inhibitors, Aldosterone Antagonists",
+    "class": "Aldosterone Antagonist/Angiotensin-Converting Enzyme (ACE) Inhibitor",
+    "source": "kr_vet",
+    "formulary_status": null,
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Chewable"
+    ],
+    "available_strengths": [
+      {
+        "value": 20.0,
+        "unit": "mg spironolactone + 2.5 mg benazepril"
+      },
+      {
+        "value": 40.0,
+        "unit": "mg spironolactone + 5 mg benazepril"
+      },
+      {
+        "value": 80.0,
+        "unit": "mg spironolactone + 10 mg benazepril"
+      }
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Liver",
+    "clearance_organ": "Mixed",
+    "renal_elimination_fraction": 0.2,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": "Benazepril is hydrolyzed in the liver to the active benazeprilat. Benazeprilat is cleared via both renal (45%) and hepatic (55%) routes. Spironolactone active metabolites are ~70% excreted in feces and 20% in urine."
+  },
+  "organ_burden_logic": {
+    "note": "Based on pharmacodynamics, clearance pathways, and adverse effects.",
+    "dog": {
+      "brain": {
+        "calculated_score": 2,
+        "triggered_keywords": [
+          "lethargy",
+          "collapse"
+        ],
+        "index": 2,
+        "evidence": "Lethargy and collapse have been reported as adverse effects."
+      },
+      "blood": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No primary hematologic burden, but interacting drugs (e.g., azathioprine) may increase neutropenia risk."
+      },
+      "kidney": {
+        "calculated_score": 3,
+        "triggered_keywords": [
+          "renal insufficiency",
+          "renal toxicity"
+        ],
+        "index": 3,
+        "evidence": "Renal insufficiency reported; adequate hydration necessary to reduce risk of renal toxicity. Contraindicated with NSAIDs in dogs with renal insufficiency."
+      },
+      "liver": {
+        "calculated_score": 2,
+        "triggered_keywords": [
+          "hepatopathy",
+          "hepatic impairment"
+        ],
+        "index": 2,
+        "evidence": "Use with caution in patients with hepatic impairment. Hepatopathy reported as an adverse effect."
+      },
+      "heart": {
+        "calculated_score": 3,
+        "triggered_keywords": [
+          "hypotension",
+          "hyperkalemia",
+          "arrhythmias"
+        ],
+        "index": 3,
+        "evidence": "Causes vasodilation/decreased blood pressure. Overdose can cause hypotension. Hyperkalemia and hyponatremia may occur."
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No specific feline data provided."
+      },
+      "blood": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No specific feline data provided."
+      },
+      "kidney": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No specific feline data provided."
+      },
+      "liver": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No specific feline data provided."
+      },
+      "heart": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No specific feline data provided."
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": 1.4,
+    "half_life_hr": {
+      "min": 12.0,
+      "max": 21.0,
+      "mean": 16.5,
+      "species": "dog"
+    },
+    "f_percent": 90.0,
+    "protein_binding_percent": 85.0,
+    "evidence": "Spironolactone oral bioavailability increases up to 90% with food; active metabolite half-lives are ~7 to 10 hours. Peak benazeprilat concentrations occur 85 to 120 minutes post-dose; half-life is 12 to 21 hours; protein binding is ~85%."
+  },
+  "_ddi_note": "Spironolactone may cause falsely elevated digoxin values via RIA. Fluorometric cortisol methods may be interfered with by spironolactone.",
+  "drug_interactions": [
+    {
+      "drug": "NSAIDs (e.g., carprofen, meloxicam, robenacoxib)",
+      "severity": 3,
+      "keywords": [
+        "nephrotoxicity",
+        "contraindicated"
+      ],
+      "evidence": "Contraindicated in dogs with renal insufficiency; may increase nephrotoxicity risk or reduce ACE inhibitor efficacy."
+    },
+    {
+      "drug": "Digoxin",
+      "severity": 2,
+      "keywords": [
+        "increase the half-life",
+        "toxicity"
+      ],
+      "evidence": "Spironolactone may increase the half-life of digoxin, potentially causing toxicity. Enhanced monitoring recommended."
+    },
+    {
+      "drug": "Potassium Supplements",
+      "severity": 3,
+      "keywords": [
+        "hyperkalemia"
+      ],
+      "evidence": "Increased risk for hyperkalemia."
+    },
+    {
+      "drug": "Diuretics, Potassium-Sparing (e.g., triamterene)",
+      "severity": 3,
+      "keywords": [
+        "hyperkalemic"
+      ],
+      "evidence": "Concurrent use may increase hyperkalemic effects."
+    },
+    {
+      "drug": "Angiotensin Receptor Blockers (ARBs)",
+      "severity": 2,
+      "keywords": [
+        "hypotension",
+        "hyperkalemia",
+        "renal function"
+      ],
+      "evidence": "May increase the risk for hypotension, syncope, hyperkalemia, or changes in renal function."
+    },
+    {
+      "drug": "Hypotensive Agents (e.g., Alpha-2 Agonists, Beta-Blockers, Calcium Channel Blockers, Phenothiazines, TCAs)",
+      "severity": 2,
+      "keywords": [
+        "additive hypotension",
+        "low blood pressure"
+      ],
+      "evidence": "Concurrent use may result in additive hypotensive effects."
+    },
+    {
+      "drug": "Corticosteroids",
+      "severity": 2,
+      "keywords": [
+        "decrease antihypertensive"
+      ],
+      "evidence": "May decrease antihypertensive effects by causing fluid and sodium retention."
+    },
+    {
+      "drug": "Cyclosporine",
+      "severity": 2,
+      "keywords": [
+        "hyperkalemia",
+        "renal failure"
+      ],
+      "evidence": "Concurrent administration may increase the risk for hyperkalemia or precipitate acute renal failure."
+    }
+  ],
+  "additive_risks": {
+    "nephrotoxic": true,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "high",
+    "hepatotoxic": "low",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": "hyperkalemia, hyponatremia, hypermagnesemia",
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "Standard",
+          "context": "Management of clinical signs of mild, moderate, or severe congestive heart failure due to AVVI",
+          "value": "2",
+          "unit": "mg/kg spironolactone + 0.25 mg/kg benazepril",
+          "route": "PO",
+          "frequency": "q24h",
+          "max_dose_mg_kg": null,
+          "duration_note": "Begin use once pulmonary edema is stabilized; use with concomitant therapy (e.g., furosemide).",
+          "evidence": "FDA-approved label dosage. Given with food using appropriate combination of tablets."
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": []
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "monitor",
+    "adjustment_factor": null,
+    "note": "Use with caution in patients with renal impairment. Renal impairment does not alter benazeprilat clearance."
+  },
+  "hepatic_dose_adjustment": {
+    "applies": true,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "monitor",
+    "note": "Use with caution in patients with hepatic impairment."
+  },
+  "contraindications": [
+    {
+      "condition": "Hypoadrenocorticism",
+      "match_terms": [
+        "hypoadrenocorticism"
+      ],
+      "severity": "high",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "Electrolyte Imbalance",
+      "match_terms": [
+        "hyperkalemia",
+        "hyponatremia"
+      ],
+      "severity": "high",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": "Potassium",
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "Specific Cardiac Disease",
+      "match_terms": [
+        "aortic stenosis",
+        "pulmonary stenosis"
+      ],
+      "severity": "high",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "Pregnancy",
+      "match_terms": [
+        "pregnancy"
+      ],
+      "severity": "high",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "Concurrent NSAIDs with Renal Insufficiency",
+      "match_terms": [
+        "NSAIDs",
+        "renal impairment"
+      ],
+      "severity": "high",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    }
+  ],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": "Spironolactone is a competitive aldosterone antagonist that increases excretion of sodium/water and decreases excretion of potassium. Benazepril inhibits ACE, blocking conversion of angiotensin-I to angiotensin-II, reducing vasoconstriction and aldosterone production.",
+    "common_extra_effects": [
+      "Vomiting",
+      "Anorexia",
+      "Lethargy",
+      "Diarrhea",
+      "Renal insufficiency",
+      "Elevations of serum magnesium and potassium"
+    ],
+    "dog_mechanism": null,
+    "dog_extra_effects": [
+      "Reversible prostatic atrophy in males",
+      "Urinary incontinence"
+    ],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "Indicated for adjunctive management of CHF due to AVVI. Use caution in growing dogs due to spironolactone's antiandrogenic effects.",
+    "cat": "No feline data provided."
+  },
+  "precautions": {
+    "dog": {
+      "status": 3,
+      "evidence": "Contraindicated in hypoadrenocorticism, hyperkalemia, hyponatremia, pregnancy, and cardiac output failure due to aortic/pulmonary stenosis. Use caution with renal/hepatic impairment and in growing dogs."
+    },
+    "cat": {
+      "status": 0,
+      "evidence": "No information noted."
+    }
+  },
+  "storage_and_forms": {
+    "storage": "Store in the manufacturer's original container at room temperature 20°C to 25°C (68°F-77°F), with excursions permitted between 15°C to 30°C (59°F-86°F).",
+    "forms": [
+      "Chewable Tablets (20/2.5 mg, 40/5 mg, 80/10 mg fixed ratio)"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "Indicated for adjunctive management of CHF in dogs due to AVVI. Contraindicated in hypoadrenocorticism, hyperkalemia, hyponatremia, pregnancy, or in dogs with renal impairment receiving NSAIDs. NIOSH classifies spironolactone as a hazardous drug.",
+    "indications": "Management of clinical signs related to mild, moderate, or severe congestive heart failure in dogs due to atrioventricular valvular insufficiency (AVVI) with concurrent therapy (e.g., furosemide).",
+    "client_info": "Give with food, or within 30 minutes of feeding. Ensure access to fresh water. NIOSH classifies spironolactone as a hazardous drug; wearing gloves should be considered, especially if pregnant."
+  },
+  "_data_quality": {
+    "overall_confidence": 5,
+    "renal_adjustment_confidence": "high",
+    "hepatic_adjustment_confidence": "high",
+    "organ_burden_confidence": "high",
+    "ddi_source": "Plumb's Veterinary Drugs",
+    "plumbs_sections_found": [
+      "Prescriber Highlights",
+      "Uses/Indications",
+      "Pharmacology/Actions",
+      "Pharmacokinetics",
+      "Contraindications/Precautions/Warnings",
+      "Adverse Effects",
+      "Reproductive/Nursing Safety",
+      "Overdose/Acute Toxicity",
+      "Drug Interactions",
+      "Laboratory Considerations",
+      "Dosages",
+      "Monitoring",
+      "Client Information",
+      "Chemistry/Synonyms",
+      "Storage/Stability",
+      "Compatibility/Compounding Considerations",
+      "Dosage Forms/Regulatory Status"
+    ],
+    "missing_sections": [],
+    "requires_pmc_rag": false,
+    "pmc_rag_fields": []
+  },
+  "_extraction_metadata": {
+    "model_used": "Gemini 3.1 Pro",
+    "extraction_pass": 1,
+    "source_file": "Spironolactone/Benazepril text extract",
+    "extracted_at": "2026-03-21T12:44:54+09:00",
+    "reviewer": null
+  }
+}

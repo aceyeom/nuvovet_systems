@@ -1,0 +1,724 @@
+{
+  "id": "maropitant",
+  "drug_identity": {
+    "name_ko": "마로피탄트",
+    "name_en": "Maropitant",
+    "active_ingredient": "Maropitant citrate",
+    "brand_names": [
+      "Cerenia",
+      "Prevomax"
+    ],
+    "allergy_class": null,
+    "class": "Antiemetic",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Tab",
+      "Inj"
+    ],
+    "available_strengths": [
+      {
+        "value": 10,
+        "unit": "mg/mL"
+      },
+      {
+        "value": 16,
+        "unit": "mg"
+      },
+      {
+        "value": 24,
+        "unit": "mg"
+      },
+      {
+        "value": 60,
+        "unit": "mg"
+      },
+      {
+        "value": 160,
+        "unit": "mg"
+      }
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Liver",
+    "clearance_organ": "Biliary",
+    "renal_elimination_fraction": 0.01,
+    "cyp_profile": {
+      "substrates": [
+        "CYP2D15",
+        "CYP3A12",
+        "CYP1A",
+        "CYP3A"
+      ],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": "개에서 CYP2D15(저용량, 고친화성)와 CYP3A12(고용량, 저친화성) 두 가지 사이토크롬 P450 효소에 의해 간에서 대사됨. 고용량에서 비선형 동태는 저용량 효소의 포화 및 CYP3A12의 관여 증가에 기인함. 고양이에서는 CYP1A 및 CYP3A 관련 효소가 간 생체변환에 관여함."
+    },
+    "extra_information": "개: 경구 투여 후 생체이용률 24%(2 mg/kg) 및 37%(8 mg/kg); SC 투여 후 91%. 혈장 단백 결합률 99.5%. 소변으로의 회수율 1% 미만. 반감기: SC 1 mg/kg 시 8.8시간(범위 6.07–17.7시간), IV 1 mg/kg 시 6.9시간, PO 2 mg/kg 시 4.03시간(범위 2.58–7.09시간). 고양이: 경구 생체이용률 약 50%, SC 91%. 혈장 단백 결합률 99%. 말단 소실 반감기 약 15시간. 소변 또는 대변으로 1% 미만 배설. 강아지(10주령) 및 새끼 고양이(16주령)는 성체보다 청소율이 빠름."
+  },
+  "organ_burden_logic": {
+    "note": "키워드 기반 점수 산출. 개 및 고양이 수의학 데이터 기반. 간 대사 주도, 신장 배설 최소(<1%). QT 연장 가능성 있음(심장 칼륨 채널 차단). 골수 억제는 어린 강아지에서 보고됨.",
+    "dog": {
+      "brain": {
+        "calculated_score": 30,
+        "triggered_keywords": [
+          "sedation",
+          "ataxia",
+          "tremors",
+          "convulsions",
+          "CNS"
+        ],
+        "index": 1,
+        "evidence": "진정, 운동실조, 진전, 경련 등 CNS 관련 이상반응이 보고됨. NK-1 수용체 길항제로 중추신경계에 작용함."
+      },
+      "blood": {
+        "calculated_score": 25,
+        "triggered_keywords": [
+          "bone marrow hypoplasia",
+          "anaphylaxis",
+          "protein binding 99.5%"
+        ],
+        "index": 1,
+        "evidence": "11주 미만 강아지에서 골수 저형성 보고됨. 혈장 단백 결합률 99.5%로 매우 높음. 아나필락시스 반응 가능."
+      },
+      "kidney": {
+        "calculated_score": 5,
+        "triggered_keywords": [
+          "urinary recovery <1%"
+        ],
+        "index": 0,
+        "evidence": "신장 배설 1% 미만으로 신장 부담은 매우 낮음."
+      },
+      "liver": {
+        "calculated_score": 70,
+        "triggered_keywords": [
+          "hepatic metabolism",
+          "CYP2D15",
+          "CYP3A12",
+          "first-pass metabolism",
+          "hepatic dysfunction"
+        ],
+        "index": 2,
+        "evidence": "간에서 주로 대사됨(CYP2D15, CYP3A12). 간 기능 장애 환자에서 용량 50% 감량 권고. 고용량에서 초회 통과 대사 포화 발생."
+      },
+      "heart": {
+        "calculated_score": 40,
+        "triggered_keywords": [
+          "QT prolongation",
+          "cardiac potassium channel blockade",
+          "hypotension"
+        ],
+        "index": 1,
+        "evidence": "심장 칼륨 채널 차단으로 QT 간격 연장 가능. 이소플루란 마취 중 IV 투여 시 동맥혈압 추가 감소 및 아세프로마진 전처치 개에서 임상적으로 유의한 저혈압 발생 보고."
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 30,
+        "triggered_keywords": [
+          "sedation",
+          "ataxia",
+          "tremors",
+          "convulsion",
+          "recumbency"
+        ],
+        "index": 1,
+        "evidence": "고양이에서 운동실조, 진전, 경련, 기립불능 등 CNS 관련 이상반응 보고됨."
+      },
+      "blood": {
+        "calculated_score": 15,
+        "triggered_keywords": [
+          "protein binding 99%",
+          "anaphylaxis"
+        ],
+        "index": 0,
+        "evidence": "혈장 단백 결합률 99%. 아나필락시스 반응 가능하나 드묾."
+      },
+      "kidney": {
+        "calculated_score": 5,
+        "triggered_keywords": [
+          "urinary recovery <1%"
+        ],
+        "index": 0,
+        "evidence": "소변 또는 대변으로 1% 미만 배설. 신장 부담 최소."
+      },
+      "liver": {
+        "calculated_score": 65,
+        "triggered_keywords": [
+          "hepatic metabolism",
+          "CYP1A",
+          "CYP3A",
+          "hepatic dysfunction"
+        ],
+        "index": 2,
+        "evidence": "고양이에서 CYP1A 및 CYP3A 관련 효소에 의해 간에서 대사됨. 간 기능 장애 시 주의 필요."
+      },
+      "heart": {
+        "calculated_score": 35,
+        "triggered_keywords": [
+          "QT prolongation",
+          "cardiac potassium channel blockade"
+        ],
+        "index": 1,
+        "evidence": "심장 칼륨 채널 차단으로 QT 간격 연장 가능. 심장 질환 환자에서 항부정맥제와 병용 시 안전성 미확립."
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": 60,
+    "t_max_hr": 1.0,
+    "half_life_hr": {
+      "min": 2.58,
+      "max": 17.7,
+      "mean": 8.8,
+      "species": "dog"
+    },
+    "f_percent": 24,
+    "protein_binding_percent": 99,
+    "evidence": "개: SC 1 mg/kg 투여 후 1시간 이내 최고 혈장 농도 도달; PO 2 mg/kg 또는 8 mg/kg 투여 후 2시간 이내 도달. 경구 생체이용률 24%(2 mg/kg), 37%(8 mg/kg). SC 생체이용률 91%. 반감기 SC 8.8시간(범위 6.07–17.7시간). 고양이: 경구 생체이용률 약 50%, SC 91%, 말단 반감기 약 15시간."
+  },
+  "_ddi_note": "Plumb's Drug Interactions 섹션에서 추출. 중증도: 금기→3, 주요→3, 중등도→2, 경미→1. 대부분의 상호작용은 이론적(동물에서 완전히 검증되지 않음).",
+  "drug_interactions": [
+    {
+      "drug": "Calcium Channel Blockers (amlodipine, diltiazem, verapamil)",
+      "severity": 3,
+      "keywords": [
+        "calcium channel affinity",
+        "contraindicated"
+      ],
+      "evidence": "UK 라벨에서 마로피탄트는 칼슘 채널에 친화성이 있으므로 칼슘 채널 길항제와 병용하지 말 것을 명시함."
+    },
+    {
+      "drug": "CYP3A Inhibitors (amiodarone, diltiazem, cimetidine, erythromycin, ketoconazole, itraconazole)",
+      "severity": 2,
+      "keywords": [
+        "CYP3A inhibition",
+        "reduced metabolism",
+        "increased drug levels"
+      ],
+      "evidence": "CYP3A 억제제는 마로피탄트의 대사를 감소시켜 혈중 농도를 높일 수 있음."
+    },
+    {
+      "drug": "CYP2D Inhibitors (cimetidine, fluoxetine, terbinafine)",
+      "severity": 2,
+      "keywords": [
+        "CYP2D inhibition",
+        "reduced metabolism",
+        "increased drug levels"
+      ],
+      "evidence": "CYP2D 억제제는 마로피탄트의 대사를 감소시켜 혈중 농도를 높일 수 있음."
+    },
+    {
+      "drug": "Highly Protein Bound Drugs (valproic acid, warfarin, rivaroxaban, NSAIDs, salicylates, sulfonamides, sulfonylurea antidiabetics)",
+      "severity": 1,
+      "keywords": [
+        "protein binding displacement",
+        "transient concentration increase"
+      ],
+      "evidence": "마로피탄트는 혈장 단백 결합률이 99.5%로 매우 높아 다른 고단백 결합 약물을 이론적으로 치환할 수 있으나, 유리 약물 농도는 청소율 증가로 평형을 이룰 것으로 예상됨. 임상적 우려는 낮으나 모니터링 권장."
+    },
+    {
+      "drug": "QT Prolonging Agents (cisapride, domperidone, quinidine, sotalol)",
+      "severity": 3,
+      "keywords": [
+        "QT prolongation",
+        "cardiac arrhythmia",
+        "avoid"
+      ],
+      "evidence": "병용 시 QT 연장 위험이 증가하므로 피해야 함. 마로피탄트 자체가 심장 칼륨 채널 차단으로 QT 연장을 유발할 수 있음."
+    },
+    {
+      "drug": "Acepromazine",
+      "severity": 2,
+      "keywords": [
+        "hypotension",
+        "blood pressure decrease"
+      ],
+      "evidence": "아세프로마진으로 전처치된 개에서 IV 마로피탄트 투여 시 임상적으로 유의한 저혈압 발생 보고됨."
+    },
+    {
+      "drug": "Pantoprazole",
+      "severity": 2,
+      "keywords": [
+        "precipitation",
+        "IV incompatibility"
+      ],
+      "evidence": "동일 IV 라인에서 마로피탄트와 판토프라졸 병용 시 침전 보고됨. 마로피탄트 주사는 단독 투여 권장."
+    }
+  ],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": true,
+    "qt_prolongation": true
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "low",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "moderate"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": 1.8
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "linear",
+          "context": "급성 구토 예방 및 치료 (SC, 2개월령 이상)",
+          "value": "1",
+          "unit": "mg/kg",
+          "route": "SC",
+          "frequency": "SID",
+          "max_dose_mg_kg": 1.0,
+          "duration_note": "최대 5일 연속 투여",
+          "evidence": "FDA 승인 라벨 용량"
+        },
+        {
+          "logic_type": "linear",
+          "context": "급성 구토 예방 및 치료 (IV, 4개월령 이상)",
+          "value": "1",
+          "unit": "mg/kg",
+          "route": "IV",
+          "frequency": "SID",
+          "max_dose_mg_kg": 1.0,
+          "duration_note": "최대 5일 연속 투여; 1~2분에 걸쳐 천천히 투여",
+          "evidence": "FDA 승인 라벨 용량"
+        },
+        {
+          "logic_type": "linear",
+          "context": "구토 유발 약물 또는 항암제에 의한 구토 예방 (4개월령 이상)",
+          "value": "1",
+          "unit": "mg/kg",
+          "route": "SC",
+          "frequency": "Once",
+          "max_dose_mg_kg": 1.0,
+          "duration_note": "구토 유발 약물 또는 항암제 투여 45~60분 전 1회 투여",
+          "evidence": "FDA 승인 라벨 용량"
+        },
+        {
+          "logic_type": "linear",
+          "context": "구토 유발 약물 또는 항암제에 의한 구토 예방 IV (4개월령 이상)",
+          "value": "1",
+          "unit": "mg/kg",
+          "route": "IV",
+          "frequency": "Once",
+          "max_dose_mg_kg": 1.0,
+          "duration_note": "구토 유발 약물 또는 항암제 투여 45~60분 전 1회 투여; 1~2분에 걸쳐 천천히 투여",
+          "evidence": "FDA 승인 라벨 용량"
+        },
+        {
+          "logic_type": "linear",
+          "context": "급성 구토 예방 (경구, 2개월령 이상)",
+          "value": "2",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "SID",
+          "max_dose_mg_kg": 2.0,
+          "duration_note": "2~7개월령: 5일; 7개월령 초과: 구토 소실 시까지",
+          "evidence": "FDA 승인 라벨 용량"
+        },
+        {
+          "logic_type": "linear",
+          "context": "멀미로 인한 구토 예방 (경구, 4개월령 이상)",
+          "value": "8",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "SID",
+          "max_dose_mg_kg": 8.0,
+          "duration_note": "최대 2일 연속 투여; 공복 또는 소량의 음식과 함께 투여, 여행 전 식사 금지",
+          "evidence": "FDA 승인 라벨 용량"
+        },
+        {
+          "logic_type": "linear",
+          "context": "수술 전후 구토 예방 및 모르핀 사용 후 마취 회복 개선 (extra-label)",
+          "value": "1",
+          "unit": "mg/kg",
+          "route": "SC",
+          "frequency": "SID",
+          "max_dose_mg_kg": 1.0,
+          "duration_note": "모르핀 투여 1시간 이상 전; 최대 5일 연속 투여 가능",
+          "evidence": "Extra-label 용량"
+        },
+        {
+          "logic_type": "linear",
+          "context": "다제 항암 화학요법 중 구토 예방 및 치료 (extra-label)",
+          "value": "2",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "SID",
+          "max_dose_mg_kg": 2.0,
+          "duration_note": "28일간 투여",
+          "evidence": "Extra-label 용량"
+        },
+        {
+          "logic_type": "linear",
+          "context": "기도 질환 개에서 기침 억제 (항기침제, extra-label)",
+          "value": "2",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "q48h",
+          "max_dose_mg_kg": 2.0,
+          "duration_note": null,
+          "evidence": "Extra-label 용량; 기관 허탈 관련 기침 주기 차단에 유용할 수 있음"
+        },
+        {
+          "logic_type": "linear",
+          "context": "난소자궁절제술 중 진통/MAC 절감 효과 (SC, extra-label)",
+          "value": "1",
+          "unit": "mg/kg",
+          "route": "SC",
+          "frequency": "Once",
+          "max_dose_mg_kg": 1.0,
+          "duration_note": "전처치 시점에 투여",
+          "evidence": "Extra-label 용량"
+        },
+        {
+          "logic_type": "linear",
+          "context": "난소자궁절제술 중 진통/MAC 절감 효과 IV 볼루스 후 CRI (extra-label)",
+          "value": "1",
+          "unit": "mg/kg",
+          "route": "IV",
+          "frequency": "Once",
+          "max_dose_mg_kg": null,
+          "duration_note": "IV 볼루스 후 0.03 mg/kg/hour CRI; 고용량(5 mg/kg IV 후 0.15 mg/kg/hour CRI)도 사용됨",
+          "evidence": "Extra-label 용량"
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "linear",
+          "context": "구토 치료 (4개월령 이상, FDA 승인)",
+          "value": "1",
+          "unit": "mg/kg",
+          "route": "SC",
+          "frequency": "SID",
+          "max_dose_mg_kg": 1.0,
+          "duration_note": "최대 5일 연속 투여",
+          "evidence": "FDA 승인 라벨 용량"
+        },
+        {
+          "logic_type": "linear",
+          "context": "구토 치료 IV (4개월령 이상, FDA 승인)",
+          "value": "1",
+          "unit": "mg/kg",
+          "route": "IV",
+          "frequency": "SID",
+          "max_dose_mg_kg": 1.0,
+          "duration_note": "최대 5일 연속 투여; 1~2분에 걸쳐 천천히 투여",
+          "evidence": "FDA 승인 라벨 용량"
+        },
+        {
+          "logic_type": "linear",
+          "context": "구토 예방 (멀미 포함, extra-label)",
+          "value": "1",
+          "unit": "mg/kg",
+          "route": "SC",
+          "frequency": "Once",
+          "max_dose_mg_kg": 1.0,
+          "duration_note": null,
+          "evidence": "Extra-label 용량"
+        },
+        {
+          "logic_type": "linear",
+          "context": "구토 예방 경구 (extra-label)",
+          "value": "1",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "Once",
+          "max_dose_mg_kg": null,
+          "duration_note": "구토 유발 약물 투여 최대 18시간 전 투여 가능; 8 mg/cat(mg/kg 아님) PO도 보고됨",
+          "evidence": "Extra-label 용량"
+        },
+        {
+          "logic_type": "fixed",
+          "context": "만성 신장 질환(CKD) 관련 구토 예방 (extra-label)",
+          "value": "4",
+          "unit": "mg",
+          "route": "PO",
+          "frequency": "q24h",
+          "max_dose_mg_kg": null,
+          "duration_note": "2주간 투여 (mg/cat, mg/kg 아님)",
+          "evidence": "Extra-label 용량"
+        },
+        {
+          "logic_type": "linear",
+          "context": "난소자궁절제술 중 진통/MAC 절감 효과 IV (extra-label)",
+          "value": "1",
+          "unit": "mg/kg",
+          "route": "IV",
+          "frequency": "Once",
+          "max_dose_mg_kg": null,
+          "duration_note": "수술 중 IV 볼루스; 또는 IV 볼루스 후 100 mcg/kg/hour CRI",
+          "evidence": "Extra-label 용량; 개념 증명 연구"
+        },
+        {
+          "logic_type": "linear",
+          "context": "고양이 아토피 피부 증후군 (extra-label)",
+          "value": "2",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "q24h",
+          "max_dose_mg_kg": 2.0,
+          "duration_note": "4주간 투여; 개방형 비대조 연구 결과로 추가 연구 필요",
+          "evidence": "Extra-label 용량"
+        }
+      ]
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "none",
+    "adjustment_factor": null,
+    "note": "신장 배설이 1% 미만으로 신장 기능 장애 시 용량 조정에 대한 명시적 권고사항 없음. CKD 고양이에서 구토 완화 목적으로 사용된 보고 있음."
+  },
+  "hepatic_dose_adjustment": {
+    "applies": true,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "reduce_dose",
+    "note": "간 기능 장애 환자에서 마로피탄트는 주로 간에서 대사되므로 용량을 50% 감량할 것을 권고함."
+  },
+  "contraindications": [
+    {
+      "condition": "독소 섭취 의심",
+      "match_terms": [
+        "toxin ingestion",
+        "poisoning"
+      ],
+      "severity": "absolute",
+      "action": "contraindicated",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "위장관 폐색",
+      "match_terms": [
+        "GI obstruction",
+        "intestinal obstruction"
+      ],
+      "severity": "absolute",
+      "action": "contraindicated",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "심장 질환 (항부정맥제 병용 시)",
+      "match_terms": [
+        "cardiac disease",
+        "arrhythmia",
+        "heart disease"
+      ],
+      "severity": "relative",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "간 기능 장애",
+      "match_terms": [
+        "hepatic dysfunction",
+        "liver disease",
+        "hepatic impairment"
+      ],
+      "severity": "relative",
+      "action": "reduce_dose",
+      "lab_trigger": {
+        "marker": "alt",
+        "threshold": null,
+        "unit": "U/L"
+      }
+    },
+    {
+      "condition": "8주 미만 강아지",
+      "match_terms": [
+        "puppy under 8 weeks",
+        "age < 8 weeks"
+      ],
+      "severity": "absolute",
+      "action": "contraindicated",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "11주 미만 강아지에서 고용량(멀미 예방) 투여",
+      "match_terms": [
+        "puppy under 11 weeks",
+        "motion sickness dose",
+        "bone marrow hypoplasia"
+      ],
+      "severity": "relative",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "임신 또는 수유 중인 동물",
+      "match_terms": [
+        "pregnancy",
+        "lactation",
+        "breeding"
+      ],
+      "severity": "relative",
+      "action": "monitor",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    }
+  ],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": "뉴로키닌-1(NK-1) 수용체 길항제로 CNS에서 구토의 핵심 신경전달물질인 서브스턴스 P의 결합을 억제함. 말초 및 중추 매개 구토를 모두 억제할 수 있음. NK-1 수용체는 내장 통증에도 관여하여 진통 효과를 나타냄.",
+    "common_extra_effects": [
+      "진정(sedation)",
+      "운동실조(ataxia)",
+      "진전(tremors)",
+      "경련(convulsions)",
+      "식욕부진(anorexia)",
+      "설사(diarrhea)",
+      "과다침흘림(hypersalivation)",
+      "발열(fever)",
+      "호흡곤란(dyspnea)",
+      "아나필락시스/아나필락토이드 반응",
+      "QT 간격 연장",
+      "주사 부위 통증 및 부종"
+    ],
+    "dog_mechanism": "개에서 CYP2D15 및 CYP3A12에 의해 간에서 대사됨. 세보플루란 MAC 요구량 감소(약 15~25%) 및 내장 통증 감소 효과 있음. 위 배출 시간 또는 장 통과 시간에는 영향 없음.",
+    "dog_extra_effects": [
+      "여행 전 구토(pretravel vomiting, 고용량 경구 투여 시)",
+      "과다침흘림(hypersalivation)",
+      "주사 부위 통증 및 부종",
+      "우울/무기력(depression/lethargy)",
+      "저혈압(isoflurane 마취 중 IV 투여 시)",
+      "골수 저형성(11주 미만 강아지, 고용량 시)"
+    ],
+    "cat_mechanism": "고양이에서 CYP1A 및 CYP3A 관련 효소에 의해 간에서 대사됨. 선형 동태(SC 0.25–3 mg/kg 범위). 말단 소실 반감기 약 15시간.",
+    "cat_extra_effects": [
+      "우울/무기력(depression/lethargy)",
+      "식욕부진(anorexia)",
+      "주사 부위 통증",
+      "과다침흘림(hypersalivation)",
+      "호흡곤란(dyspnea)",
+      "운동실조(ataxia)",
+      "발열(fever)",
+      "기립불능(recumbency)",
+      "구토(vomiting)",
+      "헐떡임(panting)",
+      "경련(convulsion)",
+      "근육 진전(muscle tremors)"
+    ]
+  },
+  "species_notes": {
+    "dog": "개에서 FDA 승인된 항구토제로, 급성 구토 치료 및 예방, 멀미로 인한 구토 예방에 사용됨. 경구 용량(2 mg/kg)이 SC 용량(1 mg/kg)보다 높은 것은 경구 생체이용률 감소 때문임. 멀미 예방을 위한 고용량(8 mg/kg PO)은 11주 미만 강아지에서 골수 저형성 위험이 있으므로 주의 필요. SC 주사 시 냉장 보관된 제품을 즉시 투여하면 통증을 줄일 수 있음. 이소플루란 마취 중 IV 투여 시 저혈압 위험이 있으며, 아세프로마진 전처치 시 더욱 주의 필요.",
+    "cat": "고양이에서 4개월령 이상의 구토 치료에 FDA 승인됨(SC 또는 IV). 경구 투여는 extra-label 사용임. 말단 반감기가 약 15시간으로 개보다 길어 축적 가능성에 주의. CKD 관련 구토 완화에 4 mg/cat PO q24h(mg/kg 아님)로 사용된 보고 있음. 고양이 아토피 피부 증후군에서 2 mg/kg PO q24h 4주 투여가 효과적이었다는 보고 있으나 추가 연구 필요."
+  },
+  "precautions": {
+    "dog": {
+      "status": 1,
+      "evidence": "간 기능 장애 시 용량 50% 감량 권고. 11주 미만 강아지에서 고용량 사용 시 골수 저형성 위험. QT 연장 가능성으로 항부정맥제 병용 시 주의. 독소 섭취 의심 또는 위장관 폐색 시 사용 금지."
+    },
+    "cat": {
+      "status": 1,
+      "evidence": "간 기능 장애 시 주의. QT 연장 가능성으로 심장 질환 환자에서 항부정맥제 병용 시 안전성 미확립. 임신 또는 수유 중인 고양이에서 안전성 미확립."
+    }
+  },
+  "storage_and_forms": {
+    "storage": "주사액: 개봉 전 20–25°C(68–77°F) 보관(15–30°C 허용). 첫 바이알 천자 후 냉장(2–8°C) 보관, 90일 이내 사용(UK 라벨 56일). 최대 25회 천자 가능. 정제: 20–25°C(68–77°F) 보관(15–30°C 허용). 습기 방지를 위해 포일 포장 유지.",
+    "forms": [
+      "Maropitant Citrate Injectable Solution 10 mg/mL (20 mL 다회용 바이알) - Cerenia",
+      "Maropitant Citrate Oral Tablets 16 mg - Cerenia",
+      "Maropitant Citrate Oral Tablets 24 mg - Cerenia",
+      "Maropitant Citrate Oral Tablets 60 mg - Cerenia",
+      "Maropitant Citrate Oral Tablets 160 mg - Cerenia"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "마로피탄트(Cerenia®)는 NK-1 수용체 길항제로, 개에서 급성 구토 치료 및 예방, 멀미로 인한 구토 예방에 FDA 승인됨. 고양이에서는 구토 치료에 SC/IV로 FDA 승인됨. 말초 및 중추 매개 구토를 모두 억제하며, 세보플루란 MAC 절감 효과(약 15~25%) 및 내장 진통 효과도 있음. 간에서 주로 대사되며 신장 배설은 1% 미만. QT 연장 가능성이 있어 항부정맥제 병용 시 주의 필요. 11주 미만 강아지에서 고용량 사용 시 골수 저형성 위험.",
+    "indications": "【승인 적응증】 개: 급성 구토 예방 및 치료(SC/IV, 2개월령 이상), 멀미로 인한 구토 예방(경구, 4개월령 이상), 구토 유발 약물/항암제에 의한 구토 예방(SC/IV, 4개월령 이상). 고양이: 구토 치료(SC/IV, 4개월령 이상). 【Extra-label 적응증】 개: 수술 전후 구토 예방, 항암 화학요법 중 구토 예방(28일), 기도 질환에서 기침 억제, 난소자궁절제술 중 진통/MAC 절감. 고양이: 구토 예방(멀미 포함), CKD 관련 구토 완화, 난소자궁절제술 중 진통/MAC 절감, 고양이 아토피 피부 증후군.",
+    "client_info": "【보호자 안내】 멀미 예방을 위해서는 여행 2시간 전 소량의 음식과 함께 투여하세요. 일부 개는 약 복용 후 구토할 수 있으며, 소량의 음식과 함께 투여하면 도움이 됩니다. 알약을 음식 간식에 꽉 싸서 주지 마세요(약물 방출 방해). 정제를 나눠 사용한 경우 남은 부분은 포일에 단단히 싸서 어린이와 다른 동물의 손이 닿지 않는 곳에 보관하세요. 8주 미만 강아지에게는 투여하지 마세요(골수 문제 발생 가능). 이상반응은 드물지만 침 흘림, 무기력, 졸음, 식욕 감소, 설사가 나타나면 수의사에게 연락하세요. 사람이 피부에 접촉한 경우 비누와 물로 씻고, 눈에 들어간 경우 15분간 물로 세척 후 의료 도움을 받으세요."
+  },
+  "_data_quality": {
+    "overall_confidence": 82,
+    "renal_adjustment_confidence": "low",
+    "hepatic_adjustment_confidence": "high",
+    "organ_burden_confidence": "medium",
+    "ddi_source": "plumbs_direct",
+    "plumbs_sections_found": [
+      "Uses/Indications",
+      "Pharmacology/Actions",
+      "Pharmacokinetics",
+      "Contraindications/Precautions/Warnings",
+      "Adverse Effects",
+      "Reproductive/Nursing Safety",
+      "Overdose/Acute Toxicity",
+      "Drug Interactions",
+      "Dosages",
+      "Monitoring",
+      "Client Information",
+      "Chemistry/Synonyms",
+      "Storage/Stability",
+      "Compatibility/Compounding Considerations",
+      "Dosage Forms/Regulatory Status"
+    ],
+    "missing_sections": [
+      "Laboratory Considerations (no specific concerns noted)",
+      "Human-labeled products (none exist)"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile.onset_min",
+      "renal_dose_adjustment.creatinine_threshold_dog_mg_dL",
+      "renal_dose_adjustment.creatinine_threshold_cat_mg_dL",
+      "cyp_profile.inhibitors",
+      "cyp_profile.inducers",
+      "hepatic_dose_adjustment.alt_threshold_multiplier",
+      "genetic_sensitivity.affected_breeds"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "claude-sonnet-4-6",
+    "extraction_pass": 1,
+    "source_file": "plumbs_output/61.jsonl",
+    "extracted_at": "2026-03-11T11:32:07.911879+00:00",
+    "reviewer": null
+  }
+}

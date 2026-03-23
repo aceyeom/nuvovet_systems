@@ -1,0 +1,365 @@
+{
+  "id": "euthanasia_agents_pentobarbital",
+  "drug_identity": {
+    "name_ko": "펜토바르비탈 함유 안락사 약물",
+    "name_en": "Euthanasia Agents with Pentobarbital",
+    "active_ingredient": "Pentobarbital Sodium, Phenytoin Sodium",
+    "brand_names": [
+      "Beuthanasia-D",
+      "Beuthanasia-D Special",
+      "Fatal-Plus",
+      "Socumb"
+    ],
+    "allergy_class": "Barbiturates",
+    "class": "Euthanasia Agent",
+    "source": "kr_vet",
+    "formulary_status": "DEA Schedule II / Schedule III",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": "Pentobarbital with phenytoin is extra-label for cats and large animals. Pentobarbital-only products have not been approved by the FDA.",
+    "dosage_form": [
+      "Inj"
+    ],
+    "available_strengths": [
+      {
+        "value": 390.0,
+        "unit": "mg/mL pentobarbital sodium"
+      },
+      {
+        "value": 390.0,
+        "unit": "mg/mL pentobarbital + 50 mg/mL phenytoin sodium"
+      },
+      {
+        "value": 392.0,
+        "unit": "mg/mL pentobarbital (when constituted)"
+      }
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Mixed",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": "Intended solely for euthanasia; standard pharmacokinetic clearance data is not applicable."
+  },
+  "organ_burden_logic": {
+    "note": "Agent designed to induce rapid cerebral death and cardiac cessation.",
+    "dog": {
+      "brain": {
+        "calculated_score": 3,
+        "triggered_keywords": [
+          "loss of consciousness",
+          "deep anesthesia",
+          "cerebral death",
+          "isoelectric"
+        ],
+        "index": 3,
+        "evidence": "Causes rapid loss of consciousness rapidly progressing to deep anesthesia. Encephalographic activity becomes isoelectric, indicating cerebral death."
+      },
+      "blood": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No hematologic burden noted."
+      },
+      "kidney": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No primary renal burden noted."
+      },
+      "liver": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No primary hepatic burden noted."
+      },
+      "heart": {
+        "calculated_score": 3,
+        "triggered_keywords": [
+          "cardiac activity ceases",
+          "cardiac depressant",
+          "reduction in blood pressure"
+        ],
+        "index": 3,
+        "evidence": "Causes concomitant reduction in blood pressure. Cardiac activity ceases. Phenytoin is included for its cardiac depressant effects."
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 3,
+        "triggered_keywords": [
+          "loss of consciousness",
+          "deep anesthesia"
+        ],
+        "index": 3,
+        "evidence": "Rapid loss of consciousness and cerebral death."
+      },
+      "blood": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No hematologic burden noted."
+      },
+      "kidney": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No primary renal burden noted."
+      },
+      "liver": {
+        "calculated_score": 1,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": "No primary hepatic burden noted."
+      },
+      "heart": {
+        "calculated_score": 3,
+        "triggered_keywords": [
+          "cardiac depressant"
+        ],
+        "index": 3,
+        "evidence": "Induces cardiac cessation."
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": 1,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": null
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": "Euthanasia induced by pentobarbital occurs rapidly, smoothly, and is relatively painless, particularly when administered IV."
+  },
+  "_ddi_note": "A sedative, analgesic, and/or anesthetic agent may be required prior to injection in painful, distressed, or fractious animals.",
+  "drug_interactions": [
+    {
+      "drug": "Neuromuscular Blockers",
+      "severity": 3,
+      "keywords": [
+        "paralysis",
+        "contraindicated"
+      ],
+      "evidence": "Do not combine neuromuscular blockers with pentobarbital-containing injection, as paralysis may occur prior to onset of unconsciousness."
+    }
+  ],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": true,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [
+      "food animals",
+      "animals intended for human or animal consumption"
+    ],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "Standard",
+          "context": "Humane euthanasia (with phenytoin)",
+          "value": "1",
+          "unit": "mL per 4.5 kg (10 lb)",
+          "route": "IV",
+          "frequency": "Once",
+          "max_dose_mg_kg": null,
+          "duration_note": "Equivalent to pentobarbital 390 mg with phenytoin 50 mg per 4.5 kg.",
+          "evidence": "FDA-approved."
+        },
+        {
+          "logic_type": "Standard",
+          "context": "Humane euthanasia (single agent)",
+          "value": "1",
+          "unit": "mL per 4.5 kg (10 lb)",
+          "route": "IV",
+          "frequency": "Once",
+          "max_dose_mg_kg": null,
+          "duration_note": "Equivalent to pentobarbital 390 mg per 4.5 kg.",
+          "evidence": "Not FDA-approved."
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": [
+        {
+          "logic_type": "Extra-label",
+          "context": "Humane euthanasia (single agent)",
+          "value": "1",
+          "unit": "mL per 4.5 kg (10 lb)",
+          "route": "IV",
+          "frequency": "Once",
+          "max_dose_mg_kg": null,
+          "duration_note": "Equivalent to pentobarbital 390 mg per 4.5 kg.",
+          "evidence": "Not FDA-approved."
+        },
+        {
+          "logic_type": "Extra-label",
+          "context": "Humane euthanasia (with phenytoin)",
+          "value": "1",
+          "unit": "mL per 4.5 kg (10 lb)",
+          "route": "IV",
+          "frequency": "Once",
+          "max_dose_mg_kg": null,
+          "duration_note": "Equivalent to pentobarbital 390 mg with phenytoin 50 mg per 4.5 kg.",
+          "evidence": "Extra-label."
+        }
+      ]
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "none",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "none",
+    "note": null
+  },
+  "contraindications": [
+    {
+      "condition": "Food Animals",
+      "match_terms": [
+        "animals intended for food purposes",
+        "human or animal consumption"
+      ],
+      "severity": "high",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    },
+    {
+      "condition": "Therapeutic Use",
+      "match_terms": [
+        "therapeutic use"
+      ],
+      "severity": "high",
+      "action": "avoid",
+      "lab_trigger": {
+        "marker": null,
+        "threshold": null,
+        "unit": null
+      }
+    }
+  ],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": "High doses cause rapid loss of consciousness, progressing to deep anesthesia and subsequent depression of the medullary respiratory center, causing cerebral death and cardiac cessation. Phenytoin is included for its cardiac depressant effects, hastening cessation of cardiac electrical activity.",
+    "common_extra_effects": [
+      "Minor muscle twitching",
+      "Agonal breathing",
+      "Urination",
+      "Defecation",
+      "Vocalization",
+      "Dysphoria"
+    ],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "In a study of dogs euthanized with pentobarbital-phenytoin combination, incidence of muscle activity was 14%, agonal breaths ~10%, urination ~8%, vocalization 5%, dysphoria 4%.",
+    "cat": "IV injection is the preferred route for euthanasia."
+  },
+  "precautions": {
+    "dog": {
+      "status": 3,
+      "evidence": "Death may be delayed in animals with cardiac or circulatory deficiency, or if injection is given perivascularly."
+    },
+    "cat": {
+      "status": 3,
+      "evidence": "Death may be delayed in animals with cardiac or circulatory deficiency, or if injection is given perivascularly."
+    }
+  },
+  "storage_and_forms": {
+    "storage": "Store at controlled room temperature of 20°C to 25°C (68°F-77°F). Must be stored separately and securely locked (C-II or C-III) so it is not confused with therapeutic agents.",
+    "forms": [
+      "Injection: Pentobarbital Sodium 390 mg/mL and Phenytoin Sodium 50 mg/mL in 100 mL vials (nonsterile)",
+      "Powder for Reconstitution: 392 mg/mL when constituted (nonsterile)",
+      "Injection: Pentobarbital Sodium 390 mg/mL in 250 mL vials (nonsterile)"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "Used for humane euthanasia in animals not intended for food purposes. Store product separately and securely so it is not confused with therapeutic agents. Minor muscle twitching, agonal breathing, urination, defecation, vocalization, and dysphoria can occur during and after injection.",
+    "indications": "Can be used for rapid, humane euthanasia in animals not intended for food purposes.",
+    "client_info": "Clients should be forewarned about the possibility of agonal breathing, muscle twitching, dysphoria during injection, elimination of bodily fluids, and eyes not closing once unconscious. The animal is unconscious and not experiencing any pain during these events."
+  },
+  "_data_quality": {
+    "overall_confidence": 5,
+    "renal_adjustment_confidence": "high",
+    "hepatic_adjustment_confidence": "high",
+    "organ_burden_confidence": "high",
+    "ddi_source": "Plumb's Veterinary Drugs",
+    "plumbs_sections_found": [
+      "Prescriber Highlights",
+      "Uses/Indications",
+      "Pharmacology/Actions",
+      "Contraindications/Precautions/Warnings",
+      "Adverse Effects",
+      "Reproductive/Nursing Safety",
+      "Dosages",
+      "Monitoring",
+      "Client Information",
+      "Storage/Stability",
+      "Dosage Forms/Regulatory Status"
+    ],
+    "missing_sections": [
+      "Overdose/Acute Toxicity",
+      "Drug Interactions",
+      "Laboratory Considerations",
+      "Chemistry/Synonyms",
+      "Compatibility/Compounding Considerations"
+    ],
+    "requires_pmc_rag": false,
+    "pmc_rag_fields": []
+  },
+  "_extraction_metadata": {
+    "model_used": "Gemini 3.1 Pro",
+    "extraction_pass": 1,
+    "source_file": "Euthanasia Agents with Pentobarbital text extract",
+    "extracted_at": "2026-03-21T12:59:17+09:00",
+    "reviewer": null
+  }
+}
