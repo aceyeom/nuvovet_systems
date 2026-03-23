@@ -182,6 +182,10 @@ def map_drug(raw: dict) -> dict:
     genetic = raw.get("genetic_sensitivity") or {}
     effects = raw.get("effects_and_mechanisms") or {}
     raw_interactions = raw.get("drug_interactions") or []
+    brief_desc = raw.get("brief_description")
+    primary_indications = raw.get("primary_indications") or []
+    mechanism_short = raw.get("mechanism_short")
+    therapeutic_category = raw.get("therapeutic_category")
     references, reference_count, average_if_score = _build_reference_summary(raw, data_quality)
 
     # Organ burden scores
@@ -250,7 +254,16 @@ def map_drug(raw: dict) -> dict:
         "formularyStatus": identity.get("formulary_status", "active"),
         "brandNames": identity.get("brand_names") or [],
         "dosageForms": identity.get("dosage_form") or [],
-        "availableStrengths": identity.get("available_strengths") or [],
+        "availableStrengths": [
+            {
+                "value": s.get("value"),
+                "unit": s.get("unit"),
+                "form": s.get("form"),
+                "isSplittable": s.get("is_splittable"),
+            }
+            for s in (identity.get("available_strengths") or [])
+            if isinstance(s, dict)
+        ],
 
         # Engine input fields
         "renalElimination": meta.get("renal_elimination_fraction") or 0.0,
@@ -352,6 +365,10 @@ def map_drug(raw: dict) -> dict:
         "clientInfo": section.get("client_info"),
         "commonMechanism": effects.get("common_mechanism"),
         "commonAdverseEffects": effects.get("common_extra_effects") or [],
+        "briefDescription": brief_desc,
+        "primaryIndications": primary_indications,
+        "mechanismShort": mechanism_short,
+        "therapeuticCategory": therapeutic_category,
 
         # Organ burden (enriched)
         "organBurden": {

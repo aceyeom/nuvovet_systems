@@ -56,7 +56,9 @@
 /**
  * @typedef {Object} DrugStrength
  * @property {number} value
- * @property {string} unit  - e.g. 'mg', 'mcg', 'g'
+ * @property {string} unit  - e.g. 'mg', 'mcg', 'g', '%', 'mg/mL'
+ * @property {string|null} [form]  - 'oral'|'injectable'|'topical'|'ophthalmic'|'otic'
+ * @property {boolean|null} [isSplittable]  - whether this formulation can be split
  */
 
 /**
@@ -97,6 +99,12 @@
  *
  * @property {{ dog: string|null, cat: string|null }} speciesNotes
  * @property {string[]} contraindications
+ * @property {string|null} [briefDescription]  - Short drug description (Korean)
+ * @property {string[]} [primaryIndications]   - Primary indications list
+ * @property {string|null} [mechanismShort]    - Brief mechanism of action
+ * @property {string|null} [therapeuticCategory]
+ * @property {string|null} [commonMechanism]   - Legacy mechanism field
+ * @property {string[]} [commonAdverseEffects] - Common side effects
  * @property {{ dog: OrganScores, cat: OrganScores }} organBurden
  * @property {object}   renalDoseAdjustment
  * @property {object}   hepaticDoseAdjustment
