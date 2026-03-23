@@ -1,0 +1,4570 @@
+{
+  "total_drugs": 670,
+  "unit_mismatches": [
+    {
+      "drug_id": "gemcitabine",
+      "species": "dog",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 45~900 mg/m² (mg/kg 아님) 범위. 수의 종양 전문의 상담 필수.",
+      "context": "항종양제 (오프라벨) - 일반 범위",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "gemcitabine",
+      "species": "dog",
+      "entry_index": 2,
+      "current_unit": "mg/kg",
+      "evidence": "400 mg/m² (mg/kg 아님) 주 1회. 림프종 개에서 유의한 혈액독성 보고.",
+      "context": "림프종 치료 (오프라벨)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "gemcitabine",
+      "species": "dog",
+      "entry_index": 3,
+      "current_unit": "mg/kg",
+      "evidence": "675 mg/m² (mg/kg 아님) 2주마다. 최소 허용 독성 입증.",
+      "context": "항종양제 (오프라벨) - 최소 독성 용량",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "gemcitabine",
+      "species": "dog",
+      "entry_index": 4,
+      "current_unit": "mg/kg",
+      "evidence": "800~950 mg/m² (mg/kg 아님) 범위. 최대 내약 용량 900 mg/m²에서 효능 입증.",
+      "context": "항종양제 (오프라벨) - 최대 내약 용량",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "gemcitabine",
+      "species": "dog",
+      "entry_index": 5,
+      "current_unit": "mg/kg",
+      "evidence": "평균 50 mg/m² (mg/kg 아님) 주 2회. 80%에서 용량 감소 또는 연기 필요. 권장하지 않음.",
+      "context": "방사선 감작제 (오프라벨, 권장하지 않음)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "gemcitabine",
+      "species": "cat",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 45~900 mg/m² (mg/kg 아님) 범위. 수의 종양 전문의 상담 필수.",
+      "context": "항종양제 (오프라벨) - 일반 범위",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "gemcitabine",
+      "species": "cat",
+      "entry_index": 2,
+      "current_unit": "mg/kg",
+      "evidence": "평균 25 mg/m² (mg/kg 아님) 주 2회. 구강 편평세포암종 방사선 감작제로 사용.",
+      "context": "방사선 감작제 (오프라벨) - 구강 편평세포암종",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "gemcitabine",
+      "species": "cat",
+      "entry_index": 3,
+      "current_unit": "mg/kg",
+      "evidence": "소규모 파일럿 연구에서 완화 방사선과 병용 시 내약성 및 75% 반응률 보고.",
+      "context": "완화 방사선 병용 (오프라벨) - 구강 편평세포암종",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "streptozocin",
+      "species": "dog",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 소규모 임상 연구(참고문헌 3) 기반. 단위는 mg/m²임에 주의.",
+      "context": "인슐린종 (오프라벨) - 프로토콜 A: 2주 간격 5회 투여",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "streptozocin",
+      "species": "dog",
+      "entry_index": 1,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 참고문헌 10 기반. 단위는 mg/m²임에 주의.",
+      "context": "인슐린종 (오프라벨) - 프로토콜 B: 3주 간격 반복 투여",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "streptozocin",
+      "species": "dog",
+      "entry_index": 2,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 참고문헌 11 기반. 단위는 mg/m²임에 주의.",
+      "context": "인슐린종 (오프라벨) - 프로토콜 C: 3주 간격, 적극적 식염수 이뇨 요법",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "ifosfamide",
+      "species": "dog",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 20 mg/mL 이하로 희석 후 20분간 IV 투여. 메스나 75 mg/m²를 이포스파미드 직전, 2시간 후, 5시간 후 반복 투여.",
+      "context": "림프종 및 육종 보조 치료 (체중 10 kg 초과, 오프라벨) - 프로토콜 A",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "ifosfamide",
+      "species": "dog",
+      "entry_index": 1,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 체중 10 kg 미만 환자에 적용. 메스나(이포스파미드 용량의 20%)를 이포스파미드 시작 시, 2시간 후, 5시간 후 IV 볼루스 투여.",
+      "context": "림프종 및 육종 보조 치료 (체중 10 kg 미만, 오프라벨) - 프로토콜 B",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "ifosfamide",
+      "species": "cat",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. Phase I 안전성 연구 및 Phase II 백신 관련 육종 임상시험 기반. 메스나(이포스파미드 용량의 20%)를 이포스파미드 직전 투여, 이후 식염수 이뇨(18.3 mL/kg/hr, 30분 전 시작 후 5시간 지속). 41%에서 측정 가능한 반응 보고.",
+      "context": "림프종 및 백신 관련 육종 보조 치료 (오프라벨)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "epirubicin",
+      "species": "dog",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "Plumb's: 30 mg/m² IV, 자유 흐름 라인에서 최소 3~5분에 걸쳐 투여. 단위는 mg/m²임에 주의.",
+      "context": "일반 항종양 용량 (독소루비신 대체, 체중 10 kg 이상)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "epirubicin",
+      "species": "dog",
+      "entry_index": 1,
+      "current_unit": "mg/kg",
+      "evidence": "Plumb's: 체중 10 kg 미만 소형견은 1 mg/kg IV 투여.",
+      "context": "일반 항종양 용량 (체중 10 kg 미만 소형견)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "epirubicin",
+      "species": "dog",
+      "entry_index": 2,
+      "current_unit": "mg/kg",
+      "evidence": "후향적 연구: 에피루비신 30 mg/m² 또는 1 mg/kg IV (10 kg 미만), 4주차 및 9주차 투여.",
+      "context": "림프종 (오프라벨, 후향적 연구, CEOP-C 또는 CEOP-25 프로토콜)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "epirubicin",
+      "species": "dog",
+      "entry_index": 3,
+      "current_unit": "mg/kg",
+      "evidence": "후향적 연구: 비장절제술 후 에피루비신 30 mg/m² IV, 3주 간격으로 최대 4~6회.",
+      "context": "비장 혈관육종 (오프라벨, 후향적 연구, 비장절제술 후 보조요법)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "epirubicin",
+      "species": "dog",
+      "entry_index": 4,
+      "current_unit": "mg/kg",
+      "evidence": "후향적 연구: 에피루비신 25~30 mg/m² IV; 10 kg 미만은 1 mg/kg.",
+      "context": "조직구성 육종 (오프라벨, 후향적 연구, 로무스틴 병용 또는 단독 구제요법)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "epirubicin",
+      "species": "cat",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "한 연구에서 고양이에게 에피루비신 25 mg/m² IV, 21일 간격으로 3회 투여 후 수술적 절제 시행.",
+      "context": "주사 부위 육종 (오프라벨, 수술 전 신보조요법)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "lomustine",
+      "species": "dog",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 단위: mg/m² PO q2~6주. Plumb's Dosages 섹션.",
+      "context": "화학요법 적응증 (CNS 종양, 림프종, 비만세포종, 육종 등) — 펄스 요법",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "lomustine",
+      "species": "dog",
+      "entry_index": 1,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 단위: mg/m² PO SID. Plumb's Dosages 섹션.",
+      "context": "원발성 또는 전이성 종양에 대한 메트로노믹 화학요법",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "lomustine",
+      "species": "cat",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 단위: mg/m² PO q3~6주. Plumb's Dosages 섹션.",
+      "context": "화학요법 적응증 (림프종, 섬유육종 등) — 펄스 요법 (프로토콜 1)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "leucovorin",
+      "species": "dog",
+      "entry_index": 1,
+      "current_unit": "mg/kg",
+      "evidence": "혈청 메토트렉세이트 농도에 따라 용량 결정. 25–200 mg/m² IV q6h",
+      "context": "메토트렉세이트 과다복용 (오프라벨) - 혈중 메토트렉세이트 농도 기반",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "leucovorin",
+      "species": "dog",
+      "entry_index": 2,
+      "current_unit": "mg/kg",
+      "evidence": "MTX 검사 불가 시 2마리 개 증례 보고: 류코보린 칼슘 200 mg/m² IV q6h 8회",
+      "context": "메토트렉세이트 과다복용 (오프라벨) - MTX 검사 불가 시 증례 보고",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "procarbazine",
+      "species": "dog",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 용량은 50 mg/m² PO 매일. 다른 항암제와 병용 프로토콜의 일부로 사용.",
+      "context": "림프종 (1차 T세포 림프종 또는 구제 요법) - MOPP, MPP, LOPP, LPP, BOPP 프로토콜의 일부",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "procarbazine",
+      "species": "dog",
+      "entry_index": 1,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 용량은 25~50 mg/m² PO 1일 1회, 초기에는 프레드니손과 병용.",
+      "context": "육아종성 뇌수막염(GME) - 프레드니손과 병용",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "procarbazine",
+      "species": "cat",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 용량은 50 mg/m² PO 매일 또는 격일. 다른 항암제와 병용 프로토콜의 일부로 사용.",
+      "context": "림프종 구제 요법 - MOPP 프로토콜의 일부",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "doxorubicin",
+      "species": "dog",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "30 mg/m² (NOT mg/kg) IV every 2 to 3 weeks. 단위는 mg/m²이며 mg/kg이 아님에 주의.",
+      "context": "항암화학요법 (extra-label) — 표준 용량",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "doxorubicin",
+      "species": "cat",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "20–25 mg/m² (NOT mg/kg) IV every 3 weeks.",
+      "context": "항암화학요법 (extra-label) — BSA 기반 용량",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "dacarbazine",
+      "species": "dog",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "600–1000 mg/m² IV over 4 to 8 hours every 2 to 3 weeks (extra-label)",
+      "context": "항종양제 (오프라벨) - 프로토콜 A: 재발성 림프종, 연조직 육종, 흑색종 등",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "dacarbazine",
+      "species": "dog",
+      "entry_index": 1,
+      "current_unit": "mg/kg",
+      "evidence": "200–250 mg/m² once daily IV for 5 days, cycle repeated every 3 to 4 weeks (extra-label)",
+      "context": "항종양제 (오프라벨) - 프로토콜 B: 재발성 림프종, 연조직 육종, 흑색종 등",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "dexrazoxane",
+      "species": "dog",
+      "entry_index": 1,
+      "current_unit": "mg/kg",
+      "evidence": "인간 환자 권장량이나 수의 환자에게 적용 가능할 수 있음. 새로운 주입 부위에서 투여.",
+      "context": "독소루비신 혈관외 유출 치료 (오프라벨) - 체표면적 기반 용량 (인간 권장량 적용)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "dexrazoxane",
+      "species": "dog",
+      "entry_index": 2,
+      "current_unit": "mg/kg",
+      "evidence": "기존 심장 질환, 수축 기능 저하, 누적 독소루비신 용량 180 mg/m² 이상, 또는 심초음파 이상 소견이 있는 개에서 사용. 1~2회 투여 시 안전하고 내약성 양호.",
+      "context": "독소루비신 유발 심근병증 예방 (오프라벨) - 독소루비신 용량의 10배",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "dactinomycin",
+      "species": "dog",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 용량 단위는 mg/m²이며 mg/kg이 아님에 주의. 0.5–1 mg/m² IV over 20 minutes; 1–3주 간격 반복.",
+      "context": "항종양제 (오프라벨) - 림프종, 육종, 암종",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "dactinomycin",
+      "species": "cat",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 용량 단위는 mg/m²이며 mg/kg이 아님에 주의. 0.75 mg/m² IV, 2주마다 반복, 고양이 림프종 구제 프로토콜의 일부.",
+      "context": "항종양제 (오프라벨) - 고양이 림프종 구제 프로토콜",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "detomidine",
+      "species": "dog",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "말용 구강점막 겔을 사용하여 0.35~2 mg/m² OTM 투여 (mg/kg 아님). 허가 외 사용.",
+      "context": "진정/항불안 (허가 외, OTM 겔)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "digoxin",
+      "species": "dog",
+      "entry_index": 1,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 체중 20 kg(44 lb) 초과 개에서 체표면적 기준 0.22 mg/m² 대안 사용.",
+      "context": "심방세동 및 CHF - 체중 20 kg 초과 대형견 대안 용량",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "budesonide",
+      "species": "dog",
+      "entry_index": 4,
+      "current_unit": "mg/kg",
+      "evidence": "3 mg/m² (mg/kg 아님) PO 1일 1회",
+      "context": "만성 염증성 장질환 보조 치료 (오프라벨) - 체표면적 기반 용량",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "budesonide",
+      "species": "cat",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "3 mg/m² (mg/kg 아님) PO 1일 1회",
+      "context": "만성 염증성 장질환 보조 치료, 특히 당뇨병 고양이 (오프라벨) - 체표면적 기반",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "bleomycin",
+      "species": "dog",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "Plumb's: 10 mg/m² (NOT mg/kg), IV, SC, or intralesionally. Extra-label use.",
+      "context": "항종양제 (오프라벨) - 체표면적 기준",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "bleomycin",
+      "species": "dog",
+      "entry_index": 1,
+      "current_unit": "mg/kg",
+      "evidence": "Plumb's: 0.3–0.5 mg/kg IV, SC, or intralesionally. Extra-label use. At 0.5 units/kg in dogs, adverse effects were infrequent and mostly GI related.",
+      "context": "항종양제 (오프라벨) - 체중 기준",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "bleomycin",
+      "species": "cat",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "Plumb's: Small animals (dogs and cats): 10 mg/m² (NOT mg/kg) OR 0.3–0.5 mg/kg, IV, SC, or intralesionally. Extra-label use.",
+      "context": "항종양제 (오프라벨) - 체표면적 기준",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "bleomycin",
+      "species": "cat",
+      "entry_index": 1,
+      "current_unit": "mg/kg",
+      "evidence": "Plumb's: Small animals (dogs and cats): 0.3–0.5 mg/kg IV, SC, or intralesionally. Extra-label use.",
+      "context": "항종양제 (오프라벨) - 체중 기준",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "azathioprine",
+      "species": "dog",
+      "entry_index": 3,
+      "current_unit": "mg/kg",
+      "evidence": "허가 외 사용. 50 mg/m² 용량도 사용 가능.",
+      "context": "면역매개성 용혈성 빈혈(IMHA) / 면역매개성 혈소판감소증(IMT)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "azathioprine",
+      "species": "dog",
+      "entry_index": 4,
+      "current_unit": "mg/kg",
+      "evidence": "허가 외 사용. 50 mg/m² PO q24h.",
+      "context": "면역매개성 용혈성 빈혈(IMHA) / 면역매개성 혈소판감소증(IMT) - 체표면적 기준",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "firocoxib",
+      "species": "dog",
+      "entry_index": 2,
+      "current_unit": "mg/kg",
+      "evidence": "단독 또는 시스플라틴(60 mg/m² IV 21일마다)과 병용",
+      "context": "방광 이행세포암종 보조 치료 (비표시 외 사용)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "firocoxib",
+      "species": "dog",
+      "entry_index": 3,
+      "current_unit": "mg/kg",
+      "evidence": "미니어처 닥스훈트 증례군 보고; 중앙값 6.1 mg/kg/일",
+      "context": "염증성 대장 폴립 보조 치료 (비표시 외 사용, 미니어처 닥스훈트 증례군)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "cobalamin",
+      "species": "cat",
+      "entry_index": 2,
+      "current_unit": "mg/kg",
+      "evidence": "Extra-label. 0.91 mg/m² PO once daily 보고됨.",
+      "context": "코발라민(비타민 B12) 결핍 - 체표면적 기반 경구 투여",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "carboplatin",
+      "species": "dog",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "250–300 mg/m2 IV every 3 weeks (extra-label). 단위는 mg/m2이며 mg/kg와 혼동 주의.",
+      "context": "항종양제 (오프라벨) - 일반 용량",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "carboplatin",
+      "species": "dog",
+      "entry_index": 1,
+      "current_unit": "mg/kg",
+      "evidence": "15 kg 이하 개에서 240 mg/m2 (또는 10 mg/kg) 권고. 단위는 mg/m2.",
+      "context": "항종양제 (오프라벨) - 15 kg 이하 소형견",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "carboplatin",
+      "species": "dog",
+      "entry_index": 2,
+      "current_unit": "mg/kg",
+      "evidence": "토세라닙 병용 시 최대 내약 용량 200 mg/m2로 보고됨.",
+      "context": "항종양제 (오프라벨) - 토세라닙 병용 시",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "carboplatin",
+      "species": "cat",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "240–260 mg/m2 IV every 3 weeks (extra-label).",
+      "context": "항종양제 (오프라벨) - 일반 용량",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "carboplatin",
+      "species": "cat",
+      "entry_index": 1,
+      "current_unit": "mg/kg",
+      "evidence": "180–200 mg/m2 저용량 사용 보고됨.",
+      "context": "항종양제 (오프라벨) - 저용량",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "chlorambucil",
+      "species": "dog",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "허가 외. 일반적으로 1.95–4.5 mg/m²(NOT mg/kg) 1일 1회. 용량은 2mg 단위로 반올림. 프레드니솔론과 병용 사용.",
+      "context": "면역억제제 (허가 외)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "chlorambucil",
+      "species": "dog",
+      "entry_index": 1,
+      "current_unit": "mg/kg",
+      "evidence": "허가 외. 3–6 mg/m²(NOT mg/kg) PO 매일 1~2주, 이후 격일 투여. 혈액학적 모니터링 및 종양 반응에 따라 조정.",
+      "context": "만성 림프구성 백혈병 (metronomic, 허가 외)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "chlorambucil",
+      "species": "dog",
+      "entry_index": 2,
+      "current_unit": "mg/kg",
+      "evidence": "허가 외. 4–6 mg/m²(NOT mg/kg) PO q48h, 8주간.",
+      "context": "비만세포종 (metronomic, 허가 외)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "chlorambucil",
+      "species": "dog",
+      "entry_index": 4,
+      "current_unit": "mg/kg",
+      "evidence": "허가 외. 4 mg/m²(NOT mg/kg) PO 1일 1회.",
+      "context": "Metronomic 항암 (혈관육종, 이행세포암종 등, 허가 외)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "chlorambucil",
+      "species": "dog",
+      "entry_index": 5,
+      "current_unit": "mg/kg",
+      "evidence": "허가 외. 평균 초기 용량 2 mg/m²(NOT mg/kg) PO 1일 1회. 닥스훈트 6마리 후향적 연구 기반.",
+      "context": "염증성 직장 용종 (허가 외)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "chlorambucil",
+      "species": "cat",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "허가 외. 0.1–0.2 mg/kg(≈1.5–4 mg/m²) PO 1일 1회. 프레드니솔론과 병용.",
+      "context": "면역억제제 (허가 외)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "chlorambucil",
+      "species": "cat",
+      "entry_index": 1,
+      "current_unit": "mg/kg",
+      "evidence": "허가 외. 15 mg/m²(NOT mg/kg) PO 1일 1회 × 4일, q3주 반복.",
+      "context": "저등급 위장관 림프종/만성 림프구성 백혈병 - 프로토콜 A (허가 외)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "chlorambucil",
+      "species": "cat",
+      "entry_index": 2,
+      "current_unit": "mg/kg",
+      "evidence": "허가 외. 20 mg/m²(NOT mg/kg)(2mg 단위 반올림) PO q2주.",
+      "context": "저등급 위장관 림프종/만성 림프구성 백혈병 - 프로토콜 B (허가 외)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "cisplatin",
+      "species": "dog",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "50–60 mg/m2 IV over 20 minutes to several hours every 3 to 5 weeks. 오프라벨 사용.",
+      "context": "잠재적으로 감수성 있는 암종 및 육종 (오프라벨)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "cisplatin",
+      "species": "dog",
+      "entry_index": 1,
+      "current_unit": "mg/kg",
+      "evidence": "50 mg/m2 강내 투여, 3~4주 간격 반복. 오프라벨 사용.",
+      "context": "종양성 흉수의 완화적 조절을 위한 강내 투여 (오프라벨)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "cytarabine",
+      "species": "dog",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 단위는 mg/m²임에 주의. 참고문헌 17, 27, 28.",
+      "context": "항종양제 - IV CRI (DMAC 프로토콜 등)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "cytarabine",
+      "species": "dog",
+      "entry_index": 1,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 단위는 mg/m²임에 주의. 참고문헌 1.",
+      "context": "항종양제 - IV CRI (600 mg/m² 분할)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "cytarabine",
+      "species": "dog",
+      "entry_index": 2,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 단위는 mg/m²임에 주의. 참고문헌 3.",
+      "context": "항종양제 - IV CRI (카보플라틴 병용)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "cytarabine",
+      "species": "dog",
+      "entry_index": 3,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 단위는 mg/m²임에 주의. 참고문헌 4.",
+      "context": "항종양제 - IV CRI (VCAA 기반 프로토콜)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "cytarabine",
+      "species": "dog",
+      "entry_index": 4,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 단위는 mg/m²임에 주의. 참고문헌 2.",
+      "context": "항종양제 - SC (DMAC 프로토콜, 2회 분할)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "cytarabine",
+      "species": "dog",
+      "entry_index": 5,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 단위는 mg/m²임에 주의. 참고문헌 27, 28.",
+      "context": "항종양제 - SC (DMAC 프로토콜, 단회)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "cytarabine",
+      "species": "dog",
+      "entry_index": 6,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 단위는 mg/m²임에 주의. 참고문헌 3.",
+      "context": "항종양제 - SC (카보플라틴 병용, 분할)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "cytarabine",
+      "species": "dog",
+      "entry_index": 7,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 단위는 mg/m²임에 주의. 참고문헌 29.",
+      "context": "항종양제 - SC (대과립 림프구 T세포 림프종)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "cytarabine",
+      "species": "dog",
+      "entry_index": 8,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 단위는 mg/m²임에 주의. 참고문헌 6.",
+      "context": "항종양제 - SC (블레오마이신 병용)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "cytarabine",
+      "species": "dog",
+      "entry_index": 9,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 단위는 mg/m²임에 주의. 참고문헌 7, 8, 18, 30-32.",
+      "context": "염증성 뇌질환(원인불명 뇌수막뇌척수염) - SC",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "cytarabine",
+      "species": "dog",
+      "entry_index": 10,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 단위는 mg/m²임에 주의. 참고문헌 33, 34.",
+      "context": "염증성 뇌질환(원인불명 뇌수막뇌척수염) - IV CRI (100 mg/m²)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "cytarabine",
+      "species": "dog",
+      "entry_index": 11,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 단위는 mg/m²임에 주의. 참고문헌 35, 36.",
+      "context": "염증성 뇌질환(원인불명 뇌수막뇌척수염) - IV CRI (200 mg/m²)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "cytarabine",
+      "species": "cat",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 데이터 제한적. 단위는 mg/m²임에 주의. 참고문헌 37.",
+      "context": "항종양제 - SC (저용량)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "cytarabine",
+      "species": "cat",
+      "entry_index": 1,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 데이터 제한적. 단위는 mg/m²임에 주의. 참고문헌 38.",
+      "context": "항종양제 - SC (복합 프로토콜)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "cytarabine",
+      "species": "cat",
+      "entry_index": 2,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 데이터 제한적. 단위는 mg/m²임에 주의. 참고문헌 5.",
+      "context": "항종양제 - SC (DMAC 구제 프로토콜)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "cytarabine",
+      "species": "cat",
+      "entry_index": 3,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 데이터 제한적. 단위는 mg/m²임에 주의. 참고문헌 39.",
+      "context": "항종양제 - IV (복합 항암제 병용)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "cytarabine",
+      "species": "cat",
+      "entry_index": 4,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 단위는 mg/m²임에 주의. 참고문헌 11.",
+      "context": "염증성 뇌질환(원인불명 뇌수막뇌척수염) - SC",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "cholestyramine",
+      "species": "dog",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨 사용. 빈크리스틴 과다복용 증례 보고에서 발췌.",
+      "context": "빈크리스틴 과다복용 (오프라벨)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "cyclophosphamide",
+      "species": "dog",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "Plumb's Dosages: Dogs, standard antineoplastic protocol. IV 및 PO 상호 교환 가능.",
+      "context": "항종양제 - 표준 용량 (체표면적 기준, 3~4주 간격)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "cyclophosphamide",
+      "species": "dog",
+      "entry_index": 1,
+      "current_unit": "mg/kg",
+      "evidence": "Plumb's Dosages: Dogs, standard antineoplastic protocol.",
+      "context": "항종양제 - 표준 용량 (체표면적 기준, 주 3~4일 투여)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "cyclophosphamide",
+      "species": "dog",
+      "entry_index": 2,
+      "current_unit": "mg/kg",
+      "evidence": "Plumb's Dosages: Dogs, metronomic therapy.",
+      "context": "항종양제 - 메트로노믹(저용량 지속) 요법",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "cyclophosphamide",
+      "species": "cat",
+      "entry_index": 1,
+      "current_unit": "mg/kg",
+      "evidence": "Plumb's Dosages: Cats, multi-agent antineoplastic protocol.",
+      "context": "항종양제 - 다제 병용 프로토콜 (체표면적 기준)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "methotrexate",
+      "species": "dog",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "LMP 프로토콜: 메토트렉세이트 2.5–5 mg/m2 PO 주 2회 (extra-label)",
+      "context": "림프종 유지 치료 (LMP 프로토콜, 복합 항암 요법의 일부)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "methotrexate",
+      "species": "dog",
+      "entry_index": 1,
+      "current_unit": "mg/kg",
+      "evidence": "복합 항암 프로토콜: 메토트렉세이트 5 mg/m2 PO 주 2회 또는 2.5 mg/m2 PO 매일 (extra-label)",
+      "context": "복합 항암 요법 (항암 프로토콜의 일부)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "methotrexate",
+      "species": "dog",
+      "entry_index": 2,
+      "current_unit": "mg/kg",
+      "evidence": "복합 항암 프로토콜: 메토트렉세이트 0.8 mg/kg IV 21일마다 (extra-label)",
+      "context": "복합 항암 요법 (IV 투여)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "methotrexate",
+      "species": "dog",
+      "entry_index": 3,
+      "current_unit": "mg/kg",
+      "evidence": "면역억제 목적 일화적 용량: 2.5 mg/m2 PO q24h (extra-label)",
+      "context": "면역억제제 (오프라벨)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "methotrexate",
+      "species": "cat",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "고양이 종양: 2.5 mg/m2 PO 주 2~3회 (extra-label)",
+      "context": "림프종 등 종양성 질환 (복합 항암 요법의 일부, 경구)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "methotrexate",
+      "species": "cat",
+      "entry_index": 1,
+      "current_unit": "mg/kg",
+      "evidence": "고양이 종양: 0.3–0.8 mg/m2 IV 7일마다 (extra-label)",
+      "context": "림프종 등 종양성 질환 (복합 항암 요법의 일부, IV)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "methotrexate",
+      "species": "cat",
+      "entry_index": 2,
+      "current_unit": "mg/kg",
+      "evidence": "재발성 고양이 림프종 구제 요법: 목표 용량 0.5–0.6 mg/m2 IV (extra-label)",
+      "context": "재발성 고양이 림프종 구제 요법 (로무스틴, 시타라빈과 병용)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "mitoxantrone",
+      "species": "dog",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "Plumb's Veterinary Drug Handbook: 5–6 mg/m² IV q21days. 단위는 mg/m²임.",
+      "context": "감수성 종양 질환 치료 (오프라벨) — 표준 용량",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "mitoxantrone",
+      "species": "cat",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "Plumb's Veterinary Drug Handbook: 5.5–6.5 mg/m² IV q21days. 단위는 mg/m²임.",
+      "context": "종양 질환 치료 (오프라벨)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "mechlorethamine",
+      "species": "dog",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "3 mg/m² (NOT mg/kg) IV, 21~28일 프로토콜의 1일과 7일에 투여. MOPP, MPP, MOMP 프로토콜.",
+      "context": "림프종 1차 치료(T세포) 또는 구제 요법 - MOPP, MPP, MOMP 프로토콜 (오프라벨)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "mechlorethamine",
+      "species": "cat",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "3 mg/m² (NOT mg/kg) IV, 21~28일 프로토콜의 1일과 7일에 투여. MOPP, MOMP 구제 프로토콜.",
+      "context": "림프종 구제 요법 - MOPP, MOMP 프로토콜 (오프라벨)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "methadone",
+      "species": "cat",
+      "entry_index": 2,
+      "current_unit": "mg/kg",
+      "evidence": "QUAD protocol: methadone 5 mg/m² (NOT mg/kg), medetomidine 600 µg/m², ketamine 60 mg/m², midazolam 3 mg/m² IM 10 minutes prior to anesthesia",
+      "context": "수술 전 진통 - QUAD 프로토콜 IM",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "mycophenolate",
+      "species": "dog",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "오프라벨. 프레드니솔론 2~3 mg/kg/day PO 병용(25 kg 초과 개는 50~60 mg/m²/day)",
+      "context": "면역매개성 용혈성 빈혈(IMHA) - 프레드니솔론 병용",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "vinblastine",
+      "species": "dog",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "허가 외 사용. 용량은 mg/m²로 표기됨 (1.5–3 mg/m² IV q1–2주). 비만세포종에서 3 mg/m²가 2 mg/m²보다 재발률 낮음.",
+      "context": "항종양제 (허가 외) - 림프종, 암종, 비만세포종 등 다양한 종양",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "vinblastine",
+      "species": "cat",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "허가 외 사용. 용량은 mg/m²로 표기됨 (1.5–3 mg/m² IV q1–2주). 고양이에서 신경독성 위험 모니터링 필요.",
+      "context": "항종양제 (허가 외) - 림프종 등 종양 치료 (COP 기반 프로토콜)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "vinorelbine",
+      "species": "dog",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "15 mg/m² (NOT mg/kg) IV, 1~3 mg/mL 희석액으로 6~10분에 걸쳐 투여. 투여 후 IV 라인 플러시. 1~2주 간격 반복.",
+      "context": "종양 질환 (오프라벨) - 초기 용량",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "vinorelbine",
+      "species": "cat",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "11.5 mg/m² (NOT mg/kg) IV, 1.5 mg/mL 용액으로 5분 투여, 7일 간격 최대 4회. Phase I 연구(n=19) 기반.",
+      "context": "종양 질환 (오프라벨) - 초기 용량",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "vincristine",
+      "species": "dog",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "Vincristine은 통상 0.5–0.75 mg/m² (mg/kg 아님) IV로 1~2주마다 투여.",
+      "context": "종양성 질환 (림프종, 혈관육종 등 복합 프로토콜)",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "vincristine",
+      "species": "dog",
+      "entry_index": 1,
+      "current_unit": "mg/kg",
+      "evidence": "TVT 단독 요법: 0.5 mg/m² (최대 1 mg) IV 주 1회, 4~6주.",
+      "context": "전염성 성기 종양 (TVT) 단독 요법",
+      "severity": "CRITICAL"
+    },
+    {
+      "drug_id": "vincristine",
+      "species": "cat",
+      "entry_index": 0,
+      "current_unit": "mg/kg",
+      "evidence": "Vincristine 0.5–0.75 mg/m² (mg/kg 아님) IV 1~3주마다. 고양이에서 GI 부작용 빈도 높아 빈블라스틴 대체 권장.",
+      "context": "종양성 질환 (림프종 등 복합 프로토콜)",
+      "severity": "CRITICAL"
+    }
+  ],
+  "form_dosage_mismatches": [
+    {
+      "drug_id": "ganciclovir_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "ganciclovir_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "gatifloxacin_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop",
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "gatifloxacin_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop",
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "gentamicin_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "gentamicin_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop",
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "gentamicin_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "gentamicin_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop",
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "nalbuphine_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "nedocromil_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "nedocromil_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "nitroglycerin_transdermal",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical",
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "nitroglycerin_transdermal",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical",
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "nystatin",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "nystatin",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "nepafenac_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop",
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "nepafenac_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop",
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "sarolaner",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "sulfacetamide_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "sulfacetamide_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "sulfacetamide_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "sulfacetamide_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "silver_sulfadiazine",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "silver_sulfadiazine",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "selamectin",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "selamectin",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "selamectin_sarolaner",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "idoxuridine_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "idoxuridine_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "idoxuridine_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "idoxuridine_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "ivermectin",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "ivermectin",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "itraconazole_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "itraconazole_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "emodepside_praziquantel",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "emodepside_praziquantel",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "enrofloxacin",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "enrofloxacin",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "edetate_disodium_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "edetate_disodium_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "epinastine_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "epinastine_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "erythromycin_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "erythromycin_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "levobunolol_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "lidocaine_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "lidocaine_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "loteprednol_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "loteprednol_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop",
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "loteprednol_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "loteprednol_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop",
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "lodoxamide_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "lodoxamide_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "levofloxacin_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "levofloxacin_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "lidocaine_local_anesthetic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical",
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "lidocaine_local_anesthetic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "lidocaine_local_anesthetic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical",
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "lidocaine_local_anesthetic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "lissamine_green_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "ketotifen_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "ketotifen_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "ketorolac_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "ketorolac_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "pilocarpine_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop",
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "phenylephrine_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "phenylephrine_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "pheromones",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "pheromones",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "pheromones",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "pheromones",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "proparacaine_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop",
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "proparacaine_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop",
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "prednisolone_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "prednisolone_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop",
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "prednisolone_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "prednisolone_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop",
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "povidone_iodine_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "povidone_iodine_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "praziquantel",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "praziquantel",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "pimecrolimus_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "tobramycin_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "tobramycin_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "tobramycin_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "tobramycin_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "tetracaine_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "tetracaine_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "travoprost_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "terbinafine",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "terbinafine",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "terbinafine",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "terbinafine",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "tafluprost_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "trifluridine_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "trifluridine_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "triamcinolone",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical",
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "triamcinolone",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical",
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "triple_antibiotic_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "triple_antibiotic_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "tropicamide_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "tropicamide_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "tacrolimus_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "timolol_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "timolol_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "demecarium_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "dapsone",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "desmopressin",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop",
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "desmopressin",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop",
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "dimethyl_sulfoxide",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "dimethyl_sulfoxide",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "dexamethasone",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "dexamethasone",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "doramectin",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "doramectin",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "doxepin",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "doxepin",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "difluprednate_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "difluprednate_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "diphenhydramine",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "diphenhydramine",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "dexamethasone_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "dexamethasone_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "dexamethasone_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "dexamethasone_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "diclofenac_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "diclofenac_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "dorzolamide_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop",
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "dorzolamide_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop",
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "bepotastine_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "bepotastine_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "betaxolol_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "betaxolol_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "benoxinate_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "benoxinate_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "brimonidine_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "brimonidine_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "brinzolamide_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop",
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "brinzolamide_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop",
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "buprenorphine",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "buprenorphine",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "bromfenac_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "besifloxacin_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "besifloxacin_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "bimatoprost_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "ropinirole",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "apraclonidine_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "atropine_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "atropine_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "atropine_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "atropine_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "acyclovir",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "amphotericin_b_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop",
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "alcaftadine_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "alcaftadine_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "amoxicillin_clavulanate",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "amoxicillin_clavulanate",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "acetylcysteine_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop",
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "acetylcysteine_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop",
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "amikacin_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "amikacin_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "azithromycin_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "azithromycin_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "azelastine_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "azelastine_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "acyclovir_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "acyclovir_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "ferrous_sulfate",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "ferrous_sulfate",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "fluorometholone_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "fluorometholone_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "fluorometholone_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "fluorometholone_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "fluorouracil_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "fluorouracil_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "fluralaner",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "fluralaner",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "flunixin",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "fluorouracil",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical",
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "flurbiprofen_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop",
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "fluorescein_stain_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "fluorescein_stain_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "carteolol_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "carteolol_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "cyclopentolate_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "cyclopentolate_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "chlorpheniramine",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "chlorpheniramine",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "clindamycin",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "clindamycin",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "cromolyn_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "cromolyn_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "chloramphenicol_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "chloramphenicol_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "chloramphenicol_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "chloramphenicol_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "calcitriol",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "calcitriol",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "clofazimine",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "clofazimine",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "ciprofloxacin_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "ciprofloxacin_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "ciprofloxacin_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "ciprofloxacin_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "cidofovir_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "cidofovir_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "cyclosporine_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "cyclosporine_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "cyclosporine_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "cyclosporine_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "cholestyramine",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "cholestyramine",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "hydrocortisone_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "hydrocortisone_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "hydrocortisone_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "hydrocortisone_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "moxidectin",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "moxidectin",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "methimazole",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "mitomycin_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "mitomycin_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "morphine_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "mechlorethamine",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "mechlorethamine",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "mirtazapine",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "mirtazapine",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "mineral_oil",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "mineral_oil",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "moxifloxacin_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "moxifloxacin_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "methionine",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical",
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "methionine",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical",
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "milbemycin_oxime",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "milbemycin_oxime",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "miconazole_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "vitamin_e_selenium",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "vitamin_e_selenium",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "vitamin_e_selenium",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Topical"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "vitamin_e_selenium",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Drop"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "vancomycin_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "vancomycin_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "vancomycin_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "vancomycin_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "voriconazole_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "voriconazole_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "voriconazole_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "voriconazole_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "ofloxacin_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "ofloxacin_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "oxytetracycline",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "oxytetracycline",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "olopatadine_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "olopatadine_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Ophthalmic"
+      ],
+      "missing_routes": [
+        "Ophthalmic",
+        "Otic"
+      ]
+    },
+    {
+      "drug_id": "oxytetracycline_polymyxin_b_ophthalmic",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "oxytetracycline_polymyxin_b_ophthalmic",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "ocular_lubricants",
+      "species": "dog",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    },
+    {
+      "drug_id": "ocular_lubricants",
+      "species": "cat",
+      "type": "form_without_dosage",
+      "forms": [
+        "Oint"
+      ],
+      "missing_routes": [
+        "Topical"
+      ]
+    }
+  ],
+  "strength_form_mismatches": [
+    {
+      "drug_id": "glycerin_oral",
+      "type": "percent_strength_no_topical_form",
+      "strengths": [
+        {
+          "value": 90,
+          "unit": "%"
+        }
+      ],
+      "dosage_forms": [
+        "Oral Liquid"
+      ]
+    },
+    {
+      "drug_id": "sorbitol",
+      "type": "percent_strength_no_topical_form",
+      "strengths": [
+        {
+          "value": 10,
+          "unit": "%"
+        },
+        {
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "value": 70,
+          "unit": "%"
+        }
+      ],
+      "dosage_forms": [
+        "Susp",
+        "Oral Liquid"
+      ]
+    },
+    {
+      "drug_id": "sodium_bicarbonate",
+      "type": "percent_strength_no_topical_form",
+      "strengths": [
+        {
+          "value": 4.0,
+          "unit": "%"
+        },
+        {
+          "value": 4.2,
+          "unit": "%"
+        },
+        {
+          "value": 7.5,
+          "unit": "%"
+        },
+        {
+          "value": 8.4,
+          "unit": "%"
+        }
+      ],
+      "dosage_forms": [
+        "Tab",
+        "Inj",
+        "Oral Liquid"
+      ]
+    },
+    {
+      "drug_id": "isoflurane",
+      "type": "percent_strength_no_topical_form",
+      "strengths": [
+        {
+          "value": 99.9,
+          "unit": "%"
+        }
+      ],
+      "dosage_forms": [
+        "Inj"
+      ]
+    },
+    {
+      "drug_id": "ipratropium",
+      "type": "percent_strength_no_topical_form",
+      "strengths": [
+        {
+          "value": 0.02,
+          "unit": "%"
+        }
+      ],
+      "dosage_forms": [
+        "Inj",
+        "Inh"
+      ]
+    },
+    {
+      "drug_id": "ethanol",
+      "type": "percent_strength_no_topical_form",
+      "strengths": [
+        {
+          "value": 5,
+          "unit": "%"
+        },
+        {
+          "value": 7,
+          "unit": "%"
+        },
+        {
+          "value": 10,
+          "unit": "%"
+        },
+        {
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "value": 40,
+          "unit": "%"
+        },
+        {
+          "value": 70,
+          "unit": "%"
+        },
+        {
+          "value": 95,
+          "unit": "%"
+        },
+        {
+          "value": 96,
+          "unit": "%"
+        },
+        {
+          "value": 100,
+          "unit": "%"
+        }
+      ],
+      "dosage_forms": [
+        "Inj",
+        "Oral Liquid"
+      ]
+    },
+    {
+      "drug_id": "lipid_emulsion_intravenous",
+      "type": "percent_strength_no_topical_form",
+      "strengths": [
+        {
+          "value": 10,
+          "unit": "%"
+        },
+        {
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "value": 30,
+          "unit": "%"
+        }
+      ],
+      "dosage_forms": [
+        "Inj"
+      ]
+    },
+    {
+      "drug_id": "tiamulin",
+      "type": "percent_strength_no_topical_form",
+      "strengths": [
+        {
+          "value": 10,
+          "unit": "%"
+        },
+        {
+          "value": 12.3,
+          "unit": "%"
+        },
+        {
+          "value": 12.5,
+          "unit": "%"
+        }
+      ],
+      "dosage_forms": [
+        "Tab",
+        "Oral Liquid"
+      ]
+    },
+    {
+      "drug_id": "thiopental",
+      "type": "percent_strength_no_topical_form",
+      "strengths": [
+        {
+          "value": 2.5,
+          "unit": "%"
+        },
+        {
+          "value": 5.0,
+          "unit": "%"
+        }
+      ],
+      "dosage_forms": [
+        "Inj"
+      ]
+    },
+    {
+      "drug_id": "tetracycline",
+      "type": "percent_strength_no_topical_form",
+      "strengths": [
+        {
+          "value": 324,
+          "unit": "%"
+        }
+      ],
+      "dosage_forms": [
+        "Tab",
+        "Inj",
+        "Cap"
+      ]
+    },
+    {
+      "drug_id": "dextran_70",
+      "type": "percent_strength_no_topical_form",
+      "strengths": [
+        {
+          "value": 6.0,
+          "unit": "%"
+        }
+      ],
+      "dosage_forms": [
+        "Inj"
+      ]
+    },
+    {
+      "drug_id": "decoquinate",
+      "type": "percent_strength_no_topical_form",
+      "strengths": [
+        {
+          "value": 6.0,
+          "unit": "%"
+        },
+        {
+          "value": 0.5,
+          "unit": "%"
+        },
+        {
+          "value": 0.8,
+          "unit": "%"
+        }
+      ],
+      "dosage_forms": [
+        "Oral Liquid"
+      ]
+    },
+    {
+      "drug_id": "diclazuril",
+      "type": "percent_strength_no_topical_form",
+      "strengths": [
+        {
+          "value": 1.56,
+          "unit": "%"
+        },
+        {
+          "value": 0.2,
+          "unit": "%"
+        }
+      ],
+      "dosage_forms": [
+        "Tab",
+        "Oral Liquid"
+      ]
+    },
+    {
+      "drug_id": "albuterol",
+      "type": "percent_strength_no_topical_form",
+      "strengths": [
+        {
+          "value": 0.083,
+          "unit": "%"
+        },
+        {
+          "value": 0.021,
+          "unit": "%"
+        },
+        {
+          "value": 0.042,
+          "unit": "%"
+        }
+      ],
+      "dosage_forms": [
+        "Tab",
+        "Inj",
+        "Oral Liquid",
+        "Susp"
+      ]
+    },
+    {
+      "drug_id": "aspirin",
+      "type": "percent_strength_no_topical_form",
+      "strengths": [
+        {
+          "value": 12,
+          "unit": "%"
+        }
+      ],
+      "dosage_forms": [
+        "Tab",
+        "Chewable",
+        "Oral Liquid"
+      ]
+    },
+    {
+      "drug_id": "acetic_acid",
+      "type": "percent_strength_no_topical_form",
+      "strengths": [
+        {
+          "value": 3,
+          "unit": "%"
+        },
+        {
+          "value": 5,
+          "unit": "%"
+        }
+      ],
+      "dosage_forms": [
+        "Oral Liquid"
+      ]
+    },
+    {
+      "drug_id": "ammonium_chloride",
+      "type": "percent_strength_no_topical_form",
+      "strengths": [
+        {
+          "value": 26.75,
+          "unit": "%"
+        }
+      ],
+      "dosage_forms": [
+        "Inj",
+        "Oral Liquid"
+      ]
+    },
+    {
+      "drug_id": "albumin_human",
+      "type": "percent_strength_no_topical_form",
+      "strengths": [
+        {
+          "value": 5,
+          "unit": "%"
+        },
+        {
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "value": 25,
+          "unit": "%"
+        }
+      ],
+      "dosage_forms": [
+        "Inj"
+      ]
+    },
+    {
+      "drug_id": "firocoxib",
+      "type": "percent_strength_no_topical_form",
+      "strengths": [
+        {
+          "value": 0.82,
+          "unit": "%"
+        }
+      ],
+      "dosage_forms": [
+        "Tab",
+        "Inj",
+        "Chewable",
+        "Oral Liquid"
+      ]
+    },
+    {
+      "drug_id": "fenbendazole",
+      "type": "percent_strength_no_topical_form",
+      "strengths": [
+        {
+          "value": 0.5,
+          "unit": "%"
+        },
+        {
+          "value": 20,
+          "unit": "%"
+        }
+      ],
+      "dosage_forms": [
+        "Tab",
+        "Susp",
+        "Oral Liquid"
+      ]
+    },
+    {
+      "drug_id": "charcoal_activated",
+      "type": "percent_strength_no_topical_form",
+      "strengths": [
+        {
+          "value": 47.5,
+          "unit": "%"
+        },
+        {
+          "value": 10.4,
+          "unit": "%"
+        },
+        {
+          "value": 10.0,
+          "unit": "%"
+        }
+      ],
+      "dosage_forms": [
+        "Susp",
+        "Oral Liquid"
+      ]
+    },
+    {
+      "drug_id": "hydroxyethyl_starch_hes_colloids",
+      "type": "percent_strength_no_topical_form",
+      "strengths": [
+        {
+          "value": 6,
+          "unit": "%"
+        },
+        {
+          "value": 10,
+          "unit": "%"
+        }
+      ],
+      "dosage_forms": [
+        "Inj"
+      ]
+    },
+    {
+      "drug_id": "hydrogen_peroxide_3_oral",
+      "type": "percent_strength_no_topical_form",
+      "strengths": [
+        {
+          "value": 3.0,
+          "unit": "%"
+        }
+      ],
+      "dosage_forms": [
+        "Oral Liquid"
+      ]
+    },
+    {
+      "drug_id": "hypertonic_saline_7_to_7_5_percent",
+      "type": "percent_strength_no_topical_form",
+      "strengths": [
+        {
+          "value": 7.0,
+          "unit": "%"
+        },
+        {
+          "value": 7.2,
+          "unit": "%"
+        },
+        {
+          "value": 7.5,
+          "unit": "%"
+        },
+        {
+          "value": 14.6,
+          "unit": "%"
+        },
+        {
+          "value": 23.4,
+          "unit": "%"
+        }
+      ],
+      "dosage_forms": [
+        "Inj"
+      ]
+    },
+    {
+      "drug_id": "morantel",
+      "type": "percent_strength_no_topical_form",
+      "strengths": [
+        {
+          "value": 0.194,
+          "unit": "%"
+        },
+        {
+          "value": 19.4,
+          "unit": "%"
+        }
+      ],
+      "dosage_forms": [
+        "Oral Liquid"
+      ]
+    },
+    {
+      "drug_id": "oxfendazole",
+      "type": "percent_strength_no_topical_form",
+      "strengths": [
+        {
+          "value": 9.06,
+          "unit": "%"
+        },
+        {
+          "value": 22.5,
+          "unit": "%"
+        }
+      ],
+      "dosage_forms": [
+        "Susp"
+      ]
+    }
+  ],
+  "field_completeness": {
+    "drug_identity.name_en": {
+      "populated": 670,
+      "missing": 0,
+      "coverage_pct": 100.0
+    },
+    "drug_identity.name_ko": {
+      "populated": 670,
+      "missing": 0,
+      "coverage_pct": 100.0
+    },
+    "drug_identity.active_ingredient": {
+      "populated": 670,
+      "missing": 0,
+      "coverage_pct": 100.0
+    },
+    "drug_identity.class": {
+      "populated": 670,
+      "missing": 0,
+      "coverage_pct": 100.0
+    },
+    "drug_identity.source": {
+      "populated": 670,
+      "missing": 0,
+      "coverage_pct": 100.0
+    },
+    "drug_identity.dosage_form": {
+      "populated": 670,
+      "missing": 0,
+      "coverage_pct": 100.0
+    },
+    "drug_identity.available_strengths": {
+      "populated": 654,
+      "missing": 16,
+      "coverage_pct": 97.6
+    },
+    "brief_description": {
+      "populated": 0,
+      "missing": 670,
+      "coverage_pct": 0.0
+    },
+    "primary_indications": {
+      "populated": 0,
+      "missing": 670,
+      "coverage_pct": 0.0
+    },
+    "mechanism_short": {
+      "populated": 0,
+      "missing": 670,
+      "coverage_pct": 0.0
+    },
+    "metabolism_and_clearance.primary_metabolic_organ": {
+      "populated": 670,
+      "missing": 0,
+      "coverage_pct": 100.0
+    },
+    "timing_profile.half_life_hr": {
+      "populated": 670,
+      "missing": 0,
+      "coverage_pct": 100.0
+    },
+    "contraindications": {
+      "populated": 669,
+      "missing": 1,
+      "coverage_pct": 99.9
+    },
+    "drug_interactions": {
+      "populated": 611,
+      "missing": 59,
+      "coverage_pct": 91.2
+    },
+    "_data_quality.overall_confidence": {
+      "populated": 670,
+      "missing": 0,
+      "coverage_pct": 100.0
+    }
+  }
+}
