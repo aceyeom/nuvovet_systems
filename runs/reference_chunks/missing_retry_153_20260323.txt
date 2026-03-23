@@ -1,0 +1,941 @@
+■ Drug Name: Acetylcysteine Ophthalmic
+  - Title: Effects of N-acetylcysteine on matrix metalloproteinase-9 secretion and cell migration of human corneal epithelial cells.
+    Score: 8
+    Match: drug_match(acetylcysteine ophthalmic), species_not_required_fallback, relevance:dose, treatment, query_mode:broad, llm_validated_in_vivo
+  - Title: Effect of different treatment regimen with dexamethasone and acetylcysteine on corneal wound healing in rabbits.
+    Score: 7
+    Match: drug_match(acetylcysteine ophthalmic), species_not_required_fallback, relevance:treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Acyclovir Ophthalmic
+  - Title: Posterior scleritis following a single infusion of zoledronate for osteoporosis: A case report and literature review.
+    Score: 11
+    Match: drug_match(acyclovir ophthalmic), species_not_required_fallback, relevance:adverse, dose, treatment, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Topical ganciclovir in the treatment of acute herpetic keratitis.
+    Score: 10
+    Match: drug_match(acyclovir ophthalmic), species_not_required_fallback, relevance:efficacy, safety, toxicity, treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Albumin Human
+  - Title: Role of the methoxy group in immune responses to mPEG-protein conjugates.
+    Score: 8
+    Match: drug_match(albumin human), species_not_required_fallback, relevance:clearance, efficacy, query_mode:broad, llm_validated_in_vivo
+  - Title: PFC@O(2) Targets HIF-1α to Reverse the Immunosuppressive TME in OSCC.
+    Score: 7
+    Match: drug_match(albumin human), species_not_required_fallback, relevance:treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Alcaftadine Ophthalmic
+  - Title: Update and clinical utility of alcaftadine ophthalmic solution 0.25% in the treatment of allergic conjunctivitis.
+    Score: 11
+    Match: drug_match(alcaftadine ophthalmic), species_not_required_fallback, relevance:efficacy, pharmacokinetics, pharmacology, safety, query_mode:broad, llm_validated_in_vivo
+  - Title: Comparative analysis of safety and efficacy of Alcaftadine 0.25%, Olopatadine hydrochloride 0.2% and Bepotastine besilate 1.5% in allergic conjunctivitis.
+    Score: 11
+    Match: drug_match(alcaftadine ophthalmic), species_not_required_fallback, relevance:efficacy, safety, treatment, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Alteplase Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Amikacin Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Amikacin Systemic
+  - Title: Amikacin Dosing Adjustment in Critically Ill Oncologic Patients: A Study with Real-World Patients, PBPK Analysis, and Digital Twins.
+    Score: 11
+    Match: drug_match(amikacin systemic), species_not_required_fallback, relevance:clearance, dose, dosing, efficacy, query_mode:broad, llm_validated_in_vivo
+  - Title: Pharmacokinetic and pharmacodynamic evaluation of liposomal amikacin for inhalation in cystic fibrosis patients with chronic pseudomonal infection.
+    Score: 11
+    Match: drug_match(amikacin systemic), species_not_required_fallback, relevance:pharmacodynamic, pharmacokinetic, pharmacokinetics, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Amphotericin B Ophthalmic
+  - Title: Treatment of two postoperative endophthalmitis cases due to Aspergillus flavus and Scopulariopsis spp. with local and systemic antifungal therapy.
+    Score: 7
+    Match: drug_match(amphotericin b ophthalmic), species_not_required_fallback, relevance:treatment, query_mode:broad, llm_validated_in_vivo
+  - Title: Do Ophthalmic Solutions of Amphotericin B Solubilised in 2-Hydroxypropyl-γ-Cyclodextrins Possess an Extended Physicochemical Stability?
+    Score: 6
+    Match: drug_match(amphotericin b ophthalmic), species_not_required_fallback, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Antivenom Crotalidae
+  - Title: A Case Report of Crotalidae Immune F(ab')(2)-associated Coagulopathy Recurrence in a Preschool-age Child.
+    Score: 8
+    Match: drug_match(antivenom crotalidae), species_not_required_fallback, relevance:approved, treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Antivenom Latrodectus Mactans
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Antivenom North American Coral Snake
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Azelastine Ophthalmic
+  - Title: Azelastine hydrochloride, a dual-acting anti-inflammatory ophthalmic solution, for treatment of allergic conjunctivitis.
+    Score: 9
+    Match: drug_match(azelastine ophthalmic), species_not_required_fallback, relevance:approved, dosing, treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Azithromycin Ophthalmic
+  - Title: Safety and efficacy of topical azithromycin ophthalmic solution 1.0% in the treatment of contact lens-related dry eye.
+    Score: 13
+    Match: drug_match(azithromycin ophthalmic), species_not_required_fallback, relevance:adverse, efficacy, label, safety, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Pharmacokinetics of Azithromycin, Levofloxacin, and Ofloxacin in Rabbit Extraocular Tissues After Ophthalmic Administration.
+    Score: 13
+    Match: drug_match(azithromycin ophthalmic), species_not_required_fallback, relevance:distribution, dosing, half-life, pharmacokinetic, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Benoxinate Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Bepotastine Ophthalmic
+  - Title: Critical appraisal of bepotastine in the treatment of ocular itching associated with allergic conjunctivitis.
+    Score: 10
+    Match: drug_match(bepotastine ophthalmic), species_not_required_fallback, relevance:approved, efficacy, safety, treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Besifloxacin Ophthalmic
+  - Title: Safety of besifloxacin ophthalmic suspension 0.6% in refractive surgery: a retrospective chart review of post-LASIK patients.
+    Score: 13
+    Match: drug_match(besifloxacin ophthalmic), species_not_required_fallback, relevance:adverse, distribution, dosing, safety, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: The safety of besifloxacin ophthalmic suspension 0.6 % used three times daily for 7 days in the treatment of bacterial conjunctivitis.
+    Score: 13
+    Match: drug_match(besifloxacin ophthalmic), species_not_required_fallback, relevance:adverse, approved, dosing, safety, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Betamethasone Systemic
+  - Title: Betamethasone in pregnancy: influence of maternal body weight and multiple gestation on pharmacokinetics.
+    Score: 12
+    Match: drug_match(betamethasone systemic), species_not_required_fallback, relevance:dose, dosing, pharmacokinetic, pharmacokinetics, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Topical betamethasone and systemic colchicine for treatment of recurrent aphthous stomatitis: a randomised clinical trial.
+    Score: 8
+    Match: drug_match(betamethasone systemic), species_not_required_fallback, relevance:efficacy, treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Betaxolol Ophthalmic
+  - Title: Using Esterase Selectivity to Determine the In Vivo Duration of Systemic Availability and Abolish Systemic Side Effects of Topical β-Blockers.
+    Score: 9
+    Match: drug_match(betaxolol ophthalmic), species_not_required_fallback, relevance:absorption, dose, metabolism, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Bisacodyl
+  - Title: Bisacodyl: A review of pharmacology and clinical evidence to guide use in clinical practice in patients with constipation.
+    Score: 10
+    Match: drug_match(bisacodyl), species_not_required_fallback, relevance:efficacy, pharmacology, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: MiraLAX-Gatorade bowel prep versus GoLytely before screening colonoscopy: an endoscopic database study in a community hospital.
+    Score: 10
+    Match: drug_match(bisacodyl), species_not_required_fallback, relevance:adverse, dosing, efficacy, safety, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Brinzolamide Ophthalmic
+  - Title: Brinzolamide ophthalmic suspension: a review of its pharmacology and use in the treatment of open angle glaucoma and ocular hypertension.
+    Score: 13
+    Match: drug_match(brinzolamide ophthalmic), species_not_required_fallback, relevance:adverse, efficacy, pharmacology, safety, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Ocular pharmacokinetics of dorzolamide and brinzolamide after single and multiple topical dosing: implications for effects on ocular blood flow.
+    Score: 13
+    Match: drug_match(brinzolamide ophthalmic), species_not_required_fallback, relevance:distribution, dose, dosing, pharmacokinetic, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Bromfenac Ophthalmic
+  - Title: Bromfenac ophthalmic solution for the treatment of postoperative ocular pain and inflammation: safety, efficacy, and patient adherence.
+    Score: 13
+    Match: drug_match(bromfenac ophthalmic), species_not_required_fallback, relevance:approved, dosing, efficacy, safety, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: In Vivo Pharmacokinetics of Bromfenac Ophthalmic Solution 0.075%, Bromfenac Ophthalmic Solution 0.07%, and Nepafenac/Amfenac Ophthalmic Suspension 0.3% in Rabbits.
+    Score: 13
+    Match: drug_match(bromfenac ophthalmic), species_not_required_fallback, relevance:bioavailability, distribution, dose, dosing, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Buspirone
+  - Title: A trial of buspirone for anxiety in Parkinson's disease: Safety and tolerability.
+    Score: 13
+    Match: drug_match(buspirone), species_not_required_fallback, relevance:adverse, dosage, efficacy, safety, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Acute buspirone dosing enhances abuse-related subjective effects of oral methamphetamine.
+    Score: 11
+    Match: drug_match(buspirone), species_not_required_fallback, relevance:approved, dose, dosing, safety, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Calcium Acetate
+  - Title: A randomized, double-blind, placebo-controlled trial of calcium acetate on serum phosphorus concentrations in patients with advanced non-dialysis-dependent chronic kidney disease.
+    Score: 11
+    Match: drug_match(calcium acetate), species_not_required_fallback, relevance:adverse, dose, efficacy, safety, query_mode:broad, llm_validated_in_vivo
+  - Title: The Phosphate Binder Ferric Citrate and Mineral Metabolism and Inflammatory Markers in Maintenance Dialysis Patients: Results From Prespecified Analyses of a Randomized Clinical Trial.
+    Score: 11
+    Match: drug_match(calcium acetate), species_not_required_fallback, relevance:adverse, label, metabolism, safety, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Calcium Iv Borogluconate Chloride Gluconate
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Calcium Oral Carbonate Gluconate Lactate
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Carteolol Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Ceftiofur Hcl
+  - Title: Assessment of ceftiofur residues in cow milk using commercial screening test kits.
+    Score: 8
+    Match: drug_match(ceftiofur hcl), species_not_required_fallback, relevance:dosage, label, query_mode:broad, llm_validated_in_vivo
+  - Title: Successful treatment of recurrent subclinical mastitis in cows caused by enrofloxacin resistant bacteria by means of the sequential intramammary infusion of enrofloxacin HCl-2H(2)O and ceftiofur HCl: a clinical trial.
+    Score: 7
+    Match: drug_match(ceftiofur hcl), species_not_required_fallback, relevance:treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Charcoal Activated
+  - Title: Mango Fruit Detachment of Trees after Applying a Blend Composed of HNO(3) and Charcoal Activated.
+    Score: 6
+    Match: drug_match(charcoal activated), species_not_required_fallback, query_mode:broad, llm_validated_in_vivo
+  - Title: Sustainable hybrid photocatalysts: titania immobilized on carbon materials derived from renewable and biodegradable resources.
+    Score: 6
+    Match: drug_match(charcoal activated), species_not_required_fallback, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Ciclesonide
+  - Title: Similar Results in Children with Asthma for Steady State Pharmacokinetic Parameters of Ciclesonide Inhaled with or without Spacer.
+    Score: 13
+    Match: drug_match(ciclesonide), species_not_required_fallback, relevance:adverse, dose, label, pharmacokinetic, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Efficacy and Safety of Inhaled Ciclesonide in Treating Patients With Asymptomatic or Mild COVID-19 in the RACCO Trial: Protocol for a Multicenter, Open-label, Randomized Controlled Trial.
+    Score: 13
+    Match: drug_match(ciclesonide), species_not_required_fallback, relevance:dose, efficacy, label, safety, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Clorazepate
+  - Title: Piloerection induced by replacing fluvoxamine with milnacipran.
+    Score: 11
+    Match: drug_match(clorazepate), species_not_required_fallback, relevance:dosage, dose, interaction, pharmacodynamic, query_mode:broad, llm_validated_in_vivo
+  - Title: Behavioural and pharmacokinetic studies in the monkey (Macaca mulatta) with diazepam, nordiazepam and related 1,4-benzodiazepines.
+    Score: 10
+    Match: drug_match(clorazepate), species_not_required_fallback, relevance:pharmacokinetic, pharmacokinetics, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Cromolyn Inhaled
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Cromolyn Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Cyclopentolate Ophthalmic
+  - Title: Systemic Absorption of Cyclopentolate and Adverse Events After Retinopathy of Prematurity Exams.
+    Score: 9
+    Match: drug_match(cyclopentolate ophthalmic), species_not_required_fallback, relevance:absorption, adverse, metabolism, query_mode:broad, llm_validated_in_vivo
+  - Title: Comparative Analysis of the Efficacy of 1% Tropicamide and 1% Cyclopentolate Eye Drops for Cycloplegic Refraction in Indonesian Paediatric Population.
+    Score: 8
+    Match: drug_match(cyclopentolate ophthalmic), species_not_required_fallback, relevance:dosing, efficacy, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Dacarbazine
+  - Title: A Retrospective Study of Chemotherapy-Related Extravasation Events in Dogs and Cats.
+    Score: 10
+    Match: drug_match(dacarbazine), species:cats, dogs, context_distance_penalty, relevance:adverse, treatment, query_mode:strict, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Dactinomycin
+  - Title: Efficacy and Safety of Limited-Margin Conformal Radiation Therapy for Pediatric Rhabdomyosarcoma: Long-Term Results of a Phase 2 Study.
+    Score: 13
+    Match: drug_match(dactinomycin), species_not_required_fallback, relevance:dose, efficacy, safety, toxicity, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Dactinomycin and vincristine toxicity in the treatment of childhood cancer: a retrospective study from the Children's Oncology Group.
+    Score: 13
+    Match: drug_match(dactinomycin), species_not_required_fallback, relevance:adverse, dose, dosing, toxicity, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Decoquinate
+  - Title: Genetic diversity and drug sensitivity studies on Eimeria tenella field isolates from Hubei Province of China.
+    Score: 13
+    Match: drug_match(decoquinate), species:cat, context_distance_match, query_mode:broad, llm_validated_in_vivo
+  - Title: The evaluation of ADME and pharmacokinetic properties of decoquinate derivatives for the treatment of malaria.
+    Score: 13
+    Match: drug_match(decoquinate), species_not_required_fallback, relevance:bioavailability, clearance, half-life, pharmacokinetic, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Demecarium Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Dexamethasone Ophthalmic
+  - Title: Plasma Pharmacokinetic Parameters of Dexamethasone Following Administration of a Dexamethasone Intracanalicular Insert in Healthy Adults.
+    Score: 13
+    Match: drug_match(dexamethasone ophthalmic), species_not_required_fallback, relevance:adverse, approved, dose, pharmacokinetic, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: The DEPOT Study (Dry Eye Prescription Options for Therapy): Assessing the Efficacy and Safety of OTX-DED (Dexamethasone Ophthalmic Insert 0.3 mg) for Intracanalicular Use Compared with Loteprednol Suspension for the Treatment of Episodic Dry Eye.
+    Score: 12
+    Match: drug_match(dexamethasone ophthalmic), species_not_required_fallback, relevance:approved, efficacy, safety, treatment, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Dextrose 50 Injection
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Dichlorphenamide
+  - Title: Open-Label, Dose-Escalation, Phase 1 Study of Safety and Single and Multiple-Dose Pharmacokinetics of Dichlorphenamide in Healthy Volunteers.
+    Score: 13
+    Match: drug_match(dichlorphenamide), species_not_required_fallback, relevance:adverse, approved, dose, dosing, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Long-term efficacy and safety of dichlorphenamide for treatment of primary periodic paralysis.
+    Score: 13
+    Match: drug_match(dichlorphenamide), species_not_required_fallback, relevance:adverse, dose, efficacy, label, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Diclazuril
+  - Title: Genetic diversity and drug sensitivity studies on Eimeria tenella field isolates from Hubei Province of China.
+    Score: 13
+    Match: drug_match(diclazuril), species:cat, context_distance_match, query_mode:broad, llm_validated_in_vivo
+  - Title: Safety and efficacy of Coxiril(®) (diclazuril) for chickens reared for laying.
+    Score: 12
+    Match: drug_match(diclazuril), species_not_required_fallback, relevance:dose, efficacy, safety, toxicity, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Diclofenac Ophthalmic
+  - Title: Canis lupus familiaris and diclofenac: understanding the potential risks of this association.
+    Score: 9
+    Match: drug_match(diclofenac ophthalmic), species:dog, dogs, context_distance_penalty, relevance:adverse, query_mode:species_relaxed, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Dimenhydrinate
+  - Title: Efficacy and Safety of a Fixed-Dose Combination of Cinnarizine 20 mg and Dimenhydrinate 40 mg in the Treatment of Patients with Vestibular Vertigo: An Individual Patient Data Meta-Analysis of Randomised, Double-Blind, Controlled Clinical Trials.
+    Score: 13
+    Match: drug_match(dimenhydrinate), species_not_required_fallback, relevance:adverse, dose, efficacy, safety, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Efficacy and Safety of a Fixed Combination of Cinnarizine 20 mg and Dimenhydrinate 40 mg vs Betahistine Dihydrochloride 16 mg in Patients with Peripheral Vestibular Vertigo: A Prospective, Multinational, Multicenter, Double-Blind, Randomized, Non-inferiority Clinical Trial.
+    Score: 12
+    Match: drug_match(dimenhydrinate), species_not_required_fallback, relevance:adverse, efficacy, safety, treatment, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Dinoprost
+  - Title: Screening and druggability analysis of some plant metabolites against SARS-CoV-2: An integrative computational approach.
+    Score: 11
+    Match: drug_match(dinoprost), species_not_required_fallback, relevance:absorption, approved, distribution, excretion, query_mode:broad, llm_validated_in_vivo
+  - Title: Methods of induction of labour: a systematic review.
+    Score: 9
+    Match: drug_match(dinoprost), species_not_required_fallback, relevance:adverse, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Diphenoxylate Atropine
+  - Title: Diphenoxylate Toxicity in a Young Child with Acute Gastroenteritis: A Clinical Case Report.
+    Score: 12
+    Match: drug_match(diphenoxylate atropine), species_not_required_fallback, relevance:dose, dosing, safety, toxicity, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Diphenoxylate-atropine (Lomotil) Toxicity in Infantile Diarrhea: A Case Report of Therapeutic Failure.
+    Score: 11
+    Match: drug_match(diphenoxylate atropine), species_not_required_fallback, relevance:dosage, dose, toxicity, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Docusate
+  - Title: High-throughput in vitro screening and in silico analysis for Zika virus inhibitor identification.
+    Score: 11
+    Match: drug_match(docusate), species_not_required_fallback, relevance:absorption, approved, distribution, excretion, query_mode:broad, llm_validated_in_vivo
+  - Title: Efficacy of docusate in the treatment of constipation in pediatric patients.
+    Score: 10
+    Match: drug_match(docusate), species_not_required_fallback, relevance:adverse, efficacy, safety, treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Dorzolamide Ophthalmic
+  - Title: Active Pharmacovigilance in Peruvian Population: Surveillance of a Timolol/Brimonidine/Dorzolamide Ophthalmic Fixed Combination.
+    Score: 8
+    Match: drug_match(dorzolamide ophthalmic), species_not_required_fallback, relevance:adverse, safety, query_mode:broad, llm_validated_in_vivo
+  - Title: Drug-Related Keratitis: A Real-World FDA Adverse Event Reporting System Database Study.
+    Score: 8
+    Match: drug_match(dorzolamide ophthalmic), species_not_required_fallback, relevance:adverse, treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Edetate Calcium Disodium
+  - Title: Pediatric Lead Chelation Managed During Critical Medication Shortages: Case Report and Literature Review.
+    Score: 10
+    Match: drug_match(edetate calcium disodium), species_not_required_fallback, relevance:approved, toxicity, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Effect of Chelation Therapy on a Korean Patient With Brain Manganese Deposition Resulting From a Compound Heterozygous Mutation in the SLC39A14 Gene.
+    Score: 8
+    Match: drug_match(edetate calcium disodium), species_not_required_fallback, relevance:metabolism, treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Edetate Disodium Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Epinastine Ophthalmic
+  - Title: Safety and efficacy of a novel 0.5% epinastine topical eyelid cream in allergic conjunctivitis: a phase 3 trial.
+    Score: 13
+    Match: drug_match(epinastine ophthalmic), species_not_required_fallback, relevance:adverse, dose, efficacy, safety, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Efficacy of olopatadine versus epinastine for treating allergic conjunctivitis caused by Japanese cedar pollen: a double-blind randomized controlled trial.
+    Score: 11
+    Match: drug_match(epinastine ophthalmic), species_not_required_fallback, relevance:adverse, dose, efficacy, safety, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Ergocalciferol
+  - Title: Relative Efficacy of Vitamin D(2) and Vitamin D(3) in Improving Vitamin D Status: Systematic Review and Meta-Analysis.
+    Score: 12
+    Match: drug_match(ergocalciferol), species_not_required_fallback, relevance:dosage, dose, dosing, efficacy, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Evaluation of vitamin D repletion regimens to correct vitamin D status in adults.
+    Score: 10
+    Match: drug_match(ergocalciferol), species_not_required_fallback, relevance:efficacy, safety, toxicity, treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Etodolac
+  - Title: Ibuprofen is a non-competitive inhibitor of the peptide transporter hPEPT1 (SLC15A1): possible interactions between hPEPT1 substrates and ibuprofen.
+    Score: 10
+    Match: drug_match(etodolac), species:canine, context_distance_penalty, relevance:absorption, interaction, query_mode:strict, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Euthanasia Agents Pentobarbital
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Fentanyl Transdermal Patch
+  - Title: A comparative study of efficacy and safety of gabapentin versus amitriptyline as coanalgesics in patients receiving opioid analgesics for neuropathic pain in malignancy.
+    Score: 12
+    Match: drug_match(fentanyl transdermal patch), species_not_required_fallback, relevance:adverse, efficacy, safety, treatment, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Comparaison of Efficacy and Safety of Fentanyl Transdermal Patch with Oral Ketorolac for Pain Management in Dry Socket: A Randomized Clinical Trial.
+    Score: 11
+    Match: drug_match(fentanyl transdermal patch), species_not_required_fallback, relevance:efficacy, safety, treatment, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Filgrastim
+  - Title: Successful management and recovery of a dog with immune-mediated thrombocytopenia following vincristine overdose.
+    Score: 14
+    Match: drug_match(filgrastim), species:dog, context_distance_match, relevance:dosing, query_mode:strict, llm_validated_in_vivo
+  - Title: Toxicity, outcome, and management of anthracycline overdoses in 16 dogs.
+    Score: 13
+    Match: drug_match(filgrastim), species:dogs, context_distance_penalty, relevance:adverse, dose, toxicity, high_signal_title, query_mode:strict, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Flumethasone
+  - Title: Interventions for infantile seborrhoeic dermatitis (including cradle cap).
+    Score: 10
+    Match: drug_match(flumethasone), species_not_required_fallback, relevance:adverse, label, safety, treatment, query_mode:broad, llm_validated_in_vivo
+  - Title: Atezolizumab-induced psoriasis in a patient with metastatic lung cancer-a case report.
+    Score: 8
+    Match: drug_match(flumethasone), species_not_required_fallback, relevance:adverse, approved, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Fluorescein Stain Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Fluorometholone Ophthalmic
+  - Title: Topical tacrolimus for high-risk corneal transplantation: a randomized, clinical trial.
+    Score: 9
+    Match: drug_match(fluorometholone ophthalmic), species_not_required_fallback, relevance:adverse, efficacy, safety, query_mode:broad, llm_validated_in_vivo
+  - Title: Topical bromfenac reduces multiple inflammatory cytokines in the aqueous humour of pseudophakic patients.
+    Score: 8
+    Match: drug_match(fluorometholone ophthalmic), species_not_required_fallback, relevance:efficacy, safety, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Fluorouracil Ophthalmic
+  - Title: Squamous cell carcinoma of the eyelid.
+    Score: 7
+    Match: drug_match(fluorouracil ophthalmic), species_not_required_fallback, relevance:treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Flurbiprofen Ophthalmic
+  - Title: Effect of pH and formulation variables on in vitro transcorneal permeability of flurbiprofen: a technical note.
+    Score: 6
+    Match: drug_match(flurbiprofen ophthalmic), species_not_required_fallback, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Fomepizole
+  - Title: High-Dose Acetaminophen with Concurrent CYP2E1 Inhibition Has Profound Anticancer Activity without Liver Toxicity.
+    Score: 13
+    Match: drug_match(fomepizole), species_not_required_fallback, relevance:dose, dosing, efficacy, metabolism, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Comparing N-acetylcysteine and 4-methylpyrazole as antidotes for acetaminophen overdose.
+    Score: 11
+    Match: drug_match(fomepizole), species_not_required_fallback, relevance:approved, dosing, efficacy, metabolism, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Gamithromycin
+  - Title: Pharmacokinetic/pharmacodynamic evaluation of gamithromycin against rabbit pasteurellosis.
+    Score: 13
+    Match: drug_match(gamithromycin), species_not_required_fallback, relevance:bioavailability, efficacy, half-life, pharmacodynamic, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Pharmacokinetics and Pharmacodynamics of Gamithromycin Treatment of Pasteurella multocida in a Murine Lung Infection Model.
+    Score: 13
+    Match: drug_match(gamithromycin), species_not_required_fallback, relevance:approved, dosage, efficacy, pharmacodynamic, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Gatifloxacin Ophthalmic
+  - Title: Gatifloxacin ophthalmic solution for treatment of bacterial conjunctivitis: safety, efficacy and patient perspective.
+    Score: 13
+    Match: drug_match(gatifloxacin ophthalmic), species_not_required_fallback, relevance:dosage, efficacy, safety, toxicity, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Besifloxacin Ophthalmic Suspension 0.6% Compared with Gatifloxacin Ophthalmic Solution 0.3% for the Treatment of Bacterial Conjunctivitis in Neonates.
+    Score: 10
+    Match: drug_match(gatifloxacin ophthalmic), species_not_required_fallback, relevance:adverse, efficacy, safety, treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Gentamicin Ophthalmic
+  - Title: Topical ofloxacin compared with gentamicin in the treatment of external ocular infection. Ofloxacin Study Group.
+    Score: 9
+    Match: drug_match(gentamicin ophthalmic), species_not_required_fallback, relevance:adverse, safety, treatment, query_mode:broad, llm_validated_in_vivo
+  - Title: Cyclosporine a eye drop-induced elongated eyelashes: a case report.
+    Score: 8
+    Match: drug_match(gentamicin ophthalmic), species_not_required_fallback, relevance:adverse, treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Glycerin Oral
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Guaifenesin Intravenous
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Hemoglobin Glutamer 200 Bovine
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Hydrocodone Combinations
+  - Title: PS3-54: Effect of Bariatric Surgery on Chronic Use of Opioid Medications.
+    Score: 6
+    Match: drug_match(hydrocodone combinations), species_not_required_fallback, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Hydrocortisone Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Hydrogen Peroxide 3 Oral
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Hydroxyethyl Starch Hes Colloids
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Hypertonic Saline 7 To 7 5 Percent
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Idoxuridine Ophthalmic
+  - Title: A systematic review and meta-analysis to compare the efficacy of acyclovir 3% ophthalmic ointment to idoxuridine in curing herpetic keratitis by Day 7 of treatment.
+    Score: 10
+    Match: drug_match(idoxuridine ophthalmic), species_not_required_fallback, relevance:efficacy, treatment, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Imidacloprid Systemic
+  - Title: Soil-applied imidacloprid translocates to ornamental flowers and reduces survival of adult Coleomegilla maculata, Harmonia axyridis, and Hippodamia convergens lady beetles, and larval Danaus plexippus and Vanessa cardui butterflies.
+    Score: 7
+    Match: drug_match(imidacloprid systemic), species_not_required_fallback, relevance:treatment, query_mode:broad, llm_validated_in_vivo
+  - Title: Aminated reduced graphene oxide-CuFe(2)O(4) nanohybride adsorbent for efficient removal of imidacloprid pesticide.
+    Score: 7
+    Match: drug_match(imidacloprid systemic), species_not_required_fallback, relevance:safety, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Imidapril
+  - Title: Single dose and steady state pharmacokinetics and pharmacodynamics of the ACE-inhibitor imidapril in hypertensive patients.
+    Score: 12
+    Match: drug_match(imidapril), species_not_required_fallback, relevance:dose, dosing, pharmacokinetic, pharmacokinetics, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Pharmacokinetic and pharmacodynamic interaction trial after repeated oral doses of imidapril and digoxin in healthy volunteers.
+    Score: 12
+    Match: drug_match(imidapril), species_not_required_fallback, relevance:interaction, pharmacodynamic, pharmacokinetic, treatment, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Imipenem Cilastatin
+  - Title: Imipenem/cilastatin/relebactam efficacy, safety and probability of target attainment in adults with hospital-acquired or ventilator-associated bacterial pneumonia among patients with baseline renal impairment, normal renal function, and augmented renal clearance.
+    Score: 11
+    Match: drug_match(imipenem cilastatin), species_not_required_fallback, relevance:clearance, efficacy, safety, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: A multicenter, double-blind, randomized, comparison study of the efficacy and safety of tigecycline to imipenem/cilastatin to treat complicated intra-abdominal infections in hospitalized subjects in China.
+    Score: 10
+    Match: drug_match(imipenem cilastatin), species_not_required_fallback, relevance:efficacy, safety, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Immune Globulin Human Intravenous
+  - Title: Management of a major varicella zoster exposure in a pediatric oncology population.
+    Score: 7
+    Match: drug_match(immune globulin human intravenous), species_not_required_fallback, relevance:treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Insulin Aspart
+  - Title: Faster-acting insulin aspart: earlier onset of appearance and greater early pharmacokinetic and pharmacodynamic effects than insulin aspart.
+    Score: 13
+    Match: drug_match(insulin aspart), species_not_required_fallback, relevance:dose, dosing, pharmacodynamic, pharmacokinetic, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Pharmacokinetic and Pharmacodynamic Properties of Faster-Acting Insulin Aspart versus Insulin Aspart Across a Clinically Relevant Dose Range in Subjects with Type 1 Diabetes Mellitus.
+    Score: 13
+    Match: drug_match(insulin aspart), species_not_required_fallback, relevance:absorption, bioavailability, dose, pharmacodynamic, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Insulin Detemir
+  - Title: ISFM consensus guidelines on the practical management of diabetes mellitus in cats.
+    Score: 17
+    Match: drug_match(insulin detemir), species:cats, context_distance_match, relevance:toxicity, treatment, high_signal_title, query_mode:strict, llm_validated_in_vivo
+  - Title: Insulin detemir treatment in diabetic cats in a practice setting.
+    Score: 15
+    Match: drug_match(insulin detemir), species:cat, cats, context_distance_match, relevance:safety, treatment, query_mode:strict, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Insulin Regular
+  - Title: Two-year pulmonary safety and efficacy of inhaled human insulin (Exubera) in adult patients with type 2 diabetes.
+    Score: 12
+    Match: drug_match(insulin regular), species_not_required_fallback, relevance:adverse, efficacy, safety, treatment, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Comparative Efficacy of Sodium Zirconium Cyclosilicate and Sodium Polystyrene Sulfonate for Acute Hyperkalemia: A Retrospective Chart Review.
+    Score: 11
+    Match: drug_match(insulin regular), species_not_required_fallback, relevance:efficacy, excretion, treatment, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Interferon Alfa Human Recombinant
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Interferon Omega Feline Origin
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Iodide Potassium Sodium
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Irrigating Solutions Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Isoflupredone
+  - Title: Pharmacokinetics and pharmacodynamics of intra-articular isoflupredone following administration to horses with lipopolysaccharide-induced synovitis.
+    Score: 13
+    Match: drug_match(isoflupredone), species_not_required_fallback, relevance:dose, pharmacodynamic, pharmacokinetic, pharmacokinetics, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Characterization of intramuscular Isoflupredone acetate in horses: pharmacokinetics and effects on anti-inflammatory mediators and plasma electrolytes.
+    Score: 13
+    Match: drug_match(isoflupredone), species_not_required_fallback, relevance:dose, excretion, half-life, pharmacodynamic, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Isoxsuprine
+  - Title: Formulation and Therapeutic Evaluation of Isoxsuprine-Loaded Nanoparticles against Diabetes-Associated Stroke.
+    Score: 11
+    Match: drug_match(isoxsuprine), species_not_required_fallback, relevance:bioavailability, efficacy, half-life, metabolism, query_mode:broad, llm_validated_in_vivo
+  - Title: Identification of isoxsuprine hydrochloride as a neuroprotectant in ischemic stroke through cell-based high-throughput screening.
+    Score: 9
+    Match: drug_match(isoxsuprine), species_not_required_fallback, relevance:approved, efficacy, treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Itraconazole Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Ivermectin Clorsulon
+  - Title: Efficacy of high doses of ivermectin-clorsulon in cattle on Glossina palpalis gambiensis survival and fecundity: implications for human and animal trypanosomoses control.
+    Score: 9
+    Match: drug_match(ivermectin clorsulon), species_not_required_fallback, relevance:dose, efficacy, treatment, query_mode:broad, llm_validated_in_vivo
+  - Title: Evaluation of five treatments to control intestinal parasites in sheep in Ayapango, state of Mexico.
+    Score: 8
+    Match: drug_match(ivermectin clorsulon), species_not_required_fallback, relevance:dosage, treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Kaolin Pectin
+  - Title: Comparative effectiveness and safety of interventions for acute diarrhea and gastroenteritis in children: A systematic review and network meta-analysis.
+    Score: 11
+    Match: drug_match(kaolin pectin), species_not_required_fallback, relevance:efficacy, safety, treatment, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Treatment of South American blastomycosis (paracoccidioidomycosis) with miconazole by the oral route: an on-going study.
+    Score: 9
+    Match: drug_match(kaolin pectin), species_not_required_fallback, relevance:dosage, dose, treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Ketoconazole Systemic
+  - Title: Effects of Ketoconazole on the Pharmacokinetics of Mifepristone, a Competitive Glucocorticoid Receptor Antagonist, in Healthy Men.
+    Score: 13
+    Match: drug_match(ketoconazole systemic), species_not_required_fallback, relevance:adverse, approved, dose, label, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Efficacy of UK-49,858 (fluconazole) against Candida albicans experimental infections in mice.
+    Score: 10
+    Match: drug_match(ketoconazole systemic), species_not_required_fallback, relevance:dosage, dosing, efficacy, treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Ketotifen Ophthalmic
+  - Title: Topical antihistamines and mast cell stabilisers for treating seasonal and perennial allergic conjunctivitis.
+    Score: 10
+    Match: drug_match(ketotifen ophthalmic), species_not_required_fallback, relevance:adverse, efficacy, safety, treatment, query_mode:broad, llm_validated_in_vivo
+  - Title: A novel in situ gel base of deacetylase gellan gum for sustained ophthalmic drug delivery of ketotifen: in vitro and in vivo evaluation.
+    Score: 9
+    Match: drug_match(ketotifen ophthalmic), species_not_required_fallback, relevance:dose, interaction, pharmacodynamic, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Leuprolide
+  - Title: Determination of Leuprolide-Fatty Acid Conjugate in Rat Plasma Using LC-MS/MS and Its Pharmacokinetics after Subcutaneous Administration in Rats.
+    Score: 13
+    Match: drug_match(leuprolide), species_not_required_fallback, relevance:absorption, half-life, pharmacokinetic, pharmacokinetics, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Pharmacokinetic-Pharmacodynamic Model for the Testosterone-Suppressive Effect of Leuprolide in Normal and Prostate Cancer Rats.
+    Score: 13
+    Match: drug_match(leuprolide), species_not_required_fallback, relevance:absorption, clearance, distribution, pharmacodynamic, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Levobunolol Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Levofloxacin Ophthalmic
+  - Title: Pharmacokinetics of Azithromycin, Levofloxacin, and Ofloxacin in Rabbit Extraocular Tissues After Ophthalmic Administration.
+    Score: 13
+    Match: drug_match(levofloxacin ophthalmic), species_not_required_fallback, relevance:distribution, dosing, half-life, pharmacokinetic, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Pharmacokinetics and aqueous humor penetration of levofloxacin 1.5% and moxifloxacin 0.5% in patients undergoing cataract surgery.
+    Score: 12
+    Match: drug_match(levofloxacin ophthalmic), species_not_required_fallback, relevance:adverse, dose, pharmacokinetics, treatment, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Lidocaine Iv Systemic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Lidocaine Ophthalmic
+  - Title: A systematic review of rescue analgesic strategies in acute exacerbations of primary trigeminal neuralgia.
+    Score: 9
+    Match: drug_match(lidocaine ophthalmic), species_not_required_fallback, relevance:treatment, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Ocular decompression with cotton swabs lowers intraocular pressure elevation after intravitreal injection.
+    Score: 6
+    Match: drug_match(lidocaine ophthalmic), species_not_required_fallback, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Liothyronine
+  - Title: Liothyronine for Depression: A Review and Guidance for Safety Monitoring.
+    Score: 12
+    Match: drug_match(liothyronine), species_not_required_fallback, relevance:dosing, efficacy, safety, treatment, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: A Phase 1b, Open-Label Study to Evaluate the Safety and Tolerability of the Putative Remyelinating Agent, Liothyronine, in Individuals with MS.
+    Score: 12
+    Match: drug_match(liothyronine), species_not_required_fallback, relevance:adverse, label, safety, treatment, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Lipid Emulsion Intravenous
+  - Title: Resuscitation with lipid emulsion: dose-dependent recovery from cardiac pharmacotoxicity requires a cardiotonic effect.
+    Score: 13
+    Match: drug_match(lipid emulsion intravenous), species_not_required_fallback, relevance:dose, pharmacodynamic, pharmacokinetic, toxicity, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Lodoxamide Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Loteprednol Ophthalmic
+  - Title: Efficacy and Safety of Nanoparticle Loteprednol Etabonate Compared to Vehicle in Post-cataract Surgery Pain and Anterior Chamber Inflammation Management: A Systematic Review and Meta-Analysis.
+    Score: 11
+    Match: drug_match(loteprednol ophthalmic), species_not_required_fallback, relevance:adverse, efficacy, safety, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Lufenuron
+  - Title: Field study to investigate the effectiveness and safety of a novel orally administered combination drug product containing milbemycin oxime and lotilaner (Credelio(®) Plus) for the prevention of heartworm disease (Dirofilaria immitis) in client-owned dogs in the USA.
+    Score: 18
+    Match: drug_match(lufenuron), species:dog, dogs, context_distance_match, relevance:dose, label, safety, high_signal_title, query_mode:strict, llm_validated_in_vivo
+  - Title: Examination of the "susceptibility gap" in the treatment of canine heartworm infection.
+    Score: 17
+    Match: drug_match(lufenuron), species:canine, dog, dogs, context_distance_match, relevance:clearance, dose, efficacy, treatment, query_mode:strict, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Magnesium Iv
+  - Title: Case Report and Supporting Documentation: Acute Kidney Injury Manifested as Oliguria Is Reduced by Intravenous Magnesium Before Cisplatin.
+    Score: 8
+    Match: drug_match(magnesium iv), species_not_required_fallback, relevance:efficacy, treatment, query_mode:broad, llm_validated_in_vivo
+  - Title: The effect of acute magnesium loading on the maximal exercise performance of stable chronic obstructive pulmonary disease patients.
+    Score: 7
+    Match: drug_match(magnesium iv), species_not_required_fallback, relevance:treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Miconazole Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Mitomycin Ophthalmic
+  - Title: Use of Mitomycin C in Ophthalmic Surgery.
+    Score: 8
+    Match: drug_match(mitomycin ophthalmic), species_not_required_fallback, relevance:dosage, treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Molybdates
+  - Title: Deciphering the Toxicity of Metal Tungstates and Molybdates: Effects on L929 Cell Metabolic Activity, Oxidative Stress, and Genotoxicity.
+    Score: 11
+    Match: drug_match(molybdates), species_not_required_fallback, relevance:dose, safety, toxicity, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Efficacy, Kinetics, and Mechanism of Tetracycline Degradation in Water by O(3)/PMS/FeMoBC Process.
+    Score: 8
+    Match: drug_match(molybdates), species_not_required_fallback, relevance:dosage, efficacy, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Montelukast
+  - Title: Effectiveness, safety, and cost-effectiveness of fixed-dose combination of montelukast-bilastine versus montelukast-levocetirizine in allergic rhinitis: A prospective, randomized, open-label, parallel-group study.
+    Score: 13
+    Match: drug_match(montelukast), species_not_required_fallback, relevance:adverse, approved, dose, label, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: CYP2C8 but not CYP3A4 is important in the pharmacokinetics of montelukast.
+    Score: 12
+    Match: drug_match(montelukast), species_not_required_fallback, relevance:dose, metabolism, pharmacokinetic, pharmacokinetics, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Morphine Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Moxidectin
+  - Title: Safety of topical administration of fluralaner plus moxidectin concurrently with praziquantel in cats.
+    Score: 20
+    Match: drug_match(moxidectin), species:cats, feline, context_distance_match, relevance:adverse, dose, efficacy, safety, high_signal_title, query_mode:strict, llm_validated_in_vivo
+  - Title: Safety of Credelio Quattro™ (lotilaner, moxidectin, praziquantel, and pyrantel chewable tablets) in dogs infected with adult heartworms (Dirofilaria immitis).
+    Score: 20
+    Match: drug_match(moxidectin), species:dog, dogs, context_distance_match, relevance:adverse, dose, dosing, label, high_signal_title, query_mode:strict, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Moxifloxacin Ophthalmic
+  - Title: Safety of besifloxacin ophthalmic suspension 0.6% in refractive surgery: a retrospective chart review of post-LASIK patients.
+    Score: 13
+    Match: drug_match(moxifloxacin ophthalmic), species_not_required_fallback, relevance:adverse, distribution, dosing, safety, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Safety of besifloxacin ophthalmic suspension 0.6% as a prophylactic antibiotic following routine cataract surgery: results of a prospective, parallel-group, investigator-masked study.
+    Score: 12
+    Match: drug_match(moxifloxacin ophthalmic), species_not_required_fallback, relevance:adverse, distribution, safety, treatment, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Mycobacterial Cell Wall Fraction
+  - Title: Pilot safety evaluation of doxorubicin chemotherapy combined with non-specific immunotherapy (Immunocidin®) for canine splenic hemangiosarcoma.
+    Score: 19
+    Match: drug_match(mycobacterial cell wall fraction), species:canine, dogs, context_distance_match, relevance:adverse, efficacy, safety, treatment, high_signal_title, query_mode:strict, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Nalbuphine Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Natamycin Ophthalmic
+  - Title: Ion-activated mucoadhesive in situ gel incorporating terbinafine-loaded NLCs promotes ocular penetration and retention for enhanced fungal keratitis therapy.
+    Score: 10
+    Match: drug_match(natamycin ophthalmic), species_not_required_fallback, relevance:bioavailability, clearance, efficacy, pharmacokinetic, query_mode:broad, llm_validated_in_vivo
+  - Title: The Effect of Anti-Amoebic Agents and Ce6-PDT on Acanthamoeba castellanii Trophozoites and Cysts, In Vitro.
+    Score: 9
+    Match: drug_match(natamycin ophthalmic), species_not_required_fallback, relevance:efficacy, label, treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Nedocromil Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Nepafenac Ophthalmic
+  - Title: Bromfenac Ophthalmic Solution 0.07% Versus Nepafenac Ophthalmic Suspension 0.3% for Post-Cataract Surgery Inflammation: A Pilot Study of Identical Dosing Regimens with Pre-Surgical "Pulse" Dose.
+    Score: 11
+    Match: drug_match(nepafenac ophthalmic), species_not_required_fallback, relevance:adverse, dose, dosing, efficacy, query_mode:broad, llm_validated_in_vivo
+  - Title: Topical ophthalmic NSAIDs: a discussion with focus on nepafenac ophthalmic suspension.
+    Score: 10
+    Match: drug_match(nepafenac ophthalmic), species_not_required_fallback, relevance:pharmacodynamic, safety, toxicity, treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Nitroglycerin Transdermal
+  - Title: Nitrates and bone turnover (NABT) - trial to select the best nitrate preparation: study protocol for a randomized controlled trial.
+    Score: 9
+    Match: drug_match(nitroglycerin transdermal), species_not_required_fallback, relevance:efficacy, label, treatment, query_mode:broad, llm_validated_in_vivo
+  - Title: The effect of transdermal nitroglycerin on pain control in diabetic patients with peripheral neuropathy.
+    Score: 8
+    Match: drug_match(nitroglycerin transdermal), species_not_required_fallback, relevance:efficacy, treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Nizatidine
+  - Title: Efficacy and safety of rebamipide/nizatidine in patients with erosive gastritis: A randomized, multicenter, phase 4 study.
+    Score: 13
+    Match: drug_match(nizatidine), species_not_required_fallback, relevance:adverse, efficacy, label, safety, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: The Effect of Nizatidine, a MATE2K Selective Inhibitor, on the Pharmacokinetics and Pharmacodynamics of Metformin in Healthy Volunteers.
+    Score: 13
+    Match: drug_match(nizatidine), species_not_required_fallback, relevance:approved, clearance, distribution, drug interaction, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Olopatadine Ophthalmic
+  - Title: Pharmacokinetics and safety of olopatadine hydrochloride 0.77% in healthy subjects with asymptomatic eyes: data from 2 independent clinical studies.
+    Score: 13
+    Match: drug_match(olopatadine ophthalmic), species_not_required_fallback, relevance:adverse, dose, half-life, pharmacokinetic, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Efficacy and safety of olopatadine hydrochloride 0.77% in patients with allergic conjunctivitis using a conjunctival allergen-challenge model.
+    Score: 13
+    Match: drug_match(olopatadine ophthalmic), species_not_required_fallback, relevance:adverse, dosing, efficacy, safety, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Olsalazine
+  - Title: Longterm olsalazine treatment: pharmacokinetics, tolerance and effects on local eicosanoid formation in ulcerative colitis and Crohn's colitis.
+    Score: 13
+    Match: drug_match(olsalazine), species_not_required_fallback, relevance:dosage, dose, metabolism, pharmacokinetics, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Cannabidiol Enhances the Therapeutic Efficacy of Olsalazine and Cyclosporine in a Murine Model of Colitis.
+    Score: 11
+    Match: drug_match(olsalazine), species_not_required_fallback, relevance:adverse, dose, efficacy, safety, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Oxytetracycline Polymyxin B Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Pancrelipase
+  - Title: Efficacy and Safety of a New Formulation of Pancrelipase (Ultrase MT20) in the Treatment of Malabsorption in Exocrine Pancreatic Insufficiency in Cystic Fibrosis.
+    Score: 13
+    Match: drug_match(pancrelipase), species_not_required_fallback, relevance:absorption, adverse, efficacy, excretion, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Simulating Intestinal Transporter and Enzyme Activity in a Physiologically Based Pharmacokinetic Model for Tenofovir Disoproxil Fumarate.
+    Score: 13
+    Match: drug_match(pancrelipase), species_not_required_fallback, relevance:absorption, bioavailability, dose, dosing, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Parapox Ovis Virus
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Pergolide
+  - Title: Equine Pergolide Toxicity: A Case Series.
+    Score: 11
+    Match: drug_match(pergolide), species_not_required_fallback, relevance:approved, dosing, toxicity, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Catechol-O-methyltransferase inhibitors versus active comparators for levodopa-induced complications in Parkinson's disease.
+    Score: 11
+    Match: drug_match(pergolide), species_not_required_fallback, relevance:adverse, dosage, dose, efficacy, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Phenylephrine Ophthalmic
+  - Title: Potential cardiovascular adverse events when phenylephrine is combined with paracetamol: simulation and narrative review.
+    Score: 13
+    Match: drug_match(phenylephrine ophthalmic), species_not_required_fallback, relevance:adverse, bioavailability, dose, pharmacodynamic, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Severe hypertension and pulmonary edema associated with systemic absorption of topical phenylephrine in a child during retinal surgery.
+    Score: 8
+    Match: drug_match(phenylephrine ophthalmic), species_not_required_fallback, relevance:absorption, treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Pilocarpine Ophthalmic
+  - Title: A Systematic Review and Meta-Analysis on the Efficacy and Safety of Topical Pilocarpine 1.25% in Presbyopia Treatment.
+    Score: 12
+    Match: drug_match(pilocarpine ophthalmic), species_not_required_fallback, relevance:adverse, efficacy, safety, treatment, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Efficacy and safety of pilocarpine hydrochloride ophthalmic solution USP 1.25% w/v versus placebo ophthalmic solution for the treatment of presbyopia - A multicentric clinical trial.
+    Score: 12
+    Match: drug_match(pilocarpine ophthalmic), species_not_required_fallback, relevance:adverse, efficacy, safety, treatment, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Pimecrolimus Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Pirlimycin
+  - Title: Effect of precalving intramammary treatment with pirlimycin in nulliparous Holstein heifers.
+    Score: 8
+    Match: drug_match(pirlimycin), species_not_required_fallback, relevance:interaction, treatment, query_mode:broad, llm_validated_in_vivo
+  - Title: Proposed MIC quality control guidelines for National Committee for Clinical Laboratory Standards susceptibility tests using seven veterinary antimicrobial agents: ceftiofur, enrofloxacin, florfenicol, penicillin G-novobiocin, pirlimycin, premafloxacin, and spectinomycin.
+    Score: 8
+    Match: drug_match(pirlimycin), species_not_required_fallback, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Polymyxin B Systemic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Potassium Acetate Chloride Gluconate
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Povidone Iodine Ophthalmic
+  - Title: Non-inferiority and Safety of Increased Povidone-Iodine (Betadine) Concentration for Irrigation Following Primary Total Joint Arthroplasty (TJA).
+    Score: 10
+    Match: drug_match(povidone iodine ophthalmic), species_not_required_fallback, relevance:adverse, safety, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Topical antibiotics for treating bacterial keratitis: a network meta-analysis.
+    Score: 9
+    Match: drug_match(povidone iodine ophthalmic), species_not_required_fallback, relevance:adverse, toxicity, treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Praziquantel
+  - Title: Safety of topical administration of fluralaner plus moxidectin concurrently with praziquantel in cats.
+    Score: 20
+    Match: drug_match(praziquantel), species:cats, feline, context_distance_match, relevance:adverse, dose, efficacy, safety, high_signal_title, query_mode:strict, llm_validated_in_vivo
+  - Title: Safety of Credelio Quattro™ (lotilaner, moxidectin, praziquantel, and pyrantel chewable tablets) in dogs infected with adult heartworms (Dirofilaria immitis).
+    Score: 20
+    Match: drug_match(praziquantel), species:dog, dogs, context_distance_match, relevance:adverse, dose, dosing, label, high_signal_title, query_mode:strict, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Proparacaine Ophthalmic
+  - Title: Twenty-four-Hour Measurement of Intraocular Pressure in Guinea Pigs (Cavia porcellus).
+    Score: 6
+    Match: drug_match(proparacaine ophthalmic), species_not_required_fallback, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Propionibacterium Acnes Injection
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Pyrimethamine Sulfadiazine
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Rose Bengal Stain Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Saline Cathartics
+  - Title: The Treatment of Recent Pleuritic Effusion by the Administration of Saline Cathartics.
+    Score: 7
+    Match: drug_match(saline cathartics), species_not_required_fallback, relevance:treatment, query_mode:broad, llm_validated_in_vivo
+  - Title: The Action of Saline Cathartics.
+    Score: 6
+    Match: drug_match(saline cathartics), species_not_required_fallback, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Silver Sulfadiazine
+  - Title: Management of otitis externa with an led-illuminated gel: a randomized controlled clinical trial in dogs.
+    Score: 15
+    Match: drug_match(silver sulfadiazine), species:canine, dogs, context_distance_match, relevance:efficacy, treatment, query_mode:strict, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Staphylococcus Aureus Phage Lysate
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Sulfacetamide Ophthalmic
+  - Title: Synthesis, Density Functional Theory (DFT), Urease Inhibition and Antimicrobial Activities of 5-Aryl Thiophenes Bearing Sulphonylacetamide Moieties.
+    Score: 6
+    Match: drug_match(sulfacetamide ophthalmic), species_not_required_fallback, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Sulfadimethoxine Ormetoprim
+  - Title: Use of antibacterial agents To elucidate the etiology of juvenile oyster disease (JOD) in Crassostrea virginica and numerical dominance of an alpha-proteobacterium in JOD-affected animals.
+    Score: 7
+    Match: drug_match(sulfadimethoxine ormetoprim), species_not_required_fallback, relevance:treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Tafluprost Ophthalmic
+  - Title: Real-World Efficacy and Safety of Tafluprost in Primary Open-Angle Glaucoma Patients with Corneal Disorders: A Taiwan Experience.
+    Score: 13
+    Match: drug_match(tafluprost ophthalmic), species_not_required_fallback, relevance:adverse, efficacy, label, safety, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Advantages of Efficacy and Safety of Fixed-Dose Tafluprost/Timolol Combination Over Fixed-Dose Latanoprost/Timolol Combination.
+    Score: 13
+    Match: drug_match(tafluprost ophthalmic), species_not_required_fallback, relevance:dose, efficacy, pharmacokinetics, safety, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Tetracaine Ophthalmic
+  - Title: Benzocaine/Lidocaine/Tetracaine Cream: Report of Corneal Damage and Review.
+    Score: 10
+    Match: drug_match(tetracaine ophthalmic), species_not_required_fallback, relevance:adverse, approved, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Chloroprocaine 3% Gel as a Novel Ocular Topical Anesthetic: Results from a Multicenter, Randomized Clinical Trial in Patients Undergoing Cataract Surgery.
+    Score: 10
+    Match: drug_match(tetracaine ophthalmic), species_not_required_fallback, relevance:adverse, efficacy, safety, treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Thyrotropin Alfa
+  - Title: Long-Term Safety and Effectiveness of Thyrotropin Alfa in Japanese Patients: A Post-Marketing Surveillance Study.
+    Score: 12
+    Match: drug_match(thyrotropin alfa), species_not_required_fallback, relevance:adverse, dose, safety, treatment, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: SAT537 Thyroid Cancer Mimicking Acute Coronary Syndrome.
+    Score: 9
+    Match: drug_match(thyrotropin alfa), species_not_required_fallback, relevance:dose, treatment, warning, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Tildipirosin
+  - Title: Pharmacokinetics of Tildipirosin in Plasma, Milk, and Somatic Cells Following Intravenous, Intramuscular, and Subcutaneous Administration in Dairy Goats.
+    Score: 13
+    Match: drug_match(tildipirosin), species_not_required_fallback, relevance:adverse, clearance, distribution, dose, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Pharmacokinetics of Tildipirosin in Ewes after Intravenous, Intramuscular and Subcutaneous Administration.
+    Score: 13
+    Match: drug_match(tildipirosin), species_not_required_fallback, relevance:adverse, distribution, dosage, dose, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Tinidazole
+  - Title: Comparative pharmacokinetics of metronidazole and tinidazole as influenced by administration route.
+    Score: 13
+    Match: drug_match(tinidazole), species_not_required_fallback, relevance:bioavailability, clearance, dosing, half-life, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Pharmacokinetics of tinidazole in chronic renal failure and in patients on haemodialysis.
+    Score: 13
+    Match: drug_match(tinidazole), species_not_required_fallback, relevance:clearance, distribution, dose, half-life, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Tobramycin Systemic
+  - Title: Tobramycin exposure from active calcium sulfate bone graft substitute.
+    Score: 11
+    Match: drug_match(tobramycin systemic), species_not_required_fallback, relevance:absorption, bioavailability, clearance, distribution, query_mode:broad, llm_validated_in_vivo
+  - Title: Tobramycin Systemic Absorption in Lung Transplant Recipients Treated With Inhaled Tobramycin: A Cohort Study.
+    Score: 8
+    Match: drug_match(tobramycin systemic), species_not_required_fallback, relevance:absorption, treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Travoprost Ophthalmic
+  - Title: Efficacy, safety, and tolerability of travoprost 0.004% BAK-free versus prior treatment with latanoprost 0.005% in Japanese patients.
+    Score: 12
+    Match: drug_match(travoprost ophthalmic), species_not_required_fallback, relevance:efficacy, label, safety, treatment, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Diurnal IOP-lowering efficacy and safety of travoprost 0.004% compared with tafluprost 0.0015% in patients with primary open-angle glaucoma or ocular hypertension.
+    Score: 12
+    Match: drug_match(travoprost ophthalmic), species_not_required_fallback, relevance:adverse, efficacy, safety, treatment, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Triamterene
+  - Title: Repurposing of triamterene as a histone deacetylase inhibitor to overcome cisplatin resistance in lung cancer treatment.
+    Score: 10
+    Match: drug_match(triamterene), species_not_required_fallback, relevance:approved, efficacy, interaction, treatment, query_mode:broad, llm_validated_in_vivo
+  - Title: Lithium toxicity induced by triamterene-hydrochlorothiazide.
+    Score: 10
+    Match: drug_match(triamterene), species_not_required_fallback, relevance:clearance, toxicity, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Trientine
+  - Title: Trientine Tetrahydrochloride, From Bench to Bedside: A Narrative Review.
+    Score: 13
+    Match: drug_match(trientine), species_not_required_fallback, relevance:approved, dose, pharmacodynamic, pharmacokinetic, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Efficacy and safety of D-penicillamine, trientine, and zinc in pediatric Wilson disease patients.
+    Score: 13
+    Match: drug_match(trientine), species_not_required_fallback, relevance:adverse, efficacy, excretion, metabolism, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Trifluridine Ophthalmic
+  - Title: Ganciclovir ophthalmic gel 0.15% for the treatment of acute herpetic keratitis: background, effectiveness, tolerability, safety, and future applications.
+    Score: 13
+    Match: drug_match(trifluridine ophthalmic), species_not_required_fallback, relevance:adverse, approved, bioavailability, efficacy, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Assessment of Cidofovir for Treatment of Ocular Bovine Herpesvirus-1 Infection in Cattle Using an Ex-Vivo Model.
+    Score: 8
+    Match: drug_match(trifluridine ophthalmic), species_not_required_fallback, relevance:efficacy, treatment, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Trimeprazine Prednisolone
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Triple Antibiotic Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Tulathromycin
+  - Title: Pharmacokinetic/Pharmacodynamic Modeling of Tulathromycin against Pasteurella multocida in a Porcine Tissue Cage Model.
+    Score: 13
+    Match: drug_match(tulathromycin), species_not_required_fallback, relevance:dosage, dose, pharmacodynamic, pharmacokinetic, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Impact of bovine respiratory disease on the pharmacokinetics of danofloxacin and tulathromycin in different ages of calves.
+    Score: 13
+    Match: drug_match(tulathromycin), species_not_required_fallback, relevance:approved, clearance, distribution, efficacy, high_signal_title, query_mode:broad, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Vancomycin Ophthalmic
+  - Title: Vancomycin Insights: An Update on Mechanism, Activity, Toxicity, Resistance, and Novel Drug Delivery Systems.
+    Score: 12
+    Match: drug_match(vancomycin ophthalmic), species_not_required_fallback, relevance:bioavailability, efficacy, toxicity, treatment, high_signal_title, query_mode:broad, llm_validated_in_vivo
+  - Title: Vancomycin Ophthalmic Ointment 1% for methicillin-resistant Staphylococcus aureus or methicillin-resistant Staphylococcus epidermidis infections: a case series.
+    Score: 11
+    Match: drug_match(vancomycin ophthalmic), species_not_required_fallback, relevance:adverse, approved, efficacy, label, query_mode:broad, llm_validated_in_vivo
+------------------------------
+
+📊 요약: 총 153개 중 108개 성공, 45개 실패

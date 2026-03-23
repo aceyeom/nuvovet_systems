@@ -21,6 +21,56 @@ export DB_EXTERNAL_URL="${DB_URL}"
 CHUNK_SIZE=50
 TOTAL=670
 FAILED_CHUNKS=()
+MISSING_IDS_TXT="${CHUNK_DIR}/missing_reference_ids.txt"
+MISSING_RETRY_PREFIX="${CHUNK_DIR}/missing_retry"
+
+coverage_percent() {
+    ${PYTHON_BIN} - <<'PY'
+import os
+import psycopg2
+
+db_url = os.environ.get("DB_EXTERNAL_URL")
+conn = psycopg2.connect(db_url)
+cur = conn.cursor()
+cur.execute("SELECT COUNT(*) FROM drugs")
+drugs = cur.fetchone()[0]
+cur.execute("SELECT COUNT(DISTINCT drug_id) FROM drug_references")
+refs = cur.fetchone()[0]
+pct = (refs / drugs * 100.0) if drugs else 0.0
+print(f"{refs}/{drugs} ({pct:.2f}%)")
+conn.close()
+PY
+}
+
+build_missing_ids_file() {
+    ${PYTHON_BIN} - <<'PY'
+import json
+import os
+from pathlib import Path
+import psycopg2
+
+root = Path(os.environ.get("SCRIPT_DIR"))
+out_file = Path(os.environ.get("MISSING_IDS_TXT"))
+converted_dir = root / "backend" / "data" / "converted"
+
+converted_ids = set()
+for p in converted_dir.rglob("*.jsonl"):
+    payload = json.loads(p.read_text(encoding="utf-8"))
+    did = payload.get("id") if isinstance(payload, dict) else None
+    if did:
+        converted_ids.add(did)
+
+conn = psycopg2.connect(os.environ.get("DB_EXTERNAL_URL"))
+cur = conn.cursor()
+cur.execute("SELECT DISTINCT drug_id FROM drug_references")
+ref_ids = {row[0] for row in cur.fetchall()}
+conn.close()
+
+missing = sorted(converted_ids - ref_ids)
+out_file.write_text("\n".join(missing) + ("\n" if missing else ""), encoding="utf-8")
+print(len(missing))
+PY
+}
 
 echo "============================================================"
 echo " NuvoVet 전체 reference 수집 시작"
@@ -31,6 +81,8 @@ echo "============================================================"
 
 chunk_idx=0
 offset=0
+
+echo "현재 커버리지(시작 전): $(coverage_percent)"
 
 while [ "${offset}" -lt "${TOTAL}" ]; do
     chunk_tag=$(printf "chunk_%03d" "${chunk_idx}")
@@ -89,6 +141,45 @@ while [ "${offset}" -lt "${TOTAL}" ]; do
     # NCBI rate-limit 보호
     sleep 2
 done
+
+echo ""
+echo "============================================================"
+echo " 누락 성분 자동 탐지 + fallback 재검색"
+echo "============================================================"
+
+missing_count="$(build_missing_ids_file)"
+echo "누락 성분 수: ${missing_count}"
+
+if [ "${missing_count}" -gt 0 ]; then
+    echo "fallback 재검색 실행 (strict -> species_relaxed -> broad)..."
+    SEARCH_CANDIDATE_COUNT=40 ${PYTHON} "${SCRIPT_DIR}/실험실.py" \
+        --all \
+        --drug-ids-file "${MISSING_IDS_TXT}" \
+        --output-prefix "${MISSING_RETRY_PREFIX}"
+
+    retry_exit=$?
+    if [ "${retry_exit}" -ne 0 ]; then
+        echo "⚠️  fallback 재검색 실패(exit=${retry_exit})"
+        FAILED_CHUNKS+=("missing_retry_collect")
+    else
+        echo "fallback 재검색 완료. DB 재주입 수행..."
+        ${PYTHON} "${SCRIPT_DIR}/goto_db.py" \
+            --mode references \
+            --result-json "${MISSING_RETRY_PREFIX}.json"
+
+        inject_exit=$?
+        if [ "${inject_exit}" -ne 0 ]; then
+            echo "⚠️  fallback 재주입 실패(exit=${inject_exit})"
+            FAILED_CHUNKS+=("missing_retry_db")
+        else
+            echo "✅ fallback 재주입 완료"
+        fi
+    fi
+else
+    echo "누락 성분 없음. fallback 재검색 생략"
+fi
+
+echo "최종 커버리지: $(coverage_percent)"
 
 echo ""
 echo "============================================================"
