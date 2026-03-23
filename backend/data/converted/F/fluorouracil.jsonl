@@ -27,19 +27,27 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.5,
-        "unit": "%"
+        "unit": "%",
+        "form": "topical",
+        "is_splittable": null
       },
       {
         "value": 1,
-        "unit": "%"
+        "unit": "%",
+        "form": "topical",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "%"
+        "unit": "%",
+        "form": "topical",
+        "is_splittable": null
       }
     ]
   },
@@ -263,12 +271,12 @@
           "logic_type": "fixed",
           "context": "유방암, 피부 편평세포암, GI 선암, 항문낭 선암, 비강 선암 (단독 또는 병용)",
           "value": "150",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q24h",
           "max_dose_mg_kg": null,
-          "duration_note": "주 1회(weekly) 투여. mg/m2 단위임 — mg/kg와 혼동 금지.",
-          "evidence": "150 mg/m2 IV weekly (extra-label)"
+          "duration_note": "주 1회(weekly) 투여.",
+          "evidence": "150 mg/m² IV weekly (extra-label)"
         },
         {
           "logic_type": "linear",
@@ -285,34 +293,34 @@
           "logic_type": "tiered",
           "context": "중피종(Mesothelioma) — 초기 4주 후 격주 유지",
           "value": "150 - 200",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q24h",
           "max_dose_mg_kg": null,
-          "duration_note": "초기 4주간 주 1회, 이후 2주마다 투여. mg/m2 단위.",
-          "evidence": "150–200 mg/m2 IV weekly for 4 weeks, then every 2 weeks (extra-label)"
+          "duration_note": "초기 4주간 주 1회, 이후 2주마다 투여.",
+          "evidence": "150–200 mg/m² IV weekly for 4 weeks, then every 2 weeks (extra-label)"
         },
         {
           "logic_type": "fixed",
           "context": "연조직 육종 — 수술 후 절개 부위 주사",
           "value": "150",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "SC",
           "frequency": "Once",
           "max_dose_mg_kg": null,
-          "duration_note": "수술 흉터 또는 개방 창상의 여러 부위에 22게이지 바늘로 균일하게 주사. mg/m2 단위.",
-          "evidence": "150 mg/m2 injected along surgical scar or parallel sites (extra-label)"
+          "duration_note": "수술 흉터 또는 개방 창상의 여러 부위에 22게이지 바늘로 균일하게 주사.",
+          "evidence": "150 mg/m² injected along surgical scar or parallel sites (extra-label)"
         },
         {
           "logic_type": "fixed",
           "context": "다양한 암종 — 카보플라틴 병용",
           "value": "150",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "Once",
           "max_dose_mg_kg": null,
-          "duration_note": "플루오로우라실 투여 1시간 후 카보플라틴 200 mg/m2 IV 10분간 투여. mg/m2 단위.",
-          "evidence": "Fluorouracil 150 mg/m2 IV slow push followed by carboplatin 200 mg/m2 IV (extra-label)"
+          "duration_note": "플루오로우라실 투여 1시간 후 카보플라틴 200 mg/m² IV 10분간 투여.",
+          "evidence": "Fluorouracil 150 mg/m² IV slow push followed by carboplatin 200 mg/m² IV (extra-label)"
         }
       ]
     },

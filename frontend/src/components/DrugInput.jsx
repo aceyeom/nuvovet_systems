@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import {
   Search, X, AlertTriangle, Globe, FlaskConical, HelpCircle,
   Pill, Ban, Loader2, ChevronDown, ChevronUp, SlidersHorizontal,
-  Check,
+  Check, Info,
 } from 'lucide-react';
 import { createUnknownDrug } from '../data/drugDatabase';
 import { useI18n } from '../i18n';
@@ -11,23 +11,23 @@ import { listDrugsApi } from '../lib/api';
 // ── Species-Specific Toxicity Hardstops ─────────────────────────
 const SPECIES_HARDSTOPS = {
   cat: {
-    acetaminophen: 'Acetaminophen (paracetamol) is acutely fatal in cats. Cats lack glucuronyl transferase and cannot metabolise it.',
-    paracetamol:   'Paracetamol is acutely fatal in cats. Cats lack glucuronyl transferase and cannot metabolise it.',
-    permethrin:    'Permethrin is a potent feline neurotoxin. Even small topical exposures cause seizures and death.',
-    ibuprofen:     'Ibuprofen is highly toxic to cats causing acute renal failure and GI perforation.',
-    naproxen:      'Naproxen is toxic to cats with a very narrow safety margin — do not use.',
-    benzocaine:    'Benzocaine causes methaemoglobinaemia in cats and can be fatal.',
-    'tea tree':    'Tea tree oil (melaleuca) is neurotoxic to cats even at low topical doses.',
-    melaleuca:     'Melaleuca (tea tree) oil is neurotoxic to cats.',
-    xylitol:       'Xylitol causes severe hypoglycaemia and liver failure.',
-    'onion':       'Onion/garlic compounds cause Heinz body haemolytic anaemia in cats.',
-    'garlic':      'Garlic compounds cause Heinz body haemolytic anaemia in cats.',
+    acetaminophen: '아세트아미노펜(파라세타몰)은 고양이에게 치명적입니다. 글루쿠론산 전이효소가 부족하여 대사할 수 없습니다.',
+    paracetamol:   '파라세타몰은 고양이에게 치명적입니다. 글루쿠론산 전이효소가 부족하여 대사할 수 없습니다.',
+    permethrin:    '퍼메트린은 강력한 고양이 신경독소입니다. 소량의 외용 노출도 경련과 사망을 유발합니다.',
+    ibuprofen:     '이부프로펜은 고양이에게 매우 독성이 강하며 급성 신부전과 위장관 천공을 유발합니다.',
+    naproxen:      '나프록센은 고양이에서 안전역이 매우 좁아 사용 금지입니다.',
+    benzocaine:    '벤조카인은 고양이에서 메트헤모글로빈혈증을 유발하며 치명적일 수 있습니다.',
+    'tea tree':    '티트리 오일(멜라루카)은 저용량 외용에서도 고양이에게 신경독성을 나타냅니다.',
+    melaleuca:     '멜라루카(티트리) 오일은 고양이에게 신경독성이 있습니다.',
+    xylitol:       '자일리톨은 심각한 저혈당증과 간부전을 유발합니다.',
+    'onion':       '양파/마늘 화합물은 고양이에서 하인츠체 용혈성 빈혈을 유발합니다.',
+    'garlic':      '마늘 화합물은 고양이에서 하인츠체 용혈성 빈혈을 유발합니다.',
   },
   dog: {
-    xylitol:   'Xylitol causes severe hypoglycaemia and acute hepatic necrosis in dogs.',
-    grapes:    'Grapes/raisins cause acute renal failure in dogs via an unknown mechanism.',
-    raisins:   'Raisins cause acute renal failure in dogs via an unknown mechanism.',
-    macadamia: 'Macadamia nuts cause tremors and hyperthermia in dogs.',
+    xylitol:   '자일리톨은 개에서 심각한 저혈당증과 급성 간 괴사를 유발합니다.',
+    grapes:    '포도/건포도는 알려지지 않은 기전으로 개에서 급성 신부전을 유발합니다.',
+    raisins:   '건포도는 알려지지 않은 기전으로 개에서 급성 신부전을 유발합니다.',
+    macadamia: '마카다미아 너트는 개에서 떨림과 고체온증을 유발합니다.',
   },
 };
 
@@ -52,52 +52,146 @@ const FORM_ROUTE_MAP = {
   Ophthalmic: ['Ophthalmic'],
 };
 
+// ── Route display labels (internal values stay English) ─────────
+const ROUTE_DISPLAY_LABEL = {
+  PO: '경구',
+  IV: '정맥',
+  IM: '근육',
+  SC: '피하',
+  Topical: '외용',
+  Ophthalmic: '점안',
+  Otic: '점이',
+  Inhalation: '흡입',
+};
+
+function getRouteDisplayLabel(route) {
+  return ROUTE_DISPLAY_LABEL[route] || route;
+}
+
 // ── Route-specific frequency options ────────────────────────────
 const PARENTERAL_ROUTES = new Set(['IV', 'IM', 'SC']);
+const SIMPLE_ROUTES = new Set(['Topical', 'Ophthalmic', 'Otic', 'Inhalation']);
 
 const FREQ_BY_ROUTE = {
-  PO:    ['SID', 'BID', 'TID', 'QID', 'PRN', 'Other'],
-  IV:    ['CRI', 'q2h', 'q4h', 'q6h', 'q8h', 'q12h', 'PRN', 'Other'],
-  IM:    ['SID', 'BID', 'q8h', 'q12h', 'PRN', 'Other'],
-  SC:    ['SID', 'BID', 'q8h', 'q12h', 'PRN', 'Other'],
-  _default: ['SID', 'BID', 'TID', 'QID', 'q8h', 'q12h', 'PRN', 'Other'],
+  PO:          ['SID', 'BID', 'TID', 'QID', 'PRN', 'Other'],
+  IV:          ['CRI', 'q2h', 'q4h', 'q6h', 'q8h', 'q12h', 'PRN', 'Other'],
+  IM:          ['SID', 'BID', 'q8h', 'q12h', 'PRN', 'Other'],
+  SC:          ['SID', 'BID', 'q8h', 'q12h', 'PRN', 'Other'],
+  Topical:     ['SID', 'BID', 'TID', 'QID', 'PRN', 'Other'],
+  Ophthalmic:  ['SID', 'BID', 'TID', 'QID', 'q2h', 'q4h', 'PRN', 'Other'],
+  Otic:        ['SID', 'BID', 'TID', 'PRN', 'Other'],
+  Inhalation:  ['SID', 'BID', 'TID', 'QID', 'PRN', 'Other'],
+  _default:    ['SID', 'BID', 'TID', 'QID', 'q8h', 'q12h', 'PRN', 'Other'],
 };
+
+// ── Frequency display labels ────────────────────────────────────
+const FREQ_DISPLAY_LABEL = {
+  SID: '1일 1회', BID: '1일 2회', TID: '1일 3회', QID: '1일 4회',
+  CRI: '지속주입', PRN: '필요시', Other: '기타',
+  q2h: '2시간마다', q4h: '4시간마다', q6h: '6시간마다',
+  q8h: '8시간마다', q12h: '12시간마다',
+};
+
+function getFreqDisplayLabel(freq) {
+  return FREQ_DISPLAY_LABEL[freq] || freq;
+}
 
 // ── Route-aware dose unit labels ────────────────────────────────
 const ROUTE_UNIT_LABEL = {
-  PO: '정',       // tablets
-  IV: 'ml',
-  IM: 'ml',
-  SC: 'ml',
-  Topical: '도포',  // application
-  Ophthalmic: '방울', // drops
+  PO: '정',
+  IV: 'mL',
+  IM: 'mL',
+  SC: 'mL',
+  Topical: '도포',
+  Ophthalmic: '방울',
   Otic: '방울',
+  Inhalation: '회',
 };
 
 function getDoseUnitLabel(route) {
-  return ROUTE_UNIT_LABEL[route] || 'units';
+  return ROUTE_UNIT_LABEL[route] || '단위';
 }
 
-// ── Strength grouping by unit (mg = oral, mg/mL = injectable) ──
+// ── Strength grouping by unit (4 groups) ────────────────────────
 const UNIT_ORAL = new Set(['mg', 'g', 'mcg', 'µg']);
 const UNIT_INJECTABLE = new Set(['mg/mL', 'mg/ml', 'IU/mL', 'iu/mL', 'mcg/mL', 'µg/mL', 'U/mL']);
+const UNIT_PERCENT = new Set(['%']);
 
-function classifyStrengthUnit(unit) {
+function classifyStrengthUnit(unit, strengthForm, drugDosageForms) {
+  // If the strength has an explicit form tag from schema, use it
+  if (strengthForm) {
+    const f = strengthForm.toLowerCase();
+    if (f === 'injectable') return 'injectable';
+    if (f === 'topical') return 'topical';
+    if (f === 'ophthalmic') return 'ophthalmic';
+    if (f === 'otic') return 'otic';
+    if (f === 'oral') return 'oral';
+  }
   if (!unit) return 'oral';
   const u = unit.trim();
   if (UNIT_INJECTABLE.has(u) || u.toLowerCase().includes('/ml')) return 'injectable';
+  if (UNIT_PERCENT.has(u)) {
+    // Use drug's dosage_form to disambiguate % units
+    const forms = (drugDosageForms || []).map(f => f.toLowerCase());
+    if (forms.includes('ophthalmic') || forms.includes('drop')) return 'ophthalmic';
+    return 'topical'; // default % to topical
+  }
+  if (UNIT_ORAL.has(u)) return 'oral';
   return 'oral';
 }
 
-function groupStrengthsByForm(strengths) {
+function groupStrengthsByForm(strengths, drugDosageForms) {
   const oral = [];
   const injectable = [];
+  const topical = [];
+  const ophthalmic = [];
   (strengths || []).forEach((s, idx) => {
-    const group = classifyStrengthUnit(s.unit);
-    if (group === 'injectable') injectable.push({ ...s, _idx: idx });
-    else oral.push({ ...s, _idx: idx });
+    const group = classifyStrengthUnit(s.unit, s.form, drugDosageForms);
+    const entry = { ...s, _idx: idx };
+    if (group === 'injectable') injectable.push(entry);
+    else if (group === 'topical') topical.push(entry);
+    else if (group === 'ophthalmic' || group === 'otic') ophthalmic.push(entry);
+    else oral.push(entry);
   });
-  return { oral, injectable };
+  return { oral, injectable, topical, ophthalmic };
+}
+
+// ── BSA calculation (Meeh's formula) ────────────────────────────
+function calculateBSA(weightKg, species) {
+  if (!weightKg || weightKg <= 0) return null;
+  const k = species === 'cat' ? 0.100 : 0.101;
+  return k * Math.pow(weightKg, 2 / 3);
+}
+
+// ── Tablet rounding helpers ─────────────────────────────────────
+function roundToQuarter(val) {
+  return Math.round(val * 4) / 4;
+}
+
+function fractionLabel(val) {
+  if (val <= 0) return '0';
+  const whole = Math.floor(val);
+  const frac = val - whole;
+  const fracMap = { 0: '', 0.25: '¼', 0.5: '½', 0.75: '¾' };
+  const fracStr = fracMap[Math.round(frac * 4) / 4] ?? '';
+  if (whole === 0) return fracStr || '0';
+  return fracStr ? `${whole}${fracStr}` : `${whole}`;
+}
+
+/** Score a strength by how clean the tablet fraction is for a given total dose. */
+function scoreStrength(totalDoseMg, strengthValue) {
+  if (!strengthValue || strengthValue <= 0) return { exact: 0, rounded: 0, score: 0 };
+  const exact = totalDoseMg / strengthValue;
+  const rounded = roundToQuarter(exact);
+  // Score: closeness to a clean fraction (whole > half > quarter)
+  const diff = Math.abs(exact - rounded);
+  const fracPart = rounded % 1;
+  let cleanness = 1;
+  if (fracPart === 0) cleanness = 1.0;
+  else if (fracPart === 0.5) cleanness = 0.8;
+  else cleanness = 0.6; // quarter
+  const accuracy = 1 - Math.min(diff / exact, 1);
+  return { exact, rounded, score: accuracy * cleanness };
 }
 
 // ── Dose unit options ───────────────────────────────────────────
@@ -116,6 +210,11 @@ function getValidRoutes(drug, species) {
   // Fallback: if nothing, use the drug's default route
   if (routes.size === 0 && drug.route) routes.add(drug.route);
   return [...routes];
+}
+
+/** Check if a route is a "simple" route that doesn't need dose/kg calculation */
+function isSimpleRoute(route) {
+  return SIMPLE_ROUTES.has(route);
 }
 
 /** Find the dosage_list entry matching a route for a species. */
@@ -161,10 +260,62 @@ function getDoseStatus(doseNum, range) {
   return 'within';
 }
 
+// ── Drug Info Popover ────────────────────────────────────────────
+function DrugInfoPopover({ drug, onClose }) {
+  const desc = drug.briefDescription || drug.commonMechanism || null;
+  const indications = drug.primaryIndications?.length ? drug.primaryIndications : null;
+  const mechanism = drug.mechanismShort || drug.commonMechanism || null;
+  const adverse = drug.commonAdverseEffects?.length ? drug.commonAdverseEffects : null;
+
+  if (!desc && !indications && !mechanism && !adverse) {
+    return (
+      <div className="absolute z-30 top-full left-0 mt-1 bg-white border border-slate-200 rounded-lg shadow-lg p-3 w-72">
+        <p className="text-[11px] text-slate-400">약물 정보가 아직 등록되지 않았습니다.</p>
+        <button onClick={onClose} className="absolute top-1.5 right-1.5 p-0.5 text-slate-400 hover:text-slate-600"><X size={12} /></button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="absolute z-30 top-full left-0 mt-1 bg-white border border-slate-200 rounded-lg shadow-lg p-3 w-80 space-y-2">
+      <button onClick={onClose} className="absolute top-1.5 right-1.5 p-0.5 text-slate-400 hover:text-slate-600"><X size={12} /></button>
+      {desc && (
+        <div>
+          <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">약물 설명</p>
+          <p className="text-[11px] text-slate-700 leading-relaxed">{desc}</p>
+        </div>
+      )}
+      {indications && (
+        <div>
+          <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">주요 적응증</p>
+          <div className="flex flex-wrap gap-1">
+            {indications.map((ind, i) => (
+              <span key={i} className="px-1.5 py-0.5 text-[10px] bg-blue-50 text-blue-700 rounded border border-blue-100">{ind}</span>
+            ))}
+          </div>
+        </div>
+      )}
+      {mechanism && (
+        <div>
+          <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">작용 기전</p>
+          <p className="text-[11px] text-slate-600 leading-relaxed">{mechanism}</p>
+        </div>
+      )}
+      {adverse && (
+        <div>
+          <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">주요 부작용</p>
+          <p className="text-[11px] text-slate-500 leading-relaxed">{adverse.join(', ')}</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── Drug Card ───────────────────────────────────────────────────
 function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSignal }) {
   const hardstop = checkHardstop(drug, species);
   const hasSeenCollapseSignalRef = useRef(false);
+  const [showInfo, setShowInfo] = useState(false);
 
   // Formulation state
   const strengths = drug.availableStrengths || [];
@@ -173,10 +324,14 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
   );
   const selectedStrength = strengths[selectedStrengthIdx] || null;
 
+  // ── Clinical context (dosage_list entries) ────────────────
+  const dosageEntries = drug.dosageList?.[species] || [];
+  const hasMultipleContexts = dosageEntries.length > 1;
+  const [selectedContextIdx, setSelectedContextIdx] = useState(0);
+
   // ── Formulation → Route → Freq/Dose cascade ──────────────
   const validRoutes = getValidRoutes(drug, species);
   const [route, setRoute] = useState(() => {
-    // Initialise to the drug's data-backed route, or fall back
     if (drug.route && validRoutes.includes(drug.route)) return drug.route;
     return validRoutes[0] || 'PO';
   });
@@ -185,7 +340,7 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
   // Dosage entry for the currently-selected route
   const activeDosage = findDosageForRoute(drug, species, route);
 
-  // Route options = data-backed + "Other (off-label)"
+  // Route options = data-backed + "기타 (허가 외)"
   const routeOptions = [...validRoutes, 'Other (off-label)'];
 
   // Frequency options depend on route
@@ -195,8 +350,9 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
     return freqOptions.includes(initial) ? initial : freqOptions[0];
   });
 
-  // IV administration mode: bolus vs CRI
+  // Route mode
   const isParenteral = PARENTERAL_ROUTES.has(route);
+  const isSimple = isSimpleRoute(route);
   const isIV = route === 'IV';
   const [adminMode, setAdminMode] = useState('bolus'); // 'bolus' | 'cri'
   const [infusionRate, setInfusionRate] = useState('');
@@ -206,6 +362,11 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
   const [duration, setDuration] = useState(drug.prescriptionDays || 7);
   const [durationInput, setDurationInput] = useState(String(drug.prescriptionDays || 7));
   const [memo, setMemo] = useState(drug.memo || '');
+
+  // Simple route fields (topical, ophthalmic, otic, inhalation)
+  const [applicationInstructions, setApplicationInstructions] = useState('');
+  const [dropsCount, setDropsCount] = useState('');
+  const [puffsCount, setPuffsCount] = useState('');
 
   // Dose state — pre-fill with species default
   const defaultDose = drug.defaultDose?.[species] || '';
@@ -218,8 +379,8 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
     return activeDosage?.unit || drug.unit || 'mg/kg';
   });
 
-  // Grouped strengths for form-based display
-  const strengthGroups = groupStrengthsByForm(strengths);
+  // Grouped strengths for form-based display (4 groups)
+  const strengthGroups = groupStrengthsByForm(strengths, drug.dosageForms);
 
   // ── Cascade: when route changes, update freq, dose, duration, unit ──
   const handleRouteChange = (newRoute) => {
@@ -268,14 +429,44 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
     setSelectedStrengthIdx(idx);
     const s = strengths[idx];
     if (!s) return;
-    const group = classifyStrengthUnit(s.unit);
+    const group = classifyStrengthUnit(s.unit, s.form, drug.dosageForms);
     if (group === 'injectable') {
-      // Auto-select first parenteral route
       const parenteralRoute = validRoutes.find(r => PARENTERAL_ROUTES.has(r));
       if (parenteralRoute && route !== parenteralRoute) handleRouteChange(parenteralRoute);
+    } else if (group === 'topical') {
+      if (validRoutes.includes('Topical') && route !== 'Topical') handleRouteChange('Topical');
+    } else if (group === 'ophthalmic' || group === 'otic') {
+      const ophRoute = validRoutes.find(r => r === 'Ophthalmic' || r === 'Otic');
+      if (ophRoute && route !== ophRoute) handleRouteChange(ophRoute);
     } else {
-      // Auto-select PO if available
       if (validRoutes.includes('PO') && route !== 'PO') handleRouteChange('PO');
+    }
+  };
+
+  // ── Clinical context change ──
+  const handleContextChange = (idx) => {
+    setSelectedContextIdx(idx);
+    const entry = dosageEntries[idx];
+    if (!entry) return;
+    if (entry.route && validRoutes.includes(entry.route)) handleRouteChange(entry.route);
+    if (entry.value != null) {
+      const parts = String(entry.value).split(/\s*[-–]\s*/);
+      if (parts.length === 2) {
+        const avg = (parseFloat(parts[0]) + parseFloat(parts[1])) / 2;
+        setDosePerKg(isNaN(avg) ? '' : avg);
+      } else {
+        const v = parseFloat(entry.value);
+        setDosePerKg(isNaN(v) ? '' : v);
+      }
+    }
+    if (entry.unit) setDoseUnit(entry.unit);
+    if (entry.frequency) {
+      const newFreqOptions = FREQ_BY_ROUTE[entry.route || route] || FREQ_BY_ROUTE._default;
+      setFreq(newFreqOptions.includes(entry.frequency) ? entry.frequency : newFreqOptions[0]);
+    }
+    if (entry.durationNote) {
+      const m = entry.durationNote.match(/(\d+)/);
+      if (m) { setDuration(parseInt(m[1], 10)); setDurationInput(m[1]); }
     }
   };
 
@@ -305,29 +496,57 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
   // Compute dose info
   const doseNum = parseFloat(dosePerKg) || 0;
   const weightNum = parseFloat(weight) || 0;
-  const totalDoseMg = doseNum > 0 && weightNum > 0 ? +(doseNum * weightNum) : null;
+  const isBSA = doseUnit === 'mg/m²';
+  const bsa = isBSA ? calculateBSA(weightNum, species) : null;
+  const totalDoseMg = (() => {
+    if (doseNum <= 0 || weightNum <= 0) return null;
+    if (isBSA && bsa) return +(doseNum * bsa);
+    if (doseUnit === 'mg' || doseUnit === 'mL') return +doseNum; // absolute dose
+    return +(doseNum * weightNum); // per-kg
+  })();
   const range = drug.doseRange?.[species];
-  const doseStatus = doseNum > 0 ? getDoseStatus(doseNum, range) : null;
+  const doseStatus = (!isSimple && doseNum > 0) ? getDoseStatus(doseNum, range) : null;
 
-  // Tablets / volume needed
-  const tabletsNeeded = totalDoseMg && selectedStrength
-    ? +(totalDoseMg / selectedStrength.value).toFixed(2)
+  // Tablets / volume needed + smart rounding
+  const exactUnits = totalDoseMg && selectedStrength?.value
+    ? totalDoseMg / selectedStrength.value
     : null;
+  const isInjectableRoute = PARENTERAL_ROUTES.has(route);
+  const roundedTablets = exactUnits != null && !isInjectableRoute ? roundToQuarter(exactUnits) : null;
+  const tabletsNeeded = isInjectableRoute ? exactUnits : roundedTablets;
   const totalDoseDisplay = totalDoseMg != null
     ? `${totalDoseMg.toFixed(totalDoseMg < 1 ? 3 : totalDoseMg < 10 ? 2 : 1)} mg`
     : null;
 
+  // Best strength suggestion for oral routes
+  const bestStrengthIdx = (() => {
+    if (!totalDoseMg || isInjectableRoute || isSimple) return null;
+    const oralStrengths = strengthGroups.oral;
+    if (oralStrengths.length <= 1) return null;
+    let bestIdx = null;
+    let bestScore = -1;
+    oralStrengths.forEach((s) => {
+      const { score } = scoreStrength(totalDoseMg, s.value);
+      if (score > bestScore) { bestScore = score; bestIdx = s._idx; }
+    });
+    return bestIdx;
+  })();
+
   // Push updates to parent whenever key state changes
   useEffect(() => {
     onUpdateDrug(drug.id, {
-      dosePerKg,
-      doseUnit,
+      dosePerKg: isSimple ? undefined : dosePerKg,
+      doseUnit: isSimple ? undefined : doseUnit,
       route: isOffLabel ? 'Other' : route,
       freq,
       prescriptionDays: duration || '',
       memo,
       doseStatus,
       _selectedStrengthIdx: selectedStrengthIdx,
+      // Simple route fields
+      ...(route === 'Topical' ? { applicationInstructions } : {}),
+      ...(route === 'Ophthalmic' || route === 'Otic' ? { dropsCount } : {}),
+      ...(route === 'Inhalation' ? { puffsCount } : {}),
       ...(isIV && adminMode === 'cri' ? {
         adminMode: 'cri',
         infusionRate,
@@ -335,7 +554,7 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
       } : { adminMode: 'bolus' }),
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dosePerKg, doseUnit, route, freq, duration, memo, selectedStrengthIdx, adminMode, infusionRate, infusionDuration]);
+  }, [dosePerKg, doseUnit, route, freq, duration, memo, selectedStrengthIdx, adminMode, infusionRate, infusionDuration, applicationInstructions, dropsCount, puffsCount]);
 
   const inputBorderClass = doseStatus === 'above'
     ? 'border-red-400 focus:ring-red-200'
@@ -372,8 +591,18 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
         className="flex items-start gap-2.5 px-3.5 pt-2.5 pb-1.5 cursor-pointer"
       >
         <div className="mt-0.5"><SourceIcon source={drug.source} /></div>
-        <div className="flex-1 min-w-0">
-          <p className="text-[13px] font-semibold text-slate-900 leading-tight">{drug.name}</p>
+        <div className="flex-1 min-w-0 relative">
+          <div className="flex items-center gap-1.5">
+            <p className="text-[13px] font-semibold text-slate-900 leading-tight">{drug.name}</p>
+            <button
+              onClick={(e) => { e.stopPropagation(); setShowInfo(v => !v); }}
+              className="p-0.5 text-slate-300 hover:text-blue-500 transition-colors"
+              title="약물 정보"
+            >
+              <Info size={12} />
+            </button>
+          </div>
+          {showInfo && <DrugInfoPopover drug={drug} onClose={() => setShowInfo(false)} />}
           <div className="flex items-center gap-1.5 mt-0.5 flex-wrap">
             {drug.nameKr && <span className="text-[11px] text-slate-400">{drug.nameKr}</span>}
             {drug.class && <span className="text-[10px] font-medium text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded">{drug.class}</span>}
@@ -390,19 +619,16 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
               </span>
             )}
           </div>
-          {!expanded && (
-            <></>
-          )}
         </div>
         {!expanded && (
           <div className="flex-1 min-w-0 flex flex-col items-center justify-center px-2 pt-1">
-            <p className="text-[13px] font-semibold text-slate-700 tracking-wide whitespace-nowrap">
-              {freq} · {route}{duration ? ` · ${duration}d` : ''}
+            <p className="text-[12px] font-medium text-slate-600 whitespace-nowrap">
+              {drug.nameKr || drug.name} · {getRouteDisplayLabel(route)} · {selectedStrength ? `${selectedStrength.value}${selectedStrength.unit}` : ''} · {getFreqDisplayLabel(freq)}{duration ? ` · ${duration}일` : ''}
             </p>
             {memo && <p className="text-[11px] text-slate-400 italic leading-snug mt-0.5 text-center">{memo}</p>}
           </div>
         )}
-        {!expanded && (
+        {!expanded && !isSimple && (
           <div className="shrink-0 min-w-[170px] text-right">
             <div className="rounded-lg border border-slate-200 bg-slate-50/70 px-2.5 py-1.5">
               <div className={`text-[14px] font-bold leading-tight ${
@@ -413,9 +639,12 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
                 {totalDoseDisplay || '—'}
               </div>
               <div className="text-[9px] text-slate-500">총 투여량</div>
-              {tabletsNeeded && selectedStrength && (
+              {tabletsNeeded != null && selectedStrength && (
                 <div className="text-[10px] font-semibold text-slate-600 mt-0.5">
-                  {tabletsNeeded.toFixed(2)} {getDoseUnitLabel(route)} × {selectedStrength.value}{selectedStrength.unit}
+                  {isInjectableRoute
+                    ? `${tabletsNeeded.toFixed(2)} mL (${selectedStrength.value}${selectedStrength.unit})`
+                    : `${fractionLabel(roundedTablets)} ${getDoseUnitLabel(route)} × ${selectedStrength.value}${selectedStrength.unit}`
+                  }
                 </div>
               )}
             </div>
@@ -452,7 +681,7 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
             <div className="space-y-2.5">
               {strengths.length > 0 && (
                 <div>
-                  <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">제형 Formulation</label>
+                  <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">제형</label>
                   <div className="space-y-1">
                     {strengthGroups.oral.length > 0 && (
                       <div className="flex items-center gap-1 flex-wrap">
@@ -463,8 +692,9 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
                               selectedStrengthIdx === s._idx
                                 ? 'bg-slate-800 text-white border-slate-800'
                                 : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
-                            }`}>
+                            } ${bestStrengthIdx === s._idx ? 'ring-1 ring-emerald-400' : ''}`}>
                             {s.value}{s.unit}
+                            {bestStrengthIdx === s._idx && <span className="ml-1 text-[8px] text-emerald-500">추천</span>}
                           </button>
                         ))}
                       </div>
@@ -484,35 +714,84 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
                         ))}
                       </div>
                     )}
+                    {strengthGroups.topical.length > 0 && (
+                      <div className="flex items-center gap-1 flex-wrap">
+                        <span className="text-[9px] font-semibold text-amber-500 w-8 shrink-0">외용</span>
+                        {strengthGroups.topical.map((s) => (
+                          <button key={s._idx} onClick={() => handleFormulationChange(s._idx)}
+                            className={`px-2 py-0.5 text-[11px] font-medium rounded-md border transition-all ${
+                              selectedStrengthIdx === s._idx
+                                ? 'bg-amber-600 text-white border-amber-600'
+                                : 'bg-white text-amber-600 border-amber-200 hover:border-amber-300'
+                            }`}>
+                            {s.value}{s.unit}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                    {strengthGroups.ophthalmic.length > 0 && (
+                      <div className="flex items-center gap-1 flex-wrap">
+                        <span className="text-[9px] font-semibold text-teal-500 w-8 shrink-0">안과</span>
+                        {strengthGroups.ophthalmic.map((s) => (
+                          <button key={s._idx} onClick={() => handleFormulationChange(s._idx)}
+                            className={`px-2 py-0.5 text-[11px] font-medium rounded-md border transition-all ${
+                              selectedStrengthIdx === s._idx
+                                ? 'bg-teal-600 text-white border-teal-600'
+                                : 'bg-white text-teal-600 border-teal-200 hover:border-teal-300'
+                            }`}>
+                            {s.value}{s.unit}
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </div>
+                </div>
+              )}
+
+              {/* Clinical context dropdown */}
+              {hasMultipleContexts && (
+                <div>
+                  <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">적응증 선택</label>
+                  <select
+                    value={selectedContextIdx}
+                    onChange={e => handleContextChange(parseInt(e.target.value, 10))}
+                    className="w-full px-2.5 py-1.5 text-[12px] border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white text-slate-700"
+                  >
+                    {dosageEntries.map((entry, i) => (
+                      <option key={i} value={i}>{entry.context || `프로토콜 ${i + 1}`}</option>
+                    ))}
+                  </select>
+                  {dosageEntries[selectedContextIdx]?.evidence && (
+                    <p className="text-[9px] text-blue-500 mt-0.5 leading-tight">{dosageEntries[selectedContextIdx].evidence}</p>
+                  )}
                 </div>
               )}
 
               <div className="grid grid-cols-3 gap-2">
                 <div>
-                  <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">투여경로 Route</label>
+                  <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">투여경로</label>
                   <select value={isOffLabel ? 'Other (off-label)' : route} onChange={e => handleRouteChange(e.target.value)}
                     className={`w-full px-2.5 py-1.5 text-[12px] border rounded-md focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white text-slate-700 ${
                       isOffLabel ? 'border-amber-300' : 'border-slate-200'
                     }`}>
                     {routeOptions.map(r => (
-                      <option key={r} value={r}>{r}</option>
+                      <option key={r} value={r}>{r === 'Other (off-label)' ? '기타 (허가 외)' : getRouteDisplayLabel(r)}</option>
                     ))}
                   </select>
-                  {activeDosage?.context && (
+                  {activeDosage?.context && !hasMultipleContexts && (
                     <p className="text-[9px] text-slate-400 mt-0.5 leading-tight">{activeDosage.context}</p>
                   )}
                 </div>
                 <div>
-                  <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">투여빈도 Freq</label>
+                  <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">투여빈도</label>
                   <select value={freq} onChange={e => setFreq(e.target.value)}
                     className="w-full px-2.5 py-1.5 text-[12px] border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white text-slate-700">
-                    {freqOptions.map(f => <option key={f}>{f}</option>)}
+                    {freqOptions.map(f => <option key={f} value={f}>{getFreqDisplayLabel(f)}</option>)}
                   </select>
                 </div>
                 <div>
                   <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">
-                    {isIV && adminMode === 'cri' ? '주입시간 (hrs)' : '투여기간 (일)'}
+                    {isIV && adminMode === 'cri' ? '주입시간 (시간)' : '투여기간 (일)'}
                   </label>
                   <input
                     type="text"
@@ -624,77 +903,161 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
               </div>
             </div>
 
-            {/* Right: dose-related info */}
-            <div className="rounded-lg border border-slate-200 bg-white p-2.5 space-y-2">
-              <label className="block text-[9px] font-bold text-slate-500 uppercase tracking-widest">용량 Dose</label>
-              <div className="flex items-center gap-1">
-                <DoseInput
-                  value={dosePerKg}
-                  onChange={(v) => setDosePerKg(v)}
-                  placeholder={range ? `${range[0]}–${range[1]}` : ''}
-                  className={`w-full px-2.5 py-1.5 text-[12px] border rounded-md focus:outline-none focus:ring-2 bg-white placeholder:text-slate-300 transition-all ${inputBorderClass}`}
-                />
-                <select
-                  value={doseUnit}
-                  onChange={(e) => setDoseUnit(e.target.value)}
-                  className="shrink-0 px-1.5 py-1.5 text-[10px] border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white text-slate-500 font-medium"
-                >
-                  {DOSE_UNIT_OPTIONS.map(u => <option key={u} value={u}>{u}</option>)}
-                </select>
+            {/* Right: dose-related info — route-specific modes */}
+            {isSimple ? (
+              /* ── Simple route mode (외용/점안/점이/흡입) ── */
+              <div className="rounded-lg border border-slate-200 bg-white p-2.5 space-y-2">
+                <label className="block text-[9px] font-bold text-slate-500 uppercase tracking-widest">
+                  {route === 'Topical' && '외용 투여'}
+                  {route === 'Ophthalmic' && '점안 투여'}
+                  {route === 'Otic' && '점이 투여'}
+                  {route === 'Inhalation' && '흡입 투여'}
+                </label>
+                {selectedStrength && (
+                  <div className="text-[12px] font-medium text-slate-700 bg-slate-50 rounded-md px-2.5 py-1.5 border border-slate-100">
+                    선택 농도: {selectedStrength.value}{selectedStrength.unit}
+                  </div>
+                )}
+                {route === 'Topical' && (
+                  <div>
+                    <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">도포 지시사항</label>
+                    <textarea
+                      value={applicationInstructions}
+                      onChange={(e) => setApplicationInstructions(e.target.value)}
+                      placeholder="예: 환부에 얇게 도포, 병변 부위에 1일 2회 도포..."
+                      rows={2}
+                      className="w-full px-2.5 py-1.5 text-[12px] border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white text-slate-700 placeholder:text-slate-300 resize-y min-h-[54px]"
+                    />
+                  </div>
+                )}
+                {(route === 'Ophthalmic' || route === 'Otic') && (
+                  <div>
+                    <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">
+                      {route === 'Ophthalmic' ? '점안 횟수 (방울/회)' : '점이 횟수 (방울/회)'}
+                    </label>
+                    <input
+                      type="text"
+                      inputMode="numeric"
+                      value={dropsCount}
+                      onChange={(e) => { if (/^\d*$/.test(e.target.value)) setDropsCount(e.target.value); }}
+                      placeholder="예: 1"
+                      className="w-full px-2.5 py-1.5 text-[12px] border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white text-slate-700 placeholder:text-slate-300"
+                    />
+                  </div>
+                )}
+                {route === 'Inhalation' && (
+                  <div>
+                    <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">흡입 횟수 (회/투여)</label>
+                    <input
+                      type="text"
+                      inputMode="numeric"
+                      value={puffsCount}
+                      onChange={(e) => { if (/^\d*$/.test(e.target.value)) setPuffsCount(e.target.value); }}
+                      placeholder="예: 2"
+                      className="w-full px-2.5 py-1.5 text-[12px] border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white text-slate-700 placeholder:text-slate-300"
+                    />
+                  </div>
+                )}
               </div>
-
-              {/* Always-visible dose range */}
-              {range && (
-                <div className={`text-[10px] flex items-center gap-1 ${
-                  doseStatus === 'above' ? 'text-red-600 font-medium' :
-                  doseStatus === 'below' ? 'text-orange-600 font-medium' :
-                  doseStatus === 'within' ? 'text-emerald-600' :
-                  'text-slate-400'
-                }`}>
-                  {doseStatus === 'above' && <AlertTriangle size={10} />}
-                  {doseStatus === 'below' && <AlertTriangle size={10} />}
-                  {doseStatus === 'within' && <Check size={9} strokeWidth={3} />}
-                  <span>권장 {range[0]}–{range[1]} {doseUnit}</span>
-                  {doseStatus === 'above' && <span>· 초과</span>}
-                  {doseStatus === 'below' && <span>· 미달</span>}
+            ) : (
+              /* ── Standard / Injectable dose mode ── */
+              <div className="rounded-lg border border-slate-200 bg-white p-2.5 space-y-2">
+                <label className="block text-[9px] font-bold text-slate-500 uppercase tracking-widest">
+                  {isInjectableRoute ? '용량 / 투여량' : '용량'}
+                </label>
+                <div className="flex items-center gap-1">
+                  <DoseInput
+                    value={dosePerKg}
+                    onChange={(v) => setDosePerKg(v)}
+                    placeholder={range ? `${range[0]}–${range[1]}` : ''}
+                    className={`w-full px-2.5 py-1.5 text-[12px] border rounded-md focus:outline-none focus:ring-2 bg-white placeholder:text-slate-300 transition-all ${inputBorderClass}`}
+                  />
+                  <select
+                    value={doseUnit}
+                    onChange={(e) => setDoseUnit(e.target.value)}
+                    className="shrink-0 px-1.5 py-1.5 text-[10px] border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white text-slate-500 font-medium"
+                  >
+                    {DOSE_UNIT_OPTIONS.map(u => <option key={u} value={u}>{u}</option>)}
+                  </select>
                 </div>
-              )}
 
-              {(totalDoseMg || doseNum > 0) ? (
-                <div className="rounded-md p-2 text-center border border-slate-200 bg-slate-50/60">
-                  {totalDoseMg != null ? (
-                    <>
-                      <div className={`text-[15px] font-bold leading-tight ${
-                        doseStatus === 'above' ? 'text-red-700' :
-                        doseStatus === 'below' ? 'text-orange-700' :
-                        'text-slate-800'
-                      }`}>
-                        {totalDoseDisplay}
-                      </div>
-                      <div className="text-[9px] text-slate-400">총 투여량</div>
-                      {doseStatus && (
-                        <div className={`mt-1 inline-flex items-center justify-center rounded-full border px-1.5 py-0.5 text-[9px] font-semibold ${
-                          doseStatus === 'above'
-                            ? 'border-red-200 bg-red-50 text-red-700'
-                            : doseStatus === 'below'
-                            ? 'border-orange-200 bg-orange-50 text-orange-700'
-                            : 'border-slate-200 bg-white text-slate-600'
+                {/* BSA info for mg/m² */}
+                {isBSA && bsa && (
+                  <div className="text-[10px] text-blue-600 bg-blue-50 rounded-md px-2 py-1 border border-blue-100">
+                    BSA: {bsa.toFixed(3)} m² ({species === 'cat' ? '고양이' : '개'} {weightNum}kg)
+                  </div>
+                )}
+
+                {/* Always-visible dose range */}
+                {range && (
+                  <div className={`text-[10px] flex items-center gap-1 ${
+                    doseStatus === 'above' ? 'text-red-600 font-medium' :
+                    doseStatus === 'below' ? 'text-orange-600 font-medium' :
+                    doseStatus === 'within' ? 'text-emerald-600' :
+                    'text-slate-400'
+                  }`}>
+                    {doseStatus === 'above' && <AlertTriangle size={10} />}
+                    {doseStatus === 'below' && <AlertTriangle size={10} />}
+                    {doseStatus === 'within' && <Check size={9} strokeWidth={3} />}
+                    <span>권장 {range[0]}–{range[1]} {doseUnit}</span>
+                    {doseStatus === 'above' && <span>· 초과</span>}
+                    {doseStatus === 'below' && <span>· 미달</span>}
+                  </div>
+                )}
+
+                {(totalDoseMg || doseNum > 0) ? (
+                  <div className="rounded-md p-2 text-center border border-slate-200 bg-slate-50/60">
+                    {totalDoseMg != null ? (
+                      <>
+                        <div className={`text-[15px] font-bold leading-tight ${
+                          doseStatus === 'above' ? 'text-red-700' :
+                          doseStatus === 'below' ? 'text-orange-700' :
+                          'text-slate-800'
                         }`}>
-                          {doseStatus === 'above' ? '범위 초과' : doseStatus === 'below' ? '범위 미달' : '적정 범위'}
+                          {totalDoseDisplay}
                         </div>
-                      )}
-                      {tabletsNeeded && (
-                        <div className="text-[11px] font-semibold text-slate-600 mt-0.5">
-                          {tabletsNeeded.toFixed(2)} {getDoseUnitLabel(route)} × {selectedStrength.value}{selectedStrength.unit}
-                        </div>
-                      )}
-                    </>
-                  ) : (
-                    <div className="text-[10px] text-slate-400">체중을 입력하세요</div>
-                  )}
-                </div>
-              ) : null}
-            </div>
+                        <div className="text-[9px] text-slate-400">총 투여량</div>
+                        {doseStatus && (
+                          <div className={`mt-1 inline-flex items-center justify-center rounded-full border px-1.5 py-0.5 text-[9px] font-semibold ${
+                            doseStatus === 'above'
+                              ? 'border-red-200 bg-red-50 text-red-700'
+                              : doseStatus === 'below'
+                              ? 'border-orange-200 bg-orange-50 text-orange-700'
+                              : 'border-slate-200 bg-white text-slate-600'
+                          }`}>
+                            {doseStatus === 'above' ? '범위 초과' : doseStatus === 'below' ? '범위 미달' : '적정 범위'}
+                          </div>
+                        )}
+                        {tabletsNeeded != null && selectedStrength && (
+                          <div className="text-[11px] font-semibold text-slate-600 mt-1">
+                            {isInjectableRoute ? (
+                              /* Injectable: show volume (mL) */
+                              <span>{tabletsNeeded.toFixed(2)} mL ({selectedStrength.value}{selectedStrength.unit} 바이알)</span>
+                            ) : (
+                              /* Oral: show rounded tablets with fraction */
+                              <span>
+                                {fractionLabel(roundedTablets)} {getDoseUnitLabel(route)} × {selectedStrength.value}{selectedStrength.unit}
+                                {exactUnits && Math.abs(exactUnits - roundedTablets) > 0.01 && (
+                                  <span className="text-[9px] text-slate-400 ml-1">(정확: {exactUnits.toFixed(2)})</span>
+                                )}
+                              </span>
+                            )}
+                          </div>
+                        )}
+                        {/* Splittable warning */}
+                        {!isInjectableRoute && selectedStrength?.isSplittable === false && roundedTablets && roundedTablets % 1 !== 0 && (
+                          <div className="mt-1 text-[9px] text-amber-600 flex items-center justify-center gap-1">
+                            <AlertTriangle size={9} /> 이 제형은 분할할 수 없습니다
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      <div className="text-[10px] text-slate-400">체중을 입력하세요</div>
+                    )}
+                  </div>
+                ) : null}
+              </div>
+            )}
           </div>
         </div>
       </div>
