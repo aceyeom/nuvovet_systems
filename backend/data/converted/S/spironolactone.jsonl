@@ -25,27 +25,39 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 80,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -665,5 +677,14 @@
     "source_file": "plumbs_output/35.jsonl",
     "extracted_at": "2026-03-11T00:03:16.455125+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "스피로노락톤(Spironolactone)은(는) 체액 저류 치료에 사용되는 이뇨제입니다.",
+  "primary_indications": [
+    "【승인 적응증】없음(미국 내 단일 성분 수의용 승인 없음). 【오프라벨 적응증】개: MMVD로 인한 CHF 보조치료",
+    "고혈압 보조치료",
+    "저칼륨혈증 예방. 고양이: CHF 보조치료(푸로세미드 및 ACE 억제제로 조절 안 될 때)",
+    "심근병증",
+    "고혈압 보조치료."
+  ],
+  "mechanism_short": "알도스테론 경쟁적 길항제(미네랄코르티코이드 수용체 길항제). 원위 세뇨관에서 알도스테론을 경쟁적으로 억제하여 나트륨, 염소, 수분 배설 증가 및 칼륨, 암모늄, 인산염 배설 감소. 탄산탈수효소 또는 신장 수송 기전에는 영향 없음."
 }

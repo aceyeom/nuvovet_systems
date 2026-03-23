@@ -23,23 +23,33 @@
     "available_strengths": [
       {
         "value": 1.25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -560,5 +570,11 @@
     "source_file": "plumbs_output/63.jsonl",
     "extracted_at": "2026-03-11T09:06:14.488497+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "메티마졸(Methimazole)은(는) 갑상선 기능 이상 치료에 사용되는 갑상선 약물입니다.",
+  "primary_indications": [
+    "고양이 갑상선기능항진증 (FDA 승인). 경구 투여 불내성 고양이에서 경피 PLO 겔 제형 사용 가능 (오프라벨). 기니피그 갑상선기능항진증 (증례 보고 기반",
+    "오프라벨)."
+  ],
+  "mechanism_short": "갑상선 과산화효소(thyroid peroxidase)를 억제하여 티로글로불린의 티로실 잔기에 요오드가 결합되는 것을 방해함으로써 갑상선 호르몬 합성을 억제. 또한 요오드화 티로실 잔기의 결합을 억제하여 요오드티로닌 형성을 차단. 이미 형성되어 순환 중인 갑상선 호르몬의 방출이나 활성에는 영향 없음."
 }

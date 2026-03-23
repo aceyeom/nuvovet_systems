@@ -33,47 +33,69 @@
     "available_strengths": [
       {
         "value": 75,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 150,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 600,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 333,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 750,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 180,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -677,5 +699,13 @@
     "source_file": "plumbs_output/23.jsonl",
     "extracted_at": "2026-03-10T20:25:50.677111+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "세팔렉신(Cephalexin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "승인 적응증: 개의 감수성 균주(Staphylococcus pseudintermedius)에 의한 이차성 표재성 세균성 농피증. 엑스트라라벨 적응증: 심부 농피증",
+    "요로감염(UTI)",
+    "고양이/페럿/파충류/조류의 감수성 세균 감염",
+    "상처 및 농양 감염."
+  ],
+  "mechanism_short": "세포벽 합성 억제: 세균 세포막의 페니실린 결합 단백질(PBP; 카르복시펩티다제, 트랜스펩티다제, 엔도펩티다제)에 결합하여 무코펩티드 합성을 억제하고, 삼투압적으로 불안정한 구형체(spheroplast)를 형성하여 살균 작용을 나타냄. 시간 의존적 살균 항생제."
 }

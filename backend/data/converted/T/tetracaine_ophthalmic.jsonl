@@ -22,11 +22,15 @@
     "available_strengths": [
       {
         "value": 0.5,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -343,5 +347,16 @@
     "source_file": "plumbs_output/5.jsonl",
     "extracted_at": "2026-03-10T15:07:01.955502+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "테트라카인 점안액(Tetracaine Ophthalmic)은(는) 통증 완화에 사용되는 진통제입니다.",
+  "primary_indications": [
+    "안압 측정(안압계)",
+    "세포학 및 배양을 위한 각막·결막 채취",
+    "안구 초음파",
+    "전방각경 검사 등 안과 진단 처치. 이물질 및 봉합사 제거",
+    "안검·결막 수술",
+    "각막 이식",
+    "백내장 적출 등 병원 내 치료적 처치의 보조 마취. 개에서 프로파라카인 대비 더 빠르고 깊은 마취 유도 가능."
+  ],
+  "mechanism_short": "전압 개폐 나트륨 채널의 세포 내 부위에 결합하여 나트륨의 세포 내 이동을 억제함으로써 신경 탈분극을 차단하고 활동 전위 생성을 방지하는 국소 마취 기전."
 }

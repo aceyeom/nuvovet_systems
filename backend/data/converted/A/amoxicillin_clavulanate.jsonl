@@ -25,23 +25,33 @@
     "available_strengths": [
       {
         "value": 62.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 125,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 375,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 62.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -586,5 +596,17 @@
     "source_file": "plumbs_output/55.jsonl",
     "extracted_at": "2026-03-11T06:16:20.651632+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아목시실린/클라불란산(Amoxicillin/Clavulanate)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "승인 적응증(개): 베타-락타마제 생성 포도상구균",
+    "연쇄상구균",
+    "대장균에 의한 피부/연조직 감염(상처",
+    "농피증)",
+    "치주 감염. 승인 적응증(고양이): 피부/연조직 감염",
+    "대장균에 의한 요로감염. 비라벨 사용: 산발성 세균성 방광염(개/고양이)",
+    "심부 농피증(개)",
+    "감수성 포도상구균에 의한 심내막염(개)"
+  ],
+  "mechanism_short": "세포벽 합성 억제를 통한 살균 작용. 베타-락탐 항생제가 세균 세포질막 내 페니실린 결합 단백질(PBP: 카르복시펩티다제, 트랜스펩티다제, 엔도펩티다제)에 결합하여 무코펩티드 합성을 억제하고 삼투압적으로 불안정한 구형체를 형성. 클라불란산은 베타-락타마제(II, III, IV, V형 및 포도상구균 페니실리나제)에 경쟁적·비가역적으로 결합하여 아목시실린을 보호하는 베타-락타마제 억제제."
 }

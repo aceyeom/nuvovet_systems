@@ -21,19 +21,27 @@
     "available_strengths": [
       {
         "value": 1.875,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 3.75,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 7.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 15.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -377,5 +385,10 @@
     "source_file": "plumbs_output/29.jsonl",
     "extracted_at": "2026-03-10T22:23:08.186756+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "오사테론(Osaterone)은(는) 호르몬 불균형 치료에 사용되는 호르몬제입니다.",
+  "primary_indications": [
+    "수컷 개의 양성 전립선 비대증(BPH) 치료 (미국 외 국가에서 승인). 알로페시아 X 치료에 대한 연구 중 (엑스트라라벨)."
+  ],
+  "mechanism_short": "오사테론 아세테이트는 프로게스테론 구조 유사체로, 전립선 내 테스토스테론 수송 억제, 5-알파 환원효소 억제, 전립선 안드로겐 수용체 경쟁적 결합 억제, 안드로겐 핵 수용체 감소를 통해 항안드로겐 효과를 나타냅니다. 활성 대사체 PB-4도 항안드로겐 활성을 가지며 일부 부신 억제를 유발할 수 있습니다."
 }

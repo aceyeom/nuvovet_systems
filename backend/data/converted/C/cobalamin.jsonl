@@ -28,31 +28,45 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 3000,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 5000,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mcg"
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mcg"
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -302,7 +316,7 @@
           "logic_type": "linear",
           "context": "코발라민(비타민 B12) 결핍 - 체표면적 기반 경구 투여",
           "value": "0.91",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "PO",
           "frequency": "SID",
           "max_dose_mg_kg": null,
@@ -472,5 +486,12 @@
     "source_file": "plumbs_output/36.jsonl",
     "extracted_at": "2026-03-11T00:18:38.330176+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "코발라민 (비타민 B12)(Cobalamin)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "1) 개·고양이의 EPI 또는 GI 질환에 의한 코발라민 결핍 치료 (extra-label). 2) 유전적 코발라민 결핍 증후군(Imerslund-Gräsbeck 증후군",
+    "차이니즈 샤페이 등). 3) 반추동물의 코발트 결핍 관련 코발라민 결핍. 4) 히드록소코발라민: 개의 시아나이드 중독(소듐 니트로프루시드 독성",
+    "연기 흡입 포함) 해독 (extra-label)."
+  ],
+  "mechanism_short": "코발라민(비타민 B12)은 코발트 함유 수용성 비타민으로, 정상 세포 성장·기능·증식, 핵단백질 및 미엘린 합성, 아미노산 합성, 탄수화물 및 지방 대사, 적혈구 생성에 필요한 다수의 효소 반응의 중요한 보조인자로 작용함. 엽산 이용에도 필수적임. 히드록소코발라민은 시아나이드와 결합하여 시아노코발라민을 형성하고 소변으로 배설시킴으로써 시아나이드 해독제로 작용함."
 }

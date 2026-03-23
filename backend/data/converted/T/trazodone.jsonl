@@ -21,19 +21,27 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 150,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -751,5 +759,15 @@
     "source_file": "plumbs_output/48.jsonl",
     "extracted_at": "2026-03-11T04:07:30.324510+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "트라조돈(Trazodone)은(는) 행동 장애 및 불안 치료에 사용되는 항우울제입니다.",
+  "primary_indications": [
+    "【승인 적응증】없음(수의학적 승인 제품 없음). 【오프라벨 적응증】개: 불안 관련 행동 장애 보조 치료",
+    "수술 후 안정 및 활동 제한 촉진",
+    "동물병원 방문 전 항불안",
+    "입원 중 스트레스 감소",
+    "전신마취 전처치(프로포폴·이소플루란 절약 효과). 고양이: 이동 및 검진 관련 불안 감소",
+    "진정. 말: 마구간 안정 및 이상 행동 치료(오프라벨)."
+  ],
+  "mechanism_short": "5-HT2A 및 5-HT2C 수용체 길항제/재흡수 억제제(SARI). CNS에서 세로토닌 활성을 주로 강화함. 알파-1 아드레날린 수용체 길항 작용으로 혈압 감소. 삼환계 항우울제에 비해 항콜린 효과가 적고 발작 위험이 낮음."
 }

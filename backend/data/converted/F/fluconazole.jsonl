@@ -23,31 +23,45 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 150,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 2,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -839,5 +853,17 @@
     "source_file": "plumbs_output/42.jsonl",
     "extracted_at": "2026-03-11T02:08:06.543847+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "플루코나졸(Fluconazole)은(는) 진균(곰팡이) 감염 치료에 사용되는 항진균제입니다.",
+  "primary_indications": [
+    "전신 진균증(크립토콕쿠스 수막염",
+    "블라스토마이코시스",
+    "히스토플라스마증",
+    "콕시디오이데스증)",
+    "CNS 진균 감염",
+    "요로 칸디다증",
+    "말라세지아 피부염(오프라벨",
+    "2차 선택)"
+  ],
+  "mechanism_short": "진균 세포막의 에르고스테롤 합성에 필요한 CYP450 의존성 탈메틸화 효소를 억제하는 정진균성 트리아졸 화합물. 메틸화 스테롤의 세포 내 축적으로 세포막 투과성 증가 및 세포 내용물 누출 유발."
 }

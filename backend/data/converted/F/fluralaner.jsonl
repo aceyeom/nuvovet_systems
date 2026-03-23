@@ -24,51 +24,75 @@
     "available_strengths": [
       {
         "value": 45,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 112,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 112.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 280,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 400,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 560,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1400,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -586,5 +610,17 @@
     "source_file": "plumbs_output/43.jsonl",
     "extracted_at": "2026-03-11T02:24:13.520998+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "플루랄라너(Fluralaner)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "【승인 적응증 - 개】 벼룩(Ctenocephalides felis) 감염 치료 및 예방",
+    "진드기(Ixodes scapularis",
+    "Dermacentor variabilis",
+    "Rhipicephalus sanguineus) 감염 치료 및 조절(12주)",
+    "Amblyomma americanum 진드기 감염 치료 및 조절(8주)",
+    "벼룩 알레르기 피부염 치료 보조. 【승인 적응증 - 고양이】 벼룩(C. felis) 감염 치료 및 예방",
+    "I. scapularis 진드기 감염 치료 및 조절(12주)",
+    "D. variabilis 진드기 감염 치료 및 조절(8주)"
+  ],
+  "mechanism_short": "플루랄라너는 이소옥사졸린계 살충·살비제로, 곤충 신경세포의 GABA 및 글루타메이트 개폐 염소 이온 채널을 억제하여 포유류 신경세포에 비해 곤충 신경세포에 높은 선택성을 나타낸다. 억제로 인해 통제되지 않는 신경 활성이 유발되어 벼룩과 진드기의 마비 및 사망을 초래한다."
 }

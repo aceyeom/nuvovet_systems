@@ -25,15 +25,21 @@
     "available_strengths": [
       {
         "value": 6.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.5,
-        "unit": "%"
+        "unit": "%",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.8,
-        "unit": "%"
+        "unit": "%",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -356,5 +362,15 @@
     "source_file": "plumbs_output/38.jsonl",
     "extracted_at": "2026-03-11T00:57:48.278212+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "데코퀴네이트(Decoquinate)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "【승인 적응증】소(반추 및 비반추 송아지",
+    "육우)",
+    "어린 양",
+    "어린 염소",
+    "브로일러 닭에서 Eimeria spp.에 의한 콕시디아증 예방. 【허가 외 적응증】개: 미국 개 헤파토조온증(Hepatozoon americanum) 보조 치료",
+    "Sarcocystis spp. 근염 치료. 말: Sarcocystis neurona 치료(연구 중). 낙타과 동물: 콕시디아증 예방. 면양: 톡소플라즈마증에 의한 유산 및 주산기 손실 예방."
+  ],
+  "mechanism_short": "4-하이드록시 퀴놀론 계열 항콕시디아제로, Eimeria spp. 스포로조이트 및 1세대 메론트에 작용하여 콕시디아 미토콘드리아의 전자 전달 및 호흡을 방해함으로써 발달을 억제하고 메로조이트 방출을 차단한다."
 }

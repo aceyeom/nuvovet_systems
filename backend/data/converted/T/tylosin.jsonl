@@ -22,11 +22,15 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -477,5 +481,17 @@
     "source_file": "plumbs_output/6.jsonl",
     "extracted_at": "2026-03-10T15:19:24.722827+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "타이로신(Tylosin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "【허가 적응증】소(비유 중이 아닌 젖소 포함): 소 호흡기 복합체",
+    "족근염",
+    "송아지 디프테리아",
+    "자궁내막염. 돼지: 관절염",
+    "이질/장병증. 가금류: 괴사성 장염",
+    "만성 호흡기 질환. 꿀벌: 미국 부저병 조절. 【Extra-label 적응증】개/고양이: 항생제 반응성 설사",
+    "IBD 보조 치료",
+    "대장염"
+  ],
+  "mechanism_short": "50S 리보솜에 결합하여 단백질 합성을 억제하는 정균성 마크로라이드 항생제. 에리스로마이신과 동일한 작용 기전. 주로 그람양성균(연쇄구균, 포도구균), Mycoplasma spp에 활성. 직접적 항염증 및 세포매개 면역 조절 효과도 보고됨."
 }

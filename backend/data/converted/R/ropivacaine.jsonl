@@ -21,19 +21,27 @@
     "available_strengths": [
       {
         "value": 2.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 5.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 7.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 10.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -672,5 +680,12 @@
     "source_file": "plumbs_output/33.jsonl",
     "extracted_at": "2026-03-10T23:29:36.915396+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "로피바카인(Ropivacaine)은(는) 통증 완화에 사용되는 진통제입니다.",
+  "primary_indications": [
+    "진단 또는 치료 시술을 위한 국소 또는 부위 진통/마취. 경막외 및 척수 마취. 안구 국소마취(점안). 오피오이드 또는 알파-2 작용제와 병용 시 진통 지속 시간 연장 가능. 전신마취의 MAC 절약 효과. 개",
+    "고양이",
+    "양/염소에서 허가 외 사용."
+  ],
+  "mechanism_short": "나트륨 이온 채널 차단을 통해 신경세포막의 전기적 흥분성, 탈분극 및 활동전위 전파를 억제함. 운동, 감각, 자율신경 섬유의 충격 생성 및 전도를 차단함. 부피바카인보다 운동 차단이 적음."
 }

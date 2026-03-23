@@ -22,15 +22,21 @@
     "available_strengths": [
       {
         "value": 0.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 4.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -451,5 +457,16 @@
     "source_file": "plumbs_output/63.jsonl",
     "extracted_at": "2026-03-11T08:55:17.619393+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "메테르골린(Metergoline)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "개: 가성임신 치료",
+    "수유 억제",
+    "임신 종료(고용량)",
+    "발정 유도(허가 외). 고양이: 가성임신 치료",
+    "수유 억제(허가 외). 인체: 고프로락틴혈증",
+    "프로락틴종",
+    "편두통 예방(허가 외)."
+  ],
+  "mechanism_short": "세로토닌 길항 작용을 통해 프로락틴을 억제하며, 강력한 중추 및 말초 항세로토닌 효과와 약한 도파민-2 수용체 작용제 효과를 가짐. 도파민-1 수용체 길항제이기도 함."
 }

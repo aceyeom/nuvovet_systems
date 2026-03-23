@@ -28,23 +28,33 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -1103,5 +1113,17 @@
     "source_file": "plumbs_output/37.jsonl",
     "extracted_at": "2026-03-11T00:39:38.675181+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "사이클로스포린 (전신)(Cyclosporine (Systemic))은(는) 면역 반응을 억제하는 면역억제제입니다.",
+  "primary_indications": [
+    "【승인 적응증】 개: 아토피성 피부염 조절. 고양이: 알레르기성 피부염(찰과상",
+    "기장성 피부염",
+    "호산구성 플라크",
+    "자가유발 탈모) 조절. 【비라벨 적응증】 개: 항문 주위 누공",
+    "IMHA",
+    "염증성 장질환",
+    "특발성 만성 간염",
+    "지루성 선염"
+  ],
+  "mechanism_short": "칼시뉴린 억제제로서 T세포 사이클로필린에 결합하여 칼시뉴린 매개 T세포 활성화를 차단. T-helper 림프구가 주요 표적이나 T-억제 세포도 영향받음. IL-2, 인터페론-감마 등 사이토카인 생성 및 분비 억제. 호산구, 비만세포, 과립구, 대식세포 기능에 영향. 골수억제 효과 없음."
 }

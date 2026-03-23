@@ -23,11 +23,15 @@
     "available_strengths": [
       {
         "value": 5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -375,5 +379,14 @@
     "source_file": "plumbs_output/16.jsonl",
     "extracted_at": "2026-03-10T18:09:24.285407+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "에프리노멕틴(Eprinomectin)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "소(FDA 승인): 위장관 선충류",
+    "소 구더기(cattle grubs)",
+    "이(lice)",
+    "옴진드기(mange mites)",
+    "뿔파리(horn flies) 치료 및 구제. 말(허가 외): 건선성 옴(Psoroptes equi). 양/염소(허가 외): 위장관 및 폐 선충류. 낙타과 동물(허가 외): 코리옵틱 옴(chorioptic mange). 토끼(허가 외): 귀 진드기(Psoroptes cuniculi)."
+  ],
+  "mechanism_short": "에프리노멕틴은 무척추동물의 신경 및 근육 세포에 존재하는 글루타메이트 개폐 염화물 이온 채널에 선택적으로 결합하여 세포막의 염화물 이온 투과성을 증가시키고, 이로 인해 기생충의 마비 및 사멸을 유발함. 또한 시냅스 전 뉴런에서 GABA(감마-아미노부티르산) 방출을 증진시켜 억제성 신경전달을 강화함."
 }

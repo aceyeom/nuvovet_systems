@@ -23,27 +23,39 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 2,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -909,5 +921,17 @@
     "source_file": "plumbs_output/49.jsonl",
     "extracted_at": "2026-03-11T04:23:17.640638+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아테놀올(Atenolol)은(는) 심장 기능 개선에 사용되는 심장약입니다.",
+  "primary_indications": [
+    "【승인 적응증】없음(수의학적 승인 제품 없음). 【적응증 외 사용】개: 빈맥성 부정맥(심실상성 빈맥",
+    "심실 조기수축)",
+    "폐쇄성 심장질환(판막하 대동맥 협착",
+    "폐동맥판 협착)",
+    "부정맥성 우심실 심근병증(복서 심근병증",
+    "멕실레틴 병용). 고양이: 비후성 심근병증(HCM)",
+    "갑상선기능항진증 관련 빈맥",
+    "전신 고혈압(주로 병용요법). 페럿: 좌심실 비대."
+  ],
+  "mechanism_short": "선택적 베타-1 아드레날린 수용체 차단제. 음성 변력 및 변시 작용을 통해 동성 심박수 감소, AV 전도 지연, 심박출량 감소, 심근 산소 요구량 감소, 혈압 저하, 이소프로테레놀 유발 빈맥 억제 효과를 나타냄. 고용량에서는 베타-2 차단 효과도 나타날 수 있음."
 }

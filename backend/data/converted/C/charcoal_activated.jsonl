@@ -27,19 +27,27 @@
     "available_strengths": [
       {
         "value": 47.5,
-        "unit": "%"
+        "unit": "%",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10.4,
-        "unit": "%"
+        "unit": "%",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 208.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -519,5 +527,17 @@
     "source_file": "plumbs_output/24.jsonl",
     "extracted_at": "2026-03-10T20:31:00.668896+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "활성탄(Charcoal, Activated)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "독소 및 약물 과다복용에 대한 보조 치료 (엑스트라라벨). 장간 순환하는 약물/독소: 카페인",
+    "페노바르비탈",
+    "테오브로민",
+    "테오필린",
+    "브로메탈린",
+    "피레트린",
+    "마리화나",
+    "NSAIDs"
+  ],
+  "mechanism_short": "활성탄은 넓은 표면적을 가지며 이온-이온 결합, 수소 결합, 쌍극자 상호작용, 반데르발스 힘을 통해 상부 위장관에서 다양한 화학물질과 약물을 흡착하여 전신 흡수를 방지하거나 감소시킨다."
 }

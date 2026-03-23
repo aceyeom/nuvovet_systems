@@ -19,7 +19,9 @@
     "available_strengths": [
       {
         "value": 1.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -305,5 +307,13 @@
     "source_file": "plumbs_output/4.jsonl",
     "extracted_at": "2026-03-10T14:55:27.420470+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "피메크롤리무스 점안제(Pimecrolimus Ophthalmic)은(는) 면역 반응을 억제하는 면역억제제입니다.",
+  "primary_indications": [
+    "개의 건성각결막염(KCS",
+    "사이클로스포린 저항성 포함)",
+    "만성 표재성 각막염(CSK)",
+    "기타 면역 매개 안구 표면 염증 질환 (모두 엑스트라라벨 사용). 고양이 및 말에서는 평가된 바 없음."
+  ],
+  "mechanism_short": "칼시뉴린 억제제로서 세포내 마크로필린(macrophilin)에 결합하여 복합체를 형성하고, 이 복합체가 칼시뉴린을 억제함. 활성화 T세포 핵인자(NFAT)의 핵 내 전위를 차단하여 IL-2 및 기타 사이토카인 유전자 전사를 억제하고, T세포 증식 및 면역 반응을 가역적으로 억제함."
 }

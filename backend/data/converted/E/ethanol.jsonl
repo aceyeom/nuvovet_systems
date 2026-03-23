@@ -22,39 +22,57 @@
     "available_strengths": [
       {
         "value": 5,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 7,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 70,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 95,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 96,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -637,5 +655,14 @@
     "source_file": "plumbs_output/17.jsonl",
     "extracted_at": "2026-03-10T18:28:55.214744+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "에탄올(Ethanol)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "주요 적응증: 에틸렌 글리콜 중독 치료 (개",
+    "고양이 - extra-label). 기타 적응증: 개 및 고양이의 부갑상선/갑상선 결절 경피적 에탄올 절제술 (extra-label)",
+    "말의 원위 족근관절 골관절염에서 강직 촉진 (extra-label)",
+    "말의 점액 용해제 (에어로졸",
+    "extra-label). 메탄올 중독에는 개와 고양이에서 권장되지 않음."
+  ],
+  "mechanism_short": "알코올 탈수소효소(alcohol dehydrogenase)를 경쟁적으로 억제하여 에틸렌 글리콜이 독성 대사산물(글리콜알데히드, 글리콜산, 글리옥실산, 옥살산)로 전환되는 것을 차단함. 에틸렌 글리콜은 주로 소변으로 미변환 상태로 배설됨."
 }

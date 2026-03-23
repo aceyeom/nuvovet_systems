@@ -22,7 +22,9 @@
     "available_strengths": [
       {
         "value": 250,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -394,5 +396,17 @@
     "source_file": "plumbs_output/36.jsonl",
     "extracted_at": "2026-03-11T00:13:17.022110+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "클로프로스테놀(Cloprostenol)은(는) 호르몬 불균형 치료에 사용되는 호르몬제입니다.",
+  "primary_indications": [
+    "소(FDA 승인): 미관찰 발정",
+    "자궁축농증",
+    "만성 자궁내막염",
+    "황체낭종",
+    "미라화 태아 배출",
+    "유산 유도",
+    "발정 동기화",
+    "고정 시간 인공수정을 위한 발정 동기화(고나도렐린 병용). 개(비허가): 임신 중절"
+  ],
+  "mechanism_short": "프로스타글란딘 F2알파 유사체로서 강력한 황체 용해 작용을 나타냄. 황체의 급격한 퇴행을 유발하여 분비 활동을 억제하고, 자궁 평활근 수축 및 자궁경부 이완을 유도함."
 }

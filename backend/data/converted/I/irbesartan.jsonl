@@ -35,15 +35,21 @@
     "available_strengths": [
       {
         "value": 75,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 150,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -618,5 +624,12 @@
     "source_file": "plumbs_output/3.jsonl",
     "extracted_at": "2026-03-10T14:37:29.511186+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "이르베사르탄(Irbesartan)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "개와 고양이에서 신부전 관련 고혈압",
+    "사구체 질환의 단백뇨(ACE 억제제와 병용)",
+    "ACE 억제제를 견디지 못하는 심부전의 보조 치료(비공식 사용). 수의학적 허가 적응증 없음."
+  ],
+  "mechanism_short": "안지오텐신-II 수용체 차단제(ARB)로서 AT1 수용체를 선택적으로 차단하여 알도스테론 합성 및 분비를 감소시키고, 혈관 확장, 칼륨 배설 감소, 나트륨 배설 증가를 유발함. 로사르탄과 달리 활성 대사산물로의 전환이 필요 없음."
 }

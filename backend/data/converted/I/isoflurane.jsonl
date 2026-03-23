@@ -36,7 +36,9 @@
     "available_strengths": [
       {
         "value": 99.9,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -559,5 +561,13 @@
     "source_file": "plumbs_output/56.jsonl",
     "extracted_at": "2026-03-11T06:37:39.804355+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "이소플루란(Isoflurane)은(는) 진정 및 불안 완화에 사용되는 진정제입니다.",
+  "primary_indications": [
+    "개 및 말(식용 목적이 아닌 경우)에서 FDA 승인된 전신마취제. 고양이",
+    "소형 반추동물",
+    "소형 포유류",
+    "파충류에서 비라벨(extra-label)로 사용. 벤조디아제핀에 반응하지 않는 난치성 간질 지속 상태(개)에서 비라벨 사용 가능."
+  ],
+  "mechanism_short": "정확한 기전은 불명확하나 GABAA 수용체 및 전압 개폐 채널에 작용하여 뇌 신경세포 기능을 억제함으로써 전신마취 효과를 나타냄"
 }

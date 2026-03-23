@@ -22,11 +22,15 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mcg"
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mcg"
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -501,5 +505,16 @@
     "source_file": "plumbs_output/26.jsonl",
     "extracted_at": "2026-03-10T21:26:35.607494+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "미소프로스톨(Misoprostol)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【승인 적응증】없음(수의학적 승인 제품 없음). 【오프라벨 적응증】개: NSAID/아스피린 유발 위십이지장 궤양 예방",
+    "자궁축농증·자궁내막염 보조 치료",
+    "낙태 유도 보조 요법",
+    "아토피성 피부염 보조 요법(효능 불확실). 고양이: NSAID 관련 GI 부작용 예방",
+    "낙태 유도 보조 요법(aglepristone 병용 필요). 말: GI 점막 세포보호",
+    "말 선상 위질환",
+    "자궁경부 이완 유도. 소: 분만 유도. 양: 자궁경부 이완."
+  ],
+  "mechanism_short": "합성 프로스타글란딘 E1 유사체. 위벽세포에 직접 작용하여 기저 및 야간 위산 분비와 음식·펜타가스트린·히스타민에 의해 자극된 위산 분비를 억제. 위점막 점액 및 중탄산염 생성 증가, 위점막 세포 교체 및 혈액 공급 증가를 통한 세포보호 효과. 자궁 수축 진폭 및 빈도 증가, 자궁경부 연화 및 이완, 자궁 출혈 자극 효과."
 }

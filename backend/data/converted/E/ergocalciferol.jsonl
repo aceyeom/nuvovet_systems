@@ -24,19 +24,27 @@
     "available_strengths": [
       {
         "value": 50000,
-        "unit": "IU"
+        "unit": "IU",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 400,
-        "unit": "IU"
+        "unit": "IU",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2000,
-        "unit": "IU"
+        "unit": "IU",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 8000,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -524,5 +532,10 @@
     "source_file": "plumbs_output/16.jsonl",
     "extracted_at": "2026-03-10T18:12:40.926269+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "에르고칼시페롤(Ergocalciferol)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "부갑상선 기능저하증에 의한 저칼슘혈증 유지 치료 (오프라벨). 칼시트리올 또는 DHT가 비용 문제로 사용 불가능한 경우의 대안. 수의학적으로 허가된 제품 없음."
+  ],
+  "mechanism_short": "간에서 25-하이드록시비타민 D로, 신장에서 1,25-디하이드록시비타민 D(활성형)로 전환됨. 활성형은 GI관에서 칼슘 및 인 흡수 촉진, 신세뇨관에서 칼슘 재흡수 증가, 골 무기질 침착 및 흡수 속도 조절을 통해 칼슘 항상성을 유지함."
 }

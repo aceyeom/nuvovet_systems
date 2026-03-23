@@ -19,7 +19,9 @@
     "available_strengths": [
       {
         "value": 500,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -478,5 +480,17 @@
     "source_file": "plumbs_output/39.jsonl",
     "extracted_at": "2026-03-11T01:23:43.334030+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "덱스트로스 50% 주사액(Dextrose 50% Injection)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【허가 적응증】 저혈당 응급 치료(신생아/유년기 저혈당",
+    "간부전",
+    "부신피질기능저하증",
+    "인슐린 과다투여",
+    "패혈증",
+    "인슐린종",
+    "글리코겐 저장 질환",
+    "자일리톨 독성 등). 【허가 외 적응증】 고칼륨혈증 보조 치료(레귤러 인슐린과 병용)"
+  ],
+  "mechanism_short": "덱스트로스 용액은 수분과 포도당을 공급하여 혈당 수치를 회복시킨다. 간 글리코겐 고갈을 최소화하고 단백질 절약 효과를 나타내는 것으로 알려져 있다. 세포 내에서 이산화탄소와 물로 대사되며 에너지(ATP)를 방출한다."
 }

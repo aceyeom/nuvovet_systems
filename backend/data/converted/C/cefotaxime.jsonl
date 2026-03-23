@@ -21,19 +21,27 @@
     "available_strengths": [
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -496,5 +504,17 @@
     "source_file": "plumbs_output/22.jsonl",
     "extracted_at": "2026-03-10T20:03:56.270154+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "세포탁심(Cefotaxime)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "감수성 세균에 의한 골/관절 감염",
+    "CNS 감염(뇌수막염)",
+    "수술 예방",
+    "세균성 패혈증의 경험적 치료. 장내세균과(Enterobacterales)",
+    "Klebsiella spp.",
+    "E. coli",
+    "Salmonella spp.",
+    "일부 혐기성균(Bacteroides fragilis"
+  ],
+  "mechanism_short": "세균 세포벽 합성 억제(페니실린 결합 단백질 결합). 살균성, 시간 의존성 항균제. 그람 양성 및 그람 음성 세균에 대한 광범위한 항균 스펙트럼 보유."
 }

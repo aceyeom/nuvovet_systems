@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 150,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -383,5 +385,16 @@
     "source_file": "plumbs_output/20.jsonl",
     "extracted_at": "2026-03-10T19:22:53.535373+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "포나주릴(Ponazuril)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "【승인 적응증】말: Sarcocystis neurona에 의한 EPM 치료 (FDA 승인). 【허가 외 적응증】개·고양이: 콕시듐증(Isospora spp 등)",
+    "네오스포라증(Neospora caninum)",
+    "톡소플라즈마증(Toxoplasma spp)",
+    "개 간헤파토조온증(Hepatozoon canis). 기타 종: 조류(Cryptosporidium spp)",
+    "파충류(콕시듐증)",
+    "소형 포유류(Eimeria spp)",
+    "낙타과 동물(Eimeria macusaniensis)."
+  ],
+  "mechanism_short": "트리아진계 항원충제로, Apicomplexa 문(門)에 속하는 원충의 플라스티드 소체(plastid body)를 표적으로 하여 살충 작용을 나타냄. 포나주릴은 톨트라주릴의 대사산물(sulfone)임."
 }

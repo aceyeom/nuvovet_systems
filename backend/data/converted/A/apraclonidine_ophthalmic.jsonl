@@ -21,11 +21,15 @@
     "available_strengths": [
       {
         "value": 0.5,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -418,5 +422,10 @@
     "source_file": "plumbs_output/9.jsonl",
     "extracted_at": "2026-03-10T16:05:46.283483+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아프라클로니딘 점안액(Apraclonidine Ophthalmic)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "녹내장 (오프라벨): 다른 녹내장 치료제로 최대 치료 중에도 안압 추가 감소가 필요한 환자에서 단기 보조 요법으로 사용. 개에서 도르졸아미드/티몰롤 병용 시 안압 조절 사례 보고."
+  ],
+  "mechanism_short": "비교적 선택적인 알파-2 아드레날린 수용체 작용제. 시냅스 전 알파-2 수용체 활성화로 노르에피네프린 분비 억제, 시냅스 후 알파-2 수용체 활성화로 섬모체 비색소 상피세포 내 cAMP 감소 → 방수 생성 감소 및 안압 하강. 포도막공막 유출 증가 및 기존 유출로 저항 감소 효과도 있음."
 }

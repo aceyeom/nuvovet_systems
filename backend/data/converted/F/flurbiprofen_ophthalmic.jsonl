@@ -22,11 +22,15 @@
     "available_strengths": [
       {
         "value": 0.03,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 0.3,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -414,5 +418,15 @@
     "source_file": "plumbs_output/12.jsonl",
     "extracted_at": "2026-03-10T16:47:48.566584+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "플루르비프로펜 점안액(Flurbiprofen Ophthalmic)은(는) 통증과 염증을 완화하는 비스테로이드성 항염증제(NSAID)입니다.",
+  "primary_indications": [
+    "전방 안내 염증(결막염",
+    "각막염",
+    "전방 포도막염) 조절 (적응증 외)",
+    "백내장 수술 중 동공 산대 유지 (적응증 외)",
+    "백내장 수술 후 진통 (적응증 외",
+    "효과 제한적)."
+  ],
+  "mechanism_short": "사이클로옥시게나제(COX-1, COX-2) 억제를 통한 프로스타글란딘 합성 차단. 안내 염증의 부작용(혈방수 장벽 파괴, 혈관 확장, 혈관 투과성 증가, 백혈구 증가, 안압 상승)을 최소화하고, 수술 중 축동 반응을 억제함."
 }

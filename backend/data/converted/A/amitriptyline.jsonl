@@ -21,27 +21,39 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 75,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 150,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -1369,5 +1381,17 @@
     "source_file": "plumbs_output/54.jsonl",
     "extracted_at": "2026-03-11T06:07:57.622364+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아미트리프틸린(Amitriptyline)은(는) 행동 장애 및 불안 치료에 사용되는 항우울제입니다.",
+  "primary_indications": [
+    "【허가 외 적응증】 개: 불안 장애(분리불안",
+    "전반적 불안) 보조 치료",
+    "소양증 보조 치료(기존 치료 실패 후)",
+    "만성 신경병성 통증 보조 치료. 고양이: 특발성 방광염 관련 증상",
+    "행동 장애(불안",
+    "자해 행동) 보조 치료",
+    "소양증 보조 치료",
+    "만성 신경병성 통증 보조 치료. 조류: 깃털 뽑기 보조 치료. 수의학 허가 적응증 없음."
+  ],
+  "mechanism_short": "세로토닌 및 노르에피네프린 재흡수 펌프 차단(신경전달물질 농도 증가), 중추 및 말초 항콜린 작용, 알파-1 아드레날린 수용체 길항, H1 수용체 길항을 통한 비만세포 안정화, 글루타메이트 수용체 및 나트륨 채널 길항. 활성 대사체 노르트리프틸린도 유사한 작용."
 }

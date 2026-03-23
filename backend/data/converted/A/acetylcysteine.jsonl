@@ -26,19 +26,27 @@
     "available_strengths": [
       {
         "value": 200,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 600,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -476,5 +484,17 @@
     "source_file": "plumbs_output/60.jsonl",
     "extracted_at": "2026-03-11T08:02:59.526697+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아세틸시스테인(Acetylcysteine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "① 아세트아미노펜",
+    "자일리톨",
+    "페놀 독성 해독제 (개",
+    "고양이) ② 산화적 손상 관련 간독성 보조치료 (설폰아미드 과민증",
+    "사고야자 간독성",
+    "버섯 간독성",
+    "독소루비신 유발 간독성",
+    "카드뮴 독성"
+  ],
+  "mechanism_short": "술프하이드릴기 공여를 통한 글루타치온 합성 촉진, 자유 라디칼 소거, 산화질소 생성 증가를 통한 간혈류 개선; 점액 내 이황화 결합 분해를 통한 점액 점도 감소."
 }

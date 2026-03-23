@@ -21,23 +21,33 @@
     "available_strengths": [
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 7.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 15,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 30,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -934,5 +944,13 @@
     "source_file": "plumbs_output/51.jsonl",
     "extracted_at": "2026-03-11T05:06:08.084205+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "부스피론(Buspirone)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "개와 고양이의 저등급 불안 및 공포 관련 행동 장애(오프라벨)",
+    "고양이의 소변 스프레이(오프라벨)",
+    "공포 관련 행동(오프라벨)",
+    "심인성 탈모(오프라벨). 행동 치료와 병행 시 효과적."
+  ],
+  "mechanism_short": "세로토닌(5-HT1A) 수용체 부분 효현제 및 도파민(D2) 수용체 효현제/길항제로 작용. 벤조디아제핀 수용체 및 GABA 결합에는 유의한 친화성 없음. 항경련 또는 근이완 작용 없음."
 }

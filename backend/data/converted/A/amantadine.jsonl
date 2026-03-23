@@ -26,11 +26,15 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -588,5 +592,12 @@
     "source_file": "plumbs_output/54.jsonl",
     "extracted_at": "2026-03-11T05:55:54.251018+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아만타딘(Amantadine)은(는) 통증 완화에 사용되는 진통제입니다.",
+  "primary_indications": [
+    "【보조 진통】만성 통증",
+    "신경병성 통증(오피오이드 단독으로 충분한 진통 효과를 얻지 못하거나 고용량 오피오이드에 불내성인 경우). 골육종 관련 통증의 조기 개입. 【항바이러스】인플루엔자 A(현재 내성 문제로 권장되지 않음). 【인간 적응증】파킨슨 증후군",
+    "약물 유발 추체외로 증상(수의학적 적용 없음)."
+  ],
+  "mechanism_short": "NMDA 수용체 길항제: 글루타메이트/아스파르테이트의 NMDA 수용체 결합을 억제하여 만성 통증 및 중추 감작을 완화. 또한 도파민 농도 증가, 항콜린 작용, 인플루엔자 A M2 단백질 억제를 통한 항바이러스 효과."
 }

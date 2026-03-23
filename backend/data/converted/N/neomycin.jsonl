@@ -28,15 +28,21 @@
     "available_strengths": [
       {
         "value": 200,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 325,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -507,5 +513,17 @@
     "source_file": "plumbs_output/28.jsonl",
     "extracted_at": "2026-03-10T21:51:42.013089+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "네오마이신(Neomycin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "개/고양이: 간성 뇌증 보조 치료 (extra-label",
+    "20 mg/kg PO q8-12h). 소",
+    "돼지: 대장균에 의한 장염(콜리바실로시스) 치료 및 관리 (FDA 승인",
+    "22 mg/kg PO 1일 1회",
+    "최대 14일). 터키: 대장균 관련 폐사 관리 (FDA 승인",
+    "22 mg/kg PO 1일 1회",
+    "5일간). 페럿: 감수성 장내 감염 (extra-label",
+    "10-20 mg/kg PO 하루 2-4회)."
+  ],
+  "mechanism_short": "아미노글리코사이드계 항생제로서 세균의 30S 리보솜 소단위에 결합하여 단백질 합성을 억제함. 주로 그람 음성 호기성 세균에 효과적. 암모니아 생성 감소 및 글루타민 활성 감소 효과도 있음."
 }

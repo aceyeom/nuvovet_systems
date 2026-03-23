@@ -28,11 +28,15 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -478,5 +482,11 @@
     "source_file": "plumbs_output/38.jsonl",
     "extracted_at": "2026-03-11T00:54:30.370209+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "답손(Dapsone)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "【오프라벨】개: 피부 혈관염(면역조절)",
+    "갈색 은둔 거미 교상 보조 치료. 말(foal): Pneumocystis jiroveci 폐렴. 수의학 허가 제품 없음."
+  ],
+  "mechanism_short": "디하이드로엽산 합성 억제(파라-아미노벤조에이트와 디하이드로프테로에이트 합성효소 활성 부위 경쟁). 호중구 화학주성, 보체 활성화, 항체 생산, 리소좀 효소 합성 감소."
 }

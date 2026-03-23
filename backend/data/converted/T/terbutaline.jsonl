@@ -22,15 +22,21 @@
     "available_strengths": [
       {
         "value": 2.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -608,5 +614,16 @@
     "source_file": "plumbs_output/46.jsonl",
     "extracted_at": "2026-03-11T03:20:55.813287+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "터부탈린(Terbutaline)은(는) 기관지 확장에 사용되는 기관지확장제입니다.",
+  "primary_indications": [
+    "승인 적응증: 없음(수의과 승인 제품 없음). 오프라벨 적응증: 개·고양이의 기관지 경련(폐 질환",
+    "기관지 허탈",
+    "만성 기관지염",
+    "천식)",
+    "서맥성 부정맥",
+    "고칼륨혈증",
+    "조기 분만 억제(자궁수축 억제). 고양이 천식의 보조 치료. 말에서 무한증(anhidrosis) 진단(피내 주사). 조류 및 파충류에서 호흡기 질환 보조 치료."
+  ],
+  "mechanism_short": "베타-2 아드레날린 수용체 선택적 자극제로, 기관지 평활근 이완, 기도 저항 감소, 혈관 확장, 자궁 수축 억제(자궁수축 억제), 비만세포에서 기관지 수축 매개체 방출 억제. Na+K+ATPase 효소계 활성화를 통해 칼륨의 세포 내 이동 촉진."
 }

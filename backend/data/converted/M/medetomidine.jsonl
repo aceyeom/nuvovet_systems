@@ -24,7 +24,9 @@
     "available_strengths": [
       {
         "value": 1.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -680,5 +682,16 @@
     "source_file": "plumbs_output/62.jsonl",
     "extracted_at": "2026-03-11T08:33:00.857324+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "메데토미딘(Medetomidine)은(는) 진정 및 불안 완화에 사용되는 진정제입니다.",
+  "primary_indications": [
+    "개(FDA 승인): 진정 및 진통(12주령 이상). 엑스트라라벨: 고양이",
+    "양/염소",
+    "낙타류",
+    "파충류에서 진정",
+    "마취 전처치",
+    "전신마취(케타민/오피오이드/알팍살론 병용). 난치성 발작 치료(개",
+    "증례 보고)."
+  ],
+  "mechanism_short": "알파-2 아드레날린 수용체 작용제로, 알파-2:알파-1 선택성 비율 1620:1. CNS 억제(진정, 항불안), 말초 및 심장 혈관 수축, 서맥, 호흡 억제, 이뇨, 저체온, 진통(체성 및 내장), 근이완 효과를 나타냄."
 }

@@ -25,7 +25,9 @@
     "available_strengths": [
       {
         "value": 1.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -383,5 +385,13 @@
     "source_file": "plumbs_output/27.jsonl",
     "extracted_at": "2026-03-10T21:41:24.052019+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "마이코박테리아 세포벽 분획(Mycobacterial Cell Wall Fraction)은(는) 면역 반응을 억제하는 면역억제제입니다.",
+  "primary_indications": [
+    "개: 혼합 유선 종양 및 유선 선암종 면역요법 (USDA 승인). 말: 육종 면역요법",
+    "말 호흡기 질환 복합체(ERDC) 치료",
+    "Streptococcus zooepidemicus에 의한 자궁내막염 치료 (USDA 승인). 소: 생후 1~5일 송아지의 장독소성 대장균 K99에 의한 설사 관련 사망률 및 임상 증상 감소 (USDA 승인). 비라벨 사용: 말 원충성 척수뇌염(EPM) 보조 면역자극제",
+    "헤르페스바이러스 백신 보조제."
+  ],
+  "mechanism_short": "Mycobacterium phlei 유래 세포벽 분획 에멀전으로, 대식세포 및 흉선 림프구를 활성화하여 항종양 사이토카인을 통해 간접적으로 종양 세포를 사멸시킴. 인터루킨-1(IL-1) 방출이 주요 매개체로 작용. 기능적 면역계가 필요함."
 }

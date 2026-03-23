@@ -25,23 +25,33 @@
     "available_strengths": [
       {
         "value": 140,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 270,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 560,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 810,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1620,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -454,5 +464,17 @@
     "source_file": "plumbs_output/35.jsonl",
     "extracted_at": "2026-03-11T00:01:02.604269+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "스피노사드(Spinosad)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "【개】 벼룩(Ctenocephalides felis) 감염 예방 및 치료 (14주령 이상",
+    "2.2 kg 이상",
+    "FDA 승인). 스피노사드/밀베마이신 복합제: 심장사상충(Dirofilaria immitis) 예방",
+    "벼룩 감염 예방·치료",
+    "성충 구충(Ancylostoma caninum)",
+    "회충(Toxocara canis",
+    "Toxascaris leonina)",
+    "편충(Trichuris vulpis) 치료 (8주령 이상"
+  ],
+  "mechanism_short": "스피노사드는 스피노신 A와 스피노신 D 두 가지 천연 마크로사이클릭 락톤의 혼합물로, 곤충의 니코틴성 아세틸콜린 D-알파 수용체 작용제로 작용하여 운동 신경 활성화를 통한 불수의적 근육 수축 및 떨림을 유발한다. 지속적 노출은 마비 및 벼룩 사망을 초래한다. 또한 다른 마크로사이클릭 락톤과 유사하게 염화물 채널을 개방한다."
 }

@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -603,5 +605,15 @@
     "source_file": "plumbs_output/52.jsonl",
     "extracted_at": "2026-03-11T05:27:32.061321+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "칸나비디올(Cannabidiol)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "개: 골관절염(extra-label",
+    "2 mg/kg PO q12h)",
+    "간질(extra-label",
+    "2.5 mg/kg PO q12h",
+    "기존 치료에 추가)",
+    "아토피 피부염 소양 행동 감소(연구 단계). 고양이: 공식 권고 용량 미확립. 불안 완화(소음 공포증)에서는 저용량(1.4 mg/kg/day)이 효과 없었음."
+  ],
+  "mechanism_short": "CBD는 친지질성 비향정신성 칸나비노이드로, 주로 말초(면역계)에 분포하는 CB2 수용체에 결합하여 염증성 사이토카인 방출을 억제함. 또한 세로토닌 1A 수용체(5-HT1A), 바닐로이드 수용체(TRPV1) 등 65개 이상의 비칸나비노이드 수용체와 상호작용하여 항불안, 진통, 항구역 효과를 나타냄. 항경련 효과는 칸나비노이드 수용체 직접 작용과는 무관한 것으로 추정됨."
 }

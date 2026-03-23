@@ -22,7 +22,9 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -576,5 +578,11 @@
     "source_file": "plumbs_output/33.jsonl",
     "extracted_at": "2026-03-10T23:21:48.316000+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "로쿠로늄(Rocuronium)은(는) 근육 이완에 사용되는 근이완제입니다.",
+  "primary_indications": [
+    "고양이",
+    "말에서 수술 중 근이완(허가 외). 개에서 안과 수술 시 안구 중심 위치 확보(허가 외). 고양이에서 0.3~0.6 mg/kg IV 사용. 개에서 0.5 mg/kg IV 후 0.2 mg/kg/hour CRI 또는 안과 수술 시 0.03~0.05 mg/kg IV."
+  ],
+  "mechanism_short": "아미노스테로이드계 경쟁적 비탈분극성 신경근 차단제. 운동 종판의 콜린성 수용체 부위에 경쟁적으로 결합하여 아세틸콜린을 길항함으로써 횡문근 마비를 유발한다. 용량 의존적으로 빠른~중간 발현 및 중간 지속 시간을 가진다."
 }

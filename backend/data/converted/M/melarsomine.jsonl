@@ -23,7 +23,9 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -457,5 +459,12 @@
     "source_file": "plumbs_output/62.jsonl",
     "extracted_at": "2026-03-11T08:40:25.724902+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "멜라르소민(Melarsomine)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "개에서 Dirofilaria immitis에 의한 Class 1(경증)",
+    "Class 2(중등도)",
+    "Class 3(중증) 심장사상충 감염(4개월령 미성숙 성충~성숙 성충) 치료에 적응증. Class 4(대정맥 증후군)는 금기. 페럿의 성충 심장사상충 감염 치료에 유용할 수 있음(extra-label). 고양이에서는 사용 금기."
+  ],
+  "mechanism_short": "유기 3가 비소 화합물로 정확한 작용 기전은 알려져 있지 않으나, 개에서 권장 용량으로 Dirofilaria immitis의 성충 및 L5 유충을 90~99% 사멸시킴. 3회 투여 프로토콜은 성충의 98%를 사멸시킴."
 }

@@ -28,23 +28,33 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.32,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -558,5 +568,15 @@
     "source_file": "plumbs_output/38.jsonl",
     "extracted_at": "2026-03-11T00:52:55.754219+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "단트롤렌(Dantrolene)은(는) 근육 이완에 사용되는 근이완제입니다.",
+  "primary_indications": [
+    "【허가 외 사용】 ① 개/고양이: 외부 요도 긴장 증가로 인한 기능성 요도 폐색",
+    "악성 고열증(홉 섭취 관련 포함)",
+    "횡문근융해증 보조 치료 ② 말: 마취 후 근염(PAM) 예방",
+    "운동성 횡문근융해증 예방/치료 ③ 소동물: 검은과부거미 교상 치료 ④ 돼지: 돼지 스트레스 증후군 치료 【인간 허가 적응증】 상위 운동신경원 장애(다발성 경화증",
+    "뇌성마비",
+    "척수 손상) 관련 근경직 치료"
+  ],
+  "mechanism_short": "근육에 직접 작용하는 근이완제. 근소포체(sarcoplasmic reticulum)에서 칼슘 방출을 억제하여 골격근 이완을 유발함. 정확한 기전은 완전히 규명되지 않음."
 }

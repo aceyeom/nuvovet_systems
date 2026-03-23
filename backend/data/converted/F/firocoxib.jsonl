@@ -25,19 +25,27 @@
     "available_strengths": [
       {
         "value": 57,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 227,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.82,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -315,7 +323,7 @@
           "logic_type": "linear",
           "context": "방광 이행세포암종 보조 치료 (비표시 외 사용)",
           "value": "5",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "PO",
           "frequency": "q24h",
           "max_dose_mg_kg": 5.0,
@@ -326,7 +334,7 @@
           "logic_type": "linear",
           "context": "염증성 대장 폴립 보조 치료 (비표시 외 사용, 미니어처 닥스훈트 증례군)",
           "value": "5",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "PO",
           "frequency": "SID",
           "max_dose_mg_kg": null,
@@ -606,5 +614,13 @@
     "source_file": "plumbs_output/42.jsonl",
     "extracted_at": "2026-03-11T02:03:52.746865+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "피로콕시브(Firocoxib)은(는) 통증과 염증을 완화하는 비스테로이드성 항염증제(NSAID)입니다.",
+  "primary_indications": [
+    "개: 골관절염 관련 통증 및 염증 조절(FDA 승인)",
+    "연조직 및 정형외과 수술 후 통증 및 염증 조절(FDA 승인)",
+    "방광 이행세포암종 보조 치료(비표시 외)",
+    "염증성 대장 폴립 보조 치료(비표시 외). 말: 골관절염 관련 통증 및 염증 조절(FDA 승인). 고양이: 비표시 외 사용 권장하지 않음."
+  ],
+  "mechanism_short": "COX-2 선택적 억제를 통해 통증 및 염증에 관여하는 프로스타글란딘 생성을 억제하며, 치료 용량에서 COX-1을 상대적으로 보존하여 위장관, 혈소판, 신장 기능 유지에 기여하는 프로스타글란딘을 보호함."
 }

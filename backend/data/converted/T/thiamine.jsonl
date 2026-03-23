@@ -29,27 +29,39 @@
     "available_strengths": [
       {
         "value": 500,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -415,5 +427,14 @@
     "source_file": "plumbs_output/46.jsonl",
     "extracted_at": "2026-03-11T03:29:06.330424+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "티아민(Thiamine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "티아민 결핍 치료 및 예방 (식이 부족",
+    "고사리",
+    "아황산염",
+    "암프롤리움",
+    "티아미나제 생성 세균 등에 의한 결핍 포함). 에틸렌 글리콜 중독 보조 치료 (글리옥실산의 무독성 대사산물로의 전환 촉진). 납 중독 보조 치료. 중증 질환 후 재급식 증후군 보조 치료. 패혈성 쇼크 보조 치료 (동물 모델 및 인체 연구). 낙타과 동물에서 장기간 암프롤리움 사용 시 예방적 보충."
+  ],
+  "mechanism_short": "티아민은 ATP와 결합하여 티아민 이인산(티아민 피로인산)을 형성하며, 이는 탄수화물 대사에 필수적인 조효소로 작용한다. 결핍 시 적혈구 내 트랜스케톨라제 활성이 감소하고 피루브산 혈중 농도가 증가하며, 피루브산이 아세틸-CoA로 전환되지 못해 혐기성 해당과정에 의한 젖산 생성이 증가하여 젖산 산증이 발생할 수 있다."
 }

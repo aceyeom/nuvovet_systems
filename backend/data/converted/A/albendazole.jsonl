@@ -23,11 +23,15 @@
     "available_strengths": [
       {
         "value": 113.6,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -435,5 +439,13 @@
     "source_file": "plumbs_output/61.jsonl",
     "extracted_at": "2026-03-11T08:10:19.647258+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "알벤다졸(Albendazole)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "【승인 적응증】소: 간흡충",
+    "위장관 선충 제거 및 관리 (10 mg/kg PO 1회). 양: 간흡충",
+    "위장관 선충 제거 및 관리 (7.5 mg/kg PO 1회). 비유 중이 아닌 염소: 성체 Fasciola hepatica 치료 (10 mg/kg PO 1회). 【Extra-label 사용】토끼: Encephalitozoon cuniculi 감염 치료. 낙타과(카멜리드): 위장관 기생충 (15 mg/kg PO 1회). 친칠라: Giardia spp (50~100 mg/kg PO 1일 1회",
+    "3일). 개·고양이: 독성 우려로 권장하지 않음."
+  ],
+  "mechanism_short": "벤즈이미다졸계 항기생충제로서 튜불린에 결합하여 세포 내 미세소관 형성을 억제하고 미세소관 의존성 수송 시스템을 방해함. 고농도에서는 말산탈수소효소(malate dehydrogenase) 및 푸마르산환원효소(fumarate reductase) 등 대사 효소를 억제하여 기생충의 에너지 대사를 차단함."
 }

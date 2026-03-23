@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 1.5,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -310,5 +312,10 @@
     "source_file": "plumbs_output/9.jsonl",
     "extracted_at": "2026-03-10T16:11:54.127787+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "베포타스틴 점안액(Bepotastine Ophthalmic)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "알레르기성 결막염으로 인한 가려움 완화 (적응증 외 사용). 수의학적 종에서 공식 승인된 적응증은 없습니다."
+  ],
+  "mechanism_short": "H1 수용체 직접 길항제 및 비만세포 안정화제로, 류코트리엔 및 호산구 등 다른 염증 매개체에 대한 억제 효과도 가집니다."
 }

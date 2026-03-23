@@ -21,11 +21,15 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 400,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -502,5 +506,15 @@
     "source_file": "plumbs_output/2.jsonl",
     "extracted_at": "2026-03-10T14:04:25.119648+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "이메피토인(Imepitoin)은(는) 발작(경련) 조절에 사용되는 항경련제입니다.",
+  "primary_indications": [
+    "승인 적응증: 개의 소음 혐오증 (미국 FDA 승인",
+    "30 mg/kg PO q12h). EU/UK 승인: 개의 소음 공포증 관련 불안·공포 감소",
+    "특발성 간질에 의한 전신 발작 초기 치료. 허가 외 사용: 개의 폭풍 불안 (30 mg/kg PO q12h 지속 투여)",
+    "개의 특발성 간질 (10~30 mg/kg PO BID)",
+    "고양이의 특발성 간질 (30 mg/kg PO q12h",
+    "데이터 제한적)."
+  ],
+  "mechanism_short": "GABAA 수용체의 벤조디아제핀 결합 부위에서 저친화성 부분 효능제로 작용. 디아제팜보다 약 600배 낮은 친화성. GABAA 수용체 매개 억제 효과를 강화하여 발작을 예방. 신경 칼슘 채널의 약한 억제도 항경련 활성에 기여. 항불안 효과도 보유."
 }

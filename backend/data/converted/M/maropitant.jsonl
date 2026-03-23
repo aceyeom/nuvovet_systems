@@ -23,23 +23,33 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 16,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 24,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 60,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 160,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -720,5 +730,17 @@
     "source_file": "plumbs_output/61.jsonl",
     "extracted_at": "2026-03-11T11:32:07.911879+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "마로피탄트(Maropitant)은(는) 구토 예방 및 치료에 사용되는 항구토제입니다.",
+  "primary_indications": [
+    "【승인 적응증】 개: 급성 구토 예방 및 치료(SC/IV",
+    "2개월령 이상)",
+    "멀미로 인한 구토 예방(경구",
+    "4개월령 이상)",
+    "구토 유발 약물/항암제에 의한 구토 예방(SC/IV",
+    "4개월령 이상). 고양이: 구토 치료(SC/IV",
+    "4개월령 이상). 【Extra-label 적응증】 개: 수술 전후 구토 예방",
+    "항암 화학요법 중 구토 예방(28일)"
+  ],
+  "mechanism_short": "뉴로키닌-1(NK-1) 수용체 길항제로 CNS에서 구토의 핵심 신경전달물질인 서브스턴스 P의 결합을 억제함. 말초 및 중추 매개 구토를 모두 억제할 수 있음. NK-1 수용체는 내장 통증에도 관여하여 진통 효과를 나타냄."
 }

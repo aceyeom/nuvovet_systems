@@ -29,11 +29,15 @@
     "available_strengths": [
       {
         "value": 0.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -576,5 +580,17 @@
     "source_file": "plumbs_output/51.jsonl",
     "extracted_at": "2026-03-11T05:12:25.943672+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "카베르골린(Cabergoline)은(는) 호르몬 불균형 치료에 사용되는 호르몬제입니다.",
+  "primary_indications": [
+    "개/고양이: 발정 유도 및 동기화",
+    "원발성/속발성 무발정 치료",
+    "가성임신 치료",
+    "수유 억제",
+    "자궁축농증 보조 치료",
+    "유선 종양 수술 전 처치",
+    "임신 중절(임신 후반기)",
+    "수술 후 공격성/불안 치료(황체기 중 수술 시). 조류(앵무류): 지속적 산란 보조 치료."
+  ],
+  "mechanism_short": "에르고트 알칼로이드 유래 도파민 D2 수용체 작용제. 뇌하수체 전엽에서 프로락틴 분비를 직접 억제. GnRH 분비에 대한 도파민 작용제 효과를 통해 발정 유도."
 }

@@ -23,23 +23,33 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -339,7 +349,7 @@
           "logic_type": "fixed",
           "context": "항종양제 - 표준 용량 (체표면적 기준, 3~4주 간격)",
           "value": "250",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "PO",
           "frequency": "q24h",
           "max_dose_mg_kg": null,
@@ -350,7 +360,7 @@
           "logic_type": "fixed",
           "context": "항종양제 - 표준 용량 (체표면적 기준, 주 3~4일 투여)",
           "value": "50",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "PO",
           "frequency": "SID",
           "max_dose_mg_kg": null,
@@ -361,7 +371,7 @@
           "logic_type": "linear",
           "context": "항종양제 - 메트로노믹(저용량 지속) 요법",
           "value": "10 - 15",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "PO",
           "frequency": "SID",
           "max_dose_mg_kg": null,
@@ -388,7 +398,7 @@
           "logic_type": "linear",
           "context": "항종양제 - 다제 병용 프로토콜 (체표면적 기준)",
           "value": "200 - 250",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "PRN",
           "max_dose_mg_kg": null,
@@ -682,5 +692,17 @@
     "source_file": "plumbs_output/37.jsonl",
     "extracted_at": "2026-03-11T00:32:23.553106+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "사이클로포스파미드(Cyclophosphamide)은(는) 악성 종양(암) 치료에 사용되는 항종양제입니다.",
+  "primary_indications": [
+    "승인 적응증: 없음 (수의학적 사용 모두 extra-label). 주요 사용 적응증: 림프종",
+    "조혈계 종양",
+    "육종 등의 다제 병용 화학요법. 면역매개성 질환(IMHA",
+    "SLE",
+    "ITP",
+    "천포창",
+    "류마티스 관절염 등)에 대한 사용은 부작용 위험으로 인해 1차 선택약으로 권장되지 않으며",
+    "아자티오프린"
+  ],
+  "mechanism_short": "알킬화제(질소 머스타드 유도체)로서 프로드럭. 간에서 활성 대사체 4-hydroxycyclophosphamide(4-OHCP)로 전환 후 세포 내에서 phosphoramide mustard 및 acrolein으로 분해. DNA 복제 및 RNA 전사/복제를 방해하여 핵산 기능을 교란. 면역억제 효과도 있으며 WBC 및 항체 생산 감소를 유발."
 }

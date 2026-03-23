@@ -25,11 +25,15 @@
     "available_strengths": [
       {
         "value": 300,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -442,5 +446,17 @@
     "source_file": "plumbs_output/47.jsonl",
     "extracted_at": "2026-03-11T03:43:07.968745+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "틸미코신(Tilmicosin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "【승인 적응증】소: 만하이미아 헤몰리티카",
+    "파스튜렐라 멀토시다",
+    "히스토필루스 솜니 관련 소 호흡기 질환(BRD) 치료 및 고위험군 예방적 조절 (SC 주사). 양: 만하이미아 헤몰리티카 관련 양 호흡기 질환 치료 (SC 주사",
+    "15 kg 초과). 돼지: 파스튜렐라 멀토시다 및 헤모필루스 파라수이스 관련 돼지 호흡기 질환(SRD) 조절",
+    "마이코플라스마 하이오뉴모니에 및 PRRSV 관련 SRD 조절 (경구 음수 투여). 【비승인(오프라벨) 사용】토끼: 파스튜렐라증 (SC",
+    "25 mg/kg 단회 또는 단계적 투여). 해외: 소 지간 괴사균증",
+    "양 족부 부패병",
+    "급성 양 유방염"
+  ],
+  "mechanism_short": "마크로라이드계 항생제로서 주로 그람양성균에 작용하며, 일부 그람음성균 및 마이코플라스마에도 활성을 나타냄. 세균의 50S 리보솜 소단위에 결합하여 단백질 합성을 억제함. 폐 조직에 고농도로 집중되는 특성이 있음."
 }

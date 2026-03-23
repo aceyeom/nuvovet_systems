@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 7.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -411,5 +413,14 @@
     "source_file": "plumbs_output/43.jsonl",
     "extracted_at": "2026-03-11T02:34:29.527923+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "프루네벳맙(Frunevetmab)은(는) 통증 완화에 사용되는 진통제입니다.",
+  "primary_indications": [
+    "고양이 골관절염 관련 통증 조절 (FDA 승인",
+    "NADA #141-546). 면역매개성 관절병증",
+    "내장 통증",
+    "정형외과 수술 후 통증",
+    "전이성 암 통증에 대한 효과 및 안전성은 확립되지 않음."
+  ],
+  "mechanism_short": "프루네벳맙은 신경성장인자(NGF)에 결합하는 고양이화(felinized) IgG 단클론항체로, NGF가 수용체(TrkA, p75NTR)에 결합하는 것을 억제하여 통증 및 염증 화학 매개체 방출을 감소시키고 통증 관련 세포 신호 전달을 억제한다."
 }

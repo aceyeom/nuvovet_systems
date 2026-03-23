@@ -34,19 +34,27 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -488,5 +496,17 @@
     "source_file": "plumbs_output/23.jsonl",
     "extracted_at": "2026-03-10T20:11:29.863731+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "세프포독심(Cefpodoxime)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "【허가 적응증 (개)】 Staphylococcus pseudintermedius",
+    "S. aureus",
+    "Streptococcus canis",
+    "E. coli",
+    "Proteus mirabilis",
+    "Pasteurella multocida에 의한 감수성 피부 감염(상처 및 농양). 【허가 외 적응증】 개: 심부 농피증",
+    "세균성 방광염(UTI). 고양이: 피부 및 연조직 감염",
+    "UTI."
+  ],
+  "mechanism_short": "페니실린 결합 단백질(PBP)에 결합하여 세균 세포벽 합성을 억제하고 세균 세포 용해를 유발하는 시간 의존성 살균 항생제. 베타-락타마제에 비교적 내성을 가짐."
 }

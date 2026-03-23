@@ -25,19 +25,27 @@
     "available_strengths": [
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -469,5 +477,11 @@
     "source_file": "plumbs_output/6.jsonl",
     "extracted_at": "2026-03-10T15:23:18.466112+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "발라사이클로버(Valacyclovir)은(는) 바이러스 감염 치료에 사용되는 항바이러스제입니다.",
+  "primary_indications": [
+    "【말(오프라벨)】 EHV-1 감염의 예방 또는 임상 증상 감소: 27~30 mg/kg PO q8h × 6회 투여 후 18~20 mg/kg PO q12h × 1~2주. EHV-3에 의한 말 성교 발진(ECE): 27 mg/kg PO q8h × 6회 후 18 mg/kg PO q12h × 10~11일. 【인체(허가)】 헤르페스 및 수두대상포진 바이러스 감염의 치료",
+    "면역저하 환자에서 고용량으로 거대세포바이러스 감염 예방."
+  ],
+  "mechanism_short": "발라사이클로버는 아사이클로버의 프로드럭으로, 신속히 아사이클로버와 L-발린으로 가수분해됨. 바이러스 특이적 티미딘 키나아제에 의해 아사이클로버 모노포스페이트로 전환된 후 활성형인 아사이클로버 트리포스페이트로 인산화됨. 아사이클로버 트리포스페이트는 바이러스 DNA에 삽입되어 바이러스 DNA 사슬 종결을 유발하고 바이러스 DNA 합성 및 복제를 억제함."
 }

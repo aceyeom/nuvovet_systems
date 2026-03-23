@@ -26,27 +26,39 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 15,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 1.33,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 2,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 6,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -451,5 +463,11 @@
     "source_file": "plumbs_output/39.jsonl",
     "extracted_at": "2026-03-11T01:21:53.836971+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "덱스트로메토르판(Dextromethorphan)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【오프라벨】개: 아토피 피부염에서 자해적 긁기·물기·씹기 행동 감소 (2 mg/kg PO BID). 고양이: 보조 통증 관리 (0.5~2 mg/kg PO q6~8h",
+    "일화적 보고). 말: 크리빙 감소 (1 mg/kg IV). 인간에서는 단기 기침 억제제로 승인되어 있으나 개에서는 기침 관리 1차 약물이 아님."
+  ],
+  "mechanism_short": "비경쟁적 NMDA 수용체 길항제. 덱스트로메토르판 및 활성 대사체 덱스트로르판이 NMDA 수용체를 차단하여 글루타메이트/아스파르테이트에 의한 신경 감작을 억제함. 연수 기침 중추에서 σ-1 수용체 자극을 통해 글루타메이트 전달을 억제하고 기침 충동을 감소시킴. 약한 세로토닌 재흡수 억제 작용도 있음."
 }

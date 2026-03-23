@@ -1,6 +1,5 @@
 {
   "id": "oxytetracycline_polymyxin_b_ophthalmic",
-
   "drug_identity": {
     "name_ko": "옥시테트라사이클린/폴리믹신 B (안과용)",
     "name_en": "Oxytetracycline/Polymyxin B Ophthalmic",
@@ -23,15 +22,18 @@
     "available_strengths": [
       {
         "value": 5.0,
-        "unit": "mg/g"
+        "unit": "mg/g",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10000.0,
-        "unit": "units/g"
+        "unit": "units/g",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
-
   "metabolism_and_clearance": {
     "primary_metabolic_organ": "Unknown",
     "clearance_organ": "Mixed",
@@ -44,25 +46,75 @@
     },
     "extra_information": "Following a single topical dose, tear film concentrations surpass MICs for common ocular pathogens."
   },
-
   "organ_burden_logic": {
     "note": "Topical ophthalmic use generally minimizes systemic organ burden, but cats have a specific hypersensitivity risk.",
     "dog": {
-      "brain": { "calculated_score": 0, "triggered_keywords": [], "index": 1, "evidence": null },
-      "blood": { "calculated_score": 0, "triggered_keywords": [], "index": 2, "evidence": null },
-      "kidney": { "calculated_score": 0, "triggered_keywords": [], "index": 3, "evidence": null },
-      "liver": { "calculated_score": 0, "triggered_keywords": [], "index": 4, "evidence": null },
-      "heart": { "calculated_score": 0, "triggered_keywords": [], "index": 5, "evidence": null }
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": null
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 2,
+        "evidence": null
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 3,
+        "evidence": null
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 4,
+        "evidence": null
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 5,
+        "evidence": null
+      }
     },
     "cat": {
-      "brain": { "calculated_score": 0, "triggered_keywords": [], "index": 1, "evidence": null },
-      "blood": { "calculated_score": 2, "triggered_keywords": ["anaphylactic reactions"], "index": 2, "evidence": "Some cats may have an anaphylactic reaction to the polymyxin B component that necessitates discontinuation." },
-      "kidney": { "calculated_score": 0, "triggered_keywords": [], "index": 3, "evidence": null },
-      "liver": { "calculated_score": 0, "triggered_keywords": [], "index": 4, "evidence": null },
-      "heart": { "calculated_score": 0, "triggered_keywords": [], "index": 5, "evidence": null }
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": null
+      },
+      "blood": {
+        "calculated_score": 2,
+        "triggered_keywords": [
+          "anaphylactic reactions"
+        ],
+        "index": 2,
+        "evidence": "Some cats may have an anaphylactic reaction to the polymyxin B component that necessitates discontinuation."
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 3,
+        "evidence": null
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 4,
+        "evidence": null
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 5,
+        "evidence": null
+      }
     }
   },
-
   "timing_profile": {
     "onset_min": null,
     "t_max_hr": null,
@@ -76,11 +128,8 @@
     "protein_binding_percent": null,
     "evidence": "Acts locally on the epithelial membranes and other tissues of the eye."
   },
-
   "_ddi_note": "Oxytetracycline should not be mixed directly (in vitro) with any other drugs.",
-
   "drug_interactions": [],
-
   "additive_risks": {
     "nephrotoxic": false,
     "hepatotoxic": false,
@@ -89,7 +138,6 @@
     "sedation": false,
     "qt_prolongation": false
   },
-
   "risk_flags": {
     "nephrotoxic": "none",
     "hepatotoxic": "none",
@@ -97,7 +145,6 @@
     "bleeding": "none",
     "qt_prolongation": "none"
   },
-
   "species_flags": {
     "species_contraindicated": [],
     "mdr1_sensitive": false,
@@ -106,7 +153,6 @@
     "narrow_therapeutic_index": false,
     "washout_period_days": null
   },
-
   "dosage_and_kinetics": {
     "dog": {
       "is_approved": true,
@@ -141,7 +187,6 @@
       ]
     }
   },
-
   "renal_dose_adjustment": {
     "creatinine_threshold_dog_mg_dL": null,
     "creatinine_threshold_cat_mg_dL": null,
@@ -149,14 +194,12 @@
     "adjustment_factor": null,
     "note": null
   },
-
   "hepatic_dose_adjustment": {
     "applies": false,
     "alt_threshold_multiplier": null,
     "adjustment_type": "none specified",
     "note": null
   },
-
   "contraindications": [
     {
       "condition": "History of hypersensitivity to either drug or components",
@@ -172,14 +215,12 @@
       }
     }
   ],
-
   "genetic_sensitivity": {
     "has_genetic_risk": false,
     "affected_breeds": [],
     "gene": null,
     "evidence": null
   },
-
   "effects_and_mechanisms": {
     "common_mechanism": "Tetracyclines reversibly bind to the 30S ribosomal subunits to disrupt protein synthesis. Polymyxin B interacts with the lipopolysaccharide of the cytoplasmic outer membrane of gram-negative bacteria, altering membrane permeability.",
     "common_extra_effects": [
@@ -196,12 +237,10 @@
       "anaphylactic reactions"
     ]
   },
-
   "species_notes": {
     "dog": "May accelerate corneal epithelial wound healing in dogs. Decreases keratomalacia induced by matrix metalloproteinases in infected corneal ulcers.",
     "cat": "Frequently effective for treating Chlamydia spp and Mycoplasma spp conjunctivitis. Chlamydia infections require treatment 3-4 weeks beyond resolution. Some cats may experience severe anaphylactic reactions to Polymyxin B."
   },
-
   "precautions": {
     "dog": {
       "status": 0,
@@ -212,20 +251,17 @@
       "evidence": "Some cats may have an anaphylactic reaction to the polymyxin B component that necessitates discontinuation of treatment."
     }
   },
-
   "storage_and_forms": {
     "storage": "Store at controlled room temperature (20°C-25°C [68°F-77°F]), away from moisture and sunlight; do not freeze.",
     "forms": [
       "Ophthalmic Ointment (3.5 g tubes)"
     ]
   },
-
   "section_1_2_10": {
     "highlights": "Used to treat superficial ocular bacterial infections. Frequently effective for Chlamydia and Mycoplasma in cats (treat 3-4 weeks past clinical signs). Risk of local irritation or anaphylaxis in cats.",
     "indications": "Prevent or treat superficial ocular infections involving the conjunctiva and/or cornea caused by gram-positive, gram-negative, and intracellular bacteria.",
     "client_info": "Use proper administration techniques to avoid contamination. Wait 5 minutes before applying other eye medications. Crystals may appear on the surface of the eye (not harmful)."
   },
-
   "_data_quality": {
     "overall_confidence": 4,
     "renal_adjustment_confidence": "high",
@@ -254,12 +290,18 @@
     "requires_pmc_rag": false,
     "pmc_rag_fields": []
   },
-
   "_extraction_metadata": {
     "model_used": "Gemini 3.1 Pro",
     "extraction_pass": 1,
     "source_file": "Plumbs Veterinary Drugs",
     "extracted_at": "2026-03-21T14:07:37Z",
     "reviewer": null
-  }
+  },
+  "brief_description": "옥시테트라사이클린/폴리믹신 B (안과용)(Oxytetracycline/Polymyxin B Ophthalmic)은(는) 복합 항생제로, 광범위 항균 효과를 제공합니다.",
+  "primary_indications": [
+    "Prevent or treat superficial ocular infections involving the conjunctiva and/or cornea caused by gram-positive",
+    "gram-negative",
+    "and intracellular bacteria."
+  ],
+  "mechanism_short": "Tetracyclines reversibly bind to the 30S ribosomal subunits to disrupt protein synthesis. Polymyxin B interacts with the lipopolysaccharide of the cytoplasmic outer membrane of gram-negative bacteria, altering membrane permeability."
 }

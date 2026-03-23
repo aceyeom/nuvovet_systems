@@ -27,7 +27,9 @@
     "available_strengths": [
       {
         "value": 500,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -563,5 +565,13 @@
     "source_file": "plumbs_output/14.jsonl",
     "extracted_at": "2026-03-10T17:24:46.485849+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "디피론(Dipyrone)은(는) 통증과 염증을 완화하는 비스테로이드성 항염증제(NSAID)입니다.",
+  "primary_indications": [
+    "승인 적응증: 말에서 발열 조절(30 mg/kg IV",
+    "1일 1~2회",
+    "최대 3일). 허가 외 적응증: 개에서 수술 전후 진통(25 mg/kg IV)",
+    "고양이에서 수술 후 진통(25 mg/kg IV q24h 또는 12.5 mg/kg IV q12h). 미국 외 국가에서는 다양한 동물 종에서 진통 및 해열 목적으로 승인될 수 있음."
+  ],
+  "mechanism_short": "디피론은 프로드럭으로 빠르게 활성 대사체 4-MAA로 가수분해됨. 말초 COX-1 및 COX-2 억제를 통한 프로스타글란딘 생성 억제, CNS 내 COX-3 억제, 카나비노이드 및 오피오이드 시스템 작용 가능성. 해열, 진통, 약한 항염증 효과 및 브라디키닌 유발 장관 경련에 대한 항경련 활성을 가짐."
 }

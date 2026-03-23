@@ -24,15 +24,21 @@
     "available_strengths": [
       {
         "value": 400,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 600,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 120,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -459,5 +465,10 @@
     "source_file": "plumbs_output/41.jsonl",
     "extracted_at": "2026-03-11T01:44:01.206355+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "펠바메이트(Felbamate)은(는) 발작(경련) 조절에 사용되는 항경련제입니다.",
+  "primary_indications": [
+    "개에서 전신 발작 및 복합 부분 발작을 포함한 발작 장애 조절(오프라벨). 다른 표준 치료로 적절한 발작 조절이 되지 않거나 이상반응으로 내약성이 없는 경우 추가 약물로 고려."
+  ],
+  "mechanism_short": "흥분성 신경전달 감소를 통한 항경련 작용. 나트륨 채널 활성화를 증가시켜 고빈도 활동전위 발화를 억제하는 것으로 추정되나 정확한 기전은 불명확함."
 }

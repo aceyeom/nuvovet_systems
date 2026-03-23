@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -680,5 +682,14 @@
     "source_file": "plumbs_output/24.jsonl",
     "extracted_at": "2026-03-10T20:41:52.180265+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "클로르프로마진(Chlorpromazine)은(는) 진정 및 불안 완화에 사용되는 진정제입니다.",
+  "primary_indications": [
+    "【승인 적응증】 수의학적 승인 제품 없음 (인체용 제제 오프라벨 사용). 【오프라벨 적응증】 소동물(개",
+    "고양이)에서 항구토제 및 진정/안정제로 사용. 암페타민 유사 ADHD 약물",
+    "SSRI",
+    "항우울제 과다복용 또는 세로토닌 증후군 유발 독소에 의한 심한 불안",
+    "고혈압 치료 보조. 고양이 멀미 치료. 개에서 아포모르핀 유발 구토 억제."
+  ],
+  "mechanism_short": "도파민 D2 수용체 차단을 통한 항구토 및 진정 효과. 알파-아드레날린 수용체 차단으로 혈관 확장 및 저혈압 유발. 아세틸콜린, 히스타민, 세로토닌 수용체에도 작용. 아세프로마진과 유사한 약리 효과이나 효능이 낮고 작용 시간이 더 길다."
 }

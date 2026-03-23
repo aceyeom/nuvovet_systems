@@ -23,11 +23,15 @@
     "available_strengths": [
       {
         "value": 4.0,
-        "unit": "mg/mL eprinomectin"
+        "unit": "mg/mL eprinomectin",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 83.0,
-        "unit": "mg/mL praziquantel"
+        "unit": "mg/mL praziquantel",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -381,5 +385,13 @@
     "source_file": "Eprinomectin/Praziquantel text extract",
     "extracted_at": "2026-03-21T12:15:22+09:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "에프리노멕틴/프라지콴텔(Eprinomectin/Praziquantel)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "Prevention of heartworm disease caused by Dirofilaria immitis",
+    "and treatment and control of roundworms",
+    "hookworms",
+    "and tapeworms in cats and kittens 7 weeks of age and older and >= 0.8 kg."
+  ],
+  "mechanism_short": "Eprinomectin binds to glutamate-gated chloride ion channels in invertebrate nerve/muscle cells, increasing chloride permeability and causing paralysis. Praziquantel interacts with integument phospholipids, causing calcium ion flux and disintegration of the cestode."
 }

@@ -34,23 +34,33 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -727,5 +737,15 @@
     "source_file": "plumbs_output/61.jsonl",
     "extracted_at": "2026-03-11T08:24:44.802719+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "마르보플록사신(Marbofloxacin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "승인 적응증: 개와 고양이의 감수성 세균 감염(피부/연조직 감염",
+    "요로감염). 오프라벨 적응증: 개의 리슈만편모충증",
+    "고양이의 비결핵성 마이코박테리아 감염",
+    "고양이의 혈액기생 마이코플라즈마 감염",
+    "신우신염",
+    "전립선 감염. 식품동물에서의 오프라벨 사용은 미국에서 법적으로 금지됨."
+  ],
+  "mechanism_short": "세균 DNA 자이라제(II형 토포이소머라제)를 억제하여 DNA 초나선화 및 DNA 합성을 방해함으로써 살균 작용을 나타내는 농도 의존성 3세대 플루오로퀴놀론 항생제. 노출 후 20~30분 내 세균 사멸 유도. 그람 음성 및 그람 양성 균에 대해 유의한 항생제 후 효과(PAE) 발휘."
 }

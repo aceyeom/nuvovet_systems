@@ -35,23 +35,33 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 150,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 180,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -455,5 +465,17 @@
     "source_file": "plumbs_output/2.jsonl",
     "extracted_at": "2026-03-10T14:15:59.143004+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "면역글로불린 (사람) 정맥주사용(Immune Globulin (Human), Intravenous)은(는) 면역 반응을 억제하는 면역억제제입니다.",
+  "primary_indications": [
+    "【오프라벨】개: 면역매개성 용혈성 빈혈(IMHA) 구제 요법",
+    "원발성 면역매개성 혈소판감소증(ITP)",
+    "에반스 증후군",
+    "돌발성 후천성 망막변성 증후군(SARDS)",
+    "중증근무력증",
+    "피부 자가면역질환(다형홍반",
+    "천포창",
+    "스티븐스-존슨 증후군"
+  ],
+  "mechanism_short": "B 림프구에서 생성된 면역글로불린(주로 IgG)으로 구성. Fc 수용체 차단, 병적 자가항체 중화, 보체 억제, Fas-FasL 결합 방해, 사이토카인 합성 하향 조절 등 다인성 면역 조절 작용. 항체 생산의 음성 피드백 및 하향 조절, CD5·IL-1a·IL-6·TNF-α·T세포 수용체 결합, 병원성 사이토카인 및 식세포 억제 포함."
 }

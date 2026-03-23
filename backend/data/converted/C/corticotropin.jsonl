@@ -28,7 +28,9 @@
     "available_strengths": [
       {
         "value": 80,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -397,5 +399,12 @@
     "source_file": "plumbs_output/36.jsonl",
     "extracted_at": "2026-03-11T00:24:10.248908+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "코르티코트로핀(Corticotropin)은(는) 호르몬 불균형 치료에 사용되는 호르몬제입니다.",
+  "primary_indications": [
+    "개에서 부신피질 기능 저하증(저부신피질증) 진단을 위한 ACTH 자극 시험(extra-label)",
+    "의인성 부신피질 기능 항진증 평가",
+    "미토탄 또는 트릴로스탄 치료 반응 모니터링. 자연 발생 부신피질 기능 항진증 선별 검사로는 저용량 덱사메타손 억제 시험이 더 권장됨. 조류에서 코르티코스테론 기반 ACTH 자극 시험에도 사용됨(extra-label)."
+  ],
+  "mechanism_short": "부신피질(주로 속상대, zona fasciculata)을 자극하여 글루코코르티코이드(포유류에서는 주로 코르티솔)의 생성 및 분비를 촉진하는 39개 아미노산 폴리펩타이드 호르몬(ACTH). 시상하부의 CRF에 의해 조절되며, 내인성 또는 외인성 글루코코르티코이드에 의한 음성 피드백으로 분비가 억제됨."
 }

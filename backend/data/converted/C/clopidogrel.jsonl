@@ -22,15 +22,21 @@
     "available_strengths": [
       {
         "value": 75,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -598,5 +604,13 @@
     "source_file": "plumbs_output/36.jsonl",
     "extracted_at": "2026-03-11T00:11:51.092870+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "클로피도그렐(Clopidogrel)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【개】 과응고 상태에서의 동맥혈전색전증 예방 (허가 외)",
+    "면역매개성 용혈성 빈혈(IMHA)에서의 혈전 예방 (허가 외). 【고양이】 심인성 동맥혈전색전증 예방 및 재발 감소 (허가 외)",
+    "대동맥혈전색전증 치료 보조 (허가 외). 【말】 항혈소판 치료 (허가 외",
+    "실험적)."
+  ],
+  "mechanism_short": "클로피도그렐은 프로드럭으로 간에서 대사되어 활성 티올 화합물(CAM)을 형성함. CAM은 혈소판 표면의 ADP 수용체(P2Y12)에 선택적으로 비가역적으로 결합하여 혈소판 수명 동안 ADP에 의한 혈소판 활성화를 억제하고 GPIIb/IIIa 복합체의 완전 활성화를 저해함."
 }

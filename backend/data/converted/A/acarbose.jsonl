@@ -27,15 +27,21 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -531,5 +537,12 @@
     "source_file": "plumbs_output/60.jsonl",
     "extracted_at": "2026-03-11T07:53:08.563037+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아카보스(Acarbose)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "개와 고양이의 비인슐린 의존성 당뇨병에서 경증~중등도 고혈당 감소",
+    "인슐린 의존성 당뇨병의 보조 치료",
+    "인슐린 활성 피크가 너무 이른 경우의 보조 치료 (모두 오프라벨)."
+  ],
+  "mechanism_short": "췌장 알파-아밀라제 및 소장 알파-글루코시다제를 경쟁적으로 억제하여 복합 탄수화물 및 이당류의 포도당으로의 소화를 지연시킴. 이로 인해 식후 혈당 상승 및 인슐린 요구량 감소."
 }

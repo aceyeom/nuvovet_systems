@@ -24,19 +24,27 @@
     "available_strengths": [
       {
         "value": 1.8,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 2.1,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 4.7,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 9.4,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -357,5 +365,15 @@
     "source_file": "plumbs_output/38.jsonl",
     "extracted_at": "2026-03-11T01:04:42.196051+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "데스로렐린(Deslorelin)은(는) 호르몬 불균형 치료에 사용되는 호르몬제입니다.",
+  "primary_indications": [
+    "【승인 적응증】 발정 주기 중인 암말의 배란 유도 (FDA 승인",
+    "SucroMate Equine 1.8 mg/mare IM). 페럿의 부신피질 질환 관리 (FDA 인덱스 제품",
+    "Suprelorin-F 4.7 mg SC 12개월마다). 【허가 외 사용】 수컷 개의 가역적 피임 (4.7 mg 또는 9.4 mg 임플란트 SC",
+    "미국 내 금지). 다양한 동물 종에서의 장기 가역적 피임. 조류의 산란 억제",
+    "전립선 질환",
+    "공격적 행동 관리 등."
+  ],
+  "mechanism_short": "강력한 GnRH 유사체로 FSH 및 LH 분비를 유도하며, 지속적 투여 시 GnRH 수용체를 하향 조절(탈감작 및 내재화)하여 난소 및 고환 기능을 억제한다."
 }

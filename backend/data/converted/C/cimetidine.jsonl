@@ -22,23 +22,33 @@
     "available_strengths": [
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 400,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 800,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 60,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -788,5 +798,16 @@
     "source_file": "plumbs_output/25.jsonl",
     "extracted_at": "2026-03-10T20:50:57.414386+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "시메티딘(Cimetidine)은(는) 위장관 보호 및 궤양 치료에 사용되는 소화기 보호제입니다.",
+  "primary_indications": [
+    "위궤양",
+    "십이지장궤양",
+    "요독성 위염",
+    "스트레스성/약물 유발 미란성 위염",
+    "식도염",
+    "위식도역류",
+    "가스트린종 및 전신 비만세포증 관련 과분비 상태의 치료 및 예방(모두 오프라벨). 개에서 면역조절 목적으로도 연구됨(오프라벨)."
+  ],
+  "mechanism_short": "위벽세포의 H2 수용체에서 히스타민을 경쟁적으로 억제하여 기저 상태 및 음식, 펜타가스트린, 히스타민, 인슐린에 의해 자극된 위산 분비를 감소시킴. 또한 펩신 분비를 감소시키고, 면역조절 효과(억제 T세포 매개 면역억제 역전) 및 약한 항안드로겐 활성을 가짐."
 }

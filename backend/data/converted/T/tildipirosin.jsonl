@@ -21,11 +21,15 @@
     "available_strengths": [
       {
         "value": 180,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -367,5 +371,17 @@
     "source_file": "plumbs_output/47.jsonl",
     "extracted_at": "2026-03-11T03:38:55.637657+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "틸디피로신(Tildipirosin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "【승인 적응증】소(비유우 포함 비유 낙농우): Mannheimia haemolytica",
+    "Pasteurella multocida",
+    "Histophilus somni에 의한 소 호흡기 질환(BRD) 치료 및 고위험군 예방적 투여 (FDA 승인",
+    "4 mg/kg SC 단회). 【EU 추가 승인】돼지: Actinobacillus pleuropneumoniae",
+    "Pasteurella multocida",
+    "Bordetella bronchiseptica",
+    "Haemophilus parasuis에 의한 돼지 호흡기 질환(SRD) 치료 (4 mg/kg IM 단회",
+    "EU 승인). 【비승인 사용】개·고양이: 승인된 적응증 없음."
+  ],
+  "mechanism_short": "세균 리보솜 50S 소단위에 결합하여 세균 단백질 합성을 억제하는 마크로라이드계 항생제. 시간 의존성 항균 활성을 가지나 일부 균주에 대해서는 농도 의존성(AUC/MIC)으로 작용할 수 있음. 또한 전염증성 사이토카인 분비 억제, 포스포리파제 활성 억제, 류코트리엔 방출 억제 등 항염증 효과도 있음."
 }

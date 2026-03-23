@@ -326,5 +326,12 @@
     "source_file": "plumbs_output/8.jsonl",
     "extracted_at": "2026-03-10T15:59:30.372876+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아시클로버 점안제(Acyclovir Ophthalmic)은(는) 바이러스 감염 치료에 사용되는 항바이러스제입니다.",
+  "primary_indications": [
+    "고양이 헤르페스바이러스-1(FHV-1) 관련 각결막염",
+    "각막궤양",
+    "결막염 (엑스트라라벨 사용). 수의학적 또는 인체의학적으로 안과용 제형으로 승인된 적응증 없음."
+  ],
+  "mechanism_short": "아시클로버는 비환형 뉴클레오시드 유사체로, 바이러스 티미딘 키나아제에 의해 선택적으로 인산화된 후 바이러스 DNA 중합효소를 억제하여 바이러스 복제를 차단함."
 }

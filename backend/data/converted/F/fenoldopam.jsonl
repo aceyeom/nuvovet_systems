@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -412,5 +414,12 @@
     "source_file": "plumbs_output/41.jsonl",
     "extracted_at": "2026-03-11T01:49:43.729680+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "페놀도팜(Fenoldopam)은(는) 심장 기능 개선에 사용되는 심장약입니다.",
+  "primary_indications": [
+    "【허가 외 사용】개·고양이: 고혈압 응급",
+    "비핍뇨성/핍뇨성/무뇨성 급성 신손상 보조 치료. 망아지: 급성 신손상 보조 치료. 【사람 허가】중증 고혈압 치료",
+    "심혈관 수술 후 신보호."
+  ],
+  "mechanism_short": "D1 수용체 선택적 시냅스후 도파민 작용제로서 말초 동맥 혈관 확장, 장간막 및 신혈류 증가, 이뇨, 총 말초 저항 및 전신 혈압 감소를 유발함. 고용량에서는 알파2 > 알파1 수용체 길항 작용으로 추가적인 혈관 확장 효과. D2, 베타 아드레날린, 세로토닌, 무스카린 수용체에는 친화성 없음."
 }

@@ -22,27 +22,39 @@
     "available_strengths": [
       {
         "value": 1000,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 5000,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 10000,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 20000,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -639,5 +651,15 @@
     "source_file": "plumbs_output/0.jsonl",
     "extracted_at": "2026-03-10T13:32:14.921957+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "헤파린 (미분획)(Unfractionated Heparin)은(는) 혈액 응고를 억제하는 항응고제입니다.",
+  "primary_indications": [
+    "승인 적응증: 없음(수의용 허가 제품 없음). 오프라벨 적응증: 면역매개 용혈성 빈혈(IMHA) 혈전예방",
+    "폐혈전색전증",
+    "동맥혈전색전증",
+    "파종성 혈관내 응고(DIC)",
+    "고양이 동맥혈전색전증(FATE)",
+    "말에서 경정맥 혈전정맥염·DIC·제엽염 예방·복강내 유착 예방."
+  ],
+  "mechanism_short": "헤파린은 항트롬빈(AT)에 결합하여 구조적 변화를 유발하고, AT가 활성화된 응고인자(특히 Xa인자 및 IIa인자/트롬빈)에 결합하는 속도를 가속화하여 응고 연쇄반응에서의 전응고 활성을 억제함. 또한 XIII인자(피브린 안정화 인자) 활성화를 억제하여 안정적인 피브린 혈전 형성을 방지함. 지단백 리파아제 방출을 증가시켜 순환 지질 제거를 촉진함."
 }

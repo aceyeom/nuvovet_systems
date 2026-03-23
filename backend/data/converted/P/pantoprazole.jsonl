@@ -30,15 +30,21 @@
     "available_strengths": [
       {
         "value": 20,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 4,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -429,5 +435,12 @@
     "source_file": "plumbs_output/31.jsonl",
     "extracted_at": "2026-03-10T22:43:52.387825+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "판토프라졸(Pantoprazole)은(는) 위장관 보호 및 궤양 치료에 사용되는 소화기 보호제입니다.",
+  "primary_indications": [
+    "위산 억제(오프라벨): 개/고양이 0.7~1 mg/kg IV q12h. 위궤양",
+    "위식도역류",
+    "식도염 등 위산 관련 질환. 반추동물 제4위 궤양 예방. 낙타과 동물 위산 억제. 신생 망아지 위산 억제."
+  ],
+  "mechanism_short": "치환된 벤즈이미다졸계 양성자 펌프 억제제. 위 벽세포의 분비면에서 활성 H+/K+ ATPase(양성자 펌프)의 2개 부위에 공유결합을 형성하여 위산 분비를 억제함. 기저 및 자극 상태 모두에서 산 분비를 감소시키며, 양성자 펌프의 비활성화는 영구적임."
 }

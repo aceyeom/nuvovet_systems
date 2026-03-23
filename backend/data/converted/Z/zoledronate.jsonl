@@ -23,15 +23,21 @@
     "available_strengths": [
       {
         "value": 0.8,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 4.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -515,5 +521,13 @@
     "source_file": "plumbs_output/8.jsonl",
     "extracted_at": "2026-03-10T15:54:54.836467+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "졸레드론산(Zoledronic Acid)은(는) 악성 종양(암) 치료에 사용되는 항종양제입니다.",
+  "primary_indications": [
+    "【허가 외 사용】 ① 개: 악성 종양에 의한 고칼슘혈증 보조 치료 (4 mg/dog 또는 0.1~0.32 mg/kg IV)",
+    "골육종 관련 골통증 완화 (0.1 mg/kg IV",
+    "4주마다). ② 고양이: 구강 편평세포암종(골 침범) 보조 치료 (0.2 mg/kg IV",
+    "28일마다). ③ 말: 골취약성 장애 (0.075 mg/kg IV). 수의학적 승인 제품 없음."
+  ],
+  "mechanism_short": "비스포스포네이트계 약물로 하이드록시아파타이트 결정에 결합하여 골흡수를 억제. 파골세포의 효소인 파르네실 피로인산 합성효소를 주요 표적으로 하여 파골세포 활성 억제 및 세포자멸사 유도. 파미드로네이트 대비 약 100배 강력한 골흡수 억제 효과."
 }

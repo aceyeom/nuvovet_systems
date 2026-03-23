@@ -22,7 +22,9 @@
     "available_strengths": [
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -402,5 +404,10 @@
     "source_file": "plumbs_output/47.jsonl",
     "extracted_at": "2026-03-11T03:44:29.477553+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "틸루드론산(Tiludronate)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "말의 주상골 증후군 관련 임상 증상 조절(FDA 승인). 주상골에 국한된 파행 및 원위 부절 골관절염 관리에 유익할 수 있음(비라벨 사용). 외상성 구절관절 골관절염의 방사선학적 진행 억제에 사용된 바 있음(비라벨). 개·고양이에 대한 승인된 적응증 없음."
+  ],
+  "mechanism_short": "파골세포가 뼈 수산화아파타이트에 결합한 후 파골세포 기능을 억제하여 골 흡수를 저해하는 비스포스포네이트 계열 약물. 이를 통해 골 재형성 조절에 기여한다."
 }

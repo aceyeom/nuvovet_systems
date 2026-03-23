@@ -22,11 +22,15 @@
     "available_strengths": [
       {
         "value": 12.5,
-        "unit": "mg/mL (Pyrimethamine)"
+        "unit": "mg/mL (Pyrimethamine)",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 250.0,
-        "unit": "mg/mL (Sulfadiazine)"
+        "unit": "mg/mL (Sulfadiazine)",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -384,5 +388,10 @@
     "source_file": "pyrimethamine_sulfadiazine_monograph.txt",
     "extracted_at": "2026-03-23T14:10:42+09:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "피리메타민/설파디아진(Pyrimethamine/Sulfadiazine)은(는) 원충 감염 치료에 사용되는 항원충제입니다.",
+  "primary_indications": [
+    "Labeled for the treatment of horses with equine protozoal myeloencephalitis (EPM) caused by Sarcocystis neurona. Extra-label potential for toxoplasmosis (cats) or neosporosis (dogs)."
+  ],
+  "mechanism_short": "Pyrimethamine is a dihydrofolate reductase inhibitor. Sulfonamides inhibit the conversion of PABA to DFA. Synergistic when used together against protozoal dihydrofolate reductase."
 }

@@ -24,19 +24,27 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -721,5 +729,16 @@
     "source_file": "plumbs_output/7.jsonl",
     "extracted_at": "2026-03-10T15:45:01.117498+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "보리코나졸(Voriconazole)은(는) 진균(곰팡이) 감염 치료에 사용되는 항진균제입니다.",
+  "primary_indications": [
+    "개: 콕시디오이데스증",
+    "전신 아스페르길루스증",
+    "부비동 아스페르길루스증 (모두 오프라벨). 고양이: 아스페르길루스증 (오프라벨",
+    "최후 수단). 말: 전신 진균 감염",
+    "구개낭 진균증",
+    "각막진균증 (오프라벨). 조류: 전신 진균 감염",
+    "아스페르길루스증 (오프라벨). 파충류: 전신 진균 감염 (오프라벨)."
+  ],
+  "mechanism_short": "진균 세포막의 에르고스테롤 합성에 필요한 CYP450 의존성 라노스테롤 14α-탈메틸화 효소를 억제하여 세포막 투과성 증가 및 세포 내용물 누출을 유발하는 광범위 트리아졸계 항진균제. 아스페르길루스 등 사상균에 대해서는 24-메틸렌 데하이드로라노스테롤 탈메틸화도 추가로 억제."
 }

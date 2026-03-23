@@ -24,11 +24,15 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -514,5 +518,17 @@
     "source_file": "plumbs_output/47.jsonl",
     "extracted_at": "2026-03-11T03:49:33.965514+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "토브라마이신(Tobramycin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "그람음성 호기성 세균(E. coli",
+    "Klebsiella",
+    "Proteus",
+    "Pseudomonas",
+    "Salmonella",
+    "Enterobacter",
+    "Serratia",
+    "Shigella"
+  ],
+  "mechanism_short": "30S 리보솜 소단위에 비가역적으로 결합하여 세균의 단백질 합성을 억제하는 농도 의존성 살균 항생제. 주로 그람음성 호기성 간균에 효과적."
 }

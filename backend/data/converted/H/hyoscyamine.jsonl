@@ -42,31 +42,45 @@
     "available_strengths": [
       {
         "value": 0.125,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.15,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.375,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.125,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.025,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.05,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -609,5 +623,13 @@
     "source_file": "plumbs_output/1.jsonl",
     "extracted_at": "2026-03-10T13:58:18.565675+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "히오시아민(Hyoscyamine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【개 - 오프라벨】 ① 과민성 장 증후군(만성 특발성 대장 질환) 항무스카린 치료: 3–6 μg/kg PO q8–12h ② 동방결절 기능 장애",
+    "방실 차단(페이스메이커 삽입 불가 시): 3–6 μg/kg PO q8h. 【사람 - 허가】 위장관 운동 감소",
+    "인두·기관지·기관 분비물 감소",
+    "아세틸콜린에스테라제 억제제 중독 치료."
+  ],
+  "mechanism_short": "아트로핀의 좌선성 이성질체인 항콜린성 약물로, 부교감신경 절후 신경에 의해 지배되는 조직 및 콜린성 신경지배 없이 아세틸콜린에 반응하는 평활근에서 아세틸콜린을 억제함. 자율신경절에는 작용하지 않음. 용량 의존적으로 분비 감소, 위장관 및 요로 운동성 감소, 산동, 심박수 증가를 유발함."
 }

@@ -25,7 +25,9 @@
     "available_strengths": [
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -542,5 +544,10 @@
     "source_file": "plumbs_output/45.jsonl",
     "extracted_at": "2026-03-11T03:09:11.772771+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "설파살라진(Sulfasalazine)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "개와 고양이의 염증성 대장(결장) 질환 보조 치료 (오프라벨). 개의 혈관염 보조 치료 (오프라벨). 소장 염증에는 효과 없음 (대장 세균 필요). 사람에서는 염증성 관절병증에도 사용됨."
+  ],
+  "mechanism_short": "대장 세균에 의해 설파피리딘과 5-아미노살리실산(5-ASA, 메살라민)으로 분해됨. 메살라민의 국소 항염증 작용(사이클로옥시게나제 및 리폭시게나제 억제)이 주요 치료 효과를 제공함. 설파피리딘의 항균 및/또는 면역조절 활성도 기여함."
 }

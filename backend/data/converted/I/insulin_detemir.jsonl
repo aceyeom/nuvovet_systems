@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 100.0,
-        "unit": "units/mL"
+        "unit": "units/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -367,5 +369,10 @@
     "source_file": "insulin_detemir_monograph.txt",
     "extracted_at": "2026-03-23T14:19:31+09:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "인슐린 데테미르(Insulin detemir)은(는) 지속성 인슐린으로, 당뇨병의 장기적 혈당 관리에 사용됩니다.",
+  "primary_indications": [
+    "Initial treatment and long-term management of uncomplicated diabetes mellitus in dogs and cats."
+  ],
+  "mechanism_short": "Regulates glucose metabolism. Lowers blood glucose by increasing glucose uptake in peripheral tissues (skeletal muscle, fat) and increasing glucose storage (glycogen) in the liver while inhibiting gluconeogenesis."
 }

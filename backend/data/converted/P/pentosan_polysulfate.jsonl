@@ -27,15 +27,21 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -552,5 +558,16 @@
     "source_file": "plumbs_output/18.jsonl",
     "extracted_at": "2026-03-10T18:46:28.186474+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "펜토산 폴리설페이트 나트륨(Pentosan Polysulfate Sodium)은(는) 통증과 염증을 완화하는 비스테로이드성 항염증제(NSAID)입니다.",
+  "primary_indications": [
+    "개: 골격 성숙 개의 퇴행성 관절 질환/골관절염으로 인한 파행 및 통증 치료 (extra-label",
+    "SC 3 mg/kg",
+    "5~7일 간격 4회). 고양이: 골관절염에 대한 연골보호제 (extra-label",
+    "일화적 사용",
+    "SC 또는 IM 3 mg/kg 주 1회 4주). 말: 비감염성 염증성 관절 질환 보조 치료 (extra-label",
+    "IM 3 mg/kg 5~7일 간격 4회",
+    "또는 관절 내 1 mL(250 mg) 주 1회 3~4회)."
+  ],
+  "mechanism_short": "골관절염 관절에 대한 질병 조절 효과: 사이토카인 작용 조절, 프로테오글리칸 함량 보존, 히알루론산 합성 자극. 항염증, 지질저하, 항응고(헤파린의 1/15 수준), 섬유소용해 특성을 가짐. 활막 혈류 증가 및 관절 염증 감소. 방광 점막에 부착하여 자극 물질로부터 방광 세포 보호(간질성 방광염)."
 }

@@ -24,23 +24,33 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 120,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 75,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -697,5 +707,15 @@
     "source_file": "plumbs_output/57.jsonl",
     "extracted_at": "2026-03-11T06:59:39.813121+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "케토프로펜(Ketoprofen)은(는) 통증과 염증을 완화하는 비스테로이드성 항염증제(NSAID)입니다.",
+  "primary_indications": [
+    "【승인 적응증】 말: 근골격계 장애 관련 염증 및 통증 완화 (IV",
+    "2.2 mg/kg SID",
+    "최대 5일). 소: 소 호흡기 질환(BRD) 관련 발열 조절 (SC",
+    "3 mg/kg SID",
+    "최대 3일). 【Extra-label 적응증】 개·고양이: 급성 및 만성 통증/항염증. 양",
+    "랫트/마우스: 진통·항염증·해열 목적."
+  ],
+  "mechanism_short": "COX-1 및 COX-2의 비선택적·가역적 억제를 통해 아라키돈산에서 프로스타글란딘 전구체(엔도퍼옥사이드)로의 전환을 차단하여 조직 내 프로스타글란딘 합성을 억제함. 리폭시게나제 억제 활성도 주장되나 in vitro 연구에서 확인되지 않음. 라세믹 혼합물로 S(+) 에난티오머가 항프로스타글란딘 활성 및 독성과 관련, R(-) 에난티오머가 진통 효과와 관련됨."
 }

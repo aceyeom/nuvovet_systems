@@ -23,35 +23,51 @@
     "available_strengths": [
       {
         "value": 90.0,
-        "unit": "mg SAMe / 9 mg Silybin"
+        "unit": "mg SAMe / 9 mg Silybin",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 225.0,
-        "unit": "mg SAMe / 24 mg Silybin"
+        "unit": "mg SAMe / 24 mg Silybin",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 425.0,
-        "unit": "mg SAMe / 35 mg Silybin"
+        "unit": "mg SAMe / 35 mg Silybin",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 30.0,
-        "unit": "mg SAMe / 9 mg Silybin"
+        "unit": "mg SAMe / 9 mg Silybin",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 82.0,
-        "unit": "mg SAMe / 24 mg Silybin"
+        "unit": "mg SAMe / 24 mg Silybin",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 172.0,
-        "unit": "mg SAMe / 35 mg Silybin"
+        "unit": "mg SAMe / 35 mg Silybin",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 120.0,
-        "unit": "mg SAMe / 35 mg Silybin"
+        "unit": "mg SAMe / 35 mg Silybin",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 215.0,
-        "unit": "mg SAMe / 70 mg Silybin"
+        "unit": "mg SAMe / 70 mg Silybin",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -371,5 +387,13 @@
     "source_file": "S-Adenosyl-Methionine (SAMe)/Silybin text extract",
     "extracted_at": "2026-03-21T12:41:28+09:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "S-아데노실메티오닌/실리빈(S-Adenosyl-Methionine (SAMe)/Silybin)은(는) 간 보호 및 간 기능 개선에 사용되는 간 보호제입니다.",
+  "primary_indications": [
+    "Most commonly used as an adjunctive treatment for liver disease (e.g.",
+    "chronic hepatitis",
+    "hepatic lipidosis",
+    "cholangiohepatitis). May potentially be beneficial for treatment of acute hepatotoxin-induced liver toxicity."
+  ],
+  "mechanism_short": "SAMe is an essential part of transmethylation, transsulfuration, and aminopropylation pathways; it serves as a methyl donor and a precursor to glutathione (GSH). Silybin acts as an antioxidant and free radical scavenger, and inhibits lipid peroxidase and beta-glucoronidase."
 }

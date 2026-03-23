@@ -27,11 +27,15 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -512,5 +516,12 @@
     "source_file": "plumbs_output/13.jsonl",
     "extracted_at": "2026-03-10T17:13:27.089337+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "디멘히드리네이트(Dimenhydrinate)은(는) 구토 예방 및 치료에 사용되는 항구토제입니다.",
+  "primary_indications": [
+    "개에서 멀미 예방 및 치료 (extra-label)",
+    "전정 질환으로 인한 구토 및 오심 치료 (extra-label). 고양이에서는 제한적으로 사용되며",
+    "다른 항구토제가 선호됨."
+  ],
+  "mechanism_short": "H1 히스타민 수용체 차단, 항콜린 작용, CNS 억제, 국소마취 효과를 가짐. 디펜히드라민과 8-클로로테오필린의 복합체로, 주요 약리 작용은 디펜히드라민 부분에 기인함. 전정 자극을 억제하며, 항콜린 작용이 전정계 및 망상계의 아세틸콜린 자극을 차단하는 데 관여할 수 있음."
 }

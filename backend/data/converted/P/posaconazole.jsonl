@@ -25,15 +25,21 @@
     "available_strengths": [
       {
         "value": 40,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 18,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -653,5 +659,15 @@
     "source_file": "plumbs_output/20.jsonl",
     "extracted_at": "2026-03-10T19:25:09.994668+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "포사코나졸(Posaconazole)은(는) 진균(곰팡이) 감염 치료에 사용되는 항진균제입니다.",
+  "primary_indications": [
+    "개와 고양이에서 이트라코나졸 또는 플루코나졸 내성 중증 전신 진균 감염(아스페르길루스증",
+    "콕시디오이데스증",
+    "블라스토마이세스증",
+    "히스토플라스마증",
+    "스포로트리코시스",
+    "접합균증 등)에 오프라벨로 사용. 인체에서는 칸디다증 및 아스페르길루스증의 예방 및 치료에 허가됨."
+  ],
+  "mechanism_short": "진균 세포막의 에르고스테롤 합성에 필요한 CYP450 의존성 라노스테롤 14α-탈메틸화 효소를 억제하여 메틸화 스테롤의 세포 내 축적을 유발, 세포막 투과성 증가 및 세포 내용물 누출을 초래함."
 }

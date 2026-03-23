@@ -40,23 +40,33 @@
     "available_strengths": [
       {
         "value": 22.7,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 113.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2.27,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 4.54,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -514,5 +524,16 @@
     "source_file": "plumbs_output/31.jsonl",
     "extracted_at": "2026-03-10T22:51:17.868492+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "피란텔(Pyrantel)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "개(FDA 승인): 회충(Toxocara canis",
+    "Toxascaris leonina)",
+    "구충(Ancylostoma caninum",
+    "Uncinaria stenocephala) 구제. 고양이(비라벨): 유사 내부 기생충 치료. 말(FDA 승인): 대형 원충",
+    "소형 원충",
+    "대형 회충 구제. 기타 종(비라벨): 소",
+    "토끼 등."
+  ],
+  "mechanism_short": "피란텔은 콜린성 작용제로서 감수성 기생충의 니코틴성 수용체에 결합하여 탈분극을 유발하고 신경근 차단제로 작용하여 기생충을 마비시킴. 또한 콜린에스테라제를 억제함."
 }

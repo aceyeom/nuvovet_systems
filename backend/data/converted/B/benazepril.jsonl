@@ -33,23 +33,33 @@
     "available_strengths": [
       {
         "value": 2.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -1003,5 +1013,16 @@
     "source_file": "plumbs_output/50.jsonl",
     "extracted_at": "2026-03-11T04:41:40.787224+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "베나제프릴(Benazepril)은(는) 혈압 강하 및 심부전 치료에 사용되는 ACE 억제제입니다.",
+  "primary_indications": [
+    "【허가 적응증】 미국: 스피로노락톤과의 복합제(Cardalis®)로 개의 CHF 관리. 미국 외: 개의 심부전 치료",
+    "개와 고양이의 CKD 관련 단백뇨 감소. 【허가 외 사용】 개: 심부전 보조 치료",
+    "전신 고혈압",
+    "단백뇨성 사구체신병증",
+    "특발성 신장 혈뇨. 고양이: 비대성 심부전 보조 치료(효능 근거 부족)",
+    "고혈압 보조 치료",
+    "CKD 관련 단백뇨 감소."
+  ],
+  "mechanism_short": "베나제프릴은 프로드럭으로, 간에서 활성 대사체인 베나제프릴라트로 가수분해됨. 베나제프릴라트는 안지오텐신 전환 효소(ACE)를 억제하여 안지오텐신-I의 안지오텐신-II로의 전환을 차단함. 이로 인해 혈관 수축 감소, 알도스테론 분비 감소, 나트륨/수분 저류 감소, 심장 섬유화 및 리모델링 억제 효과가 나타남. 사구체 원심성 세동맥 확장을 통해 사구체 내 고혈압을 감소시켜 단백뇨를 줄임."
 }

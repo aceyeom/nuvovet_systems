@@ -38,11 +38,15 @@
     "available_strengths": [
       {
         "value": 4,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.4,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -603,5 +607,17 @@
     "source_file": "plumbs_output/37.jsonl",
     "extracted_at": "2026-03-11T00:41:35.193667+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "사이프로헵타딘(Cyproheptadine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【고양이】식욕 촉진(오프라벨)",
+    "세로토닌 증후군 보조 치료(오프라벨)",
+    "항히스타민(오프라벨",
+    "효능 제한적)",
+    "수컷 고양이 소변 스프레이(오프라벨) 【개】세로토닌 증후군 및 관련 독성(SSRI",
+    "TCA",
+    "바클로펜 등) 보조 치료(오프라벨)",
+    "식욕 촉진(오프라벨)"
+  ],
+  "mechanism_short": "H1 수용체 길항제로서 히스타민과 경쟁적으로 H1 수용체에 결합하여 히스타민 효과를 차단. 강력한 세로토닌 길항 작용, 항콜린 작용 및 칼슘 채널 차단 작용도 보유."
 }

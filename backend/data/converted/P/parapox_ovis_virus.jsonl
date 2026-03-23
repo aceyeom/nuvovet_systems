@@ -23,7 +23,9 @@
     "available_strengths": [
       {
         "value": 2.0,
-        "unit": "ml/kg"
+        "unit": "ml/kg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -319,5 +321,11 @@
     "source_file": "plumbs_output/31.jsonl",
     "extracted_at": "2026-03-10T22:44:55.974232+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "파라폭스 오비스 바이러스 면역조절제(Parapox Ovis Virus Immunomodulator)은(는) 면역 반응을 억제하는 면역억제제입니다.",
+  "primary_indications": [
+    "【허가 적응증(말)】 말 헤르페스바이러스 1형 및 4형에 의한 상부 호흡기 질환 감소 보조 (생후 4개월 이상 건강한 말). 【비허가 사용】 다른 국가에서 소동물 종에 사용 가능한 제품이 있을 수 있으나",
+    "현재 원문에는 개·고양이에 대한 구체적 적응증 정보 없음."
+  ],
+  "mechanism_short": "비특이적 면역 기전을 자극하는 생물학적 면역조절제. 비복제성 바이러스가 숙주 세포에 감염되어 병원성 바이러스 감염을 방해하며, 인터페론·사이토카인·콜로니자극인자 유도 및 자연살해(NK)세포 활성화를 통해 작용하는 것으로 추정됨."
 }

@@ -22,7 +22,9 @@
     "available_strengths": [
       {
         "value": 1.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -363,5 +365,10 @@
     "source_file": "plumbs_output/9.jsonl",
     "extracted_at": "2026-03-10T16:07:10.668609+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아트로핀 점안제(Atropine Ophthalmic)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "전방 포도막염에서의 산동 및 조절마비 유도 (extra-label). 혈액-방수 장벽 안정화 및 홍채 유착 예방. 조절마비 굴절 검사. 진단 목적의 후안부 검사를 위한 산동에는 효과 지속 시간이 너무 길어 적합하지 않음."
+  ],
+  "mechanism_short": "비선택적 무스카린 수용체 길항제로 부교감신경 차단 작용. 홍채 괄약근 및 모양체 조절근의 자극을 차단하여 산동 및 조절마비를 유발함."
 }

@@ -26,19 +26,27 @@
     "available_strengths": [
       {
         "value": 1.25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -597,5 +605,12 @@
     "source_file": "plumbs_output/54.jsonl",
     "extracted_at": "2026-03-11T06:09:52.854720+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "암로디핀(Amlodipine)은(는) 심장 기능 개선에 사용되는 심장약입니다.",
+  "primary_indications": [
+    "개와 고양이의 전신 고혈압 치료(extra-label). 고양이에서는 단독 1차 치료제로 사용 가능하며",
+    "개에서는 ACE 억제제 또는 안지오텐신 수용체 차단제와 병용. 불응성 심부전의 후부하 감소 보조 치료(개",
+    "extra-label). 조류의 전신 고혈압(extra-label). 영국에서 고양이용 수의 허가 제품(Amodip® 1.25 mg 씹는 정제) 허가."
+  ],
+  "mechanism_short": "디하이드로피리딘계 L형 칼슘 채널 차단제로, 심장 및 혈관 평활근의 전압 의존성 칼슘 채널을 억제하여 말초 세동맥 확장 및 후부하 감소를 유발함."
 }

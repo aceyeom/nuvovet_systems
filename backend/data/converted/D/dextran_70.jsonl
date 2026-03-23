@@ -32,7 +32,9 @@
     "available_strengths": [
       {
         "value": 6.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -444,5 +446,14 @@
     "source_file": "plumbs_output/39.jsonl",
     "extracted_at": "2026-03-11T01:20:04.404529+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "덱스트란 70(Dextran 70)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "저혈량성 쇼크의 보조 치료(허가 외). 개: 5 mL/kg 또는 20 mL/kg/day IV. 고양이: 2~5 mL/kg 또는 10 mL/kg/day IV. 폐쇄강 출혈",
+    "두부 손상",
+    "폐 좌상/부종",
+    "심인성 쇼크",
+    "핍뇨성 급성 신손상 시 소용량 소생술에 적용."
+  ],
+  "mechanism_short": "분지형 다당류 콜로이드로서 알부민과 유사한 삼투 효과를 나타낸다. 콜로이드 삼투압을 통해 간질 공간에서 혈관 내로 수분을 끌어들여 순환 혈액량을 증가시킨다."
 }

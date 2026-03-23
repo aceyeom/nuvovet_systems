@@ -38,19 +38,27 @@
     "available_strengths": [
       {
         "value": 23,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 34,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 56.8,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 600,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -853,5 +861,17 @@
     "source_file": "plumbs_output/20.jsonl",
     "extracted_at": "2026-03-10T19:34:23.264836+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "프라지콴텔(Praziquantel)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "개: Dipylidium caninum",
+    "Taenia pisiformis",
+    "Echinococcus granulosus",
+    "E. multilocularis 치료 및 관리 (FDA 승인). 허가 외: 흡충류(Paragonimus kellicotti",
+    "Heterobilharzia americana",
+    "Alaria spp 등)",
+    "기타 조충류(Diphyllobothrium spp",
+    "Spirometra spp 등)"
+  ],
+  "mechanism_short": "조충에 대해서는 기생충 외피의 인지질과 상호작용하여 나트륨, 칼륨, 칼슘의 이온 유입을 유발한다. 저농도에서는 흡반 기능을 마비시키고 충체 운동성을 자극하며, 고농도에서는 충체의 스트로빌라를 수축·마비시킨다. 또한 조충 외피의 특정 부위에 비가역적 국소 공포화를 유발하여 조충이 분해되고 소화에 취약해진다. 흡충 및 주혈흡충에 대해서는 칼슘 이온 유입 증가를 통해 직접 사멸시키고, 이후 외피의 국소 공포화가 일어나 숙주에 의해 탐식된다."
 }

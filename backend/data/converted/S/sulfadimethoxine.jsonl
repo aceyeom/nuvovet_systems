@@ -37,23 +37,33 @@
     "available_strengths": [
       {
         "value": 125,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 400,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -589,5 +599,17 @@
     "source_file": "plumbs_output/45.jsonl",
     "extracted_at": "2026-03-11T03:07:19.731681+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "설파디메톡신(Sulfadimethoxine)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "개·고양이: 호흡기",
+    "비뇨생식기",
+    "연조직 감염(FDA 승인)",
+    "콕시디아증(허가 외). 말: 연쇄구균 감염에 의한 호흡기 감염(FDA 승인). 소: 운송열 복합증",
+    "송아지 디프테리아",
+    "세균성 폐렴",
+    "발굽 썩음병(FDA 승인). 가금류: 콕시디아증",
+    "가금 콜레라"
+  ],
+  "mechanism_short": "설폰아미드는 엽산 생합성 경로에서 파라-아미노벤조산(PABA)과 경쟁하여 테트라하이드로엽산 합성을 억제함으로써 세균 복제를 방해하는 시간 의존적 정균제이다. 자체적으로 엽산을 합성하는 미생물에만 효과적이다."
 }

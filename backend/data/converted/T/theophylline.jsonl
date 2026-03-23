@@ -25,31 +25,45 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 400,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 450,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 600,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 26.7,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -839,5 +853,13 @@
     "source_file": "plumbs_output/46.jsonl",
     "extracted_at": "2026-03-11T03:27:24.852232+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "테오필린(Theophylline)은(는) 기관지 확장에 사용되는 기관지확장제입니다.",
+  "primary_indications": [
+    "승인 적응증: 없음 (수의 라벨 제품 없음). 오프라벨 사용: 개의 소기도 허탈/만성 소기도 질환에서 기관지확장제",
+    "고양이 천식에서 기관지확장제",
+    "병든 동방결절 증후군 및 기타 서맥성 부정맥 관리(개)",
+    "말의 중증 천식(오프라벨)."
+  ],
+  "mechanism_short": "포스포디에스테라제(PDE) III (및 PDE IV) 경쟁적 억제를 통해 cAMP 증가 → 내인성 에피네프린 방출 증가. 기관지 및 폐혈관 평활근 직접 이완. 아데노신 길항 작용으로 CNS 자극. 히스타민 및 SRS-A 방출 억제. 항염증 효과(호산구 등 염증세포 활성 감소)."
 }

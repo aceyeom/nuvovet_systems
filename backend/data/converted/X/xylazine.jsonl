@@ -29,11 +29,15 @@
     "available_strengths": [
       {
         "value": 20,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -775,5 +779,16 @@
     "source_file": "plumbs_output/7.jsonl",
     "extracted_at": "2026-03-10T15:49:24.753555+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "자일라진(Xylazine)은(는) 진정 및 불안 완화에 사용되는 진정제입니다.",
+  "primary_indications": [
+    "FDA 승인 적응증: 개",
+    "고양이",
+    "엘크에서 진정 및 단기 진통",
+    "전마취제. 용외 적응증: 고양이에서 구토 유도(독소 섭취 후)",
+    "진통 보조제",
+    "항불안제",
+    "소/양/염소/낙타류/돼지/조류/페럿/토끼/설치류에서 화학적 보정 및 마취."
+  ],
+  "mechanism_short": "알파-2 아드레날린 수용체 작용제로서 중추 및 말초 알파-2 수용체에 결합하여 진정, 진통, 근이완 효과를 나타낸다. 알파-2:알파-1 수용체 선택성은 160:1이다."
 }

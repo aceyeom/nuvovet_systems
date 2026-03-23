@@ -23,15 +23,21 @@
     "available_strengths": [
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -543,5 +549,11 @@
     "source_file": "plumbs_output/51.jsonl",
     "extracted_at": "2026-03-11T04:52:47.578475+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "브로마이드 (브롬화칼륨/브롬화나트륨)(Bromides (Potassium Bromide / Sodium Bromide))은(는) 발작(경련) 조절에 사용되는 항경련제입니다.",
+  "primary_indications": [
+    "개의 특발성 간질에 의한 발작 조절 (FDA 조건부 승인",
+    "1차 또는 보조 요법). 페노바르비탈 간독성 환자에서의 단독 요법. 페노바르비탈 단독으로 발작 조절이 불충분한 개에서의 보조 요법. 이메피토인 단독 요법에 불응하는 특발성 간질 개에서의 보조 요법."
+  ],
+  "mechanism_short": "브로마이드 이온이 세포막을 통한 염화물 수송과 경쟁하여 막 과분극을 유발함으로써 발작 역치를 높이고 간질 방전의 확산을 제한함."
 }

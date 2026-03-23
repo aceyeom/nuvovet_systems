@@ -35,11 +35,15 @@
     "available_strengths": [
       {
         "value": 2.5,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 5.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -734,5 +738,12 @@
     "source_file": "plumbs_output/46.jsonl",
     "extracted_at": "2026-03-11T03:31:07.786361+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "티오펜탈(Thiopental)은(는) 진정 및 불안 완화에 사용되는 진정제입니다.",
+  "primary_indications": [
+    "건강한 동물에서 전신마취 유도제(빠른 IV 볼루스) 또는 매우 짧은 시술을 위한 단독 마취제로 사용. 병약하거나 쇠약한 동물에서는 효과에 따라 천천히 IV 투여. 개",
+    "고양이",
+    "설치류 등 다양한 동물종에서 비허가 용도로 사용됨."
+  ],
+  "mechanism_short": "높은 지질 용해도로 인해 CNS에 빠르게 분포하여 깊은 최면 및 마취를 유발함. 억제성 신경전달물질 GABA와 유사한 방식으로 CNS 뉴런에 직접 작용함."
 }

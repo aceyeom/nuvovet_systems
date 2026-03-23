@@ -23,7 +23,9 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -286,7 +288,7 @@
           "logic_type": "fixed",
           "context": "종양 질환 (오프라벨) - 초기 용량",
           "value": "15",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q8h",
           "max_dose_mg_kg": null,
@@ -302,7 +304,7 @@
           "logic_type": "fixed",
           "context": "종양 질환 (오프라벨) - 초기 용량",
           "value": "11.5",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q8h",
           "max_dose_mg_kg": null,
@@ -552,5 +554,17 @@
     "source_file": "plumbs_output/7.jsonl",
     "extracted_at": "2026-03-10T15:40:20.049567+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "비노렐빈(Vinorelbine)은(는) 악성 종양(암) 치료에 사용되는 항종양제입니다.",
+  "primary_indications": [
+    "【개】혈관육종",
+    "피부 비만세포종(국소 침습성/전이성)",
+    "세기관지폐포암종",
+    "원발성 폐암종",
+    "조직구성 육종",
+    "방광암종(피록시캄 병용) — 모두 오프라벨. 【고양이】다양한 종양 유형 — 오프라벨(phase I 연구 기반). 【사람(허가)】비소세포폐암(1차",
+    "국소 진행성",
+    "전이성)"
+  ],
+  "mechanism_short": "튜불린에 결합하여 유사분열 방추사의 미세소관 형성을 억제하고 미세소관 탈중합을 유발함으로써 중기(metaphase)에서 세포 분열을 차단. 또한 글루탐산 이용 억제, 퓨린 합성·구연산 회로·요소 형성 방해를 통해 아미노산 대사에도 영향을 미침."
 }

@@ -24,15 +24,21 @@
     "available_strengths": [
       {
         "value": 0.1,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 0.15,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 0.2,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -417,5 +423,10 @@
     "source_file": "plumbs_output/9.jsonl",
     "extracted_at": "2026-03-10T16:17:37.280400+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "브리모니딘 점안액(Brimonidine Ophthalmic)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "녹내장 또는 안압 상승 환자에서 안압 감소 목적으로 오프라벨 사용 (하루 2~3회 점안). 개에서 일관된 효과 미입증. 고양이에서 전신 부작용 주의."
+  ],
+  "mechanism_short": "비교적 선택적인 알파-2 아드레날린 수용체 작용제. 시냅스 전 알파-2 수용체 활성화로 노르에피네프린 분비 억제, 시냅스 후 알파-2 수용체 활성화로 비색소성 섬모체 상피세포의 세포내 cAMP 감소 → 방수 생성 감소 및 안압 저하. 포도막공막 유출 증가 및 기존 유출로 저항 감소를 통한 방수 배출 증가도 기여."
 }

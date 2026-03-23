@@ -429,5 +429,14 @@
     "source_file": "plumbs_output/14.jsonl",
     "extracted_at": "2026-03-10T17:18:53.091986+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "디미나젠(Diminazene)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "【허가 적응증】미국 내 허가 제품 없음. 【엑스트라라벨/해외 사용】개: 바베시아증(대형/소형 Babesia spp)",
+    "아프리카 트리파노소마증. 고양이: Cytauxzoon felis 기생충혈증",
+    "바베시아증(효능 불확실). 말",
+    "염소: 트리파노소마증",
+    "바베시아증. 토끼: Trypanosoma evansi 감염."
+  ],
+  "mechanism_short": "정확한 작용 기전은 완전히 밝혀지지 않음. Babesia spp에 대해 호기성 해당과정(aerobic glycolysis) 및 DNA 합성 억제를 통해 항원충 효과를 나타내는 것으로 추정됨. 단일 투여 후 수 주간 임상 증상 억제 또는 예방 효과 지속 가능(느린 대사로 인함)."
 }

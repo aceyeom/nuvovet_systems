@@ -25,15 +25,21 @@
     "available_strengths": [
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 140,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 70000,
-        "unit": "IU"
+        "unit": "IU",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -484,5 +490,14 @@
     "source_file": "plumbs_output/31.jsonl",
     "extracted_at": "2026-03-10T22:46:36.939612+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "파로모마이신(Paromomycin)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "【허가 적응증】없음(미국 내 수의용 허가 제품 없음). 【허가 외 사용】개·고양이의 크립토스포리디움증",
+    "개의 피부 리슈만편모충증(국소)",
+    "낙타과 동물",
+    "파충류의 크립토스포리디움증. 【인체 적응증】장내 아메바증",
+    "간성 혼수 보조 치료."
+  ],
+  "mechanism_short": "아미노글리코사이드계 항생제로서 세균의 30S 리보솜 소단위에 비가역적으로 결합하여 단백질 합성을 억제함. 살균성, 농도 의존적 항생제. 주요 치료 적응증은 장내 원충(Leishmania spp., Entamoeba histolytica, Cryptosporidium spp.) 감염임."
 }

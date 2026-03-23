@@ -35,35 +35,51 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 400,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -574,5 +590,16 @@
     "source_file": "plumbs_output/1.jsonl",
     "extracted_at": "2026-03-10T13:54:37.523420+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "하이드록시우레아(Hydroxyurea)은(는) 악성 종양(암) 치료에 사용되는 항종양제입니다.",
+  "primary_indications": [
+    "【허가 외 사용】개: 적혈구증가증(polycythemia vera)",
+    "만성 골수성 백혈병",
+    "비만세포종",
+    "수막종(단독 또는 방사선 치료 병용)",
+    "우-좌 단락 동맥관 개존증/팔로 사징후의 헤마토크릿 감소. 고양이: 적혈구증가증",
+    "만성 골수성 백혈병",
+    "호산구증가증후군. 수의학용 허가 제품 없음."
+  ],
+  "mechanism_short": "DNA 합성 억제제. 티미딘의 DNA 내 삽입을 억제하고 DNA를 직접 손상시킬 수 있음. S기 억제제이며 G1-S 경계에서 세포 주기를 정지시킬 수 있음. RNA 또는 단백질 합성은 방해하지 않음."
 }

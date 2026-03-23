@@ -29,11 +29,15 @@
     "available_strengths": [
       {
         "value": 100.0,
-        "unit": "units/mL"
+        "unit": "units/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 300.0,
-        "unit": "units/mL"
+        "unit": "units/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -375,5 +379,11 @@
     "source_file": "Insulin, Glargine text extract",
     "extracted_at": "2026-03-21T13:12:35+09:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "인슐린 글라진(Insulin, Glargine)은(는) 지속성 인슐린으로, 당뇨병의 장기적 혈당 관리에 사용됩니다.",
+  "primary_indications": [
+    "Initial treatment and long-term management of diabetes mellitus",
+    "especially in cats. Alternative to regular insulin for DKA."
+  ],
+  "mechanism_short": "Regulates glucose metabolism; lowers blood glucose by increasing glucose uptake in peripheral tissues (skeletal muscle, fat). Inhibits gluconeogenesis, lipolysis, and proteolysis."
 }

@@ -19,7 +19,9 @@
     "available_strengths": [
       {
         "value": 6000,
-        "unit": "IU"
+        "unit": "IU",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -404,5 +406,15 @@
     "source_file": "plumbs_output/55.jsonl",
     "extracted_at": "2026-03-11T06:23:39.877966+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "흑과부거미 항독소(Antivenom, Latrodectus mactans)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "흑과부거미(Latrodectus mactans) 교상에 의한 독소 중화 치료. 신경근 증상(심한 통증",
+    "근육 경직",
+    "이완성 마비)",
+    "심혈관 증상(고혈압",
+    "심혈관 허탈)",
+    "호흡 부전 등. 수의과 오프라벨 사용."
+  ],
+  "mechanism_short": "말에서 Latrodectus mactans 독소로 과면역화하여 얻은 면역글로불린(수동 면역)이 독소에 결합하여 독소 유발 효과를 중화함."
 }

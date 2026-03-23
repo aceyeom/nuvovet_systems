@@ -25,11 +25,15 @@
     "available_strengths": [
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -388,5 +392,11 @@
     "source_file": "plumbs_output/28.jsonl",
     "extracted_at": "2026-03-10T21:56:58.644581+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "니타조사나이드(Nitazoxanide)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "【허가 적응증】사람: Cryptosporidium parvum 및 Giardia lamblia에 의한 설사(FDA 승인). 【허가 외 적응증 - 개】Giardia spp 관련 설사",
+    "Cryptosporidia spp 관련 설사. 【허가 외 적응증 - 고양이】Cryptosporidia spp 관련 설사(크립토스포리디움증의 대체 치료). 【과거 수의 허가 - 말】Sarcocystis neurona에 의한 말 원충성 척수뇌염(EPM) - 현재 미국 내 시판 중단."
+  ],
+  "mechanism_short": "활성 대사체(티조사나이드, 티조사나이드 글루쿠로나이드)가 혐기성 에너지 대사에 필수적인 피루브산 페레독신 산화환원효소(PFOR) 의존성 전자 전달 반응을 억제합니다. 원충류, 선충류, 세균, 흡충류에 대한 광범위한 항기생충 활성을 가집니다."
 }

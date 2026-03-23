@@ -24,7 +24,9 @@
     "available_strengths": [
       {
         "value": 1.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -358,5 +360,14 @@
     "source_file": "plumbs_output/10.jsonl",
     "extracted_at": "2026-03-10T16:19:25.005397+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "브린졸아미드 점안액(Brinzolamide Ophthalmic)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "녹내장 및 안압 상승 치료 (오프라벨): 개",
+    "고양이",
+    "말의 원발성 및 속발성 녹내장(포도막염",
+    "수정체 탈구",
+    "안내 종양에 의한 이차성 녹내장 포함). 1일 2~3회 점안."
+  ],
+  "mechanism_short": "탄산탈수효소(CA) 비경쟁적·가역적 억제를 통해 이산화탄소와 물로부터 수소이온 및 중탄산이온 생성을 감소시킴. 섬모체 돌기에서 방수 분비를 억제하여 안압을 낮춤."
 }

@@ -21,27 +21,39 @@
     "available_strengths": [
       {
         "value": 40,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 80,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 160,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.8,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 1.6,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 3.2,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -581,5 +593,13 @@
     "source_file": "plumbs_output/14.jsonl",
     "extracted_at": "2026-03-10T17:33:42.545989+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "도파민(Dopamine)은(는) 심장 기능 개선에 사용되는 심장약입니다.",
+  "primary_indications": [
+    "승인 적응증: 없음(수의용 허가 제품 없음). Extra-label 적응증: 수액 보충 후에도 지속되는 심박출량 저하 관련 저혈압/쇼크(개",
+    "고양이)",
+    "전신마취 중 저혈압(개",
+    "고양이). 급성 울혈성 심부전의 보조 치료. 주의: 핍뇨성 급성 신부전에서 GFR 증가 목적 사용은 개·고양이 모두 비권장."
+  ],
+  "mechanism_short": "도파민은 노르에피네프린의 전구체로, alpha 및 beta 수용체에 직접 작용하고 노르에피네프린 유리를 통해 간접적으로도 작용함. 말초 도파민성 효과도 있음. 저용량(5–10 µg/kg/분)에서 주로 beta-1 효과(심장 수축력·심박출량·심박수 증가), 고용량(10–15 µg/kg/분 이상)에서 alpha-1 효과(전신 및 폐혈관 저항 증가, 정맥 환류 증가) 우세."
 }

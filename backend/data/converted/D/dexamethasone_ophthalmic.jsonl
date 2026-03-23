@@ -25,11 +25,15 @@
     "available_strengths": [
       {
         "value": 0.1,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 0.05,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -513,5 +517,14 @@
     "source_file": "plumbs_output/11.jsonl",
     "extracted_at": "2026-03-10T16:33:16.989138+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "덱사메타손 점안제(Dexamethasone Ophthalmic)은(는) 항염증 및 면역억제 효과를 가진 부신피질 호르몬제입니다.",
+  "primary_indications": [
+    "결막염",
+    "각막염",
+    "전방 포도막염 등 전안부 염증성 질환 및 백내장 수술 후 염증 관리에 엑스트라라벨로 사용. 항균제(네오마이신",
+    "폴리믹신 B",
+    "토브라마이신)와의 복합 제형도 사용 가능."
+  ],
+  "mechanism_short": "글루코코르티코이드 수용체를 통한 유전자 발현 직접 조절 및 세포막·수용체에 대한 비유전체적 효과를 통해 광범위한 면역조절 및 항염증 작용을 나타냄. 염증성 프로스타글란딘 및 류코트리엔 생성 억제, B세포 및 T세포 수와 기능 감소, 세포매개 면역 및 체액성 면역 억제."
 }

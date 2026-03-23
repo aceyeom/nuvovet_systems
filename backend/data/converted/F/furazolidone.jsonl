@@ -436,5 +436,17 @@
     "source_file": "plumbs_output/43.jsonl",
     "extracted_at": "2026-03-11T02:35:52.558652+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "푸라졸리돈(Furazolidone)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "고양이 지아르디아증(엑스트라라벨): 4 mg/kg PO q12h",
+    "7~10일. 감수성 세균(E. coli",
+    "Salmonella",
+    "Campylobacter",
+    "Shigella",
+    "Vibrio cholerae 등) 및 원충(Giardia",
+    "Trichomonas",
+    "Coccidia)에 의한 장내 감염의 이차 치료."
+  ],
+  "mechanism_short": "세균 효소 시스템을 방해하여 살균 작용을 나타내는 합성 니트로푸란 유도체. 대사산물이 모노아민 산화효소(MAO)를 억제함. 원충에 대한 기전은 명확하지 않음."
 }

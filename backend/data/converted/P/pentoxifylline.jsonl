@@ -22,7 +22,9 @@
     "available_strengths": [
       {
         "value": 400,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -557,5 +559,17 @@
     "source_file": "plumbs_output/18.jsonl",
     "extracted_at": "2026-03-10T18:48:14.688092+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "펜톡시필린(Pentoxifylline)은(는) 면역 반응을 억제하는 면역억제제입니다.",
+  "primary_indications": [
+    "개: 면역매개 피부 질환(박리성 피부 홍반 루푸스",
+    "천포창",
+    "다형 홍반 등)",
+    "허혈성 피부병증(가족성 피부근염",
+    "백신 반응 등)",
+    "혈관염",
+    "대칭성 루포이드 조갑이영양증",
+    "지간 종기증"
+  ],
+  "mechanism_short": "적혈구 인산디에스테라제 억제를 통한 적혈구 유연성 증가, 프로스타사이클린 합성 촉진·혈장 피브리노겐 감소·콜라겐 합성 감소·섬유소 용해 활성 증가를 통한 혈액 점도 감소, 백혈구 변형능 증가, 호중구 부착 및 활성화 억제, TNF-α 억제를 통한 미세순환 개선 및 면역조절 효과."
 }

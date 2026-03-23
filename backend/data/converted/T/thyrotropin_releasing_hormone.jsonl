@@ -399,5 +399,11 @@
     "source_file": "plumbs_output/46.jsonl",
     "extracted_at": "2026-03-11T03:34:09.231279+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "갑상선자극호르몬 방출호르몬(Thyrotropin-Releasing Hormone)은(는) 호르몬 불균형 치료에 사용되는 호르몬제입니다.",
+  "primary_indications": [
+    "▶ 말: 뇌하수체 중간엽 기능장애(PPID) 진단 — TRH 자극 검사(ACTH 또는 코르티솔 측정). 덱사메타손 억제 검사와 병용 가능. ▶ 개: 일차성 vs 이차성 갑상선기능저하증 감별(extra-label). ▶ 고양이: 갑상선기능항진증 평가(extra-label). ▶ 기타: 급성 추간판 탈출 후 신체 기능 개선 가능성(TRH 또는 유사체",
+    "연구 단계)."
+  ],
+  "mechanism_short": "뇌하수체에서 갑상선자극호르몬(TSH) 분비를 직접 자극하여 간접적으로 갑상선 호르몬 합성 및 분비를 촉진함. 말에서는 뇌하수체 중간엽(pars intermedia)을 자극하고 멜라노트로프를 직접 자극하여 ACTH 및 α-MSH 분비를 증가시킴."
 }

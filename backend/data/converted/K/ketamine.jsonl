@@ -23,7 +23,9 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -835,5 +837,16 @@
     "source_file": "plumbs_output/57.jsonl",
     "extracted_at": "2026-03-11T06:54:37.000312+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "케타민(Ketamine)은(는) 진정 및 불안 완화에 사용되는 진정제입니다.",
+  "primary_indications": [
+    "고양이: 보정",
+    "골격근 이완이 필요하지 않은 진단 또는 경미한 외과적 처치(FDA 승인). 개(extra-label): 마취 유도/전처치",
+    "수술 중·후 보조 진통(CRI)",
+    "난치성 간질 중첩증. 기타 종(extra-label): 말",
+    "소/반추동물",
+    "낙타과 동물",
+    "조류 등 다양한 종에서 마취 유도 및 보조 진통에 사용."
+  ],
+  "mechanism_short": "NMDA 수용체(phencyclidine 결합 부위)에 결합하여 글루타메이트 방출 및 수용체 활성을 억제하는 해리성 전신마취제. 시상신피질계를 억제하고 변연계를 활성화함. 교감신경 긴장도 증가(카테콜아민 재흡수 억제 또는 무스카린 길항 가능성)."
 }

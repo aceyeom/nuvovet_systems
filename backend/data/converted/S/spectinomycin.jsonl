@@ -38,19 +38,27 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -377,5 +385,13 @@
     "source_file": "plumbs_output/35.jsonl",
     "extracted_at": "2026-03-10T23:59:04.993324+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "스펙티노마이신(Spectinomycin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "FDA 승인: 닭의 감염성 활막염(Mycoplasma synoviae)",
+    "만성 호흡기 질환(Mycoplasma gallisepticum)",
+    "돼지의 세균성 장염(대장균 설사). 오프라벨: 개·고양이·말의 감수성 감염(매우 드물게 사용)",
+    "토끼의 감수성 감염(음수 투여). 인체의학: 임질(Neisseria gonorrhoeae) 치료."
+  ],
+  "mechanism_short": "30S 리보솜 소단위에 결합하여 감수성 세균의 단백질 합성을 억제하는 정균성 항생제"
 }

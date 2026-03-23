@@ -31,7 +31,9 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -680,5 +682,17 @@
     "source_file": "plumbs_output/49.jsonl",
     "extracted_at": "2026-03-11T04:29:15.417564+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아트라쿠리움(Atracurium)은(는) 근육 이완에 사용되는 근이완제입니다.",
+  "primary_indications": [
+    "수술 중 완전 근육 이완",
+    "기관내 삽관 보조",
+    "기계적 환기 중 호흡근 마비 유도",
+    "안과 수술 시 안구 중심 위치 조정(개",
+    "라마)",
+    "수컷 고양이 요도 플러그 제거(요도 내 주입)",
+    "상위 운동 신경원 징후로 인한 요저류 치료(개",
+    "고양이). 모든 수의과 적응증은 허가 외 사용입니다."
+  ],
+  "mechanism_short": "운동 종판의 콜린성 수용체 부위에 경쟁적으로 결합하여 아세틸콜린을 길항함으로써 횡문근을 마비시키는 비탈분극성 신경근 차단제. 진통 또는 진정 효과 없음."
 }

@@ -22,11 +22,15 @@
     "available_strengths": [
       {
         "value": 200,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -398,5 +402,17 @@
     "source_file": "plumbs_output/23.jsonl",
     "extracted_at": "2026-03-10T20:16:21.758198+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "세프티오푸르 크리스탈린 유리산(Ceftiofur Crystalline Free Acid)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "말: 수용성 Streptococcus equi subsp zooepidemicus에 의한 하부 호흡기 감염(FDA 승인). 소: 소 호흡기 질환(BRD)",
+    "발굽 썩음병(족부 괴사)",
+    "급성 자궁내막염(FDA 승인). 돼지: 돼지 호흡기 질환(SRD)(FDA 승인). 오프라벨: 신생 망아지 세균 감염(13.2 mg/kg SC q48h)",
+    "염소 세균 감염(6.6 mg/kg SC)",
+    "토끼 세균 감염(40 mg/kg SC q24~72h)",
+    "수유 송아지 설사(6.6 mg/kg SC)",
+    "수염 도마뱀(30 mg/kg SC/IM)",
+    "붉은꼬리매(10~20 mg/kg IM)."
+  ],
+  "mechanism_short": "세균 세포벽 합성 억제(3단계). 세프티오푸르는 활성 대사체인 데스푸로일세프티오푸르로 빠르게 전환되며, 이 대사체는 세포벽 합성을 억제하여 시간 의존적 살균 작용을 나타냄. 그람 양성균, 그람 음성균, 혐기성균에 광범위한 항균 스펙트럼을 가짐."
 }

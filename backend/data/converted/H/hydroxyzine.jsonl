@@ -30,31 +30,45 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -582,5 +596,14 @@
     "source_file": "plumbs_output/1.jsonl",
     "extracted_at": "2026-03-10T13:56:29.126217+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "하이드록시진(Hydroxyzine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "히스타민 매개 소양증 및 알레르기 반응(두드러기",
+    "곤충 교상 과민증)",
+    "아토피 피부염(보조 치료)",
+    "비만세포종 관련 히스타민 방출 예방",
+    "경도 진정/안정 효과. 모든 적응증이 오프라벨 사용임."
+  ],
+  "mechanism_short": "H1 수용체 길항제로서 히스타민 H1 수용체를 경쟁적으로 억제함. 히스타민을 불활성화하거나 방출을 막지는 않으나 세포에 대한 히스타민 작용을 차단함. 추가적으로 항콜린, 진정, 안정, 항경련, 국소마취, 경도 기관지확장, 항구토 효과를 가짐."
 }

@@ -25,11 +25,15 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mL"
+        "unit": "mL",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mL"
+        "unit": "mL",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -444,5 +448,14 @@
     "source_file": "plumbs_output/55.jsonl",
     "extracted_at": "2026-03-11T06:25:37.824726+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "크로탈리대 항독소(Antivenom, Crotalidae)은(는) 약물 효과를 역전시키는 길항제/해독제입니다.",
+  "primary_indications": [
+    "북미 크로탈리대 뱀(방울뱀",
+    "구리머리뱀",
+    "목화입뱀/물 모카신) 교상 치료. 일부 중남미 뱀 종(페르드랑스",
+    "창머리뱀",
+    "중남미 방울뱀) 교상에도 효과적일 수 있음. 개 및 말에 허가(제품별 상이). 고양이에서는 엑스트라라벨 사용."
+  ],
+  "mechanism_short": "항독소는 독소 특이적 항체(IgG, F(ab), F(ab')2)로 뱀독 독소에 결합하여 독소 유발 독성 효과를 중화한다. 말 또는 양에 뱀독으로 과면역화하여 얻은 독소 특이적 면역글로불린 또는 항체 단편을 이용한 수동 면역 과정이다."
 }

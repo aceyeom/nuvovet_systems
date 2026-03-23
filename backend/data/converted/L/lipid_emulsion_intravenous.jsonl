@@ -23,15 +23,21 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 30,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -639,5 +645,17 @@
     "source_file": "plumbs_output/59.jsonl",
     "extracted_at": "2026-03-11T07:30:59.769611+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "지질 에멀젼 (정맥주사용)(Lipid Emulsion, Intravenous (ILE))은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "1) 비경구 영양이 필요한 경우 칼로리 및 필수 지방산 공급원 (허가 외). 2) 전통적 치료가 효과적이지 않은 지용성 약물/독소 중독의 구조 치료 (허가 외). 적용 가능한 독소: 국소마취제(부피바카인",
+    "메피바카인",
+    "로피바카인",
+    "리도카인)",
+    "마크로사이클릭 락톤(이버멕틴",
+    "목시덱틴)",
+    "칼슘채널차단제(딜티아젬",
+    "베라파밀"
+  ],
+  "mechanism_short": "정맥 내 지질 에멀젼(ILE)은 칼로리(20% 에멀젼 1 mL = 약 2 kcal) 및 필수 지방산을 공급한다. 독성학적 적응증에서는 지질 싱크(lipid sink) 또는 셔틀로 작용하여 지용성 화합물의 혈중 유리 농도를 감소시키는 것으로 추정된다. 또한 세포내 칼슘 증가 및 심근세포 에너지 기질 제공을 통한 심장 기능 개선, 미토콘드리아 지방산 대사 억제 극복 등의 기전이 제안된다."
 }

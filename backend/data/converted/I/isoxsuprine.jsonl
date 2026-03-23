@@ -35,11 +35,15 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -328,5 +332,16 @@
     "source_file": "plumbs_output/56.jsonl",
     "extracted_at": "2026-03-11T06:44:27.173601+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "이속수프린(Isoxsuprine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【말】 주상골 질환(navicular disease)",
+    "종자골염(sesamoiditis)",
+    "제엽염(laminitis) — 오프라벨",
+    "효능 논란 있음. 【조류】 동상(frostbite) — 오프라벨. 【개】 레이노 유사 증후군 — 일화적 보고",
+    "오프라벨. 【인간】 뇌혈관 부전",
+    "월경통",
+    "조기 진통 — 효능 미입증."
+  ],
+  "mechanism_short": "직접적인 혈관 평활근 이완(주로 골격근 혈관). 베타-아드레날린 수용체 자극도 하지만 혈관 확장에 필수적이지 않음. 자궁 평활근 이완, 고용량에서 혈소판 응집 억제 및 혈액 점도 감소."
 }

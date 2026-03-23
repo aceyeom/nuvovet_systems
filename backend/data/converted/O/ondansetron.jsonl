@@ -25,19 +25,27 @@
     "available_strengths": [
       {
         "value": 4,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 8,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.8,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 2,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -669,5 +677,16 @@
     "source_file": "plumbs_output/29.jsonl",
     "extracted_at": "2026-03-10T22:19:27.531828+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "온단세트론(Ondansetron)은(는) 구토 예방 및 치료에 사용되는 항구토제입니다.",
+  "primary_indications": [
+    "개: 일반 항구토",
+    "파보바이러스 유발 구토",
+    "항암제 유발 오심/구토",
+    "전정 증후군 관련 오심",
+    "폐쇄성 수면 무호흡 (모두 오프라벨). 고양이: 급성 구토",
+    "만성 신질환 관련 구토 (IRIS 단계별 용량 조정)",
+    "마취 전처치 관련 구토 예방 (모두 오프라벨)."
+  ],
+  "mechanism_short": "5-HT3 수용체 길항제. 미주신경 말단(말초)과 화학수용체 유발대(CRTZ, 중추) 모두에서 5-HT3 수용체를 차단하여 항구토 효과를 나타냄. 일반 용량에서 위장관 운동성 또는 통과 시간에 영향을 미치지 않음."
 }

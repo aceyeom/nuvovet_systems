@@ -25,11 +25,15 @@
     "available_strengths": [
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -514,5 +518,13 @@
     "source_file": "plumbs_output/63.jsonl",
     "extracted_at": "2026-03-11T08:53:42.812276+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "메로페넴(Meropenem)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "다제내성 Enterobacterales 또는 Pseudomonas aeruginosa에 의한 요로감염",
+    "전신 감염",
+    "연조직 감염(모두 오프라벨). 개에서 E. coli 관련 육아종성 대장염(오프라벨). 반드시 배양 및 감수성 검사로 확인된 감염에만 사용하며",
+    "다른 항생제에 내성이 확인된 경우에 한한다."
+  ],
+  "mechanism_short": "카바페넴계 항생제로, 세균의 세포벽 합성에 필요한 페니실린 결합 단백질(PBP)에 결합하여 세포벽 합성을 억제함으로써 살균 작용을 나타낸다. 시간 의존적 항균제로, 약물 농도가 MIC 이상으로 유지되는 시간(%T>MIC)이 항균 효과의 주요 결정 인자이다."
 }

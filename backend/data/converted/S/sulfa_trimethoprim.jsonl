@@ -33,27 +33,39 @@
     "available_strengths": [
       {
         "value": 67.0,
-        "unit": "mg trimethoprim + 333 mg sulfadiazine per gram"
+        "unit": "mg trimethoprim + 333 mg sulfadiazine per gram",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 48.0,
-        "unit": "% Injection (Tribrissen 48%)"
+        "unit": "% Injection (Tribrissen 48%)",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 80.0,
-        "unit": "mg trimethoprim + 400 mg sulfamethoxazole (Tab)"
+        "unit": "mg trimethoprim + 400 mg sulfamethoxazole (Tab)",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 160.0,
-        "unit": "mg trimethoprim + 800 mg sulfamethoxazole (Double Strength Tab)"
+        "unit": "mg trimethoprim + 800 mg sulfamethoxazole (Double Strength Tab)",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 8.0,
-        "unit": "mg/mL trimethoprim + 40 mg/mL sulfamethoxazole (Oral Susp)"
+        "unit": "mg/mL trimethoprim + 40 mg/mL sulfamethoxazole (Oral Susp)",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 16.0,
-        "unit": "mg/mL trimethoprim + 80 mg/mL sulfamethoxazole (Inj)"
+        "unit": "mg/mL trimethoprim + 80 mg/mL sulfamethoxazole (Inj)",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -546,5 +558,15 @@
     "source_file": "Sulfa-/Trimethoprim text extract",
     "extracted_at": "2026-03-21T13:51:30+09:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "설파-/트리메토프림(Sulfa-/Trimethoprim)은(는) 설폰아미드 복합 항균제로, 광범위 세균 감염에 사용됩니다.",
+  "primary_indications": [
+    "Treatment of infections caused by susceptible bacteria (e.g.",
+    "cystitis",
+    "prostatitis",
+    "atypical pathogens like Nocardia spp) and parasitic organisms (coccidiosis",
+    "toxoplasmosis",
+    "neosporosis)."
+  ],
+  "mechanism_short": "Potentiated sulfonamides sequentially inhibit enzymes in the folic acid pathway, inhibiting bacterial thymidine synthesis. Sulfonamides compete with PABA; trimethoprim inhibits bacterial dihydrofolate reductase."
 }

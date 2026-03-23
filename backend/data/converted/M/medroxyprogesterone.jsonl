@@ -24,23 +24,33 @@
     "available_strengths": [
       {
         "value": 2.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 150.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 400.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -593,5 +603,17 @@
     "source_file": "plumbs_output/62.jsonl",
     "extracted_at": "2026-03-11T08:34:56.163984+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "메드록시프로게스테론(Medroxyprogesterone Acetate)은(는) 호르몬 불균형 치료에 사용되는 호르몬제입니다.",
+  "primary_indications": [
+    "【고양이】 거세 후에도 지속되는 성적 이형 행동(배회",
+    "수컷 간 공격성",
+    "스프레이",
+    "마운팅) - 다른 모든 약물 실패 시 최후 수단 (오프라벨). 장기 생식 조절 (오프라벨). 【개】 황체 기능 부전 임신 암컷 (오프라벨). 장기 생식 조절 (오프라벨). 탈모증 X (오프라벨). 공격적 행동",
+    "양성 전립선 비대증 단기 치료",
+    "어린 독일 셰퍼드 왜소증 (오프라벨). 【말】 봄 전환기 관리",
+    "발정 행동 억제",
+    "발정 주기 동기화"
+  ],
+  "mechanism_short": "합성 프로게스틴으로서 자궁 내막을 분비기로 전환, 자궁 근층 비대 촉진, 자발적 자궁 수축 억제. 뇌하수체 성선자극호르몬 분비를 용량 의존적으로 억제. 항인슐린 효과 및 부신피질 억제 효과(ACTH 및 코르티솔 분비 억제). 항에스트로겐 효과 및 혈중 테스토스테론 감소."
 }

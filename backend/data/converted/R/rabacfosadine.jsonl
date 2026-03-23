@@ -21,11 +21,15 @@
     "available_strengths": [
       {
         "value": 16.4,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 8.2,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -472,5 +476,14 @@
     "source_file": "plumbs_output/32.jsonl",
     "extracted_at": "2026-03-10T23:04:14.919894+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "라바크포사딘(Rabacfosadine)은(는) 악성 종양(암) 치료에 사용되는 항종양제입니다.",
+  "primary_indications": [
+    "개의 림프종 치료(FDA 승인",
+    "NADA #141-475). 연구 단계: 재발성/불응성 림프종",
+    "피부 T세포 림프종",
+    "다발성 골수종",
+    "L-아스파라기나제와의 병용 요법(재발성 림프종). B세포 림프종에서 T세포 림프종보다 높은 반응률 보고."
+  ],
+  "mechanism_short": "구아닌 뉴클레오타이드 유사체(acyclic nucleotide phosphonate). 세포 내에서 활성형 PMEGpp로 전환되어 주요 DNA 중합효소를 강력하게 억제(chain-terminating inhibitor). DNA 합성 억제, S기 정지, 세포자멸사 유도. 유사분열 자극 림프구 및 림프종/백혈병 세포주의 증식 억제."
 }

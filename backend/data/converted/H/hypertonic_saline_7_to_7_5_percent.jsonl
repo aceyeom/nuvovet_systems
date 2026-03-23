@@ -19,23 +19,33 @@
     "available_strengths": [
       {
         "value": 7.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 7.2,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 7.5,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 14.6,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 23.4,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -507,5 +517,13 @@
     "source_file": "plumbs_output/1.jsonl",
     "extracted_at": "2026-03-10T14:00:02.624345+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "고장성 생리식염수 (7~7.5%)(Hypertonic Saline (7% to 7.5%))은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "저혈량성 쇼크 소생술(저용량 소생술)",
+    "외상성 뇌손상 후 두개내압 감소",
+    "척수 외상 후 척수 부종 감소",
+    "만니톨 및 푸로세미드에 불응하는 증상성 저나트륨혈증(3% HTS 사용). 모든 개·고양이 적응증은 허가 외(extra-label) 사용임."
+  ],
+  "mechanism_short": "고장성 생리식염수는 혈장 삼투압을 증가시켜 간질 공간에서 혈관 내 공간으로 수분을 이동시킴으로써 즉각적인 혈관 내 용적 확장을 유발한다. 세포 내 수분이 간질 공간으로 이동하여 혈관 내-간질 공간 평형이 회복된다."
 }

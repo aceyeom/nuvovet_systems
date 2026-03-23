@@ -25,27 +25,39 @@
     "available_strengths": [
       {
         "value": 3,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 6,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 9,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 30,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 60,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 90,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -514,5 +526,14 @@
     "source_file": "plumbs_output/30.jsonl",
     "extracted_at": "2026-03-10T22:40:39.655788+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "파미드로네이트(Pamidronate)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【승인 적응증】 수의학적 승인 제품 없음 (사람용 제제 오프라벨 사용). 【오프라벨 적응증】 ① 난치성 특발성 고칼슘혈증",
+    "② 악성 종양 관련 고칼슘혈증",
+    "③ 비타민 D 관련 독성(콜레칼시페롤",
+    "칼시포트리엔 등) 유발 고칼슘혈증",
+    "④ 골용해성 골종양(골육종) 통증 완화 보조 치료. 말에서는 골관절염 치료에 사용된 사례 있음."
+  ],
+  "mechanism_short": "하이드록시아파타이트 결정에 결합하여 골 흡수를 억제하고, 파골세포 활성을 저해하며 파골세포 세포자멸사를 유도함. 에티드로네이트 대비 약 100배 강한 골 흡수 억제 효능. 시험관 내에서 골육종 세포주에 대한 직접적 세포독성/세포정지 효과 및 항혈관신생 효과도 보고됨."
 }

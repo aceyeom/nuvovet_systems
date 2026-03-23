@@ -27,19 +27,27 @@
     "available_strengths": [
       {
         "value": 1.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.1,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.3,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.15,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -814,5 +822,12 @@
     "source_file": "plumbs_output/16.jsonl",
     "extracted_at": "2026-03-10T18:03:18.046792+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "에피네프린(Epinephrine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "수의학에서 에피네프린의 주요 적응증: (1) 아나필락시스 치료 - 허가 용량(FDA 미승인) 및 허가 외 용량 모두 사용 가능. (2) 심폐소생술 - 무수축 및 심폐정지 시 RECOVER CPR 가이드라인에 따라 사용. (3) 마취 유발 저혈압 - 다른 치료에 반응하지 않는 경우 CRI로 사용. (4) 국소마취제 효과 연장 - 국소마취제에 저농도(5 µg/mL)로 첨가하여 혈관 수축 유도. (5) 파충류에서 흡입 마취 후 회복 시간 단축(허가 외). 개",
+    "고양이",
+    "돼지에 대해 수의용 라벨이 있습니다."
+  ],
+  "mechanism_short": "내인성 카테콜아민으로 알파 및 베타 아드레날린 수용체에 작용합니다. 저용량(0.01 mg/kg IV)에서는 베타-1 수용체를 자극하여 심박수 및 수축력을 증가시키고, 베타-2 수용체 활성화로 말초 혈관 저항을 감소시킵니다. 고용량(0.1 mg/kg)에서는 알파-1 아드레날린 효과로 말초 혈관 저항이 증가합니다. 기관지 평활근을 이완시키고, 히스타민 효과를 길항하며, 혈당을 상승시킵니다."
 }

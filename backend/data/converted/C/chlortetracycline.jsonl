@@ -463,5 +463,15 @@
     "source_file": "plumbs_output/24.jsonl",
     "extracted_at": "2026-03-10T20:43:29.828303+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "클로르테트라사이클린(Chlortetracycline)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "식용 동물(소",
+    "가금류 등)의 감수성 세균 감염 치료 및 예방 (FDA 승인). 고양이에서 Mycoplasma spp 또는 클라미디아 결막염 재발 예방 (extra-label). 조류의 클라미디아증 (extra-label). 토끼",
+    "친칠라",
+    "햄스터",
+    "마우스",
+    "랫트 등 소형 포유류의 감수성 감염 (extra-label)."
+  ],
+  "mechanism_short": "30S 리보솜 소단위에 가역적으로 결합하여 단백질 합성을 억제하는 정균성 항생제. 감수성 균의 세포질막 투과성도 변화시킴."
 }

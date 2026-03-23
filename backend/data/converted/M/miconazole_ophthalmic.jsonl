@@ -19,7 +19,9 @@
     "available_strengths": [
       {
         "value": 1.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -304,5 +306,16 @@
     "source_file": "plumbs_output/13.jsonl",
     "extracted_at": "2026-03-11T11:15:13.814621+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "미코나졸 점안액(Miconazole Ophthalmic)은(는) 진균(곰팡이) 감염 치료에 사용되는 항진균제입니다.",
+  "primary_indications": [
+    "진균성 각막염(각막진균증): Blastomyces dermatitidis",
+    "Paracoccidioides brasiliensis",
+    "Histoplasma capsulatum",
+    "Candida spp",
+    "Coccidioides immitis",
+    "Cryptococcus neoformans",
+    "Aspergillus fumigatus 등에 의한 안구 표면 진균 감염. 일부 Aspergillus spp 및 Fusarium spp는 감수성이 낮을 수 있음. 모든 동물에서 비허가(extra-label) 사용."
+  ],
+  "mechanism_short": "14-알파-스테롤 탈메틸화효소(cytochrome P-450 효소)를 억제하여 라노스테롤에서 에르고스테롤로의 전환을 차단함. 에르고스테롤은 진균 세포막의 필수 성분으로, 합성 억제 시 세포막 투과성 증가 및 세포 내용물 누출이 발생함. 추가적으로 내인성 호흡 억제, 퓨린 흡수 억제, 효모의 균사 형태 전환 억제, 트리글리세리드 및 인지질 생합성 장애를 유발함."
 }

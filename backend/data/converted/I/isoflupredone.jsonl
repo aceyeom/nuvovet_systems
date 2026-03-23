@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 2,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -453,5 +455,17 @@
     "source_file": "plumbs_output/56.jsonl",
     "extracted_at": "2026-03-11T06:35:49.195868+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "이소플루프레돈(Isoflupredone)은(는) 항염증 및 면역억제 효과를 가진 부신피질 호르몬제입니다.",
+  "primary_indications": [
+    "승인 적응증(말",
+    "돼지): 항염증 및 면역억제 효과. 소 케토시스 보조치료",
+    "근골격계 통증 및 파행",
+    "급성 과민반응",
+    "중증 감염의 보조치료(폐렴",
+    "복막염",
+    "자궁내막염",
+    "패혈성 유방염)"
+  ],
+  "mechanism_short": "합성 불소화 글루코코르티코이드로서 히드로코르티손 대비 약 17배(간 글리코겐 침착 기준 50배)의 항염증 효능을 가짐. 글루코코르티코이드 수용체에 결합하여 항염증 및 면역억제 효과를 나타내며, 일부 무기질코르티코이드 효과도 있어 저칼륨혈증을 유발할 수 있음."
 }

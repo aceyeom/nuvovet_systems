@@ -21,23 +21,33 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 150,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -635,5 +645,15 @@
     "source_file": "plumbs_output/61.jsonl",
     "extracted_at": "2026-03-11T08:20:08.220366+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "만니톨(Mannitol)은(는) 체액 저류 치료에 사용되는 이뇨제입니다.",
+  "primary_indications": [
+    "승인 적응증(수의용 라벨",
+    "FDA 미승인): 개에서 삼투성 이뇨. 허가 외 사용: 핍뇨성 급성 신손상",
+    "뇌부종/두개내압 상승",
+    "국소 약물에 반응하지 않는 급성 녹내장",
+    "일부 독소의 요중 배설 촉진",
+    "신기능 저하가 최소인 안정적인 고양이에서 칼슘 옥살산 요석 배출 시도."
+  ],
+  "mechanism_short": "삼투성 이뇨제. IV 투여 후 사구체에서 자유롭게 여과되고 세뇨관에서 거의 재흡수되지 않아 삼투압을 높여 수분 재흡수를 억제함. 나트륨, 염소, 중탄산염, 요산, 요소의 배설도 증가. 뇌부종 감소, 두개내압 저하, 자유 라디칼 소거 효과, 신세뇨관 팽창 억제, 신혈류 및 사구체 여과율 증가 효과도 있음."
 }

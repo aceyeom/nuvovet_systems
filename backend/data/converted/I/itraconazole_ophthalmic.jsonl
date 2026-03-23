@@ -22,7 +22,9 @@
     "available_strengths": [
       {
         "value": 1.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -327,5 +329,11 @@
     "source_file": "plumbs_output/12.jsonl",
     "extracted_at": "2026-03-10T16:56:12.938079+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "이트라코나졸 점안제(Itraconazole Ophthalmic)은(는) 진균(곰팡이) 감염 치료에 사용되는 항진균제입니다.",
+  "primary_indications": [
+    "진균성 각막염 (허가 외 사용): 개 및 말에서 Aspergillus spp. 등에 의한 진균성 각막염. Candida spp.에는 가변적 효과",
+    "Fusarium spp.에는 효과가 낮음. 치료 전 진균 종 동정 권장."
+  ],
+  "mechanism_short": "14-알파-스테롤 탈메틸화효소(CYP450 효소)와 상호작용하여 라노스테롤에서 에르고스테롤로의 전환을 억제함. 에르고스테롤은 진균 세포막의 필수 성분으로, 합성 억제 시 세포막 투과성 증가 및 세포 내용물 누출을 유발함. 내인성 호흡 억제, 퓨린 흡수 및 효모-균사 전환 억제, 트리글리세리드 및 인지질 생합성 장애도 포함됨."
 }

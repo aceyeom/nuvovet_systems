@@ -19,11 +19,15 @@
     "available_strengths": [
       {
         "value": 0.125,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 0.25,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -375,5 +379,10 @@
     "source_file": "plumbs_output/10.jsonl",
     "extracted_at": "2026-03-10T16:31:33.411023+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "데메카리움 점안액(Demecarium Ophthalmic)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "개의 원발성 녹내장 반대쪽 정상 눈에 대한 녹내장 예방적 관리 (비표지 사용). 활성 녹내장 치료에는 효과가 제한적임."
+  ],
+  "mechanism_short": "항콜린에스테라제 작용: 슈도콜린에스테라제 및 아세틸콜린에스테라제를 불활성화하여 아세틸콜린의 효과를 연장시킴. 홍채 괄약근 및 모양체근 수축(축동)을 유발하여 방수 유출을 촉진하고 안압을 낮춤."
 }

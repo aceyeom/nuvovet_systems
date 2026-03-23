@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 0.1,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -422,5 +424,14 @@
     "source_file": "plumbs_output/11.jsonl",
     "extracted_at": "2026-03-10T16:34:44.052238+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "디클로페낙 점안액(Diclofenac Ophthalmic)은(는) 통증과 염증을 완화하는 비스테로이드성 항염증제(NSAID)입니다.",
+  "primary_indications": [
+    "안구 전방 염증(결막염",
+    "각막염",
+    "전방 포도막염) 조절",
+    "백내장 제거 수술 중 산동 유도",
+    "백내장 수술 후 진통. 개와 고양이에서 모두 엑스트라라벨 사용."
+  ],
+  "mechanism_short": "사이클로옥시게나제(COX-1, COX-2) 억제를 통한 프로스타글란딘 합성 차단. 안구 내 염증 매개물질 억제, 혈액-방수 장벽 파괴 최소화, 혈관 확장 및 투과성 증가 억제, 안내압 상승 억제, 백내장 수술 중 축동 억제."
 }

@@ -21,19 +21,27 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 30,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -365,5 +373,10 @@
     "source_file": "plumbs_output/59.jsonl",
     "extracted_at": "2026-03-11T07:34:30.691199+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "로키벳맙(Lokivetmab)은(는) 면역 반응을 억제하는 면역억제제입니다.",
+  "primary_indications": [
+    "개의 알레르기성 및 아토피성 피부염과 관련된 소양증 치료 (USDA 승인). 모든 연령의 개에서 사용 가능. 허가 외 사용: 월 1회 1 mg/kg SC 투여. 사이클로스포린과 비열등성 입증. 옥라시티닙 불충분 반응 개에서도 효과적."
+  ],
+  "mechanism_short": "IL-31(인터루킨-31)을 중화하는 카닌화 단클론항체. IL-31은 아토피성 피부염 개에서 피부 활성화 T 헬퍼 세포에 의해 생성되며, 척수 수용체에 결합하여 뇌로 신호를 전달해 말초 신경을 자극하여 소양증을 유발함. 로키벳맙은 이 가려움 신호를 차단함."
 }

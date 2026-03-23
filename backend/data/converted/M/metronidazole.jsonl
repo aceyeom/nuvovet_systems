@@ -26,23 +26,33 @@
     "available_strengths": [
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 375,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -820,5 +830,17 @@
     "source_file": "plumbs_output/64.jsonl",
     "extracted_at": "2026-03-11T09:26:59.171856+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "메트로니다졸(Metronidazole)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "승인 적응증(영국): 개·고양이의 지아르디아 및 클로스트리디움에 의한 위장관 감염",
+    "비뇨생식기·구강·인후·피부의 혐기성 세균 감염. 오프라벨(미국): 지아르디아증",
+    "트리코모나스증",
+    "발란티디움 콜리 감염",
+    "혐기성 감염(전신 및 장관)",
+    "클로스트리디움 장염",
+    "IBD 보조 치료",
+    "헬리코박터 위염(삼제 요법)"
+  ],
+  "mechanism_short": "혐기성 세균의 세포막을 통과하여 DNA와 상호작용, DNA 가닥 절단을 유발하여 단백질 합성 억제 및 세포 사멸을 초래하는 농도 의존성 살균제. 원충에 대한 항원충 작용 기전은 불명확. 세포 매개 면역 억제 작용도 일부 있음."
 }

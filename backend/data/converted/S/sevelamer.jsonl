@@ -24,23 +24,33 @@
     "available_strengths": [
       {
         "value": 400,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 800,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 800,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.8,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2.4,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -467,5 +477,10 @@
     "source_file": "plumbs_output/34.jsonl",
     "extracted_at": "2026-03-10T23:43:15.561402+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "세벨라머(Sevelamer)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "만성 신장 질환 관련 고인산혈증 치료 (엑스트라라벨). 식이 인산 제한 실패 시 또는 알루미늄·칼슘 함유 인산염 결합제를 사용할 수 없는 경우에 사용."
+  ],
+  "mechanism_short": "장내에서 인산염과 결합하여 위장관 흡수를 억제함. 담즙산과도 결합하여 지방 및 지용성 비타민 흡수를 감소시키고, 혈청 LDL 및 총 콜레스테롤을 낮춤."
 }

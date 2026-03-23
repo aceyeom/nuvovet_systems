@@ -22,11 +22,15 @@
     "available_strengths": [
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -944,5 +948,14 @@
     "source_file": "plumbs_output/57.jsonl",
     "extracted_at": "2026-03-11T06:57:33.644389+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "케토코나졸(Ketoconazole)은(는) 진균(곰팡이) 감염 치료에 사용되는 항진균제입니다.",
+  "primary_indications": [
+    "【허가 외 사용】 개: Malassezia 피부염(5~10 mg/kg PO SID)",
+    "조갑진균증(5~10 mg/kg PO q12h)",
+    "전신 진균증(5~10 mg/kg PO q12~24h)",
+    "사이클로스포린 용량 절감(2.5~10 mg/kg PO SID). 고양이: 전신 진균증(50 mg/마리 또는 10 mg/kg PO q12~24h",
+    "논란 있음). 역사적으로 개의 부신피질기능항진증 치료에 사용되었으나 현재는 미토탄 또는 트릴로스탄이 권장됨."
+  ],
+  "mechanism_short": "진균 세포막의 에르고스테롤 합성에 필요한 사이토크롬 P450 의존성 탈메틸화 효소를 억제하여 세포막 투과성 증가 및 세포 내용물 누출을 유발하는 정진균 작용. 고농도 또는 감수성 높은 균에서는 살진균 작용. 또한 5-리폭시게나아제 억제를 통한 항염증 작용, T-림프구 증식 억제를 통한 면역억제 작용, 여러 P450 효소계 차단을 통한 스테로이드 합성 억제 작용을 가짐."
 }

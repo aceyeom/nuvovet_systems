@@ -23,7 +23,9 @@
     "available_strengths": [
       {
         "value": 5.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -341,5 +343,16 @@
     "source_file": "plumbs_output/5.jsonl",
     "extracted_at": "2026-03-10T15:00:05.491812+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "프로파라카인 점안액(Proparacaine Ophthalmic)은(는) 통증 완화에 사용되는 진통제입니다.",
+  "primary_indications": [
+    "안과 진단 처치(안압 측정",
+    "각막·결막 세포검사 및 배양 검체 채취",
+    "안구 초음파",
+    "방수각 검사) 및 병원 내 치료 처치(각막 이물 및 봉합사 제거",
+    "안검·결막 수술",
+    "각막 이식",
+    "백내장 적출)의 보조 마취. 모든 사용은 extra-label."
+  ],
+  "mechanism_short": "전압 개폐 나트륨 채널의 세포 내 부위에 결합하여 나트륨 이온의 세포 내 이동을 억제함으로써 신경 탈분극을 차단하고 활동 전위 생성을 방지하는 국소 마취 작용."
 }

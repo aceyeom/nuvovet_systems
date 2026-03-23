@@ -27,11 +27,15 @@
     "available_strengths": [
       {
         "value": 1.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -392,5 +396,11 @@
     "source_file": "plumbs_output/18.jsonl",
     "extracted_at": "2026-03-10T18:49:37.998129+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "페르골리드(Pergolide)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "말의 뇌하수체 중간엽 기능장애(PPID",
+    "쿠싱 증후군) 임상 증상 조절 — FDA 승인 적응증. 개·고양이에서의 승인 적응증 없음."
+  ],
+  "mechanism_short": "도파민 D1 및 D2 수용체의 강력한 작용제로, 브로모크립틴보다 10~1000배 강력함. 뇌하수체 중간엽의 멜라노트로프에 대한 도파민성 조절을 회복시켜 POMC 및 POMC 유래 펩타이드(ACTH, α-MSH 등)의 과잉 생산을 억제함. 프로락틴 분비도 억제함."
 }

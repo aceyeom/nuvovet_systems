@@ -25,7 +25,9 @@
     "available_strengths": [
       {
         "value": 227.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -321,5 +323,16 @@
     "source_file": "plumbs_output/30.jsonl",
     "extracted_at": "2026-03-10T22:30:43.161968+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "옥시벤다졸(Oxibendazole)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "말(FDA 승인): 대형 회충(Parascaris equorum)",
+    "대형 원충류(Strongylus edentatus",
+    "S. equinus",
+    "S. vulgaris)",
+    "소형 원충류",
+    "실모양충(Strongyloides westeri)",
+    "요충(Oxyuris equi) 제거 및 억제. 토끼(비표준): Encephalitozoon cuniculi 보조 치료."
+  ],
+  "mechanism_short": "벤즈이미다졸계 항기생충제로, 기생충 내 튜불린에 결합하여 세포내 미세소관 형성을 억제하고 미세소관 중합을 방해함. 고농도에서는 말산탈수소효소(malate dehydrogenase) 및 푸마르산환원효소(fumarate reductase) 등 대사 효소를 억제하여 기생충의 대사 경로를 교란함."
 }

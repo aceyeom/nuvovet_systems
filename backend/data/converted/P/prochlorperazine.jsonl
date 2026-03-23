@@ -28,19 +28,27 @@
     "available_strengths": [
       {
         "value": 5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -576,5 +584,15 @@
     "source_file": "plumbs_output/21.jsonl",
     "extracted_at": "2026-03-10T19:47:17.955736+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "프로클로르페라진(Prochlorperazine)은(는) 구토 예방 및 치료에 사용되는 항구토제입니다.",
+  "primary_indications": [
+    "개와 고양이에서의 구토 억제(오프라벨). 과거 이소프로파미드와의 복합제로 구토",
+    "비특이적 위장염",
+    "약물 유발 설사",
+    "감염성 설사",
+    "경련성 대장염",
+    "멀미에 FDA 허가를 받았으나 현재 시판 중단."
+  ],
+  "mechanism_short": "도파민, 히스타민-1형, 알파-2 아드레날린, 무스카린 수용체 길항 작용을 통한 다중 기전. 뇌의 구토 중추 및 화학수용체 유발대(CTZ)에 주로 작용하여 항구토 효과 발휘. 말초 활성도 일부 존재."
 }

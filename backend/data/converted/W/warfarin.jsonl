@@ -23,39 +23,57 @@
     "available_strengths": [
       {
         "value": 1,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 3,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 4,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 6,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 7.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -925,5 +943,10 @@
     "source_file": "plumbs_output/7.jsonl",
     "extracted_at": "2026-03-10T15:47:13.019412+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "와파린(Warfarin)은(는) 혈액 응고를 억제하는 항응고제입니다.",
+  "primary_indications": [
+    "개에서 혈전성 질환의 장기 치료 또는 재발 예방 (오프라벨). 수의학에서 허가된 제품 없음. 고양이에서는 사용 비권장. 말에서 제한적으로 사용 보고됨(발굽엽염 보조 치료)."
+  ],
+  "mechanism_short": "비타민 K 에폭사이드 환원효소(VKORC1)를 억제하여 응고인자 II, VII, IX, X 및 항응고 단백질 C, S의 합성을 방해하는 간접적 항응고제."
 }

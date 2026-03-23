@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 1.0,
-        "unit": "mL"
+        "unit": "mL",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -396,5 +398,11 @@
     "source_file": "plumbs_output/35.jsonl",
     "extracted_at": "2026-03-11T00:06:43.742910+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "포도상구균 파지 용해물(Staphylococcus Aureus Phage Lysate)은(는) 면역 반응을 억제하는 면역억제제입니다.",
+  "primary_indications": [
+    "개의 농피증 및 관련 포도상구균 과민반응",
+    "포도상구균 성분을 포함한 다균성 피부 감염 치료 (USDA 허가). 만성 재발성 특발성 농피증 보조 치료 (비라벨). 아토피 피부염 동반 재발성 포도상구균 감염 (비라벨)."
+  ],
+  "mechanism_short": "세포 매개 면역을 강화하고 대식세포의 포도상구균 불활성화 능력을 증가시킴. 종양괴사인자(TNF), 인터루킨-6, 인터루킨-감마, 감마-인터페론 생성을 자극함."
 }

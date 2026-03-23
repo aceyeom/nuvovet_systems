@@ -1,6 +1,5 @@
 {
   "id": "irrigating_solutions_ophthalmic",
-
   "drug_identity": {
     "name_ko": "안과용 관류액 / 세정액",
     "name_en": "Irrigating Solutions, Ophthalmic",
@@ -28,11 +27,12 @@
     "available_strengths": [
       {
         "value": 0.0,
-        "unit": "various volumes (15mL to 500mL)"
+        "unit": "various volumes (15mL to 500mL)",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
-
   "metabolism_and_clearance": {
     "primary_metabolic_organ": "Unknown",
     "clearance_organ": "Mixed",
@@ -45,25 +45,73 @@
     },
     "extra_information": "Physiologically balanced salt solutions that mimic the composition of the aqueous humor."
   },
-
   "organ_burden_logic": {
     "note": "Topical and local ophthalmic use; systemic organ burden is negligible.",
     "dog": {
-      "brain": { "calculated_score": 0, "triggered_keywords": [], "index": 1, "evidence": null },
-      "blood": { "calculated_score": 0, "triggered_keywords": [], "index": 2, "evidence": null },
-      "kidney": { "calculated_score": 0, "triggered_keywords": [], "index": 3, "evidence": null },
-      "liver": { "calculated_score": 0, "triggered_keywords": [], "index": 4, "evidence": null },
-      "heart": { "calculated_score": 0, "triggered_keywords": [], "index": 5, "evidence": null }
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": null
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 2,
+        "evidence": null
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 3,
+        "evidence": null
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 4,
+        "evidence": null
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 5,
+        "evidence": null
+      }
     },
     "cat": {
-      "brain": { "calculated_score": 0, "triggered_keywords": [], "index": 1, "evidence": null },
-      "blood": { "calculated_score": 0, "triggered_keywords": [], "index": 2, "evidence": null },
-      "kidney": { "calculated_score": 0, "triggered_keywords": [], "index": 3, "evidence": null },
-      "liver": { "calculated_score": 0, "triggered_keywords": [], "index": 4, "evidence": null },
-      "heart": { "calculated_score": 0, "triggered_keywords": [], "index": 5, "evidence": null }
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": null
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 2,
+        "evidence": null
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 3,
+        "evidence": null
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 4,
+        "evidence": null
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 5,
+        "evidence": null
+      }
     }
   },
-
   "timing_profile": {
     "onset_min": null,
     "t_max_hr": null,
@@ -77,11 +125,8 @@
     "protein_binding_percent": null,
     "evidence": "Acts immediately upon application to flush debris or maintain chamber shape."
   },
-
   "_ddi_note": "It is not recommended to add any other solutions or drugs to intraocular or extraocular irrigating solutions, as this may damage intraocular tissue.",
-
   "drug_interactions": [],
-
   "additive_risks": {
     "nephrotoxic": false,
     "hepatotoxic": false,
@@ -90,7 +135,6 @@
     "sedation": false,
     "qt_prolongation": false
   },
-
   "risk_flags": {
     "nephrotoxic": "none",
     "hepatotoxic": "none",
@@ -98,7 +142,6 @@
     "bleeding": "none",
     "qt_prolongation": "none"
   },
-
   "species_flags": {
     "species_contraindicated": [],
     "mdr1_sensitive": false,
@@ -107,7 +150,6 @@
     "narrow_therapeutic_index": false,
     "washout_period_days": null
   },
-
   "dosage_and_kinetics": {
     "dog": {
       "is_approved": false,
@@ -164,7 +206,6 @@
       ]
     }
   },
-
   "renal_dose_adjustment": {
     "creatinine_threshold_dog_mg_dL": null,
     "creatinine_threshold_cat_mg_dL": null,
@@ -172,14 +213,12 @@
     "adjustment_factor": null,
     "note": null
   },
-
   "hepatic_dose_adjustment": {
     "applies": false,
     "alt_threshold_multiplier": null,
     "adjustment_type": "none specified",
     "note": null
   },
-
   "contraindications": [
     {
       "condition": "Intraocular use of extraocular preparations",
@@ -209,14 +248,12 @@
       }
     }
   ],
-
   "genetic_sensitivity": {
     "has_genetic_risk": false,
     "affected_breeds": [],
     "gene": null,
     "evidence": null
   },
-
   "effects_and_mechanisms": {
     "common_mechanism": "Isotonic solutions used to physically irrigate, remove debris, or mimic the composition of aqueous humor during surgery (maintaining physiologic pH, osmolality, and electrolytes).",
     "common_extra_effects": [
@@ -228,12 +265,10 @@
     "cat_mechanism": null,
     "cat_extra_effects": []
   },
-
   "species_notes": {
     "dog": "Diabetic animals undergoing vitrectomy may be at risk for intraoperative lens changes; use caution.",
     "cat": "Diabetic animals undergoing vitrectomy may be at risk for intraoperative lens changes; use caution."
   },
-
   "precautions": {
     "dog": {
       "status": 2,
@@ -244,7 +279,6 @@
       "evidence": "Caution is advised in diabetic animals undergoing vitrectomy, as intraoperative lens changes have been noted."
     }
   },
-
   "storage_and_forms": {
     "storage": "Store OTC eyewash at room temperature away from moisture and sunlight; do not freeze. Store intraocular solutions at 8°C to 30°C; discard after 6 hours. Store BSS Plus at 2°C to 25°C; discard after 6 hours.",
     "forms": [
@@ -252,13 +286,11 @@
       "Balanced Salt Solution Irrigating Solution (Rx)"
     ]
   },
-
   "section_1_2_10": {
     "highlights": "Available for extraocular (eyewash) or intraocular use. Extraocular products must NOT be used intraocularly. Used to flush eyes or maintain anterior chamber shape during surgery.",
     "indications": "Extraocular: irrigate nasolacrimal duct, remove debris/stain. Intraocular: maintain anterior chamber shape, cool handpieces, lavage byproducts during surgery.",
     "client_info": "Use proper administration techniques to avoid eye injury or contamination. Wait 5 minutes before applying other eye medications. Discard product if color changes or solution becomes cloudy."
   },
-
   "_data_quality": {
     "overall_confidence": 4,
     "renal_adjustment_confidence": "high",
@@ -287,12 +319,19 @@
     "requires_pmc_rag": false,
     "pmc_rag_fields": []
   },
-
   "_extraction_metadata": {
     "model_used": "Gemini 3.1 Pro",
     "extraction_pass": 1,
     "source_file": "Plumbs Veterinary Drugs",
     "extracted_at": "2026-03-21T14:01:42Z",
     "reviewer": null
-  }
+  },
+  "brief_description": "안과용 관류액 / 세정액(Irrigating Solutions, Ophthalmic)은(는) 안구 세척에 사용되는 점안 세정액입니다.",
+  "primary_indications": [
+    "Extraocular: irrigate nasolacrimal duct",
+    "remove debris/stain. Intraocular: maintain anterior chamber shape",
+    "cool handpieces",
+    "lavage byproducts during surgery."
+  ],
+  "mechanism_short": "Isotonic solutions used to physically irrigate, remove debris, or mimic the composition of aqueous humor during surgery (maintaining physiologic pH, osmolality, and electrolytes)."
 }

@@ -23,11 +23,15 @@
     "available_strengths": [
       {
         "value": 5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -401,5 +405,13 @@
     "source_file": "plumbs_output/6.jsonl",
     "extracted_at": "2026-03-10T15:14:42.794425+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "트로피카마이드 점안액(Tropicamide Ophthalmic)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "안저 검사를 위한 산동 유도(적응증 외)",
+    "백내장 수술 후 유착 예방 및 동공 운동성 유지(적응증 외)",
+    "포도막염에서 유착 분리(적응증 외). 라타노프로스트 또는 부토르파놀에 의한 축동 극복(개",
+    "적응증 외)."
+  ],
+  "mechanism_short": "홍채 괄약근 및 모양체 근육의 무스카린 수용체를 차단하여 산동(동공 확장) 및 조절 마비(조절 마비)를 유발하는 항콜린성 작용."
 }

@@ -22,7 +22,9 @@
     "available_strengths": [
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -628,5 +630,14 @@
     "source_file": "plumbs_output/26.jsonl",
     "extracted_at": "2026-03-10T21:28:45.654844+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "미토탄(Mitotane)은(는) 악성 종양(암) 치료에 사용되는 항종양제입니다.",
+  "primary_indications": [
+    "개의 뇌하수체 의존성 부신피질기능항진증(PDH",
+    "양측 부신 과형성) 치료(허가 외)",
+    "개의 부신 암종 완화 치료 및 부신 선종 치료(허가 외)",
+    "페럿의 부신피질기능항진증 치료(수술 불가 또는 종양 불완전 절제 시",
+    "허가 외). 인간에서 부신 암종의 완화 치료에 허가됨."
+  ],
+  "mechanism_short": "부신 세포독성 약물로, 부신피질의 zona fasciculata 및 zona reticularis에 진행성 괴사를 유발함. 세포 파괴 없이도 부신피질 기능을 억제할 수 있으며, 코르티코스테로이드 생성에 관여하는 여러 효소를 억제함. CYP3A4 유도를 통해 다른 약물의 대사를 증가시킴."
 }

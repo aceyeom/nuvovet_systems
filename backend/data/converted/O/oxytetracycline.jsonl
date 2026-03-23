@@ -35,27 +35,39 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -582,5 +594,17 @@
     "source_file": "plumbs_output/30.jsonl",
     "extracted_at": "2026-03-10T22:36:51.224303+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "옥시테트라사이클린(Oxytetracycline)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "개·고양이: 감수성 전신 감염(extra-label)",
+    "Neorickettsia helminthoeca(연어 중독)",
+    "항생제 반응성 설사. 식용 동물: 소",
+    "가금류 등에서 호흡기 질환",
+    "족부 부패",
+    "렙토스피라증",
+    "자궁염 등 다양한 세균 감염(FDA 승인). WHO 고중요 항균제",
+    "OIE 수의학적 매우 중요 항균제로 지정됨."
+  ],
+  "mechanism_short": "30S 리보솜 소단위에 가역적으로 결합하여 아미노아실-tRNA의 리보솜 결합을 억제함으로써 단백질 합성을 저해하는 시간 의존성 정균 항생제. 고농도에서는 세포질막 투과성도 변화시킴."
 }

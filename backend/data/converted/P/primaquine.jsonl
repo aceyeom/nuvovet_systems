@@ -19,7 +19,9 @@
     "available_strengths": [
       {
         "value": 26.3,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -428,5 +430,12 @@
     "source_file": "plumbs_output/21.jsonl",
     "extracted_at": "2026-03-10T19:39:39.771594+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "프리마퀸(Primaquine)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "고양이 Babesia felis 감염 (오프라벨",
+    "1차 선택약). 개 및 고양이 Hepatozoon spp 감염 (오프라벨). 조류 Plasmodium spp 감염 (오프라벨). 사람: 말라리아 치료 및 예방",
+    "Pneumocystis spp 폐렴 치료."
+  ],
+  "mechanism_short": "항원충 기전은 완전히 밝혀지지 않음. 원충 DNA에 결합하여 변형시키는 것과 관련될 수 있음."
 }

@@ -24,7 +24,9 @@
     "available_strengths": [
       {
         "value": 2.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -381,5 +383,12 @@
     "source_file": "plumbs_output/11.jsonl",
     "extracted_at": "2026-03-10T16:37:52.171493+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "도르졸라마이드 점안액(Dorzolamide Ophthalmic)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "녹내장 및 안압 상승 치료 (오프라벨). 개",
+    "고양이",
+    "말에서 안압 감소 목적으로 사용. 단독 또는 티몰롤과의 복합제제로 사용 가능. 반대쪽 눈의 원발성 녹내장 예방 목적의 예방적 투여 효과는 입증되지 않음."
+  ],
+  "mechanism_short": "탄산탈수효소(CA) 비경쟁적·가역적 억제를 통해 이산화탄소와 물로부터 수소이온 및 중탄산이온 생성을 감소시킴. 섬모체 돌기에서 탄산탈수효소 억제로 방수 분비를 감소시켜 안압을 낮춤."
 }

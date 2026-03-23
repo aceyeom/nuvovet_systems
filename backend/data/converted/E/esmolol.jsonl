@@ -22,11 +22,15 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -606,5 +610,14 @@
     "source_file": "plumbs_output/17.jsonl",
     "extracted_at": "2026-03-10T18:19:07.510910+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "에스몰롤(Esmolol)은(는) 심장 기능 개선에 사용되는 심장약입니다.",
+  "primary_indications": [
+    "【승인 적응증】없음 (수의과 허가 제품 없음). 【오프라벨 적응증】개/고양이: 상심실성 빈맥(심방세동/조동",
+    "동성 빈맥)",
+    "심실 부정맥의 단기 치료",
+    "베타차단제 치료 효과 판정을 위한 테스트 약물",
+    "전신마취 중 부적절한 교감신경 활성으로 인한 고혈압 및 상심실성 빈맥 조절. 개: 폐동맥 판막 협착증에서 풍선 판막성형술 후 과역동성 우심실 유출로 폐쇄 관리. 고양이: 비대성 심근병증에서 항부정맥제."
+  ],
+  "mechanism_short": "심근의 베타-1 아드레날린 수용체를 선택적으로 차단하여 음성 변력 및 음성 변시 효과를 나타냄. AV 결절 전도 지연, 동방결절 회복 시간 연장, 동주기 연장을 통해 항부정맥 효과 발휘. 내인성 교감신경 활성(ISA) 없음. 막 안정화 효과 없음."
 }

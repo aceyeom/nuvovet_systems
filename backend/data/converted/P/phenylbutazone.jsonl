@@ -25,23 +25,33 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -589,5 +599,12 @@
     "source_file": "plumbs_output/18.jsonl",
     "extracted_at": "2026-03-10T18:56:15.988417+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "페닐부타존(Phenylbutazone)은(는) 통증과 염증을 완화하는 비스테로이드성 항염증제(NSAID)입니다.",
+  "primary_indications": [
+    "말의 근골격계 통증 및 염증 치료(FDA 승인). 개의 근골격계 질환 항염증 치료(FDA 승인",
+    "그러나 더 안전한 대안 권장). 반추동물의 수술 통증 완화(허가 외 사용",
+    "단 식용 동물 사용 금지)."
+  ],
+  "mechanism_short": "사이클로옥시게나제(COX) 억제를 통한 프로스타글란딘 합성 감소. 진통, 항염증, 해열, 경미한 요산 배설 촉진 작용. COX에 비가역적으로 결합하여 반감기보다 긴 치료 효과 지속."
 }

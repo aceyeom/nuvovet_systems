@@ -25,35 +25,51 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -492,5 +508,11 @@
     "source_file": "plumbs_output/56.jsonl",
     "extracted_at": "2026-03-11T06:34:24.334681+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아스코르브산(Ascorbic Acid)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "기니피그: 괴혈병 예방(10–30mg/kg/일) 및 치료(100mg/kg/일). 개·고양이: 독소 유발 메트헤모글로빈혈증 보조 치료(30–33mg/kg PO q6h",
+    "허가 외). 과거 개의 구리 유발 간병증 치료에 사용되었으나 현재는 권장되지 않음. 요로 산성화제로도 사용 가능하나 효능 불확실."
+  ],
+  "mechanism_short": "아스코르브산은 조직 수복 및 콜라겐 합성에 필요한 수용성 비타민으로, 항산화제로서 활성산소(예: 과산화수소)를 중화하고, 메트헤모글로빈을 옥시헤모글로빈으로 전환을 촉진하며, 아스코르브산 퍼옥시다제의 기질로 작용합니다. 철분 흡수, 면역 기능, 혈관 완전성 유지에도 관여합니다."
 }

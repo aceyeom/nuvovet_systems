@@ -27,15 +27,21 @@
     "available_strengths": [
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 67,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -546,5 +552,17 @@
     "source_file": "plumbs_output/47.jsonl",
     "extracted_at": "2026-03-11T03:46:17.841897+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "티니다졸(Tinidazole)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "【허가 외 사용】 ▸개: 지아르디아증 (44 mg/kg PO q24h",
+    "3~6일) ▸고양이: 지아르디아증 (30 mg/kg PO SID",
+    "7~10일)",
+    "Tritrichomonas foetus 감염 (30 mg/kg PO SID",
+    "14일) ▸잠재적 적응증: 혐기성 감염(특히 구강/치과 감염)",
+    "트리코모나스증",
+    "아메바증",
+    "발란티디아증 (동물에서 효능 데이터 부족) ▸인간 FDA 허가: 장외/장내 아메바증"
+  ],
+  "mechanism_short": "5-니트로이미다졸 계열 항원충/항균제. 혐기성 생물에 의해 흡수된 후 미확인 극성 화합물로 환원되어 세균의 DNA 및 핵산 합성을 방해함으로써 살균 작용을 나타냄. 트리코모나스 살멸 및 아메바 살멸 효과도 있음."
 }

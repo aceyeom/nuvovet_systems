@@ -26,23 +26,33 @@
     "available_strengths": [
       {
         "value": 15,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 30,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 60,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 7.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2.4,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -741,5 +751,13 @@
     "source_file": "plumbs_output/36.jsonl",
     "extracted_at": "2026-03-11T00:20:48.409732+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "코데인(Codeine)은(는) 중등도~중증 통증 관리에 사용되는 오피오이드 진통제입니다.",
+  "primary_indications": [
+    "개: 경증 통증(extra-label)",
+    "진해(extra-label)",
+    "지사(extra-label). 고양이: 진통(extra-label",
+    "아세트아미노펜 병용 제품 제외). 수의학적으로 승인된 제품 없음."
+  ],
+  "mechanism_short": "뮤(mu)-오피오이드 수용체 작용제. 진통, 진해, 지사 효과를 나타내며, 종에 따라 약동학 및 대사 경로가 크게 다름."
 }

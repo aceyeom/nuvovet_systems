@@ -26,15 +26,21 @@
     "available_strengths": [
       {
         "value": 0.3,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 3.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 13.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -393,5 +399,12 @@
     "source_file": "plumbs_output/5.jsonl",
     "extracted_at": "2026-03-10T15:10:19.355983+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "토브라마이신 점안제(Tobramycin Ophthalmic)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "감수성 세균에 의한 안구 표면 감염(특히 녹농균)",
+    "세균 감염 위험이 있는 결막 염증 상태 관리",
+    "안구 표면 또는 안내 수술 후 처치. 모든 적응증은 엑스트라라벨 사용임."
+  ],
+  "mechanism_short": "아미노글리코사이드 계열 항생제로, 세균 내로 능동 수송된 후 30S 리보솜 소단위의 특이적 수용체에 결합하여 mRNA와 30S 소단위 간의 개시 복합체 형성을 방해함으로써 단백질 합성을 억제. 살균 작용을 나타냄."
 }

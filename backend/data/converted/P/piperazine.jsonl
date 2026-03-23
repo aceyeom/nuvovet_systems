@@ -486,5 +486,14 @@
     "source_file": "plumbs_output/19.jsonl",
     "extracted_at": "2026-03-10T19:12:43.298871+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "피페라진(Piperazine)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "개·고양이의 회충(Toxocara",
+    "Toxascaris) 감염 치료. 위장관염이 동반된 동물에서도 안전하게 사용 가능. 현재는 더 효과적인 구충제(예: 펜벤다졸",
+    "피란텔)가 있어 일선 치료제로는 거의 사용되지 않음. 돼지의 대형 회충(Ascaris suum) 및 결절충",
+    "조류의 Ascaridia galli",
+    "토끼·설치류의 요충 등에도 허가 외 사용 가능."
+  ],
+  "mechanism_short": "GABA 작동성 염화이온 채널을 자극하여 감수성 선충의 신경근 차단을 유발, 회충을 마비시킴. 회충에서는 숙신산 생성도 억제함."
 }

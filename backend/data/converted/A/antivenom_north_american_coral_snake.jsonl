@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 1,
-        "unit": "EA"
+        "unit": "EA",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -382,5 +384,11 @@
     "source_file": "plumbs_output/55.jsonl",
     "extracted_at": "2026-03-11T06:27:06.550078+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "북미 산호뱀 항독소(Antivenom, North American Coral Snake)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "북미 산호뱀(Micrurus fulvius fulvius",
+    "Micrurus fulvius tenere) 교상에 의한 독소 중화. 수의과에서는 extra-label 사용. Micruroides euryxanthus(소노란/애리조나 산호뱀) 독소는 중화하지 못함."
+  ],
+  "mechanism_short": "마필 유래 독소 특이적 면역글로불린이 산호뱀 독소에 결합하여 독소 유발 독성 효과를 중화함. 각 바이알은 약 2 mg의 Micrurus fulvius fulvius 독소를 중화할 수 있음."
 }

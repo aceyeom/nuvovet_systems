@@ -27,15 +27,21 @@
     "available_strengths": [
       {
         "value": 150,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 62.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -434,5 +440,14 @@
     "source_file": "plumbs_output/49.jsonl",
     "extracted_at": "2026-03-11T04:26:46.840151+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아토바쿠온(Atovaquone)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "【허가 외 사용】개: Babesia gibsoni(아시아형)",
+    "B conradae",
+    "B microti-like(Theileria annae",
+    "B vulpes) 감염(아지스로마이신 병용)",
+    "폐포자충증(2차 치료). 고양이: Cytauxzoon felis 감염(아지스로마이신 병용). 인체: 말라리아 예방 및 치료(아토바쿠온/프로구아닐 복합제)."
+  ],
+  "mechanism_short": "하이드록시나프토퀴논 계열로서 원충의 사이토크롬 b(cytb)를 표적으로 하여 원충 미토콘드리아 전자전달계를 선택적으로 억제하고, 피리미딘 de novo 합성을 저해함. 포유류 세포와 달리 일부 원충은 기존 피리미딘을 재활용할 수 없어 선택적 독성을 나타냄."
 }

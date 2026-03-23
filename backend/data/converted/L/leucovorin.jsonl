@@ -20,43 +20,63 @@
     "available_strengths": [
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 15,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 350,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -276,7 +296,7 @@
           "logic_type": "fixed",
           "context": "메토트렉세이트 과다복용 (오프라벨) - 혈중 메토트렉세이트 농도 기반",
           "value": "25 - 200",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q6h",
           "max_dose_mg_kg": null,
@@ -287,7 +307,7 @@
           "logic_type": "fixed",
           "context": "메토트렉세이트 과다복용 (오프라벨) - MTX 검사 불가 시 증례 보고",
           "value": "200",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q6h",
           "max_dose_mg_kg": null,
@@ -487,5 +507,12 @@
     "source_file": "plumbs_output/58.jsonl",
     "extracted_at": "2026-03-11T07:09:22.360364+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "류코보린(Leucovorin)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【허가 외(오프라벨) 적응증】\n• 개/고양이: 피리메타민",
+    "트리메토프림",
+    "오르메토프림 관련 엽산 결핍 및 골수억제 예방/치료\n• 개/고양이: 메토트렉세이트 과다복용 해독\n• 말: 피리메타민 및/또는 트리메토프림 관련 거대적아구성 빈혈 및 호중구감소증(특히 임신 암말)\n【인체 허가 적응증(참고)】\n• 고용량 메토트렉세이트 화학요법 후 구제 요법\n• 5-FU와 병용하여 대장암 치료"
+  ],
+  "mechanism_short": "류코보린은 디히드로엽산 환원효소(DHFR)에 의한 전환 없이 생물학적으로 활성화되는 환원형 엽산이다. 5-메틸테트라히드로폴레이트(5-methyl THF)로 전환되어 퓨린 및 피리미딘 뉴클레오타이드 합성과 정상 적혈구 생성에 필요한 조효소로 작용한다. 또한 플루오로데옥시우리딜산의 티미딜레이트 합성효소 결합을 안정화하여 5-FU의 활성 및 독성을 증강시킨다."
 }

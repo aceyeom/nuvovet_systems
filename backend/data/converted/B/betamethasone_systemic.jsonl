@@ -24,27 +24,39 @@
     "available_strengths": [
       {
         "value": 6,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 3.15,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 2.85,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 12,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 3.9,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 3,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -715,5 +727,13 @@
     "source_file": "plumbs_output/50.jsonl",
     "extracted_at": "2026-03-11T04:43:51.833216+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "베타메타손 (전신)(Betamethasone (Systemic))은(는) 항염증 및 면역억제 효과를 가진 부신피질 호르몬제입니다.",
+  "primary_indications": [
+    "【승인 적응증】 말: 골관절염과 관련된 통증 및 염증 조절 (관절강 내 투여",
+    "FDA 승인). 개: 소양증 조절 (IM",
+    "FDA 승인",
+    "현재 미국 내 판매 중단). 【비라벨 사용】 개: 조산 강아지 폐 성숙 유도 (임신 55~57일 암컷에게 0.5 mg/kg IM). 말: 관절강 내 비라벨 용량 3~18 mg/관절."
+  ],
+  "mechanism_short": "합성 글루코코르티코이드로 히드로코르티손보다 25~40배 강력하며 무기질코르티코이드 활성 없음. 거의 모든 세포 유형과 시스템에 영향을 미침. 항염증, 면역억제, 대사 조절 효과를 나타냄."
 }

@@ -34,15 +34,21 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -513,5 +519,10 @@
     "source_file": "plumbs_output/56.jsonl",
     "extracted_at": "2026-03-11T11:29:30.479990+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "철 덱스트란(Iron Dextran)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "철 결핍성 빈혈의 치료 및 예방(주로 신생아 식용 동물). 개와 고양이에서 에리스로포이에틴(EPO) 또는 다르베포에틴(DPO) 등 조혈 촉진제 투여 시 철 보충(extra-label). 고양이 신생아 일과성 철 결핍성 빈혈 예방(extra-label). 조류 및 페럿에서 철 결핍성 빈혈 치료(extra-label)."
+  ],
+  "mechanism_short": "철은 산소의 운반 및 이용에 필요한 미오글로빈과 헤모글로빈의 구성 성분임. 철 결핍 상태에서 철 보충은 총 체내 철 및 헤모글로빈 농도를 회복시켜 결핍 관련 임상 증상을 개선함. 이온화된 철은 사이토크롬 산화효소, 숙신산 탈수소효소, 잔틴 산화효소의 구성 성분임."
 }

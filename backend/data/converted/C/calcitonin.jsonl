@@ -22,7 +22,9 @@
     "available_strengths": [
       {
         "value": 200,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -382,5 +384,14 @@
     "source_file": "plumbs_output/52.jsonl",
     "extracted_at": "2026-03-11T05:15:43.476301+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "칼시토닌(Calcitonin)은(는) 호르몬 불균형 치료에 사용되는 호르몬제입니다.",
+  "primary_indications": [
+    "【승인 적응증】 없음 (수의학적 승인 제품 없음)\n【오프라벨 적응증】\n- 개: 비타민 D 독성/콜레칼시페롤 관련 고칼슘혈증 보조 치료 (4–6 IU/kg SC",
+    "하루 2~3회)\n- 파충류(녹색 이구아나): 고칼슘혈증 (1.5 IU/kg SC q8h",
+    "수액 병용)\n- 파충류: 영양성 이차성 부갑상선기능항진증 (50 IU/kg IM",
+    "주 1회",
+    "2~3회)"
+  ],
+  "mechanism_short": "파골세포(osteoclast)의 골 흡수를 억제하고, 세뇨관에서 칼슘, 인, 나트륨, 마그네슘, 칼륨, 염소의 재흡수를 감소시켜 신장 배설을 촉진함. 공장(jejunum)에서 수분, 나트륨, 칼륨, 염소의 분비를 증가시킴."
 }

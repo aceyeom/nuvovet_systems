@@ -19,7 +19,9 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -767,5 +769,15 @@
     "source_file": "plumbs_output/54.jsonl",
     "extracted_at": "2026-03-11T06:01:59.596894+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아미노필린(Aminophylline)은(는) 기관지 확장에 사용되는 기관지확장제입니다.",
+  "primary_indications": [
+    "기관지 경련 및 기침(기관지염",
+    "기도 허탈 관련)",
+    "만성 기침의 보조 치료",
+    "울혈성 심부전에 동반된 호흡기 질환 관련 기침 완화",
+    "병적 동방 증후군 및 기타 서맥성 부정맥 관리(허가 외). 폐동맥 고혈압(COPD 기인",
+    "허가 외). 모든 수의학적 사용은 허가 외(extra-label) 사용임."
+  ],
+  "mechanism_short": "포스포디에스테라제(PDE) III(및 PDE IV) 경쟁적 억제를 통해 cAMP 증가 → 내인성 에피네프린 방출 증가. 기관지 및 폐혈관 평활근 직접 이완. 아데노신 길항 작용으로 CNS 자극. 히스타민 및 SRS-A 방출 억제. 약한 변시성·변력성 작용, 이뇨 작용, 위산 분비 증가, 비만세포 방출 억제."
 }

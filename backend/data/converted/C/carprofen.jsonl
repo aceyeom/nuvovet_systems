@@ -41,19 +41,27 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 75,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -736,5 +744,14 @@
     "source_file": "plumbs_output/53.jsonl",
     "extracted_at": "2026-03-11T05:35:40.610578+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "카프로펜(Carprofen)은(는) 통증과 염증을 완화하는 비스테로이드성 항염증제(NSAID)입니다.",
+  "primary_indications": [
+    "개(허가): 골관절염 관련 통증 및 염증",
+    "연조직 및 정형외과 수술 후 통증 관리. 개(허가 외): 전립선 암종(생존 이점 보고). 고양이(미국 내 extra-label): 수술 후 단회 통증 관리. 미국 외: 말",
+    "고양이에서 허가. 기타 동물(extra-label): 페럿",
+    "설치류",
+    "파충류."
+  ],
+  "mechanism_short": "사이클로옥시게나제(COX), 포스포리파제 A2 억제 및 프로스타글란딘 합성 억제를 통한 진통, 항염증, 해열 작용. COX-1보다 COX-2에 상대적으로 선택적이나 종, 용량, 조직에 따라 선택성이 다름."
 }

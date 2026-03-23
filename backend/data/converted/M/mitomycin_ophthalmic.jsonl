@@ -22,11 +22,15 @@
     "available_strengths": [
       {
         "value": 0.4,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -364,5 +368,12 @@
     "source_file": "plumbs_output/3.jsonl",
     "extracted_at": "2026-03-10T14:40:18.290150+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "미토마이신 점안제(Mitomycin Ophthalmic)은(는) 악성 종양(암) 치료에 사용되는 항종양제입니다.",
+  "primary_indications": [
+    "1) 녹내장 배액 션트 수술 시 항섬유화 보조제 (오프라벨): 수술 중 단회 0.5 mg/mL 용액을 여과 부위에 5분간 적용. 2) 안구 표면 종양(편평세포암종",
+    "혈관육종 등) 수술 후 재발 방지 보조 치료 (오프라벨). 3) 말(Equine) 안주위 편평세포암종: 0.04% 연고 또는 용액을 1일 3회",
+    "7일 투여 후 7일 휴약 사이클로 21일간 적용."
+  ],
+  "mechanism_short": "DNA에 결합하여 DNA 교차결합(cross-linking)을 유발하고 DNA 합성 및 기능을 억제함. 고농도에서는 세포 RNA 및 단백질 합성도 억제함. 항섬유화 효과로 섬유아세포 증식 및 반흔 형성을 억제함."
 }

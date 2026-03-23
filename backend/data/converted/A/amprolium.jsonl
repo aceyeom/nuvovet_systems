@@ -28,11 +28,15 @@
     "available_strengths": [
       {
         "value": 96,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -436,5 +440,12 @@
     "source_file": "plumbs_output/55.jsonl",
     "extracted_at": "2026-03-11T06:22:11.637498+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "암프롤리움(Amprolium)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "개·고양이에서 콕시듐증(Eimeria spp.) 치료 (오프라벨). 송아지에서 Eimeria bovis 및 Eimeria zurnii에 의한 콕시듐증 치료 및 예방 (FDA 승인). 가금류에서 콕시듐증 치료 (FDA 승인). 양",
+    "낙타과 동물",
+    "설치류에서 콕시듐증 치료 (오프라벨)."
+  ],
+  "mechanism_short": "티아민(비타민 B1)의 구조적 유사체로서 기생충의 티아민 이용을 경쟁적으로 억제하는 콕시듐 억제제. 장세포 내 1세대 영양형 및 분열소체에 주로 작용하여 메로조이트 분화를 억제하고, 성적 단계 및 난포낭 포자형성을 억제함."
 }

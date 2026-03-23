@@ -27,23 +27,33 @@
     "available_strengths": [
       {
         "value": 3,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 6,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 9,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.25,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -321,7 +331,7 @@
           "logic_type": "linear",
           "context": "만성 염증성 장질환 보조 치료 (오프라벨) - 체표면적 기반 용량",
           "value": "3",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "PO",
           "frequency": "SID",
           "max_dose_mg_kg": null,
@@ -337,7 +347,7 @@
           "logic_type": "linear",
           "context": "만성 염증성 장질환 보조 치료, 특히 당뇨병 고양이 (오프라벨) - 체표면적 기반",
           "value": "3",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "PO",
           "frequency": "SID",
           "max_dose_mg_kg": null,
@@ -579,5 +589,11 @@
     "source_file": "plumbs_output/51.jsonl",
     "extracted_at": "2026-03-11T04:56:45.822436+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "부데소니드(Budesonide)은(는) 항염증 및 면역억제 효과를 가진 부신피질 호르몬제입니다.",
+  "primary_indications": [
+    "【승인 적응증】 없음 (수의학적 승인 제품 없음)\n【오프라벨 적응증】\n- 개: 만성 염증성 장질환(구 IBD) 보조 치료 (전신 스테로이드 내약성 없는 경우)\n- 고양이: 만성 염증성 장질환 보조 치료 (특히 당뇨병 고양이 또는 경구 글루코코르티코이드 내약성 없는 경우)",
+    "천식 및 만성 기관지염 (흡입)\n- 말: 중증 말 천식(SEA) 보조 치료 (흡입)"
+  ],
+  "mechanism_short": "강력한 비할로겐화 글루코코르티코이드로 프레드니솔론보다 15배 강력함. 장관 내 국소 항염증 작용을 나타내며, 장관에서 흡수 후 간의 높은 초회통과효과로 전신 혈중 농도가 낮게 유지됨. 약한 무기질코르티코이드 활성을 가짐."
 }

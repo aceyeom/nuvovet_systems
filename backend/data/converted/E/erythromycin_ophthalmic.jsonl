@@ -19,7 +19,9 @@
     "available_strengths": [
       {
         "value": 0.5,
-        "unit": "%"
+        "unit": "%",
+        "form": "topical",
+        "is_splittable": null
       }
     ]
   },
@@ -319,5 +321,11 @@
     "source_file": "plumbs_output/11.jsonl",
     "extracted_at": "2026-03-10T16:41:27.943796+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "에리스로마이신 점안제(Erythromycin Ophthalmic)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "에리스로마이신에 감수성인 균주에 의한 결막 및/또는 각막의 표재성 안구 감염 치료 (오프라벨). 특히 고양이의 Mycoplasma spp. 및 Chlamydia spp. 감염에 유용. Streptococcus spp.",
+    "Staphylococcus spp.에도 활성. Pseudomonas aeruginosa에는 효과 없음."
+  ],
+  "mechanism_short": "세균 리보솜의 50S 소단위에 결합하여 아미노산 간 펩타이드 결합 형성을 억제함으로써 단백질 합성을 저해하는 정균 항생제."
 }

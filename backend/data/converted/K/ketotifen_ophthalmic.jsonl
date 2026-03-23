@@ -22,11 +22,15 @@
     "available_strengths": [
       {
         "value": 0.025,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 0.035,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -316,5 +320,13 @@
     "source_file": "plumbs_output/12.jsonl",
     "extracted_at": "2026-03-10T16:58:59.751290+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "케토티펜 점안액(Ketotifen Ophthalmic)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "알레르기성 결막염(소양감",
+    "눈물 흘림",
+    "눈 찡그림",
+    "홍반 등)의 임상 증상 일시적 완화 — 오프라벨 사용. 수의 승인 적응증 없음."
+  ],
+  "mechanism_short": "비경쟁적 H1 수용체 길항제 및 비만세포 안정화제. 히스타민, 류코트리엔 C4/D4, 혈소판 활성화 인자 등 과민반응 매개물질의 방출을 억제하며, 호산구의 주화성 및 활성화를 감소시킴."
 }

@@ -24,15 +24,21 @@
     "available_strengths": [
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -452,5 +458,14 @@
     "source_file": "plumbs_output/24.jsonl",
     "extracted_at": "2026-03-10T20:29:11.113621+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "세티리진(Cetirizine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "개: 아토피성 피부염 관련 소양증 예방적 보조 치료(허가 외)",
+    "두드러기",
+    "곤충 교상 과민증",
+    "호흡기 알레르기. 고양이: 알레르기성 피부 질환 관련 소양증 보조 치료(허가 외). 말: 항히스타민 치료",
+    "호산구성 각막염(허가 외). 수의학적으로 승인된 제품 없음."
+  ],
+  "mechanism_short": "말초 H1 수용체를 선택적으로 차단하는 2세대 비진정성 항히스타민제. 하이드록시진의 대사체. 혈뇌장벽을 거의 통과하지 않음. 항콜린 및 항세로토닌 효과 없음. 호염기구에서 히스타민 유리 감소 효과도 일부 있음."
 }

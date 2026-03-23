@@ -24,7 +24,9 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -530,5 +532,11 @@
     "source_file": "plumbs_output/14.jsonl",
     "extracted_at": "2026-03-10T17:29:32.071559+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "돌라세트론(Dolasetron)은(는) 구토 예방 및 치료에 사용되는 항구토제입니다.",
+  "primary_indications": [
+    "개와 고양이에서 심한 구역 및 구토",
+    "특히 화학요법 유발 구토의 예방 및 치료(오프라벨). 자일라진 유발 구토에는 효과 없음."
+  ],
+  "mechanism_short": "5-HT3(5-하이드록시트립타민3) 수용체를 선택적으로 차단하여 항구토 효과를 나타냄. CNS 화학수용체 유발대, 미주신경 말단, 장신경계의 5-HT3 수용체에 작용함."
 }

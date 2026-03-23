@@ -22,23 +22,33 @@
     "available_strengths": [
       {
         "value": 10000000,
-        "unit": "IU"
+        "unit": "IU",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 18000000,
-        "unit": "IU"
+        "unit": "IU",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50000000,
-        "unit": "IU"
+        "unit": "IU",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 6000000,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 10000000,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -586,5 +596,16 @@
     "source_file": "plumbs_output/3.jsonl",
     "extracted_at": "2026-03-10T14:28:21.806188+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "인터페론 알파 (인간 재조합)(Interferon Alfa, Human Recombinant)은(는) 면역 반응을 억제하는 면역억제제입니다.",
+  "primary_indications": [
+    "고양이: FIV",
+    "FeLV 감염(저용량 경구)",
+    "고양이 칼리시바이러스",
+    "헤르페스바이러스-1(고용량 SC 또는 저용량 경구). 개: 피부 T세포 림프종",
+    "구강/피부 유두종(SC)",
+    "피부 질환 보조 면역자극(경구)",
+    "전염성 성기 종양(병변 내 주사). 모든 적응증은 허가 외 사용이며 근거 수준이 낮음."
+  ],
+  "mechanism_short": "인터페론 알파는 항바이러스, 항증식, 면역조절 효과를 가짐. RNA, DNA 및 세포 단백질(종양유전자 포함) 합성에 영향을 미쳐 항바이러스 및 항증식 활성을 나타냄. 항종양 활성의 기전은 완전히 규명되지 않음."
 }

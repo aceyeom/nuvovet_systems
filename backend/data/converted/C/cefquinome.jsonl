@@ -25,23 +25,33 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 45,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 75,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 75,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 150,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -399,5 +409,17 @@
     "source_file": "plumbs_output/23.jsonl",
     "extracted_at": "2026-03-10T20:13:02.208008+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "세프퀴놈(Cefquinome)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "승인 적응증(일부 국가): 말-Streptococcus equi subsp zooepidemicus에 의한 호흡기 질환",
+    "망아지-E. coli 패혈증 위험이 높은 중증 세균 감염",
+    "소-호흡기 질환(Pasteurella multocida",
+    "Mannheimia haemolytica",
+    "Histophilus somni)",
+    "발굽 질환(디지털 피부염",
+    "발굽 썩음병)",
+    "급성 E. coli 유방염"
+  ],
+  "mechanism_short": "세균 세포벽 합성 억제(베타-락탐 계열). 그람 음성균의 외막을 다른 세팔로스포린보다 더 잘 투과하며, 플라스미드 매개 또는 AmpC형 세팔로스포리나제에 의해 가수분해되지 않음. 시간 의존적 살균 작용."
 }

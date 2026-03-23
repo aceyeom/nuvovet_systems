@@ -24,19 +24,27 @@
     "available_strengths": [
       {
         "value": 2,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 4,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1.25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -979,5 +987,17 @@
     "source_file": "plumbs_output/39.jsonl",
     "extracted_at": "2026-03-11T01:14:00.841027+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "덱사메타손(Dexamethasone)은(는) 항염증 및 면역억제 효과를 가진 부신피질 호르몬제입니다.",
+  "primary_indications": [
+    "1) 부신피질기능항진증 진단 검사(LDDS",
+    "HDDS)",
+    "2) 부신 기능 부전(저코르티솔혈증) 보충 요법",
+    "3) 항염증 치료",
+    "4) 면역억제 치료",
+    "5) 항종양 치료(림프종 등). 기타: 아나필락시스",
+    "자가면역 질환",
+    "혈액 질환"
+  ],
+  "mechanism_short": "합성 글루코코르티코이드로서 글루코코르티코이드 수용체에 결합하여 항염증, 면역억제, 대사 조절 효과를 나타냄. 히드로코르티손보다 30배 강력하며 무기질코르티코이드 활성은 없음. 모세혈관 투과성 감소, 혈관 수축 강화, 리소좀막 안정화, 사이토카인 및 염증 매개체 생성 억제 등의 기전으로 작용."
 }

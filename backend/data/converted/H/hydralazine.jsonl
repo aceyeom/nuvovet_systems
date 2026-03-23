@@ -22,23 +22,33 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -632,5 +642,14 @@
     "source_file": "plumbs_output/0.jsonl",
     "extracted_at": "2026-03-10T13:37:55.331815+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "하이드랄라진(Hydralazine)은(는) 심장 기능 개선에 사용되는 심장약입니다.",
+  "primary_indications": [
+    "【허가 적응증】없음(수의학 허가 제품 없음). 【오프라벨 적응증】① 판막 질환에 의한 충혈성 심부전 보조 치료(후부하 감소제): 특히 불응성 CHF",
+    "대동맥판 역류",
+    "심실 중격 결손 환자. ② 전신 고혈압 치료: 급성 중증 고혈압(니트로프루시드 대안)",
+    "장기 고혈압 관리(개: 단독 또는 병용",
+    "고양이: 3~4번째 선택 약물)."
+  ],
+  "mechanism_short": "직접 전신 동맥 혈관확장제. 혈관 평활근에 작용하여 세포 내 칼슘 대사를 변화시켜 수축 상태 개시 및 유지를 방해함. 세미카르바지드 감수성 아민 산화효소(SSAO) 억제제. 정맥보다 세동맥에 더 강하게 작용하여 말초 혈관 저항 및 혈압 감소."
 }

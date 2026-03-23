@@ -26,31 +26,45 @@
     "available_strengths": [
       {
         "value": 45,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 90,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 135,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 204.9,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 270,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 409.8,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -465,5 +479,16 @@
     "source_file": "plumbs_output/59.jsonl",
     "extracted_at": "2026-03-11T07:48:08.588919+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "루페누론(Lufenuron)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "개와 고양이에서 벼룩 개체군 예방 및 조절(FDA 승인). 밀베마이신 옥심 복합제(Sentinel®): 심장사상충 예방",
+    "벼룩·구충 조절",
+    "회충·편충 제거(FDA 승인). 밀베마이신 옥심/프라지콴텔 복합제(Sentinel® Spectrum®): 상기 적응증 + 촌충 치료 및 조절(FDA 승인). 피부사상균증 보조 치료(허가 외 사용",
+    "효능 제한적). 수생 동물(연어류",
+    "가오리",
+    "바다거북 등)에서 어류 이 및 요각류 치료(미국 내 미승인). 토끼",
+    "페럿에서 벼룩 조절(허가 외 사용)."
+  ],
+  "mechanism_short": "키틴 합성, 중합 및 침착을 억제하여 벼룩 알이 성충으로 발달하는 것을 방지하는 곤충 성장 조절제(키틴 합성 억제제). 세린 프로테아제 억제와 관련된 비특이적 키틴 합성 억제 효과로 추정됨. 성충 벼룩을 직접 사멸하지는 않음."
 }

@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 0.1,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -339,5 +341,11 @@
     "source_file": "plumbs_output/13.jsonl",
     "extracted_at": "2026-03-10T17:05:23.019689+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "로독사마이드 점안액(Lodoxamide Ophthalmic)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "알레르기성 결막염(오프라벨): 1일 4회 점안",
+    "최대 3개월. 수의학적 승인 적응증 없음."
+  ],
+  "mechanism_short": "비만세포 안정화제로서 IgE 매개 제1형 과민반응을 억제함. 비만세포 억제를 통해 혈관 투과성을 감소시켜 결막염 증상을 완화함. 혈관수축, 항히스타민, 사이클로옥시게나제 억제 또는 기타 항염증 활성은 없음."
 }

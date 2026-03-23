@@ -1,6 +1,5 @@
 {
   "id": "trimeprazine_prednisolone",
-
   "drug_identity": {
     "name_ko": "트리메프라진/프레드니솔론",
     "name_en": "Trimeprazine/Prednisolone",
@@ -25,11 +24,12 @@
     "available_strengths": [
       {
         "value": 5.0,
-        "unit": "mg Trimeprazine / 2 mg Prednisolone per tablet"
+        "unit": "mg Trimeprazine / 2 mg Prednisolone per tablet",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
-
   "metabolism_and_clearance": {
     "primary_metabolic_organ": "Unknown",
     "clearance_organ": "Mixed",
@@ -42,7 +42,6 @@
     },
     "extra_information": "In humans, protein binding is 90%."
   },
-
   "organ_burden_logic": {
     "note": "Profiles reflect combined effects of a phenothiazine and a systemic corticosteroid.",
     "dog": {
@@ -137,7 +136,6 @@
       }
     }
   },
-
   "timing_profile": {
     "onset_min": null,
     "t_max_hr": 3.5,
@@ -151,9 +149,7 @@
     "protein_binding_percent": 90.0,
     "evidence": "Pharmacokinetic data is based on humans; veterinary data is lacking."
   },
-
   "_ddi_note": "Many potential drug and laboratory interactions. Avoid concomitant use of NSAIDs due to severe GI ulceration risk.",
-
   "drug_interactions": [
     {
       "drug": "Amphotericin B",
@@ -197,7 +193,6 @@
       "evidence": "Phenothiazines should not be given within 1 month of deworming with these agents, as their effects may be potentiated."
     }
   ],
-
   "additive_risks": {
     "nephrotoxic": false,
     "hepatotoxic": true,
@@ -206,7 +201,6 @@
     "sedation": true,
     "qt_prolongation": false
   },
-
   "risk_flags": {
     "nephrotoxic": "low",
     "hepatotoxic": "moderate",
@@ -214,7 +208,6 @@
     "bleeding": "none",
     "qt_prolongation": "none"
   },
-
   "species_flags": {
     "species_contraindicated": [],
     "mdr1_sensitive": false,
@@ -223,7 +216,6 @@
     "narrow_therapeutic_index": false,
     "washout_period_days": 28.0
   },
-
   "dosage_and_kinetics": {
     "dog": {
       "is_approved": true,
@@ -269,7 +261,6 @@
       ]
     }
   },
-
   "renal_dose_adjustment": {
     "creatinine_threshold_dog_mg_dL": null,
     "creatinine_threshold_cat_mg_dL": null,
@@ -277,14 +268,12 @@
     "adjustment_factor": null,
     "note": "Use with caution in animals with concomitant renal disease."
   },
-
   "hepatic_dose_adjustment": {
     "applies": true,
     "alt_threshold_multiplier": null,
     "adjustment_type": "caution",
     "note": "Caution is advised in animals with hepatic dysfunction."
   },
-
   "contraindications": [
     {
       "condition": "Systemic fungal infections",
@@ -327,14 +316,12 @@
       }
     }
   ],
-
   "genetic_sensitivity": {
     "has_genetic_risk": false,
     "affected_breeds": [],
     "gene": null,
     "evidence": null
   },
-
   "effects_and_mechanisms": {
     "common_mechanism": "Trimeprazine has antihistaminic, sedative, antitussive, and antipruritic qualities. Prednisolone provides additional antipruritic and anti-inflammatory effects.",
     "common_extra_effects": [
@@ -349,12 +336,10 @@
     "cat_mechanism": null,
     "cat_extra_effects": []
   },
-
   "species_notes": {
     "dog": "FDA approved for the relief of pruritus and as an antitussive.",
     "cat": "Cats are at particular risk for diabetes mellitus development with glucocorticoid therapy and should receive them with extreme caution."
   },
-
   "precautions": {
     "dog": {
       "status": 2,
@@ -365,20 +350,17 @@
       "evidence": "High risk for diabetes mellitus when systemic glucocorticoids are used."
     }
   },
-
   "storage_and_forms": {
     "storage": "Store in a cool, dry place at room temperature not above 25°C (77°F). Protect from light and air.",
     "forms": [
       "Trimeprazine 5 mg with Prednisolone 2 mg Tablets (Temaril-P®)"
     ]
   },
-
   "section_1_2_10": {
     "highlights": "Indicated for relief of pruritus and as an antitussive in dogs. Use lowest dose possible. Caution in multiple systemic diseases. Adverse effects include sedation, hypotension, and PU/PD.",
     "indications": "Treatment of pruritic and inflammatory conditions (especially atopic dermatitis) or as an antitussive.",
     "client_info": "Causes drowsiness, increased thirst, and urination. Do not limit water access. Long-term use can cause thin skin, poor wound healing, and muscle wasting. Taper dose slowly as directed."
   },
-
   "_data_quality": {
     "overall_confidence": 4,
     "renal_adjustment_confidence": "low",
@@ -405,12 +387,16 @@
       "hepatic_dose_adjustment"
     ]
   },
-
   "_extraction_metadata": {
     "model_used": "Gemini 3.1 Pro",
     "extraction_pass": 1,
     "source_file": "Plumbs Veterinary Drugs",
     "extracted_at": "2026-03-21T13:49:47Z",
     "reviewer": null
-  }
+  },
+  "brief_description": "트리메프라진/프레드니솔론(Trimeprazine/Prednisolone)은(는) 항히스타민제와 부신피질 호르몬의 복합 제제입니다.",
+  "primary_indications": [
+    "Treatment of pruritic and inflammatory conditions (especially atopic dermatitis) or as an antitussive."
+  ],
+  "mechanism_short": "Trimeprazine has antihistaminic, sedative, antitussive, and antipruritic qualities. Prednisolone provides additional antipruritic and anti-inflammatory effects."
 }

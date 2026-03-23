@@ -24,31 +24,45 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 75,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 125,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 150,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -796,5 +810,15 @@
     "source_file": "plumbs_output/2.jsonl",
     "extracted_at": "2026-03-10T14:14:06.339269+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "이미프라민(Imipramine)은(는) 행동 장애 및 불안 치료에 사용되는 항우울제입니다.",
+  "primary_indications": [
+    "【개】요도 괄약근 기능부전(요실금)",
+    "기면증/탈력발작",
+    "삼환계 항우울제 반응성 행동 장애(분리불안 등)",
+    "만성 통증 보조 치료 — 모두 오프라벨. 【고양이】요실금",
+    "만성 통증 보조 치료 — 오프라벨. 【말】약물 유발 사정",
+    "기면증/탈력발작 — 오프라벨."
+  ],
+  "mechanism_short": "세로토닌 및 노르에피네프린 재흡수 억제(신경막에서 신경전달물질 농도 증가), 중추 및 말초 항콜린 작용, 히스타민 H1 수용체 길항, 알파-1 아드레날린 수용체 길항 작용 포함. 활성 대사체 데시프라민도 동일 기전으로 작용."
 }

@@ -22,7 +22,9 @@
     "available_strengths": [
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -364,5 +366,10 @@
     "source_file": "plumbs_output/49.jsonl",
     "extracted_at": "2026-03-11T04:13:07.764430+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "트리엔틴(Trientine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "개의 구리 관련 간병증 (오프라벨). 인간에서는 페니실라민을 견디지 못하는 Wilson병 환자에게 허가됨."
+  ],
+  "mechanism_short": "구리 킬레이트제로서 혈장 내 구리와 결합하여 소변을 통한 구리 배설을 증가시킴. 혈장 내 구리에 대한 친화력은 페니실라민보다 높으나, 조직 구리에 대한 친화력은 페니실라민이 더 높음."
 }

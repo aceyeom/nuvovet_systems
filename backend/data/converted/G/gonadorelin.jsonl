@@ -25,15 +25,21 @@
     "available_strengths": [
       {
         "value": 43,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -376,5 +382,17 @@
     "source_file": "plumbs_output/44.jsonl",
     "extracted_at": "2026-03-11T02:59:21.641754+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "고나도렐린(Gonadorelin)은(는) 호르몬 불균형 치료에 사용되는 호르몬제입니다.",
+  "primary_indications": [
+    "【FDA 승인 적응증 (소)】 난소 낭종 치료",
+    "프로스타글란딘(dinoprost tromethamine 또는 cloprostenol sodium)과 병용하여 FTAI를 위한 발정 동기화. 【비허가 사용 (개)】 GnRH 자극 검사(거세 여부/잠복고환 감별)",
+    "수컷 성욕 증진",
+    "정액 품질 개선",
+    "낭성 난소 질환 치료. 【비허가 사용 (고양이)】 수컷 불임·성욕 감소·고환 하강 치료",
+    "난소자궁절제술 후 난소 잔류 조직 확인. 【기타 종】 번식 종마의 성행동 증진",
+    "양·염소의 발정 동기화",
+    "알파카의 배란 유도."
+  ],
+  "mechanism_short": "시상하부 호르몬(GnRH)의 합성 형태로, 뇌하수체 전엽에서 FSH(난포자극호르몬) 및 LH(황체형성호르몬)의 생산 및 분비를 자극함. 단일 주사 후 FSH 및 LH 급증을 유발하며, 지속적 주입 시 초기 자극 후 LH 및 FSH 농도가 기저치로 복귀함."
 }

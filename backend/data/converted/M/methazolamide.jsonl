@@ -24,11 +24,15 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -617,5 +621,10 @@
     "source_file": "plumbs_output/63.jsonl",
     "extracted_at": "2026-03-11T09:02:16.893417+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "메타졸아미드(Methazolamide)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "개방각 녹내장의 내과적 치료 (오프라벨). 국소 탄산탈수효소 억제제(도르졸아미드 등)가 전신 부작용이 적어 현재 더 선호됨."
+  ],
+  "mechanism_short": "탄산탈수효소(carbonic anhydrase)의 비경쟁적, 가역적 억제제. 이산화탄소로부터 수소이온 및 중탄산이온 생성을 감소시켜 방수 생성 감소, 안압 저하, 신세뇨관에서 나트륨·칼륨·중탄산염 분비 증가, 소변 알칼리화 및 이뇨 효과를 나타냄."
 }

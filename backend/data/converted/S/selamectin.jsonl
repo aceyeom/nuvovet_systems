@@ -27,11 +27,15 @@
     "available_strengths": [
       {
         "value": 60,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 120,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -629,5 +633,17 @@
     "source_file": "plumbs_output/34.jsonl",
     "extracted_at": "2026-03-10T23:36:12.223535+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "셀라멕틴(Selamectin)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "【승인 적응증 - 개】 벼룩(Ctenocephalides felis) 예방 및 구제",
+    "심사상충(Dirofilaria immitis) 예방",
+    "귀 진드기(Otodectes cynotis) 치료 및 구제",
+    "옴(Sarcoptes scabiei) 치료 및 구제",
+    "진드기(Dermacentor variabilis) 구제. 【승인 적응증 - 고양이】 벼룩 예방 및 구제",
+    "심사상충 예방",
+    "귀 진드기 치료 및 구제",
+    "구충(Ancylostoma tubaeforme) 및 회충(Toxocara cati) 치료 및 구제. 【허가 외 사용】 노토에드릭 옴(Notoedres cati)"
+  ],
+  "mechanism_short": "아버멕틴 계열 반합성 화합물로, 기생충의 GABA 매개 염화물 채널을 활성화하거나 GABA 방출을 촉진하여 기생충의 마비 및 사멸을 유도함. 간흡충 및 촌충은 GABA를 말초 신경 전달물질로 사용하지 않으므로 효과 없음."
 }

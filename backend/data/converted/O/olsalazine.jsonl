@@ -22,7 +22,9 @@
     "available_strengths": [
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -390,5 +392,10 @@
     "source_file": "plumbs_output/29.jsonl",
     "extracted_at": "2026-03-10T22:15:07.155825+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "올살라진(Olsalazine)은(는) 위장관 보호 및 궤양 치료에 사용되는 소화기 보호제입니다.",
+  "primary_indications": [
+    "【개】만성 대장염/염증성 장질환 (오프라벨): 설파살라진을 견디지 못하는 개에서 5~20 mg/kg PO TID. 수의과 허가 적응증 없음. 【고양이】확립된 용량 및 적응증 없음."
+  ],
+  "mechanism_short": "대장 내 세균에 의해 2분자의 5-아미노살리실산(5-ASA, 메살라민)으로 전환되어 국소 항염증 작용을 나타냄. 사이클로옥시게나제 및 리폭시게나제 억제를 포함한 국소 항염증 활성이 주요 기전으로 추정됨."
 }

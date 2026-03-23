@@ -26,27 +26,39 @@
     "available_strengths": [
       {
         "value": 325,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 220,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 44,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 60,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 15,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -556,5 +568,12 @@
     "source_file": "plumbs_output/41.jsonl",
     "extracted_at": "2026-03-11T01:56:43.194007+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "황산제일철(Ferrous Sulfate)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "개와 고양이에서 철 결핍성 빈혈 치료 (오프라벨)",
+    "에포에틴(에리스로포이에틴) 또는 다르베포에틴 치료 시 보조 요법 (오프라벨). 철은 헤모글로빈 및 미오글로빈 형성에 필수적이며",
+    "철 결핍으로 인한 빈혈에만 효과적입니다."
+  ],
+  "mechanism_short": "철은 헤모글로빈 및 미오글로빈 형성과 산소 운반 및 이용에 필수적입니다. 철 결핍이 존재할 때 철 투여는 철 결핍의 신체적 징후와 이차적으로 감소된 헤모글로빈 농도를 교정합니다."
 }

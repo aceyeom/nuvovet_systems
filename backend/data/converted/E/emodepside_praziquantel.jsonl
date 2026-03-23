@@ -22,11 +22,15 @@
     "available_strengths": [
       {
         "value": 21.4,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 85.8,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -522,5 +526,17 @@
     "source_file": "plumbs_output/15.jsonl",
     "extracted_at": "2026-03-10T17:50:39.152470+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "에모뎁사이드/프라지콴텔(Emodepside/Praziquantel)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "【허가 적응증 - 고양이】 회충(Toxocara cati)",
+    "구충(Ancylostoma tubaeforme)",
+    "조충(Dipylidium caninum",
+    "Taenia taeniaeformis) 감염 치료 및 관리. 【비허가 적응증 - 고양이】 폐충(Troglostrongylus brevior",
+    "Aelurostrongylus abstrusus",
+    "Capillaria aerophilia) 감염",
+    "Toxascaris leonina",
+    "Echinococcus multilocularis"
+  ],
+  "mechanism_short": "에모뎁사이드: 신경근 접합부의 라트로필린 유사 수용체에 전시냅스적으로 결합하여 세포 내 칼슘 및 디아실글리세롤 농도를 증가시키고, 억제성 신경펩타이드(PF-1, PF-2 유사 수용체)를 시냅스 간극으로 방출시켜 선충의 인두 펌핑 및 운동을 억제하고 이완성 마비 및 사멸을 유발한다. 프라지콴텔: 기생충 외피의 인지질과 상호작용하여 나트륨, 칼륨, 칼슘의 이온 유입을 유발하고, 고농도에서는 조충의 체절 수축 및 비가역적 국소 공포화와 분해를 일으킨다."
 }

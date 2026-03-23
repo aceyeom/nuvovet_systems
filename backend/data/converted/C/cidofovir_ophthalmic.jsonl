@@ -19,7 +19,9 @@
     "available_strengths": [
       {
         "value": 0.5,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -380,5 +382,12 @@
     "source_file": "plumbs_output/10.jsonl",
     "extracted_at": "2026-03-10T16:24:47.320897+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "시도포비르 점안액(Cidofovir Ophthalmic)은(는) 바이러스 감염 치료에 사용되는 항바이러스제입니다.",
+  "primary_indications": [
+    "고양이 헤르페스바이러스-1(FHV-1) 각막염 (엑스트라라벨",
+    "조제 0.5% 점안액). 개 헤르페스바이러스-1 안구 감염 (엑스트라라벨",
+    "국소 자극 주의). 말 헤르페스바이러스 관련 각막염에 대한 in vitro 경미한 효능 보고(임상 평가 미실시)."
+  ],
+  "mechanism_short": "바이러스 DNA 합성 억제. 활성 세포내 대사체인 시도포비르 이인산염(cidofovir diphosphate)이 바이러스 DNA 중합효소에 선택적으로 작용하여 바이러스 DNA 합성 속도를 감소시킴(바이러스 정지 효과)."
 }

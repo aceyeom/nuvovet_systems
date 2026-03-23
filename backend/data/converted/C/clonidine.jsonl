@@ -24,23 +24,33 @@
     "available_strengths": [
       {
         "value": 0.1,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.2,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.3,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -587,5 +597,16 @@
     "source_file": "plumbs_output/26.jsonl",
     "extracted_at": "2026-03-10T21:20:08.834295+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "클로니딘(Clonidine)은(는) 진정 및 불안 완화에 사용되는 진정제입니다.",
+  "primary_indications": [
+    "허가 외 적응증: (1) 개의 상황적 공포",
+    "공포증",
+    "분리불안 보조 치료 (행동 수정 훈련과 병용)",
+    "(2) 개와 소의 마취 전 투약 및 경막외 진통 보조",
+    "(3) 개의 성장호르몬 결핍(저성장호르몬증) 진단",
+    "(4) 개의 갈색세포종 진단",
+    "(5) 개와 고양이의 난치성 IBD 보조 지사제 치료. 수의학적 승인 제품 없음."
+  ],
+  "mechanism_short": "뇌간의 알파-2 아드레날린 수용체를 자극하여 중추신경계로부터의 교감신경 출력을 감소시키고, 혈압, 심박수, 말초 혈관 저항을 낮춤. 척수의 시냅스 전 및 접합 후 알파-2 수용체에서 중추 진통 효과 발휘. 위장관에서 수분 및 전해질 흡수 증가."
 }

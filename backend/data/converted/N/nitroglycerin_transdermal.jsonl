@@ -24,31 +24,45 @@
     "available_strengths": [
       {
         "value": 2.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "topical",
+        "is_splittable": null
       },
       {
         "value": 0.1,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.2,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.3,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.4,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.6,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.8,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -472,5 +486,12 @@
     "source_file": "plumbs_output/28.jsonl",
     "extracted_at": "2026-03-10T22:01:50.401464+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "니트로글리세린 (경피)(Nitroglycerin, Transdermal)은(는) 심장 기능 개선에 사용되는 심장약입니다.",
+  "primary_indications": [
+    "【승인 적응증】 없음 (수의용 허가 제품 없음). 【오프라벨 사용】 개·고양이의 급성 심부전 및 심인성 부종 보조 치료 (경피 연고 또는 패치). 인간에서는 협심증",
+    "급성 고혈압",
+    "레이노 증후군 치료에도 사용됨. 말에서 제엽염 시 발굽 혈류 증가 목적 사용은 효과 없음."
+  ],
+  "mechanism_short": "혈관 평활근(주로 정맥)을 이완시켜 전부하(좌심실 이완기말 압력)를 감소시킴. 고용량에서는 세동맥에도 작용하여 후부하 감소. 심근 산소 요구량 및 심장 부담 감소, 관상동맥 순환 개선."
 }

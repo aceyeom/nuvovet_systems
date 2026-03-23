@@ -38,35 +38,51 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "IU"
+        "unit": "IU",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "IU"
+        "unit": "IU",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 400,
-        "unit": "IU"
+        "unit": "IU",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "IU"
+        "unit": "IU",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 68,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 15,
-        "unit": "IU"
+        "unit": "IU",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -577,5 +593,17 @@
     "source_file": "plumbs_output/7.jsonl",
     "extracted_at": "2026-03-10T15:42:26.090587+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "비타민 E (± 셀레늄)(Vitamin E ± Selenium)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【허가 적응증】비타민 E/셀레늄 복합제: 암양 및 어린 양(백근병)",
+    "암퇘지·이유자돈·새끼돼지(간괴사",
+    "뽕나무심장병",
+    "백근병)",
+    "송아지·번식 암소(백근병)",
+    "말(셀레늄-토코페롤 결핍 관련 근염). 【허가 외 사용】개: 허혈성 피부병증(펜톡시필린 병용)",
+    "면역매개 피부질환(원판상 홍반성 루푸스",
+    "모낭충증"
+  ],
+  "mechanism_short": "비타민 E는 항산화 및 항염증 작용을 가지며, 셀레늄과 함께 황 세포 대사에 관여하고 적혈구 용혈을 방지하며 세포막의 불포화 결합에 대한 과산화효소 작용을 억제함."
 }

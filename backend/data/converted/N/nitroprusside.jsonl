@@ -22,15 +22,21 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.2,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -579,5 +585,13 @@
     "source_file": "plumbs_output/28.jsonl",
     "extracted_at": "2026-03-10T22:03:54.074477+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "니트로프루시드(Nitroprusside)은(는) 심장 기능 개선에 사용되는 심장약입니다.",
+  "primary_indications": [
+    "▶ 급성 고혈압 위기 (수축기 혈압 >180 mmHg",
+    "표적 장기 손상 동반) — 오프라벨\n▶ 급성 심부전 보조 치료 (심인성 쇼크",
+    "전격성 폐부종",
+    "승모판 질환 C·D 단계) — 오프라벨\n▶ 갈색세포종 수술 중 급성 고혈압 치료 (마취 중 선택약) — 오프라벨\n▶ 확장성 심근병증에서 도부타민과 병용하여 불응성 울혈성 심부전 치료 — 오프라벨"
+  ],
+  "mechanism_short": "세포 내 산화질소(NO)를 공급하여 구아닐산 고리화효소를 활성화하고, 세포 내 cGMP를 증가시켜 혈관 평활근 수축을 억제함. 자율신경계와 무관하게 직접적으로 동맥 및 정맥을 확장시켜 전부하, 후부하, 좌심실 이완기말 압력을 감소시킴."
 }

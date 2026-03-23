@@ -22,11 +22,15 @@
     "available_strengths": [
       {
         "value": 600,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -536,5 +540,10 @@
     "source_file": "plumbs_output/44.jsonl",
     "extracted_at": "2026-03-11T02:46:14.112466+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "젬피브로질(Gemfibrozil)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "식이요법 단독으로 조절되지 않는 개·고양이의 고중성지방혈증 (비허가 외삽 사용). 공복 혈청 중성지방 400–500 mg/dL 이상 지속 시 식이요법에 추가 고려."
+  ],
+  "mechanism_short": "지방조직에서 지단백 리파아제 지방분해 억제 및 혈장 유리지방산의 간 흡수 감소 → 중성지방 생성 및 혈청 중성지방 농도 감소. VLDL 운반 아포지단백 B 합성 억제 → VLDL 생성 및 장쇄 지방산의 중성지방 편입 감소. HDL 콜레스테롤 증가."
 }

@@ -24,19 +24,27 @@
     "available_strengths": [
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -588,5 +596,11 @@
     "source_file": "plumbs_output/48.jsonl",
     "extracted_at": "2026-03-11T04:01:01.071492+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "토르세미드(Torsemide)은(는) 체액 저류 치료에 사용되는 이뇨제입니다.",
+  "primary_indications": [
+    "개와 고양이의 울혈성 심부전(CHF) 보조 치료(오프라벨)",
+    "특히 푸로세미드에 불응성인 경우. 개의 점액종성 승모판 질환(MMVD) C~D 단계. 말의 체액 과부하(오프라벨)."
+  ],
+  "mechanism_short": "헨레 고리 상행각에서 1Na+/1K+/2Cl- 공동수송체의 염소 결합 부위를 차단하여 나트륨, 염소, 수분의 재흡수를 억제하는 루프 이뇨제. 푸로세미드보다 약 10~20배 강력하며 이뇨 효과가 약 12시간 지속됨."
 }

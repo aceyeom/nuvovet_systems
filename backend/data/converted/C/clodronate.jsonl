@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 60,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -417,5 +419,12 @@
     "source_file": "plumbs_output/26.jsonl",
     "extracted_at": "2026-03-10T21:11:40.894068+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "클로드로네이트(Clodronate)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【승인 적응증】말: 주상골 증후군(navicular syndrome) 관련 임상 증상 조절 (FDA 승인",
+    "NADA #141-427). 【비승인/연구적 적응증】개: 비타민 D3 유발 고칼슘혈증 치료(연구 단계)",
+    "리포솜 캡슐화 클로드로네이트(LCP)를 이용한 면역매개 용혈성 빈혈 및 악성 조직구증 치료(연구 단계)."
+  ],
+  "mechanism_short": "비스포스포네이트로서 칼슘 인산염 결정에 결합하여 형성 및 용해를 억제하고, 파골세포 기능을 직접 억제함으로써 골 흡수를 억제함. 리포솜 캡슐화 형태는 파골세포, 대식세포, 수지상세포에 의해 식세포작용 후 세포자멸사를 유도함."
 }

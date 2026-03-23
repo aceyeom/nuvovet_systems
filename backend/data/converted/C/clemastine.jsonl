@@ -23,15 +23,21 @@
     "available_strengths": [
       {
         "value": 1.34,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2.68,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.134,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -461,5 +467,11 @@
     "source_file": "plumbs_output/25.jsonl",
     "extracted_at": "2026-03-10T21:04:26.857640+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "클레마스틴(Clemastine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "H1 수용체 관련 알레르기 증상 완화(아토피 피부염",
+    "알레르기성 소양증). 개에서 아토피 피부염 치료 시 29.1%에서 양호~우수한 반응 보고(비대조 연구). 고양이에서 알레르기성 소양증 치료(오프라벨). 예방적 치료로 알레르겐 노출 전 또는 급성 악화 전 지속적 투여 권장."
+  ],
+  "mechanism_short": "H1 수용체 경쟁적 길항제로서 효과기 세포의 H1 수용체 부위에서 히스타민과 경쟁. 히스타민 유리를 차단하지 않고 그 효과를 길항함. 다른 1세대 항히스타민제에 비해 항콜린 효과가 강하고 진정 효과는 적음."
 }

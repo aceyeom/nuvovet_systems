@@ -25,27 +25,39 @@
     "available_strengths": [
       {
         "value": 20,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.8,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -699,5 +711,14 @@
     "source_file": "plumbs_output/34.jsonl",
     "extracted_at": "2026-03-10T23:47:15.490497+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "실데나필(Sildenafil)은(는) 심장 기능 개선에 사용되는 심장약입니다.",
+  "primary_indications": [
+    "【승인 적응증】사람: 발기부전",
+    "폐동맥 고혈압. 【수의학 오프라벨】개: 폐동맥 고혈압(다양한 원인)",
+    "선천성 특발성 거대식도증",
+    "Eisenmenger 증후군",
+    "점액종성 승모판 질환. 고양이: 폐동맥 고혈압(증례 보고 수준)."
+  ],
+  "mechanism_short": "PDE5(포스포디에스테라제 5형) 억제를 통해 cGMP 분해를 차단하고, 산화질소 매개 혈관 확장을 유도하여 폐혈관 평활근을 이완시킴."
 }

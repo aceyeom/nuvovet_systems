@@ -24,15 +24,21 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 125,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -372,5 +378,17 @@
     "source_file": "plumbs_output/23.jsonl",
     "extracted_at": "2026-03-10T20:18:00.232698+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "세프티오푸르 염산염(Ceftiofur HCl)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "【승인 적응증】소: 소 호흡기 질환(BRD",
+    "운송열",
+    "폐렴) - Mannheimia haemolytica",
+    "Pasteurella multocida",
+    "Histophilus somni 관련",
+    "급성 지간 괴사균증(족부 부패) - Fusobacterium necrophorum",
+    "Bacteroides melaninogenicus 관련",
+    "급성 산후 자궁내막염(분만 후 0~14일)"
+  ],
+  "mechanism_short": "세포벽 합성 3단계 억제를 통한 살균 작용. 세프티오푸르는 활성 대사체인 데스푸로일세프티오푸르로 신속히 전환되며, 이 대사체가 감수성 증식 세균의 세포벽 합성을 억제함. 세포탁심과 유사한 항균 스펙트럼을 가짐."
 }

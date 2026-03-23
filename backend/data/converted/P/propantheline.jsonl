@@ -23,11 +23,15 @@
     "available_strengths": [
       {
         "value": 15,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -769,5 +773,16 @@
     "source_file": "plumbs_output/21.jsonl",
     "extracted_at": "2026-03-10T19:50:59.907458+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "프로판텔린(Propantheline)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【승인 적응증】없음(미국 내 시판 중단). 【엑스트라라벨 적응증】개/고양이: 배뇨근 과반사",
+    "절박성 요실금",
+    "만성 비감염성 설사",
+    "동성 서맥",
+    "불완전 AV 차단. 말: 직장 검사/수술 시 결장 연동 억제",
+    "급성 경련성 산통",
+    "직장 이완."
+  ],
+  "mechanism_short": "무스카린성 수용체 길항제(항무스카린제). 아트로핀과 유사한 작용을 가진 4급 암모늄 화합물로, 부교감신경 차단을 통해 위장관 경련 억제, 분비 억제, 방광 배뇨근 과반사 억제 효과를 나타냄. CNS 및 안구로의 침투가 제한적."
 }

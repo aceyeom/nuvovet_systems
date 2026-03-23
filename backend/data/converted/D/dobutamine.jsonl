@@ -21,19 +21,27 @@
     "available_strengths": [
       {
         "value": 12.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 2.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 4.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -502,5 +510,12 @@
     "source_file": "plumbs_output/14.jsonl",
     "extracted_at": "2026-03-10T17:26:34.533858+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "도부타민(Dobutamine)은(는) 심장 기능 개선에 사용되는 심장약입니다.",
+  "primary_indications": [
+    "급성 울혈성 심부전의 단기 보조 치료(일반적으로 72시간 미만)",
+    "수액 치료만으로 혈압 및 심박출량 회복이 불충분한 쇼크 환자",
+    "전신마취 중 심근 수축력 저하로 인한 저혈압 치료. 모든 적응증이 오프라벨임."
+  ],
+  "mechanism_short": "직접 베타-1 아드레날린 수용체 작용제. 치료 용량에서 경미한 베타-2 및 알파-1 효과도 있으나 상호 균형을 이룸. 노르에피네프린 유리를 유발하지 않음. 심근 수축력 및 일회박출량 증가로 심박출량 향상."
 }

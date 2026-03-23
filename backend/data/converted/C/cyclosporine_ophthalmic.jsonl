@@ -24,23 +24,33 @@
     "available_strengths": [
       {
         "value": 0.2,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 0.05,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 0.09,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 2.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -378,5 +388,17 @@
     "source_file": "plumbs_output/10.jsonl",
     "extracted_at": "2026-03-10T16:30:19.309483+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "사이클로스포린 점안제(Cyclosporine Ophthalmic)은(는) 면역 반응을 억제하는 면역억제제입니다.",
+  "primary_indications": [
+    "【승인 적응증】 개의 건성각결막염(KCS)",
+    "만성표재성각막염(CSK",
+    "판누스). 【Extra-label 적응증】 면역매개각막염(IMMK)",
+    "호산구성각막염(고양이 포함)",
+    "색소성각막염",
+    "수술 후 각막염",
+    "말의 면역매개각막염(공막외 임플란트)",
+    "말의 재발성 포도막염(ERU"
+  ],
+  "mechanism_short": "칼시뉴린 억제제로서 T세포 사이클로필린에 결합하여 칼시뉴린 매개 T세포 활성화를 차단함. T-helper 림프구를 주요 표적으로 하며 T-suppressor 세포에도 영향을 미침. IL-2, 인터페론-감마 등 사이토카인 생성 및 방출을 억제하여 호산구, 비만세포, 과립구, 대식세포 기능에 영향을 줌."
 }

@@ -34,31 +34,45 @@
     "available_strengths": [
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 80,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 75,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -886,5 +900,15 @@
     "source_file": "plumbs_output/26.jsonl",
     "extracted_at": "2026-03-10T21:15:55.971704+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "클로미프라민(Clomipramine)은(는) 행동 장애 및 불안 치료에 사용되는 항우울제입니다.",
+  "primary_indications": [
+    "【승인 적응증】 개의 분리불안(부적절한 짖음",
+    "파괴적 행동",
+    "부적절한 배변 포함) - 행동 교정 프로그램 병행 시 FDA 승인. 【비라벨 적응증】 개: 강박 장애",
+    "소음 공포증",
+    "상황적 불안/공포증. 고양이: 소변 스프레이",
+    "심인성 탈모(효능 불명확). 조류: 깃털 뽑기 행동."
+  ],
+  "mechanism_short": "신경세포막에서 세로토닌(5-HT) 재흡수를 주로 억제하며, 노르에피네프린 재흡수도 억제함. 활성 대사체(desmethylclomipramine)는 주로 노르아드레날린 재흡수를 억제. 히스타민-1(H1) 수용체 결합, 알파-1 아드레날린 수용체 및 무스카린성 아세틸콜린 수용체 길항 작용도 있음."
 }

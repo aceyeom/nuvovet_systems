@@ -22,7 +22,9 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -571,5 +573,12 @@
     "source_file": "plumbs_output/39.jsonl",
     "extracted_at": "2026-03-11T01:09:02.977503+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "데속시코르티코스테론 피발레이트(Desoxycorticosterone Pivalate)은(는) 항염증 및 면역억제 효과를 가진 부신피질 호르몬제입니다.",
+  "primary_indications": [
+    "승인 적응증: 개의 원발성 부신피질기능저하증(에디슨병) - IM 또는 SC 투여. Extra-label 적응증: 고양이의 부신피질기능저하증(경험 제한적). Extra-label 저용량 프로토콜: 라벨 용량보다 낮은 초기 용량",
+    "용량 감량",
+    "또는 연장 투여 간격 프로토콜."
+  ],
+  "mechanism_short": "신장 원위세뇨관에서 나트륨 재흡수를 증가시키고 집합세뇨관에서 칼륨 및 수소 이온 배설을 촉진하는 장기 지속형 무기질코르티코이드 제제. 글루코코르티코이드 활성은 없음."
 }

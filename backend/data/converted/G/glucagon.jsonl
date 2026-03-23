@@ -24,7 +24,9 @@
     "available_strengths": [
       {
         "value": 1.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -453,5 +455,14 @@
     "source_file": "plumbs_output/44.jsonl",
     "extracted_at": "2026-03-11T02:52:03.955904+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "글루카곤(Glucagon)은(는) 호르몬 불균형 치료에 사용되는 호르몬제입니다.",
+  "primary_indications": [
+    "【허가 적응증】없음(수의학적 허가 제품 없음). 【비허가 적응증】① 소동물: 인슐린종 또는 인슐린 과다투여로 인한 중증 저혈당 치료(IV CRI)",
+    "② 베타차단제·칼슘채널차단제·삼환계 항우울제 과다투여의 심장 증상 치료",
+    "③ 베타차단제 투여 환자의 아나필락시스 치료(에피네프린 병용)",
+    "④ 소: 초기 비유기 지방간 증후군 치료(SC 또는 IV CRI)",
+    "⑤ 페럿: 인슐린종으로 인한 저혈당 치료(IV CRI)."
+  ],
+  "mechanism_short": "췌장 알파-2 세포에서 분비되는 호르몬으로, 간 글리코겐 분해(glycogenolysis) 및 당신생(gluconeogenesis)을 촉진하여 혈당을 상승시키고, 위장관 평활근을 이완시킴."
 }

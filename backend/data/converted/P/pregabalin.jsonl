@@ -22,39 +22,57 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 75,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 150,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 225,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -564,5 +582,17 @@
     "source_file": "plumbs_output/21.jsonl",
     "extracted_at": "2026-03-10T19:38:15.952732+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "프레가발린(Pregabalin)은(는) 발작(경련) 조절에 사용되는 항경련제입니다.",
+  "primary_indications": [
+    "개: 난치성 발작 장애(페노바르비탈 및 브롬화물 병용 요법 실패 시 보조 요법)",
+    "신경병성 통증(척수공동증 관련 중추성 신경병성 통증 포함)",
+    "수술 전후 통증 조절",
+    "기립성 진전. 고양이: 발작 장애",
+    "신경병성 통증",
+    "이동 불안 완화. 모두 허가 외 사용. 사람: 당뇨병성 말초 신경병증",
+    "부분 발작",
+    "대상포진 후 신경통"
+  ],
+  "mechanism_short": "전압 의존성 칼슘 채널의 알파2-델타 서브유닛(CaVα2-δ)에 결합하여 칼슘 유입을 감소시키고, 흥분성 신경전달물질(서브스턴스 P, 글루타메이트, 노르에피네프린)의 방출을 억제함. GABA의 구조적 유사체이나 GABA 수용체에 직접 작용하지는 않음. 가바펜틴보다 약 5배 강력함."
 }

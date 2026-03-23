@@ -28,19 +28,27 @@
     "available_strengths": [
       {
         "value": 0.2,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.2,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -875,5 +883,13 @@
     "source_file": "plumbs_output/44.jsonl",
     "extracted_at": "2026-03-11T02:57:50.974652+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "글리코피롤레이트(Glycopyrrolate)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "FDA 승인: 개·고양이 마취 전처치 항콜린제. 비라벨(extra-label): 수술 전후 서맥 예방",
+    "동성 서맥·동방 정지·2도 방실 차단 치료",
+    "비탈분극성 근이완제 역전 시 무스카린 효과 예방",
+    "카바메이트/유기인산염 중독의 무스카린 증상 보조 치료."
+  ],
+  "mechanism_short": "무스카린성 수용체에서 아세틸콜린과 경쟁적으로 결합하여 부교감신경 효과를 차단하는 합성 4급 암모늄 항무스카린제. 고용량에서는 자율신경절 및 신경근 접합부의 니코틴 수용체도 차단 가능."
 }

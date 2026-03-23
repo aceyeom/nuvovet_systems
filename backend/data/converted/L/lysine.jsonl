@@ -27,23 +27,33 @@
     "available_strengths": [
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 312,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 334,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -382,5 +392,10 @@
     "source_file": "plumbs_output/60.jsonl",
     "extracted_at": "2026-03-11T07:49:45.697624+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "라이신(Lysine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "고양이 FHV-1 감염에서 바이러스 배출 억제 및 결막염을 포함한 임상 증상 중증도 감소 (모두 extra-label 사용). FDA 승인 동물용 의약품 목록에 등재된 제품 없음. 미국에서는 영양소로 분류되어 FDA 의약품 승인 요건 면제."
+  ],
+  "mechanism_short": "라이신은 헤르페스바이러스 복제에 필요한 아르기닌과 경쟁적으로 바이러스 내로 통합되어 바이러스의 감염력을 감소시키는 것으로 추정됨. 단, 고양이에서 이 기전의 생리학적 근거는 의문시됨."
 }

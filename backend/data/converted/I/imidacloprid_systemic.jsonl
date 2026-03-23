@@ -21,11 +21,15 @@
     "available_strengths": [
       {
         "value": 7.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 37.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -388,5 +392,13 @@
     "source_file": "plumbs_output/2.jsonl",
     "extracted_at": "2026-03-10T14:05:53.032506+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "이미다클로프리드 (경구용)(Imidacloprid, Systemic)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "개 및 강아지(10주령 이상",
+    "체중 1.8 kg 이상)의 벼룩(Ctenocephalides felis) 감염 치료. FDA 승인(NADA #141-435). 고양이",
+    "진드기",
+    "모기에는 적응증 없음."
+  ],
+  "mechanism_short": "시냅스 후막의 니코틴성 아세틸콜린 수용체에 작용하여 곤충의 CNS 기능 장애 및 사망을 유발. 척추동물 수용체보다 곤충 수용체에 대한 친화성이 훨씬 높음. 유기인산염, 피레트린, 카바메이트, 곤충 성장 조절제 등과 다른 작용 기전."
 }

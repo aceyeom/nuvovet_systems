@@ -23,23 +23,33 @@
     "available_strengths": [
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -524,5 +534,17 @@
     "source_file": "plumbs_output/22.jsonl",
     "extracted_at": "2026-03-10T19:58:41.415498+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "세파졸린(Cefazolin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "수술 예방적 항생제(특히 정형외과 수술",
+    "포도상구균이 주요 원인인 수술 부위 감염 예방)",
+    "그람 양성균 및 일부 그람 음성균(Proteus mirabilis",
+    "일부 E. coli",
+    "Klebsiella spp",
+    "Pasteurella spp 등) 감수성 감염 치료. 장구균",
+    "녹농균",
+    "리케차"
+  ],
+  "mechanism_short": "세포벽 합성 억제: 세균 세포질막의 페니실린 결합 단백질(PBP; 카르복시펩티다제, 트랜스펩티다제, 엔도펩티다제)에 결합하여 무코펩티드 합성을 억제함으로써 삼투압적으로 불안정한 구형체(spheroplast)를 형성하고 세균을 살균함. 시간 의존성 항생제로 MIC 이상 유지 시간이 치료 효과의 핵심 인자."
 }

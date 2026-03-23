@@ -24,7 +24,9 @@
     "available_strengths": [
       {
         "value": 0.4,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -458,5 +460,15 @@
     "source_file": "plumbs_output/45.jsonl",
     "extracted_at": "2026-03-11T03:12:34.053975+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "탐수로신(Tamsulosin)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【허가 외 사용】 개: 요관결석 및 요도결석 통과 촉진",
+    "기능성 요도 폐색",
+    "양성 전립선 비대증",
+    "배뇨근-요도 협조 장애. 고양이: 폐색 후 요도 경련",
+    "요관결석 통과 촉진. 【사람 허가 적응증】 양성 전립선 비대증(BPH)",
+    "요로결석 배출 촉진."
+  ],
+  "mechanism_short": "알파-1A 아드레날린 수용체 선택적 차단제. 전립선, 전립선 피막, 전립선 요도, 방광경부의 평활근을 이완시켜 요류 개선 및 요로결석 배출을 촉진함."
 }

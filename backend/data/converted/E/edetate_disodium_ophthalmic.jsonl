@@ -19,19 +19,27 @@
     "available_strengths": [
       {
         "value": 0.35,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 1.7,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 1.85,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -340,5 +348,15 @@
     "source_file": "plumbs_output/11.jsonl",
     "extracted_at": "2026-03-10T16:39:07.517489+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "에데테이트 이나트륨 점안액(Edetate Disodium Ophthalmic)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "각막 칼슘 침착(만성 각막염",
+    "만성 포도막염",
+    "고칼슘혈증 관련) 제거",
+    "감염성 각막 궤양에서 콜라게나제 활성 억제를 통한 각막 용해 방지",
+    "염화아연 안구 손상 응급 처치",
+    "수산화칼슘 안구 화상 응급 처치 및 추적 치료. 모두 허가 외(extra-label) 사용."
+  ],
+  "mechanism_short": "에데테이트 이나트륨은 칼슘 이온 및 기타 2가·3가 금속 이온과 수용성 킬레이트 복합체를 형성하여 안구 표면의 칼슘 침착을 용해시킴. 또한 콜라게나제 효소의 보조인자인 칼슘 이온을 격리하여 효소 활성을 억제함으로써 각막 용해(corneal melting)를 방지함."
 }

@@ -24,11 +24,15 @@
     "available_strengths": [
       {
         "value": 1.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 2.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -454,5 +458,13 @@
     "source_file": "plumbs_output/11.jsonl",
     "extracted_at": "2026-03-10T16:44:31.742155+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "플루오로메토론 점안제(Fluorometholone Ophthalmic)은(는) 항염증 및 면역억제 효과를 가진 부신피질 호르몬제입니다.",
+  "primary_indications": [
+    "안구 전방 염증 치료: 결막염",
+    "각막염",
+    "전방 포도막염",
+    "안구 손상 또는 백내장 수술 후 염증 (모두 오프라벨). 수의학 환자에서의 상대적 효능 평가는 수행되지 않았음."
+  ],
+  "mechanism_short": "코르티코스테로이드는 유전자 발현에 대한 직접적 효과 및 세포막과 수용체에 대한 비유전체적 효과를 통해 광범위한 면역조절 및 항염증 작용을 나타냄. 궁극적으로 염증 유발 유전자 전사, 프로스타글란딘 및 류코트리엔 생성, B세포 및 T세포 수와 기능, 세포 매개 면역 및 체액성 면역을 감소시킴."
 }

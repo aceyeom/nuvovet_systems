@@ -37,19 +37,27 @@
     "available_strengths": [
       {
         "value": 2.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -556,5 +564,12 @@
     "source_file": "plumbs_output/64.jsonl",
     "extracted_at": "2026-03-11T09:16:42.545891+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "메틸페니데이트(Methylphenidate)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【허가 외 사용】개: 기면증/탈력발작 보조 치료",
+    "과잉행동/과활동 진단 및 치료. 수의학적 허가 제품 없음. 고양이: 치료 용량 미확립",
+    "사용 권장되지 않음."
+  ],
+  "mechanism_short": "암페타민과 유사한 중추신경계 및 호흡계 자극 효과. 약한 교감신경 유사 활성을 가지며, 정상 용량에서는 말초 순환에 거의 영향을 미치지 않음."
 }

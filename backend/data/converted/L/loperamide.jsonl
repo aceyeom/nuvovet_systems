@@ -25,19 +25,27 @@
     "available_strengths": [
       {
         "value": 2,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.2,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.13,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -687,5 +695,13 @@
     "source_file": "plumbs_output/59.jsonl",
     "extracted_at": "2026-03-11T07:38:31.240019+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "로페라미드(Loperamide)은(는) 중등도~중증 통증 관리에 사용되는 오피오이드 진통제입니다.",
+  "primary_indications": [
+    "개에서 비감염성 난치성 설사(오프라벨). 항암제(토세라닙) 유발 설사 치료 보조(오프라벨). 파클리탁셀 유발 GI 부작용 예방(마로피탄트와 병용",
+    "오프라벨). 고양이에서 단기 설사 관리(오프라벨",
+    "논란 있음). 토끼",
+    "설치류 등 소형 포유류에서 설사 치료(오프라벨)."
+  ],
+  "mechanism_short": "장의 원형근 및 종주근의 뮤-오피오이드 수용체에 결합하여 GI 운동성 및 과도한 GI 추진력을 감소시킴. 콜레라 독소, 프로스타글란딘 E2 및 칼슘이 이차 전달자인 설사에 의해 유발되는 장 분비를 감소시킴. 점막 흡수 증진 및 항문 괄약근 긴장도 증가. 진통 활성 없음."
 }

@@ -23,31 +23,45 @@
     "available_strengths": [
       {
         "value": 1.25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 3.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 4.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 6.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -638,5 +652,12 @@
     "source_file": "plumbs_output/44.jsonl",
     "extracted_at": "2026-03-11T02:53:54.286765+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "글리부리드(Glyburide)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "고양이의 비인슐린 의존성(2형 유사) 당뇨병 — 오프라벨 사용. 경증 당뇨",
+    "인슐린 투여가 불가능하거나 보호자가 거부하는 경우",
+    "또는 글리피지드를 구할 수 없는 경우에 고려. 수의학적 승인 적응증 없음."
+  ],
+  "mechanism_short": "췌장 베타세포에서 인슐린 분비를 자극하여 혈당을 낮추는 설포닐우레아계 경구 혈당강하제. 장기 투여 시 인슐린 수용체 후 활성 증가 및 기저 간 포도당 생성 감소와 관련될 수 있음."
 }

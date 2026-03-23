@@ -25,19 +25,27 @@
     "available_strengths": [
       {
         "value": 0.25,
-        "unit": "mcg"
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.5,
-        "unit": "mcg"
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 2.0,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -623,5 +631,15 @@
     "source_file": "plumbs_output/52.jsonl",
     "extracted_at": "2026-03-11T05:17:45.460716+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "칼시트리올(Calcitriol)은(는) 호르몬 불균형 치료에 사용되는 호르몬제입니다.",
+  "primary_indications": [
+    "▶ 개: 이차성 부갑상선기능항진증 및 CKD 진행 억제 (IRIS 3~4단계)",
+    "부갑상선기능저하증 관련 저칼슘혈증 장기 유지",
+    "원발성 특발성 지루증 (모두 허가 외)\n▶ 고양이: CKD 관련 이차성 부갑상선기능항진증",
+    "부갑상선기능저하증 관련 저칼슘혈증 장기 유지 (모두 허가 외",
+    "근거 약함)\n▶ 기타: 특정 종양(비만세포종 등) 보조 치료",
+    "난치성 피부병 치료 보조"
+  ],
+  "mechanism_short": "칼시트리올은 활성형 비타민 D 유사체로, PTH 및 칼시토닌과 함께 칼슘 항상성을 조절하는 호르몬으로 작용함. 위장관에서 칼슘 흡수 증가, 신세뇨관에서 칼슘 재흡수 촉진, 뼈에서 무기질 침착 및 흡수 속도 증가. 신장 활성화 불필요."
 }

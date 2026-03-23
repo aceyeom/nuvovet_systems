@@ -24,15 +24,21 @@
     "available_strengths": [
       {
         "value": 12.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -821,5 +827,16 @@
     "source_file": "plumbs_output/0.jsonl",
     "extracted_at": "2026-03-11T11:12:13.490660+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "하이드로클로로티아지드(Hydrochlorothiazide)은(는) 체액 저류 치료에 사용되는 이뇨제입니다.",
+  "primary_indications": [
+    "【허가 외 적응증】 ① 칼슘 옥살산염 요석 재발 예방(개",
+    "잠재적으로 고양이) ② 루프 이뇨제 불응성 심부전 보조 치료(개",
+    "고양이) ③ 신성 요붕증(개",
+    "고양이) ④ 중추성 요붕증(고양이) ⑤ 전신 고혈압(개) ⑥ 인슐린종에 의한 저혈당(개) ⑦ 간질환 복수(개",
+    "고양이",
+    "스피로노락톤 병용) ⑧ 조류 심부전/체강 삼출(조류) ⑨ 고칼륨혈증성 주기성 마비(말",
+    "대체 요법)"
+  ],
+  "mechanism_short": "신세뇨관 상피세포에서 나트륨 이온 수송을 방해하여 이뇨 효과를 나타냄. 주요 작용 부위는 네프론의 피질 희석 분절. 나트륨, 염소, 수분 배설 증가; 칼륨, 마그네슘, 인산염 배설 증가; GFR 감소. 신성 요붕증에서 역설적 소변량 감소 효과."
 }

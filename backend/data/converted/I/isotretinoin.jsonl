@@ -26,27 +26,39 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 30,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 35,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -535,5 +547,17 @@
     "source_file": "plumbs_output/56.jsonl",
     "extracted_at": "2026-03-11T06:43:18.025642+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "이소트레티노인(Isotretinoin)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【개】 지루성 피부염",
+    "슈나우저 면포 증후군",
+    "각화극세포종",
+    "모기질종",
+    "특발성 지루",
+    "어린선",
+    "피지선 과형성 및 선종",
+    "피지선염"
+  ],
+  "mechanism_short": "레티노이드로서 상피세포 증식 및 분화를 조절하며, 단핵구 및 림프구 기능에 영향을 미쳐 세포성 면역 반응을 변화시킴. 피지선 크기 및 활성을 감소시켜 피지 생성을 줄이고, 항각화 및 항염증 활성을 가지며 피지 모공 내 세균 집락을 간접적으로 감소시킴."
 }

@@ -19,11 +19,15 @@
     "available_strengths": [
       {
         "value": 1,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -332,5 +336,13 @@
     "source_file": "plumbs_output/8.jsonl",
     "extracted_at": "2026-03-10T16:03:19.699742+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아미카신 점안제(Amikacin Ophthalmic)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "Pseudomonas spp.",
+    "Escherichia coli",
+    "Proteus spp.",
+    "Klebsiella spp. 등 그람음성균 및 Staphylococcus spp.에 의한 감수성 안구 감염 (extra-label). 세균성 안내염의 유리체내 주사 치료에도 사용 가능 (후안부 독성이 다른 아미노글리코사이드보다 낮음)."
+  ],
+  "mechanism_short": "아미카신 황산염은 아미노글리코사이드계 항생제로, 세균 세포 내로 능동 수송된 후 30S 리보솜 소단위의 특정 수용체 단백질에 결합하여 mRNA와 30S 소단위 간의 개시 복합체 형성을 방해하고 mRNA 오독을 유도함으로써 단백질 합성을 억제한다. 살균 작용을 나타낸다."
 }

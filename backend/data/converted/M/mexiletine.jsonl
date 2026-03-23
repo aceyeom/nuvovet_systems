@@ -25,15 +25,21 @@
     "available_strengths": [
       {
         "value": 150,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -721,5 +727,17 @@
     "source_file": "plumbs_output/65.jsonl",
     "extracted_at": "2026-03-11T09:30:29.355110+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "멕실레틴(Mexiletine)은(는) 심장 기능 개선에 사용되는 심장약입니다.",
+  "primary_indications": [
+    "개: 심실 부정맥(PVC",
+    "심실빈맥)",
+    "복서의 부정맥성 우심실 심근병증",
+    "저먼 셰퍼드의 유전성 심실 부정맥",
+    "근긴장증(미니어처 슈나우저",
+    "차우차우)",
+    "Jack Russell terrier의 근경련증 — 모두 오프라벨. 고양이: 심실 부정맥 — 일화적 보고",
+    "오프라벨. 수의과 허가 적응증 없음."
+  ],
+  "mechanism_short": "Class IB 항부정맥제. 내향 나트륨 전류(빠른 나트륨 채널)를 억제하여 활동전위 0상의 상승 속도를 감소시킴. 심근세포의 자동능 감소 및 활동전위 기간 단축. 유효 불응기에는 최소한의 영향. 리도카인과 유사한 기전."
 }

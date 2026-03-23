@@ -24,35 +24,51 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 750,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 400,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -752,5 +768,10 @@
     "source_file": "plumbs_output/25.jsonl",
     "extracted_at": "2026-03-10T20:53:28.663869+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "시프로플록사신(Ciprofloxacin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "감수성 감염(extra-label): 개 25 mg/kg PO 또는 20 mg/kg IV 1일 1회. 세균성 농피증(extra-label): 개 30 mg/kg PO 1일 1회. 요로감염(extra-label): 개/고양이 30 mg/kg PO 1일 1회. 고양이 감수성 감염(extra-label): 20~25 mg/kg PO 또는 IV 1일 1회. IV 플루오로퀴놀론이 필요하고 수의학적으로 승인된 제품을 사용할 수 없는 경우에 한해 사용 권장."
+  ],
+  "mechanism_short": "세균 DNA 자이라제(II형 토포이소머라제)를 억제하여 DNA 초나선 형성 및 DNA 합성을 방해하는 살균성, 농도 의존성 항생제. 노출 후 20~30분 내에 감수성 세균 사멸. 그람 음성 및 그람 양성 세균 모두에서 유의한 항생제 후 효과(PAE) 발휘."
 }

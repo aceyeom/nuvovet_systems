@@ -24,47 +24,69 @@
     "available_strengths": [
       {
         "value": 15,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 16.2,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 30,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 32.4,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 60,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 64.8,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 97.2,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 4,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 65,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 130,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -1045,5 +1067,14 @@
     "source_file": "plumbs_output/18.jsonl",
     "extracted_at": "2026-03-10T18:52:48.303836+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "페노바르비탈(Phenobarbital)은(는) 발작(경련) 조절에 사용되는 항경련제입니다.",
+  "primary_indications": [
+    "개와 고양이의 특발성 간질(1차 치료)",
+    "간질 중첩증 보조 치료(벤조디아제핀 후)",
+    "개의 침샘증(sialadenosis)",
+    "말의 발작 조절",
+    "소의 유기염소 독성 시 효소 유도 목적. 모든 수의학적 적응증은 오프라벨 사용임."
+  ],
+  "mechanism_short": "바르비투레이트계 비선택적 CNS 억제제. 아세틸콜린, 노르에피네프린, 글루타메이트 방출 억제 및 GABA에 대한 효과를 통해 발작 역치를 높이고 발작 전파를 제한함. 고마취 용량에서 신경 말단의 칼슘 흡수 억제."
 }

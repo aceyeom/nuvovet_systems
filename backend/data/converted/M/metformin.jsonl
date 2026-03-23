@@ -26,23 +26,33 @@
     "available_strengths": [
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 850,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 750,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -549,5 +559,14 @@
     "source_file": "plumbs_output/63.jsonl",
     "extracted_at": "2026-03-11T08:57:08.670004+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "메트포르민(Metformin)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【오프라벨】고양이: 기능적 베타세포가 있는 비인슐린의존성 당뇨병(NIDDM) 보조 치료 (2 mg/kg PO BID",
+    "일반적으로 25~50 mg/cat BID). 【오프라벨】개: NIDDM (근거 매우 제한적",
+    "발생률 낮음). 【오프라벨】말: 말 대사증후군 보조 치료 (30 mg/kg PO q8~12h",
+    "급식 30~60분 전 투여",
+    "효능에 대한 근거 상충)."
+  ],
+  "mechanism_short": "비구아나이드계 경구 혈당강하제. 골격근 세포막에서 인슐린의 포도당 수송 능력 증가, 간 포도당 생성 억제, 장내 포도당 흡수 감소. 인슐린 분비를 자극하지 않으므로 단독 사용 시 저혈당을 유발하지 않음. 고급 당화 최종산물(AGE) 형성 억제."
 }

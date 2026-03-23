@@ -22,11 +22,15 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -358,5 +362,15 @@
     "source_file": "plumbs_output/57.jsonl",
     "extracted_at": "2026-03-11T06:52:01.529876+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "이버멕틴/클로르술론(Ivermectin/Clorsulon)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "소에서 FDA 승인: 위장관 선충(성충 및 4기 유충)",
+    "폐충(성충 및 4기 유충)",
+    "성충 간흡충(Fasciola hepatica)",
+    "소 구더기(기생 단계)",
+    "흡혈 이",
+    "옴 진드기(소 옴)의 치료 및 관리. 개·고양이에 대한 승인 적응증 없음."
+  ],
+  "mechanism_short": "클로르술론은 기생충(Fasciola hepatica)의 해당 효소인 3-포스포글리세레이트 키나아제 및 포스포글리세로뮤타아제를 억제하여 Embden-Meyerhof 해당 경로를 차단함으로써 흡충의 주요 에너지원을 고갈시킴. 이버멕틴은 무척추동물의 GABA 매개 신경 전달을 강화하여 마비 및 사망을 유발함."
 }

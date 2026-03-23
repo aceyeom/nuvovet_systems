@@ -27,11 +27,15 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -488,5 +492,17 @@
     "source_file": "plumbs_output/64.jsonl",
     "extracted_at": "2026-03-11T09:14:50.913092+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "메틸렌 블루(Methylene Blue)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "반추동물: 아질산염",
+    "질산염",
+    "염소산염 등 산화제에 의한 메트헤모글로빈혈증 치료 (1차 적응증). 개(허가 외): 독성 물질(페놀",
+    "나프탈렌",
+    "하이드록시우레아",
+    "페나조피리딘 등)에 의한 중증 메트헤모글로빈혈증",
+    "수술 중 췌장 도세포 종양의 선택적 염색. 고양이(허가 외",
+    "극도 주의): 생명을 위협하는 중증 메트헤모글로빈혈증의 단회 투여. 말(허가 외"
+  ],
+  "mechanism_short": "조직 내에서 류코메틸렌 블루로 빠르게 환원되어 환원제로 작용, 메트헤모글로빈(Fe+++)을 헤모글로빈(Fe++)으로 전환. 또한 구아닐릴 사이클라제 강력 억제제로 cGMP 방출을 차단하여 혈관 평활근 이완을 억제. 항균 활성도 보유."
 }

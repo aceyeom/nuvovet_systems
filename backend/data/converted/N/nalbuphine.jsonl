@@ -21,11 +21,15 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -590,5 +594,11 @@
     "source_file": "plumbs_output/27.jsonl",
     "extracted_at": "2026-03-10T21:46:01.856068+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "날부핀(Nalbuphine)은(는) 중등도~중증 통증 관리에 사용되는 오피오이드 진통제입니다.",
+  "primary_indications": [
+    "【승인 적응증】 수의학적 승인 제품 없음(인체용 제품 extra-label 사용). 【Extra-label 적응증】 ① 소동물(개",
+    "고양이) 전신마취 전처치 보조제 ② 경도~중등도 통증 완화 ③ 뮤 오피오이드 작용제의 부작용(호흡억제) 역전(일부 진통 효과 유지) ④ 개 경막외 투여를 통한 이소플루란 MAC 감소 및 수술 후 진통"
+  ],
+  "mechanism_short": "페난트렌계 합성 오피오이드 수용체 작용제-길항제. 카파 수용체 작용(주요 진통 효과), 뮤 수용체 부분 길항, 델타 수용체 결합. 카파 수용체 활성화를 통해 진통 효과를 나타냄."
 }

@@ -22,11 +22,15 @@
     "available_strengths": [
       {
         "value": 2.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 5.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -706,5 +710,12 @@
     "source_file": "plumbs_output/2.jsonl",
     "extracted_at": "2026-03-10T14:08:03.474244+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "이미다프릴(Imidapril)은(는) 혈압 강하 및 심부전 치료에 사용되는 ACE 억제제입니다.",
+  "primary_indications": [
+    "【허가 적응증(개",
+    "영국)】 승모판 역류 또는 확장성 심근병증으로 인한 중등도~중증 심부전 보조 치료. 【잠재적 off-label 적응증】 단백뇨성 신병증(protein-losing nephropathy) 치료. 【고양이】 허가 적응증 없음",
+    "독성 연구에서 안전성 일부 확인."
+  ],
+  "mechanism_short": "안지오텐신 전환 효소(ACE) 억제제. 이미다프릴은 프로드럭으로 간에서 활성 대사체 이미다프릴라트로 전환됨. 이미다프릴라트는 안지오텐신-I이 안지오텐신-II(강력한 혈관수축제)로 전환되는 것을 경쟁적으로 억제함. 이로 인해 알도스테론 분비 감소 및 혈장 레닌 활성 증가가 유발됨."
 }

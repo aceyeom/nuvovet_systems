@@ -24,15 +24,21 @@
     "available_strengths": [
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 750,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -575,5 +581,10 @@
     "source_file": "plumbs_output/57.jsonl",
     "extracted_at": "2026-03-11T07:05:06.126798+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "란타넘 카보네이트(Lanthanum Carbonate)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "만성 신장 질환(CKD)에서 식이 제한만으로 조절되지 않는 고인산혈증 치료를 위한 경구 인산염 결합제. 개와 고양이 모두 엑스트라라벨 사용. 미국 내 수의용 허가 제품 없음."
+  ],
+  "mechanism_short": "란타넘 카보네이트는 상부 위장관의 산성 환경에서 해리되어 란타넘 이온을 방출함. 이 이온들이 식이 인산염과 결합하여 불용성 란타넘 인산염 복합체를 형성하고 대변으로 배설됨으로써 고인산혈증을 감소시킴."
 }

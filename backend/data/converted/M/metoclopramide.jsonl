@@ -25,19 +25,27 @@
     "available_strengths": [
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -848,5 +856,15 @@
     "source_file": "plumbs_output/64.jsonl",
     "extracted_at": "2026-03-11T09:22:00.367652+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "메토클로프라미드(Metoclopramide)은(는) 구토 예방 및 치료에 사용되는 항구토제입니다.",
+  "primary_indications": [
+    "위장관 운동 저하 장애",
+    "위식도 역류",
+    "소장 삽관",
+    "파보바이러스 장염·담즙성 구토 증후군·요독성 위염·항암제 유발 구토의 항구토 치료",
+    "단두종 기도 수술 전후 역류 예방",
+    "이차성 무유증 시 비유 유도 등에 오프라벨로 사용됨."
+  ],
+  "mechanism_short": "상부 위장관 평활근에 대한 아세틸콜린 감수성 증가를 통해 위장관 운동을 촉진하며, 중추 및 말초 도파민(D2) 수용체 길항 작용으로 항구토 효과를 나타냄. 또한 세로토닌 5-HT3 수용체 약한 억제제 및 5-HT4 수용체 작용제로 작용."
 }

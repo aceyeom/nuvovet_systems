@@ -25,23 +25,33 @@
     "available_strengths": [
       {
         "value": 300000,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 150000,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 600000,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 5000000,
-        "unit": "IU"
+        "unit": "IU",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20000000,
-        "unit": "IU"
+        "unit": "IU",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -577,5 +587,17 @@
     "source_file": "plumbs_output/18.jsonl",
     "extracted_at": "2026-03-10T18:40:42.625991+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "페니실린 G(Penicillin G)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "감수성 세균에 의한 전신 감염(그람양성 호기성 구균",
+    "혐기성 세균",
+    "스피로헤타 포함). 개/고양이: 감수성 감염(허가 외)",
+    "렙토스피라증 초기 치료(허가 외). 말: 연쇄구균 감염",
+    "파상풍",
+    "클로스트리디움 근괴사(허가 외 포함). 소/반추동물: 세균성 폐렴",
+    "클로스트리디움 감염(허가 외 포함). 돼지: 단독증(FDA 승인). 미국 FDA 승인: 말",
+    "양(호흡기 감염)"
+  ],
+  "mechanism_short": "세균 세포벽의 무코펩타이드 합성을 억제하여 삼투압적으로 불안정한 구형체(spheroplast)를 형성함으로써 살균 작용을 나타냄. 세균 세포막 내 페니실린 결합 단백질(PBP: 카르복시펩티다제, 트랜스펩티다제, 엔도펩티다제)에 결합하여 세포벽 합성을 방해함. 시간 의존성 항생제로 혈장/조직 농도가 MIC를 초과하는 시간이 효능을 결정함."
 }

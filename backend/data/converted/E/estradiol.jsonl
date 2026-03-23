@@ -33,19 +33,27 @@
     "available_strengths": [
       {
         "value": 5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -635,5 +643,15 @@
     "source_file": "plumbs_output/17.jsonl",
     "extracted_at": "2026-03-10T18:23:03.592255+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "에스트라디올(Estradiol)은(는) 호르몬 불균형 치료에 사용되는 호르몬제입니다.",
+  "primary_indications": [
+    "【허가 적응증】말에서 발정 행동 및 수용성 향상(난소절제 암말)",
+    "이행기 암말에서 배란 촉진. 【허가 외 사용】말에서 발정 동기화(프로게스테론 병용)",
+    "비임신 암말의 비유 유도(돔페리돈 병용)",
+    "상행성 태반염 치료",
+    "에스트로겐 반응성 요실금 치료. 개와 고양이에서 역사적으로 에스트로겐 반응성 요실금 치료 및 낙태제로 사용되었으나",
+    "현재는 더 안전한 대안이 권장됨."
+  ],
+  "mechanism_short": "에스트라디올은 가장 활성이 강한 내인성 에스트로겐으로, 에스트로겐 수용체에 결합하여 여성 생식기관의 정상적인 성장 및 발달, 이차 성징의 발달 및 유지에 관여한다. 자궁경부 점막의 세포 높이 증가 및 분비 촉진, 질 점막 비후, 자궁내막 증식, 자궁 긴장도 증가를 유발한다. 골격계에서는 칼슘 침착 증가, 골단판 조기 폐쇄, 골 형성 증가를 일으킨다. 뇌하수체에서 성선자극호르몬 분비에 영향을 미쳐 수유, 배란, 안드로겐 분비를 억제할 수 있다."
 }

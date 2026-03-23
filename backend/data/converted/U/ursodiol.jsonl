@@ -25,15 +25,21 @@
     "available_strengths": [
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -516,5 +522,14 @@
     "source_file": "plumbs_output/6.jsonl",
     "extracted_at": "2026-03-10T15:21:30.034711+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "우르소디올(Ursodiol)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【허가 외 사용】 개: 담즙 슬러지(미세결석증)",
+    "급성·만성 비폐쇄성 담즙정체 질환",
+    "만성 간염",
+    "담낭 점액낭종의 보조 치료. 고양이: 비폐쇄성 급성·만성 담즙정체 질환",
+    "림프구성 담관염의 보조 치료. 【인체 허가】 콜레스테롤 담석 용해(소동물에서는 담석 조성이 달라 효과 없음)."
+  ],
+  "mechanism_short": "비세포독성 담즙산으로서 담즙 흐름 증가(담즙분비 촉진), 독성 소수성 담즙산 대체, 항산화, 항염증, 면역조절, 항세포자멸사 효과 및 분자 샤페론 역할을 통해 간담도 세포 보호 작용을 나타냄."
 }

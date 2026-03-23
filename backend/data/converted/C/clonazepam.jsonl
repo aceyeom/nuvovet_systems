@@ -36,23 +36,33 @@
     "available_strengths": [
       {
         "value": 0.125,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -678,5 +688,14 @@
     "source_file": "plumbs_output/26.jsonl",
     "extracted_at": "2026-03-10T21:18:01.843959+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "클로나제팜(Clonazepam)은(는) 발작(경련) 조절에 사용되는 항경련제입니다.",
+  "primary_indications": [
+    "【승인 적응증】없음(수의과 승인 제품 없음). 【오프라벨 적응증】개: 단기 보조 항경련 치료(간질)",
+    "수면장애",
+    "항불안(분리불안",
+    "공포증 등). 고양이: 장기 보조 항경련 치료(간질)",
+    "항불안."
+  ],
+  "mechanism_short": "벤조디아제핀 수용체에 결합하여 GABA 활성을 증가시키고 CNS 피질하 수준(변연계, 시상, 시상하부)을 억제함으로써 항불안, 진정, 골격근 이완, 항경련 효과를 나타냄."
 }

@@ -33,15 +33,21 @@
     "available_strengths": [
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -474,5 +480,12 @@
     "source_file": "plumbs_output/54.jsonl",
     "extracted_at": "2026-03-11T05:59:39.923231+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아미노카프로산(Aminocaproic Acid)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【승인 적응증】없음(수의학적 승인 제품 없음). 【적응증 외 사용】① 그레이하운드/시각하운드 수술 후 지연성 출혈 예방 ② 과섬유소용해에 의한 출혈 치료 ③ 우심방 종괴에 의한 심낭 삼출(효능 불확실) ④ 활동성 출혈(종양성 질환",
+    "수술 후 출혈 등) ⑤ 퇴행성 척수병증 보조 치료(효능 매우 불확실",
+    "권장하지 않음) ⑥ 말: 인두낭 출혈 항섬유소용해 치료."
+  ],
+  "mechanism_short": "플라스미노겐 활성화 물질 억제 및 항플라스민 활성을 통해 섬유소용해를 억제하는 합성 단아미노 카르복실산. 항프로테아제 활성을 통해 마이엘린을 손상시키는 염증 효소 활성화를 감소시키는 것으로 추정됨."
 }

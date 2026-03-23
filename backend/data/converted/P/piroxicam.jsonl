@@ -21,11 +21,15 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -632,5 +636,17 @@
     "source_file": "plumbs_output/20.jsonl",
     "extracted_at": "2026-03-10T19:16:12.839844+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "피록시캄(Piroxicam)은(는) 통증과 염증을 완화하는 비스테로이드성 항염증제(NSAID)입니다.",
+  "primary_indications": [
+    "【승인 적응증】 없음(수의과 승인 제품 없음). 【오프라벨 적응증】 개·고양이: 방광 이행세포암종 보조치료",
+    "구강 편평세포암종",
+    "염증성 유선암",
+    "연조직 육종",
+    "원발성 폐암종",
+    "전염성 성기종양(TVT) 보조치료. 개: 특발성 림프형질세포성 비염(LPR) 보조치료",
+    "퇴행성 관절 질환의 통증 및 염증 완화(더 안전한 대안 존재). 고양이: 특발성 만성 비부비동염",
+    "단기 항염증/진통."
+  ],
+  "mechanism_short": "프로스타글란딘 합성 억제(COX 억제)를 통한 항염증, 진통, 해열 작용. 면역계 조절 및 항혈관신생 효과를 통한 항종양 작용. 혈소판 응집 억제 및 신기능에 영향."
 }

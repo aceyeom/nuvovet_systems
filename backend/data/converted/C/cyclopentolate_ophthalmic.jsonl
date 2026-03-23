@@ -24,15 +24,21 @@
     "available_strengths": [
       {
         "value": 0.5,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 2.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -362,5 +368,11 @@
     "source_file": "plumbs_output/10.jsonl",
     "extracted_at": "2026-03-10T16:28:41.395292+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "사이클로펜톨레이트 점안액(Cyclopentolate Ophthalmic)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "산동 및 사이클로플레지아 유발 (안저 검사",
+    "굴절 검사 등 진단 목적). 페닐에프린과의 복합 제제(Cyclomydril)는 사이클로플레지아를 최소화하면서 산동을 유발할 때 사용. 모든 동물에서 extra-label 사용."
+  ],
+  "mechanism_short": "홍채 괄약근 및 모양체 조절근의 콜린성 자극을 차단하여 산동(mydriasis) 및 조절 마비(cycloplegia)를 유발하는 항콜린성 약물."
 }

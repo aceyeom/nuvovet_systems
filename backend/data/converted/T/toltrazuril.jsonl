@@ -27,11 +27,15 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -335,5 +339,17 @@
     "source_file": "plumbs_output/48.jsonl",
     "extracted_at": "2026-03-11T03:57:26.130502+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "톨트라주릴(Toltrazuril)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "개: 콕시듐증 (허가 외",
+    "10~30 mg/kg PO",
+    "1~3일). 고양이: 콕시듐증 (허가 외",
+    "20~30 mg/kg PO 단회",
+    "10일 후 반복 가능)",
+    "톡소플라즈마증 난포낭 배출 단계 (허가 외",
+    "5~10 mg/kg PO",
+    "2일). 일부 국가에서 송아지(Eimeria bovis"
+  ],
+  "mechanism_short": "원충의 효소 시스템 및 세포 분열 억제, 세포 내 구조물 손상. 분열소체 및 소·대배우자모세포를 포함한 콕시디아의 모든 세포 내 단계에 작용. 원충 핵 분열 및 미토콘드리아 활성 방해, 소배우자의 벽 형성체 손상, 모든 세포 내 발달 단계에서 원충 소포체의 심한 공포화 유발."
 }

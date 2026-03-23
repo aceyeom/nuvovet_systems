@@ -31,23 +31,33 @@
     "available_strengths": [
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -471,5 +481,16 @@
     "source_file": "plumbs_output/22.jsonl",
     "extracted_at": "2026-03-10T20:00:25.309683+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "세페핌(Cefepime)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "개 및 신생 망아지의 중증 감수성 감염(오프라벨): 아미노글리코사이드",
+    "플루오로퀴놀론 또는 다른 베타-락탐 항생제가 효과 없거나 금기인 경우. 그람음성균(Pseudomonas spp.",
+    "E. coli",
+    "Klebsiella spp.",
+    "Enterobacter spp.",
+    "Proteus spp.) 및 그람양성균(포도상구균",
+    "연쇄상구균) 감염. ESBL 생성균에 대한 활성은 제한적."
+  ],
+  "mechanism_short": "세포벽 합성 억제를 통한 살균 작용. 페니실린 결합 단백질(PBP)에 결합하여 펩티도글리칸 교차결합을 방해함. 베타-락타마제에 대한 높은 안정성을 가지며 베타-락타마제를 쉽게 유도하지 않음."
 }

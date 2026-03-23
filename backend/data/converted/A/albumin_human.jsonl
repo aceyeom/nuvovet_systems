@@ -27,15 +27,21 @@
     "available_strengths": [
       {
         "value": 5,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -533,5 +539,17 @@
     "source_file": "plumbs_output/61.jsonl",
     "extracted_at": "2026-03-11T08:12:26.596402+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "알부민 (인간/개)(Albumin, Human)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "중증 저알부민혈증(알부민 < 2.0 g/dL)",
+    "전신 염증 반응 증후군(SIRS) 또는 패혈증",
+    "증가된 혈관 투과성",
+    "불응성 저혈압",
+    "위확장-염전(GDV) 관련 불응성 저혈압",
+    "패혈성 복막염",
+    "단백 소실성 장병증 수술 전 처치",
+    "장 부종으로 인한 지속적 구토를 동반한 중증 저알부민혈증 환자에서 교질액 대체 요법으로 사용됩니다."
+  ],
+  "mechanism_short": "알부민은 혈장 교질삼투압의 75~80%를 제공합니다. 치료적으로 투여 시 혈관 내 교질삼투압을 증가시켜 간질에서 혈관 내 공간으로 체액을 이동시킵니다. 또한 약물, 이온, 호르몬, 지질, 금속의 결합 및 운반; 내피 완전성 유지 및 투과성 조절; 상처 치유; 항산화 특성; 자유 라디칼 제거; 대사 및 산-염기 기능; 혈소판 응집 감소; 항트롬빈 증강 역할을 합니다."
 }

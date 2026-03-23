@@ -21,15 +21,21 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 15,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -566,5 +572,17 @@
     "source_file": "plumbs_output/47.jsonl",
     "extracted_at": "2026-03-11T03:51:52.026487+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "토세라닙(Toceranib)은(는) 악성 종양(암) 치료에 사용되는 항종양제입니다.",
+  "primary_indications": [
+    "【승인 적응증】 개의 Patnaik grade II 또는 III",
+    "재발성",
+    "피부 비만세포종(MCT) — 국소 림프절 침범 유무 무관. 【엑스트라라벨/연구 중 적응증】 개: 심기저부 종양",
+    "흑색종",
+    "다약제내성 림프종",
+    "다발성 골수종. 방사선 치료 병용",
+    "칼시트리올·카보플라틴·사이클로포스파미드·독소루비신·로무스틴·피록시캄·프레드니손·빈블라스틴 등과의 병용 연구 진행 중. 고양이: 비만세포종",
+    "췌장 암종"
+  ],
+  "mechanism_short": "소분자 티로신 키나제 억제제(TKI)로 VEGFR2, PDGFR-β, KIT 등 분열 수용체 티로신 키나제(RTK)의 ATP 결합을 경쟁적으로 억제하여 수용체 인산화 및 하위 신호 전달을 차단. 세포 주기 정지 및 아폽토시스 유도, 항혈관신생 효과."
 }

@@ -27,15 +27,21 @@
     "available_strengths": [
       {
         "value": 44,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 110,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 220,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -445,5 +451,14 @@
     "source_file": "plumbs_output/43.jsonl",
     "extracted_at": "2026-03-11T02:26:12.753263+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "플루티카손(Fluticasone)은(는) 항염증 및 면역억제 효과를 가진 부신피질 호르몬제입니다.",
+  "primary_indications": [
+    "개: 만성 기관지 질환(허가 외)",
+    "호산구성 기관지폐렴(허가 외). 고양이: 천식",
+    "만성 기관지염(허가 외)",
+    "특발성 만성 비염(허가 외). 말: 중증 말 천식(허가 외). 동물용 허가 제품 없음",
+    "모든 수의학적 사용은 인체용 제품의 허가 외 사용임."
+  ],
+  "mechanism_short": "글루코코르티코이드 수용체에 결합하여 강력한 항염증 작용을 나타냄. 덱사메타손보다 인체 글루코코르티코이드 수용체에 대한 친화성이 18배 높음. 흡입 투여로 국소 항염증 효과를 극대화하면서 전신 부작용을 최소화함."
 }

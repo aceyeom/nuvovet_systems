@@ -31,23 +31,33 @@
     "available_strengths": [
       {
         "value": 2.3,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5.75,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 11.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 23.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.1,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -591,5 +601,17 @@
     "source_file": "plumbs_output/65.jsonl",
     "extracted_at": "2026-03-11T09:35:10.140112+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "밀베마이신 옥심(Milbemycin Oxime)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "【승인 적응증 - 개】 심장사상충(Dirofilaria immitis) 예방",
+    "십이지장충(Ancylostoma caninum) 구제",
+    "회충(Toxocara canis",
+    "Toxascaris leonina) 및 편충(Trichuris vulpis) 제거. 【승인 적응증 - 고양이】 심장사상충 예방",
+    "성충 십이지장충(Ancylostoma tubaeforme) 및 회충(Toxocara cati) 제거. 【비표시 적응증 - 개】 모낭충증(Demodex canis",
+    "D. injai)",
+    "옴(Sarcoptes scabiei var. canis)",
+    "Angiostrongylus vasorum 예방. 【비표시 적응증 - 고양이】 폐충 감염 치료."
+  ],
+  "mechanism_short": "선충류 신경계의 글루타메이트 개폐 염소 이온 채널에 결합하여 세포막의 염소 이온 투과성을 증가시키고, 선충류 신경세포 및 절지동물 근육세포의 전기적 활성을 억제하여 마비 및 사멸을 유발. 또한 시냅스 전 뉴런에서 GABA 방출을 촉진하여 억제성 신경전달을 강화함."
 }

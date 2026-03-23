@@ -28,19 +28,27 @@
     "available_strengths": [
       {
         "value": 1,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -661,5 +669,17 @@
     "source_file": "plumbs_output/35.jsonl",
     "extracted_at": "2026-03-11T00:05:25.659650+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "스타노조롤(Stanozolol)은(는) 호르몬 불균형 치료에 사용되는 호르몬제입니다.",
+  "primary_indications": [
+    "승인 적응증(현재 시판 중단): 개",
+    "고양이",
+    "말에서 식욕 증진",
+    "체중 증가",
+    "체력 및 활력 향상을 위한 보조 치료. 오프라벨 적응증: 개에서 기관 허탈(기관지염 없는 경우) 보존적 치료",
+    "개/말에서 골관절염 관절 내 주사",
+    "만성 질환 빈혈 치료",
+    "고양이 대동맥 혈전색전증(임상 연구 부족)"
+  ],
+  "mechanism_short": "동화 스테로이드로서 단백질 합성 촉진, 근육 조직 형성 및 이화 작용 역전. 테스토스테론 유도체로 안드로겐 효과 보유. LH 억제를 통한 내인성 테스토스테론 분비 억제, 고용량 시 FSH 음성 피드백 억제로 정자 형성 저해. 적혈구 생성 자극 인자 자극을 통한 조혈 촉진. 질소, 나트륨, 칼륨, 인 저류 및 칼슘 요중 배설 감소. 비경구 투여 후 섬유소 용해 촉진."
 }

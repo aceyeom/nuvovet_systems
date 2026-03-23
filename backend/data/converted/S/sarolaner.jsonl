@@ -24,31 +24,45 @@
     "available_strengths": [
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 80,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 120,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -494,5 +508,17 @@
     "source_file": "plumbs_output/34.jsonl",
     "extracted_at": "2026-03-10T23:34:02.286440+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "사롤라너(Sarolaner)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "【승인 적응증】 개에서 벼룩(Ctenocephalides felis) 감염 치료 및 예방",
+    "진드기(Amblyomma americanum",
+    "A. maculatum",
+    "Dermacentor variabilis",
+    "Ixodes scapularis",
+    "Rhipicephalus sanguineus) 감염 치료 및 조절 (월 1회",
+    "생후 6개월 이상",
+    "체중 1.3 kg 이상). 복합제(Simparica TRIO): 심장사상충 예방"
+  ],
+  "mechanism_short": "이소옥사졸린 계열 살충제/살비제로, 곤충 및 진드기의 신경근 접합부에서 GABA 및 글루타메이트 수용체를 억제하여 비조절 신경근 활성을 유발하고 기생충을 사멸시킴. 니코틴성 또는 기타 GABAergic 살충제(네오니코티노이드, 피프롤, 밀베마이신, 아버멕틴, 사이클로디엔)의 알려진 결합 부위와는 상호작용하지 않음."
 }

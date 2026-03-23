@@ -27,11 +27,15 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 11,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -338,5 +342,12 @@
     "source_file": "plumbs_output/0.jsonl",
     "extracted_at": "2026-03-10T13:33:30.672468+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "히알루론산나트륨(Hyaluronate)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "말: 비감염성 활막염과 관련된 관절 기능 장애(카르푸스",
+    "구절 관절) — FDA 승인. 개: 손상된 관절 연골과 관련 없는 활막염의 보조 치료 — 비허가 사용. 관절경 수술 후 관절 삼출 감소(말",
+    "경구 투여) — 비허가 사용."
+  ],
+  "mechanism_short": "히알루론산나트륨은 결합 조직에 자연적으로 존재하는 고점도 점다당류로, 관절 내에서 완충 효과, 단백질 및 세포 유입 감소, 윤활 작용을 제공함. 자유 라디칼 제거 및 프로스타글란딘 억제를 통해 직접적인 항염증 효과를 나타냄."
 }

@@ -20,11 +20,15 @@
     "available_strengths": [
       {
         "value": 0.3,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -315,5 +319,13 @@
     "source_file": "plumbs_output/6.jsonl",
     "extracted_at": "2026-03-10T15:15:56.962425+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "반코마이신 점안제(Vancomycin Ophthalmic)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "메티실린 내성 세균성 결막염",
+    "각막염(MRSA",
+    "MRSP 등)",
+    "중증 메티실린 내성 안내염(유리체강 내 투여). 모든 적응증이 엑스트라라벨 사용에 해당합니다."
+  ],
+  "mechanism_short": "세포벽 전구체 분자에 결합하여 세포벽 생합성을 억제함으로써 살균 작용을 나타냄. 그람 음성균, 마이코박테리아, 진균에는 효과 없음."
 }

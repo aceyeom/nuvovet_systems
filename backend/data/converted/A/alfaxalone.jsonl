@@ -24,7 +24,9 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -801,5 +803,17 @@
     "source_file": "plumbs_output/53.jsonl",
     "extracted_at": "2026-03-11T05:43:51.463543+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "알팍살론(Alfaxalone)은(는) 진정 및 불안 완화에 사용되는 진정제입니다.",
+  "primary_indications": [
+    "개와 고양이에서 전신마취 유도 및 유지(FDA 승인). 흡입마취제 전 유도 마취. Extra-label: 고양이",
+    "소형견",
+    "소형 포유류에서 IM 진정/전처치/경마취. 말",
+    "파충류",
+    "양서류",
+    "영장류 등 다양한 종에서 extra-label 사용. Alfaxan Multidose IDX는 파충류",
+    "양서류",
+    "관상어"
+  ],
+  "mechanism_short": "알팍살론은 신경활성 스테로이드 분자로, GABA 세포 표면 수용체에 결합하여 신경세포막 염화이온 수송을 조절함으로써 전신마취 효과를 나타냄. 진통 효과 없음."
 }

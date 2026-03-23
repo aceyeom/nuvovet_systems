@@ -26,23 +26,33 @@
     "available_strengths": [
       {
         "value": 5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 15,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -700,5 +710,17 @@
     "source_file": "plumbs_output/58.jsonl",
     "extracted_at": "2026-03-11T07:19:45.265544+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "리도카인 (국소마취제)(Lidocaine, Local Anesthetic)은(는) 통증 완화에 사용되는 진통제입니다.",
+  "primary_indications": [
+    "고양이",
+    "말에서 경막외 마취",
+    "신경 차단 마취",
+    "조직 침윤 마취(승인 용도",
+    "FDA 미승인). 기관 삽관 전 기침 억제(후두 연골 국소 도포",
+    "extra-label). 안과용 리도카인 제제의 각막 감각 감소(개",
+    "extra-label). 복막 창상 카테터를 통한 CRI(extra-label). 국소정맥마취(Bier block",
+    "extra-label). 전신 진통 및 심실 부정맥 치료는 Lidocaine"
+  ],
+  "mechanism_short": "신경 세포막의 나트륨 이온 채널을 차단하여 전기적 흥분성, 탈분극 및 활동전위 전파를 억제함. 운동, 감각, 자율신경 섬유의 충격 생성 및 전도를 차단. 신경 기능 소실 순서: 통증 → 온도 → 촉각 → 고유감각 → 골격근 긴장도."
 }

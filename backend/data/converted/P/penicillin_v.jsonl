@@ -22,19 +22,27 @@
     "available_strengths": [
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -455,5 +463,16 @@
     "source_file": "plumbs_output/18.jsonl",
     "extracted_at": "2026-03-10T18:42:25.736546+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "페니실린 V(Penicillin V)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "개/고양이의 감수성 세균 감염(오프라벨): 연쇄구균 등 자연 페니실린 감수성 균주에 의한 경증~중등도 감염. 페니실리나제 생성 균주",
+    "대부분의 그람음성 간균",
+    "Pseudomonas spp.",
+    "Rickettsia",
+    "마이코박테리아",
+    "Mycoplasma",
+    "바이러스에는 효과 없음."
+  ],
+  "mechanism_short": "세포벽 무코펩타이드 합성 억제를 통한 살균 작용. 세균 세포막 내 페니실린 결합 단백질(PBP: 카복시펩티다제, 트랜스펩티다제, 엔도펩티다제)에 결합하여 세포벽 합성을 방해하고 삼투압적으로 불안정한 스페로플라스트를 형성함. 시간 의존성 항생제로 혈장/조직 농도가 MIC를 초과하는 시간에 의해 효능이 결정됨."
 }

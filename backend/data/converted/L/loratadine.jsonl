@@ -24,15 +24,21 @@
     "available_strengths": [
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -475,5 +481,12 @@
     "source_file": "plumbs_output/59.jsonl",
     "extracted_at": "2026-03-11T07:40:07.373979+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "로라타딘(Loratadine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "히스타민 매개 질환(아토피성 피부염",
+    "소양증 등)에 대한 extra-label 사용. 개 아토피성 피부염 치료 가이드라인에서 일부 개에서 항히스타민제가 제한적 효능을 보일 수 있으며",
+    "급성 악화 전 예방 요법으로 지속적(매일) 투여 권장. 스테로이드 절감제 및 필수 지방산과의 병용 요법으로 사용 가능."
+  ],
+  "mechanism_short": "말초 히스타민 H1 수용체 차단. 알파-1 길항 작용 없음. 치료 용량에서 항무스카린 활성 미미. 장기 작용 2세대 항히스타민제(피페리딘 계열)."
 }

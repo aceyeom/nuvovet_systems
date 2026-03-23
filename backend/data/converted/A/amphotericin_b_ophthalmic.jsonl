@@ -21,15 +21,21 @@
     "available_strengths": [
       {
         "value": 0.15,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 0.5,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 0.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -307,5 +313,17 @@
     "source_file": "plumbs_output/8.jsonl",
     "extracted_at": "2026-03-10T16:04:28.326164+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "암포테리신 B 점안제(Amphotericin B Ophthalmic)은(는) 진균(곰팡이) 감염 치료에 사용되는 항진균제입니다.",
+  "primary_indications": [
+    "진균성 각막염 (Histoplasma spp",
+    "Coccidioides spp",
+    "Candida albicans",
+    "Blastomyces spp",
+    "Cryptococcus spp",
+    "Sporothrix spp",
+    "Mucor spp",
+    "Aspergillus spp 등). 주로 말에서 사용되며"
+  ],
+  "mechanism_short": "세포막의 진균 스테롤(에르고스테롤)에 결합하여 세포 내 구성 성분의 누출을 유발함. 일반적으로 진균 정지 효과(fungistatic)를 나타내나 고농도에서는 진균 살균 효과(fungicidal)를 나타낼 수 있음."
 }

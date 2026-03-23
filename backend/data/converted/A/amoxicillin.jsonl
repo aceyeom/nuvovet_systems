@@ -31,47 +31,69 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 150,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 400,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 62.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 875,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 775,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -670,5 +692,17 @@
     "source_file": "plumbs_output/55.jsonl",
     "extracted_at": "2026-03-11T06:13:57.484976+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아목시실린(Amoxicillin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "【승인 적응증 (개/고양이)】 호흡기 감염",
+    "비뇨생식기 감염(방광염)",
+    "위장관 감염",
+    "연조직 감염(농양",
+    "창상)",
+    "세균성 피부염. 【비라벨 적응증】 전신 감염",
+    "재발성 세균성 방광염",
+    "보렐리아증(라임병"
+  ],
+  "mechanism_short": "세포벽 합성 억제를 통한 살균 작용. 베타-락탐 항생제는 세균 세포막의 페니실린 결합 단백질(PBP; 카르복시펩티다제, 트랜스펩티다제, 엔도펩티다제)에 결합하여 무코펩티드 합성을 억제하고, 결함 있는 세포벽과 삼투압적으로 불안정한 구형체를 형성하여 세균을 사멸시킨다. 시간 의존성 살균제."
 }

@@ -24,23 +24,33 @@
     "available_strengths": [
       {
         "value": 75,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 150,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 15,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -533,5 +543,17 @@
     "source_file": "plumbs_output/32.jsonl",
     "extracted_at": "2026-03-10T23:09:55.782393+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "라니티딘(Ranitidine)은(는) 위장관 보호 및 궤양 치료에 사용되는 소화기 보호제입니다.",
+  "primary_indications": [
+    "위궤양",
+    "십이지장궤양",
+    "제4위궤양",
+    "요독성 위염",
+    "스트레스성 또는 약물 유발 미란성 위염",
+    "식도염",
+    "위식도 역류",
+    "위십이지장 역류의 치료 및 예방. 가스트린종 및 전신성 비만세포증과 관련된 과분비 상태 치료. 위장관 운동 촉진제로서 지연성 위 배출 개선 및 고양이에서 결장 운동 자극."
+  ],
+  "mechanism_short": "H2 수용체 길항제로서 위벽세포의 H2 수용체에서 히스타민과 경쟁적으로 결합하여 기저 및 자극 유발 위산 분비를 억제함. 또한 아세틸콜린에스테라제를 억제하여 무스카린 수용체에서 아세틸콜린을 증가시킴으로써 위장관 운동을 촉진함."
 }

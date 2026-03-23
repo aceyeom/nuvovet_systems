@@ -24,19 +24,27 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -481,5 +489,11 @@
     "source_file": "plumbs_output/28.jsonl",
     "extracted_at": "2026-03-10T22:00:08.507420+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "니트로푸란토인(Nitrofurantoin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "【허가 외 사용】 개/고양이의 산발성 세균성 방광염(특히 다제내성 병원체). 1차 항균제 내성 시 2차 선택약. 신우신염",
+    "전립선염 등 조직 감염에는 부적합."
+  ],
+  "mechanism_short": "세균의 다양한 효소 시스템(DNA, RNA, 단백질 합성, 아세틸 CoA, 에너지 대사, 세포벽 합성) 억제를 통해 주로 정균 작용을 나타내며, 약물 농도 및 균주 감수성에 따라 살균 작용도 가능. 산성 환경에서 항균 활성 증가."
 }

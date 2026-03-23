@@ -28,47 +28,69 @@
     "available_strengths": [
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 15,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 30,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 60,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 80,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 120,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -750,5 +772,12 @@
     "source_file": "plumbs_output/0.jsonl",
     "extracted_at": "2026-03-10T13:40:18.339327+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "하이드로코돈 복합제(Hydrocodone Combinations)은(는) 중등도~중증 통증 관리에 사용되는 오피오이드 진통제입니다.",
+  "primary_indications": [
+    "【개 - 오프라벨】 기관 허탈",
+    "기관지염",
+    "개 감염성 호흡기 질환 복합체(CIRDC/켄넬 코프)에 의한 건성 비생산적 기침의 진해 치료. 경증~중등도 통증의 진통(임상적 근거 제한적). 【고양이】 사용 권장하지 않음. 【수의학적 승인 제품 없음 - 모든 사용은 오프라벨】"
+  ],
+  "mechanism_short": "뮤(μ) 오피오이드 수용체에 주로 작용하며, 고용량에서 카파(κ) 및 델타(δ) 수용체에도 결합. CNS 수용체 결합을 통해 신경 흥분성 감소. 연수 기침 중추를 직접 억제하여 진해 효과 발휘."
 }

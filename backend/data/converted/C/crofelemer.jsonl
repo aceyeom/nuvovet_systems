@@ -22,7 +22,9 @@
     "available_strengths": [
       {
         "value": 125,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -388,5 +390,10 @@
     "source_file": "plumbs_output/37.jsonl",
     "extracted_at": "2026-03-11T00:28:47.058842+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "크로펠레머(Crofelemer)은(는) 위장관 보호 및 궤양 치료에 사용되는 소화기 보호제입니다.",
+  "primary_indications": [
+    "개에서 화학요법 유발 설사 치료 (FDA 조건부 승인). 사람에서는 항레트로바이러스 치료 중인 HIV/AIDS 성인 환자의 비감염성 설사 증상 완화에 승인되어 있다."
+  ],
+  "mechanism_short": "크로펠레머는 장 상피세포의 내강 막에서 두 가지 유형의 염소 이온 채널을 억제한다: (1) cAMP 자극 낭포성 섬유증 막 전도도 조절인자(CFTR) 염소 채널; (2) 칼슘 활성화 염소 채널. 이를 통해 염소 이온 분비와 동반되는 대량 수분 손실을 차단하여 설사 시 GI 내 염소 이온 및 수분 흐름을 정상화한다."
 }

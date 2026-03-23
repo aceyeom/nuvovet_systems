@@ -24,7 +24,9 @@
     "available_strengths": [
       {
         "value": 0.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -200,7 +202,7 @@
           "logic_type": "linear",
           "context": "항종양제 (오프라벨) - 림프종, 육종, 암종",
           "value": "0.5 - 1",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q8h",
           "max_dose_mg_kg": null,
@@ -216,7 +218,7 @@
           "logic_type": "fixed",
           "context": "항종양제 (오프라벨) - 고양이 림프종 구제 프로토콜",
           "value": "0.75",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q8h",
           "max_dose_mg_kg": null,
@@ -431,5 +433,13 @@
     "source_file": "plumbs_output/37.jsonl",
     "extracted_at": "2026-03-11T00:47:35.120790+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "닥티노마이신(Dactinomycin)은(는) 악성 종양(암) 치료에 사용되는 항종양제입니다.",
+  "primary_indications": [
+    "개: 림프종",
+    "골 및 연조직 육종",
+    "암종 (오프라벨). 고양이: 림프종 구제 프로토콜 (오프라벨). 수의학적 승인 제품 없음",
+    "모든 수의학적 사용은 오프라벨."
+  ],
+  "mechanism_short": "DNA와 복합체를 형성하여 DNA에 결합하고 RNA 합성을 억제하는 항생제계 항종양제. 면역억제 및 저칼슘혈증 활성도 보유."
 }

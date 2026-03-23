@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 2.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -315,7 +317,7 @@
           "logic_type": "fixed",
           "context": "일반 항종양 용량 (독소루비신 대체, 체중 10 kg 이상)",
           "value": "30",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q21d",
           "max_dose_mg_kg": null,
@@ -326,7 +328,7 @@
           "logic_type": "fixed",
           "context": "일반 항종양 용량 (체중 10 kg 미만 소형견)",
           "value": "1",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q21d",
           "max_dose_mg_kg": null,
@@ -337,7 +339,7 @@
           "logic_type": "fixed",
           "context": "림프종 (오프라벨, 후향적 연구, CEOP-C 또는 CEOP-25 프로토콜)",
           "value": "30",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q21d",
           "max_dose_mg_kg": null,
@@ -348,7 +350,7 @@
           "logic_type": "fixed",
           "context": "비장 혈관육종 (오프라벨, 후향적 연구, 비장절제술 후 보조요법)",
           "value": "30",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q21d",
           "max_dose_mg_kg": null,
@@ -359,7 +361,7 @@
           "logic_type": "weight_band",
           "context": "조직구성 육종 (오프라벨, 후향적 연구, 로무스틴 병용 또는 단독 구제요법)",
           "value": "25 - 30",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q21d",
           "max_dose_mg_kg": null,
@@ -375,7 +377,7 @@
           "logic_type": "fixed",
           "context": "주사 부위 육종 (오프라벨, 수술 전 신보조요법)",
           "value": "25",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q21d",
           "max_dose_mg_kg": null,
@@ -636,5 +638,14 @@
     "source_file": "plumbs_output/16.jsonl",
     "extracted_at": "2026-03-10T18:05:46.626779+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "에피루비신(Epirubicin)은(는) 악성 종양(암) 치료에 사용되는 항종양제입니다.",
+  "primary_indications": [
+    "개: 림프종(오프라벨)",
+    "비장 혈관육종(오프라벨",
+    "비장절제술 후 보조요법)",
+    "조직구성 육종(오프라벨). 고양이: 주사 부위 육종(오프라벨",
+    "수술 전 신보조요법). 모든 적응증이 오프라벨이며 수의학적 승인 없음."
+  ],
+  "mechanism_short": "DNA 합성, DNA 의존성 RNA 합성 및 단백질 합성 억제. 세포 주기 전반에 걸쳐 작용하며 일부 면역억제 활성도 보유. 독소루비신의 반합성 입체이성질체로 유사한 작용 기전을 가짐."
 }

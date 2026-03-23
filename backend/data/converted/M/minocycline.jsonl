@@ -25,47 +25,69 @@
     "available_strengths": [
       {
         "value": 45.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 55.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 65.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 75.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 80.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 90.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 105.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 115.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 135.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -398,5 +420,11 @@
     "source_file": "minocycline_monograph.txt",
     "extracted_at": "2026-03-23T14:07:30+09:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "미노사이클린(Minocycline)은(는) 테트라사이클린 계열 항생제로, 광범위 항균 작용을 합니다.",
+  "primary_indications": [
+    "Used for the treatment of a variety of bacterial infections",
+    "particularly when doxycycline is unavailable. Can be effective against some doxycycline-resistant staphylococci. Not recommended for bacterial cystitis or prostatitis."
+  ],
+  "mechanism_short": "Inhibits bacterial protein synthesis by reversibly binding to the bacterial 30S ribosomal subunits, thus preventing aminoacyl tRNA attachment to the ribosome."
 }

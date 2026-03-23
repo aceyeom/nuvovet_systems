@@ -25,39 +25,57 @@
     "available_strengths": [
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 750,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 125,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -502,5 +520,15 @@
     "source_file": "plumbs_output/6.jsonl",
     "extracted_at": "2026-03-10T15:25:04.925487+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "반코마이신(Vancomycin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "1) 다제내성 그람양성균(MRSA",
+    "MRSP",
+    "다제내성 장구균) 전신 생명위협 감염 (오프라벨",
+    "최후 수단) 2) 메트로니다졸에 반응하지 않는 Clostridioides difficile 장내 감염 경구 치료 (오프라벨) 3) 항균제 함침 물질(PMMA 비드",
+    "관절내 주사",
+    "국소 사지 관류를 통한 국소 치료"
+  ],
+  "mechanism_short": "세포벽 합성 억제 및 세균 세포막 투과성 변화. RNA 합성에도 영향. 그람양성균에만 효과적(살균성, 시간 의존성). 장구균에 대해서는 정균 작용."
 }

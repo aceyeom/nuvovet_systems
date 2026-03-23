@@ -26,11 +26,15 @@
     "available_strengths": [
       {
         "value": 0.25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.25,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -369,5 +373,12 @@
     "source_file": "plumbs_output/37.jsonl",
     "extracted_at": "2026-03-11T00:27:22.353906+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "코신트로핀(Cosyntropin)은(는) 호르몬 불균형 치료에 사용되는 호르몬제입니다.",
+  "primary_indications": [
+    "【승인 적응증】없음(수의학적 승인 제품 없음). 【오프라벨 적응증】개: 부신피질기능저하증 선별",
+    "의인성 부신피질기능항진증 진단",
+    "미토탄 또는 트릴로스탄 치료 중 부신피질기능항진증 모니터링을 위한 ACTH 자극 시험. 고양이: 부신 기능 평가를 위한 ACTH 자극 시험. 말(성마 및 신생 망아지): 부신 기능 평가."
+  ],
+  "mechanism_short": "코신트로핀은 내인성 코르티코트로핀(ACTH)의 합성 유사체로, 부신피질(주로 속상대)을 자극하여 글루코코르티코이드(포유류에서 주로 코르티솔)의 생성 및 분비를 촉진한다. 코르티코트로핀의 첫 24개 아미노산과 동일한 구조를 가지며, 생물학적 활성을 유지하면서 면역원성은 낮다."
 }

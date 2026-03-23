@@ -25,19 +25,27 @@
     "available_strengths": [
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 38.02,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -229,11 +237,11 @@
           "logic_type": "linear",
           "context": "항종양제 (오프라벨) - 일반 범위",
           "value": "45 - 900",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q7h",
           "max_dose_mg_kg": null,
-          "duration_note": "30~60분에 걸쳐 IV 투여, 7~14일마다 반복. mg/m² 단위 사용 (mg/kg 아님)",
+          "duration_note": "30~60분에 걸쳐 IV 투여, 7~14일마다 반복.사용 (mg/kg 아님)",
           "evidence": "오프라벨. 45~900 mg/m² (mg/kg 아님) 범위. 수의 종양 전문의 상담 필수."
         },
         {
@@ -251,44 +259,44 @@
           "logic_type": "fixed",
           "context": "림프종 치료 (오프라벨)",
           "value": "400",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q7h",
           "max_dose_mg_kg": null,
-          "duration_note": "주 1회. 호중구 및 혈소판 유의한 감소로 용량 감소 또는 치료 지연 필요. mg/m² 단위 사용.",
+          "duration_note": "주 1회. 호중구 및 혈소판 유의한 감소로 용량 감소 또는 치료 지연 필요.사용.",
           "evidence": "400 mg/m² (mg/kg 아님) 주 1회. 림프종 개에서 유의한 혈액독성 보고."
         },
         {
           "logic_type": "fixed",
           "context": "항종양제 (오프라벨) - 최소 독성 용량",
           "value": "675",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q14h",
           "max_dose_mg_kg": null,
-          "duration_note": "2주마다 투여. 최소 허용 독성 확인. mg/m² 단위 사용.",
+          "duration_note": "2주마다 투여. 최소 허용 독성 확인.사용.",
           "evidence": "675 mg/m² (mg/kg 아님) 2주마다. 최소 허용 독성 입증."
         },
         {
           "logic_type": "fixed",
           "context": "항종양제 (오프라벨) - 최대 내약 용량",
           "value": "800 - 950",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q14h",
           "max_dose_mg_kg": null,
-          "duration_note": "최대 내약 용량 900 mg/m²에서 효능 확인. mg/m² 단위 사용.",
+          "duration_note": "최대 내약 용량 900 mg/m²에서 효능 확인.사용.",
           "evidence": "800~950 mg/m² (mg/kg 아님) 범위. 최대 내약 용량 900 mg/m²에서 효능 입증."
         },
         {
           "logic_type": "fixed",
           "context": "방사선 감작제 (오프라벨, 권장하지 않음)",
           "value": "50",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "BID",
           "max_dose_mg_kg": null,
-          "duration_note": "주 2회 IV. 유의한 독성으로 이 용량/일정은 권장하지 않음. mg/m² 단위 사용.",
+          "duration_note": "주 2회 IV. 유의한 독성으로 이 용량/일정은 권장하지 않음.사용.",
           "evidence": "평균 50 mg/m² (mg/kg 아님) 주 2회. 80%에서 용량 감소 또는 연기 필요. 권장하지 않음."
         }
       ]
@@ -300,11 +308,11 @@
           "logic_type": "linear",
           "context": "항종양제 (오프라벨) - 일반 범위",
           "value": "45 - 900",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q7h",
           "max_dose_mg_kg": null,
-          "duration_note": "30~60분에 걸쳐 IV 투여, 7~14일마다 반복. mg/m² 단위 사용 (mg/kg 아님)",
+          "duration_note": "30~60분에 걸쳐 IV 투여, 7~14일마다 반복.사용 (mg/kg 아님)",
           "evidence": "오프라벨. 45~900 mg/m² (mg/kg 아님) 범위. 수의 종양 전문의 상담 필수."
         },
         {
@@ -322,22 +330,22 @@
           "logic_type": "fixed",
           "context": "방사선 감작제 (오프라벨) - 구강 편평세포암종",
           "value": "25",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "BID",
           "max_dose_mg_kg": null,
-          "duration_note": "주 2회 IV. 50%에서 혈액독성으로 용량 감소 또는 연기 필요. mg/m² 단위 사용.",
+          "duration_note": "주 2회 IV. 50%에서 혈액독성으로 용량 감소 또는 연기 필요.사용.",
           "evidence": "평균 25 mg/m² (mg/kg 아님) 주 2회. 구강 편평세포암종 방사선 감작제로 사용."
         },
         {
           "logic_type": "fixed",
           "context": "완화 방사선 병용 (오프라벨) - 구강 편평세포암종",
           "value": "25",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "PRN",
           "max_dose_mg_kg": null,
-          "duration_note": "완화 방사선과 병용. 소규모 파일럿 연구(n=8)에서 75% 반응률. mg/m² 단위 사용.",
+          "duration_note": "완화 방사선과 병용. 소규모 파일럿 연구(n=8)에서 75% 반응률.사용.",
           "evidence": "소규모 파일럿 연구에서 완화 방사선과 병용 시 내약성 및 75% 반응률 보고."
         }
       ]
@@ -573,5 +581,17 @@
     "source_file": "plumbs_output/44.jsonl",
     "extracted_at": "2026-03-11T02:44:36.812461+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "젬시타빈(Gemcitabine)은(는) 악성 종양(암) 치료에 사용되는 항종양제입니다.",
+  "primary_indications": [
+    "【오프라벨】개: 고형 종양(단일 제제 또는 병용 요법)",
+    "비강 암종(방사선 감작제",
+    "권장하지 않음). 고양이: 외분비 췌장암(±카보플라틴)",
+    "구강 편평세포암종(완화 방사선 병용). 인체: 유방암",
+    "췌장암",
+    "소세포 폐암",
+    "난소암(다른 항암제와 병용). 림프종",
+    "절제 불가능한 간세포암종"
+  ],
+  "mechanism_short": "세포 주기 특이적 항종양제로 주로 S기에 작용. 세포 내에서 dFdCMP, dFdCDP, dFdCTP로 대사됨. dFdCDP는 리보뉴클레오티드 환원효소를 억제하고, dFdCTP는 정상 뉴클레오티드(dCTP)와 경쟁하여 DNA 가닥에 삽입됨. DNA 중합효소 엡실론이 비정상 뉴클레오티드를 인식하지 못해 DNA 복구가 불가능해지며, 이로 인해 다른 뉴클레오시드 유사체에 비해 세포 내 반감기가 연장됨."
 }

@@ -27,11 +27,15 @@
     "available_strengths": [
       {
         "value": 0.25,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 0.5,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -464,5 +468,12 @@
     "source_file": "plumbs_output/5.jsonl",
     "extracted_at": "2026-03-10T15:08:43.943378+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "티몰롤 점안액(Timolol Ophthalmic)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "원발성 녹내장에서 안압 감소 및 편측 녹내장 동물의 정상안에서 녹내장 예방 (모두 적응증 외 사용). 개",
+    "고양이",
+    "말에서 사용 보고됨. 도르졸라미드와 병용 시 추가적인 안압 강하 효과 가능."
+  ],
+  "mechanism_short": "비선택적 베타-아드레날린 수용체 차단제로, 특히 섬모체의 베타-2 수용체 차단을 통해 방수 생성을 감소시켜 안압(IOP)을 낮춤. 내인성 교감신경 유사 활성은 없으며 막 안정화 활성도 없음. 노르에피네프린 유발 긴장성 교감신경 자극의 베타 차단, cAMP 활성화 감소, Na+K+ATPase 활성 억제, 홍채 및 섬모체의 혈관 활성 등의 기전이 제안됨. 또한 망막의 허혈성 손상에 대한 보호 효과 가능성도 있음."
 }

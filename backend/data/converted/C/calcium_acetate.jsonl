@@ -25,11 +25,15 @@
     "available_strengths": [
       {
         "value": 667,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 169,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -559,5 +563,11 @@
     "source_file": "plumbs_output/52.jsonl",
     "extracted_at": "2026-03-11T05:19:20.014101+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "칼슘 아세테이트(Calcium Acetate)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "만성 신장 질환(CKD) 관련 고인산혈증 치료 (저인산 식이와 병용",
+    "엑스트라라벨). 개와 고양이 모두에서 사용 가능."
+  ],
+  "mechanism_short": "식사와 함께 투여 시 식이 인산염과 결합하여 불용성 인산칼슘을 형성하고 대변으로 배출시킴. 넓은 pH 범위에서 용해되어 위와 근위 소장에서 인산염 결합 가능. 칼슘 카보네이트보다 약 50% 더 많은 인산염을 결합함."
 }

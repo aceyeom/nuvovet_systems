@@ -27,19 +27,27 @@
     "available_strengths": [
       {
         "value": 1.25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -634,5 +642,15 @@
     "source_file": "plumbs_output/32.jsonl",
     "extracted_at": "2026-03-10T23:06:15.681881+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "라미프릴(Ramipril)은(는) 혈압 강하 및 심부전 치료에 사용되는 ACE 억제제입니다.",
+  "primary_indications": [
+    "【허가 적응증】영국: 개의 심부전 치료 (Vasotop®). 【엑스트라라벨 적응증】개: 심부전",
+    "전신성 고혈압",
+    "만성 신장 질환",
+    "단백뇨성 신병증. 고양이: 전신성 고혈압",
+    "만성 신장 질환",
+    "단백뇨성 신병증."
+  ],
+  "mechanism_short": "라미프릴은 프로드럭으로 간에서 활성형인 라미프릴라트로 전환됨. 라미프릴라트는 안지오텐신-I이 안지오텐신-II(강력한 혈관수축제)로 전환되는 것을 경쟁적으로 억제함(ACE 억제). 이로 인해 안지오텐신-II 농도 감소, 알도스테론 분비 감소, 혈장 레닌 활성 증가가 나타남."
 }

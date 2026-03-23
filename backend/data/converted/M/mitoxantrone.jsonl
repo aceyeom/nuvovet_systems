@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 2.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -258,11 +260,11 @@
           "logic_type": "fixed",
           "context": "감수성 종양 질환 치료 (오프라벨) — 표준 용량",
           "value": "5 - 6",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q21d",
           "max_dose_mg_kg": null,
-          "duration_note": "mg/m² 단위 사용 (mg/kg 아님). 0.9% 생리식염수 또는 5% 포도당으로 희석 후 최소 5분 이상 주입. 10 kg 이하 개는 중증 호중구감소증 위험 증가로 초기 용량 감량 고려.",
+          "duration_note": "사용 (mg/kg 아님). 0.9% 생리식염수 또는 5% 포도당으로 희석 후 최소 5분 이상 주입. 10 kg 이하 개는 중증 호중구감소증 위험 증가로 초기 용량 감량 고려.",
           "evidence": "Plumb's Veterinary Drug Handbook: 5–6 mg/m² IV q21days. 단위는 mg/m²임."
         }
       ]
@@ -274,11 +276,11 @@
           "logic_type": "fixed",
           "context": "종양 질환 치료 (오프라벨)",
           "value": "5.5 - 6.5",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q21d",
           "max_dose_mg_kg": null,
-          "duration_note": "mg/m² 단위 사용 (mg/kg 아님). 0.9% 생리식염수 또는 5% 포도당으로 희석 후 최소 5분 이상 주입.",
+          "duration_note": "사용 (mg/kg 아님). 0.9% 생리식염수 또는 5% 포도당으로 희석 후 최소 5분 이상 주입.",
           "evidence": "Plumb's Veterinary Drug Handbook: 5.5–6.5 mg/m² IV q21days. 단위는 mg/m²임."
         }
       ]
@@ -537,5 +539,17 @@
     "source_file": "plumbs_output/27.jsonl",
     "extracted_at": "2026-03-10T21:30:45.109298+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "미톡산트론(Mitoxantrone)은(는) 악성 종양(암) 치료에 사용되는 항종양제입니다.",
+  "primary_indications": [
+    "개: 림프종",
+    "유선 선암종",
+    "편평세포암종",
+    "신장 선암종",
+    "섬유육종",
+    "갑상선/전립선 암종",
+    "항문낭 선암종",
+    "혈관주위세포종"
+  ],
+  "mechanism_short": "DNA 삽입제로서 DNA 염기쌍 사이에 결합하여 교차결합 및 사슬 절단을 유발. RNA 합성 억제 및 강력한 토포이소머라제 II 억제제. 세포 주기 비특이적이나 S기에 가장 활성."
 }

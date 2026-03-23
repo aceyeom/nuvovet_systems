@@ -34,11 +34,15 @@
     "available_strengths": [
       {
         "value": 15,
-        "unit": "IU"
+        "unit": "IU",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 30,
-        "unit": "IU"
+        "unit": "IU",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -235,7 +239,7 @@
           "logic_type": "fixed",
           "context": "항종양제 (오프라벨) - 체표면적 기준",
           "value": "10",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "SID",
           "max_dose_mg_kg": null,
@@ -246,7 +250,7 @@
           "logic_type": "linear",
           "context": "항종양제 (오프라벨) - 체중 기준",
           "value": "0.3 - 0.5",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "SC",
           "frequency": "SID",
           "max_dose_mg_kg": 0.5,
@@ -262,7 +266,7 @@
           "logic_type": "fixed",
           "context": "항종양제 (오프라벨) - 체표면적 기준",
           "value": "10",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "SID",
           "max_dose_mg_kg": null,
@@ -273,7 +277,7 @@
           "logic_type": "linear",
           "context": "항종양제 (오프라벨) - 체중 기준",
           "value": "0.3 - 0.5",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "SC",
           "frequency": "SID",
           "max_dose_mg_kg": 0.5,
@@ -477,5 +481,13 @@
     "source_file": "plumbs_output/50.jsonl",
     "extracted_at": "2026-03-11T04:50:45.728831+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "블레오마이신(Bleomycin)은(는) 악성 종양(암) 치료에 사용되는 항종양제입니다.",
+  "primary_indications": [
+    "개·고양이에서 림프종",
+    "구강 편평세포암종",
+    "기형종",
+    "비기능성 갑상선 종양(오프라벨). 국소 종양에 대한 병변 내 투여(전기천공법 병용 포함) 가능성 있음. 개 극세포성 법랑모세포종에 병변 내 투여 성공 사례 보고됨."
+  ],
+  "mechanism_short": "블레오마이신은 DNA 결합 부위와 제1철(ferrous) 철 결합 부위를 모두 가진 항생제 항종양제이다. 제1철 이온에서 DNA 가닥의 산소 원자로 전자 수용체 역할을 함으로써 DNA를 절단하고 세포 자멸사(apoptosis)를 유발한다."
 }

@@ -25,31 +25,45 @@
     "available_strengths": [
       {
         "value": 2.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 24.65,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 49.3,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -558,5 +572,14 @@
     "source_file": "plumbs_output/17.jsonl",
     "extracted_at": "2026-03-10T18:21:01.745557+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "에소메프라졸(Esomeprazole)은(는) 위장관 보호 및 궤양 치료에 사용되는 소화기 보호제입니다.",
+  "primary_indications": [
+    "위십이지장 궤양 치료 및 예방(허가 외)",
+    "궤양 유발 약물(예: 아스피린)에 의한 위 미란 예방 및 치료(허가 외)",
+    "마취 중 위식도 역류 감소(개",
+    "허가 외)",
+    "말에서 위산 분비 감소(허가 외)."
+  ],
+  "mechanism_short": "에소메프라졸은 치환된 벤즈이미다졸 계열의 양성자 펌프 억제제(PPI)로, 위벽세포의 분비면에 있는 H+/K+ ATPase 효소에 비가역적으로 결합하여 위산 분비를 억제함. 기저 및 자극 조건 모두에서 산 분비를 감소시킴."
 }

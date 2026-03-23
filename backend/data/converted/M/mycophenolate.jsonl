@@ -30,15 +30,21 @@
     "available_strengths": [
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -388,7 +394,7 @@
           "logic_type": "linear",
           "context": "면역매개성 용혈성 빈혈(IMHA) - 프레드니솔론 병용",
           "value": "8 - 12",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "PO",
           "frequency": "q12h",
           "max_dose_mg_kg": 12.0,
@@ -736,5 +742,17 @@
     "source_file": "plumbs_output/27.jsonl",
     "extracted_at": "2026-03-10T21:44:10.224701+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "마이코페놀레이트 모페틸(Mycophenolate Mofetil)은(는) 면역 반응을 억제하는 면역억제제입니다.",
+  "primary_indications": [
+    "개(오프라벨): 면역매개성 용혈성 빈혈(IMHA)",
+    "면역매개성 혈소판감소증(IMTP)",
+    "중증근무력증",
+    "원인불명 뇌수막뇌척수염(MUE)",
+    "사구체신염",
+    "천포창",
+    "재생불량성 빈혈",
+    "면역매개성 피부 질환"
+  ],
+  "mechanism_short": "마이코페놀레이트 모페틸(MMF)은 프로드럭으로, 체내에서 활성형인 마이코페놀산(MPA)으로 가수분해됨. MPA는 이노신 모노포스페이트 탈수소효소(IMPDH)를 비경쟁적·가역적으로 억제하며, 특히 활성화된 림프구에 존재하는 IMPDH 2형에 5배 높은 친화력을 가짐. 이를 통해 구아노신 뉴클레오타이드의 de novo 합성을 차단하여 T세포 및 B세포의 증식을 억제하고, B세포의 항체 생성을 억제함으로써 세포성 및 체액성 면역반응을 모두 억제함."
 }

@@ -23,15 +23,21 @@
     "available_strengths": [
       {
         "value": 0.194,
-        "unit": "%"
+        "unit": "%",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 19.4,
-        "unit": "%"
+        "unit": "%",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 88,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -360,5 +366,17 @@
     "source_file": "plumbs_output/27.jsonl",
     "extracted_at": "2026-03-10T21:34:44.969123+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "모란텔(Morantel)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "소: Haemonchus spp.",
+    "Ostertagia spp.",
+    "Trichostrongylus spp.",
+    "Nematodirus spp.",
+    "Cooperia spp.",
+    "Oesophagostomum radiatum의 성숙형 제거 및 구제 (FDA 승인). 염소: Haemonchus contortus",
+    "Ostertagia (Teladorsagia) circumcincta",
+    "Trichostrongylus axei의 성숙형 제거 및 구제 (FDA 승인). 양: 동일 용량으로 사용 가능 (허가 외 사용)."
+  ],
+  "mechanism_short": "탈분극성 신경근 차단제로 감수성 기생충을 마비시킴. 니코틴 유사 특성을 가지며 아세틸콜린과 유사하게 작용. Haemonchus spp.에서 푸마레이트 환원효소를 억제함."
 }

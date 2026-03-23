@@ -27,35 +27,51 @@
     "available_strengths": [
       {
         "value": 12.5,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 37.5,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 62.5,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 75,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 87.5,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -846,5 +862,17 @@
     "source_file": "plumbs_output/41.jsonl",
     "extracted_at": "2026-03-11T01:54:53.588731+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "펜타닐 경피 패치(Fentanyl, Transdermal Patch)은(는) 중등도~중증 통증 관리에 사용되는 오피오이드 진통제입니다.",
+  "primary_indications": [
+    "수술 후 통증 조절",
+    "암성 통증의 완화적 단기 조절",
+    "만성 통증(췌장염",
+    "대동맥 혈전색전증",
+    "복막염 관련)",
+    "비특이적 광범위 통증. 개",
+    "고양이",
+    "알파카"
+  ],
+  "mechanism_short": "뮤 오피오이드 수용체 작용제. 모르핀보다 약 80~100배 강력함. 뮤 수용체는 뇌의 통증 조절 영역, 척수 후각, 말초 조직에 주로 분포하며 진통, 행복감, 호흡 억제, 신체적 의존성, 축동, 저체온 작용에 기여함."
 }

@@ -27,19 +27,27 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -645,5 +653,13 @@
     "source_file": "plumbs_output/44.jsonl",
     "extracted_at": "2026-03-11T02:48:23.179768+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "젠타마이신 (전신)(Gentamicin, Systemic)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "감수성 그람 음성균 및 포도상구균에 의한 중증 감염(비법정 사용",
+    "개/고양이). 말 자궁 내 감염(FDA 승인). 말 재발성 포도막염 및 말기 녹내장의 유리체 내 주사(비법정 사용). Bordetella bronchiseptica 분무 치료(비법정 사용",
+    "개). 돼지",
+    "가금류의 장관 감염(FDA 승인)."
+  ],
+  "mechanism_short": "30S 리보솜 소단위에 비가역적으로 결합하여 단백질 합성을 억제하는 농도 의존성 살균 항생제. 최적 항균 효과를 위해 최고 혈중 농도/MIC 비율 10 이상 권장."
 }

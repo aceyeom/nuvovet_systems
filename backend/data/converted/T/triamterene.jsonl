@@ -23,11 +23,15 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -502,5 +506,15 @@
     "source_file": "plumbs_output/48.jsonl",
     "extracted_at": "2026-03-11T04:11:52.933022+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "트리암테렌(Triamterene)은(는) 체액 저류 치료에 사용되는 이뇨제입니다.",
+  "primary_indications": [
+    "개의 울혈성 심부전 보조 치료 (비공식 사용",
+    "스피로노락톤 대안). 고양이에서의 적응증 없음. 무뇨증",
+    "중증 신질환",
+    "중증 간질환",
+    "고칼륨혈증",
+    "트리암테렌 과민반응 시 금기."
+  ],
+  "mechanism_short": "원위 세뇨관에 직접 작용하여 수소 및 칼륨 이온과의 교환을 통한 나트륨 재흡수를 억제하는 칼륨보존 이뇨제. 알도스테론 경쟁적 억제 없이 작용."
 }

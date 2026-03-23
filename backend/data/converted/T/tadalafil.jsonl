@@ -23,23 +23,33 @@
     "available_strengths": [
       {
         "value": 2.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -510,5 +520,12 @@
     "source_file": "plumbs_output/45.jsonl",
     "extracted_at": "2026-03-11T03:10:53.066688+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "타달라필(Tadalafil)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【승인 적응증】없음(수의학적 승인 제품 없음). 【오프라벨 사용】개의 폐동맥 고혈압(PAH): 1~2 mg/kg PO SID 또는 1 mg/kg PO q48h. 개의 양성 전립선 비대증(BPH",
+    "실험적): 5 mg/dog PO SID. 【사람 승인 적응증】폐동맥 고혈압",
+    "발기부전."
+  ],
+  "mechanism_short": "cGMP 특이적 포스포디에스테라제 5형(PDE5)의 선택적 억제제. PDE5 억제를 통해 cGMP 농도를 증가시켜 폐혈관 평활근을 이완시키고 혈관 확장을 유도한다."
 }

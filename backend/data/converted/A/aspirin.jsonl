@@ -29,43 +29,63 @@
     "available_strengths": [
       {
         "value": 60,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 81,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 120,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 150,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 325,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 450,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 650,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 12,
-        "unit": "%"
+        "unit": "%",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -862,5 +882,10 @@
     "source_file": "plumbs_output/49.jsonl",
     "extracted_at": "2026-03-11T04:20:43.572321+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아스피린(Aspirin)은(는) 통증과 염증을 완화하는 비스테로이드성 항염증제(NSAID)입니다.",
+  "primary_indications": [
+    "항염증 효과(허가 외). 혈소판 응집 억제 및 항혈전 목적(허가 외). 면역매개성 용혈성 빈혈(IMHA)에서 클로피도그렐과 병용(허가 외). 사이클로스포린 유발 트롬복산 합성 상쇄(허가 외). 말에서 제엽염의 항혈소판 보조 치료(허가 외). 소에서 진통(허가 외)."
+  ],
+  "mechanism_short": "사이클로옥시게나제(COX-1, 프로스타글란딘 합성효소)를 억제하여 프로스타글란딘 및 트롬복산(TXA2) 합성을 감소시킴. 혈소판에서는 새로운 COX 합성이 불가능하여 혈소판 응집의 비가역적 억제가 발생함."
 }

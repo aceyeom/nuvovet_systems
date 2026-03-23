@@ -23,11 +23,15 @@
     "available_strengths": [
       {
         "value": 250,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 2,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -766,5 +770,13 @@
     "source_file": "plumbs_output/40.jsonl",
     "extracted_at": "2026-03-11T11:22:38.653840+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "엑세나타이드(Exenatide)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "고양이의 합병증 없는 당뇨병 보조 치료(오프라벨). 엑세나타이드 IR: 1 µg/kg SC BID",
+    "글라진 인슐린 및 저탄수화물 식이 병용. 엑세나타이드 ER: 200 µg/kg SC 주 1회",
+    "글라진 인슐린 및 저탄수화물 식이 병용. 수의용 허가 제품 없음",
+    "인체용 제형 사용."
+  ],
+  "mechanism_short": "GLP-1 수용체 작용제(인크레틴 모방제)로서 포도당 의존적 인슐린 합성 및 분비를 증가시키고, 췌장 내분비 베타세포 증식 및 생존을 촉진하며, 글루카곤 분비를 억제한다(저혈당 시 글루카곤 분비는 유지). 근육의 인슐린 감수성을 개선하고 간 포도당 신생합성을 감소시킨다. 위 배출을 지연시켜 식후 고혈당을 완화한다."
 }

@@ -26,7 +26,9 @@
     "available_strengths": [
       {
         "value": 2.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -481,5 +483,13 @@
     "source_file": "plumbs_output/8.jsonl",
     "extracted_at": "2026-03-10T15:51:22.049658+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "요힘빈(Yohimbine)은(는) 약물 효과를 역전시키는 길항제/해독제입니다.",
+  "primary_indications": [
+    "승인 적응증: 개에서 자일라진 역전(FDA 승인). 비라벨 사용: 기타 알파-2 작용제(메데토미딘",
+    "데토미딘 등) 역전",
+    "아미트라즈 독성 역전 및 예방",
+    "고양이·말·소·라마·돼지·조류·토끼·설치류에서 알파-2 작용제 역전."
+  ],
+  "mechanism_short": "알파-2 아드레날린 수용체 경쟁적 길항제. 중추 및 말초 알파-2 수용체를 차단하여 교감신경 유출(노르에피네프린)을 증가시키고, 자일라진 등 알파-2 작용제의 효과를 역전시킴."
 }

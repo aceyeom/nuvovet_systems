@@ -22,11 +22,15 @@
     "available_strengths": [
       {
         "value": 9.06,
-        "unit": "%"
+        "unit": "%",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 22.5,
-        "unit": "%"
+        "unit": "%",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -338,5 +342,17 @@
     "source_file": "plumbs_output/30.jsonl",
     "extracted_at": "2026-03-10T22:29:41.058917+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "옥스펜다졸(Oxfendazole)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "소: 폐충",
+    "장내 선충(Ostertagia ostertagi 억제형 포함)",
+    "촌충 제거 및 관리 (FDA 허가). 돼지: 선충류(Ascaris suum",
+    "Oesophagostomum spp",
+    "Trichuris suis",
+    "Metastrongylus spp) 및 간흡충(Fasciola hepatica) (허가 외). 말: 대형 회충",
+    "대형 및 소형 원충류",
+    "요충 (미국 내 단종). 양/염소: 위장관 선충 (허가 외"
+  ],
+  "mechanism_short": "벤즈이미다졸계 항기생충제로, 기생충 내 세포내 미세소관 수송계를 교란함. 튜불린에 선택적으로 결합하여 튜불린 중합을 방해하고 미세소관 형성을 억제함. 고농도에서는 말산탈수소효소(malate dehydrogenase) 및 푸마르산환원효소(fumarate reductase)를 포함한 대사 효소를 억제함."
 }

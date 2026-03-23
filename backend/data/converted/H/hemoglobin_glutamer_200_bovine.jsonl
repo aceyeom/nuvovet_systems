@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 13.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -534,5 +536,14 @@
     "source_file": "plumbs_output/0.jsonl",
     "extracted_at": "2026-03-10T13:30:08.626476+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "헤모글로빈 글루타머-200 (소 유래)(Hemoglobin Glutamer-200 (Bovine))은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【승인 적응증】 개: 원인(용혈",
+    "비효율적 적혈구 생성)에 관계없이 빈혈 치료 (FDA 승인). 【오프라벨 적응증】 개: 면역매개성 용혈성 빈혈(IMHA)에서 면역억제제 효과 발현까지 산소 운반 능력 제공",
+    "외상/쇼크 환자 소생술",
+    "혈관수축제로 사용. 고양이: 저혈압 치료",
+    "외상 환자에서 산소 운반 능력 제공."
+  ],
+  "mechanism_short": "소 유래 중합 헤모글로빈 기반 산소 운반 수액으로, 혈장 용적 확장제 역할을 하며 동맥 산소 함량을 증가시킴. 내인성 헤모글로빈과 유사한 기전으로 조직에 산소를 공급하며, 산소 해리 곡선을 우측으로 이동시켜 조직으로의 산소 전달을 용이하게 함. 혈관수축 특성을 가짐."
 }

@@ -25,7 +25,9 @@
     "available_strengths": [
       {
         "value": 180,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -366,5 +368,13 @@
     "source_file": "plumbs_output/38.jsonl",
     "extracted_at": "2026-03-11T00:50:53.242060+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "다노플록사신(Danofloxacin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "소 호흡기 질환(BRD",
+    "Mannheimia haemolytica 및 Pasteurella multocida 관련) 치료 및 고위험 소에서의 BRD 예방(FDA 승인). 오프라벨: 성체 말",
+    "낙타류",
+    "파충류(사막 거북 마이코플라즈마 감염) 등 비식품동물의 감수성 감염 치료."
+  ],
+  "mechanism_short": "세균 DNA 자이라제(DNA gyrase)를 억제하여 DNA 초나선화 및 DNA 합성을 방해하는 살균성 플루오로퀴놀론 항생제. 농도 의존적 살균 효과."
 }

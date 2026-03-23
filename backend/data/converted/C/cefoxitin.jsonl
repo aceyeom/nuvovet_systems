@@ -24,15 +24,21 @@
     "available_strengths": [
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -506,5 +512,13 @@
     "source_file": "plumbs_output/22.jsonl",
     "extracted_at": "2026-03-10T20:09:44.532382+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "세폭시틴(Cefoxitin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "감수성 세균에 의한 감염증(허가 외): 개",
+    "고양이에서 30 mg/kg IV 또는 IM q6~8h. 수술(소화기 및 정형외과) 예방적 항생제(허가 외): 20~30 mg/kg IV 또는 IM",
+    "절개 30~60분 전 투여",
+    "2~4시간 후 1회 반복 가능. 개에서 파보바이러스 장염 치료 프로토콜에 사용된 바 있음."
+  ],
+  "mechanism_short": "세팔로스포린계(세파마이신) 항생제로 세균의 세포벽 합성을 억제함. 그람양성 구균 및 그람음성 간균에 대한 항균 활성을 가지며, 일부 혐기성균에도 효과적임."
 }

@@ -21,15 +21,21 @@
     "available_strengths": [
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 324,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -522,5 +528,17 @@
     "source_file": "plumbs_output/46.jsonl",
     "extracted_at": "2026-03-11T03:24:44.546870+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "테트라사이클린(Tetracycline)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "【허가 외】개: 감수성 세균 감염(22 mg/kg PO q8h",
+    "14~28일)",
+    "나이아신아마이드 병용 무균성 염증성 피부질환(DLE",
+    "무균성 육아종",
+    "천포창",
+    "혈관염 등). 【허가 외】고양이: 감수성 세균 감염(15~22 mg/kg PO q8h",
+    "14~28일). 【FDA 승인】소(송아지)",
+    "가금류: 감수성 세균성 장염"
+  ],
+  "mechanism_short": "30S 리보솜 소단위에 가역적으로 결합하여 아미노아실-tRNA의 리보솜 결합을 억제함으로써 단백질 합성을 저해하는 시간 의존성 정균 항생제. 고농도에서는 50S 리보솜 결합 및 세포막 투과성 변화도 유발. 항염증 및 면역조절 효과(항체 생성 억제, 호중구 화학주성 억제, 리파아제·콜라게나아제·프로스타글란딘 합성 억제, 보체 C3 활성화 억제)도 있음."
 }

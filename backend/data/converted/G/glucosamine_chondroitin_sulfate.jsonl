@@ -366,5 +366,10 @@
     "source_file": "Glucosamine/Chondroitin Sulfate text extract",
     "extracted_at": "2026-03-21T13:06:00+09:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "글루코사민/콘드로이친 황산염(Glucosamine/Chondroitin Sulfate)은(는) 영양 보충에 사용되는 영양 보조제입니다.",
+  "primary_indications": [
+    "Adjunctive treatment for osteoarthritis or other painful conditions. N-acetyl-d-glucosamine has been tested in cats with FLUTD."
+  ],
+  "mechanism_short": "Glucosamine provides glycosaminoglycan building blocks to strengthen cartilage, regulates synthesis of collagen/proteoglycans, and has mild anti-inflammatory effects. Chondroitin sulfate inhibits destructive enzymes in joint fluid/cartilage and stimulates GAG/proteoglycan production."
 }
