@@ -5,3 +5,225 @@ refer설정
 
 python on_computer.py
 python goto_db.py --mode references --result-json test_pmc_references.json
+
+현재 실행 중인 프로세스가 있다면 정리하고, 내일 바로 실행할 수 있는 상태로 정리해두겠습니다. 
+
+Ran terminal command:  pkill -f "실험실.py" 2>/dev/null; pkill -f "run_all_chunks" 2>/dev/null; echo "프로세스 정리 완료"
+
+Ran terminal command:  ls /workspaces/nuvovet_systems/runs/reference_chunks/ | head -30 && echo "---" && ls /workspaces/nuvovet_systems/runs/reference_chunks/logs/ 2>/dev/null || echo "(logs 폴더 없음)"
+
+Ran terminal command:  ls /workspaces/nuvovet_systems/runs/reference_chunks/*.json 2>/dev/null
+
+Ran terminal command:  python3 -c "
+import json
+with open('/workspaces/nuvovet_systems/runs/reference_chunks/chunk_000.json') as f:
+    data = json.load(f)
+print(f'chunk_000: {len(data)}개 약물')
+ok = sum(1 for r in data if r.get('sql_candidates') or r.get('accepted_references'))
+print(f'  성공: {ok}개, 실패: {len(data)-ok}개')
+"
+
+chunk_000은 이미 50개 완료(34개 성공)된 상태입니다. 내일 바로 실행할 수 있도록 깔끔한 실행 스크립트를 만들어두겠습니다. 
+
+Ran terminal command:  python3 -c "
+from pathlib import Path
+import json
+
+data_dir = Path('/workspaces/nuvovet_systems/backend/data/converted')
+records = list(data_dir.rglob('*.jsonl'))
+print(f'총 약물 파일 수: {len(records)}개')
+chunk_size = 50
+import math
+print(f'청크 수 (50개씩): {math.ceil(len(records)/chunk_size)}개')
+print(f'마지막 청크 offset: {(math.ceil(len(records)/chunk_size)-1)*chunk_size}')
+"
+
+670개 / 14청크(50개씩) 확인. 내일 한 번에 실행할 스크립트를 만들겠습니다. 
+
+[](file:///workspaces/nuvovet_systems/backend/scripts/run.sh) 생성됨
+
+[](file:///workspaces/nuvovet_systems/backend/scripts/run.sh) 읽기
+
+기존 run.sh는 완전히 다른 용도입니다. 새 이름으로 만들겠습니다. 
+
+[](file:///workspaces/nuvovet_systems/run_all_references.sh) 생성됨
+
+읽기 [](file:///workspaces/nuvovet_systems/run_all_references.sh#1-1), 1 줄에서 10 줄까지
+
+이미 이전에 만든 스크립트가 존재하네요. 올바른 내용으로 덮어쓰겠습니다. 
+
+[](file:///workspaces/nuvovet_systems/run_all_references.sh) 읽기
+
+이전 세션에서 이미 잘 만들어진 스크립트가 존재합니다. 현재 상태를 확인하고 내일 바로 쓸 수 있게 정리만 하겠습니다.  
+
+Ran terminal command:  cd /workspaces/nuvovet_systems
+
+# 현재 runs 폴더 상태 정리
+echo "=== 현재 chunk 파일 상태 ==="
+python3 - << 'PY'
+import json, glob, os
+
+chunk_dir = 'runs/reference_chunks'
+for jf in sorted(glob.glob(f'{chunk_dir}/chunk_*.json')):
+    with open(jf) as f:
+        data = json.load(f)
+    ok = sum(1 for r in data if r.get('sql_candidates'))
+    inv = sum(
+        1 for r in data
+        for ref in (r.get('sql_candidates') or [])
+        if ref.get('llm_invalid')
+    )
+    name = os.path.basename(jf)
+    print(f"  {name}: {len(data)}개 약물, refs있음={ok}개, llm_invalid={inv}개")
+PY
+
+echo ""
+echo "=== 스크립트 실행 권한 확인 ==="
+ls -la run_all_references.sh
+echo ""
+echo "=== ANTHROPIC_API_KEY 설정 여부 ==="
+if [ -n "${ANTHROPIC_API_KEY:-}" ]; then echo "✅ 설정됨 (${#ANTHROPIC_API_KEY}자)"; else echo "❌ 미설정"; fi
+
+Ran terminal command:  python3 - << 'PY'
+import json, glob, os
+
+chunk_dir = 'runs/reference_chunks'
+for jf in sorted(glob.glob(f'{chunk_dir}/chunk_*.json')):
+    with open(jf) as f:
+        data = json.load(f)
+    ok = sum(1 for r in data if r.get('sql_candidates'))
+    inv = sum(
+        1 for r in data
+        for ref in (r.get('sql_candidates') or [])
+        if ref.get('llm_invalid')
+    )
+    name = os.path.basename(jf)
+    print(f"  {name}: {len(data)}개 약물, refs있음={ok}개, llm_invalid fallback={inv}개")
+print("완료")
+PY
+Completed with input:  python3 - << 'PY'
+import json, glob, os
+
+chunk_dir = 'runs/reference_chunks'
+for jf in sorted(glob.glob(f'{chunk_dir}/chunk_*.json')):
+    with open(jf) as f:
+        data = json.load(f)
+    ok = sum(1 for r in data if r.get('sql_candidates'))
+    inv = sum(
+        1 for r in data
+        for ref in (r.get('sql_candidates') or [])
+        if ref.get('llm_invalid')
+    )
+    name = os.path.basename(jf)
+    print(f"  {name}: {len(data)}개 약물, refs있음={ok}개, llm_invalid fallback={inv}개")
+print("완료")
+PY
+
+Ran terminal command:  python3 - << 'PY'
+import json, glob, os
+
+chunk_dir = 'runs/reference_chunks'
+for jf in sorted(glob.glob(f'{chunk_dir}/chunk_*.json')):
+    with open(jf) as f:
+        data = json.load(f)
+    ok = sum(1 for r in data if r.get('sql_candidates'))
+    inv_count = 0
+    for r in data:
+        cands = r.get('sql_candidates') or []
+        if isinstance(cands, list):
+            for ref in cands:
+                if isinstance(ref, dict) and ref.get('llm_invalid'):
+                    inv_count += 1
+    name = os.path.basename(jf)
+    print(f"  {name}: {len(data)}개 약물, refs있음={ok}개, llm_invalid fallback={inv_count}개")
+PY
+
+ls -la run_all_references.sh
+echo "---"
+if [ -n "${ANTHROPIC_API_KEY:-}" ]; then echo "✅ API KEY 설정됨 (${#ANTHROPIC_API_KEY}자)"; else echo "❌ API KEY 미설정"; fi
+Completed with input:  python3 - << 'PY'
+import json, glob, os
+
+chunk_dir = 'runs/reference_chunks'
+for jf in sorted(glob.glob(f'{chunk_dir}/chunk_*.json')):
+    with open(jf) as f:
+        data = json.load(f)
+    ok = sum(1 for r in data if r.get('sql_candidates'))
+    inv_count = 0
+    for r in data:
+        cands = r.get('sql_candidates') or []
+        if isinstance(cands, list):
+            for ref in cands:
+                if isinstance(ref, dict) and ref.get('llm_invalid'):
+                    inv_count += 1
+    name = os.path.basename(jf)
+    print(f"  {name}: {len(data)}개 약물, refs있음={ok}개, llm_invalid fallback={inv_count}개")
+PY
+
+ls -la run_all_references.sh
+echo "---"
+if [ -n "${ANTHROPIC_API_KEY:-}" ]; then echo "✅ API KEY 설정됨 (${#ANTHROPIC_API_KEY}자)"; else echo "❌ API KEY 미설정"; fi
+
+Ran terminal command:  python3 -c "
+import json
+with open('runs/reference_chunks/chunk_000.json') as f:
+    data = json.load(f)
+r = data[0]
+print('최상위 키:', list(r.keys()))
+cands = r.get('sql_candidates') or []
+print('sql_candidates 타입:', type(cands), '길이:', len(cands))
+if cands:
+    print('첫번째 원소 타입:', type(cands[0]))
+"
+
+Ran terminal command:  python3 -c "
+import json
+with open('runs/reference_chunks/chunk_000.json') as f:
+    data = json.load(f)
+# llm_invalid 필드가 들어있는지 확인
+has_field = any(
+    isinstance(ref, dict) and 'llm_invalid' in ref
+    for r in data
+    for refs in [r.get('sql_candidates', []) + (r.get('accepted_references') or [])]
+    for ref in refs
+    if isinstance(ref, dict)
+)
+print('llm_invalid 필드 포함:', has_field)
+
+# accepted_references 구조 확인
+r0 = data[0]
+acc = r0.get('accepted_references') or []
+if acc and isinstance(acc[0], dict):
+    print('accepted_references[0] 키:', list(acc[0].keys()))
+elif acc:
+    print('accepted_references[0] 타입:', type(acc[0]))
+"
+
+chunk_000은 새 코드(`llm_invalid` 포함)로 생성된 파일입니다. 내일 run_all_references.sh를 실행하면 chunk_000은 자동으로 건너뛰고 chunk_001부터 이어서 진행됩니다.
+
+chmod도 확인하고 마무리합니다.  
+
+Ran terminal command:  chmod +x /workspaces/nuvovet_systems/run_all_references.sh && ls -la /workspaces/nuvovet_systems/run_all_references.sh
+
+Ran terminal command:  head -5 /workspaces/nuvovet_systems/run_all_references.sh && echo "---" && wc -l /workspaces/nuvovet_systems/run_all_references.sh
+
+준비 완료입니다. 내일 실행 때 할 일은 딱 두 줄입니다:
+
+```bash
+export ANTHROPIC_API_KEY="<YOUR_ANTHROPIC_API_KEY>"
+bash run_all_references.sh
+```
+
+---
+
+**현재 대기 상태 요약:**
+
+| 항목 | 상태 |
+|---|---|
+| `chunk_000.json` | ✅ 완료 (50개, `llm_invalid` 포함) — 내일 자동 스킵 |
+| `chunk_001` ~ `chunk_013` | ⏳ 미실행 — 내일 자동 순서대로 실행 |
+| run_all_references.sh | ✅ 준비 완료 (수집 + DB 주입 자동화) |
+| 실험실.py | ✅ `llm_invalid` fallback 로직 적용됨 |
+
+- 이미 완료된 청크는 **자동 건너뜀** (중간에 끊겨도 이어서 실행 가능)
+- 각 청크 로그: `runs/logs/chunk_NNN.log`

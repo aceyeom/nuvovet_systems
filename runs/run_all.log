@@ -1,0 +1,128 @@
+============================================================
+[chunk_000] rerun start offset=0 limit=50 2026-03-23 01:28:46
+    [LLM:claude-haiku-4-5-20251001] VALID -> ✅ 승인
+    [LLM] 'Comparative responses to propo...' 검증 요청 중...
+    [LLM:claude-haiku-4-5-20251001] VALID -> ✅ 승인
+
+✅ 모든 처리가 완료되었습니다!
+[chunk_000] db inject start 2026-03-23 01:33:30
+[chunk_000] db inject exit=0
+============================================================
+[chunk_001] rerun start offset=50 limit=50 2026-03-23 01:33:55
+    [LLM:claude-haiku-4-5-20251001] INVALID -> ❌ 거절
+
+[Cefadroxil] 검색 및 분석 중...
+
+✅ 모든 처리가 완료되었습니다!
+[chunk_001] db inject start 2026-03-23 01:38:23
+[chunk_001] db inject exit=0
+============================================================
+[chunk_002] rerun start offset=100 limit=50 2026-03-23 01:38:47
+    [LLM:claude-haiku-4-5-20251001] INVALID -> ❌ 거절
+    [LLM] 'Oral Cobalamin Supplementation...' 검증 요청 중...
+    [LLM:claude-haiku-4-5-20251001] VALID -> ✅ 승인
+
+✅ 모든 처리가 완료되었습니다!
+[chunk_002] db inject start 2026-03-23 01:43:57
+[chunk_002] db inject exit=0
+============================================================
+[chunk_003] rerun start offset=150 limit=50 2026-03-23 01:44:23
+
+[Dimenhydrinate] 검색 및 분석 중...
+  [-] 'Dimenhydrinate' 종 필터 검색결과 0건. 광범위 검색 재시도...
+
+✅ 모든 처리가 완료되었습니다!
+[chunk_003] db inject start 2026-03-23 01:48:40
+[chunk_003] db inject exit=0
+============================================================
+[chunk_004] rerun start offset=200 limit=50 2026-03-23 01:49:04
+[Felbamate] 검색 및 분석 중...
+    [LLM] 'Felbamate as an oral add-on th...' 검증 요청 중...
+    [LLM:claude-haiku-4-5-20251001] VALID -> ✅ 승인
+
+✅ 모든 처리가 완료되었습니다!
+[chunk_004] db inject start 2026-03-23 01:53:33
+[chunk_004] db inject exit=0
+============================================================
+[chunk_005] rerun start offset=250 limit=50 2026-03-23 01:53:58
+    [LLM:claude-haiku-4-5-20251001] VALID -> ✅ 승인
+    [LLM] 'A study of the efficacy of top...' 검증 요청 중...
+    [LLM:claude-haiku-4-5-20251001] VALID -> ✅ 승인
+
+✅ 모든 처리가 완료되었습니다!
+[chunk_005] db inject start 2026-03-23 01:58:30
+[chunk_005] db inject exit=0
+============================================================
+[chunk_006] rerun start offset=300 limit=50 2026-03-23 01:58:54
+
+[Itraconazole Ophthalmic] 검색 및 분석 중...
+  [-] 'Itraconazole Ophthalmic' 종 필터 검색결과 0건. 광범위 검색 재시도...
+
+✅ 모든 처리가 완료되었습니다!
+[chunk_006] db inject start 2026-03-23 02:03:03
+[chunk_006] db inject exit=0
+============================================================
+[chunk_007] rerun start offset=350 limit=50 2026-03-23 02:03:24
+[Meclizine] 검색 및 분석 중...
+    [LLM] 'The role of glycerophospholipi...' 검증 요청 중...
+    [LLM:claude-haiku-4-5-20251001] INVALID -> ❌ 거절
+
+✅ 모든 처리가 완료되었습니다!
+[chunk_007] db inject start 2026-03-23 02:07:57
+[chunk_007] db inject exit=0
+============================================================
+[chunk_008] rerun start offset=400 limit=50 2026-03-23 02:08:22
+    [LLM:claude-haiku-4-5-20251001] VALID -> ✅ 승인
+    [LLM] 'Is Fentanyl Rebound an Intrins...' 검증 요청 중...
+    [LLM:claude-haiku-4-5-20251001] VALID -> ✅ 승인
+
+✅ 모든 처리가 완료되었습니다!
+[chunk_008] db inject start 2026-03-23 02:13:05
+[chunk_008] db inject exit=0
+============================================================
+[chunk_009] rerun start offset=450 limit=50 2026-03-23 02:13:30
+    [LLM:claude-haiku-4-5-20251001] VALID -> ✅ 승인
+    [LLM] 'Development and Validation a U...' 검증 요청 중...
+    [LLM:claude-haiku-4-5-20251001] VALID -> ✅ 승인
+
+✅ 모든 처리가 완료되었습니다!
+[chunk_009] db inject start 2026-03-23 02:18:10
+[chunk_009] db inject exit=0
+============================================================
+[chunk_010] rerun start offset=500 limit=50 2026-03-23 02:18:34
+    [LLM:claude-haiku-4-5-20251001] INVALID -> ❌ 거절
+
+[Quinacrine] 검색 및 분석 중...
+
+✅ 모든 처리가 완료되었습니다!
+[chunk_010] db inject start 2026-03-23 02:23:11
+[chunk_010] db inject exit=0
+============================================================
+[chunk_011] rerun start offset=550 limit=50 2026-03-23 02:23:35
+    [LLM:claude-haiku-4-5-20251001] VALID -> ✅ 승인
+
+[Sulfasalazine] 검색 및 분석 중...
+
+✅ 모든 처리가 완료되었습니다!
+[chunk_011] db inject start 2026-03-23 02:28:24
+[chunk_011] db inject exit=0
+============================================================
+[chunk_012] rerun start offset=600 limit=50 2026-03-23 02:28:49
+[Ursodiol] 검색 및 분석 중...
+
+[Vitamin E ± Selenium] 검색 및 분석 중...
+
+✅ 모든 처리가 완료되었습니다!
+[chunk_012] db inject start 2026-03-23 02:33:19
+[chunk_012] db inject exit=0
+============================================================
+[chunk_013] rerun start offset=650 limit=20 2026-03-23 02:33:42
+    [LLM:claude-haiku-4-5-20251001] VALID -> ✅ 승인
+    [LLM] 'Pharmacokinetics and toxicity ...' 검증 요청 중...
+    [LLM:claude-haiku-4-5-20251001] VALID -> ✅ 승인
+
+✅ 모든 처리가 완료되었습니다!
+[chunk_013] db inject start 2026-03-23 02:35:53
+[chunk_013] db inject exit=0
+============================================================
+rerun finished 2026-03-23 02:36:07

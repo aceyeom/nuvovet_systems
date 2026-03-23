@@ -1,0 +1,119 @@
+[
+  {
+    "drug_name": "Acarbose",
+    "drug_id": "acarbose",
+    "query": "((\"acarbose\"[Title/Abstract] OR \"acarbose\"[Name of Substance])) AND (\"Dogs\"[Mesh] OR \"Cats\"[Mesh] OR dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (\"Pharmacokinetics\"[Mesh] OR \"Drug Interactions\"[Mesh] OR \"Toxicity\"[Mesh] OR pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR \"half-life\"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR \"drug interaction\"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT (\"In Vitro Techniques\"[Mesh] OR \"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+    "accepted_references": [
+      {
+        "pmc_id": "7990933",
+        "title": "Streptococcus agalactiae amylomaltase offers insight into the transglycosylation mechanism and the molecular basis of thermostability among amylomaltases.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7990933/",
+        "abstract": "Amylomaltase (AM) catalyzes transglycosylation of starch to form linear or cyclic oligosaccharides with potential applications in biotechnology and industry. In the present work, a novel AM from the mesophilic bacterium Streptococcus agalactiae ( Sa AM), with 18–49% sequence identity to previously reported AMs, was characterized. Cyclization and disproportionation activities were observed with the optimum temperature of 30 °C and 40 °C, respectively. Structural determination of Sa AM, the first crystal structure of small AMs from the mesophiles, revealed a glycosyl-enzyme intermediate derived from acarbose and a second acarbose molecule attacking the intermediate. This pre-transglycosylation conformation has never been before observed in AMs. Structural analysis suggests that thermostability in AMs might be mainly caused by an increase in salt bridges since Sa AM has a lower number of salt bridges compared with AMs from the thermophiles. Increase in thermostability by mutation was performed. C446 was substituted with A/S/P. C446A showed higher activities and higher k cat /K m values for starch in comparison to the WT enzyme. C446S exhibited a 5 °C increase in optimum temperature and the threefold increase in half-life time at 45 °C, most likely resulting from H-bonding interactions. For all enzymes, the main large-ring cyclodextrin (LR-CD) products were CD24-CD26 with CD22 as the smallest. C446S produced more CD35-CD42, especially at a longer incubation time.",
+        "journal_title": "Scientific Reports",
+        "journal_issns": [
+          "2045-2322"
+        ],
+        "journal_metrics": {
+          "jcr": {
+            "journal_title": "Scientific Reports",
+            "abbreviated_journal": "SCI REP-UK",
+            "issns": [
+              "20452322"
+            ],
+            "jif": "3.9",
+            "five_year_jif": "4.3",
+            "jif_quartile": "Q1",
+            "jci": "1.07",
+            "metric_year": "2025",
+            "metric_source": "Journal Citation Reports"
+          },
+          "scimago": {
+            "journal_title": "Scientific Reports",
+            "sjr": "0,874",
+            "sjr_best_quartile": "Q1",
+            "h_index": "347",
+            "metric_year": "2024"
+          },
+          "impact_factor": "3.9",
+          "impact_factor_5year": "4.3",
+          "impact_factor_quartile": "Q1",
+          "journal_citation_indicator": "1.07",
+          "sjr": "0,874",
+          "sjr_best_quartile": "Q1",
+          "h_index": "347"
+        },
+        "score": 9,
+        "reasons": [
+          "drug_match(acarbose)",
+          "species:cat",
+          "context_distance_penalty",
+          "relevance:half-life",
+          "llm_rejected"
+        ],
+        "ddi_relevant": false,
+        "fda_relevant": false,
+        "llm_invalid": true
+      }
+    ],
+    "sql_candidates": [
+      {
+        "pmc_id": "7990933",
+        "issn": "2045-2322",
+        "title": "Streptococcus agalactiae amylomaltase offers insight into the transglycosylation mechanism and the molecular basis of thermostability among amylomaltases.",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7990933/",
+        "if_score": 3.9,
+        "relevance_score": 9,
+        "match_reasons": [
+          "drug_match(acarbose)",
+          "species:cat",
+          "context_distance_penalty",
+          "relevance:half-life",
+          "llm_rejected"
+        ],
+        "journal_title": "Scientific Reports",
+        "journal_issns": [
+          "2045-2322"
+        ],
+        "journal_metrics": {
+          "jcr": {
+            "journal_title": "Scientific Reports",
+            "abbreviated_journal": "SCI REP-UK",
+            "issns": [
+              "20452322"
+            ],
+            "jif": "3.9",
+            "five_year_jif": "4.3",
+            "jif_quartile": "Q1",
+            "jci": "1.07",
+            "metric_year": "2025",
+            "metric_source": "Journal Citation Reports"
+          },
+          "scimago": {
+            "journal_title": "Scientific Reports",
+            "sjr": "0,874",
+            "sjr_best_quartile": "Q1",
+            "h_index": "347",
+            "metric_year": "2024"
+          },
+          "impact_factor": "3.9",
+          "impact_factor_5year": "4.3",
+          "impact_factor_quartile": "Q1",
+          "journal_citation_indicator": "1.07",
+          "sjr": "0,874",
+          "sjr_best_quartile": "Q1",
+          "h_index": "347"
+        },
+        "ddi_relevant": false,
+        "fda_relevant": false,
+        "llm_invalid": true
+      }
+    ],
+    "_data_quality": {
+      "overall_confidence": 60,
+      "ddi_source": "PMC references: PMC7990933",
+      "pmc_reference_count": 1,
+      "valid_reference_count": 0,
+      "average_if_score": 3.9
+    }
+  }
+]

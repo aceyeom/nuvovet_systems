@@ -1,0 +1,292 @@
+■ Drug Name: Codeine
+  - Title: Pharmacokinetics of acetaminophen, codeine, and the codeine metabolites morphine and codeine-6-glucuronide in healthy Greyhound dogs.
+    Score: 20
+    Match: drug_match(codeine), species:dogs, context_distance_match, relevance:bioavailability, clearance, distribution, dose, high_signal_title, llm_validated_in_vivo
+  - Title: Preliminary investigation of the thermal antinociceptive effects of codeine in cats.
+    Score: 16
+    Match: drug_match(codeine), species:cats, context_distance_match, relevance:adverse, dose, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Colchicine
+  - Title: Compartmental distribution of striatal cell bodies expressing [Met]enkephalin-like immunoreactivity. [LLM_INVALID]
+    Score: 14
+    Match: drug_match(colchicine), species:cats, context_distance_match, relevance:distribution, llm_rejected
+  - Title: Alpha- and beta-adrenergic stimulation of arachidonic acid metabolism in cells in culture. [LLM_INVALID]
+    Score: 9
+    Match: drug_match(colchicine), species:canine, context_distance_penalty, relevance:metabolism, llm_rejected
+------------------------------
+■ Drug Name: Corticotropin
+  - Title: Effects of Carbenoxolone on the Canine Pituitary-Adrenal Axis. [LLM_INVALID]
+    Score: 15
+    Match: drug_match(corticotropin), species:canine, dog, dogs, context_distance_match, relevance:adverse, treatment, llm_rejected
+  - Title: Integration of in vivo and in vitro approaches to characterize the toxicity of Antalarmin, a corticotropin-releasing hormone receptor antagonist. [LLM_INVALID]
+    Score: 11
+    Match: drug_match(corticotropin), species:canine, dog, dogs, context_distance_penalty, relevance:toxicity, high_signal_title, llm_rejected
+------------------------------
+■ Drug Name: Cortisone
+  - Title: Steroid metabolism in the cat. Biliary and urinary excretion of metabolites of [4-14C]cortisone.
+    Score: 16
+    Match: drug_match(cortisone), species:cat, cats, context_distance_match, relevance:dose, excretion, metabolism, llm_validated_in_vivo
+  - Title: Discovery of HSD-621 as a Potential Agent for the Treatment of Type 2 Diabetes. [LLM_INVALID]
+    Score: 16
+    Match: drug_match(cortisone), species:dog, context_distance_match, relevance:bioavailability, safety, treatment, llm_rejected
+------------------------------
+■ Drug Name: Cosyntropin
+  - Title: Investigation of adrenal and thyroid gland dysfunction in dogs with ultrasonographic diagnosis of gallbladder mucocele formation.
+    Score: 14
+    Match: drug_match(cosyntropin), species:dogs, context_distance_match, relevance:metabolism, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Crofelemer
+  - Title: Effects of orally administered crofelemer on the incidence and severity of neratinib-induced diarrhea in female dogs.
+    Score: 16
+    Match: drug_match(crofelemer), species:canine, dogs, context_distance_match, relevance:approved, dose, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Cromolyn, Inhaled
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Cromolyn Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Cyclopentolate Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Cyclophosphamide
+  - Title: Fractionated oral dosing and its effect on cyclophosphamide pharmacokinetics in dogs with high-grade multicentric lymphoma.
+    Score: 20
+    Match: drug_match(cyclophosphamide), species:canine, dogs, context_distance_match, relevance:clearance, dose, dosing, metabolism, high_signal_title, llm_validated_in_vivo
+  - Title: Safety and efficacy of a genetic vaccine targeting telomerase plus chemotherapy for the therapy of canine B-cell lymphoma.
+    Score: 20
+    Match: drug_match(cyclophosphamide), species:canine, dog, dogs, context_distance_match, relevance:adverse, efficacy, safety, toxicity, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Cyclosporine, Systemic
+  - Title: Grapefruit juice, lyophilized grapefruit juice, and powdered whole grapefruit inhibit cytochrome P450-mediated triazolam hydroxylation by beagle dog liver microsomes. [LLM_INVALID]
+    Score: 13
+    Match: drug_match(cyclosporine, systemic), species:dog, context_distance_penalty, relevance:dosage, dose, dosing, interaction, llm_rejected
+------------------------------
+■ Drug Name: Cyclosporine Ophthalmic
+  - Title: A liposomal formulation of cyclosporine a shows promising results in treating symptoms of moderate to severe dry eye disease in dogs.
+    Score: 10
+    Match: drug_match(cyclosporine ophthalmic), species:dogs, context_distance_penalty, relevance:efficacy, treatment, llm_validated_in_vivo
+  - Title: The Effects of Fisetin on Cyclosporine-Treated Dry Eye Disease in Dogs.
+    Score: 9
+    Match: drug_match(cyclosporine ophthalmic), species:dog, dogs, context_distance_penalty, relevance:treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Cyproheptadine
+  - Title: Observations on the use of cyproheptadine hydrochloride as an antipruritic agent in allergic cats.
+    Score: 14
+    Match: drug_match(cyproheptadine), species:cat, cats, context_distance_match, relevance:efficacy, llm_validated_in_vivo
+  - Title: Case report: Treatment of cyclobenzaprine ingestion in two dogs with intravenous intralipid therapy. [LLM_INVALID]
+    Score: 15
+    Match: drug_match(cyproheptadine), species:dog, dogs, context_distance_match, relevance:toxicity, treatment, llm_rejected
+------------------------------
+■ Drug Name: Cytarabine
+  - Title: Pharmacokinetics of multivesicular liposomal encapsulated cytarabine when administered subcutaneously in dogs.
+    Score: 20
+    Match: drug_match(cytarabine), species:dogs, context_distance_match, relevance:absorption, bioavailability, pharmacokinetic, pharmacokinetics, high_signal_title, llm_validated_in_vivo
+  - Title: Oral cytarabine ocfosfate pharmacokinetics and assessment of leukocyte biomarkers in normal dogs.
+    Score: 19
+    Match: drug_match(cytarabine), species:dogs, context_distance_match, relevance:dosing, half-life, pharmacokinetic, pharmacokinetics, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Diphenoxylate Atropine
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Dacarbazine, Dtic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Dactinomycin
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Dalteparin
+  - Title: Indications and outcomes of rivaroxaban use in cats. [LLM_INVALID]
+    Score: 15
+    Match: drug_match(dalteparin), species:cat, cats, context_distance_match, relevance:adverse, dose, llm_rejected
+  - Title: Treatment with rivaroxaban and monitoring of coagulation profiles in two dogs with venous thromboembolism. [LLM_INVALID]
+    Score: 15
+    Match: drug_match(dalteparin), species:dogs, context_distance_match, relevance:adverse, treatment, llm_rejected
+------------------------------
+■ Drug Name: Danofloxacin
+  - Title: Comparative mutant prevention concentrations of pradofloxacin and other veterinary fluoroquinolones indicate differing potentials in preventing selection of resistance. [LLM_INVALID]
+    Score: 10
+    Match: drug_match(danofloxacin), species:cats, dogs, context_distance_penalty, relevance:dosing, efficacy, llm_rejected
+------------------------------
+■ Drug Name: Dantrolene
+  - Title: Pharmacokinetic evaluation of oral dantrolene in the dog.
+    Score: 20
+    Match: drug_match(dantrolene), species:dog, dogs, context_distance_match, relevance:bioavailability, dose, dosing, half-life, high_signal_title, llm_validated_in_vivo
+  - Title: Erythrocyte osmotic fragility testing and the prediction of canine malignant hyperthermia susceptibility.
+    Score: 15
+    Match: drug_match(dantrolene), species:canine, dog, context_distance_match, relevance:dosage, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Dapsone
+  - Title: Renal and biliary disposition of dapsone in the dog.
+    Score: 16
+    Match: drug_match(dapsone), species:dog, dogs, context_distance_match, relevance:clearance, dose, excretion, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Darbepoetin Alfa
+  - Title: The Use of Darbepoetin to Stimulate Erythropoiesis in the Treatment of Anemia of Chronic Kidney Disease in Dogs.
+    Score: 17
+    Match: drug_match(darbepoetin alfa), species:dog, dogs, context_distance_match, relevance:adverse, dosage, dosing, treatment, llm_validated_in_vivo
+  - Title: Iron status and erythropoiesis response to darbepoetin alfa in dogs with chronic kidney disease.
+    Score: 15
+    Match: drug_match(darbepoetin alfa), species:dogs, context_distance_match, relevance:metabolism, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Decoquinate
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Deferoxamine
+  - Title: Iron intoxication in a dog consequent to the ingestion of oxygen absorber sachets in pet treat packaging.
+    Score: 15
+    Match: drug_match(deferoxamine), species:canine, dog, context_distance_match, relevance:bioavailability, treatment, llm_validated_in_vivo
+  - Title: Modulation of deferoxamine toxicity and clearance by covalent attachment to biocompatible polymers.
+    Score: 15
+    Match: drug_match(deferoxamine), species:dogs, context_distance_penalty, relevance:clearance, dose, excretion, half-life, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Demecarium Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Deracoxib
+  - Title: Efficacy and safety of deracoxib for the control of postoperative pain and inflammation associated with dental surgery in dogs.
+    Score: 19
+    Match: drug_match(deracoxib), species:dogs, context_distance_match, relevance:adverse, efficacy, safety, treatment, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Desflurane
+  - Title: Solubility of haloether anesthetics in human and animal blood. [LLM_INVALID]
+    Score: 14
+    Match: drug_match(desflurane), species:cats, dogs, context_distance_match, relevance:pharmacokinetics, llm_rejected
+------------------------------
+■ Drug Name: Deslorelin
+  - Title: Gonadotropin-Releasing Hormone (GnRH) Agonist Implants for Male Dog Fertility Suppression: A Review of Mode of Action, Efficacy, Safety, and Uses.
+    Score: 18
+    Match: drug_match(deslorelin), species:dog, dogs, context_distance_match, relevance:efficacy, label, safety, high_signal_title, llm_validated_in_vivo
+  - Title: Efficacy and Safety of 4.7 mg Deslorelin Acetate Implants in Suppressing Oestrus Cycle in Prepubertal Female Dogs.
+    Score: 17
+    Match: drug_match(deslorelin), species:dog, dogs, context_distance_match, relevance:efficacy, safety, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Desmopressin
+  - Title: The effects of desmopressin on hemostatic parameters in the normal dog.
+    Score: 15
+    Match: drug_match(desmopressin), species:dog, dogs, context_distance_match, relevance:dosage, dose, llm_validated_in_vivo
+  - Title: Effects of desmopressin acetate administration in healthy dogs receiving prednisolone.
+    Score: 14
+    Match: drug_match(desmopressin), species:dog, dogs, context_distance_match, relevance:adverse, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Desoxycorticosterone Pivalate, Docp
+  - Title: Pharmacokinetics and pharmacodynamics of desoxycorticosterone pivalate in dogs with hypoadrenocorticism.
+    Score: 15
+    Match: drug_match(desoxycorticosterone pivalate, docp), species:dogs, context_distance_penalty, relevance:dose, dosing, label, pharmacokinetics, high_signal_title, llm_validated_in_vivo
+  - Title: Low-dose desoxycorticosterone pivalate treatment of hypoadrenocorticism in dogs: A randomized controlled clinical trial.
+    Score: 13
+    Match: drug_match(desoxycorticosterone pivalate, docp), species:dog, dogs, context_distance_penalty, relevance:adverse, dose, dosing, efficacy, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Detomidine
+  - Title: Pharmacokinetics, sedation and hemodynamic changes following the administration of oral transmucosal detomidine gel in cats.
+    Score: 20
+    Match: drug_match(detomidine), species:cats, context_distance_match, relevance:bioavailability, clearance, distribution, half-life, high_signal_title, llm_validated_in_vivo
+  - Title: Can detomidine replace medetomidine for pharmacological semen collection in domestic cats?
+    Score: 14
+    Match: drug_match(detomidine), species:cats, context_distance_match, relevance:efficacy, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Dexamethasone
+  - Title: Comparison of 2.0 mg/kg/day and 0.5 mg/kg/day immunosuppressive dexamethasone protocols as initial treatment for dogs with MUO.
+    Score: 18
+    Match: drug_match(dexamethasone), species:canine, dogs, context_distance_match, relevance:dose, dosing, efficacy, safety, llm_validated_in_vivo
+  - Title: The efficacy and adverse event profile of dexamethasone, melphalan, actinomycin D, and cytosine arabinoside (DMAC) chemotherapy in relapsed canine lymphoma.
+    Score: 17
+    Match: drug_match(dexamethasone), species:canine, dogs, context_distance_match, relevance:adverse, efficacy, toxicity, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Dexamethasone Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Dexmedetomidine
+  - Title: Pharmacokinetics, absolute bioavailability and tolerability of ketamine after intranasal administration to dexmedetomidine sedated dogs.
+    Score: 20
+    Match: drug_match(dexmedetomidine), species:canine, dogs, context_distance_match, relevance:bioavailability, half-life, pharmacokinetic, pharmacokinetics, high_signal_title, llm_validated_in_vivo
+  - Title: Efficacy and pharmacokinetics of bupivacaine with epinephrine or dexmedetomidine after intraperitoneal administration in cats undergoing ovariohysterectomy.
+    Score: 18
+    Match: drug_match(dexmedetomidine), species:cat, cats, feline, context_distance_match, relevance:efficacy, pharmacokinetic, pharmacokinetics, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Dexrazoxane
+  - Title: Successful management of doxorubicin overdose and extravasation in a dog with lymphoma.
+    Score: 16
+    Match: drug_match(dexrazoxane), species:dog, dogs, context_distance_match, relevance:dose, toxicity, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Dextran 70
+  - Title: Development and treatment of post-traumatic pulmonary platelet trapping.
+    Score: 10
+    Match: drug_match(dextran 70), species:dogs, context_distance_penalty, relevance:efficacy, treatment, llm_validated_in_vivo
+  - Title: Hypertonic Saline Dextran Ameliorates Organ Damage in Beagle Hemorrhagic Shock.
+    Score: 10
+    Match: drug_match(dextran 70), species:dogs, context_distance_penalty, relevance:efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Dextromethorphan
+  - Title: Bioavailability of the Common Cold Medicines in Jellies for Oral Administration. [LLM_INVALID]
+    Score: 17
+    Match: drug_match(dextromethorphan), species:dogs, context_distance_match, relevance:absorption, bioavailability, dosage, dose, llm_rejected
+  - Title: Inhibitory Mechanisms of Lekethromycin in Dog Liver Cytochrome P450 Enzymes Based on UPLC-MS/MS Cocktail Method. [LLM_INVALID]
+    Score: 15
+    Match: drug_match(dextromethorphan), species:canine, dog, context_distance_match, relevance:adverse, interaction, llm_rejected
+------------------------------
+■ Drug Name: Dextrose 50, Injection
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Diazepam
+  - Title: Intranasal Midazolam versus Rectal Diazepam for the Management of Canine Status Epilepticus: A Multicenter Randomized Parallel-Group Clinical Trial.
+    Score: 16
+    Match: drug_match(diazepam), species:canine, dog, dogs, context_distance_match, relevance:adverse, efficacy, treatment, llm_validated_in_vivo
+  - Title: Effects of diazepam on diaphragmatic functionand recovery in pentobarbital-anesthetized dogs: An open-label, dose-finding, pharmacologic study.
+    Score: 16
+    Match: drug_match(diazepam), species:dog, dogs, context_distance_match, relevance:dose, label, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Diazoxide
+  - Title: Effect of diazoxide on a cat with insulinoma.
+    Score: 16
+    Match: drug_match(diazoxide), species:cat, cats, context_distance_match, relevance:adverse, dose, treatment, llm_validated_in_vivo
+  - Title: Pharmacological preconditioning with diazoxide slows energy metabolism during sustained ischemia.
+    Score: 16
+    Match: drug_match(diazoxide), species:dogs, context_distance_match, relevance:dose, metabolism, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Dichlorphenamide
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Diclazuril
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Diclofenac, Topical
+  - Title: Effects of topical flurbiprofen sodium, diclofenac sodium, ketorolac tromethamine and benzalkonium chloride on corneal sensitivity in normal dogs.
+    Score: 9
+    Match: drug_match(diclofenac, topical), species:canine, dogs, context_distance_penalty, relevance:treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Diclofenac Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Dicloxacillin
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Diethylstilbestrol, Des
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Difluprednate Ophthalmic
+  - Title: Localized alopecia and suppression of hypothalamic-pituitary-adrenal (HPA) axis in dogs following treatment with difluprednate 0.05% ophthalmic emulsion (Durezol®).
+    Score: 16
+    Match: drug_match(difluprednate ophthalmic), species:dogs, context_distance_match, relevance:absorption, adverse, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Digoxin
+  - Title: Effect of enrofloxacin on digoxin clearance and steady-state serum concentrations in dogs.
+    Score: 18
+    Match: drug_match(digoxin), species:dogs, context_distance_match, relevance:clearance, dosage, dose, dosing, llm_validated_in_vivo
+  - Title: The relationship between cardiotoxicity and plasma digoxin concentration in conscious dogs.
+    Score: 17
+    Match: drug_match(digoxin), species:dog, dogs, context_distance_match, relevance:dose, dosing, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Diltiazem
+  - Title: Effects of the calcium channel blockers, diltiazem and Ro 40-5967, on systemic haemodynamics and plasma noradrenaline levels in conscious dogs with pacing-induced heart failure.
+    Score: 14
+    Match: drug_match(diltiazem), species:dogs, context_distance_match, relevance:adverse, llm_validated_in_vivo
+  - Title: AP301, a synthetic peptide mimicking the lectin-like domain of TNF, enhances amiloride-sensitive Na(+) current in primary dog, pig and rat alveolar type II cells. [LLM_INVALID]
+    Score: 17
+    Match: drug_match(diltiazem), species:canine, dog, dogs, context_distance_match, relevance:clearance, pharmacodynamic, safety, treatment, llm_rejected
+------------------------------
+■ Drug Name: Dimenhydrinate
+  -> 적합한 논문 없음
+------------------------------
+
+📊 요약: 총 50개 중 34개 성공, 16개 실패

@@ -1,0 +1,317 @@
+■ Drug Name: Cefazolin
+  - Title: Population Pharmacokinetic Study of Cefazolin Used Prophylactically in Canine Surgery for Susceptibility Testing Breakpoint Determination.
+    Score: 20
+    Match: drug_match(cefazolin), species:canine, dog, dogs, context_distance_match, relevance:clearance, distribution, dosage, dose, high_signal_title, llm_validated_in_vivo
+  - Title: Comparative pharmacokinetics of ceforanide (BL-S786R) and cefazolin in laboratory animals and humans.
+    Score: 20
+    Match: drug_match(cefazolin), species:dog, dogs, context_distance_match, relevance:distribution, dose, dosing, excretion, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Cefepime
+  - Title: Some Pharmacodynamic Aspects of Cefepime. [LLM_INVALID]
+    Score: 16
+    Match: drug_match(cefepime), species:dog, context_distance_match, relevance:adverse, dose, pharmacodynamic, llm_rejected
+------------------------------
+■ Drug Name: Cefixime
+  - Title: Influence of an antacid containing aluminum and magnesium on the pharmacokinetics of cefixime. [LLM_INVALID]
+    Score: 19
+    Match: drug_match(cefixime), species:dogs, context_distance_match, relevance:bioavailability, dose, interaction, pharmacokinetics, high_signal_title, llm_rejected
+------------------------------
+■ Drug Name: Cefotaxime
+  - Title: Pharmacokinetics of ceftizoxime in animals after parenteral dosing. [LLM_INVALID]
+    Score: 20
+    Match: drug_match(cefotaxime), species:dogs, context_distance_match, relevance:dose, dosing, excretion, pharmacokinetic, high_signal_title, llm_rejected
+------------------------------
+■ Drug Name: Cefotetan
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Cefovecin
+  - Title: Comparison of effectiveness of cefovecin, doxycycline, and amoxicillin for the treatment of experimentally induced early Lyme borreliosis in dogs.
+    Score: 15
+    Match: drug_match(cefovecin), species:dogs, context_distance_match, relevance:approved, treatment, llm_validated_in_vivo
+  - Title: Pharmacokinetics of Cefovecin in squirrel monkey (Saimiri sciureus), rhesus macaques (Macaca mulatta), and cynomolgus macaques (Macaca fascicularis). [LLM_INVALID]
+    Score: 20
+    Match: drug_match(cefovecin), species:canine, cats, dogs, context_distance_match, relevance:bioavailability, clearance, distribution, dose, high_signal_title, llm_rejected
+------------------------------
+■ Drug Name: Cefoxitin
+  - Title: Canine model for the simultaneous measurement of antibiotic levels in tissues and bacterial killing rate.
+    Score: 14
+    Match: drug_match(cefoxitin), species:canine, dogs, context_distance_match, relevance:efficacy, llm_validated_in_vivo
+  - Title: Systematic Review of the Pharmacological Evidence for the Selection of Antimicrobials in Bacterial Infections of the Central Nervous System in Dogs and Cats. [LLM_INVALID]
+    Score: 19
+    Match: drug_match(cefoxitin), species:cats, dogs, context_distance_match, relevance:approved, pharmacodynamic, pharmacokinetic, treatment, high_signal_title, llm_rejected
+------------------------------
+■ Drug Name: Cefpodoxime
+  - Title: Efficacy of cefpodoxime with clavulanic Acid in the treatment of recurrent pyoderma in dogs.
+    Score: 15
+    Match: drug_match(cefpodoxime), species:dog, dogs, context_distance_match, relevance:efficacy, treatment, llm_validated_in_vivo
+  - Title: Bioequivalence of two tablet formulations of cefpodoxime proxetil in beagle dogs.
+    Score: 15
+    Match: drug_match(cefpodoxime), species:dog, dogs, context_distance_match, relevance:dose, pharmacokinetic, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Cefquinome
+  - Title: Antibacterial activities in vitro and in vivo and pharmacokinetics of cefquinome (HR 111V), a new broad-spectrum cephalosporin.
+    Score: 19
+    Match: drug_match(cefquinome), species:dogs, context_distance_match, relevance:dosing, efficacy, pharmacokinetic, pharmacokinetics, high_signal_title, llm_validated_in_vivo
+  - Title: Adjunctive intravesical EDTA-tromethamine treatment of a biofilm-associated recurrent Escherichia coli cystitis in a dog. [LLM_INVALID]
+    Score: 15
+    Match: drug_match(cefquinome), species:dog, dogs, context_distance_match, relevance:efficacy, treatment, llm_rejected
+------------------------------
+■ Drug Name: Ceftazidime
+  - Title: Comparative pharmacokinetics of YM-13115, ceftriaxone, and ceftazidime in rats, dogs, and rhesus monkeys.
+    Score: 17
+    Match: drug_match(ceftazidime), species:dogs, context_distance_match, relevance:dose, pharmacokinetics, high_signal_title, llm_validated_in_vivo
+  - Title: Comparative pharmacokinetics of SCE-2787 and related antibiotics in experimental animals. [LLM_INVALID]
+    Score: 20
+    Match: drug_match(ceftazidime), species:dogs, context_distance_match, relevance:distribution, dose, excretion, half-life, high_signal_title, llm_rejected
+------------------------------
+■ Drug Name: Ceftiofur Crystalline Free Acid
+  - Title: Pharmacokinetics of Ceftiofur Crystalline-Free Acid in Clinically Healthy Dogs (Canis lupus familiaris).
+    Score: 13
+    Match: drug_match(ceftiofur crystalline free acid), species:dog, dogs, context_distance_penalty, relevance:half-life, pharmacokinetic, pharmacokinetics, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Ceftiofur Hcl
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Ceftiofur Sodium
+  - Title: Pharmacokinetic Modeling of Ceftiofur Sodium Using Non-linear Mixed-Effects in Healthy Beagle Dogs.
+    Score: 20
+    Match: drug_match(ceftiofur sodium), species:dogs, context_distance_match, relevance:absorption, adverse, bioavailability, clearance, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Ceftriaxone
+  - Title: Comparative pharmacokinetics of YM-13115, ceftriaxone, and ceftazidime in rats, dogs, and rhesus monkeys.
+    Score: 17
+    Match: drug_match(ceftriaxone), species:dogs, context_distance_match, relevance:dose, pharmacokinetics, high_signal_title, llm_validated_in_vivo
+  - Title: PCR-Based quantification of Borrelia burgdorferi organisms in canine tissues over a 500-Day postinfection period.
+    Score: 14
+    Match: drug_match(ceftriaxone), species:canine, dog, dogs, context_distance_match, relevance:treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Cefuroxime
+  - Title: Bioequivalence and population pharmacokinetic modeling of two forms of antibiotic, cefuroxime lysine and cefuroxime sodium, after intravenous infusion in beagle dogs.
+    Score: 19
+    Match: drug_match(cefuroxime), species:dogs, context_distance_match, relevance:bioavailability, dose, pharmacokinetic, pharmacokinetics, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Cephalexin
+  - Title: Efficacy of Amitraz plus Metaflumizone for the treatment of canine demodicosis associated with Malassezia pachydermatis. [LLM_INVALID]
+    Score: 15
+    Match: drug_match(cephalexin), species:canine, dog, context_distance_match, relevance:efficacy, treatment, llm_rejected
+  - Title: Case Report: Positive Outcome of a Suspected Drug-Associated (Immune Mediated) Reaction in a 4-Year-Old Male French Bulldog. [LLM_INVALID]
+    Score: 15
+    Match: drug_match(cephalexin), species:dog, dogs, context_distance_match, relevance:adverse, treatment, llm_rejected
+------------------------------
+■ Drug Name: Cephapirin
+  - Title: Comparative pharmacokinetics and metabolism of cephapirin in laboratory animals and humans.
+    Score: 19
+    Match: drug_match(cephapirin), species:dogs, context_distance_match, relevance:excretion, metabolism, pharmacokinetic, pharmacokinetics, high_signal_title, llm_validated_in_vivo
+  - Title: Comparative serum levels and protective activity of parenterally administered cephalosporins in experimental animals. [LLM_INVALID]
+    Score: 10
+    Match: drug_match(cephapirin), species:dogs, context_distance_penalty, relevance:dose, dosing, llm_rejected
+------------------------------
+■ Drug Name: Cetirizine
+  - Title: Cetirizine per os: exposure and antihistamine effect in the dog.
+    Score: 17
+    Match: drug_match(cetirizine), species:dog, dogs, context_distance_match, relevance:adverse, dosing, half-life, treatment, llm_validated_in_vivo
+  - Title: An open clinical trial on the efficacy of cetirizine hydrochloride in the management of allergic pruritus in cats.
+    Score: 15
+    Match: drug_match(cetirizine), species:cat, cats, context_distance_match, relevance:adverse, efficacy, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Charcoal, Activated
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Chlorambucil
+  - Title: Population pharmacokinetics identifies rapid gastrointestinal absorption and plasma clearance of oral chlorambucil administered to cats with indolent lymphoproliferative malignancies.
+    Score: 20
+    Match: drug_match(chlorambucil), species:cats, context_distance_match, relevance:absorption, adverse, clearance, dose, high_signal_title, llm_validated_in_vivo
+  - Title: Retrospective Safety Evaluation of Combined Chlorambucil and Toceranib for the Treatment of Different Solid Tumours in Dogs.
+    Score: 19
+    Match: drug_match(chlorambucil), species:canine, dog, dogs, context_distance_match, relevance:adverse, dose, safety, treatment, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Chloramphenicol
+  - Title: Retrospective description of the clinical use of chloramphenicol in client-owned cats: 12 cases (2015-2023).
+    Score: 17
+    Match: drug_match(chloramphenicol), species:cats, context_distance_match, relevance:adverse, dose, dosing, treatment, llm_validated_in_vivo
+  - Title: Efficacy of chloramphenicol, enrofloxacin, and tetracycline for treatment of experimental Rocky Mountain spotted fever in dogs.
+    Score: 15
+    Match: drug_match(chloramphenicol), species:canine, dog, dogs, context_distance_match, relevance:efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Chloramphenicol Ophthalmic
+  - Title: Enhanced Tear Film Concentrations of Cefazolin and Chloramphenicol Using Cross-Linked Hyaluronic Acid in Canine Eyes.
+    Score: 9
+    Match: drug_match(chloramphenicol ophthalmic), species:canine, dog, dogs, context_distance_penalty, relevance:treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Chlorothiazide
+  - Title: Micropuncture study of diuretic effects on sodium and calcium reabsorption in the dog nephron.
+    Score: 15
+    Match: drug_match(chlorothiazide), species:dog, dogs, context_distance_match, relevance:clearance, excretion, llm_validated_in_vivo
+  - Title: On the hypocalciuric action of chlorothiazide.
+    Score: 15
+    Match: drug_match(chlorothiazide), species:dogs, context_distance_match, relevance:clearance, dose, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Chlorpheniramine
+  - Title: Efficacy of dimetinden and hydroxyzine/chlorpheniramine in atopic dogs: a randomised, controlled, double-blinded trial.
+    Score: 15
+    Match: drug_match(chlorpheniramine), species:canine, dogs, context_distance_match, relevance:efficacy, treatment, llm_validated_in_vivo
+  - Title: Bioavailability of the Common Cold Medicines in Jellies for Oral Administration. [LLM_INVALID]
+    Score: 17
+    Match: drug_match(chlorpheniramine), species:dogs, context_distance_match, relevance:absorption, bioavailability, dosage, dose, llm_rejected
+------------------------------
+■ Drug Name: Chlorpromazine
+  - Title: Effect of drugs used in psychoses on cerebral dopamine metabolism.
+    Score: 16
+    Match: drug_match(chlorpromazine), species:cats, context_distance_match, relevance:dose, metabolism, treatment, llm_validated_in_vivo
+  - Title: Effects of chlorpromazine on the metabolism of catecholamines in dog brain.
+    Score: 15
+    Match: drug_match(chlorpromazine), species:dog, dogs, context_distance_match, relevance:dose, metabolism, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Chlortetracycline
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Cholestyramine
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Chorionic Gonadotropin
+  - Title: Progestin exposure before gonadotropin stimulation improves embryo development after in vitro fertilization in the domestic cat.
+    Score: 15
+    Match: drug_match(chorionic gonadotropin), species:cat, cats, context_distance_match, relevance:metabolism, treatment, llm_validated_in_vivo
+  - Title: Ketoconazole inhibition of testicular secretion of testosterone and displacement of steroid hormones from serum transport proteins. [LLM_INVALID]
+    Score: 15
+    Match: drug_match(chorionic gonadotropin), species:canine, context_distance_match, relevance:dosage, dose, llm_rejected
+------------------------------
+■ Drug Name: Ciclesonide
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Cidofovir Ophthalmic
+  - Title: Frequency and Characterization of Local Ocular Toxicity in Cats Treated With Topical Ophthalmic Cidofovir for Presumptive Feline Herpesvirus-1 Infection.
+    Score: 12
+    Match: drug_match(cidofovir ophthalmic), species:cats, feline, context_distance_penalty, relevance:adverse, toxicity, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Cimetidine
+  - Title: Reversal of secondary hyperparathyroidism by cimetidine in chronically uremic dogs.
+    Score: 16
+    Match: drug_match(cimetidine), species:dogs, context_distance_match, relevance:clearance, excretion, treatment, llm_validated_in_vivo
+  - Title: Impact of Substrate-Dependent Inhibition on Renal Organic Cation Transporters hOCT2 and hMATE1/2-K-Mediated Drug Transport and Intracellular Accumulation. [LLM_INVALID]
+    Score: 18
+    Match: drug_match(cimetidine), species:canine, context_distance_match, relevance:dose, drug interaction, efficacy, interaction, llm_rejected
+------------------------------
+■ Drug Name: Ciprofloxacin
+  - Title: Ciprofloxacin Pharmacokinetics in Clinical Canine Patients.
+    Score: 20
+    Match: drug_match(ciprofloxacin), species:canine, dog, dogs, context_distance_match, relevance:absorption, approved, distribution, dose, high_signal_title, llm_validated_in_vivo
+  - Title: Population pharmacokinetic analysis of enrofloxacin and its active metabolite ciprofloxacin after intravenous injection to cats with reduced kidney function.
+    Score: 20
+    Match: drug_match(ciprofloxacin), species:cats, context_distance_match, relevance:clearance, distribution, dosage, dose, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Ciprofloxacin Ophthalmic
+  - Title: Case Report: Clinical Remission in a Cat With Severe Bilateral Eosinophilic Keratitis Receiving Combined Immunosuppressive Therapy (Triamcinolone Acetonide and Tacrolimus). [LLM_INVALID]
+    Score: 8
+    Match: drug_match(ciprofloxacin ophthalmic), species:cat, context_distance_penalty, llm_rejected
+------------------------------
+■ Drug Name: Cisapride
+  - Title: Identifying the translational gap in the evaluation of drug-induced QTc interval prolongation.
+    Score: 16
+    Match: drug_match(cisapride), species:dogs, context_distance_match, relevance:pharmacodynamic, pharmacokinetic, safety, llm_validated_in_vivo
+  - Title: Suspected epidural morphine analgesia induced chronic urinary and bowel dysfunction in a cat. [LLM_INVALID]
+    Score: 14
+    Match: drug_match(cisapride), species:cat, cats, context_distance_match, relevance:adverse, llm_rejected
+------------------------------
+■ Drug Name: Cisplatin
+  - Title: Combination of bleomycin and cisplatin as adjuvant electrochemotherapy protocol for the treatment of incompletely excised feline injection-site sarcomas: A retrospective study.
+    Score: 17
+    Match: drug_match(cisplatin), species:cats, feline, context_distance_match, relevance:dose, efficacy, toxicity, treatment, llm_validated_in_vivo
+  - Title: Adjuvant electrochemotherapy with bleomycin and cisplatin combination for canine soft tissue sarcomas: A study of 30 cases.
+    Score: 17
+    Match: drug_match(cisplatin), species:canine, dogs, context_distance_match, relevance:dose, efficacy, toxicity, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Citrate, Potassium
+  - Title: Retrospective study of the efficacy of oral potassium supplementation in cats with kidney disease.
+    Score: 12
+    Match: drug_match(citrate, potassium), species:cats, context_distance_penalty, relevance:dose, dosing, efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Clarithromycin
+  - Title: Interaction of clarithromycin with cyclosporine in cats: pharmacokinetic study and case report.
+    Score: 20
+    Match: drug_match(clarithromycin), species:cat, cats, feline, context_distance_match, relevance:bioavailability, dosage, dose, dosing, high_signal_title, llm_validated_in_vivo
+  - Title: Preliminary study of effects of multiple oral dosing of clarithromycin on the pharmacokinetics of cyclosporine in dogs.
+    Score: 20
+    Match: drug_match(clarithromycin), species:dogs, feline, context_distance_match, relevance:bioavailability, dosage, dose, dosing, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Clemastine
+  - Title: A clinical trial on the efficacy of clemastine in the management of allergic pruritus in dogs.
+    Score: 16
+    Match: drug_match(clemastine), species:dogs, context_distance_match, relevance:adverse, efficacy, treatment, llm_validated_in_vivo
+  - Title: Clemastine fumarate as an antipruritic agent in pruritic cats: results of an open clinical trial.
+    Score: 15
+    Match: drug_match(clemastine), species:cat, cats, context_distance_match, relevance:dosage, efficacy, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Clenbuterol
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Clindamycin
+  - Title: Suspected clindamycin-associated oesophageal injury in cats: five cases.
+    Score: 16
+    Match: drug_match(clindamycin), species:cats, context_distance_match, relevance:dose, dosing, treatment, llm_validated_in_vivo
+  - Title: Efficacy of clindamycin hydrochloride capsules for the treatment of deep pyoderma due to Staphylococcus intermedius infection in dogs.
+    Score: 15
+    Match: drug_match(clindamycin), species:dog, dogs, context_distance_match, relevance:efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Clodronate
+  - Title: Evaluation of liposomal clodronate for treatment of malignant histiocytosis in dogs.
+    Score: 15
+    Match: drug_match(clodronate), species:canine, dogs, context_distance_match, relevance:safety, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Clofazimine
+  - Title: Intestinal Farnesoid X Receptor Activation by Pharmacologic Inhibition of the Organic Solute Transporter α-β. [LLM_INVALID]
+    Score: 15
+    Match: drug_match(clofazimine), species:canine, context_distance_match, relevance:approved, dose, llm_rejected
+------------------------------
+■ Drug Name: Clomipramine
+  - Title: Concurrent Use of Tasipimidine Oral Solution and Clomipramine in Dogs.
+    Score: 17
+    Match: drug_match(clomipramine), species:dogs, context_distance_match, relevance:absorption, dose, dosing, pharmacokinetics, llm_validated_in_vivo
+  - Title: Placebo-controlled double-blind clomipramine trial for the treatment of anxiety or fear in beagles during ground transport.
+    Score: 16
+    Match: drug_match(clomipramine), species:dogs, context_distance_match, relevance:dosage, efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Clonazepam
+  - Title: Pseudo-orthostatic tremor in a cat. [LLM_INVALID]
+    Score: 10
+    Match: drug_match(clonazepam), species:cat, context_distance_penalty, relevance:adverse, treatment, llm_rejected
+------------------------------
+■ Drug Name: Clonidine
+  - Title: Effects of clonidine, prazosin and phentolamine on heart rate and coronary sinus catecholamine concentration during cardioaccelerator nerve stimulation in spinal dogs.
+    Score: 13
+    Match: drug_match(clonidine), species:dogs, context_distance_match, llm_validated_in_vivo
+  - Title: Effects of fadolmidine, an α(2) -adrenoceptor agonist, as an adjuvant to spinal bupivacaine on antinociception and motor function in rats and dogs. [LLM_INVALID]
+    Score: 15
+    Match: drug_match(clonidine), species:dog, dogs, context_distance_match, relevance:dosing, interaction, llm_rejected
+------------------------------
+■ Drug Name: Clopidogrel
+  - Title: The effect of concurrent clopidogrel and omeprazole administration on clopidogrel metabolism and platelet function in healthy cats.
+    Score: 18
+    Match: drug_match(clopidogrel), species:cats, context_distance_match, relevance:drug interaction, interaction, metabolism, pharmacokinetics, llm_validated_in_vivo
+  - Title: Evaluation of clopidogrel impact on canine platelet function using flow cytometry and thromboelastography platelet mapping.
+    Score: 17
+    Match: drug_match(clopidogrel), species:canine, dogs, context_distance_match, relevance:dosage, dose, efficacy, safety, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Cloprostenol
+  - Title: Treatment of a Recurrent Pyometra by Surgical Uterine Drainage in a Main Coon Cat. [LLM_INVALID]
+    Score: 15
+    Match: drug_match(cloprostenol), species:cat, cats, dogs, context_distance_match, relevance:efficacy, treatment, llm_rejected
+------------------------------
+■ Drug Name: Clorazepate
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Cloxacillin
+  - Title: Comparative clinical evaluation of Boerhavia diffusa root extract with standard Enalapril treatment in Canine chronic renal failure. [LLM_INVALID]
+    Score: 15
+    Match: drug_match(cloxacillin), species:canine, dog, dogs, context_distance_match, relevance:efficacy, treatment, llm_rejected
+------------------------------
+■ Drug Name: Cobalamin
+  - Title: Daily oral cyanocobalamin supplementation in Beagles with hereditary cobalamin malabsorption (Imerslund-Gräsbeck syndrome) maintains normal clinical and cellular cobalamin status.
+    Score: 16
+    Match: drug_match(cobalamin), species:dog, dogs, context_distance_match, relevance:efficacy, metabolism, treatment, llm_validated_in_vivo
+  - Title: Oral Cobalamin Supplementation in Dogs with Chronic Enteropathies and Hypocobalaminemia.
+    Score: 15
+    Match: drug_match(cobalamin), species:dogs, context_distance_match, relevance:efficacy, treatment, llm_validated_in_vivo
+------------------------------
+
+📊 요약: 총 50개 중 42개 성공, 8개 실패

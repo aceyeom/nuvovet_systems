@@ -3,6 +3,7 @@ Drug endpoints — search, get, and list drugs.
 """
 
 import logging
+import re
 from typing import Optional
 
 from fastapi import APIRouter, HTTPException, Query
@@ -13,6 +14,29 @@ from services.drug_mapper import map_drug
 logger = logging.getLogger("nuvovet")
 
 router = APIRouter(prefix="/api", tags=["drugs"])
+
+
+def _normalize_search_text(value: str) -> str:
+    """Normalize free-text for resilient drug search matching."""
+    text = (value or "").lower()
+    text = re.sub(r"[\/_\-(),;]+", " ", text)
+    text = text.replace("±", " ")
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
+
+
+def _token_subset_match(query_norm: str, target_norm: str) -> bool:
+    """Return True if all query tokens are present in target tokens.
+
+    This handles cases like "citrate potassium" vs "potassium citrate".
+    """
+    if not query_norm or not target_norm:
+        return False
+    q_tokens = [t for t in query_norm.split(" ") if t]
+    if not q_tokens:
+        return False
+    t_set = set(t for t in target_norm.split(" ") if t)
+    return all(token in t_set for token in q_tokens)
 
 
 @router.get("/health")
@@ -33,25 +57,60 @@ def search_drugs(
         return {"results": [], "total": 0}
 
     query = q.strip().lower()
+    query_norm = _normalize_search_text(query)
+    query_first_token = query_norm.split(" ")[0] if query_norm else ""
     results = []
 
     for entry in get_search_index():
+        name_en = entry["name_en"]
+        name_ko = entry["name_ko"]
+        active = entry["active"]
+        brands = entry["brands"]
+        drug_id = entry["id"]
+
+        name_en_norm = _normalize_search_text(name_en)
+        name_ko_norm = _normalize_search_text(name_ko)
+        active_norm = _normalize_search_text(active)
+        id_norm = _normalize_search_text(drug_id)
+        brand_norms = [_normalize_search_text(b) for b in brands]
+
         score = 0
-        if entry["name_en"].startswith(query):
+        if name_en.startswith(query) or (query_norm and name_en_norm.startswith(query_norm)):
             score = 100
-        elif entry["active"].startswith(query):
+        elif active.startswith(query) or (query_norm and active_norm.startswith(query_norm)):
             score = 90
-        elif query in entry["name_en"]:
+        elif query_norm and id_norm.startswith(query_norm):
+            score = 85
+        elif query in name_en or (query_norm and query_norm in name_en_norm):
             score = 70
-        elif query in entry["name_ko"]:
+        elif query in name_ko or (query_norm and query_norm in name_ko_norm):
             score = 70
-        elif query in entry["active"]:
+        elif query in active or (query_norm and query_norm in active_norm):
             score = 60
-        elif any(query in b for b in entry["brands"]):
+        elif query_norm and query_norm in id_norm:
+            score = 60
+        elif any((query in b) or (query_norm and query_norm in bn) for b, bn in zip(brands, brand_norms)):
             score = 50
+        elif query_norm and (
+            _token_subset_match(query_norm, name_en_norm)
+            or _token_subset_match(query_norm, name_ko_norm)
+            or _token_subset_match(query_norm, active_norm)
+            or _token_subset_match(query_norm, id_norm)
+            or any(_token_subset_match(query_norm, bn) for bn in brand_norms)
+        ):
+            score = 45
+        elif query_first_token and (
+            query_first_token in name_en_norm
+            or query_first_token in name_ko_norm
+            or query_first_token in active_norm
+            or query_first_token in id_norm
+            or any(query_first_token in bn for bn in brand_norms)
+        ):
+            # Fallback for long/annotated queries like "dacarbazine dtic".
+            score = 35
 
         if score > 0:
-            results.append((score, entry["id"]))
+            results.append((score, drug_id))
 
     results.sort(key=lambda x: x[0], reverse=True)
     result_ids = [r[1] for r in results[:limit]]
@@ -63,8 +122,6 @@ def search_drugs(
             continue
         try:
             drug = map_drug(raw)
-            if species and drug["defaultDose"].get(species) is None:
-                continue
             mapped.append(drug)
         except Exception as e:
             logger.warning(f"Error mapping {drug_id}: {e}")

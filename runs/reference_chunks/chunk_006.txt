@@ -1,0 +1,268 @@
+■ Drug Name: Guaifenesin, Intravenous
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Hemoglobin Glutamer-200, Bovine
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Heparin
+  - Title: Low molecular weight protamine as nontoxic heparin/low molecular weight heparin antidote (III): preliminary in vivo evaluation of efficacy and toxicity using a canine model.
+    Score: 18
+    Match: drug_match(heparin), species:canine, dogs, context_distance_match, relevance:adverse, efficacy, toxicity, high_signal_title, llm_validated_in_vivo
+  - Title: Dose Escalation Trial of Desulfated Heparin (ODSH) in Septic Peritonitis.
+    Score: 13
+    Match: drug_match(heparin), species:dog, dogs, context_distance_penalty, relevance:adverse, approved, dosage, dose, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Hyaluronate
+  - Title: Tacrolimus and Hyaluronate Therapy Enhance Tear Film Stability in Canine Evaporative Dry Eye Disease.
+    Score: 16
+    Match: drug_match(hyaluronate), species:canine, dogs, context_distance_match, relevance:dosing, efficacy, treatment, llm_validated_in_vivo
+  - Title: Efficacy of an oral hyaluronate and collagen supplement as a preventive treatment of elbow dysplasia.
+    Score: 16
+    Match: drug_match(hyaluronate), species:dogs, context_distance_match, relevance:adverse, efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Hydralazine
+  - Title: Cardiovascular effects of the novel arteriovenous dilator agent, flosequinan in conscious dogs and cats. [LLM_INVALID]
+    Score: 15
+    Match: drug_match(hydralazine), species:cat, cats, dog, context_distance_match, relevance:clearance, excretion, llm_rejected
+  - Title: Efficacy Assessment of Cerebral Perfusion Augmentation through Functional Connectivity in an Acute Canine Stroke Model. [LLM_INVALID]
+    Score: 15
+    Match: drug_match(hydralazine), species:canine, context_distance_match, relevance:efficacy, treatment, llm_rejected
+------------------------------
+■ Drug Name: Hydrochlorothiazide
+  - Title: Hydrochlorothiazide/Losartan Potassium Tablet Prepared by Direct Compression. [LLM_INVALID]
+    Score: 9
+    Match: drug_match(hydrochlorothiazide), species:dogs, context_distance_penalty, relevance:bioavailability, llm_rejected
+------------------------------
+■ Drug Name: Hydrocodone Combinations
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Hydrocortisone
+  - Title: Comparison of prednisolone and alternative glucocorticoid dosing protocols for canine hypoadrenocorticism: insights from a survey-based study.
+    Score: 16
+    Match: drug_match(hydrocortisone), species:canine, dogs, context_distance_match, relevance:dosage, dosing, treatment, llm_validated_in_vivo
+  - Title: Immediate decrease by hydrocortisone of the plasma half-life of antipyrine.
+    Score: 16
+    Match: drug_match(hydrocortisone), species:dog, context_distance_match, relevance:distribution, half-life, metabolism, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Hydrocortisone Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Hydrogen Peroxide 3, Oral
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Hydromorphone
+  - Title: Pharmacokinetics of a continuous intravenous infusion of hydromorphone in healthy dogs.
+    Score: 20
+    Match: drug_match(hydromorphone), species:dogs, context_distance_match, relevance:clearance, distribution, dose, dosing, high_signal_title, llm_validated_in_vivo
+  - Title: Pharmacokinetics of a controlled-release liposome-encapsulated hydromorphone administered to healthy dogs.
+    Score: 20
+    Match: drug_match(hydromorphone), species:dogs, context_distance_match, relevance:clearance, distribution, dose, half-life, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Hydroxychloroquine
+  - Title: Phase I clinical trial and pharmacodynamic evaluation of combination hydroxychloroquine and doxorubicin treatment in pet dogs treated for spontaneously occurring lymphoma.
+    Score: 18
+    Match: drug_match(hydroxychloroquine), species:canine, dogs, context_distance_match, relevance:adverse, dose, pharmacodynamic, pharmacokinetic, llm_validated_in_vivo
+  - Title: Exfoliative cutaneous lupus erythematosus in German shorthaired pointer dogs: disease development, progression and evaluation of three immunomodulatory drugs (ciclosporin, hydroxychloroquine, and adalimumab) in a controlled environment.
+    Score: 15
+    Match: drug_match(hydroxychloroquine), species:canine, dog, dogs, context_distance_match, relevance:safety, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Hydroxyethyl Starch, Hes, Colloids
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Hydroxyurea
+  - Title: Clinical methemoglobinemia secondary to administration of hydroxyurea at therapeutic doses in a dog.
+    Score: 15
+    Match: drug_match(hydroxyurea), species:dog, context_distance_match, relevance:dosage, dose, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Hydroxyzine
+  - Title: Efficacy of dimetinden and hydroxyzine/chlorpheniramine in atopic dogs: a randomised, controlled, double-blinded trial.
+    Score: 15
+    Match: drug_match(hydroxyzine), species:canine, dogs, context_distance_match, relevance:efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Hyoscyamine
+  - Title: Pharmacological analysis of salivary and blood flow responses to histamine of the submandibular gland of the dog. [LLM_INVALID]
+    Score: 8
+    Match: drug_match(hyoscyamine), species:dog, dogs, context_distance_penalty, llm_rejected
+------------------------------
+■ Drug Name: Hypertonic Saline, 7, To 7 5
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Insulin Aspart
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Insulin Glargine
+  - Title: Insulin glargine 300 U/ml for the treatment of feline diabetes mellitus.
+    Score: 17
+    Match: drug_match(insulin glargine), species:cats, feline, context_distance_match, relevance:dosage, efficacy, safety, treatment, llm_validated_in_vivo
+  - Title: Equipotency of insulin glargine 300 and 100 U/mL with intravenous dosing but differential bioavailability with subcutaneous dosing in dogs.
+    Score: 17
+    Match: drug_match(insulin glargine), species:dogs, context_distance_match, relevance:bioavailability, dose, dosing, metabolism, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Insulin Lispro
+  - Title: Efficacy and Safety of Intramuscular Insulin Lispro vs. Continuous Intravenous Regular Insulin for the Treatment of Dogs With Diabetic Ketoacidosis.
+    Score: 20
+    Match: drug_match(insulin lispro), species:canine, dogs, context_distance_match, relevance:adverse, dose, efficacy, safety, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Insulin Regular (Crystalline Zinc)
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Irrigating Solutions Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Idoxuridine Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Ifosfamide
+  - Title: Isophosphoramide mustard, a metabolite of ifosfamide with activity against murine tumours comparable to cyclophosphamide. [LLM_INVALID]
+    Score: 16
+    Match: drug_match(ifosfamide), species:dog, context_distance_match, relevance:metabolism, pharmacokinetic, treatment, llm_rejected
+  - Title: Re-engineering cytochrome P450 2B11dH for enhanced metabolism of several substrates including the anti-cancer prodrugs cyclophosphamide and ifosfamide. [LLM_INVALID]
+    Score: 14
+    Match: drug_match(ifosfamide), species:cat, context_distance_match, relevance:metabolism, llm_rejected
+------------------------------
+■ Drug Name: Imepitoin
+  - Title: Efficacy, safety, and tolerability of imepitoin in dogs with newly diagnosed epilepsy in a randomized controlled clinical study with long-term follow up.
+    Score: 20
+    Match: drug_match(imepitoin), species:canine, dogs, context_distance_match, relevance:adverse, dose, efficacy, label, high_signal_title, llm_validated_in_vivo
+  - Title: Imepitoin as novel treatment option for canine idiopathic epilepsy: pharmacokinetics, distribution, and metabolism in dogs.
+    Score: 20
+    Match: drug_match(imepitoin), species:canine, dogs, context_distance_match, relevance:absorption, distribution, dose, dosing, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Imidacloprid, Systemic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Imidapril
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Imidocarb
+  - Title: Efficacy, safety and tolerance of imidocarb dipropionate versus atovaquone or buparvaquone plus azithromycin used to treat sick dogs naturally infected with the Babesia microti-like piroplasm.
+    Score: 20
+    Match: drug_match(imidocarb), species:dogs, context_distance_match, relevance:adverse, dosage, dose, efficacy, high_signal_title, llm_validated_in_vivo
+  - Title: Treatment failure in a dog with acute Babesia canis infection using lower-range therapeutic doses of imidocarb dipropionate.
+    Score: 17
+    Match: drug_match(imidocarb), species:canine, dog, dogs, context_distance_match, relevance:approved, dosage, dose, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Imipenem Cilastatin Sodium
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Imipramine
+  - Title: Modulating the Activity of the Human Organic Cation Transporter 2 Emerges as a Potential Strategy to Mitigate Unwanted Toxicities Associated with Cisplatin Chemotherapy. [LLM_INVALID]
+    Score: 17
+    Match: drug_match(imipramine), species:canine, context_distance_match, relevance:adverse, approved, interaction, toxicity, llm_rejected
+  - Title: Effects of imipramine and desipramine on responses of single cortical neurones to noradrenaline and 5-hydroxytryptamine. [LLM_INVALID]
+    Score: 16
+    Match: drug_match(imipramine), species:cat, context_distance_match, relevance:dose, drug interaction, interaction, llm_rejected
+------------------------------
+■ Drug Name: Immune Globulin, Human, Intravenous
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Insulin, Detemir
+  - Title: Insulin detemir treatment in diabetic cats in a practice setting.
+    Score: 10
+    Match: drug_match(insulin, detemir), species:cat, cats, context_distance_penalty, relevance:safety, treatment, llm_validated_in_vivo
+  - Title: Comparison of insulins detemir and glargine: effects on glucose disposal, hepatic glucose release and the central nervous system.
+    Score: 9
+    Match: drug_match(insulin, detemir), species:dogs, context_distance_penalty, relevance:metabolism, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Insulin, Lente
+  - Title: Prospective evaluation of a protocol for transitioning porcine lente insulin-treated diabetic cats to human recombinant protamine zinc insulin. [LLM_INVALID]
+    Score: 9
+    Match: drug_match(insulin, lente), species:cats, context_distance_penalty, relevance:dose, llm_rejected
+------------------------------
+■ Drug Name: Insulin, Nph
+  - Title: Toward once-monthly insulin therapy via synergy in two pharmacokinetic protractors: Fc-conjugation and fatty acid acylation.
+    Score: 13
+    Match: drug_match(insulin, nph), species:dog, context_distance_penalty, relevance:half-life, pharmacodynamic, pharmacokinetic, high_signal_title, llm_validated_in_vivo
+  - Title: Effect of the sodium-glucose cotransporter-2 inhibitor, DWP16001, as an add-on therapy to insulin for diabetic dogs: A pilot study. [LLM_INVALID]
+    Score: 13
+    Match: drug_match(insulin, nph), species:dogs, context_distance_penalty, relevance:adverse, dose, dosing, safety, llm_rejected
+------------------------------
+■ Drug Name: Insulin, Protamine Zinc
+  - Title: Glucose concentrations after insulin-induced hypoglycemia and glycemic variability in healthy and diabetic cats.
+    Score: 9
+    Match: drug_match(insulin, protamine zinc), species:cats, context_distance_penalty, relevance:dose, llm_validated_in_vivo
+  - Title: Managing feline diabetes: current perspectives. [LLM_INVALID]
+    Score: 9
+    Match: drug_match(insulin, protamine zinc), species:cats, feline, context_distance_penalty, relevance:treatment, llm_rejected
+------------------------------
+■ Drug Name: Interferon Alfa, Human
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Interferon Omega, Feline Origin
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Iodide, Potassium-, Sodium-
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Iohexol
+  - Title: Canine preclinical safety evaluation of a multimodal nanoparticle agent (Nanotrast-CF800) for image-guided cancer surgery.
+    Score: 19
+    Match: drug_match(iohexol), species:canine, dogs, context_distance_match, relevance:adverse, dose, efficacy, safety, high_signal_title, llm_validated_in_vivo
+  - Title: Intra-arterial renal infusion of autologous mesenchymal stem cells for treatment of chronic kidney disease in cats: Phase I clinical trial.
+    Score: 18
+    Match: drug_match(iohexol), species:cat, cats, context_distance_match, relevance:adverse, clearance, efficacy, safety, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Ipratropium
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Irbesartan
+  - Title: Hydroxypropyl-β-cyclodextrin functionalized calcium carbonate microparticles as a potential carrier for enhancing oral delivery of water-insoluble drugs.
+    Score: 10
+    Match: drug_match(irbesartan), species:dogs, context_distance_penalty, relevance:absorption, bioavailability, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Iron Dextran
+  - Title: Intravenous iron-dextran: studies on unsaturated iron-binding capacity.
+    Score: 10
+    Match: drug_match(iron dextran), species:dogs, context_distance_penalty, relevance:dose, label, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Isoflupredone
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Isoflurane
+  - Title: Dose-finding study comparing three treatments of remifentanil in cats anesthetized with isoflurane undergoing ovariohysterectomy.
+    Score: 16
+    Match: drug_match(isoflurane), species:cat, cats, context_distance_match, relevance:dosage, dose, treatment, llm_validated_in_vivo
+  - Title: Target-controlled infusions of butorphanol worsen hemodynamics in isoflurane-anesthetized cats.
+    Score: 15
+    Match: drug_match(isoflurane), species:cat, cats, dogs, context_distance_match, relevance:adverse, dose, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Isoniazid, Inh
+  - Title: Antimycobacterial activities in vitro and in vivo and pharmacokinetics of dihydromycoplanecin A. [LLM_INVALID]
+    Score: 15
+    Match: drug_match(isoniazid, inh), species:dogs, context_distance_penalty, relevance:absorption, distribution, excretion, half-life, high_signal_title, llm_rejected
+  - Title: ON donor tethered copper (II) and vanadium (V) complexes as efficacious anti-TB and anti-fungal agents with spectroscopic approached HSA interactions. [LLM_INVALID]
+    Score: 10
+    Match: drug_match(isoniazid, inh), species:cat, context_distance_penalty, relevance:interaction, toxicity, llm_rejected
+------------------------------
+■ Drug Name: Isoproterenol
+  - Title: Mechanism of antidiuretic effect of beta adrenergic stimulation.
+    Score: 15
+    Match: drug_match(isoproterenol), species:dog, context_distance_match, relevance:clearance, dose, llm_validated_in_vivo
+  - Title: Assessment of the efficacy of interventions to limit ischemic injury by direct measurement of intramural carbon dioxide tension after coronary artery occlusion in the dog.
+    Score: 9
+    Match: drug_match(isoproterenol), species:dog, dogs, context_distance_penalty, relevance:efficacy, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Isotretinoin
+  - Title: Clinical response to isotretinoin and interferon-α of two dogs with cutaneous epitheliotropic T-cell lymphoma: a case report.
+    Score: 15
+    Match: drug_match(isotretinoin), species:dogs, context_distance_match, relevance:efficacy, treatment, llm_validated_in_vivo
+  - Title: Is CCNU (lomustine) valuable for treatment of cutaneous epitheliotropic lymphoma in dogs? A critically appraised topic. [LLM_INVALID]
+    Score: 15
+    Match: drug_match(isotretinoin), species:dogs, context_distance_match, relevance:toxicity, treatment, llm_rejected
+------------------------------
+■ Drug Name: Isoxsuprine
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Itraconazole
+  - Title: Effects of multiple oral dosing of itraconazole on the pharmacokinetics of cyclosporine in cats.
+    Score: 20
+    Match: drug_match(itraconazole), species:cats, context_distance_match, relevance:bioavailability, dosage, dose, dosing, high_signal_title, llm_validated_in_vivo
+  - Title: Pharmacokinetics and bioavailability of itraconazole oral solution in cats.
+    Score: 20
+    Match: drug_match(itraconazole), species:cats, context_distance_match, relevance:bioavailability, clearance, distribution, dose, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Itraconazole Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+
+📊 요약: 총 50개 중 28개 성공, 22개 실패

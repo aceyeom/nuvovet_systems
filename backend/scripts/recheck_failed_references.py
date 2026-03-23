@@ -7,6 +7,8 @@ import time
 from collections import Counter
 from pathlib import Path
 
+import requests
+
 
 WORKSPACE_ROOT = Path(__file__).resolve().parents[2]
 if str(WORKSPACE_ROOT) not in sys.path:
@@ -157,13 +159,13 @@ def summarize_exclusion(candidates: list[dict]) -> dict:
 
 
 def run_query_tier(drug_name: str, tier_name: str, query: str, delay_seconds: float) -> dict:
-    pmc_ids = fr.search_pmc_ids(query)
+    pmc_ids = with_retry(lambda: fr.search_pmc_ids(query), f"search:{tier_name}")
     time.sleep(delay_seconds)
 
-    summaries = fr.fetch_summaries(pmc_ids)
+    summaries = with_retry(lambda: fr.fetch_summaries(pmc_ids), f"summary:{tier_name}") if pmc_ids else {}
     time.sleep(delay_seconds)
 
-    article_metadata = fr.fetch_article_metadata(pmc_ids)
+    article_metadata = with_retry(lambda: fr.fetch_article_metadata(pmc_ids), f"efetch:{tier_name}") if pmc_ids else {}
     time.sleep(delay_seconds)
 
     ranked = []
@@ -215,6 +217,29 @@ def run_query_tier(drug_name: str, tier_name: str, query: str, delay_seconds: fl
         "accepted": accepted,
         "ranked": ranked,
     }
+
+
+def with_retry(callable_fn, label: str, max_attempts: int = 4):
+    last_error = None
+    for attempt in range(1, max_attempts + 1):
+        try:
+            return callable_fn()
+        except (requests.RequestException, ConnectionError, TimeoutError) as error:
+            last_error = error
+            if attempt == max_attempts:
+                break
+            sleep_seconds = min(2.0 * attempt, 6.0)
+            print(f"  [retry] {label} attempt {attempt}/{max_attempts} failed: {error}")
+            time.sleep(sleep_seconds)
+        except Exception as error:
+            # Treat unknown errors as retryable once to absorb transient parser/network edge-cases.
+            last_error = error
+            if attempt == max_attempts:
+                break
+            sleep_seconds = min(2.0 * attempt, 6.0)
+            print(f"  [retry] {label} unexpected error {attempt}/{max_attempts}: {error}")
+            time.sleep(sleep_seconds)
+    raise RuntimeError(f"{label} failed after {max_attempts} attempts: {last_error}") from last_error
 
 
 def choose_alternatives(tier_results: list[dict], max_alternatives: int) -> list[dict]:
@@ -295,11 +320,27 @@ def recheck_drug(drug_name: str, max_alternatives: int, delay_seconds: float) ->
     relaxed_query = build_relaxed_query(drug_name)
     broad_query = build_broad_query(drug_name)
 
-    tier_results = [
-        run_query_tier(drug_name, "strict", strict_query, delay_seconds),
-        run_query_tier(drug_name, "relaxed_relevance", relaxed_query, delay_seconds),
-        run_query_tier(drug_name, "broad_species", broad_query, delay_seconds),
-    ]
+    tier_results = []
+    for tier_name, query in (
+        ("strict", strict_query),
+        ("relaxed_relevance", relaxed_query),
+        ("broad_species", broad_query),
+    ):
+        try:
+            tier_results.append(run_query_tier(drug_name, tier_name, query, delay_seconds))
+        except Exception as error:
+            tier_results.append(
+                {
+                    "tier": tier_name,
+                    "query": query,
+                    "pmc_count": 0,
+                    "candidate_count": 0,
+                    "accepted_count": 0,
+                    "accepted": [],
+                    "ranked": [],
+                    "tier_error": str(error),
+                }
+            )
 
     alternatives = choose_alternatives(tier_results, max_alternatives)
     diagnosis = diagnose_failure(tier_results)

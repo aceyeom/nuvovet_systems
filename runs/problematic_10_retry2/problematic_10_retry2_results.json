@@ -1,0 +1,507 @@
+{
+  "tested": 10,
+  "success_with_refs": 5,
+  "failed_no_refs": 5,
+  "drugs": [
+    {
+      "drug_id": "diphenoxylate_atropine",
+      "query": "((\"diphenoxylate\"[Title/Abstract] OR \"diphenoxylate\"[Name of Substance]) OR (\"atropine\"[Title/Abstract] OR \"atropine\"[Name of Substance])) AND (\"Dogs\"[Mesh] OR \"Cats\"[Mesh] OR dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (\"Pharmacokinetics\"[Mesh] OR \"Drug Interactions\"[Mesh] OR \"Toxicity\"[Mesh] OR pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR \"half-life\"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR \"drug interaction\"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT (\"In Vitro Techniques\"[Mesh] OR \"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+      "accepted_references": [],
+      "accepted_count": 0,
+      "source_file": "NO_PMC_REFERENCE",
+      "ddi_source": "NO_PMC_REFERENCE"
+    },
+    {
+      "drug_id": "euthanasia_agents_pentobarbital",
+      "query": "((\"euthanasia\"[Title/Abstract] OR \"euthanasia\"[Name of Substance]) OR (\"agents\"[Title/Abstract] OR \"agents\"[Name of Substance]) OR (\"pentobarbital\"[Title/Abstract] OR \"pentobarbital\"[Name of Substance])) AND (\"Dogs\"[Mesh] OR \"Cats\"[Mesh] OR dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (\"Pharmacokinetics\"[Mesh] OR \"Drug Interactions\"[Mesh] OR \"Toxicity\"[Mesh] OR pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR \"half-life\"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR \"drug interaction\"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT (\"In Vitro Techniques\"[Mesh] OR \"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+      "accepted_references": [],
+      "accepted_count": 0,
+      "source_file": "NO_PMC_REFERENCE",
+      "ddi_source": "NO_PMC_REFERENCE"
+    },
+    {
+      "drug_id": "fatty_acids_omega_3",
+      "query": "((\"fatty\"[Title/Abstract] OR \"fatty\"[Name of Substance]) OR (\"acids\"[Title/Abstract] OR \"acids\"[Name of Substance]) OR (\"omega\"[Title/Abstract] OR \"omega\"[Name of Substance]) OR (\"3\"[Title/Abstract] OR \"3\"[Name of Substance])) AND (\"Dogs\"[Mesh] OR \"Cats\"[Mesh] OR dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (\"Pharmacokinetics\"[Mesh] OR \"Drug Interactions\"[Mesh] OR \"Toxicity\"[Mesh] OR pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR \"half-life\"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR \"drug interaction\"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT (\"In Vitro Techniques\"[Mesh] OR \"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+      "accepted_references": [
+        {
+          "pmc_id": "12501575",
+          "issn": "0972-8988",
+          "title": "Efficacy and safety of omega-3-enriched lickable treats as adjunctive therapy for feline chronic gingivostomatitis: A randomized controlled trial.",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12501575/",
+          "if_score": 2.0,
+          "relevance_score": 19,
+          "match_reasons": [
+            "drug_match(fatty)",
+            "species:cat, cats, feline",
+            "context_distance_match",
+            "relevance:adverse, efficacy, safety, treatment",
+            "high_signal_title",
+            "llm_validated_in_vivo"
+          ],
+          "journal_title": "Veterinary World",
+          "journal_issns": [
+            "0972-8988",
+            "2231-0916"
+          ],
+          "journal_metrics": {
+            "jcr": {
+              "journal_title": "Veterinary World",
+              "abbreviated_journal": "VET WORLD",
+              "issns": [
+                "09728988",
+                "22310916"
+              ],
+              "jif": "2.0",
+              "five_year_jif": "2.1",
+              "jif_quartile": "Q2",
+              "jci": "0.76",
+              "metric_year": "2025",
+              "metric_source": "Journal Citation Reports"
+            },
+            "scimago": {
+              "journal_title": "Veterinary World",
+              "sjr": "0,541",
+              "sjr_best_quartile": "Q1",
+              "h_index": "56",
+              "metric_year": "2024"
+            },
+            "impact_factor": "2.0",
+            "impact_factor_5year": "2.1",
+            "impact_factor_quartile": "Q2",
+            "journal_citation_indicator": "0.76",
+            "sjr": "0,541",
+            "sjr_best_quartile": "Q1",
+            "h_index": "56"
+          },
+          "ddi_relevant": false,
+          "fda_relevant": false
+        },
+        {
+          "pmc_id": "12181554",
+          "issn": "2509-2715",
+          "title": "Enhancing cognitive functions in aged dogs and cats: a systematic review of enriched diets and nutraceuticals.",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12181554/",
+          "if_score": 5.4,
+          "relevance_score": 16,
+          "match_reasons": [
+            "drug_match(fatty)",
+            "species:canine, cats, dogs",
+            "context_distance_match",
+            "relevance:efficacy",
+            "high_signal_title",
+            "llm_validated_in_vivo"
+          ],
+          "journal_title": "GeroScience",
+          "journal_issns": [
+            "2509-2715",
+            "2509-2723"
+          ],
+          "journal_metrics": {
+            "jcr": {
+              "journal_title": "GeroScience",
+              "abbreviated_journal": "GEROSCIENCE",
+              "issns": [
+                "25092715",
+                "25092723"
+              ],
+              "jif": "5.4",
+              "five_year_jif": "5.9",
+              "jif_quartile": "Q1",
+              "jci": "1.43",
+              "metric_year": "2025",
+              "metric_source": "Journal Citation Reports"
+            },
+            "scimago": {
+              "journal_title": "GeroScience",
+              "sjr": "1,564",
+              "sjr_best_quartile": "Q1",
+              "h_index": "95",
+              "metric_year": "2024"
+            },
+            "impact_factor": "5.4",
+            "impact_factor_5year": "5.9",
+            "impact_factor_quartile": "Q1",
+            "journal_citation_indicator": "1.43",
+            "sjr": "1,564",
+            "sjr_best_quartile": "Q1",
+            "h_index": "95"
+          },
+          "ddi_relevant": false,
+          "fda_relevant": false
+        }
+      ],
+      "accepted_count": 2,
+      "source_file": "PMC12501575, PMC12181554",
+      "ddi_source": "PMC references: PMC12501575, PMC12181554"
+    },
+    {
+      "drug_id": "insulin_aspart",
+      "query": "((\"insulin\"[Title/Abstract] OR \"insulin\"[Name of Substance]) OR (\"aspart\"[Title/Abstract] OR \"aspart\"[Name of Substance])) AND (\"Dogs\"[Mesh] OR \"Cats\"[Mesh] OR dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (\"Pharmacokinetics\"[Mesh] OR \"Drug Interactions\"[Mesh] OR \"Toxicity\"[Mesh] OR pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR \"half-life\"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR \"drug interaction\"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT (\"In Vitro Techniques\"[Mesh] OR \"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+      "accepted_references": [],
+      "accepted_count": 0,
+      "source_file": "NO_PMC_REFERENCE",
+      "ddi_source": "NO_PMC_REFERENCE"
+    },
+    {
+      "drug_id": "insulin_regular",
+      "query": "((\"insulin\"[Title/Abstract] OR \"insulin\"[Name of Substance]) OR (\"regular\"[Title/Abstract] OR \"regular\"[Name of Substance])) AND (\"Dogs\"[Mesh] OR \"Cats\"[Mesh] OR dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (\"Pharmacokinetics\"[Mesh] OR \"Drug Interactions\"[Mesh] OR \"Toxicity\"[Mesh] OR pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR \"half-life\"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR \"drug interaction\"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT (\"In Vitro Techniques\"[Mesh] OR \"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+      "accepted_references": [
+        {
+          "pmc_id": "7596346",
+          "issn": "2297-1769",
+          "title": "Efficacy and Safety of Intramuscular Insulin Lispro vs. Continuous Intravenous Regular Insulin for the Treatment of Dogs With Diabetic Ketoacidosis.",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7596346/",
+          "if_score": 2.9,
+          "relevance_score": 20,
+          "match_reasons": [
+            "drug_match(insulin)",
+            "species:canine, dogs",
+            "context_distance_match",
+            "relevance:adverse, dose, efficacy, safety",
+            "high_signal_title",
+            "llm_validated_in_vivo"
+          ],
+          "journal_title": "Frontiers in Veterinary Science",
+          "journal_issns": [
+            "2297-1769"
+          ],
+          "journal_metrics": {
+            "jcr": {
+              "journal_title": "Frontiers in Veterinary Science",
+              "abbreviated_journal": "FRONT VET SCI",
+              "issns": [
+                "22971769"
+              ],
+              "jif": "2.9",
+              "five_year_jif": "3.3",
+              "jif_quartile": "Q1",
+              "jci": "1.28",
+              "metric_year": "2025",
+              "metric_source": "Journal Citation Reports"
+            },
+            "scimago": {
+              "journal_title": "Frontiers in Veterinary Science",
+              "sjr": "0,783",
+              "sjr_best_quartile": "Q1",
+              "h_index": "85",
+              "metric_year": "2024"
+            },
+            "impact_factor": "2.9",
+            "impact_factor_5year": "3.3",
+            "impact_factor_quartile": "Q1",
+            "journal_citation_indicator": "1.28",
+            "sjr": "0,783",
+            "sjr_best_quartile": "Q1",
+            "h_index": "85"
+          },
+          "ddi_relevant": false,
+          "fda_relevant": false
+        },
+        {
+          "pmc_id": "10814606",
+          "issn": "1098-612X",
+          "title": "Use of lispro insulin for treatment of diabetic ketoacidosis in cats.",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10814606/",
+          "if_score": 2.1,
+          "relevance_score": 16,
+          "match_reasons": [
+            "drug_match(insulin)",
+            "species:cat, cats, feline",
+            "context_distance_match",
+            "relevance:efficacy, safety, treatment",
+            "llm_validated_in_vivo"
+          ],
+          "journal_title": "Journal of Feline Medicine and Surgery",
+          "journal_issns": [
+            "1098-612X",
+            "1532-2750"
+          ],
+          "journal_metrics": {
+            "jcr": {
+              "journal_title": "JOURNAL OF FELINE MEDICINE AND SURGERY",
+              "abbreviated_journal": "J FELINE MED SURG",
+              "issns": [
+                "1098612X",
+                "15322750"
+              ],
+              "jif": "2.1",
+              "five_year_jif": "2.2",
+              "jif_quartile": "Q1",
+              "jci": "0.95",
+              "metric_year": "2025",
+              "metric_source": "Journal Citation Reports"
+            },
+            "scimago": {
+              "journal_title": "Journal of Feline Medicine and Surgery",
+              "sjr": "0,768",
+              "sjr_best_quartile": "Q1",
+              "h_index": "81",
+              "metric_year": "2024"
+            },
+            "impact_factor": "2.1",
+            "impact_factor_5year": "2.2",
+            "impact_factor_quartile": "Q1",
+            "journal_citation_indicator": "0.95",
+            "sjr": "0,768",
+            "sjr_best_quartile": "Q1",
+            "h_index": "81"
+          },
+          "ddi_relevant": false,
+          "fda_relevant": false
+        }
+      ],
+      "accepted_count": 2,
+      "source_file": "PMC7596346, PMC10814606",
+      "ddi_source": "PMC references: PMC7596346, PMC10814606"
+    },
+    {
+      "drug_id": "irrigating_solutions_ophthalmic",
+      "query": "((\"irrigating\"[Title/Abstract] OR \"irrigating\"[Name of Substance]) OR (\"solutions\"[Title/Abstract] OR \"solutions\"[Name of Substance])) AND (\"Dogs\"[Mesh] OR \"Cats\"[Mesh] OR dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (corneal[Title/Abstract] OR ocular[Title/Abstract] OR intraocular[Title/Abstract] OR eye[Title/Abstract] OR topical[Title/Abstract] OR \"adverse effects\"[Title/Abstract]) NOT (\"In Vitro Techniques\"[Mesh] OR \"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+      "accepted_references": [],
+      "accepted_count": 0,
+      "source_file": "NO_PMC_REFERENCE",
+      "ddi_source": "NO_PMC_REFERENCE"
+    },
+    {
+      "drug_id": "kaolin_pectin",
+      "query": "((\"kaolin\"[Title/Abstract] OR \"kaolin\"[Name of Substance]) OR (\"pectin\"[Title/Abstract] OR \"pectin\"[Name of Substance])) AND (\"Dogs\"[Mesh] OR \"Cats\"[Mesh] OR dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (\"Pharmacokinetics\"[Mesh] OR \"Drug Interactions\"[Mesh] OR \"Toxicity\"[Mesh] OR pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR \"half-life\"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR \"drug interaction\"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT (\"In Vitro Techniques\"[Mesh] OR \"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+      "accepted_references": [],
+      "accepted_count": 0,
+      "source_file": "NO_PMC_REFERENCE",
+      "ddi_source": "NO_PMC_REFERENCE"
+    },
+    {
+      "drug_id": "ocular_lubricants",
+      "query": "((\"ocular\"[Title/Abstract] OR \"ocular\"[Name of Substance]) OR (\"lubricants\"[Title/Abstract] OR \"lubricants\"[Name of Substance])) AND (\"Dogs\"[Mesh] OR \"Cats\"[Mesh] OR dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (corneal[Title/Abstract] OR ocular[Title/Abstract] OR intraocular[Title/Abstract] OR eye[Title/Abstract] OR topical[Title/Abstract] OR \"adverse effects\"[Title/Abstract]) NOT (\"In Vitro Techniques\"[Mesh] OR \"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+      "accepted_references": [
+        {
+          "pmc_id": "12639204",
+          "issn": "1098-612X",
+          "title": "Impact of general anesthesia on feline aqueous tear production and the feline corneal epithelium.",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12639204/",
+          "if_score": 2.1,
+          "relevance_score": 13,
+          "match_reasons": [
+            "drug_match(ocular)",
+            "species:cats, dogs, feline",
+            "context_distance_match",
+            "llm_validated_in_vivo"
+          ],
+          "journal_title": "Journal of Feline Medicine and Surgery",
+          "journal_issns": [
+            "1098-612X",
+            "1532-2750"
+          ],
+          "journal_metrics": {
+            "jcr": {
+              "journal_title": "JOURNAL OF FELINE MEDICINE AND SURGERY",
+              "abbreviated_journal": "J FELINE MED SURG",
+              "issns": [
+                "1098612X",
+                "15322750"
+              ],
+              "jif": "2.1",
+              "five_year_jif": "2.2",
+              "jif_quartile": "Q1",
+              "jci": "0.95",
+              "metric_year": "2025",
+              "metric_source": "Journal Citation Reports"
+            },
+            "scimago": {
+              "journal_title": "Journal of Feline Medicine and Surgery",
+              "sjr": "0,768",
+              "sjr_best_quartile": "Q1",
+              "h_index": "81",
+              "metric_year": "2024"
+            },
+            "impact_factor": "2.1",
+            "impact_factor_5year": "2.2",
+            "impact_factor_quartile": "Q1",
+            "journal_citation_indicator": "0.95",
+            "sjr": "0,768",
+            "sjr_best_quartile": "Q1",
+            "h_index": "81"
+          },
+          "ddi_relevant": false,
+          "fda_relevant": false
+        }
+      ],
+      "accepted_count": 1,
+      "source_file": "PMC12639204",
+      "ddi_source": "PMC references: PMC12639204"
+    },
+    {
+      "drug_id": "oxytetracycline_polymyxin_b_ophthalmic",
+      "query": "((\"oxytetracycline\"[Title/Abstract] OR \"oxytetracycline\"[Name of Substance]) OR (\"polymyxin\"[Title/Abstract] OR \"polymyxin\"[Name of Substance]) OR (\"b\"[Title/Abstract] OR \"b\"[Name of Substance])) AND (\"Dogs\"[Mesh] OR \"Cats\"[Mesh] OR dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (corneal[Title/Abstract] OR ocular[Title/Abstract] OR intraocular[Title/Abstract] OR eye[Title/Abstract] OR topical[Title/Abstract] OR \"adverse effects\"[Title/Abstract]) NOT (\"In Vitro Techniques\"[Mesh] OR \"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+      "accepted_references": [
+        {
+          "pmc_id": "10832756",
+          "issn": "1098-612X",
+          "title": "Anaphylactic events observed within 4 h of ocular application of an antibiotic-containing ophthalmic preparation: 61 cats (1993-2010).",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10832756/",
+          "if_score": 2.1,
+          "relevance_score": 13,
+          "match_reasons": [
+            "drug_match(oxytetracycline)",
+            "species:cat, cats",
+            "context_distance_match",
+            "llm_validated_in_vivo"
+          ],
+          "journal_title": "Journal of Feline Medicine and Surgery",
+          "journal_issns": [
+            "1098-612X",
+            "1532-2750"
+          ],
+          "journal_metrics": {
+            "jcr": {
+              "journal_title": "JOURNAL OF FELINE MEDICINE AND SURGERY",
+              "abbreviated_journal": "J FELINE MED SURG",
+              "issns": [
+                "1098612X",
+                "15322750"
+              ],
+              "jif": "2.1",
+              "five_year_jif": "2.2",
+              "jif_quartile": "Q1",
+              "jci": "0.95",
+              "metric_year": "2025",
+              "metric_source": "Journal Citation Reports"
+            },
+            "scimago": {
+              "journal_title": "Journal of Feline Medicine and Surgery",
+              "sjr": "0,768",
+              "sjr_best_quartile": "Q1",
+              "h_index": "81",
+              "metric_year": "2024"
+            },
+            "impact_factor": "2.1",
+            "impact_factor_5year": "2.2",
+            "impact_factor_quartile": "Q1",
+            "journal_citation_indicator": "0.95",
+            "sjr": "0,768",
+            "sjr_best_quartile": "Q1",
+            "h_index": "81"
+          },
+          "ddi_relevant": false,
+          "fda_relevant": false
+        }
+      ],
+      "accepted_count": 1,
+      "source_file": "PMC10832756",
+      "ddi_source": "PMC references: PMC10832756"
+    },
+    {
+      "drug_id": "prednisolone_prednisone",
+      "query": "((\"prednisolone\"[Title/Abstract] OR \"prednisolone\"[Name of Substance]) OR (\"prednisone\"[Title/Abstract] OR \"prednisone\"[Name of Substance])) AND (\"Dogs\"[Mesh] OR \"Cats\"[Mesh] OR dog[Title/Abstract] OR dogs[Title/Abstract] OR canine[Title/Abstract] OR cat[Title/Abstract] OR cats[Title/Abstract] OR feline[Title/Abstract]) AND (\"Pharmacokinetics\"[Mesh] OR \"Drug Interactions\"[Mesh] OR \"Toxicity\"[Mesh] OR pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR \"half-life\"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR \"drug interaction\"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract]) NOT (\"In Vitro Techniques\"[Mesh] OR \"vehicle control\"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR \"cell line\"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])",
+      "accepted_references": [
+        {
+          "pmc_id": "7604266",
+          "issn": "2297-1769",
+          "title": "Pharmacokinetics of Oral Prednisone at Various Doses in Dogs: Preliminary Findings Using a Naïve Pooled-Data Approach.",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7604266/",
+          "if_score": 2.9,
+          "relevance_score": 20,
+          "match_reasons": [
+            "drug_match(prednisolone)",
+            "species:canine, dogs",
+            "context_distance_match",
+            "relevance:clearance, distribution, dosing, efficacy",
+            "high_signal_title",
+            "llm_validated_in_vivo"
+          ],
+          "journal_title": "Frontiers in Veterinary Science",
+          "journal_issns": [
+            "2297-1769"
+          ],
+          "journal_metrics": {
+            "jcr": {
+              "journal_title": "Frontiers in Veterinary Science",
+              "abbreviated_journal": "FRONT VET SCI",
+              "issns": [
+                "22971769"
+              ],
+              "jif": "2.9",
+              "five_year_jif": "3.3",
+              "jif_quartile": "Q1",
+              "jci": "1.28",
+              "metric_year": "2025",
+              "metric_source": "Journal Citation Reports"
+            },
+            "scimago": {
+              "journal_title": "Frontiers in Veterinary Science",
+              "sjr": "0,783",
+              "sjr_best_quartile": "Q1",
+              "h_index": "85",
+              "metric_year": "2024"
+            },
+            "impact_factor": "2.9",
+            "impact_factor_5year": "3.3",
+            "impact_factor_quartile": "Q1",
+            "journal_citation_indicator": "1.28",
+            "sjr": "0,783",
+            "sjr_best_quartile": "Q1",
+            "h_index": "85"
+          },
+          "ddi_relevant": false,
+          "fda_relevant": false
+        },
+        {
+          "pmc_id": "10814662",
+          "issn": "1098-612X",
+          "title": "Efficacy and toxicity of mustargen, vincristine, procarbazine and prednisone (MOPP) for the treatment of relapsed or resistant lymphoma in cats.",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10814662/",
+          "if_score": 2.1,
+          "relevance_score": 20,
+          "match_reasons": [
+            "drug_match(prednisone)",
+            "species:cats, feline",
+            "context_distance_match",
+            "relevance:adverse, efficacy, safety, toxicity",
+            "high_signal_title",
+            "llm_validated_in_vivo"
+          ],
+          "journal_title": "Journal of Feline Medicine and Surgery",
+          "journal_issns": [
+            "1098-612X",
+            "1532-2750"
+          ],
+          "journal_metrics": {
+            "jcr": {
+              "journal_title": "JOURNAL OF FELINE MEDICINE AND SURGERY",
+              "abbreviated_journal": "J FELINE MED SURG",
+              "issns": [
+                "1098612X",
+                "15322750"
+              ],
+              "jif": "2.1",
+              "five_year_jif": "2.2",
+              "jif_quartile": "Q1",
+              "jci": "0.95",
+              "metric_year": "2025",
+              "metric_source": "Journal Citation Reports"
+            },
+            "scimago": {
+              "journal_title": "Journal of Feline Medicine and Surgery",
+              "sjr": "0,768",
+              "sjr_best_quartile": "Q1",
+              "h_index": "81",
+              "metric_year": "2024"
+            },
+            "impact_factor": "2.1",
+            "impact_factor_5year": "2.2",
+            "impact_factor_quartile": "Q1",
+            "journal_citation_indicator": "0.95",
+            "sjr": "0,768",
+            "sjr_best_quartile": "Q1",
+            "h_index": "81"
+          },
+          "ddi_relevant": false,
+          "fda_relevant": false
+        }
+      ],
+      "accepted_count": 2,
+      "source_file": "PMC7604266, PMC10814662",
+      "ddi_source": "PMC references: PMC7604266, PMC10814662"
+    }
+  ]
+}

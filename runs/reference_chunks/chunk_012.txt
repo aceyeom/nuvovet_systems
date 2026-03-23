@@ -1,0 +1,285 @@
+■ Drug Name: Trimeprazine Prednisolone
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Tacrolimus Ophthalmic
+  - Title: An investigation comparing the efficacy of topical ocular application of tacrolimus and cyclosporine in dogs.
+    Score: 10
+    Match: drug_match(tacrolimus ophthalmic), species:dogs, context_distance_penalty, relevance:efficacy, safety, llm_validated_in_vivo
+  - Title: Prospective Comparative Study of Topical Tacrolimus and Sirolimus for the Treatment of Pigmentary Keratitis in Pug Dogs.
+    Score: 9
+    Match: drug_match(tacrolimus ophthalmic), species:dogs, context_distance_penalty, relevance:treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Tadalafil
+  - Title: Clinical efficacy of tadalafil compared to sildenafil in treatment of moderate to severe canine pulmonary hypertension: a pilot study.
+    Score: 18
+    Match: drug_match(tadalafil), species:canine, dogs, context_distance_match, relevance:adverse, dose, efficacy, safety, llm_validated_in_vivo
+  - Title: Enhanced Bioavailability of Tadalafil after Intranasal Administration in Beagle Dogs.
+    Score: 18
+    Match: drug_match(tadalafil), species:dogs, context_distance_match, relevance:absorption, bioavailability, efficacy, pharmacokinetic, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Tafluprost Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Tamsulosin
+  - Title: Outcome of medical treatments combined with tamsulosin for feline ureteral obstruction.
+    Score: 16
+    Match: drug_match(tamsulosin), species:cats, feline, context_distance_match, relevance:adverse, label, treatment, llm_validated_in_vivo
+  - Title: Factors Affecting the Outcome of Medical Treatment in Cats with Obstructive Ureteral Stones Treated with Tamsulosin: 70 Cases (2018-2022).
+    Score: 16
+    Match: drug_match(tamsulosin), species:cats, feline, context_distance_match, relevance:adverse, efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Taurine
+  - Title: 242 Effects of different carbohydrate sources on taurine status in healthy Beagle dogs.
+    Score: 16
+    Match: drug_match(taurine), species:canine, dog, dogs, context_distance_match, relevance:excretion, interaction, metabolism, llm_validated_in_vivo
+  - Title: Longitudinal assessment of taurine and amino acid concentrations in dogs fed a green lentil diet.
+    Score: 16
+    Match: drug_match(taurine), species:canine, dogs, context_distance_match, relevance:approved, excretion, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Telmisartan
+  - Title: Single-dose pharmacokinetics of telmisartan oral solution and effect of feeding in dogs.
+    Score: 20
+    Match: drug_match(telmisartan), species:dogs, feline, context_distance_match, relevance:absorption, approved, dose, pharmacodynamic, high_signal_title, llm_validated_in_vivo
+  - Title: Safety and efficacy of orally administered telmisartan for the treatment of systemic hypertension in cats: Results of a double-blind, placebo-controlled, randomized clinical trial.
+    Score: 18
+    Match: drug_match(telmisartan), species:cats, feline, context_distance_match, relevance:efficacy, safety, treatment, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Terbinafine
+  - Title: Single dose pharmacokinetics of terbinafine in cats.
+    Score: 20
+    Match: drug_match(terbinafine), species:cats, context_distance_match, relevance:bioavailability, distribution, dose, dosing, high_signal_title, llm_validated_in_vivo
+  - Title: A randomized, controlled, single-blinded, multicenter evaluation of the efficacy and safety of a once weekly two dose otic gel containing florfenicol, terbinafine and betamethasone administered for the treatment of canine otitis externa.
+    Score: 20
+    Match: drug_match(terbinafine), species:canine, dogs, context_distance_match, relevance:adverse, dose, efficacy, safety, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Terbutaline
+  - Title: Metabolism of terbutaline in man and dog.
+    Score: 15
+    Match: drug_match(terbutaline), species:dog, dogs, context_distance_match, relevance:dosing, metabolism, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Testosterone
+  - Title: Safety and dosing of testosterone for hormone restoration in neutered dogs.
+    Score: 19
+    Match: drug_match(testosterone), species:dog, dogs, context_distance_match, relevance:dose, dosing, safety, treatment, high_signal_title, llm_validated_in_vivo
+  - Title: Clinical assessment of testosterone analogues for urethral sphincter mechanism incompetence in ten spayed female dogs.
+    Score: 16
+    Match: drug_match(testosterone), species:dog, dogs, context_distance_match, relevance:adverse, dose, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Tetracaine Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Tetracycline
+  - Title: Efficacy and side effects of doxycycline versus minocycline in the three-dose melarsomine canine adulticidal heartworm treatment protocol.
+    Score: 17
+    Match: drug_match(tetracycline), species:canine, dog, dogs, context_distance_match, relevance:dosage, dose, efficacy, treatment, llm_validated_in_vivo
+  - Title: Efficacy of chloramphenicol, enrofloxacin, and tetracycline for treatment of experimental Rocky Mountain spotted fever in dogs.
+    Score: 15
+    Match: drug_match(tetracycline), species:canine, dog, dogs, context_distance_match, relevance:efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Theophylline
+  - Title: Pharmacokinetics of a 503B outsourcing facility-produced theophylline in dogs.
+    Score: 20
+    Match: drug_match(theophylline), species:canine, dogs, context_distance_match, relevance:bioavailability, dosage, dosing, half-life, high_signal_title, llm_validated_in_vivo
+  - Title: Pharmacokinetics of the cytochrome P-450 substrates phenytoin, theophylline, and diazepam in healthy Greyhound dogs.
+    Score: 18
+    Match: drug_match(theophylline), species:dogs, context_distance_match, relevance:clearance, half-life, pharmacokinetics, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Thiamine
+  - Title: Thiamine Deficiency-Mediated Brain Mitochondrial Pathology in Alaskan Huskies with Mutation in SLC19A3.1.
+    Score: 15
+    Match: drug_match(thiamine), species:dogs, context_distance_match, relevance:distribution, metabolism, llm_validated_in_vivo
+  - Title: The Role of Thiamine and Effects of Deficiency in Dogs and Cats. [LLM_INVALID]
+    Score: 14
+    Match: drug_match(thiamine), species:cats, dogs, context_distance_match, relevance:metabolism, llm_rejected
+------------------------------
+■ Drug Name: Thiopental
+  - Title: Drug Interaction between Dexamethasone and Ketoprofen with Thiopental in Male Dogs: Effect on the Recovery from Anesthesia and Pharmacokinetics Parameters.
+    Score: 20
+    Match: drug_match(thiopental), species:dogs, context_distance_match, relevance:clearance, distribution, drug interaction, half-life, high_signal_title, llm_validated_in_vivo
+  - Title: Comparison of the efficacy of three premedicants administered to cats. [LLM_INVALID]
+    Score: 16
+    Match: drug_match(thiopental), species:cats, context_distance_match, relevance:dose, efficacy, treatment, llm_rejected
+------------------------------
+■ Drug Name: Thyrotropin-Releasing Hormone
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Thyrotropin Alfa
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Tiamulin
+  - Title: Bromhexine hydrochloride enhances the therapeutic efficacy of tiamulin against experimental Staphylococcus aureus infection in dogs: targeting bacterial virulence, boosting antioxidant defense, and improving histopathology.
+    Score: 14
+    Match: drug_match(tiamulin), species:canine, dogs, context_distance_match, relevance:efficacy, llm_validated_in_vivo
+  - Title: Safety and efficacy of Sacox(®) microGranulate (salinomycin sodium) for rabbits for fattening. [LLM_INVALID]
+    Score: 19
+    Match: drug_match(tiamulin), species:dogs, context_distance_match, relevance:adverse, dose, efficacy, safety, high_signal_title, llm_rejected
+------------------------------
+■ Drug Name: Tigilanol Tiglate
+  - Title: Randomized controlled clinical study evaluating the efficacy and safety of intratumoral treatment of canine mast cell tumors with tigilanol tiglate (EBC-46).
+    Score: 20
+    Match: drug_match(tigilanol tiglate), species:canine, dogs, context_distance_match, relevance:adverse, dose, efficacy, safety, high_signal_title, llm_validated_in_vivo
+  - Title: Dose Characterization of the Investigational Anticancer Drug Tigilanol Tiglate (EBC-46) in the Local Treatment of Canine Mast Cell Tumors.
+    Score: 18
+    Match: drug_match(tigilanol tiglate), species:canine, dogs, context_distance_match, relevance:adverse, dose, dosing, efficacy, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Tildipirosin
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Tiletamine Zolazepam
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Tilmicosin
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Tiludronate
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Timolol Ophthalmic
+  - Title: Effect of timolol maleate gel-forming solution on intraocular pressure, pupil diameter, and heart rate in normal and glaucomatous cats.
+    Score: 9
+    Match: drug_match(timolol ophthalmic), species:cats, feline, context_distance_penalty, relevance:treatment, llm_validated_in_vivo
+  - Title: Effects of 0.5% Timolol Maleate Ophthalmic Solution on Heart Rate and Selected Echocardiographic Indices in Apparently Healthy Cats. [LLM_INVALID]
+    Score: 15
+    Match: drug_match(timolol ophthalmic), species:cats, context_distance_match, relevance:adverse, treatment, llm_rejected
+------------------------------
+■ Drug Name: Tinidazole
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Tiopronin
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Tobramycin, Systemic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Tobramycin Ophthalmic
+  - Title: Salmonella infantis ulcerative keratitis in a dog. [LLM_INVALID]
+    Score: 8
+    Match: drug_match(tobramycin ophthalmic), species:dog, context_distance_penalty, llm_rejected
+  - Title: Case Report: The First Report on Moraxella canis Isolation From Corneal Ulcer in a Bulldog. [LLM_INVALID]
+    Score: 8
+    Match: drug_match(tobramycin ophthalmic), species:canine, context_distance_penalty, llm_rejected
+------------------------------
+■ Drug Name: Toceranib
+  - Title: Evaluation of the efficacy and safety of toceranib phosphate in cats with macroscopic mammary adenocarcinoma.
+    Score: 20
+    Match: drug_match(toceranib), species:cat, cats, feline, context_distance_match, relevance:adverse, dose, efficacy, safety, high_signal_title, llm_validated_in_vivo
+  - Title: Toxicity and response in cats with neoplasia treated with toceranib phosphate.
+    Score: 19
+    Match: drug_match(toceranib), species:cat, cats, dogs, context_distance_match, relevance:adverse, dose, toxicity, treatment, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Tolazoline
+  - Title: Effects of dopamine and bromocriptine on colonic motility in dog. [LLM_INVALID]
+    Score: 9
+    Match: drug_match(tolazoline), species:dog, dogs, context_distance_penalty, relevance:treatment, llm_rejected
+  - Title: Alpha- and beta-adrenergic stimulation of arachidonic acid metabolism in cells in culture. [LLM_INVALID]
+    Score: 9
+    Match: drug_match(tolazoline), species:canine, context_distance_penalty, relevance:metabolism, llm_rejected
+------------------------------
+■ Drug Name: Tolfenamic Acid
+  - Title: Pain management in cats--past, present and future. Part 2. Treatment of pain--clinical pharmacology. [LLM_INVALID]
+    Score: 16
+    Match: drug_match(tolfenamic acid), species:cats, feline, context_distance_match, relevance:dosing, pharmacology, treatment, llm_rejected
+------------------------------
+■ Drug Name: Toltrazuril
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Topiramate
+  - Title: Intravenous Topiramate: Pharmacokinetics in Dogs with Naturally Occurring Epilepsy.
+    Score: 20
+    Match: drug_match(topiramate), species:canine, dog, dogs, context_distance_match, relevance:adverse, clearance, dose, dosing, high_signal_title, llm_validated_in_vivo
+  - Title: Preparation and evaluation of bilayer-core osmotic pump tablets contained topiramate.
+    Score: 13
+    Match: drug_match(topiramate), species:dogs, context_distance_penalty, relevance:dose, efficacy, pharmacokinetic, pharmacokinetics, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Torsemide
+  - Title: Clinical evaluation of a novel fixed-dose combination tablet (Sentorphil(®) ForteGold) versus compounded powdered medications in dogs with myxomatous mitral valve disease: a randomized, double-blind study.
+    Score: 11
+    Match: drug_match(torsemide), species:dogs, context_distance_penalty, relevance:dose, dosing, safety, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Tramadol
+  - Title: Pharmacokinetics of intravenous tramadol in dogs.
+    Score: 20
+    Match: drug_match(tramadol), species:canine, dog, dogs, context_distance_match, relevance:adverse, dose, metabolism, pharmacodynamic, high_signal_title, llm_validated_in_vivo
+  - Title: Safety and efficacy of reduced dosage ketoprofen with or without tramadol for long-term treatment of osteoarthritis in dogs: a randomized clinical trial.
+    Score: 20
+    Match: drug_match(tramadol), species:dogs, context_distance_match, relevance:adverse, dosage, efficacy, safety, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Tranexamic Acid
+  - Title: Safety and efficacy of intravenous administration for tranexamic acid-induced emesis in dogs with accidental ingestion of foreign substances.
+    Score: 20
+    Match: drug_match(tranexamic acid), species:canine, dogs, context_distance_match, relevance:adverse, dosage, dose, efficacy, high_signal_title, llm_validated_in_vivo
+  - Title: Use of tranexamic acid in dogs with primary immune thrombocytopenia: A feasibility study.
+    Score: 16
+    Match: drug_match(tranexamic acid), species:dogs, context_distance_match, relevance:dose, safety, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Travoprost Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Trazodone
+  - Title: Use of trazodone to facilitate postsurgical confinement in dogs.
+    Score: 18
+    Match: drug_match(trazodone), species:dogs, context_distance_match, relevance:adverse, dosage, efficacy, label, llm_validated_in_vivo
+  - Title: Use of oral trazodone for sedation in cats: a pilot study.
+    Score: 18
+    Match: drug_match(trazodone), species:cats, feline, context_distance_match, relevance:adverse, dose, efficacy, safety, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Triamcinolone Acetonide
+  - Title: Local Effects Following Single and Repeat Intra-Articular Injections of Triamcinolone Acetonide Extended-Release: Results from Three Nonclinical Toxicity Studies in Dogs.
+    Score: 17
+    Match: drug_match(triamcinolone acetonide), species:canine, dogs, context_distance_match, relevance:dose, toxicity, high_signal_title, llm_validated_in_vivo
+  - Title: Subcutaneous administration of triamcinolone as part of the management of feline eosinophilic keratoconjunctivitis.
+    Score: 16
+    Match: drug_match(triamcinolone acetonide), species:cats, feline, context_distance_match, relevance:adverse, efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Triamterene
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Trientine
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Trifluridine Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Trilostane
+  - Title: The Efficacy of a 3β-Hydroxysteroid Dehydrogenase Inhibitor for the Termination of Mid-Term Pregnancies in Dogs.
+    Score: 16
+    Match: drug_match(trilostane), species:dogs, context_distance_match, relevance:dose, efficacy, treatment, llm_validated_in_vivo
+  - Title: Comparison of methods to monitor dogs with hypercortisolism treated with trilostane.
+    Score: 15
+    Match: drug_match(trilostane), species:dogs, context_distance_match, relevance:efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Tripelennamine
+  - Title: Effects of hemorrhage on regional blood flow distribution in dogs and primates. [LLM_INVALID]
+    Score: 9
+    Match: drug_match(tripelennamine), species:dog, dogs, context_distance_penalty, relevance:distribution, llm_rejected
+------------------------------
+■ Drug Name: Triple Antibiotic Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Tropicamide Ophthalmic
+  - Title: Effects of unilateral topical administration of 0.5% tropicamide on anterior segment morphology and intraocular pressure in normal cats and cats with primary congenital glaucoma.
+    Score: 9
+    Match: drug_match(tropicamide ophthalmic), species:cats, context_distance_penalty, relevance:treatment, llm_validated_in_vivo
+  - Title: Effects of two concentrations of topical tropicamide on the Schirmer tear test in clinically normal cats.
+    Score: 8
+    Match: drug_match(tropicamide ophthalmic), species:cats, context_distance_penalty, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Tulathromycin
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Tylosin
+  - Title: Efficacy of two low-dose oral tylosin regimens in controlling the relapse of diarrhea in dogs with tylosin-responsive diarrhea: a prospective, single-blinded, two-arm parallel, clinical field trial.
+    Score: 18
+    Match: drug_match(tylosin), species:canine, dogs, context_distance_match, relevance:dosage, dose, dosing, efficacy, llm_validated_in_vivo
+  - Title: Effect of tylosin on dogs with suspected tylosin-responsive diarrhea: a placebo-controlled, randomized, double-blinded, prospective clinical trial.
+    Score: 16
+    Match: drug_match(tylosin), species:canine, dogs, context_distance_match, relevance:dose, efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Ursodiol
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Vitamin E ± Selenium
+  -> 적합한 논문 없음
+------------------------------
+
+📊 요약: 총 50개 중 29개 성공, 21개 실패
