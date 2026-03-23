@@ -26,43 +26,63 @@
     "available_strengths": [
       {
         "value": 420,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 750,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 650,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 325,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 650,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -625,5 +645,12 @@
     "source_file": "plumbs_output/52.jsonl",
     "extracted_at": "2026-03-11T05:23:22.170783+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "칼슘 (경구용 - 탄산칼슘, 글루콘산칼슘, 젖산칼슘)(Calcium, Oral (Carbonate, Gluconate, Lactate))은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【승인 적응증】없음 (수의학적 승인 제품 없음). 【적응증 외 사용】① 만성신장질환 관련 고인산혈증 (저인산 식이와 병용): 탄산칼슘 30~60 mg/kg/일 PO 분할 투여",
+    "필요 시 최대 90~150 mg/kg/일까지 증량. ② 만성 저칼슘혈증 칼슘 보충: 개 1250 mg~10 g/일(총 용량)",
+    "고양이 1250 mg~2.5 g/일(총 용량). 글루콘산칼슘 및 젖산칼슘은 탄산칼슘의 대안 칼슘 보충제로 사용 가능."
+  ],
+  "mechanism_short": "탄산칼슘은 식사와 함께 투여 시 식이 인과 결합하여 불용성 인산칼슘을 형성하고 대변으로 배설시킴으로써 장내 인 흡수를 억제함. 칼슘 보충제로서는 혈청 칼슘 농도를 높임."
 }

@@ -28,23 +28,33 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 370,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -640,5 +650,17 @@
     "source_file": "plumbs_output/29.jsonl",
     "extracted_at": "2026-03-10T22:17:20.449287+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "오메프라졸(Omeprazole)은(는) 위장관 보호 및 궤양 치료에 사용되는 소화기 보호제입니다.",
+  "primary_indications": [
+    "【승인 적응증】말: 위궤양 치료(4mg/kg PO q24h",
+    "4주) 및 예방(2mg/kg PO q24h). 【허가 외 적응증】개: 위장관 궤양 관리/예방",
+    "중증 역류성 식도염",
+    "헬리코박터 감염(삼중 요법)",
+    "운동 유발성 위염 예방",
+    "CSF 생성 감소(수두증",
+    "키아리 기형). 고양이: 위장관 궤양 관리/예방",
+    "중등도~중증 역류성 식도염."
+  ],
+  "mechanism_short": "치환된 벤즈이미다졸 계열 프로톤 펌프 억제제. 산성 환경에서 설펜아미드 유도체로 활성화되어 위벽세포 분비면의 H+/K+ ATPase에 비가역적으로 결합하여 수소 이온의 위 내 이동을 90~99% 억제함. 기저 및 자극 조건 모두에서 위산 분비를 감소시킴."
 }

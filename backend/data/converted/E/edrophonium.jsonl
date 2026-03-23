@@ -26,7 +26,9 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -487,5 +489,15 @@
     "source_file": "plumbs_output/15.jsonl",
     "extracted_at": "2026-03-10T17:48:15.870163+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "에드로포늄(Edrophonium)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "1) 중증근무력증(MG) 추정 진단 - 에드로포늄 반응 검사 (개",
+    "고양이",
+    "허가 외). 2) 비탈분극성 신경근 차단제(NMBA) 역전 (개",
+    "고양이",
+    "허가 외). 3) 일부 상심실성 빈맥(SVT) 진단 및 치료 (집중치료 환경",
+    "허가 외). 4) 장기 작용 항콜린에스테라제 억제제의 용량 적절성 평가."
+  ],
+  "mechanism_short": "가역적 정전기적 결합을 통해 아세틸콜린에스테라제를 억제하여 시냅스 간극에서 아세틸콜린의 가수분해를 차단합니다. 이로 인해 아세틸콜린이 축적되어 콜린성 자극이 연장됩니다."
 }

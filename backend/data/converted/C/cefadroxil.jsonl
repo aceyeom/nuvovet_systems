@@ -25,31 +25,45 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -512,5 +526,17 @@
     "source_file": "plumbs_output/22.jsonl",
     "extracted_at": "2026-03-10T19:56:32.300281+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "세파드록실(Cefadroxil)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "【승인 적응증 (개)】 감수성 균주(E. coli",
+    "P. mirabilis",
+    "S. aureus)에 의한 비뇨생식기 감염(방광염)",
+    "감수성 균주(S. aureus)에 의한 피부/연조직 감염(봉와직염",
+    "농피증",
+    "피부염",
+    "창상 감염",
+    "농양). 【승인 적응증 (고양이)】 감수성 균주(E. coli"
+  ],
+  "mechanism_short": "세포벽 합성 억제: 세균 세포막의 뮤코펩타이드 합성을 억제하여 결함 있는 세포벽을 형성하고 삼투압적으로 불안정한 구형체(spheroplast)를 생성함. 페니실린 결합 단백질(PBP)에 결합하여 살균 작용을 나타내는 시간 의존성 항생제."
 }

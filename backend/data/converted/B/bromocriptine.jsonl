@@ -24,19 +24,27 @@
     "available_strengths": [
       {
         "value": 5.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.8,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -630,5 +638,17 @@
     "source_file": "plumbs_output/51.jsonl",
     "extracted_at": "2026-03-11T04:54:45.833055+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "브로모크립틴(Bromocriptine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "개(허가 외): 위임신",
+    "유즙분비 억제",
+    "자궁축농증 보조치료",
+    "임신 종료",
+    "발정 유도. 고양이(허가 외): 말단비대증 보조치료",
+    "유선 섬유선종성 과형성 보조치료. 말(허가 외): 뇌하수체 중간부 기능장애(PPID)",
+    "부적절한 비유. 인간(허가): 고프로락틴혈증",
+    "파킨슨병"
+  ],
+  "mechanism_short": "에르고트 알칼로이드 유래 도파민(D2) 수용체 작용제. 뇌하수체 전엽에서 프로락틴 분비를 직접 억제하거나 시상하부의 도파민 수용체를 자극하여 프로락틴 억제인자 분비를 촉진함. 뇌 선조체의 도파민 수용체를 활성화하며, 말단비대증 환자에서 성장호르몬 농도를 낮춤."
 }

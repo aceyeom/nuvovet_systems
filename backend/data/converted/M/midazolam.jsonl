@@ -23,15 +23,21 @@
     "available_strengths": [
       {
         "value": 1,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 2,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -728,5 +734,17 @@
     "source_file": "plumbs_output/65.jsonl",
     "extracted_at": "2026-03-11T09:33:10.095291+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "미다졸람(Midazolam)은(는) 진정 및 불안 완화에 사용되는 진정제입니다.",
+  "primary_indications": [
+    "수술 전 전처치 및 공동 유도제(개",
+    "고양이",
+    "반추동물",
+    "설치류 등)",
+    "간질 지속 상태 치료(개: IV",
+    "비강 내)",
+    "불안 완화",
+    "근이완. 모든 수의 적응증은 엑스트라라벨 사용임."
+  ],
+  "mechanism_short": "피질하 CNS(변연계, 시상, 시상하부)를 억제하여 항불안, 진정, 골격근 이완, 항경련 효과를 나타냄. 세로토닌 길항, GABA 활성 증가/촉진, CNS 내 아세틸콜린 방출 감소 등이 기전으로 제시됨. 벤조디아제핀 특이적 수용체는 포유류 뇌, 신장, 간, 폐, 심장에 존재함."
 }

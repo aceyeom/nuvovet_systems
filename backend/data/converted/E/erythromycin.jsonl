@@ -33,31 +33,45 @@
     "available_strengths": [
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 333,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 400,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 80,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -799,5 +813,15 @@
     "source_file": "plumbs_output/16.jsonl",
     "extracted_at": "2026-03-10T18:16:59.016143+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "에리스로마이신(Erythromycin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "【승인 적응증】소에서 Pasteurella multocida에 의한 소 호흡기 질환(과거 FDA 승인",
+    "현재 일반적으로 사용되지 않음). 【Extra-label 적응증】개·고양이: 감수성 세균 감염 치료",
+    "위장관 운동 촉진(위 배출 지연",
+    "역류성 식도염). 말(망아지): Rhodococcus equi 감염(리팜핀 병용)",
+    "Lawsonia intracellularis에 의한 증식성 장병증. 말: 위장관 운동 촉진. 소: 위장관 운동 촉진(송아지",
+    "성체). 조류: 감수성 감염. 페럿: 감수성 감염."
+  ],
+  "mechanism_short": "에리스로마이신은 감수성 세균의 50S 리보솜 소단위에 결합하여 펩타이드 결합 형성 및 단백질 합성을 억제하는 시간 의존성 항생제(주로 정균 작용, 고농도 또는 고감수성 균주에서 살균 작용). 항균 용량 이하에서는 모틸린(고양이, 인체, 토끼) 및 5-HT3 수용체(개)를 자극하여 위장관 운동 촉진 효과를 나타냄."
 }

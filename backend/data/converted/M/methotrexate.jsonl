@@ -27,35 +27,51 @@
     "available_strengths": [
       {
         "value": 2.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 7.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 15.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 25.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 50.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -414,45 +430,45 @@
           "logic_type": "fixed",
           "context": "림프종 유지 치료 (LMP 프로토콜, 복합 항암 요법의 일부)",
           "value": "2.5 - 5",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "PO",
           "frequency": "BID",
           "max_dose_mg_kg": null,
-          "duration_note": "mg/m2 단위 사용 주의 (NOT mg/kg). 주 2회 투여. 클로람부실, 프레드니손과 병용.",
-          "evidence": "LMP 프로토콜: 메토트렉세이트 2.5–5 mg/m2 PO 주 2회 (extra-label)"
+          "duration_note": "사용 주의 (NOT mg/kg). 주 2회 투여. 클로람부실, 프레드니손과 병용.",
+          "evidence": "LMP 프로토콜: 메토트렉세이트 2.5–5 mg/m² PO 주 2회 (extra-label)"
         },
         {
           "logic_type": "fixed",
           "context": "복합 항암 요법 (항암 프로토콜의 일부)",
           "value": "5",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "PO",
           "frequency": "BID",
           "max_dose_mg_kg": null,
-          "duration_note": "mg/m2 단위 사용 주의 (NOT mg/kg). 5 mg/m2 PO 주 2회 또는 2.5 mg/m2 PO 매일.",
-          "evidence": "복합 항암 프로토콜: 메토트렉세이트 5 mg/m2 PO 주 2회 또는 2.5 mg/m2 PO 매일 (extra-label)"
+          "duration_note": "사용 주의 (NOT mg/kg). 5 mg/m2 PO 주 2회 또는 2.5 mg/m2 PO 매일.",
+          "evidence": "복합 항암 프로토콜: 메토트렉세이트 5 mg/m² PO 주 2회 또는 2.5 mg/m² PO 매일 (extra-label)"
         },
         {
           "logic_type": "fixed",
           "context": "복합 항암 요법 (IV 투여)",
           "value": "0.8",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q24h",
           "max_dose_mg_kg": null,
-          "duration_note": "mg/m2 단위 사용 주의 (NOT mg/kg). 0.8 mg/kg IV 21일마다.",
+          "duration_note": "사용 주의 (NOT mg/kg). 0.8 mg/kg IV 21일마다.",
           "evidence": "복합 항암 프로토콜: 메토트렉세이트 0.8 mg/kg IV 21일마다 (extra-label)"
         },
         {
           "logic_type": "fixed",
           "context": "면역억제제 (오프라벨)",
           "value": "2.5",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "PO",
           "frequency": "SID",
           "max_dose_mg_kg": null,
-          "duration_note": "mg/m2 단위 사용 주의 (NOT mg/kg). 2.5 mg/m2 PO 매 24시간. 일화적 용량.",
-          "evidence": "면역억제 목적 일화적 용량: 2.5 mg/m2 PO q24h (extra-label)"
+          "duration_note": "사용 주의 (NOT mg/kg). 2.5 mg/m2 PO 매 24시간. 일화적 용량.",
+          "evidence": "면역억제 목적 일화적 용량: 2.5 mg/m² PO q24h (extra-label)"
         }
       ]
     },
@@ -463,34 +479,34 @@
           "logic_type": "fixed",
           "context": "림프종 등 종양성 질환 (복합 항암 요법의 일부, 경구)",
           "value": "2.5",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "PO",
           "frequency": "TID",
           "max_dose_mg_kg": null,
-          "duration_note": "mg/m2 단위 사용 주의 (NOT mg/kg). 2.5 mg/m2 PO 주 2~3회.",
-          "evidence": "고양이 종양: 2.5 mg/m2 PO 주 2~3회 (extra-label)"
+          "duration_note": "사용 주의 (NOT mg/kg). 2.5 mg/m2 PO 주 2~3회.",
+          "evidence": "고양이 종양: 2.5 mg/m² PO 주 2~3회 (extra-label)"
         },
         {
           "logic_type": "fixed",
           "context": "림프종 등 종양성 질환 (복합 항암 요법의 일부, IV)",
           "value": "0.3 - 0.8",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q24h",
           "max_dose_mg_kg": null,
-          "duration_note": "mg/m2 단위 사용 주의 (NOT mg/kg). 0.3–0.8 mg/m2 IV 7일마다.",
-          "evidence": "고양이 종양: 0.3–0.8 mg/m2 IV 7일마다 (extra-label)"
+          "duration_note": "사용 주의 (NOT mg/kg). 0.3–0.8 mg/m2 IV 7일마다.",
+          "evidence": "고양이 종양: 0.3–0.8 mg/m² IV 7일마다 (extra-label)"
         },
         {
           "logic_type": "fixed",
           "context": "재발성 고양이 림프종 구제 요법 (로무스틴, 시타라빈과 병용)",
           "value": "0.5 - 0.6",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "PRN",
           "max_dose_mg_kg": null,
-          "duration_note": "mg/m2 단위 사용 주의 (NOT mg/kg). 로무스틴, 시타라빈과 교대 투여.",
-          "evidence": "재발성 고양이 림프종 구제 요법: 목표 용량 0.5–0.6 mg/m2 IV (extra-label)"
+          "duration_note": "사용 주의 (NOT mg/kg). 로무스틴, 시타라빈과 교대 투여.",
+          "evidence": "재발성 고양이 림프종 구제 요법: 목표 용량 0.5–0.6 mg/m² IV (extra-label)"
         },
         {
           "logic_type": "fixed",
@@ -757,5 +773,13 @@
     "source_file": "plumbs_output/64.jsonl",
     "extracted_at": "2026-03-11T09:13:04.634960+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "메토트렉세이트(Methotrexate)은(는) 악성 종양(암) 치료에 사용되는 항종양제입니다.",
+  "primary_indications": [
+    "개와 고양이의 림프증식성 질환(림프종) 복합 항암 프로토콜(LMP 등)의 일부로 사용(오프라벨). 재발성 고양이 림프종 구제 요법(로무스틴",
+    "시타라빈과 병용",
+    "오프라벨). 다른 약제(프레드니손",
+    "아자티오프린 등)가 효과 없을 때 대체 면역억제제로 사용(오프라벨). 고양이 류마티스 관절염에서 레플루노미드와 병용(오프라벨)."
+  ],
+  "mechanism_short": "S기 특이적 항대사물질 항암제. 엽산 환원효소(dihydrofolate reductase)를 경쟁적으로 억제하여 디하이드로엽산의 테트라하이드로엽산으로의 환원을 방해하고, 퓨린 및 피리미딘 생성에 영향을 미침. 빠르게 증식하는 세포(종양, 골수, 위장관 상피, 태아 세포)에 가장 민감하게 작용. 림프구 복제에 대한 영향으로 면역억제 효과도 있음."
 }

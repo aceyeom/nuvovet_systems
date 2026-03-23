@@ -30,31 +30,45 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 15,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 150,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -541,5 +555,12 @@
     "source_file": "plumbs_output/48.jsonl",
     "extracted_at": "2026-03-11T03:59:13.603162+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "토피라메이트(Topiramate)은(는) 발작(경련) 조절에 사용되는 항경련제입니다.",
+  "primary_indications": [
+    "개의 난치성 간질(부분 발작 포함)에 대한 보조 항경련제(오프라벨). 고양이의 난치성 간질(오프라벨",
+    "일화적 보고). 고양이 특발성 궤양성 피부염(오프라벨",
+    "증례 보고)."
+  ],
+  "mechanism_short": "시간 의존적 방식으로 지속적 탈분극에 의해 유발되는 활동전위를 차단; GABA가 GABAA 수용체를 활성화하는 빈도를 증가시킴; NMDA 수용체 아형에는 영향 없이 카이네이트/AMPA 수용체를 길항함. 탄산탈수효소 동종효소 CA-II 및 CA-IV의 약한 억제제."
 }

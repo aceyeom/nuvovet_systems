@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 115.0,
-        "unit": "kCal/15 mL"
+        "unit": "kCal/15 mL",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -324,5 +326,12 @@
     "source_file": "Medium Chain Triglycerides; (MCT) Oil text extract",
     "extracted_at": "2026-03-21T13:38:20+09:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "중쇄 중성지방 (MCT 오일)(Medium Chain Triglycerides; (MCT) Oil)은(는) 영양 보충 목적으로 사용됩니다.",
+  "primary_indications": [
+    "Offset caloric reduction when dietary long chain triglycerides are restricted (e.g.",
+    "chronic infiltrative diseases of small intestine",
+    "fat malabsorption). Adjunct for canine idiopathic epilepsy. Useful as a base-vehicle to administer drugs to cats. May play a supporting role in cognitive dysfunction syndromes."
+  ],
+  "mechanism_short": "More readily hydrolyzed than conventional food fat. Can pass through intestinal membranes into venous blood circulation without bile acids or pancreatic lipase. Hepatically converted into ketone bodies used for fuel in the brain."
 }

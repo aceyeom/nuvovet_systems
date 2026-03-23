@@ -28,7 +28,9 @@
     "available_strengths": [
       {
         "value": 0.1,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -487,5 +489,10 @@
     "source_file": "plumbs_output/42.jsonl",
     "extracted_at": "2026-03-11T02:13:38.927744+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "플루마제닐(Flumazenil)은(는) 약물 효과를 역전시키는 길항제/해독제입니다.",
+  "primary_indications": [
+    "벤조디아제핀 진정/마취 프로토콜의 이상반응 역전 또는 신속 회복이 필요한 경우(오프라벨). 벤조디아제핀 과다복용 관리. 졸피뎀 등 비벤조디아제핀 벤조디아제핀 수용체 작용제 과다복용. 틸레타민/졸라제팜 마취 역전(개). 말에서 다중 마취 프로토콜의 미다졸람 성분 역전."
+  ],
+  "mechanism_short": "GABAA 수용체의 벤조디아제핀 결합 부위에서 경쟁적 중립 길항제로 작용. 벤조디아제핀의 진정 및 기억상실 효과를 길항함."
 }

@@ -25,7 +25,9 @@
     "available_strengths": [
       {
         "value": 0.1,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -616,5 +618,11 @@
     "source_file": "plumbs_output/42.jsonl",
     "extracted_at": "2026-03-11T02:12:01.713810+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "플루드로코르티손(Fludrocortisone)은(는) 항염증 및 면역억제 효과를 가진 부신피질 호르몬제입니다.",
+  "primary_indications": [
+    "【허가 외 사용】 개·고양이 부신피질기능저하증(애디슨병) 유지 치료. 고양이 원발성 고알도스테론증 진단 보조. 페럿 부신피질기능저하증 유지 치료. 【인체 허가】 심한 기립성 저혈압",
+    "염분 소실형 선천성 부신 과형성."
+  ],
+  "mechanism_short": "강력한 미네랄코르티코이드 작용: 신장 원위세뇨관에서 나트륨 재흡수 증가 및 집합관에서 칼륨·수소이온 배설 촉진. 히드로코르티손 대비 미네랄코르티코이드 효능 125배, 글루코코르티코이드 효능 10~15배."
 }

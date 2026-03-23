@@ -19,7 +19,9 @@
     "available_strengths": [
       {
         "value": 5.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -388,5 +390,14 @@
     "source_file": "plumbs_output/13.jsonl",
     "extracted_at": "2026-03-10T17:01:44.208860+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "레보플록사신 점안액(Levofloxacin Ophthalmic)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "세균성 결막염 (Staphylococcus spp",
+    "Streptococcus spp",
+    "Pseudomonas aeruginosa",
+    "Chlamydophila spp",
+    "Haemophilus spp 등 감수성 균주에 의한 경우) 및 세균성 각막염 치료 (모두 extra-label 사용)."
+  ],
+  "mechanism_short": "세균의 토포이소머라제 II(DNA 자이라제) 억제를 통해 DNA 복제 및 수복을 방해하는 3세대 플루오로퀴놀론 항생제."
 }

@@ -22,19 +22,27 @@
     "available_strengths": [
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -212,7 +220,7 @@
           "logic_type": "linear",
           "context": "화학요법 적응증 (CNS 종양, 림프종, 비만세포종, 육종 등) — 펄스 요법",
           "value": "50 - 90",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "PO",
           "frequency": "q48h",
           "max_dose_mg_kg": null,
@@ -223,7 +231,7 @@
           "logic_type": "linear",
           "context": "원발성 또는 전이성 종양에 대한 메트로노믹 화학요법",
           "value": "1.8 - 3.8",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "PO",
           "frequency": "SID",
           "max_dose_mg_kg": null,
@@ -239,7 +247,7 @@
           "logic_type": "linear",
           "context": "화학요법 적응증 (림프종, 섬유육종 등) — 펄스 요법 (프로토콜 1)",
           "value": "40 - 60",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "PO",
           "frequency": "q48h",
           "max_dose_mg_kg": null,
@@ -510,5 +518,15 @@
     "source_file": "plumbs_output/59.jsonl",
     "extracted_at": "2026-03-11T07:36:18.172357+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "로무스틴(Lomustine)은(는) 악성 종양(암) 치료에 사용되는 항종양제입니다.",
+  "primary_indications": [
+    "▶ 개: CNS 종양",
+    "림프종",
+    "비만세포종",
+    "조직구성 육종 (오프라벨) ▶ 고양이: 림프종",
+    "섬유육종 (오프라벨) ▶ 구제 요법으로 림프종 프로토콜에 사용 ▶ 메트로노믹 화학요법 (개",
+    "표준 치료 옵션 없는 경우)"
+  ],
+  "mechanism_short": "세포 주기 비특이적 알킬화제(니트로소우레아 유도체). 알킬화 및 카르바모일화를 통해 DNA, RNA, 단백질 합성을 억제함. 혈액-뇌 장벽을 통과함."
 }

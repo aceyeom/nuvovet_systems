@@ -22,11 +22,15 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -386,5 +390,11 @@
     "source_file": "plumbs_output/45.jsonl",
     "extracted_at": "2026-03-11T11:24:03.004670+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "숙시머(Succimer)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "고양이",
+    "조류의 납 중독 치료(오프라벨). 비소 및 수은 중독에도 유용할 수 있음(오프라벨). 인체에서는 소아 납 중독 치료에 허가됨."
+  ],
+  "mechanism_short": "납, 수은, 비소 등 중금속과 물리적으로 킬레이트 결합하여 수용성 복합체를 형성하고 신장을 통해 배설시킴."
 }

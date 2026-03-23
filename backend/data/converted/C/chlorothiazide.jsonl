@@ -24,11 +24,15 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -665,5 +669,14 @@
     "source_file": "plumbs_output/24.jsonl",
     "extracted_at": "2026-03-10T20:37:41.253562+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "클로로티아지드(Chlorothiazide)은(는) 체액 저류 치료에 사용되는 이뇨제입니다.",
+  "primary_indications": [
+    "신성 요붕증(주요 적응증)",
+    "울혈성 심부전(이뇨 목적",
+    "오프라벨)",
+    "전신 고혈압",
+    "고마그네슘혈증. 중추성 요붕증의 보조 치료. 수의학에서 일반 이뇨제로는 푸로세미드가 선호됨."
+  ],
+  "mechanism_short": "신세뇨관 상피세포에서 나트륨 이온 수송을 방해하여 이뇨 작용을 나타냄. 주요 작용 부위는 신원의 피질 희석 분절(근위 및 원위 세뇨관 사이)로, 나트륨, 염소, 수분의 배설을 증가시킴. 또한 칼륨, 마그네슘, 인산염, 요오드, 브롬화물 배설을 증가시키고 GFR을 감소시킴."
 }

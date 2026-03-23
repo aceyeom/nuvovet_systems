@@ -21,11 +21,15 @@
     "available_strengths": [
       {
         "value": 80,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 800,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -547,5 +551,17 @@
     "source_file": "plumbs_output/22.jsonl",
     "extracted_at": "2026-03-10T20:07:55.541693+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "세포베신(Cefovecin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "【미국 FDA 승인】 개: S. intermedius 및 S. canis (group G) 감수성 균주에 의한 피부 감염(이차성 표재성 농피증",
+    "상처). 고양이: P. multocida 감수성 균주에 의한 피부 감염(상처",
+    "농양). 【허가 외 사용】 개 및 고양이: 요로감염(UTI)",
+    "치주 조직 중증 감염(보조 치료)",
+    "라임병(개). 【해외 추가 승인】 피부 및 연조직 감염(S. pseudintermedius",
+    "베타-용혈성 연쇄구균",
+    "E. coli",
+    "P. multocida)"
+  ],
+  "mechanism_short": "세팔로스포린계 베타-락탐 항생제로, 세균의 페니실린 결합 단백질(트랜스펩티다아제, 카르복시펩티다아제)에 결합하여 세균 세포벽 합성을 방해함으로써 살균 작용을 나타낸다."
 }

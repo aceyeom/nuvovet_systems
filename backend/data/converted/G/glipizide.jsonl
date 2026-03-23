@@ -22,15 +22,21 @@
     "available_strengths": [
       {
         "value": 2.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -612,5 +618,13 @@
     "source_file": "plumbs_output/44.jsonl",
     "extracted_at": "2026-03-11T02:50:21.627556+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "글리피지드(Glipizide)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【승인 적응증】 없음 (수의학적 허가 제품 없음). 【오프라벨 적응증】 고양이의 비케톤성 제2형 당뇨병 (기존 췌장 베타세포 기능이 있고",
+    "신체 상태 양호하며",
+    "면밀한 모니터링이 가능하고",
+    "보호자가 인슐린 투여를 거부하는 경우에 한함). 식이요법과 병행 사용 필수."
+  ],
+  "mechanism_short": "제2세대 설폰요소계 약물로, 췌장 베타세포를 자극하여 내인성 인슐린 분비를 증가시킴. 또한 말초 조직의 인슐린 감수성 향상 및 간의 기저 포도당 생성 감소 등 췌장 외 효과도 있음."
 }

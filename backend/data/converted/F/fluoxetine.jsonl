@@ -25,39 +25,57 @@
     "available_strengths": [
       {
         "value": 8,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 16,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 32,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 64,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 90,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 4,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -654,5 +672,17 @@
     "source_file": "plumbs_output/42.jsonl",
     "extracted_at": "2026-03-11T02:21:57.912019+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "플루옥세틴(Fluoxetine)은(는) 행동 장애 및 불안 치료에 사용되는 항우울제입니다.",
+  "primary_indications": [
+    "개: 분리불안(FDA 승인",
+    "행동교정 병행)",
+    "공격성",
+    "강박/상동 행동",
+    "불안 장애(허가 외). 고양이: 소변 마킹",
+    "분리불안",
+    "공격성",
+    "부적절한 배변(허가 외). 말: 마구간 안정 및 행동 관련 문제(허가 외)."
+  ],
+  "mechanism_short": "시냅스 전 세로토닌 재흡수를 고선택적으로 억제하여 CNS 내 세로토닌 농도를 증가시킴. 도파민, 노르에피네프린 등 다른 신경전달물질에 대한 영향은 미미함."
 }

@@ -21,15 +21,21 @@
     "available_strengths": [
       {
         "value": 3.75,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 7.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 15.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -681,5 +687,13 @@
     "source_file": "plumbs_output/36.jsonl",
     "extracted_at": "2026-03-11T00:15:30.433079+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "클로라제페이트(Clorazepate)은(는) 진정 및 불안 완화에 사용되는 진정제입니다.",
+  "primary_indications": [
+    "개: 간질 보조 항경련 치료(페노바르비탈 병용)",
+    "불안·공포증 관련 행동 장애(플루옥세틴 및 행동 교정 병용). 고양이: 항불안",
+    "강박 행동 치료",
+    "페노바르비탈 대체 항경련 치료. 모두 오프라벨 사용."
+  ],
+  "mechanism_short": "피질하 CNS(변연계, 시상, 시상하부)를 억제하여 항불안, 진정, 골격근 이완, 항경련 효과를 나타낸다. 정확한 기전은 불명확하나, 세로토닌 길항, GABA 활성 증가/촉진, CNS 내 아세틸콜린 방출 감소 등이 제시된다. 벤조디아제핀 특이 수용체가 뇌, 신장, 간, 폐, 심장에 존재한다."
 }

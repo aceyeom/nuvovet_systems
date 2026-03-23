@@ -32,55 +32,81 @@
     "available_strengths": [
       {
         "value": 0.1,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.2,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.3,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.4,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.6,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.7,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.8,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 20.0,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 40.0,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100.0,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -753,5 +779,11 @@
     "source_file": "plumbs_output/58.jsonl",
     "extracted_at": "2026-03-11T07:17:13.146566+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "레보티록신(Levothyroxine)은(는) 갑상선 기능 이상 치료에 사용되는 갑상선 약물입니다.",
+  "primary_indications": [
+    "모든 종에서 갑상선 기능 저하증 치료(승인). 개에서 FDA 승인(NADA# 141-448). 고양이에서 갑상선 기능 저하증 치료(비라벨). 고양이에서 방사성 요오드 치료",
+    "갑상선 절제술 또는 항갑상선 약물 치료 후 신장 기능 보호(비라벨). 말에서 갑상선 기능 저하증 및 말 대사 증후군(EMS) 보조 치료(비라벨). 조류 및 파충류에서 갑상선 기능 저하증(비라벨)."
+  ],
+  "mechanism_short": "레보티록신은 합성 티록신(T4)으로, 말초 조직에서 트리요오드티로닌(T3)으로 전환된다. 갑상선 호르몬(주로 T3)은 세포 수준에서 DNA 전사 및 단백질 합성을 조절하여 지방·단백질·탄수화물 대사, 단백질 합성, 당신생, 세포 대사, 산소 소비, 체온, 심박수 및 심박출량, 혈액량, 효소계 활성, 성장 및 성숙에 영향을 미친다."
 }

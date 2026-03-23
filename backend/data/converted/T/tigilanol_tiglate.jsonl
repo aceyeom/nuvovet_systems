@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 1.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -519,5 +521,10 @@
     "source_file": "plumbs_output/47.jsonl",
     "extracted_at": "2026-03-11T03:37:33.723326+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "티길라놀 티글레이트(Tigilanol Tiglate)은(는) 악성 종양(암) 치료에 사용되는 항종양제입니다.",
+  "primary_indications": [
+    "개의 비전이성 피부 비만세포종(신체 어느 부위) 및 팔꿈치/비절 이하 비전이성 피하 비만세포종 치료 (FDA 승인). 허가 외 사용: 말의 섬유아세포성 육종(fibroblastic sarcoid) 및 편평세포암종 치료."
+  ],
+  "mechanism_short": "미토콘드리아 기능 교란을 통한 종양 용해(oncolysis). 베타 II 단백질 키나아제 C(PKC) 우선 활성화(알파, 베타 I, 감마 이소형도 활성화)로 종양 주변 급성 염증 반응(2–4일) 유발, 종양 혈액 공급 제한, 호중구 및 대식세포 등 세포성 면역 반응 활성화. PKC 활성화로 종양 혈관 투과성 증가 및 종양 혈관 파괴. 효과는 즉각적이고 단기적이며 주사 부위에 국한됨."
 }

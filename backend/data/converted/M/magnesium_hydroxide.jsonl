@@ -32,19 +32,27 @@
     "available_strengths": [
       {
         "value": 400,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 80,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 160,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 240,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -662,5 +670,16 @@
     "source_file": "plumbs_output/60.jsonl",
     "extracted_at": "2026-03-11T07:51:35.965743+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "수산화마그네슘(Magnesium Hydroxide)은(는) 위장관 보호 및 궤양 치료에 사용되는 소화기 보호제입니다.",
+  "primary_indications": [
+    "【승인 적응증】없음 (FDA 승인 동물용 제품 없음)\n【허가 외 적응증】\n- 개: GI 질환 및 중증 저칼슘혈증 동반 저마그네슘혈증 보조 치료\n- 고양이: 제산제\n- 소: 제1위 과부하 증후군(급성 제1위 팽창",
+    "제1위 산증",
+    "곡물 과부하",
+    "제1위 적체) 치료\n- 양/염소: 소와 동일하나 1/8~1/4 용량 사용\n- 소동물: 경구 완하제\n- 식도염",
+    "위산 과다",
+    "소화성 궤양",
+    "위염의 보조 치료"
+  ],
+  "mechanism_short": "경구 투여 시 위장관 내 HCl 농도를 감소시키는 비흡수성 제산제로 작용. 1g당 약 20~35 mEq의 산을 중화함. pH 3.3에서 위산의 99%가 중화되며, pH 4 이상에서 펩신 단백분해 활성이 최소화됨. 완하제로서는 삼투압 효과로 장내 수분을 증가시켜 장운동을 촉진함."
 }

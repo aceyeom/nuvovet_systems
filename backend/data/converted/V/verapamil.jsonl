@@ -26,43 +26,63 @@
     "available_strengths": [
       {
         "value": 40,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 80,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 120,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 180,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 240,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 360,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -863,5 +883,10 @@
     "source_file": "plumbs_output/7.jsonl",
     "extracted_at": "2026-03-10T15:31:33.707001+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "베라파밀(Verapamil)은(는) 심장 기능 개선에 사용되는 심장약입니다.",
+  "primary_indications": [
+    "개와 고양이에서 상실성 빈맥 치료(오프라벨). 심방조동 또는 심방세동의 심실 박동수 조절(오프라벨). 수축기 기능 장애가 있는 경우 심방 또는 AV 결절 빈맥에 칼슘 채널 차단제가 선택 약물이 될 수 있음."
+  ],
+  "mechanism_short": "L형 칼슘 채널 차단제(페닐알킬아민계, Class IV 항부정맥제). 혈관 평활근 및 심근 세포막의 L형 칼슘 채널을 차단하여 세포외 칼슘 이온의 막 투과를 억제. 결과적으로 혈관 수축 기전 억제(전신 및 관상동맥 확장), 심근 수축 기전 억제, 심장 전도계 억제(AV 결절 유효 불응기 증가, 자동능 감소, AV 전도 감소). P-당단백질 억제제로서 일부 화학요법 약물의 다약제 내성 극복에 활용 가능."
 }

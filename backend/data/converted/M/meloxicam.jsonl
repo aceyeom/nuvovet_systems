@@ -39,31 +39,45 @@
     "available_strengths": [
       {
         "value": 0.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 1.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 5.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 7.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 15.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -858,5 +872,17 @@
     "source_file": "plumbs_output/62.jsonl",
     "extracted_at": "2026-03-11T08:47:51.619179+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "멜록시캄(Meloxicam)은(는) 통증과 염증을 완화하는 비스테로이드성 항염증제(NSAID)입니다.",
+  "primary_indications": [
+    "개: 골관절염 관련 통증 및 염증 조절 (FDA 승인). 고양이: 정형외과 수술",
+    "난소자궁절제술",
+    "거세 관련 수술 후 통증 및 염증 조절 단회 투여 (FDA 승인). 고양이 만성 통증 관리 (일부 국가 허가",
+    "미국에서는 extra-label). 말",
+    "소형 반추동물",
+    "낙타과",
+    "소형 포유류",
+    "파충류에서 extra-label 사용."
+  ],
+  "mechanism_short": "사이클로옥시게나제(COX) 억제 및 프로스타글란딘 합성 억제를 통한 진통, 항염증, 해열 작용. COX-2 선택적(COX-2 preferential)이나 고용량에서는 COX-2 특이성이 감소함."
 }

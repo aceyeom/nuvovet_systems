@@ -27,15 +27,21 @@
     "available_strengths": [
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -534,5 +540,16 @@
     "source_file": "plumbs_output/22.jsonl",
     "extracted_at": "2026-03-10T20:05:49.544085+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "세포테탄(Cefotetan)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "감수성 세균(E. coli",
+    "Proteus spp",
+    "Klebsiella spp",
+    "Salmonella spp",
+    "Staphylococcus spp",
+    "Streptococcus spp",
+    "혐기성균 포함)에 의한 중증 감염 치료 (extra-label). 소화관 수술 예방적 항생제 (extra-label). ESBL 생성균은 in vitro 감수성에도 불구하고 임상적 효능 근거 부족으로 권장되지 않음."
+  ],
+  "mechanism_short": "세균 세포벽의 뮤코펩타이드 합성을 억제하여 살균 작용을 나타내는 세팔로스포린계(세파마이신) 항생제. 그람양성 및 그람음성 세균에 광범위한 활성을 가지며, 1세대 세팔로스포린에 비해 그람음성균에 대한 활성이 강화됨. ESBL에 의해 영향을 받지 않음."
 }

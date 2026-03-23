@@ -29,35 +29,51 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 75,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 18,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 38,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 74,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 145,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -651,5 +667,13 @@
     "source_file": "plumbs_output/19.jsonl",
     "extracted_at": "2026-03-10T18:59:59.639948+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "페닐프로파놀아민(Phenylpropanolamine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【승인 적응증】개에서 요도 괄약근 저긴장증으로 인한 요실금 조절 (FDA 승인",
+    "NADA# 141-324",
+    "141-517). 【허가 외 적응증】개에서 역행성 사정 치료 (허가 외). 고양이에서 요도 괄약근 저긴장증으로 인한 요실금 조절 (허가 외",
+    "증례 보고 기반)."
+  ],
+  "mechanism_short": "노르에피네프린 유리 촉진 및 시냅스 접합부에서의 재흡수 억제를 통해 알파 및 베타 아드레날린 수용체를 간접적으로 자극. 알파 아드레날린 자극으로 요도 괄약근 긴장도 증가 및 방광경부 폐쇄 유도."
 }

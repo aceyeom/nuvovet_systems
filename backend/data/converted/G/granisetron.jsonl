@@ -30,15 +30,21 @@
     "available_strengths": [
       {
         "value": 1,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.1,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 1,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -524,5 +530,12 @@
     "source_file": "plumbs_output/0.jsonl",
     "extracted_at": "2026-03-10T13:22:31.921097+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "그라니세트론(Granisetron)은(는) 구토 예방 및 치료에 사용되는 항구토제입니다.",
+  "primary_indications": [
+    "심한 구토 치료 (오프라벨)",
+    "항암화학요법(특히 시스플라틴) 전 구토 예방 (오프라벨). 온단세트론",
+    "돌라세트론 등 다른 5-HT3 길항제의 대안으로 사용 가능."
+  ],
+  "mechanism_short": "5-HT3(세로토닌3) 수용체를 선택적으로 차단하여 항구토 효과를 나타냄. 수용체는 CNS 화학수용체 유발대(CTZ), 미주신경 말단, 장신경계에 분포함."
 }

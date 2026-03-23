@@ -27,7 +27,9 @@
     "available_strengths": [
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -485,5 +487,14 @@
     "source_file": "plumbs_output/2.jsonl",
     "extracted_at": "2026-03-10T14:11:50.189369+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "이미페넴/실라스타틴(Imipenem/Cilastatin Sodium)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "다제내성 세균(ESBL 생성 Enterobacterales",
+    "Pseudomonas spp 등)에 의한 중증 감염 치료 (오프라벨). 그람양성 호기성 구균",
+    "그람양성 호기성 간균",
+    "그람음성 호기성 세균",
+    "혐기성 세균에 광범위한 항균 활성. 메티실린 내성 포도상구균 및 Enterococcus faecium에는 효과 없음."
+  ],
+  "mechanism_short": "베타락탐 항생제로서 대부분의 페니실린 결합 단백질(PBP) 부위에 결합하여 세균 세포벽 합성을 억제함. 시간 의존적 살균 작용. 실라스타틴은 신장 세뇨관 세포의 DHP I에 의한 이미페넴 대사를 억제하여 소변 내 이미페넴 농도를 높이고 신세뇨관 독성을 방지함."
 }

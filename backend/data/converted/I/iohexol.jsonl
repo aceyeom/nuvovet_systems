@@ -21,23 +21,33 @@
     "available_strengths": [
       {
         "value": 140,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 180,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 240,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 350,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -624,5 +634,17 @@
     "source_file": "plumbs_output/3.jsonl",
     "extracted_at": "2026-03-10T14:34:08.846919+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "이오헥솔(Iohexol)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "혈관 내(동맥",
+    "정맥)",
+    "척수강 내",
+    "체강 내",
+    "경구 투여를 통한 조영 검사. 개와 고양이에서 GFR 추정(CKD 조기 진단",
+    "진행 모니터링",
+    "신독성 약물 용량 조정). 위장관 천공 의심 시 GI 조영제. 말",
+    "파충류에서도 extra-label 사용 보고됨."
+  ],
+  "mechanism_short": "비이온성 요오드화 조영제로, 유기 요오드가 방사선 불투과성을 나타내어 인접 구조물을 시각화함. GFR 측정 마커로서 단백 결합이 거의 없고 신장으로 100% 미변화 배설되는 특성을 이용."
 }

@@ -22,19 +22,27 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -604,5 +612,11 @@
     "source_file": "plumbs_output/59.jsonl",
     "extracted_at": "2026-03-11T07:44:08.134090+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "로사르탄(Losartan)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "개: 사구체 질환에서 단백뇨의 보조 치료 (오프라벨",
+    "IRIS 권고). 고양이: 현재 권고되지 않음 (텔미사르탄 선호)."
+  ],
+  "mechanism_short": "안지오텐신 II 수용체 차단제(ARB)로서 AT1 수용체를 선택적으로 차단하여 알도스테론 합성 및 분비를 감소시키고, 혈관 확장, 칼륨 배설 감소, 나트륨 배설 증가를 유발함."
 }

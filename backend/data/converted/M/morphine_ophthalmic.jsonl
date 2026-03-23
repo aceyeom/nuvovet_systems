@@ -19,7 +19,9 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -471,5 +473,10 @@
     "source_file": "plumbs_output/3.jsonl",
     "extracted_at": "2026-03-10T14:42:01.067698+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "모르핀 점안액(Morphine Ophthalmic)은(는) 중등도~중증 통증 관리에 사용되는 오피오이드 진통제입니다.",
+  "primary_indications": [
+    "안구 통증 관리 (각막 궤양 등). 수의 및 인체 승인 제품 없음 — 조제 제품만 사용 가능. 개에서 실험적 각막 궤양 모델에서의 사용 근거 있으나 임상 효능은 불확실함."
+  ],
+  "mechanism_short": "모르핀은 주로 뮤 오피오이드 수용체 작용제로, 뇌, 척수 및 말초 감각 신경의 뮤 결합 부위와 상호작용하여 진통 효과를 나타냄. 각막에서는 델타 수용체보다 적은 수의 뮤 수용체가 존재함."
 }

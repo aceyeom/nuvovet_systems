@@ -34,11 +34,15 @@
     "available_strengths": [
       {
         "value": 5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 12.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -619,5 +623,17 @@
     "source_file": "plumbs_output/14.jsonl",
     "extracted_at": "2026-03-10T17:20:52.641446+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "디노프로스트(Dinoprost)은(는) 호르몬 불균형 치료에 사용되는 호르몬제입니다.",
+  "primary_indications": [
+    "소(발정 동기화",
+    "무발정 유도",
+    "자궁축농증",
+    "낙태유도) - FDA 승인. 돼지(분만 유도) - FDA 승인. 말(황체 용해",
+    "발정 조절) - FDA 승인. 개(낙태유도",
+    "자궁축농증) - extra-label. 고양이(낙태유도",
+    "자궁축농증) - extra-label. 양/염소(발정 동기화",
+    "낙태유도"
+  ],
+  "mechanism_short": "천연 프로스타글란딘 F2알파(PGF2α)로서 자궁근층 수축 자극, 자궁경부 이완, 황체의 스테로이드 생성 억제 및 황체 용해(luteolysis)를 유발함."
 }

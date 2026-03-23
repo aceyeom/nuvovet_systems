@@ -24,23 +24,33 @@
     "available_strengths": [
       {
         "value": 343,
-        "unit": "mcg"
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 30,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 80,
-        "unit": "mcg"
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 160,
-        "unit": "mcg"
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 37,
-        "unit": "mcg"
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -469,5 +479,12 @@
     "source_file": "plumbs_output/25.jsonl",
     "extracted_at": "2026-03-10T20:48:50.898959+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "시클레소니드(Ciclesonide)은(는) 항염증 및 면역억제 효과를 가진 부신피질 호르몬제입니다.",
+  "primary_indications": [
+    "말: 중증 말 천식(severe equine asthma) 임상 증상 관리(FDA 승인",
+    "NADA #141-533). 영국·EU에서는 여름 목초지 관련 중증 말 천식에도 승인. 기관지확장제",
+    "환경 관리 등 다른 치료 전략과 병용 가능. 개·고양이: 승인된 적응증 없음(오프라벨 사용 데이터 없음)."
+  ],
+  "mechanism_short": "시클레소니드는 비할로겐화 글루코코르티코이드 전구약물로, 호흡기 에스테라제에 의해 활성 대사체 des-ciclesonide로 전환된다. Des-ciclesonide는 덱사메타손 대비 12배 높은 글루코코르티코이드 수용체 친화성을 가지며, 비만세포·호산구·호염기구·림프구·대식세포·호중구 등 다양한 세포 유형과 히스타민·에이코사노이드·류코트리엔·사이토카인 등 염증 매개체에 대한 억제 활성을 나타낸다."
 }

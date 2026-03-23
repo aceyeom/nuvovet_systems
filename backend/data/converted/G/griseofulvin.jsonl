@@ -24,19 +24,27 @@
     "available_strengths": [
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 125,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -569,5 +577,12 @@
     "source_file": "plumbs_output/0.jsonl",
     "extracted_at": "2026-03-10T13:26:23.396318+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "그리세오풀빈(Griseofulvin)은(는) 진균(곰팡이) 감염 치료에 사용되는 항진균제입니다.",
+  "primary_indications": [
+    "고양이",
+    "말에서 피부",
+    "발톱의 피부사상균 감염 치료(FDA 승인). 말에서 Trichophyton equinum 및 Microsporum gypseum 감염 치료(FDA 승인). 실험동물 및 반추동물의 피부사상균 감염 치료(비라벨 외용). Malassezia 등 다른 진균에는 효과 없음."
+  ],
+  "mechanism_short": "진균의 유사분열 방추 구조를 교란하여 세포 분열의 중기를 정지시키고 핵산 합성을 억제하는 정진균성 항생제. Trichophyton, Microsporum, Epidermophyton 속에 활성을 가짐."
 }

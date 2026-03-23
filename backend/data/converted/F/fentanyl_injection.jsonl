@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 0.05,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -840,5 +842,16 @@
     "source_file": "plumbs_output/41.jsonl",
     "extracted_at": "2026-03-11T01:52:22.743028+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "펜타닐 주사(Fentanyl, Injection)은(는) 중등도~중증 통증 관리에 사용되는 오피오이드 진통제입니다.",
+  "primary_indications": [
+    "【허가 외 사용】 개/고양이: 수술 전후 진통",
+    "중증 통증(암",
+    "췌장염",
+    "대동맥혈전색전증",
+    "복막염 등)",
+    "마취 보조(흡입마취제 MAC 감소)",
+    "경막외 진통. 고양이: 하이드로모르폰이나 모르핀보다 이상반응이 적어 고용량 진통이 필요한 경우 특히 유용. 수의학적 승인 제품 없음."
+  ],
+  "mechanism_short": "Mu-오피오이드 수용체 완전 작용제. 뇌의 통증 조절 영역, 척수 후각, 말초 조직의 mu 수용체에 작용하여 진통, 진정, 호흡억제, 신체적 의존성, 축동, 저체온 효과를 나타냄. 모르핀보다 약 80~100배 강력함."
 }

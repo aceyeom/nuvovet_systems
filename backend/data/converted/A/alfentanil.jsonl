@@ -26,7 +26,9 @@
     "available_strengths": [
       {
         "value": 500,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -703,5 +705,12 @@
     "source_file": "plumbs_output/53.jsonl",
     "extracted_at": "2026-03-11T05:46:13.227462+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "알펜타닐(Alfentanil)은(는) 중등도~중증 통증 관리에 사용되는 오피오이드 진통제입니다.",
+  "primary_indications": [
+    "개와 고양이에서 마취 전처치",
+    "수술 중 진통",
+    "마취 유도 및 유지 보조(모두 오프라벨). 펜타닐의 대안으로 사용 가능. 두개내 질환 환자의 수술 중 진통에도 사용 보고됨."
+  ],
+  "mechanism_short": "강력한 뮤(mu) 오피오이드 수용체 완전 작용제로, 진정, 진통, 마취 효과를 나타냄. 진통 효능 비교: 알펜타닐 0.4–0.8 mg ≈ 펜타닐 0.1–0.2 mg ≈ 모르핀 10 mg (IM 기준)."
 }

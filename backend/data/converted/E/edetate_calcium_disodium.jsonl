@@ -26,7 +26,9 @@
     "available_strengths": [
       {
         "value": 200,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -452,5 +454,17 @@
     "source_file": "plumbs_output/15.jsonl",
     "extracted_at": "2026-03-10T17:46:38.225910+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "에데테이트 칼슘 이나트륨(Edetate Calcium Disodium)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "납 중독(개",
+    "고양이",
+    "식용동물",
+    "낙타류",
+    "토끼) 및 아연 중독(개",
+    "고양이",
+    "조류) 치료. 모두 오프라벨 사용. 경구 치료가 불가능한 경우 CaEDTA를 고려할 수 있으며",
+    "디메르카프롤(dimercaprol)과 병용 가능."
+  ],
+  "mechanism_short": "CaEDTA의 칼슘이 2가 또는 3가 금속(납, 아연 등)으로 치환되어 안정적이고 수용성인 킬레이트 복합체를 형성하고, 이를 소변으로 배설시킴."
 }

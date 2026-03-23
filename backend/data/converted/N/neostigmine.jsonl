@@ -24,11 +24,15 @@
     "available_strengths": [
       {
         "value": 0.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -666,5 +670,16 @@
     "source_file": "plumbs_output/28.jsonl",
     "extracted_at": "2026-03-10T21:53:48.292293+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "네오스티그민(Neostigmine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【오프라벨】개: 중증근무력증 진단(0.01-0.05 mg/kg SC/IM/IV)",
+    "중증근무력증 치료(0.04 mg/kg IM/SC q6h)",
+    "비탈분극성 신경근 차단제 역전(0.01-0.1 mg/kg IV)",
+    "정형외과 수술 경막외 보조 진통(5 µg/kg 경막외). 【FDA 승인】말",
+    "돼지: 연동운동 유도",
+    "방광 배뇨",
+    "골격근 수축 자극(1 mg/45.3 kg SC)."
+  ],
+  "mechanism_short": "아세틸콜린에스테라제와 경쟁적으로 결합하여 카르바밀-에스테르 복합체를 형성함으로써 아세틸콜린 분해를 억제하고 아세틸콜린을 축적시킨다. 이로 인해 장관 및 골격근 긴장도 증가, 타액선 및 땀샘 자극, 기관지 수축, 요관 수축, 동공 축소, 서맥 등의 효과가 나타난다. 또한 골격근에 대한 직접적인 콜린모방 효과도 있다."
 }

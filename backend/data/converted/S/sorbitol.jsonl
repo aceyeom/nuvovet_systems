@@ -25,15 +25,21 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "%"
+        "unit": "%",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "%"
+        "unit": "%",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 70,
-        "unit": "%"
+        "unit": "%",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -438,5 +444,11 @@
     "source_file": "plumbs_output/35.jsonl",
     "extracted_at": "2026-03-10T23:55:38.764415+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "소르비톨(Sorbitol)은(는) 위장관 보호 및 궤양 치료에 사용되는 소화기 보호제입니다.",
+  "primary_indications": [
+    "1) 독소 섭취 시 활성탄과 병용하여 위장관 제독 보조 치료 (extra-label)\n2) 경증 고칼륨혈증 치료 시 SPS와 병용 (extra-label)\n3) 위장관 통과 시간 단축",
+    "완하제 (extra-label)\n4) 간성 뇌증 환자에서 암모니아 포획 (extra-label)"
+  ],
+  "mechanism_short": "소르비톨은 비흡수성 당알코올로, 삼투압 완하제로 작용합니다. 장내 삼투압을 증가시켜 수분을 장관 내로 끌어들여 장 통과 시간을 단축시킵니다. 또한 장내 pH를 낮춰 암모니아를 대변 내에 포획하는 효과가 있습니다."
 }

@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 3000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -371,5 +373,17 @@
     "source_file": "plumbs_output/43.jsonl",
     "extracted_at": "2026-03-11T02:32:57.424686+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "포스포마이신(Fosfomycin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "【허가 적응증】 없음(수의학적 허가 제품 없음). 【오프라벨 적응증】 개에서 다른 항생제에 내성이 문서화된 다제내성 세균에 의한 세균성 방광염",
+    "전립선염",
+    "신우신염 등 비뇨생식기 감염. 포스포마이신 감수성이 확인된 경우에 한함. E. coli",
+    "Enterococcus faecalis",
+    "Proteus spp.",
+    "Klebsiella spp.",
+    "Enterobacter spp.",
+    "포도상구균 등에 활성."
+  ],
+  "mechanism_short": "세균의 phosphoenolpyruvate transferase를 비가역적으로 억제하여 세포벽 펩티도글리칸 합성의 첫 단계(UDP-N-아세틸무라민산 형성)를 차단. 또한 요로상피세포에 대한 세균 부착을 감소시킴. 시간 의존성 살균 항생제."
 }

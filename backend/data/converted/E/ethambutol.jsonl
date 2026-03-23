@@ -21,11 +21,15 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 400,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -397,5 +401,17 @@
     "source_file": "plumbs_output/17.jsonl",
     "extracted_at": "2026-03-10T18:26:29.175171+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "에탐부톨(Ethambutol)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "고양이: M. tuberculosis",
+    "M. bovis",
+    "M. genavense",
+    "MAC 등 마이코박테리아 감염 (오프라벨",
+    "병용요법). 조류: M. avium 감염 (오프라벨",
+    "병용요법). 특히 리팜핀",
+    "플루오로퀴놀론",
+    "마크로라이드 등 다른 약물 조합에 내성을 보이는 경우 유용."
+  ],
+  "mechanism_short": "합성 정균성 항마이코박테리아제. 활발히 분열하는 마이코박테리아에만 작용. 마이코박테리아 세포 내로 진입하여 RNA 합성을 방해하고 세포벽으로의 마이콜산 통합을 억제하여 다른 항마이코박테리아제의 세포벽 침투를 용이하게 함."
 }

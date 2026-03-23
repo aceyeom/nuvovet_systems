@@ -33,19 +33,27 @@
     "available_strengths": [
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 15,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -626,5 +634,10 @@
     "source_file": "plumbs_output/52.jsonl",
     "extracted_at": "2026-03-11T05:29:36.344276+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "카르비마졸(Carbimazole)은(는) 갑상선 기능 이상 치료에 사용되는 갑상선 약물입니다.",
+  "primary_indications": [
+    "고양이 갑상선기능항진증 및 관련 임상 증상 치료. 즉방정(extra-label) 및 서방정(일부 국가 허가) 모두 사용 가능."
+  ],
+  "mechanism_short": "카르비마졸은 메티마졸의 전구약물로, 체내에서 거의 완전히 메티마졸로 전환된다. 메티마졸은 갑상선 퍼옥시다제를 억제하고 티로글로불린의 티로실 잔기에 요오드가 결합하는 것을 방해하여 갑상선 호르몬 합성을 억제한다. 또한 요오드화 티로실 잔기가 결합하여 요오드티로닌을 형성하는 것을 억제한다. 이미 형성되거나 순환 중인 갑상선 호르몬의 방출이나 활성에는 영향을 미치지 않는다."
 }

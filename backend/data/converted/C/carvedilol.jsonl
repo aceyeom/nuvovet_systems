@@ -39,19 +39,27 @@
     "available_strengths": [
       {
         "value": 3.125,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 6.25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 12.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -701,5 +709,12 @@
     "source_file": "plumbs_output/53.jsonl",
     "extracted_at": "2026-03-11T05:37:44.562195+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "카르베딜롤(Carvedilol)은(는) 심장 기능 개선에 사용되는 심장약입니다.",
+  "primary_indications": [
+    "개: 확장성 심근병증 및 만성 승모판 질환(Stage B)의 보조 치료(오프라벨). 슈도에페드린 독성 보조 치료(오프라벨",
+    "증례 보고). 심방세동 억제 및 산화 스트레스 감소 효과 연구됨. 고양이: 승인된 적응증 없음",
+    "용량 데이터 부재."
+  ],
+  "mechanism_short": "비선택적 베타-아드레날린 수용체 차단 및 선택적 알파1-아드레날린 수용체 차단. 교감신경계 과활성화 억제, 혈관 확장(후부하 감소), 자유 라디칼 소거, 항부정맥 효과."
 }

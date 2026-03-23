@@ -22,19 +22,27 @@
     "available_strengths": [
       {
         "value": 11.3,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 28.3,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 68.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 136.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -453,5 +461,17 @@
     "source_file": "plumbs_output/60.jsonl",
     "extracted_at": "2026-03-11T08:06:31.664485+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아폭솔라너(Afoxolaner)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "【승인 적응증 (개)】 벼룩(Ctenocephalides felis) 감염 치료 및 예방",
+    "아메리카개진드기(Dermacentor variabilis)",
+    "검은다리진드기(Ixodes scapularis)",
+    "외로운별진드기(Amblyomma americanum)",
+    "갈색개진드기(Rhipicephalus sanguineus) 감염 치료 및 방제",
+    "보렐리아 버그도르페리(Borrelia burgdorferi) 감염 예방. 【Extra-label 적응증 (개)】 전신성 모낭충증",
+    "개 옴(Sarcoptes scabiei var canis)",
+    "귀 진드기(Otodectes cynotis) 감염"
+  ],
+  "mechanism_short": "이소옥사졸린 계열 살충제·살비제로서 기생충 CNS에서 GABA 매개 리간드 개폐 염화물 이온 채널을 차단하여 신경 과흥분, 마비 및 사망을 유발함. 포유류 GABA 수용체와의 감수성 차이로 선택적 독성을 나타냄."
 }

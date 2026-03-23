@@ -22,7 +22,9 @@
     "available_strengths": [
       {
         "value": 5.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -496,5 +498,16 @@
     "source_file": "plumbs_output/49.jsonl",
     "extracted_at": "2026-03-11T04:25:02.355598+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아티파메졸(Atipamezole)은(는) 약물 효과를 역전시키는 길항제/해독제입니다.",
+  "primary_indications": [
+    "개에서 덱스메데토미딘 및 메데토미딘 역전(FDA 승인). Extra-label: 고양이",
+    "양/염소",
+    "낙타류",
+    "토끼/설치류",
+    "파충류에서 다양한 알파-2 작용제(아미트라즈",
+    "데토미딘",
+    "자일라진 포함) 역전. CPR 중 알파-2 작용제 역전. 아미트라즈 독성 치료."
+  ],
+  "mechanism_short": "알파-2 아드레날린 수용체를 경쟁적으로 차단하여 알파-2 작용제(덱스메데토미딘, 메데토미딘 등)의 효과를 역전시킴."
 }

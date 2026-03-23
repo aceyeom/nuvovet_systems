@@ -25,23 +25,33 @@
     "available_strengths": [
       {
         "value": 5.8,
-        "unit": "g kaolin + 0.268 g pectin per 30 mL"
+        "unit": "g kaolin + 0.268 g pectin per 30 mL",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5.8,
-        "unit": "g kaolin + 0.13 g pectin per 30 mL"
+        "unit": "g kaolin + 0.13 g pectin per 30 mL",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 800.0,
-        "unit": "mg kaolin + 80 mg pectin per 5 mL"
+        "unit": "mg kaolin + 80 mg pectin per 5 mL",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 900.0,
-        "unit": "mg kaolin + 50 mg pectin per 5 mL"
+        "unit": "mg kaolin + 50 mg pectin per 5 mL",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 90.0,
-        "unit": "g kaolin + 2 g pectin per 30 mL"
+        "unit": "g kaolin + 2 g pectin per 30 mL",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -364,5 +374,10 @@
     "source_file": "Kaolin/Pectin text extract",
     "extracted_at": "2026-03-21T13:18:24+09:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "카올린/펙틴(Kaolin/Pectin)은(는) 위장관 내 독소를 흡착하여 제거하는 소화기 흡착/보호제입니다.",
+  "primary_indications": [
+    "Used primarily in veterinary medicine as an oral antidiarrheal agent. Also used as an adsorbent agent following the ingestion of certain toxins."
+  ],
+  "mechanism_short": "Kaolin/pectin is thought to possess adsorbent and protective qualities. Bacteria and toxins are adsorbed in the gut, and the coating action protects inflamed GI mucosa. Pectin decreases pH in the intestinal lumen. Does not reduce the ions or amount of fluid lost."
 }

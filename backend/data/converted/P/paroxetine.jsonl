@@ -25,35 +25,51 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 30,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 12.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 37.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -715,5 +731,13 @@
     "source_file": "plumbs_output/17.jsonl",
     "extracted_at": "2026-03-10T18:36:06.125967+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "파록세틴(Paroxetine)은(는) 행동 장애 및 불안 치료에 사용되는 항우울제입니다.",
+  "primary_indications": [
+    "【개】 공격성",
+    "강박 행동 등 SSRI 반응성 행동 장애 (엑스트라라벨)\n【고양이】 소변 마킹",
+    "공격성",
+    "고양이 과민증 증후군 (엑스트라라벨)\n【조류】 깃털 뽑기 등 스트레스/불안 관련 행동 장애 (엑스트라라벨)\n수의학적 허가 제품 없음."
+  ],
+  "mechanism_short": "CNS에서 세로토닌 재흡수를 고선택적으로 억제하여 세로토닌의 약리 활성을 강화함. 도파민 및 노르에피네프린 재흡수에 대한 효과는 매우 약하며, 경미한 항콜린 효과를 가짐."
 }

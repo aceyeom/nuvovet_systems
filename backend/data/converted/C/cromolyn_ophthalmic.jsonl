@@ -19,7 +19,9 @@
     "available_strengths": [
       {
         "value": 4.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -310,5 +312,10 @@
     "source_file": "plumbs_output/10.jsonl",
     "extracted_at": "2026-03-10T16:27:20.222052+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "크로몰린 점안액(Cromolyn Ophthalmic)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "알레르기성 결막염 및 아토피성 결막염의 임상 증상 조절 (오프라벨). 필요 시 코르티코스테로이드와 병용 가능. 수의학적 종에서의 효능은 확립되지 않음."
+  ],
+  "mechanism_short": "비만세포 탈과립 억제 및 항원 인식 후 비만세포로부터 히스타민 및 아나필락시스 서방성 물질(SRS-A) 방출 차단. 혈관수축, 항히스타민, 사이클로옥시게나제 억제 또는 기타 항염증 특성은 없음."
 }

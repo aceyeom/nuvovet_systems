@@ -24,11 +24,15 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -471,5 +475,17 @@
     "source_file": "plumbs_output/35.jsonl",
     "extracted_at": "2026-03-10T23:52:38.308338+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "소듐 티오황산염(Sodium Thiosulfate)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "시안화물 중독 (시안화배당체 함유 식물 중독 포함)",
+    "비소 중독",
+    "구리 중독 (소듐 몰리브데이트와 병용)",
+    "항암제 혈관외 유출 치료 (시스플라틴",
+    "카보플라틴",
+    "닥티노마이신",
+    "메클로레타민",
+    "독소루비신). 인체에서 시스플라틴 신독성 및 이독성 감소"
+  ],
+  "mechanism_short": "티오황산염은 체내 외인성 황 공급원으로 작용하여 로다네이즈(thiosulfate cyanide sulfurtransferase) 효소에 의한 시안화물의 해독을 촉진함. 시안화물을 비교적 무독성인 티오시안산염(thiocyanate)으로 전환하며, 티오시안산염은 소변으로 배설됨. 국소 항진균 활성은 콜로이드 황의 서방성 방출에 기인함."
 }

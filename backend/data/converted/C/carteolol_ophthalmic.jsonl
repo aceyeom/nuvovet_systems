@@ -19,7 +19,9 @@
     "available_strengths": [
       {
         "value": 1,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -434,5 +436,10 @@
     "source_file": "plumbs_output/10.jsonl",
     "extracted_at": "2026-03-10T16:22:04.243924+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "카르테올롤 점안액(Carteolol Ophthalmic)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "원발성 녹내장에서 안압 감소 (적응증 외). 편측 녹내장 동물의 정상안에서 녹내장 예방 (적응증 외). 동물에서의 공식적 효능 평가는 수행되지 않음."
+  ],
+  "mechanism_short": "비선택적 베타-아드레날린 차단제(beta-1 및 beta-2). 내재적 교감신경 유사 활성(ISA) 보유. 섬모체 베타-2 수용체 차단을 통해 방수 생성을 감소시켜 안압(IOP)을 낮춤. cAMP 활성화 억제, Na+K+ATPase 활성 억제, 홍채 및 섬모체의 혈관 작용 기전 포함."
 }

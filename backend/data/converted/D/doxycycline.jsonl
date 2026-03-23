@@ -36,39 +36,57 @@
     "available_strengths": [
       {
         "value": 20,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 75,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 150,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -816,5 +834,17 @@
     "source_file": "plumbs_output/15.jsonl",
     "extracted_at": "2026-03-10T17:44:57.583009+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "독시사이클린(Doxycycline)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "보렐리아증(라임병)",
+    "렙토스피라증",
+    "리케차 감염",
+    "아나플라즈마증",
+    "에를리히증",
+    "클라미디아증",
+    "마이코플라즈마증",
+    "바르토넬라증"
+  ],
+  "mechanism_short": "30S 리보솜 소단위에 가역적으로 결합하여 아미노아실-tRNA의 리보솜 결합을 방해함으로써 단백질 합성을 억제하는 시간 의존성 정균 항생제. 감수성 균주의 세포막 투과성도 변화시킴."
 }

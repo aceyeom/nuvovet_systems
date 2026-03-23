@@ -22,7 +22,9 @@
     "available_strengths": [
       {
         "value": 0.3,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -363,5 +365,14 @@
     "source_file": "plumbs_output/10.jsonl",
     "extracted_at": "2026-03-10T16:26:10.495353+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "시프로플록사신 점안제(Ciprofloxacin Ophthalmic)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "세균성 결막염 및 각막염 (오프라벨): Staphylococcus spp",
+    "Streptococcus spp",
+    "Pseudomonas aeruginosa",
+    "Chlamydia spp",
+    "Haemophilus spp 등 감수성 균주에 의한 안구 감염 치료. 점안액 1방울 또는 연고 1/4~1/2인치 스트립을 2~8시간마다 점안."
+  ],
+  "mechanism_short": "세균 DNA 자이라제(type-II 토포이소머라제)를 억제하여 DNA 초나선화 및 DNA 합성을 방해하는 살균성, 농도 의존성 항생제. 노출 후 20~30분 내 감수성 세균 사멸."
 }

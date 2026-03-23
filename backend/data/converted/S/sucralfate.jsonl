@@ -24,11 +24,15 @@
     "available_strengths": [
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -563,5 +567,14 @@
     "source_file": "plumbs_output/45.jsonl",
     "extracted_at": "2026-03-11T03:03:11.605294+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "수크랄페이트(Sucralfate)은(는) 위장관 보호 및 궤양 치료에 사용되는 소화기 보호제입니다.",
+  "primary_indications": [
+    "식도염",
+    "위궤양",
+    "십이지장궤양",
+    "요독성 위염",
+    "약물(아스피린 등) 유발 위 미란 예방 (모두 허가 외 사용). 인체에서는 신부전 이차성 고인산혈증에도 사용되나 고양이 CKD에서는 효과 없고 부작용 위험 있음."
+  ],
+  "mechanism_short": "수크랄페이트는 위장관 내에서 국소적으로 작용함. 위산(염산)과 반응하여 페이스트 형태의 복합체를 형성하고, 궤양 부위의 단백질성 삼출물(알부민, 피브리노겐)에 우선적으로 결합하여 보호 장벽을 형성함. 펩신 활성 억제, 담즙산 결합, 프로스타글란딘 E2 및 I2 자극을 통한 세포 보호 효과도 있음."
 }

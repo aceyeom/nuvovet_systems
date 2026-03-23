@@ -24,15 +24,21 @@
     "available_strengths": [
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 750,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -636,5 +642,17 @@
     "source_file": "plumbs_output/64.jsonl",
     "extracted_at": "2026-03-11T09:10:35.362290+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "메토카르바몰(Methocarbamol)은(는) 근육 이완에 사용되는 근이완제입니다.",
+  "primary_indications": [
+    "【승인 적응증】 개·고양이: 골격근의 급성 염증성 및 외상성 상태의 보조 치료(근육 경련 감소). 말: 골격근의 급성 염증성 및 외상성 상태의 보조 치료(IV). 【비라벨 적응증】 독성(메탈알데히드",
+    "피레스로이드",
+    "스트리크닌",
+    "CNS 자극제",
+    "SSRI",
+    "진전유발 마이코톡신",
+    "퇴비 섭취 등) 관련 근육 떨림 및 근육 연축 치료. 추간판 질환 보조 근육 이완(개",
+    "일화적). 파상풍 근육 이완 유지."
+  ],
+  "mechanism_short": "중추신경계 억제제로, 개재뉴런(internuncial neurons)에 중추적으로 작용하여 다시냅스 뉴런의 차단 효과를 연장함으로써 골격근 과활성을 감소시킴. 횡문근, 신경섬유, 운동종판에 대한 직접적인 이완 효과는 없음."
 }

@@ -25,19 +25,27 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 400,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -788,5 +796,17 @@
     "source_file": "plumbs_output/54.jsonl",
     "extracted_at": "2026-03-11T06:04:22.875294+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아미오다론(Amiodarone)은(는) 심장 기능 개선에 사용되는 심장약입니다.",
+  "primary_indications": [
+    "【허가 외 사용】개: 심방세동",
+    "불응성 심실부정맥(수축 기능 이상 동반)",
+    "상심실빈맥",
+    "심방조동",
+    "T. cruzi 감염(샤가스병",
+    "이트라코나졸 병용). 말: 심방세동",
+    "상심실빈맥",
+    "심실빈맥의 동율동 전환(IV CRI). 고양이: 데이터 없음."
+  ],
+  "mechanism_short": "주로 칼륨 채널 차단제로 작용하는 Class III 항부정맥제. 나트륨 채널, 칼슘 채널 및 베타-아드레날린 수용체도 차단. 심근 세포 활동 전위 기간 및 불응기 연장."
 }

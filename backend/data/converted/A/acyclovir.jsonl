@@ -41,27 +41,39 @@
     "available_strengths": [
       {
         "value": 400,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 800,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -511,5 +523,13 @@
     "source_file": "plumbs_output/60.jsonl",
     "extracted_at": "2026-03-11T08:04:39.480993+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아시클로버(Acyclovir)은(는) 바이러스 감염 치료에 사용되는 항바이러스제입니다.",
+  "primary_indications": [
+    "조류: PsHV-1(Pacheco's Disease) 치료 및 예방 (오프라벨). 개: 신생아 헤르페스바이러스 감염 보조 치료",
+    "파보바이러스 예방 (오프라벨",
+    "소규모 연구). 말: 말 헤르페스바이러스 감염 (오프라벨",
+    "IV). 고양이: 사용 금기."
+  ],
+  "mechanism_short": "퓨린(구아닌) 유사체로, 바이러스 티미딘 키나아제에 의해 활성형 삼인산 형태로 전환된 후 바이러스 DNA에 삽입되어 바이러스 DNA 복제를 억제함."
 }

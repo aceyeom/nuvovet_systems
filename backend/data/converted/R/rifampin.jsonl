@@ -22,15 +22,21 @@
     "available_strengths": [
       {
         "value": 150,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 600,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -790,5 +796,17 @@
     "source_file": "plumbs_output/33.jsonl",
     "extracted_at": "2026-03-10T23:14:00.237349+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "리팜핀(Rifampin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "【오프라벨 적응증】 개: 메티실린 내성 Staphylococcus pseudintermedius 농피증(병용)",
+    "Ehrlichia canis 대체 치료",
+    "브루셀라증(선택적 증례",
+    "병용)",
+    "비결핵 마이코박테리아 감염",
+    "개 나병성 육아종",
+    "CNS 침범을 동반한 히스토플라스마증/아스페르길루스증. 고양이: 나병 증후군",
+    "비결핵 마이코박테리아 감염. 말: Rhodococcus equi 감염(주 적응증)"
+  ],
+  "mechanism_short": "세균의 DNA 의존성 RNA 중합효소를 억제하여 RNA 전사 개시를 차단함. 포유류의 RNA 중합효소에는 영향을 미치지 않음. 세균 농도 및 감수성에 따라 살균 또는 정균 작용을 나타냄. Rhodococcus equi에 대해서는 시간 의존성 항균제로 분류됨."
 }

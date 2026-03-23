@@ -29,15 +29,21 @@
     "available_strengths": [
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 480,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -571,5 +577,13 @@
     "source_file": "plumbs_output/64.jsonl",
     "extracted_at": "2026-03-11T09:08:19.255063+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "메티오닌(Methionine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "소변 산성화 (스트루바이트 요석 형성 예방 및 치료)",
+    "암모니아성 소변 냄새 감소. 허가 외: 감염 유발 스트루바이트 용해 (개)",
+    "식이 및 항균제로 소변 pH가 감소하지 않는 경우 (고양이). 식용 동물: 영양 보충제",
+    "소의 케톤증 치료. 말 및 소: 제엽염 치료 (효과 미확립)."
+  ],
+  "mechanism_short": "메티오닌은 필수 아미노산으로, 간에서 대사된 후 황산염이 소변으로 황산으로 배설되어 소변을 산성화한다. 또한 지방간 예방(지방친화성), 간에 황수산기 및 메틸기 공급 등의 약리 작용을 가진다."
 }

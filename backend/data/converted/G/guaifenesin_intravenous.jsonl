@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -382,5 +384,11 @@
     "source_file": "plumbs_output/0.jsonl",
     "extracted_at": "2026-03-10T13:28:02.437472+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "과이페네신 (정맥주사용)(Guaifenesin, Intravenous)은(는) 근육 이완에 사용되는 근이완제입니다.",
+  "primary_indications": [
+    "낙타과 동물",
+    "소형 반추동물에서 단기 시술(30~60분)을 위한 근이완 유도 및 마취 보조제로 사용(extra-label). GKX(triple drip: 과이페네신+케타민+자일라진) 등 다양한 전정맥마취 프로토콜에 활용됨. 개·고양이에 대한 승인 적응증 없음."
+  ],
+  "mechanism_short": "피질하 영역, 뇌간, 척수의 개재뉴런(internuncial neuron) 수준에서 신경 충격 전달을 억제하는 중추 작용 근이완제. 후두 및 인두 근육을 이완시켜 기관 삽관을 용이하게 함. 내재적 진통 효과는 임상적으로 유의하지 않음."
 }

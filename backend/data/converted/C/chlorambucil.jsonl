@@ -23,7 +23,9 @@
     "available_strengths": [
       {
         "value": 2,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -204,7 +206,7 @@
           "logic_type": "linear",
           "context": "면역억제제 (허가 외)",
           "value": "1.95 - 4.5",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "PO",
           "frequency": "SID",
           "max_dose_mg_kg": null,
@@ -215,7 +217,7 @@
           "logic_type": "linear",
           "context": "만성 림프구성 백혈병 (metronomic, 허가 외)",
           "value": "3 - 6",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "PO",
           "frequency": "SID",
           "max_dose_mg_kg": null,
@@ -226,7 +228,7 @@
           "logic_type": "linear",
           "context": "비만세포종 (metronomic, 허가 외)",
           "value": "4 - 6",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "PO",
           "frequency": "q48h",
           "max_dose_mg_kg": null,
@@ -248,7 +250,7 @@
           "logic_type": "linear",
           "context": "Metronomic 항암 (혈관육종, 이행세포암종 등, 허가 외)",
           "value": "4",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "PO",
           "frequency": "SID",
           "max_dose_mg_kg": null,
@@ -259,7 +261,7 @@
           "logic_type": "linear",
           "context": "염증성 직장 용종 (허가 외)",
           "value": "2",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "PO",
           "frequency": "SID",
           "max_dose_mg_kg": null,
@@ -275,7 +277,7 @@
           "logic_type": "linear",
           "context": "면역억제제 (허가 외)",
           "value": "0.1 - 0.2",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "PO",
           "frequency": "SID",
           "max_dose_mg_kg": null,
@@ -286,7 +288,7 @@
           "logic_type": "linear",
           "context": "저등급 위장관 림프종/만성 림프구성 백혈병 - 프로토콜 A (허가 외)",
           "value": "15",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "PO",
           "frequency": "SID",
           "max_dose_mg_kg": null,
@@ -297,7 +299,7 @@
           "logic_type": "linear",
           "context": "저등급 위장관 림프종/만성 림프구성 백혈병 - 프로토콜 B (허가 외)",
           "value": "20",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "PO",
           "frequency": "q48h",
           "max_dose_mg_kg": null,
@@ -530,5 +532,17 @@
     "source_file": "plumbs_output/24.jsonl",
     "extracted_at": "2026-03-10T20:33:17.922821+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "클로람부실(Chlorambucil)은(는) 악성 종양(암) 치료에 사용되는 항종양제입니다.",
+  "primary_indications": [
+    "항종양: 림프구성 백혈병",
+    "T세포 림프종",
+    "위장관 림프종",
+    "다발성 골수종",
+    "림프관육종",
+    "비만세포종",
+    "피부 형질세포증",
+    "진성 적혈구증가증"
+  ],
+  "mechanism_short": "방향족 질소 머스타드 유도체 알킬화제. 암세포 DNA 가닥을 알킬화하여 교차결합 및 세포 자멸사를 유발함. 면역억제 효과는 투약 시작 후 2~4주 후에 나타날 수 있음."
 }

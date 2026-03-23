@@ -24,15 +24,21 @@
     "available_strengths": [
       {
         "value": 1000,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 2000,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -453,5 +459,17 @@
     "source_file": "plumbs_output/24.jsonl",
     "extracted_at": "2026-03-10T20:47:15.996771+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "융모성 성선자극호르몬(Chorionic Gonadotropin)은(는) 호르몬 불균형 치료에 사용되는 호르몬제입니다.",
+  "primary_indications": [
+    "【승인 용도】소: 낭포성 난소로 인한 발정 과다증 치료(10",
+    "000 units IM). 양식 어류: 산란 기능 개선. 돼지: 발정 유도(PG 600®). 【비표시 용도】개: 고환/난소 잔존 확인 자극 검사",
+    "난포낭 황체화 유도",
+    "수컷 희소정자증 치료. 고양이: 고환/난소 잔존 확인 자극 검사",
+    "배란 유도",
+    "수컷 불임·잠복고환 치료. 말: 배란 유도",
+    "잠복고환 고환 하강 유도",
+    "거세마 고환 잔존 확인. 조류: 깃털 뽑기 행동 감소."
+  ],
+  "mechanism_short": "황체형성호르몬(LH)의 효과를 모방하는 당단백질 호르몬. 수컷에서는 고환 간질세포(Leydig cell) 분화를 자극하여 안드로겐을 생성하고, 암컷에서는 배란 유도 및 황체 형성을 촉진함."
 }

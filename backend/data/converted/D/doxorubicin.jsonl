@@ -42,15 +42,21 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 150,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -352,7 +358,7 @@
           "logic_type": "fixed",
           "context": "항암화학요법 (extra-label) — 표준 용량",
           "value": "30",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q21h",
           "max_dose_mg_kg": null,
@@ -379,7 +385,7 @@
           "logic_type": "fixed",
           "context": "항암화학요법 (extra-label) — BSA 기반 용량",
           "value": "20 - 25",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q21h",
           "max_dose_mg_kg": null,
@@ -681,5 +687,13 @@
     "source_file": "plumbs_output/15.jsonl",
     "extracted_at": "2026-03-10T17:42:04.363876+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "독소루비신(Doxorubicin)은(는) 악성 종양(암) 치료에 사용되는 항종양제입니다.",
+  "primary_indications": [
+    "개와 고양이에서 림프종",
+    "백혈병",
+    "육종 등 다양한 종양의 치료에 단독 또는 병용 화학요법 프로토콜로 사용(모두 허가 외 사용). 수의 라벨 제품 없음",
+    "인체용 제품을 허가 외로 사용함."
+  ],
+  "mechanism_short": "DNA 합성, DNA 의존성 RNA 합성 및 단백질 합성 억제. DNA 및 RNA 중합효소 억제, 토포이소머라제 II 손상, 자유 라디칼 생성. DNA 염기쌍 삽입(intercalation)을 통한 전사 및 복제 방해. 세포 주기 전반에 걸쳐 작용하며 일부 면역억제 활성도 보유."
 }

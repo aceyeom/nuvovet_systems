@@ -26,27 +26,39 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 375,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 750,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -896,5 +908,12 @@
     "source_file": "plumbs_output/21.jsonl",
     "extracted_at": "2026-03-10T19:43:38.737476+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "프로카인아마이드(Procainamide)은(는) 심장 기능 개선에 사용되는 심장약입니다.",
+  "primary_indications": [
+    "심실빈맥",
+    "심실조기수축(PVC)",
+    "상심실성 빈맥(SVT) 치료. 광범위 QRS 빈맥으로 기원이 불명확한 경우 1차 IV 치료제로 적합. 리도카인 불응성 심실빈맥의 대안."
+  ],
+  "mechanism_short": "Class 1A 항부정맥제. 빠른 나트륨 채널을 결합·억제하여 심방 및 심실의 불응기를 연장하고, 심근 흥분성을 감소시키며, 자동능 및 전도 속도를 억제함. 항콜린성 특성도 보유."
 }

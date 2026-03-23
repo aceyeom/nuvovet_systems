@@ -26,19 +26,27 @@
     "available_strengths": [
       {
         "value": 30,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 60,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 180,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 6,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -456,5 +464,14 @@
     "source_file": "plumbs_output/41.jsonl",
     "extracted_at": "2026-03-11T01:58:31.273771+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "펙소페나딘(Fexofenadine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【오프라벨】개: 아토피 피부염",
+    "알레르기성 소양증",
+    "비염 등 히스타민 매개 알레르기 질환 (2~5 mg/kg PO q12~24h",
+    "일부 연구에서 18 mg/kg PO SID 사용). 고양이: 알레르기 관련 질환 (10~15 mg/마리 PO q12~24h",
+    "최대 30 mg/마리 PO q12h). 수의학적 공식 허가 적응증 없음."
+  ],
+  "mechanism_short": "선택적 말초 히스타민 H1 수용체 길항제(2세대). 지질 친화성이 낮아 CNS 투과가 제한적이며 진정 효과 및 항콜린 효과가 최소화됨. 비만세포 안정화 및 류코트리엔, 프로스타글란딘 등 염증 매개체에 대한 추가적 항염증 효과 가능."
 }

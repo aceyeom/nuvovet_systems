@@ -21,11 +21,15 @@
     "available_strengths": [
       {
         "value": 0.5,
-        "unit": "mg/mL medetomidine"
+        "unit": "mg/mL medetomidine",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 10.0,
-        "unit": "mg/mL vatinoxan"
+        "unit": "mg/mL vatinoxan",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -396,5 +400,10 @@
     "source_file": "Medetomidine/Vatinoxan text extract",
     "extracted_at": "2026-03-21T12:30:57+09:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "메데토미딘/바티녹산(Medetomidine/Vatinoxan)은(는) 알파-2 작용제와 말초 길항제의 복합 진정제입니다.",
+  "primary_indications": [
+    "Sedative and analgesic to facilitate clinical examinations or minor procedures in clinically healthy dogs."
+  ],
+  "mechanism_short": "Medetomidine is an alpha-2-adrenergic receptor agonist causing CNS depression (sedation, analgesia) and peripheral vasoconstriction. Vatinoxan is a peripherally acting alpha-2-adrenergic antagonist that attenuates the cardiovascular and metabolic effects outside the CNS without reversing central sedation."
 }

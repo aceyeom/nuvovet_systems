@@ -25,31 +25,45 @@
     "available_strengths": [
       {
         "value": 5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 2,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 2.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -877,5 +891,17 @@
     "source_file": "plumbs_output/39.jsonl",
     "extracted_at": "2026-03-11T01:26:38.221254+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "디아제팜(Diazepam)은(는) 진정 및 불안 완화에 사용되는 진정제입니다.",
+  "primary_indications": [
+    "항불안제(상황적 불안",
+    "공포증)",
+    "골격근 이완제",
+    "항경련제(뇌전증 지속상태",
+    "군발 발작)",
+    "마취 전처치 및 유도 보조",
+    "식욕 촉진제",
+    "기능성 요도 폐색 치료"
+  ],
+  "mechanism_short": "벤조디아제핀은 GABA-A 수용체에 결합하여 GABA에 대한 수용체 친화성을 증가시키고, 염소 이온 전도도 증가 및 시냅스 후 세포막 과분극을 유발함으로써 CNS 억제 효과(항불안, 진정, 골격근 이완, 항경련)를 나타냄. 세로토닌 길항, GABA 방출 증가, 아세틸콜린 방출/전환 감소도 기전으로 제시됨."
 }

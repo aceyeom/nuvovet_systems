@@ -19,11 +19,15 @@
     "available_strengths": [
       {
         "value": 3,
-        "unit": "%"
+        "unit": "%",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "%"
+        "unit": "%",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -342,5 +346,11 @@
     "source_file": "plumbs_output/60.jsonl",
     "extracted_at": "2026-03-11T08:01:08.638586+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아세트산(Acetic Acid)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "반추동물(소",
+    "염소): 비단백질 질소 유발 암모니아 독성증(요소 중독) 치료(오프라벨). 말: 장석 형성 예방을 위한 보조 치료(오프라벨). 승인된 수의용 또는 인체용 상업 제품 없음."
+  ],
+  "mechanism_short": "반추위 내 pH를 낮춰 암모니아(NH3)를 암모늄 이온(NH4+)으로 전환시켜 암모니아 흡수를 감소시키고, 요소 가수분해를 늦춤. 말에서는 결장 pH를 낮춰 장석 형성을 억제함."
 }

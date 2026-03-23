@@ -27,27 +27,39 @@
     "available_strengths": [
       {
         "value": 2,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 15,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 30,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1.25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -616,5 +628,13 @@
     "source_file": "plumbs_output/34.jsonl",
     "extracted_at": "2026-03-10T23:39:53.857728+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "셀레길린(Selegiline)은(는) 행동 장애 및 불안 치료에 사용되는 항우울제입니다.",
+  "primary_indications": [
+    "개: FDA 승인 - 인지기능장애 증후군(CDS)",
+    "뇌하수체 의존성 부신피질기능항진증(PDH). 허가 외 - 만성 불안",
+    "사회적/소음 공포증(벤조디아제핀",
+    "베타차단제와 병용). 고양이: 허가 외 - 인지기능장애 증후군(CDS). 인체: 파킨슨병 보조 치료."
+  ],
+  "mechanism_short": "MAO-B(모노아민 산화효소-B)를 비가역적으로 억제하여 도파민 농도를 증가시킴. 고용량에서는 MAO-B 선택성을 잃고 MAO-A도 억제함. 대사산물인 암페타민 및 메스암페타민이 효능 및 부작용에 기여할 수 있음."
 }

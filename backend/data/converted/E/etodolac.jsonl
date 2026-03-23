@@ -41,31 +41,45 @@
     "available_strengths": [
       {
         "value": 150,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 400,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 600,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -708,5 +722,12 @@
     "source_file": "plumbs_output/17.jsonl",
     "extracted_at": "2026-03-10T18:31:01.860636+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "에토돌락(Etodolac)은(는) 통증과 염증을 완화하는 비스테로이드성 항염증제(NSAID)입니다.",
+  "primary_indications": [
+    "승인 적응증: 개의 골관절염 관련 통증 및 염증 치료(FDA 승인",
+    "NADA #141-108",
+    "#141-274). 비허가 사용: 말의 주상골 증후군(navicular syndrome) 관련 만성 파행 진통(23 mg/kg PO q24h)."
+  ],
+  "mechanism_short": "사이클로옥시게나제(COX) 억제를 통한 프로스타글란딘 합성 억제. COX-2에 대해 상대적으로 선택적이나 COX-1 완전 억제는 아님(COX-1 절약형). 대식세포 화학주성 억제를 통한 항염증 효과도 있음."
 }

@@ -23,11 +23,15 @@
     "available_strengths": [
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -307,5 +311,10 @@
     "source_file": "plumbs_output/36.jsonl",
     "extracted_at": "2026-03-11T00:16:38.271841+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "클록사실린(Cloxacillin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "【승인 적응증】 젖소 유방염(수유 중 및 건유기) - 감수성 균주에 의한 유방염 치료 및 예방을 위한 유방내 주입. 【비승인/오프라벨】 개·고양이에 대한 적응증 없음."
+  ],
+  "mechanism_short": "페니실리나제 내성 이속사졸릴 페니실린으로, 페니실리나제 생성 포도상구균(특히 Staphylococcus aureus)에 대해 살균 작용을 나타냄. 세균 세포벽 합성을 억제하며, 페니실리나제에 의해 분해되지 않아 페니실린 내성 균주에도 효과적임."
 }

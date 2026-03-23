@@ -24,35 +24,51 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 37.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 75,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -674,5 +690,13 @@
     "source_file": "plumbs_output/64.jsonl",
     "extracted_at": "2026-03-11T09:24:09.978423+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "메토프롤롤(Metoprolol)은(는) 심장 기능 개선에 사용되는 심장약입니다.",
+  "primary_indications": [
+    "【개】심방세동에서 심박수 조절 보조 치료 (허가 외)",
+    "심실 조기수축(PVC) (허가 외)",
+    "전신 고혈압 (허가 외). 【고양이】비대성 심근병증 (허가 외). 수의과 승인 제품 없음",
+    "모든 수의학적 사용은 허가 외임."
+  ],
+  "mechanism_short": "베타-1 선택적 아드레날린 수용체 차단제 (2세대 베타차단제). 음성 변력 및 음성 변시 작용으로 동성 심박수 감소, AV 전도 지연, 안정 및 운동 시 심박출량 감소, 심근 산소 요구량 감소, 혈압 강하를 유발함. 고용량에서는 베타-1 및 베타-2 비선택적 차단 가능."
 }

@@ -22,7 +22,9 @@
     "available_strengths": [
       {
         "value": 40,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -730,5 +732,10 @@
     "source_file": "plumbs_output/2.jsonl",
     "extracted_at": "2026-03-10T14:21:29.800849+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "렌테 인슐린 (돼지 아연 인슐린)(Insulin, Lente (Porcine Zinc Insulin))은(는) 호르몬 불균형 치료에 사용되는 호르몬제입니다.",
+  "primary_indications": [
+    "개와 고양이의 당뇨병으로 인한 고혈당 및 관련 임상 증상 치료(FDA 승인). 개의 비합병 당뇨병 초기 치료 및 장기 관리(1차 선택). 고양이의 당뇨병 치료(FDA 승인이나 PZI/인슐린 글라진이 선호됨). 임신성 당뇨병 관리(증례 보고 수준)."
+  ],
+  "mechanism_short": "인슐린의 주요 작용은 포도당 대사 조절. 말초 조직(특히 골격근 및 지방)에서 포도당 흡수를 증가시켜 혈당을 낮춤. 간에서 글리코겐 저장을 증가시키고 당신생을 억제. 지방산 및 단백질 합성을 촉진하고 지방분해 및 단백질 분해를 억제하는 동화 작용."
 }

@@ -24,19 +24,27 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -641,5 +649,17 @@
     "source_file": "plumbs_output/58.jsonl",
     "extracted_at": "2026-03-11T07:24:23.595665+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "린코마이신(Lincomycin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "개·고양이: 감수성 그람양성균(연쇄구균",
+    "포도상구균)에 의한 피부감염(농피증",
+    "감염 창상)",
+    "상기도감염(편도염",
+    "후두염)",
+    "자궁내막염",
+    "개 디스템퍼-간염 복합체 관련 이차 세균감염. 돼지: 마이코플라즈마 폐렴",
+    "감염성 관절염. 꿀벌: 미국 부저병 예방. 허가 외: 개 농피증(20~30 mg/kg PO q12h)"
+  ],
+  "mechanism_short": "50S 리보솜 소단위에 결합하여 펩타이드 형성 및 단백질 합성을 억제함으로써 정균 또는 살균 작용을 나타냄. 세포(백혈구, 대식세포) 내 축적 가능."
 }

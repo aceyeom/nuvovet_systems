@@ -22,11 +22,15 @@
     "available_strengths": [
       {
         "value": 30,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -508,5 +512,12 @@
     "source_file": "plumbs_output/52.jsonl",
     "extracted_at": "2026-03-11T11:25:44.218698+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "카프로모렐린(Capromorelin)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "승인 적응증: 개의 식욕 자극(Entyce®)",
+    "CKD 고양이의 체중 감소 관리(Elura®). 허가 외 사용: 고양이의 식욕 자극(1~3 mg/kg PO 1일 1회",
+    "최대 21일)."
+  ],
+  "mechanism_short": "그렐린 수용체 작용제로서 성장 호르몬(GH) 분비를 자극하고 인슐린 유사 성장 인자 1(IGF1) 방출을 유도하여 식욕을 증진시킴. 위장, 심장, 췌장 기능 조절에도 관여."
 }

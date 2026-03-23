@@ -24,7 +24,9 @@
     "available_strengths": [
       {
         "value": 320,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -554,5 +556,16 @@
     "source_file": "plumbs_output/54.jsonl",
     "extracted_at": "2026-03-11T05:53:58.238535+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "수산화알루미늄(Aluminum Hydroxide)은(는) 위장관 보호 및 궤양 치료에 사용되는 소화기 보호제입니다.",
+  "primary_indications": [
+    "【허가 외 사용】 ① 만성 신장 질환(CKD)에 의한 고인산혈증 (개",
+    "고양이",
+    "파충류",
+    "토끼/설치류 등) ② 위궤양/위산 과다 시 제산제 (소",
+    "말 등). IRIS CKD 단계별 목표 혈청 인 수치: Stage 2: 2.7~4.6 mg/dL",
+    "Stage 3: 2.7~5.0 mg/dL",
+    "Stage 4: 2.7~6.0 mg/dL."
+  ],
+  "mechanism_short": "장내에서 식이 인산과 결합하여 불용성 인산알루미늄을 형성함으로써 인의 흡수를 감소시킴. 제산제로 사용 시 수산화 이온이 위 내 수소 이온과 반응하여 위 pH를 상승시킴."
 }

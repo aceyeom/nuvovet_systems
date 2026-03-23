@@ -22,23 +22,33 @@
     "available_strengths": [
       {
         "value": 6,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -670,5 +680,13 @@
     "source_file": "plumbs_output/33.jsonl",
     "extracted_at": "2026-03-10T23:19:40.979004+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "로베나콕시브(Robenacoxib)은(는) 통증과 염증을 완화하는 비스테로이드성 항염증제(NSAID)입니다.",
+  "primary_indications": [
+    "【승인 적응증】 개: 연조직 수술 관련 수술 후 통증 및 염증 조절 (최대 3일). 고양이: 정형외과 수술",
+    "난소자궁절제술",
+    "거세 관련 수술 후 통증 및 염증 조절 (최대 3일). 【허가 외 사용】 개: 만성 골관절염 관련 통증 및 염증 (1~2 mg/kg PO q24h). 고양이: 근골격계 질환 관련 급성 또는 만성 통증 및 염증",
+    "골관절염 (1~2.4 mg/kg PO q24h)."
+  ],
+  "mechanism_short": "COX-2 선택적 억제제로, 유도형 사이클로옥시게나제-2(COX-2)를 선택적으로 억제하여 통증, 염증, 발열을 유발하는 프로스타글란딘 E 등의 매개체 생성을 감소시킴."
 }

@@ -1,6 +1,5 @@
 {
   "id": "vitamin_a",
-
   "drug_identity": {
     "name_ko": "비타민 A",
     "name_en": "Vitamin A",
@@ -23,27 +22,36 @@
     "available_strengths": [
       {
         "value": 7500.0,
-        "unit": "units"
+        "unit": "units",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 8000.0,
-        "unit": "units"
+        "unit": "units",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10000.0,
-        "unit": "units"
+        "unit": "units",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25000.0,
-        "unit": "units"
+        "unit": "units",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50000.0,
-        "unit": "units/mL"
+        "unit": "units/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
-
   "metabolism_and_clearance": {
     "primary_metabolic_organ": "Liver",
     "clearance_organ": "Liver",
@@ -56,7 +64,6 @@
     },
     "extra_information": "Absorption may be reduced with impaired hepatic or pancreatic function."
   },
-
   "organ_burden_logic": {
     "note": "Stored in the liver. Chronic oversupplementation is the primary risk for toxicity (hypervitaminosis A).",
     "dog": {
@@ -134,7 +141,6 @@
       }
     }
   },
-
   "timing_profile": {
     "onset_min": null,
     "t_max_hr": null,
@@ -148,9 +154,7 @@
     "protein_binding_percent": null,
     "evidence": "Clinical efficacy for dermatoses may require 1 to 2 months before improvement is noted."
   },
-
   "_ddi_note": "High doses may increase bleeding risk with certain anticoagulants. Gut absorption can be affected by other oral substances.",
-
   "drug_interactions": [
     {
       "drug": "Isotretinoin",
@@ -209,7 +213,6 @@
       "evidence": "May reduce the amount of vitamin A absorbed from the gut. Separate dosages by at least 2 hours."
     }
   ],
-
   "additive_risks": {
     "nephrotoxic": false,
     "hepatotoxic": true,
@@ -218,7 +221,6 @@
     "sedation": false,
     "qt_prolongation": false
   },
-
   "risk_flags": {
     "nephrotoxic": "none",
     "hepatotoxic": "high",
@@ -226,7 +228,6 @@
     "bleeding": "moderate",
     "qt_prolongation": "none"
   },
-
   "species_flags": {
     "species_contraindicated": [],
     "mdr1_sensitive": false,
@@ -235,7 +236,6 @@
     "narrow_therapeutic_index": false,
     "washout_period_days": null
   },
-
   "dosage_and_kinetics": {
     "dog": {
       "is_approved": false,
@@ -269,7 +269,6 @@
       "dosage_list": []
     }
   },
-
   "renal_dose_adjustment": {
     "creatinine_threshold_dog_mg_dL": null,
     "creatinine_threshold_cat_mg_dL": null,
@@ -277,14 +276,12 @@
     "adjustment_factor": null,
     "note": null
   },
-
   "hepatic_dose_adjustment": {
     "applies": true,
     "alt_threshold_multiplier": null,
     "adjustment_type": "caution",
     "note": "Absorption may be reduced with impaired hepatic or pancreatic function. Hepatic metabolism is involved in clearance."
   },
-
   "contraindications": [
     {
       "condition": "Pregnancy",
@@ -328,7 +325,6 @@
       }
     }
   ],
-
   "genetic_sensitivity": {
     "has_genetic_risk": true,
     "affected_breeds": [
@@ -337,7 +333,6 @@
     "gene": null,
     "evidence": "Exogenously administered vitamin A may be useful for treating vitamin A-responsive dermatosis in cocker spaniels (and other breeds)."
   },
-
   "effects_and_mechanisms": {
     "common_mechanism": "Necessary for growth, bone and dental development, vision, reproduction, cortisol synthesis, immunity, and integrity of mucosal and epithelial surfaces. Cofactor in mucopolysaccharide synthesis. Retinol combines with opsin to form rhodopsin.",
     "common_extra_effects": [
@@ -362,12 +357,10 @@
       "stellate cell lipidosis"
     ]
   },
-
   "species_notes": {
     "dog": "Evidence is weak to support its use for dermatoses, but it is usually tolerated well.",
     "cat": "Cats appear to be susceptible to chronic vitamin A toxicity (e.g., from raw liver diets)."
   },
-
   "precautions": {
     "dog": {
       "status": 1,
@@ -378,7 +371,6 @@
       "evidence": "Susceptible to chronic vitamin A toxicity leading to severe hepatic pathology."
     }
   },
-
   "storage_and_forms": {
     "storage": "Store oral products in tight, light-resistant containers away from heat. Store injection between 2°C and 8°C (36°F and 46°F); do not freeze.",
     "forms": [
@@ -386,13 +378,11 @@
       "IM/SC Injection"
     ]
   },
-
   "section_1_2_10": {
     "highlights": "Potentially useful for adjunctive treatment of some types of dermatoses in dogs. Give with food. Must be given IM or SC; DO NOT administer parenterally by the IV route. May cause keratoconjunctivitis or increased liver enzymes.",
     "indications": "Used to treat vitamin A-responsive dermatosis, sebaceous adenitis, primary idiopathic seborrhea, and follicular disorders in dogs. Also used to treat hypovitaminosis A in species like chelonians and birds.",
     "client_info": "Give with food (meals), preferably high in fat. Improvement may take 1 to 2 months. Do not exceed prescribed doses due to toxicity risk. Watch for dry eyes."
   },
-
   "_data_quality": {
     "overall_confidence": 3,
     "renal_adjustment_confidence": "high",
@@ -419,12 +409,19 @@
     "requires_pmc_rag": false,
     "pmc_rag_fields": []
   },
-
   "_extraction_metadata": {
     "model_used": "Gemini 3.1 Pro",
     "extraction_pass": 1,
     "source_file": "Plumbs Veterinary Drugs",
     "extracted_at": "2026-03-21T13:52:04Z",
     "reviewer": null
-  }
+  },
+  "brief_description": "비타민 A(Vitamin A)은(는) 비타민 보충제로, 결핍 상태의 교정에 사용됩니다.",
+  "primary_indications": [
+    "Used to treat vitamin A-responsive dermatosis",
+    "sebaceous adenitis",
+    "primary idiopathic seborrhea",
+    "and follicular disorders in dogs. Also used to treat hypovitaminosis A in species like chelonians and birds."
+  ],
+  "mechanism_short": "Necessary for growth, bone and dental development, vision, reproduction, cortisol synthesis, immunity, and integrity of mucosal and epithelial surfaces. Cofactor in mucopolysaccharide synthesis. Retinol combines with opsin to form rhodopsin."
 }

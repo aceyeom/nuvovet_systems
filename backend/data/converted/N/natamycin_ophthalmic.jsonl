@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -289,5 +291,14 @@
     "source_file": "plumbs_output/4.jsonl",
     "extracted_at": "2026-03-10T14:46:25.305317+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "나타마이신 점안액(Natamycin Ophthalmic)은(는) 진균(곰팡이) 감염 치료에 사용되는 항진균제입니다.",
+  "primary_indications": [
+    "말(equine) 진균성 각막염(Fusarium spp.",
+    "Candida spp.",
+    "Aspergillus spp.",
+    "Cephalosporium spp.",
+    "Penicillium spp. 등). 개 및 고양이에 대한 승인 적응증 없음. 비표지 사용 시 배양 및 감수성 검사 권장."
+  ],
+  "mechanism_short": "진균 세포막의 스테롤 부위에 결합하여 막 투과성을 변화시키고 필수 세포내 성분의 누출을 유발하는 테트라엔 폴리엔 항생제. 주로 살균 작용(fungicidal)."
 }

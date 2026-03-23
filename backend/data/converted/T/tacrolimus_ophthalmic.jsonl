@@ -19,15 +19,21 @@
     "available_strengths": [
       {
         "value": 0.01,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 0.02,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 0.03,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -329,5 +335,13 @@
     "source_file": "plumbs_output/5.jsonl",
     "extracted_at": "2026-03-10T15:04:15.346115+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "타크로리무스 점안제(Tacrolimus Ophthalmic)은(는) 면역 반응을 억제하는 면역억제제입니다.",
+  "primary_indications": [
+    "개의 건성각결막염(KCS",
+    "눈물 생성 자극)",
+    "만성 표재성 각막염(CSK)",
+    "기타 면역매개성 안구 표면 염증 질환 (모두 extra-label 사용). 고양이 및 말에서는 평가되지 않음."
+  ],
+  "mechanism_short": "칼시뉴린 억제를 통한 T세포 억제: 타크로리무스가 세포 내 FK-506 결합 단백질과 복합체를 형성하여 칼시뉴린을 억제하고, 염증성 사이토카인 전사 및 T세포 신호 전달을 차단함. 사이클로스포린 대비 약 100배 강력한 효능."
 }

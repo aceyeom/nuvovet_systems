@@ -25,15 +25,21 @@
     "available_strengths": [
       {
         "value": 25000,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 2500,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 18000,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -467,5 +473,10 @@
     "source_file": "plumbs_output/37.jsonl",
     "extracted_at": "2026-03-11T00:49:11.945255+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "달테파린(Dalteparin)은(는) 혈액 응고를 억제하는 항응고제입니다.",
+  "primary_indications": [
+    "혈전색전증 예방 및 치료 (오프라벨). 개: 150–175 units/kg SC q8h. 고양이: 75–150 units/kg SC q6h. 인간에서는 불안정 협심증 및 비-Q파 심근경색과 관련된 허혈성 합병증 예방에도 승인됨."
+  ],
+  "mechanism_short": "항트롬빈 III에 결합하여 활성화함으로써 인자 Xa 및 트롬빈 억제를 강화하는 저분자량 헤파린(LMWH). 표준 헤파린에 비해 인자 Xa를 선택적으로 억제하며 응고 시간(PT, TT, aPTT)에는 최소한의 영향을 미침."
 }

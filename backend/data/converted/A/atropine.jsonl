@@ -22,51 +22,75 @@
     "available_strengths": [
       {
         "value": 0.54,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 15.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.05,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.1,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.3,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.4,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.6,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.8,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.4,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.6,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -1022,5 +1046,17 @@
     "source_file": "plumbs_output/50.jsonl",
     "extracted_at": "2026-03-11T04:32:13.998060+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아트로핀(Atropine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "마취 전 처치(미주신경성 서맥 예방/치료)",
+    "동성 서맥/동방 정지/불완전 방실 차단 치료",
+    "심폐소생술",
+    "미주신경성 서맥 감별 진단",
+    "콜린성 약물 과다 해독",
+    "유기인산염/카바메이트/무스카린성 버섯/남조류 중독 해독",
+    "과다 타액 분비 감소",
+    "기관지 수축 질환 보조 치료"
+  ],
+  "mechanism_short": "무스카린성 수용체에서 아세틸콜린 또는 기타 콜린성 자극제를 경쟁적으로 억제하는 항무스카린 작용제. 부교감신경 절후 신경효과기 부위에서 작용하며, 효과는 용량 의존적임."
 }

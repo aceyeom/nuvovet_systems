@@ -21,15 +21,21 @@
     "available_strengths": [
       {
         "value": 0.8,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 1.2,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -338,5 +344,10 @@
     "source_file": "plumbs_output/4.jsonl",
     "extracted_at": "2026-03-10T14:45:24.614503+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "날부핀 점안제(Nalbuphine Ophthalmic)은(는) 중등도~중증 통증 관리에 사용되는 오피오이드 진통제입니다.",
+  "primary_indications": [
+    "각막 표면 진통 (허가 외 사용): 개에서 수정체유화술 후 안구 불편감 완화. 말 및 토끼에서는 각막 민감도 감소 효과가 없었음. 수의용 및 인체용 허가 점안 제품 없음."
+  ],
+  "mechanism_short": "페난트렌계 합성 오피오이드 작용제/길항제. 진통 효능은 모르핀과 밀리그램 기준으로 동등하며, 오피오이드 길항 활성은 날로르핀의 1/4, 펜타조신의 10배 수준. 뮤 작용제 오피오이드 투여 후 또는 병용 시 호흡 억제를 부분적으로 역전시킬 수 있음."
 }

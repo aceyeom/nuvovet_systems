@@ -34,39 +34,57 @@
     "available_strengths": [
       {
         "value": 0.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 2.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 4.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 5.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 8.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 10.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 25.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 50.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -944,5 +962,12 @@
     "source_file": "plumbs_output/27.jsonl",
     "extracted_at": "2026-03-10T21:37:32.377696+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "모르핀(Morphine)은(는) 중등도~중증 통증 관리에 사용되는 오피오이드 진통제입니다.",
+  "primary_indications": [
+    "고양이",
+    "염소에서의 급성 통증 치료(extra-label). 전마취제 및 수술 전후 진정 진통(extra-label). 경막외 진통(extra-label). 중증 소동물에서 미다졸람 등 진정제와 병용 시 심박출량",
+    "산소 공급에 최소한의 영향. 말에서 관절내 투여로 활막염 치료(extra-label)."
+  ],
+  "mechanism_short": "뮤(mu)-오피오이드 수용체에 주로 작용하며, 델타 및 카파 수용체에도 일부 활성을 나타내는 오피오이드 완전 작용제. 진통, 진정, 호흡 억제, 구토, 장운동 감소, 신체적 의존성 등의 효과를 나타냄."
 }

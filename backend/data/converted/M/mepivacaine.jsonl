@@ -23,15 +23,21 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 15,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -495,5 +501,17 @@
     "source_file": "plumbs_output/63.jsonl",
     "extracted_at": "2026-03-11T08:51:43.511636+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "메피바카인(Mepivacaine)은(는) 통증 완화에 사용되는 진통제입니다.",
+  "primary_indications": [
+    "말(FDA 승인): 침윤 마취",
+    "신경 차단",
+    "관절 내 마취",
+    "경막외 마취",
+    "후두 점막 마취(성대절제술 전). 개(허가 외): 국소 진통",
+    "경막외 진통·마취",
+    "관절 내 진통(진단 및 수술). 고양이(허가 외): 국소 진통",
+    "경막외 진통·마취. 소"
+  ],
+  "mechanism_short": "신경 세포막의 나트륨 이온 채널을 차단하여 전기적 흥분성, 탈분극 및 활동 전위 전파를 억제함으로써 운동, 감각, 자율 신경 섬유의 충격 생성 및 전도를 차단한다."
 }

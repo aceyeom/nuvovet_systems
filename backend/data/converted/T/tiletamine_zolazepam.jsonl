@@ -24,11 +24,15 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -706,5 +710,16 @@
     "source_file": "plumbs_output/47.jsonl",
     "extracted_at": "2026-03-11T03:41:34.083571+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "틸레타민/졸라제팜(Tiletamine/Zolazepam)은(는) 진정 및 불안 완화에 사용되는 진정제입니다.",
+  "primary_indications": [
+    "개: 마취 유도",
+    "진단 목적 보정",
+    "단기 소처치(약 30분). 고양이: 보정 또는 근육 이완을 동반한 마취. 비라벨: 말",
+    "반추동물",
+    "소형 포유류",
+    "파충류 등 다양한 종에서 사용. 공격적인 동물 보정",
+    "혈액 채취 전 진정 등."
+  ],
+  "mechanism_short": "틸레타민은 해리성 마취제(케타민과 화학적으로 유사)이며, 졸라제팜은 벤조디아제핀계 진정제임. 두 약물의 조합은 케타민/디아제팜 또는 케타민/미다졸람 조합과 유사한 약리 작용을 나타냄."
 }

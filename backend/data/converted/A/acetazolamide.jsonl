@@ -23,19 +23,27 @@
     "available_strengths": [
       {
         "value": 125,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -670,5 +678,14 @@
     "source_file": "plumbs_output/60.jsonl",
     "extracted_at": "2026-03-11T08:00:04.526614+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아세타졸아미드(Acetazolamide)은(는) 체액 저류 치료에 사용되는 이뇨제입니다.",
+  "primary_indications": [
+    "【허가 외(extra-label) 적응증】\n- 개: 녹내장 보조 치료",
+    "대사성 알칼리증 보조 치료",
+    "척수공동증 관련 CSF 압력 증가 보조 치료",
+    "발작성 운동이상증(증례 보고)\n- 고양이: 녹내장 보조 치료\n- 말: 고칼륨혈성 주기성 마비(HYPP) 예방 및 보조 치료\n【인체 적응증(참고)】: 간질 보조 치료",
+    "급성 고산병"
+  ],
+  "mechanism_short": "탄산탈수효소(carbonic anhydrase) 비경쟁적·가역적 억제를 통해 탄산으로부터 수소이온 및 중탄산이온 생성을 감소시킴. 안구 내에서는 방수 생성 감소로 안압 저하, 신장에서는 나트륨·칼륨·중탄산이온의 세뇨관 분비 증가로 이뇨 효과 발휘."
 }

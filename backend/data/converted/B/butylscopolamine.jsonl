@@ -22,7 +22,9 @@
     "available_strengths": [
       {
         "value": 20,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -396,5 +398,17 @@
     "source_file": "plumbs_output/51.jsonl",
     "extracted_at": "2026-03-11T05:10:27.798203+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "부틸스코폴라민(Butylscopolamine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "말(FDA 승인): 경련성 산통",
+    "고창성 산통",
+    "단순 변비와 관련된 복통 조절. 허가 외 사용: 식도 폐색(choke) 치료(옥시토신 병용)",
+    "직장 검사 보조",
+    "대장내시경 보조",
+    "양성 변시 효과(서맥 치료 대안)",
+    "중증 말 천식(SEA)에서의 기관지확장",
+    "안과 검사 보조."
+  ],
+  "mechanism_short": "무스카린 수용체 경쟁적 차단을 통해 평활근의 GI 연동운동 및 직장 압력을 감소시키는 항콜린 작용. 기관지확장 및 양성 변시 효과도 나타남."
 }

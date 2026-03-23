@@ -24,31 +24,45 @@
     "available_strengths": [
       {
         "value": 2.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 30,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -633,5 +647,13 @@
     "source_file": "plumbs_output/59.jsonl",
     "extracted_at": "2026-03-11T07:33:01.414950+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "리시노프릴(Lisinopril)은(는) 혈압 강하 및 심부전 치료에 사용되는 ACE 억제제입니다.",
+  "primary_indications": [
+    "심부전(CHF) 보조 치료",
+    "고혈압 치료",
+    "만성 신부전 및 단백뇨성 신병증 보조 치료",
+    "승모판 역류 및 좌우 단락 관련 판막 심질환 치료. 모든 수의학적 적응증은 오프라벨 사용임."
+  ],
+  "mechanism_short": "안지오텐신 전환 효소(ACE)를 경쟁적으로 억제하여 안지오텐신-II 생성을 차단함으로써 혈관 확장, 알도스테론 분비 감소, 레닌 활성 증가를 유도한다. 에날라프릴과 달리 간에서 활성 대사체로 전환될 필요가 없는 직접 활성형 약물이다."
 }

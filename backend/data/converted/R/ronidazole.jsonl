@@ -486,5 +486,14 @@
     "source_file": "plumbs_output/33.jsonl",
     "extracted_at": "2026-03-10T23:25:13.041683+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "로니다졸(Ronidazole)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "고양이 Tritrichomonas foetus 감염 (오프라벨",
+    "1차 치료제)",
+    "개/고양이 지아르디아증 (오프라벨",
+    "대안 치료)",
+    "비식용 조류 Trichomonas spp 감염 치료."
+  ],
+  "mechanism_short": "5-니트로이미다졸 계열 약물로, 트리코모나드의 히드로게노솜에 의해 극성 자가독성 음이온 라디칼로 전환되어 항원충 효과를 나타냄."
 }

@@ -23,11 +23,15 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -422,5 +426,17 @@
     "source_file": "plumbs_output/15.jsonl",
     "extracted_at": "2026-03-10T17:35:25.811551+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "도라멕틴(Doramectin)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "【승인 적응증】소: 위장관 선충",
+    "피부구더기",
+    "흡혈이",
+    "옴진드기 등 내외부 기생충 치료 및 예방(주사 및 국소). 돼지: 위장관 선충",
+    "신장충",
+    "옴진드기",
+    "흡혈이 치료(주사). 【허가 외 적응증】개: 전신성 모낭충증(600 µg/kg PO/SC 주 1회)",
+    "개선충증(400 µg/kg SC 주 1회)"
+  ],
+  "mechanism_short": "아버멕틴 계열 항기생충제로, 선충 신경계 및 절지동물 근육세포의 글루타메이트 개폐 염화이온 채널에 결합하여 막 투과성을 증가시키고 신경/근육 마비를 유발함. 또한 시냅스 전 뉴런에서 GABA 방출을 촉진하여 억제성 신경전달을 강화함."
 }

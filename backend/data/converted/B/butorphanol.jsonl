@@ -25,15 +25,21 @@
     "available_strengths": [
       {
         "value": 0.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 2.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 10.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -976,5 +982,17 @@
     "source_file": "plumbs_output/51.jsonl",
     "extracted_at": "2026-03-11T05:09:11.064153+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "부토르파놀(Butorphanol)은(는) 중등도~중증 통증 관리에 사용되는 오피오이드 진통제입니다.",
+  "primary_indications": [
+    "【FDA 승인】개: 상부 호흡기 염증성 질환 관련 만성 비생산적 기침 완화. 고양이: 주요/경미한 외상 또는 수술 관련 통증 완화. 말/연령마: 산통 관련 통증 완화. 【비라벨 사용】개/고양이: 마취 전 투약",
+    "진통 보조",
+    "지속정주(CRI)",
+    "경막외 진통",
+    "mu-오피오이드 작용제의 진정/호흡억제 역전. 소",
+    "낙타과 동물",
+    "소형 반추동물",
+    "소형 포유류"
+  ],
+  "mechanism_short": "카파(kappa) 및 시그마(sigma) 오피오이드 수용체 작용제이자 mu 오피오이드 수용체 부분 길항제. 변연계(피질하 및 척수 수준)의 진통 수용체에도 작용. 모르핀 대비 체중 기준 4~7배 강한 진통 효과를 가지나 고용량에서 천장 효과(ceiling effect) 존재. 코데인 또는 덱스트로메토르판 대비 15~20배 강한 경구 진해 효과."
 }

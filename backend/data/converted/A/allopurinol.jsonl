@@ -22,15 +22,21 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -566,5 +572,12 @@
     "source_file": "plumbs_output/53.jsonl",
     "extracted_at": "2026-03-11T05:48:14.315133+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "알로퓨리놀(Allopurinol)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【승인 적응증】없음(수의학적 승인 제품 없음). 【오프라벨 적응증】개: 요산 요석 용해 및 예방(특히 달마시안)",
+    "리슈만편모충증 보조치료. 고양이: 리슈만편모충증. 조류: 통풍. 파충류(도마뱀",
+    "이구아나): 통풍."
+  ],
+  "mechanism_short": "잔틴 산화효소(xanthine oxidase) 억제를 통해 옥시퓨린(하이포잔틴, 잔틴)의 요산으로의 전환을 차단하여 혈중 및 소변 내 요산 농도를 감소시킴. 리슈만편모충에 대해서는 원충에 흡수되어 독성 화합물(4-amino-pyrazole-pyrimidine)로 대사되어 RNA에 삽입됨으로써 원충을 사멸시킴."
 }

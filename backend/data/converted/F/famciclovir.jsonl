@@ -21,15 +21,21 @@
     "available_strengths": [
       {
         "value": 125,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -381,5 +387,11 @@
     "source_file": "plumbs_output/40.jsonl",
     "extracted_at": "2026-03-11T01:40:34.544053+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "팜시클로버(Famciclovir)은(는) 바이러스 감염 치료에 사용되는 항바이러스제입니다.",
+  "primary_indications": [
+    "고양이 헤르페스바이러스 1형(FHV-1) 감염(오프라벨): 임상 증상 개선 및 바이러스 배출 감소. 말 EHV-1 척수뇌병증(오프라벨): 추가 연구 필요. 사람에서는 대상포진",
+    "단순포진 등 헤르페스바이러스 감염에 허가됨."
+  ],
+  "mechanism_short": "팜시클로버는 프로드럭으로, 체내에서 활성 대사체인 펜시클로버로 전환된다. 헤르페스바이러스 또는 수두대상포진 바이러스에 감염된 세포에서 바이러스 티미딘 키나제가 펜시클로버를 인산화하여 펜시클로버 삼인산으로 전환되며, 이는 데옥시구아노신 삼인산과 경쟁하여 헤르페스바이러스 DNA 중합효소를 선택적으로 억제함으로써 바이러스 DNA 합성을 저해한다. 바이러스 정지(virostatic) 작용제로 잠복 바이러스에는 효과가 없다."
 }

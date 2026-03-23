@@ -22,11 +22,15 @@
     "available_strengths": [
       {
         "value": 11.4,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 57,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -419,5 +423,14 @@
     "source_file": "plumbs_output/28.jsonl",
     "extracted_at": "2026-03-10T21:58:33.038272+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "니텐피람(Nitenpyram)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "【승인 적응증】 개와 고양이의 성충 벼룩(Ctenocephalides felis) 감염 치료 (체중 0.9 kg 이상",
+    "생후 4주 이상). 【비라벨 적응증】 개의 구더기증(screwworm myiasis",
+    "Cochliomyia hominivorax",
+    "Chrysomya bezziana 등) 치료",
+    "파충류의 구더기증 치료."
+  ],
+  "mechanism_short": "니오니코티노이드계 살충제로, 성충 벼룩이 혈액을 섭취한 후 전신 순환계로 흡수된다. 시냅스 후막의 니코틴성 아세틸콜린 수용체에 결합하여 아세틸콜린 매개 신경 전달을 차단함으로써 벼룩의 마비 및 사망을 유발한다. 곤충의 알파-4 베타-2 니코틴성 수용체에 대해 척추동물 수용체보다 3,500배 높은 선택성을 가진다. 아세틸콜린에스테라제를 억제하지 않는다."
 }

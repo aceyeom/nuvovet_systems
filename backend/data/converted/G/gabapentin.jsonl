@@ -30,27 +30,39 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 400,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 600,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 800,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -582,5 +594,17 @@
     "source_file": "plumbs_output/43.jsonl",
     "extracted_at": "2026-03-11T02:40:42.178811+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "가바펜틴(Gabapentin)은(는) 발작(경련) 조절에 사용되는 항경련제입니다.",
+  "primary_indications": [
+    "【승인 적응증】없음(수의학적 승인 제품 없음). 【오프라벨 적응증】개: 난치성/복합 부분 발작 보조 치료",
+    "만성 신경병성 통증",
+    "폭풍 공포증",
+    "수술 전 진통 보조. 고양이: 난치성 발작 보조 치료",
+    "만성 신경병성 통증",
+    "골관절염 통증",
+    "수의학적 검진 관련 공포/불안 감소",
+    "수술 전후 진통 보조. 기타: 말(라미니티스 통증 연구 중)"
+  ],
+  "mechanism_short": "전압 개폐 칼슘 채널의 CaV alpha2delta 서브유닛에 결합하여 칼슘 유입을 감소시키고, 흥분성 신경전달물질(substance P, 글루타메이트, 노르에피네프린)의 방출을 억제함. GABA와 구조적으로 유사하나 GABA 결합, 재흡수, 분해에는 영향을 미치지 않음."
 }

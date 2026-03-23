@@ -22,11 +22,15 @@
     "available_strengths": [
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 550,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -399,5 +403,13 @@
     "source_file": "plumbs_output/33.jsonl",
     "extracted_at": "2026-03-10T23:15:23.699412+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "리팍시민(Rifaximin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "【오프라벨】개의 만성 장병증(만성 설사)",
+    "간성 뇌증 치료 및 재발 예방. 【사람 허가】대장균에 의한 여행자 설사",
+    "과민성 장증후군 관련 설사",
+    "간성 뇌증 치료 및 위험 감소."
+  ],
+  "mechanism_short": "세균의 DNA 의존성 RNA 중합효소 베타 서브유닛에 결합하여 세균 단백질 합성을 억제함. 장내 국소 작용 항균제로 전신 흡수가 극히 제한적."
 }

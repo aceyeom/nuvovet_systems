@@ -39,15 +39,21 @@
     "available_strengths": [
       {
         "value": 2,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 4,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 2,
-        "unit": "IU"
+        "unit": "IU",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -582,5 +588,13 @@
     "source_file": "plumbs_output/20.jsonl",
     "extracted_at": "2026-03-10T19:27:25.247687+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "포타슘 (아세트산칼륨, 염화칼륨, 글루콘산칼륨)(Potassium (Acetate, Chloride, Gluconate))은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "저칼륨혈증 예방 및 치료 (구토",
+    "당뇨병성 케톤산증",
+    "고양이 고알도스테론증",
+    "만성 신장 질환 등 관련). 완전히 마취된 동물의 안락사(다른 방법을 사용할 수 없는 경우에 한함)."
+  ],
+  "mechanism_short": "포타슘은 체내 주요 세포내 양이온으로, 세포 삼투압 유지, 신경 자극 전달, 평활근·골격근·심근 수축, 정상 신기능 유지에 필수적임. 탄수화물 대사 및 단백질 합성에도 관여함."
 }

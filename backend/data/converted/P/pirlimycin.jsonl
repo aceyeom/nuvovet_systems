@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -323,5 +325,17 @@
     "source_file": "plumbs_output/19.jsonl",
     "extracted_at": "2026-03-10T19:13:53.706704+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "피를리마이신(Pirlimycin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "FDA 승인 적응증: 비유 중인 젖소에서 Staphylococcus spp.(S. aureus",
+    "S. epidermidis",
+    "S. chromogenes",
+    "S. hyicus",
+    "S. xylosus) 및 Streptococcus spp.(S. agalactiae",
+    "S. dysgalactiae",
+    "S. uberis",
+    "S. bovis)에 의한 임상적 및 준임상적 유방염 치료. 개·고양이에 대한 승인 또는 오프라벨 적응증 없음."
+  ],
+  "mechanism_short": "세균 RNA의 50S 리보솜 소단위에 결합하여 세균 단백질 합성을 억제하는 린코사마이드계 항생제. 주로 그람양성균에 활성을 나타냄."
 }

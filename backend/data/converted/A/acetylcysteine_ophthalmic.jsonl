@@ -20,15 +20,21 @@
     "available_strengths": [
       {
         "value": 1.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 5.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 10.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -364,5 +370,13 @@
     "source_file": "plumbs_output/8.jsonl",
     "extracted_at": "2026-03-10T15:58:17.767209+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아세틸시스테인 점안액(Acetylcysteine Ophthalmic)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "각막 궤양(세균성/진균성 감염 동반 시 콜라게나제/프로테아제 억제",
+    "엑스트라-라벨)",
+    "건성안/눈물막 결핍 장애(눈물막 안정화",
+    "엑스트라-라벨)"
+  ],
+  "mechanism_short": "이황화 결합 환원 및 아연·칼슘 보조인자 킬레이션을 통한 콜라게나제 활성 억제; 각막 상피세포의 MMP-9 생성 억제; 눈물막 안정화"
 }

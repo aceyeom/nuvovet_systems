@@ -21,11 +21,15 @@
     "available_strengths": [
       {
         "value": 60,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -386,5 +390,17 @@
     "source_file": "plumbs_output/34.jsonl",
     "extracted_at": "2026-03-10T23:37:53.171492+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "셀라멕틴/사롤라너(Selamectin/Sarolaner)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "FDA 승인 적응증(고양이): 심장사상충(Dirofilaria immitis) 예방",
+    "벼룩(Ctenocephalides felis) 구제 및 예방",
+    "귀 진드기(Otodectes cynotis) 구제",
+    "회충(Toxocara cati) 및 장내 구충(Ancylostoma tubaeforme) 치료",
+    "진드기(Ixodes scapularis",
+    "Amblyomma maculatum",
+    "Dermacentor variabilis) 구제. 비라벨 사용: 씹는 이(Felicola subrostratus) 치료(일부 국가 라벨 포함)",
+    "귀 모낭충증(Demodex cati에 의한 otodemodicosis) 치료(증례 보고)."
+  ],
+  "mechanism_short": "셀라멕틴은 전시냅스 뉴런에서 GABA 방출을 촉진하거나 염화물 투과성을 증가시켜 선충의 신경 및 절지동물의 근육 섬유에서 억제성 신경전달을 강화하여 마비 및 사멸을 유발한다. 사롤라너는 이소옥사졸린 계열 살충/살비제로 곤충 및 진드기의 신경근 접합부에서 GABA 및 글루타메이트 수용체를 억제하여 통제되지 않는 신경근 활성을 유발하고 사멸을 초래한다."
 }

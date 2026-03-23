@@ -21,11 +21,15 @@
     "available_strengths": [
       {
         "value": 10000000,
-        "unit": "IU"
+        "unit": "IU",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5000000,
-        "unit": "IU"
+        "unit": "IU",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -480,5 +484,17 @@
     "source_file": "plumbs_output/3.jsonl",
     "extracted_at": "2026-03-10T14:30:16.542267+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "인터페론 오메가 (고양이 유래)(Interferon Omega, Feline Origin)은(는) 면역 반응을 억제하는 면역억제제입니다.",
+  "primary_indications": [
+    "【허가 적응증(EU)】 개(생후 1개월 이상): 파보바이러스 장염의 사망률 및 임상 증상 감소. 고양이(생후 9주 이상): 비말기(nonterminal) FeLV 및/또는 FIV 감염 치료. 【허가 외 사용(extra-label)】 개: 파보바이러스 장염",
+    "아토피 피부염",
+    "개 홍역. 고양이: FeLV",
+    "FIV",
+    "만성 구내염(FCGS)",
+    "헤르페스바이러스 피부염",
+    "급성 칼리시바이러스 감염",
+    "FIP"
+  ],
+  "mechanism_short": "인터페론 오메가는 제1형 인터페론으로, 바이러스 감염 세포에서 숙주 mRNA 및 번역 단백질을 억제하여 바이러스 복제를 차단함. 또한 비특이적 면역 방어 기전을 강화할 수 있음."
 }

@@ -23,19 +23,27 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -569,5 +577,17 @@
     "source_file": "plumbs_output/32.jsonl",
     "extracted_at": "2026-03-10T22:55:27.202062+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "피리독신(Pyridoxine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【오프라벨】이소니아지드(INH) 독성 해독",
+    "크리미딘 독성 치료",
+    "히드라진 버섯(Gyromitra spp.) 중독 보조 치료",
+    "에틸렌글리콜 독성 보조인자 공급",
+    "페니실라민 투여 중 피리독신 보충",
+    "독소루비신 리포솜(Doxil®) 관련 수족증후군 예방(개)",
+    "가성임신 수유 중단(개). 【인체 허가】피리독신 결핍",
+    "피리독신 의존성 신생아 경련."
+  ],
+  "mechanism_short": "피리독살 인산 및 피리독사민으로 전환되어 아미노산 대사, 지질 및 탄수화물 이용의 조효소로 작용. 트립토판→세로토닌/나이아신 전환, 글리코겐 분해, 헴 합성, CNS 내 GABA 합성, 옥살산→글리신 전환에 필수. 사이클로세린 또는 이소니아지드의 배설 촉진을 통한 해독제 역할."
 }

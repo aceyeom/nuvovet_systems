@@ -21,19 +21,27 @@
     "available_strengths": [
       {
         "value": 5.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 1.25,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 0.5,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -370,5 +378,13 @@
     "source_file": "plumbs_output/5.jsonl",
     "extracted_at": "2026-03-10T14:56:54.419764+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "포비돈-아이오딘 점안액(Povidone-Iodine Ophthalmic)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "① 안과 수술 전 안구 주위 소독 (extra-label) ② 세균성·진균성·헤르페스바이러스 각막염 치료 (extra-label) ③ 표재성 만성 각막 상피 결손(SCCED",
+    "난치성 궤양)의 비활성 상피 화학적 제거 (extra-label). 기존 항진균제",
+    "항균제",
+    "항바이러스 점안제의 저렴한 대안으로 활용 가능."
+  ],
+  "mechanism_short": "포비돈-아이오딘은 요오도포(iodophor)로서 지방산 이중결합과의 상호작용을 통해 세균 세포벽 및 세포소기관 막을 손상시키고, 아미노산 및 뉴클레오타이드에 산화적 손상을 유발하여 막에 기공을 형성함으로써 살균(bactericidal), 바이러스 불활성화(virucidal), 잠재적으로 살진균(fungicidal) 및 살포자(sporicidal) 활성을 나타냄."
 }

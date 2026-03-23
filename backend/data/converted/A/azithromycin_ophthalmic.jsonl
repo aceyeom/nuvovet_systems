@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 1.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -324,5 +326,12 @@
     "source_file": "plumbs_output/9.jsonl",
     "extracted_at": "2026-03-10T16:09:26.208015+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아지스로마이신 점안액(Azithromycin Ophthalmic)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "세균성 결막염(Haemophilus spp.",
+    "Streptococcus spp.",
+    "Staphylococcus spp. 등 감수성 균주). 시험관 내 Chlamydia spp. 및 Mycoplasma spp.에 대한 효능도 보고됨. 모든 동물 적용은 오프라벨임."
+  ],
+  "mechanism_short": "50S 리보솜 소단위에 결합하여 미생물의 단백질 합성을 억제하는 정균성 마크로라이드 항생제."
 }

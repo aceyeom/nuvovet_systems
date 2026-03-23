@@ -27,43 +27,63 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 125,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -593,5 +613,13 @@
     "source_file": "plumbs_output/55.jsonl",
     "extracted_at": "2026-03-11T06:20:31.707437+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "암피실린(Ampicillin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "감수성 균주에 의한 호흡기 감염",
+    "요로 감염",
+    "소화기 감염",
+    "피부 및 연조직 감염. 패혈증 경험적 치료(그람음성균 커버리지 약물과 병용). 렙토스피라증(독시사이클린 투여 불가 시 대체). Streptococcus canis에 의한 심내막염. 장구균 감염(아미노글리코사이드와 병용 시 상승 효과). 수술 전 예방적 항생제(베타-락타마제 생성 균주에 대한 효능 제한적)."
+  ],
+  "mechanism_short": "세포벽 합성 억제를 통한 시간 의존성 살균 작용. 페니실린 결합 단백질(PBP)에 결합하여 펩티도글리칸 교차결합을 방해한다. 베타-락타마제 생성 균주에 의해 불활성화될 수 있다."
 }

@@ -29,7 +29,9 @@
     "available_strengths": [
       {
         "value": 0.2,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -562,5 +564,15 @@
     "source_file": "plumbs_output/56.jsonl",
     "extracted_at": "2026-03-11T06:41:25.299631+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "이소프로테레놀(Isoproterenol)은(는) 심장 기능 개선에 사용되는 심장약입니다.",
+  "primary_indications": [
+    "급성 기관지 수축",
+    "완전 방실 차단",
+    "동성 서맥",
+    "동방정지",
+    "칼슘 채널 차단제 과다복용 시 아트로핀 대체",
+    "쇼크 또는 심부전의 보조 치료(제한적 사용). 모든 적응증은 오프라벨."
+  ],
+  "mechanism_short": "비선택적 베타-1 및 베타-2 아드레날린 수용체 작용제. 사이클릭 AMP 생성 자극을 통해 심근 수축력 및 심박수 증가, 기관지 평활근 이완, 말초 혈관 확장을 유발함. 히스타민 및 SRS-A의 항원 매개 방출을 억제함."
 }

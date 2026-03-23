@@ -431,5 +431,14 @@
     "source_file": "plumbs_output/32.jsonl",
     "extracted_at": "2026-03-10T23:00:03.937637+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "퀴나크린(Quinacrine)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "개: 지아르디아 또는 기타 감수성 원충 감염 (extra-label",
+    "최후 수단). 고양이: 지아르디아",
+    "콕시디아 감염 (extra-label",
+    "최후 수단). 인체: 항말라리아제",
+    "경증~중등도 원판상 루푸스 에리테마토수스 치료."
+  ],
+  "mechanism_short": "DNA 삽입(intercalation)을 통해 RNA 전사 및 전위를 억제하고, 전자 전달계를 방해하며 숙시네이트 산화 및 콜린에스테라제를 억제함으로써 항원충 효과를 나타낸다."
 }

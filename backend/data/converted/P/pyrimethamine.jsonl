@@ -23,7 +23,9 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -529,5 +531,14 @@
     "source_file": "plumbs_output/32.jsonl",
     "extracted_at": "2026-03-10T22:58:36.956636+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "피리메타민(Pyrimethamine)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "【승인 적응증】 없음(수의과 승인 제품 없음). 말에서는 sulfadiazine과의 복합제로 말 원충성 척수뇌염(EPM) 치료에 승인됨.\n【오프라벨 적응증】 개: 톡소플라즈마증(설폰아미드 병용)",
+    "Hepatozoon americanum 감염(트리메토프림/설파디아진+클린다마이신 병용)",
+    "네오스포라증(트리메토프림/설파디아진 병용). 고양이: 톡소플라즈마증(설폰아미드 또는 클린다마이신 병용). 조류: 원충 감염(톡소플라즈마증",
+    "아톡소플라즈마증",
+    "사르코시스티스)."
+  ],
+  "mechanism_short": "디하이드로엽산 환원효소(dihydrofolate reductase) 억제제로, 디하이드로엽산의 테트라하이드로엽산으로의 전환을 차단함. 포유류 효소보다 원충 효소에 더 선택적으로 결합하여 원충의 단백질 및 핵산 합성을 저해함."
 }

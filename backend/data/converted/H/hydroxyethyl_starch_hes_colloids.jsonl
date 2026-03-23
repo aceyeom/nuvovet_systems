@@ -25,15 +25,21 @@
     "available_strengths": [
       {
         "value": 6,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 6,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -618,5 +624,17 @@
     "source_file": "plumbs_output/1.jsonl",
     "extracted_at": "2026-03-10T13:52:27.789831+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "하이드록시에틸 전분 콜로이드(Hydroxyethyl Starch (HES) Colloids)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "승인 및 허가 외 적응증: 소동물(개",
+    "고양이) 및 대동물(말",
+    "낙타류",
+    "조류)의 저혈량증 및 저교질삼투압 상태(저알부민혈증: 총 단백 < 3.5 g/dL 또는 알부민 < 1.5 g/dL) 치료. 결정질 수액 단독으로 혈액량 유지가 불충분한 경우",
+    "수액 소생 효과의 지속 시간 연장이 필요한 경우",
+    "수액 소생 중 부종 발생 시",
+    "혈액 제제가 필요하지 않은 혈액 손실로 인한 저혈량증",
+    "외상성 뇌손상 환자(결정질 수액과 병용). Vetstarch®(HES 130/0.4)는 FDA 미승인이나 라벨 정보는 FDA 검토됨. Hespan®(HES 450/0.7)은 소동물에서 허가 외 사용."
+  ],
+  "mechanism_short": "혈관 내 공간의 교질삼투압을 증가시켜 혈장량을 확장하는 콜로이드 혈장량 확장제. 덱스트란 또는 알부민과 유사한 기전으로 작용하며, 주입 완료 후 수 분 이내에 최대 혈장량 확장 효과 발생."
 }

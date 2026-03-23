@@ -23,7 +23,9 @@
     "available_strengths": [
       {
         "value": 300.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -401,5 +403,11 @@
     "source_file": "plumbs_output/62.jsonl",
     "extracted_at": "2026-03-11T08:38:30.044263+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "메글루민 안티모니에이트(Meglumine Antimoniate)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "개의 리슈만편모충증 치료 (알로퓨리놀 병용 권장",
+    "오프라벨). 고양이 리슈만편모충증에 대한 사용은 근거 부족으로 현재 권장되지 않음."
+  ],
+  "mechanism_short": "5가 안티몬 화합물로서 리슈만편모충의 당분해 및 지방산 산화에 필요한 효소를 선택적으로 억제함."
 }

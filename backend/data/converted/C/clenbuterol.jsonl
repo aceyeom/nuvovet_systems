@@ -27,11 +27,15 @@
     "available_strengths": [
       {
         "value": 72.5,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.03,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -444,5 +448,13 @@
     "source_file": "plumbs_output/25.jsonl",
     "extracted_at": "2026-03-10T21:06:40.755261+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "클렌부테롤(Clenbuterol)은(는) 기관지 확장에 사용되는 기관지확장제입니다.",
+  "primary_indications": [
+    "【승인 적응증】 말: 기도 폐쇄(중증 말 천식",
+    "SEA) 관리를 위한 기관지확장제 (FDA 승인",
+    "NADA #140-973). 【허가 외 사용】 말: 난산 응급 처치 시 자궁 이완제 (IV). 소: 자궁 이완제 (IV",
+    "미국 내 허가 외 사용 금지). 【금지】 식용 동물에서의 허가 외 사용은 미국 연방법으로 금지."
+  ],
+  "mechanism_short": "베타-2 아드레날린 수용체 자극을 통해 아데닐 사이클라제를 활성화하고 cAMP 생성을 증가시켜 기관지, 혈관, 자궁 평활근을 이완시킴. 프로염증성 사이토카인(IL-1β, TNF-α) 방출 억제, 점액섬모 청소율 증가, 점액 생성 감소 등의 이차적 작용도 있음."
 }

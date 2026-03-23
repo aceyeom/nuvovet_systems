@@ -23,11 +23,15 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -367,5 +371,17 @@
     "source_file": "plumbs_output/5.jsonl",
     "extracted_at": "2026-03-10T15:03:02.938638+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "설파세타마이드 점안제(Sulfacetamide Ophthalmic)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "감수성 미생물(대장균",
+    "황색포도상구균",
+    "폐렴연쇄구균",
+    "녹색연쇄구균",
+    "헤모필루스",
+    "클렙시엘라",
+    "엔테로박터)에 의한 결막염 및 기타 표재성 안구 감염 치료. Neisseria spp.",
+    "Serratia marcescens"
+  ],
+  "mechanism_short": "설폰아마이드계 항균제로서 디하이드로프테로에이트 합성효소의 경쟁적 억제를 통해 세균의 디하이드로엽산 합성을 억제하는 정균 작용을 나타냄."
 }

@@ -29,19 +29,27 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -549,5 +557,13 @@
     "source_file": "plumbs_output/56.jsonl",
     "extracted_at": "2026-03-11T06:39:38.394706+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "이소니아지드(Isoniazid)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "【허가 외 사용】 ① 소동물(개",
+    "고양이): 결핵균(M. tuberculosis) 또는 M. bovis 화학예방 및 치료(인수공통감염 위험으로 논란). ② 소/반추동물: 요네병(MAP",
+    "Johne's disease) 임상 증상 완화 목적 치료(완치 불가",
+    "증상 감소 및 생존 기간 연장 목적). 인체에서는 잠복 결핵 치료(단독) 및 활성 결핵 치료(병용)에 허가됨."
+  ],
+  "mechanism_short": "마이코박테리아 세포벽 구성 성분인 미콜산(mycolic acid) 합성을 억제함. 분열 중인 마이코박테리아에 가장 활성이 높으며, 세포외 및 세포내 마이코박테리아 모두에 작용함. 분열 중인 마이코박테리아에 대해 살균 작용, 휴면 또는 반휴면 상태에 대해 정균 작용을 나타냄. 또한 모노아민 산화효소(MAO)에 대한 억제 효과가 있음."
 }

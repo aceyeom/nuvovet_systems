@@ -24,27 +24,39 @@
     "available_strengths": [
       {
         "value": 2000,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 3000,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 4000,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 10000,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 20000,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 40000,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -509,5 +521,14 @@
     "source_file": "plumbs_output/16.jsonl",
     "extracted_at": "2026-03-10T18:07:49.611004+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "에포에틴 알파(Epoetin Alfa)은(는) 호르몬 불균형 치료에 사용되는 호르몬제입니다.",
+  "primary_indications": [
+    "승인 적응증(인간): 만성 신장 질환 관련 빈혈",
+    "화학요법 유발 빈혈",
+    "수술 전 자가 헌혈. 오프라벨(수의): 개/고양이의 말기 만성 신장 질환 관련 빈혈",
+    "골수억제 장애",
+    "골수이형성증. 페럿: 빈혈 보조 치료. 토끼: 빈혈 보조 치료."
+  ],
+  "mechanism_short": "에리스로포이에틴(EPO)은 신장에서 생성되는 호르몬으로 적혈구 생성을 조절함. 빈혈 및 저산소증 조건에서 신세뇨관 주위 간질 세포에 의해 분비되어 적혈구 전구세포의 증식, 성숙 및 생존을 촉진함. 결과적으로 적혈구 질량과 혈액의 산소 운반 능력이 증가함."
 }

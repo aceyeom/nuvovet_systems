@@ -23,11 +23,15 @@
     "available_strengths": [
       {
         "value": 100.0,
-        "unit": "units/mL"
+        "unit": "units/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 200.0,
-        "unit": "units/mL"
+        "unit": "units/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -380,5 +384,11 @@
     "source_file": "Insulin, Lispro text extract",
     "extracted_at": "2026-03-21T13:12:35+09:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "인슐린 리스프로(Insulin, Lispro)은(는) 속효성/단시간 작용 인슐린으로, 혈당 조절에 사용됩니다.",
+  "primary_indications": [
+    "Used in diabetic emergencies (e.g.",
+    "DKA) and for control of complicated diabetic patients with profound postprandial hyperglycemia. Recommended IV in patients with poor tissue perfusion."
+  ],
+  "mechanism_short": "Regulates glucose metabolism; lowers blood glucose by increasing glucose uptake in peripheral tissues (skeletal muscle, fat). Inhibits gluconeogenesis, lipolysis, and proteolysis."
 }

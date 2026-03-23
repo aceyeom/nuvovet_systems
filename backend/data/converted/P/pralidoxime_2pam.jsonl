@@ -21,15 +21,21 @@
     "available_strengths": [
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -514,5 +520,14 @@
     "source_file": "plumbs_output/20.jsonl",
     "extracted_at": "2026-03-10T19:31:32.806204+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "프랄리독심(Pralidoxime)은(는) 약물 효과를 역전시키는 길항제/해독제입니다.",
+  "primary_indications": [
+    "유기인산염 중독 치료 (오프라벨): 개",
+    "고양이",
+    "반추동물",
+    "낙타류",
+    "조류. 아트로핀 및 지지 요법과 병용. 카바메이트 중독에는 일반적으로 권장되지 않으나 일부 사례에서 사용 보고 있음."
+  ],
+  "mechanism_short": "친핵성 공격을 통해 유기인산염에 의해 인산화된 콜린에스테라제를 재활성화. 효소에 결합된 인산기를 제거하여 배설시킴. 니코틴성 수용체 부위에서 더 강한 활성을 보이며, 주로 호흡근 및 골격근의 신경근 접합부에 작용."
 }

@@ -25,31 +25,45 @@
     "available_strengths": [
       {
         "value": 50.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 205.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 35.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 21.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 8.4,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -355,5 +369,10 @@
     "source_file": "L-Theanine text extract",
     "extracted_at": "2026-03-21T13:35:00+09:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "L-테아닌(L-Theanine)은(는) 영양학적 성분 기반의 항불안 보조제입니다.",
+  "primary_indications": [
+    "Used as an anxiolytic for dogs and cats."
+  ],
+  "mechanism_short": "Thought to increase nutritional serotonin, dopamine, and gamma-aminobutyric acid (GABA) levels in the CNS. May inhibit glutamic acid excitotoxicity. In humans, shown to increase alpha waves in the brain indicating a relaxed state."
 }

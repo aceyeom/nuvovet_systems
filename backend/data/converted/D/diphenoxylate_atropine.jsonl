@@ -22,7 +22,9 @@
     "available_strengths": [
       {
         "value": 2.5,
-        "unit": "mg diphenoxylate and 0.025 mg atropine per tablet or per 5 mL liquid"
+        "unit": "mg diphenoxylate and 0.025 mg atropine per tablet or per 5 mL liquid",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -467,5 +469,11 @@
     "source_file": "Diphenoxylate/Atropine text extract",
     "extracted_at": "2026-03-21T12:57:23+09:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "디페녹실레이트/아트로핀(Diphenoxylate/Atropine)은(는) 오피오이드 진통제와 항콜린제의 복합 제제입니다.",
+  "primary_indications": [
+    "Used primarily in dogs for its antidiarrheal and antitussive properties",
+    "and for medical management of tracheal collapse. Many clinicians do not recommend using this drug in cats."
+  ],
+  "mechanism_short": "Opioids inhibit GI motility and propulsion, decrease intestinal secretions, and may enhance intestinal mucosal absorption. Atropine is present in subtherapeutic amounts to deter human abuse."
 }

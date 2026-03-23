@@ -24,7 +24,9 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -475,5 +477,16 @@
     "source_file": "plumbs_output/48.jsonl",
     "extracted_at": "2026-03-11T03:53:42.113635+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "톨라졸린(Tolazoline)은(는) 약물 효과를 역전시키는 길항제/해독제입니다.",
+  "primary_indications": [
+    "말에서 자일라진 진정·진통 효과 역전(FDA 승인). 말",
+    "고양이",
+    "반추동물",
+    "낙타과 동물",
+    "조류에서 자일라진 및 기타 알파-2 작용제(덱스메데토미딘",
+    "데토미딘",
+    "메데토미딘) 효과 역전(적응외 사용)."
+  ],
+  "mechanism_short": "알파-1 및 알파-2 아드레날린 수용체 경쟁적 차단제. 혈관 평활근을 직접 이완시켜 말초혈관 확장 및 총 말초저항 감소. 부교감신경 유사 또는 히스타민 H2 작용제 효과를 통해 위장관 분비 및 운동성 자극."
 }

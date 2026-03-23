@@ -24,15 +24,21 @@
     "available_strengths": [
       {
         "value": 390.0,
-        "unit": "mg/mL pentobarbital sodium"
+        "unit": "mg/mL pentobarbital sodium",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 390.0,
-        "unit": "mg/mL pentobarbital + 50 mg/mL phenytoin sodium"
+        "unit": "mg/mL pentobarbital + 50 mg/mL phenytoin sodium",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 392.0,
-        "unit": "mg/mL pentobarbital (when constituted)"
+        "unit": "mg/mL pentobarbital (when constituted)",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -361,5 +367,11 @@
     "source_file": "Euthanasia Agents with Pentobarbital text extract",
     "extracted_at": "2026-03-21T12:59:17+09:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "펜토바르비탈 함유 안락사 약물(Euthanasia Agents with Pentobarbital)은(는) 인도적 안락사에 사용되는 약물입니다.",
+  "primary_indications": [
+    "Can be used for rapid",
+    "humane euthanasia in animals not intended for food purposes."
+  ],
+  "mechanism_short": "High doses cause rapid loss of consciousness, progressing to deep anesthesia and subsequent depression of the medullary respiratory center, causing cerebral death and cardiac cessation. Phenytoin is included for its cardiac depressant effects, hastening cessation of cardiac electrical activity."
 }

@@ -27,19 +27,27 @@
     "available_strengths": [
       {
         "value": 60,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 180,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 12,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -609,5 +617,11 @@
     "source_file": "plumbs_output/31.jsonl",
     "extracted_at": "2026-03-10T22:53:13.118024+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "피리도스티그민(Pyridostigmine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "개와 고양이의 중증 근무력증(MG) 치료 (오프라벨). 후천성 MG에 주로 사용. 연하 가능한 경우 경구 투여",
+    "연하 불가능한 중증 환자에서는 IV CRI 투여 가능."
+  ],
+  "mechanism_short": "아세틸콜린에스테라제와 직접 경쟁하여 아세틸콜린 가수분해를 억제함으로써 콜린성 시냅스에 아세틸콜린이 축적되어 콜린성 활성을 증가시킨다. 4차 암모늄 구조로 인해 권장 용량에서는 CNS를 통과하지 않는다."
 }

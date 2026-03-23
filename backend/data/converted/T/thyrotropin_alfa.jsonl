@@ -22,7 +22,9 @@
     "available_strengths": [
       {
         "value": 1.1,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -391,5 +393,12 @@
     "source_file": "plumbs_output/46.jsonl",
     "extracted_at": "2026-03-11T03:32:38.112386+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "티로트로핀 알파(Thyrotropin Alfa)은(는) 호르몬 불균형 치료에 사용되는 호르몬제입니다.",
+  "primary_indications": [
+    "【진단적 적응증】개",
+    "고양이",
+    "기니피그 등에서 원발성 갑상선기능저하증 및 선천성 갑상선기능저하증 진단을 위한 TSH 자극 시험(오프라벨). 갑상선기능항진증 고양이에서 방사성 요오드 섭취 증가(오프라벨). 【과거 수의용 라벨 적응증(현재 제품 없음)】개에서 흑색극세포증(acanthosis nigricans) 치료 및 갑상선기능저하증의 일시적 보조 치료."
+  ],
+  "mechanism_short": "갑상선에서 요오드 섭취를 증가시키고 갑상선 호르몬(T3, T4) 및 티로글로불린의 생성과 분비를 촉진함. 장기 사용 시 갑상선 세포 과형성 유발 가능."
 }

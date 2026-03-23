@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 0.25,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -297,5 +299,10 @@
     "source_file": "plumbs_output/8.jsonl",
     "extracted_at": "2026-03-10T16:00:33.638591+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "알카프타딘 점안액(Alcaftadine Ophthalmic)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "알레르기성 결막염의 임상 증상 완화 (엑스트라라벨). 수의학적 임상 유효성 및 내약성에 관한 공식 보고는 없음."
+  ],
+  "mechanism_short": "히스타민-1(H1) 수용체 길항제 및 비만세포 안정화제. H1 수용체 활성화 억제를 통해 알레르기성 결막염의 초기 반응을 감소시키고, 비만세포 안정화를 통해 사이토카인 및 지질 매개체 방출을 억제하여 후기 알레르기 반응을 조절함."
 }

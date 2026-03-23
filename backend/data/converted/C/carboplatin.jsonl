@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -237,34 +239,34 @@
           "logic_type": "fixed",
           "context": "항종양제 (오프라벨) - 일반 용량",
           "value": "250 - 300",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q21h",
           "max_dose_mg_kg": null,
           "duration_note": "3주 간격 반복 투여. 신기능 저하 또는 골수억제 시 용량 조절 필요.",
-          "evidence": "250–300 mg/m2 IV every 3 weeks (extra-label). 단위는 mg/m2이며 mg/kg와 혼동 주의."
+          "evidence": "250–300 mg/m² IV every 3 weeks (extra-label). 단위는 mg/m²이며 mg/kg와 혼동 주의."
         },
         {
           "logic_type": "weight_band",
           "context": "항종양제 (오프라벨) - 15 kg 이하 소형견",
           "value": "240",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q21h",
           "max_dose_mg_kg": null,
           "duration_note": "3주 간격. 또는 10 mg/kg 사용 가능. 독성 위험 증가로 감량 권고.",
-          "evidence": "15 kg 이하 개에서 240 mg/m2 (또는 10 mg/kg) 권고. 단위는 mg/m2."
+          "evidence": "15 kg 이하 개에서 240 mg/m² (또는 10 mg/kg) 권고. 단위는 mg/m²."
         },
         {
           "logic_type": "fixed",
           "context": "항종양제 (오프라벨) - 토세라닙 병용 시",
           "value": "200",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q21h",
           "max_dose_mg_kg": null,
           "duration_note": "토세라닙(Palladia®) 병용 시 최대 내약 용량. 단위는 mg/m2.",
-          "evidence": "토세라닙 병용 시 최대 내약 용량 200 mg/m2로 보고됨."
+          "evidence": "토세라닙 병용 시 최대 내약 용량 200 mg/m²로 보고됨."
         }
       ]
     },
@@ -275,23 +277,23 @@
           "logic_type": "fixed",
           "context": "항종양제 (오프라벨) - 일반 용량",
           "value": "240 - 260",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q21h",
           "max_dose_mg_kg": null,
           "duration_note": "3주 간격 반복 투여. 신기능 저하 시 골수억제 위험 증가로 주의. 단위는 mg/m2.",
-          "evidence": "240–260 mg/m2 IV every 3 weeks (extra-label)."
+          "evidence": "240–260 mg/m² IV every 3 weeks (extra-label)."
         },
         {
           "logic_type": "fixed",
           "context": "항종양제 (오프라벨) - 저용량",
           "value": "180 - 200",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q21h",
           "max_dose_mg_kg": null,
           "duration_note": "저용량 보고 사례 있음. 단위는 mg/m2.",
-          "evidence": "180–200 mg/m2 저용량 사용 보고됨."
+          "evidence": "180–200 mg/m² 저용량 사용 보고됨."
         }
       ]
     }
@@ -533,5 +535,17 @@
     "source_file": "plumbs_output/52.jsonl",
     "extracted_at": "2026-03-11T05:31:34.796079+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "카보플라틴(Carboplatin)은(는) 악성 종양(암) 치료에 사용되는 항종양제입니다.",
+  "primary_indications": [
+    "승인 적응증(수의학적 승인 없음",
+    "오프라벨): 편평세포암종",
+    "난소암종",
+    "폐암종",
+    "비강암종",
+    "항문낭 아포크린선 선암종",
+    "결장 선암종",
+    "요로 암종"
+  ],
+  "mechanism_short": "DNA 내 및 DNA 간 교차결합(cross-linking)을 통해 단일 및 이중 가닥 DNA 절단을 유발하고, DNA 복제, RNA 전사, 단백질 합성을 억제하여 세포 사멸 및 종양 성장 억제."
 }

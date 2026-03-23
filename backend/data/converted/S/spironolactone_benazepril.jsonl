@@ -21,15 +21,21 @@
     "available_strengths": [
       {
         "value": 20.0,
-        "unit": "mg spironolactone + 2.5 mg benazepril"
+        "unit": "mg spironolactone + 2.5 mg benazepril",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40.0,
-        "unit": "mg spironolactone + 5 mg benazepril"
+        "unit": "mg spironolactone + 5 mg benazepril",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 80.0,
-        "unit": "mg spironolactone + 10 mg benazepril"
+        "unit": "mg spironolactone + 10 mg benazepril",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -423,5 +429,13 @@
     "source_file": "Spironolactone/Benazepril text extract",
     "extracted_at": "2026-03-21T12:44:54+09:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "스피로노락톤/베나제프릴(Spironolactone/Benazepril)은(는) 알도스테론 길항제/ACE 억제제로, 심부전 치료에 사용됩니다.",
+  "primary_indications": [
+    "Management of clinical signs related to mild",
+    "moderate",
+    "or severe congestive heart failure in dogs due to atrioventricular valvular insufficiency (AVVI) with concurrent therapy (e.g.",
+    "furosemide)."
+  ],
+  "mechanism_short": "Spironolactone is a competitive aldosterone antagonist that increases excretion of sodium/water and decreases excretion of potassium. Benazepril inhibits ACE, blocking conversion of angiotensin-I to angiotensin-II, reducing vasoconstriction and aldosterone production."
 }

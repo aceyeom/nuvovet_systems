@@ -27,15 +27,21 @@
     "available_strengths": [
       {
         "value": 0.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.1,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.09,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -802,5 +808,17 @@
     "source_file": "plumbs_output/39.jsonl",
     "extracted_at": "2026-03-11T01:16:52.746359+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "덱스메데토미딘(Dexmedetomidine)은(는) 진정 및 불안 완화에 사용되는 진정제입니다.",
+  "primary_indications": [
+    "개와 고양이: 임상 검사",
+    "임상 시술",
+    "소수술",
+    "소치과 시술을 위한 진정 및 진통",
+    "전신마취 전처치(FDA 승인). 개: 소음 혐오증 치료(Sileo® 구강점막 겔",
+    "FDA 승인)",
+    "수의과 검진 전 공포/불안 감소(extra-label). 고양이: 구토 유도(extra-label",
+    "단 더 효과적인 구토제 존재). 소형 포유류 및 말: 다양한 진정/마취 프로토콜(extra-label)."
+  ],
+  "mechanism_short": "알파-2 아드레날린 수용체 작용제. 알파-2 대 알파-1 선택성 1620:1. CNS 억제(진정, 항불안), 말초 및 관상동맥 혈관수축, 서맥, 호흡 억제, 이뇨, 저체온, 진통, 근이완, 인슐린 분비 억제(고혈당), 장 운동 감소 유발."
 }

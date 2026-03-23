@@ -33,35 +33,51 @@
     "available_strengths": [
       {
         "value": 2,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 4,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 8,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 90,
-        "unit": "mcg"
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.083,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.021,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.042,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -615,5 +631,13 @@
     "source_file": "plumbs_output/61.jsonl",
     "extracted_at": "2026-03-11T08:14:36.289105+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "알부테롤(Albuterol)은(는) 기관지 확장에 사용되는 기관지확장제입니다.",
+  "primary_indications": [
+    "고양이 천식의 급성 기관지수축 구조 치료(흡입)",
+    "개의 기관지수축(경구)",
+    "말의 중증 기도 질환(SEA) 급성 치료 및 전신마취 중 저산소혈증 개선",
+    "소의 미숙아 호흡곤란증후군(분무). 모두 적응증 외(extra-label) 사용."
+  ],
+  "mechanism_short": "Beta-2 아드레날린 수용체 선택적 자극제(교감신경흥분제). 기관지 평활근, 혈관 평활근, 위장관 및 자궁 조직의 beta-2 수용체를 자극하여 기관지 평활근 이완, 기도 저항 감소, 혈관확장, 자궁수축 억제(tocolysis) 및 비만세포에서 기관지수축 매개체 방출 억제를 유발함. 권장 용량에서는 심장의 beta-1 수용체를 상대적으로 회피함."
 }

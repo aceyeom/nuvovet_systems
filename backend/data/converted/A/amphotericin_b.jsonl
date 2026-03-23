@@ -23,15 +23,21 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -525,5 +531,16 @@
     "source_file": "plumbs_output/55.jsonl",
     "extracted_at": "2026-03-11T06:18:30.877362+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "암포테리신 B(Amphotericin B)은(는) 진균(곰팡이) 감염 치료에 사용되는 항진균제입니다.",
+  "primary_indications": [
+    "블라스토마이세스증",
+    "아스페르길루스증",
+    "콕시디오이데스증",
+    "히스토플라스마증",
+    "크립토코쿠스증",
+    "무코르증",
+    "스포로트리쿠스증 등 중증 전신 진균 감염(extra-label). 리포솜 제제는 리슈만편모충증 치료에도 사용 가능하나 WHO는 개의 리슈만편모충증 치료에 암포테리신 B 사용을 권장하지 않음(내성 균주 발생 우려). 다른 항진균제에 반응하지 않는 진행성 질환 또는 항진균제 감수성 검사 결과에 따라 사용."
+  ],
+  "mechanism_short": "진균 세포막의 에르고스테롤에 결합하여 막 투과성을 변화시키고 세포 내 칼륨 및 기타 세포 구성 성분의 누출을 유발함. 주로 정진균 작용이나 고농도에서 살진균 작용 가능."
 }

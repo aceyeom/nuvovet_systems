@@ -31,23 +31,33 @@
     "available_strengths": [
       {
         "value": 22.7,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 68.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 136.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 22.7,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -846,5 +856,17 @@
     "source_file": "plumbs_output/16.jsonl",
     "extracted_at": "2026-03-10T17:58:24.949163+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "엔로플록사신(Enrofloxacin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "개: 엔로플록사신 감수성 세균 감염(요로 감염",
+    "피부 감염",
+    "호흡기 감염",
+    "위장관 감염 등). 고양이: 엔로플록사신 감수성 세균 감염(최대 5 mg/kg/일). 소: 소 호흡기 질환(BRD)",
+    "아나플라즈마증(조건부 승인). 돼지: 돼지 호흡기 질환(SRD)",
+    "이유자돈 대장균증. 허가 외: 말",
+    "뉴월드 낙타류",
+    "설치류"
+  ],
+  "mechanism_short": "세균 DNA 자이라제(II형 토포이소머라제)를 억제하여 DNA 초나선 형성 및 DNA 합성을 방해하는 농도 의존성 살균 항생제. 그람 음성 간균 및 구균에 광범위한 항균 스펙트럼을 가지며, 혐기성균에는 효과가 없다."
 }

@@ -23,7 +23,9 @@
     "available_strengths": [
       {
         "value": 1.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -833,5 +835,12 @@
     "source_file": "plumbs_output/30.jsonl",
     "extracted_at": "2026-03-10T22:34:58.216854+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "옥시모르폰(Oxymorphone)은(는) 중등도~중증 통증 관리에 사용되는 오피오이드 진통제입니다.",
+  "primary_indications": [
+    "고양이: 중등도~중증 급성 통증 진통",
+    "전마취 투약",
+    "경막외 진통 (모두 extra-label). 말: 진통 및 마취 유도 보조 (extra-label). 돼지: 케타민/자일라진 마취 보조 진통 (extra-label). 소형 설치류: 소수술 진통 및 마취 (extra-label). 조류: 전마취 투약 (extra-label). 페럿: 진통 (extra-label). 수의용 허가 제품 없음."
+  ],
+  "mechanism_short": "뮤(mu) 오피오이드 수용체 작용제로, 모르핀보다 약 10배 강력함. 변연계, 척수, 시상, 시상하부, 선조체, 중뇌의 오피오이드 수용체에 작용하여 진통 및 진정 효과를 나타냄. 델타 수용체에도 일부 활성 가능성 있음."
 }

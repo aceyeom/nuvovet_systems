@@ -23,23 +23,33 @@
     "available_strengths": [
       {
         "value": 0.125,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.25,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.1,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.05,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -552,7 +562,7 @@
           "logic_type": "fixed",
           "context": "심방세동 및 CHF - 체중 20 kg 초과 대형견 대안 용량",
           "value": "0.22",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "PO",
           "frequency": "q12h",
           "max_dose_mg_kg": null,
@@ -888,5 +898,13 @@
     "source_file": "plumbs_output/40.jsonl",
     "extracted_at": "2026-03-11T01:38:56.426309+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "디곡신(Digoxin)은(는) 심장 기능 개선에 사용되는 심장약입니다.",
+  "primary_indications": [
+    "승인 적응증(오프라벨): 개에서 확장성 심근병증 또는 점액종성 승모판 질환에 동반된 빠른 심방세동(종종 딜티아젬 병용)",
+    "고양이에서 확장성 심근병증 또는 심방세동(비대성 심근병증 제외). 말에서 CHF 및 심방 부정맥",
+    "페럿에서 확장성 심근병증에 동반된 심부전 보조 치료",
+    "소에서 상심실성 빈맥."
+  ],
+  "mechanism_short": "심근 세포에서 Na⁺-K⁺-ATPase를 억제하여 세포 내 Na⁺ 증가 및 K⁺ 감소를 유발하고, 이차적으로 Ca²⁺ 가용성을 증가시켜 양성 변력 효과를 나타냄. AV 결절에서 전도 속도를 감소시키고 유효 불응기를 연장하여 심박수를 조절함."
 }

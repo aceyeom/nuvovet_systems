@@ -24,15 +24,21 @@
     "available_strengths": [
       {
         "value": 2.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 5.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 7.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -647,5 +653,16 @@
     "source_file": "plumbs_output/51.jsonl",
     "extracted_at": "2026-03-11T04:58:54.263480+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "부피바카인(Bupivacaine)은(는) 통증 완화에 사용되는 진통제입니다.",
+  "primary_indications": [
+    "고양이",
+    "소형 포유류",
+    "파충류 등 대부분의 동물 종에서 수술 및 진단/치료 시술을 위한 국소 또는 부위 진통 및 마취에 사용. 미측 및 요추 경막외 마취",
+    "복강 내 투여",
+    "안구 후방 주사",
+    "관절강 내 투여",
+    "척추강 내 투여 등 다양한 기법으로 사용 가능. 흡입마취제 MAC 절감 효과 및 술후 회복 개선 효과."
+  ],
+  "mechanism_short": "신경세포막의 나트륨 이온 채널을 차단하여 전기적 흥분성, 탈분극 및 활동전위 전파를 억제함. 운동, 감각, 자율신경 섬유의 충격 생성 및 전도를 차단함. 통증, 온도, 촉각, 고유감각, 골격근 긴장도 순으로 기능 소실이 진행됨."
 }

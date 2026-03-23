@@ -22,19 +22,27 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 15,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 60,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 120,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -725,5 +733,17 @@
     "source_file": "plumbs_output/20.jsonl",
     "extracted_at": "2026-03-10T19:29:54.884924+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "프라도플록사신(Pradofloxacin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "【고양이 - FDA 승인】 Pasteurella multocida",
+    "Streptococcus canis",
+    "Staphylococcus aureus",
+    "S. felis",
+    "S. pseudintermedius에 의한 피부 감염(창상 및 농양). 【고양이 - Extra-label】 세균성 요로감염",
+    "바르토넬라증",
+    "Mycoplasma haemofelis",
+    "상기도 감염"
+  ],
+  "mechanism_short": "DNA 자이라제(gyrase) 및 토포이소머라제 IV 억제를 통해 DNA 초나선화 및 DNA 합성을 방해하는 농도 의존적 살균성 3세대 플루오로퀴놀론 항생제. 그람 양성 호기성균 및 혐기성균에 대한 강화된 활성을 가지며, 그람 음성균 활성은 다른 플루오로퀴놀론과 유사함."
 }

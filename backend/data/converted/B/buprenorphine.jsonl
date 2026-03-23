@@ -34,23 +34,33 @@
     "available_strengths": [
       {
         "value": 0.3,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 1.8,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 20.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 1.3,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -827,5 +837,17 @@
     "source_file": "plumbs_output/51.jsonl",
     "extracted_at": "2026-03-11T05:03:54.552615+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "부프레노르핀(Buprenorphine)은(는) 중등도~중증 통증 관리에 사용되는 오피오이드 진통제입니다.",
+  "primary_indications": [
+    "개: 경증~중등도 통증의 진통(extra-label)",
+    "마취 전 투약",
+    "수술 후 진통",
+    "지속 속도 주입(CRI). 고양이: 수술 후 통증 조절(Simbadol® SC - FDA 승인",
+    "Zorbium® 경피 - FDA 승인)",
+    "일반 진통(extra-label)",
+    "마취 전 투약. 말: 신경이완진통(extra-label). 기타 종(양",
+    "기니피그"
+  ],
+  "mechanism_short": "뮤 수용체에서 부분 효현제 활성을 가지며 카파 수용체 길항제로 작용한다. 모르핀보다 약 30배 강력하며, CNS의 뮤 수용체에 대한 높은 친화성과 느린 해리로 인해 상대적으로 긴 작용 지속 시간을 나타낸다. 용량 의존적 진통 효과를 나타내나 고용량에서 진통 효과가 정체될 수 있다."
 }

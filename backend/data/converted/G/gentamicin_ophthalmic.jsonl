@@ -27,15 +27,21 @@
     "available_strengths": [
       {
         "value": 0.3,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 3.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 13.6,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -382,5 +388,12 @@
     "source_file": "plumbs_output/12.jsonl",
     "extracted_at": "2026-03-10T16:52:06.555414+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "겐타마이신 점안제(Gentamicin Ophthalmic)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "감수성 그람음성 호기성 세균(특히 Pseudomonas aeruginosa)에 의한 안구 표면 세균 감염 치료 (extra-label). 말에서 말 세균성 각막염(강화 용액)",
+    "말 말기 녹내장에서 모양체 화학적 절제(유리체 내 고용량 주사)",
+    "말 재발성 포도막염(ERU) 관리(유리체 내 저용량 주사)에도 사용됩니다."
+  ],
+  "mechanism_short": "아미노글리코사이드계 항생제로, 세균 세포 내로 능동 수송된 후 30S 리보솜 소단위의 특정 수용체 단백질에 결합합니다. mRNA와 30S 소단위 간의 개시 복합체 형성을 방해하여 mRNA 오독을 유도함으로써 단백질 합성을 억제합니다. 살균 작용을 나타냅니다."
 }

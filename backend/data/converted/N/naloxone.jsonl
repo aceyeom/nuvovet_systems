@@ -22,15 +22,21 @@
     "available_strengths": [
       {
         "value": 0.4,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 2.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -570,5 +576,17 @@
     "source_file": "plumbs_output/27.jsonl",
     "extracted_at": "2026-03-10T21:48:05.294140+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "날록손(Naloxone)은(는) 약물 효과를 역전시키는 길항제/해독제입니다.",
+  "primary_indications": [
+    "오피오이드 역전(개",
+    "고양이",
+    "설치류",
+    "파충류 - 모두 오프라벨)",
+    "신생아 호흡 억제 역전(모체 오피오이드 투여 시)",
+    "수술 후 불쾌감 치료",
+    "경막외 모르핀 후 요저류 역전",
+    "고양이 마취 후 고체온증 보조 치료"
+  ],
+  "mechanism_short": "순수 오피오이드 길항제로서 mu, kappa, delta 오피오이드 수용체에 경쟁적으로 결합하며, mu 수용체에 가장 높은 친화성을 가짐. 통상 용량에서 진통 활성 없음. 고용량에서 도파민 기전 및 GABA 길항 효과 나타남."
 }

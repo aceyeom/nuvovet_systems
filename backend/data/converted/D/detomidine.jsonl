@@ -23,11 +23,15 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 7.6,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -255,7 +259,7 @@
           "logic_type": "linear",
           "context": "진정/항불안 (허가 외, OTM 겔)",
           "value": "0.35 - 2",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "PO",
           "frequency": "Once",
           "max_dose_mg_kg": null,
@@ -559,5 +563,15 @@
     "source_file": "plumbs_output/39.jsonl",
     "extracted_at": "2026-03-11T01:11:04.465347+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "데토미딘(Detomidine)은(는) 진정 및 불안 완화에 사용되는 진정제입니다.",
+  "primary_indications": [
+    "말(FDA 승인): 진정 및 진통. 개(허가 외): 진정/항불안 (OTM 겔 0.35~2 mg/m²). 고양이(허가 외): 진정 (OTM 겔 0.25 mg/kg",
+    "구토 발생 주의). 소",
+    "낙타류",
+    "염소(허가 외): 진정",
+    "화학적 보정. 조류(허가 외): 진정/진통 (앵무새",
+    "카나리아 비강 내 투여)."
+  ],
+  "mechanism_short": "알파-2 아드레날린 수용체 작용제로서 노르에피네프린 매개 신경 충격을 감소시켜 용량 의존적 진정 및 진통 효과를 나타냄. 자일라진보다 약 50~100배 강력함."
 }

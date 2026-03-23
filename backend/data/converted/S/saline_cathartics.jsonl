@@ -25,15 +25,21 @@
     "available_strengths": [
       {
         "value": 80.0,
-        "unit": "mg/mL (Magnesium Hydroxide)"
+        "unit": "mg/mL (Magnesium Hydroxide)",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 160.0,
-        "unit": "mg/mL (Magnesium Hydroxide concentrated)"
+        "unit": "mg/mL (Magnesium Hydroxide concentrated)",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 1.75,
-        "unit": "g/30 mL (Magnesium Citrate Solution)"
+        "unit": "g/30 mL (Magnesium Citrate Solution)",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -396,5 +402,11 @@
     "source_file": "Saline Cathartics text extract",
     "extracted_at": "2026-03-21T13:45:10+09:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "염류성 하제 (마그네슘, 나트륨 염)(Saline Cathartics (Magnesium Citrate, Hydroxide, Oxide, Sulfate; Sodium Sulfate))은(는) 변비 치료에 사용되는 완하제입니다.",
+  "primary_indications": [
+    "Relieve constipation or shorten intestinal transit time to reduce absorption of orally ingested toxicants. In small animals",
+    "rarely recommended for constipation but used to enhance toxin removal."
+  ],
+  "mechanism_short": "Hyperosmotic effect of poorly absorbed magnesium cations causes water retention, stimulates stretch receptors, and enhances peristalsis. Shortens transit times and increases cholecystokinin release."
 }

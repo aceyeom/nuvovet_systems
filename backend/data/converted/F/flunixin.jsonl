@@ -37,19 +37,27 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 1500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 16.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -565,5 +573,17 @@
     "source_file": "plumbs_output/42.jsonl",
     "extracted_at": "2026-03-11T02:17:45.719560+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "플루닉신(Flunixin)은(는) 통증과 염증을 완화하는 비스테로이드성 항염증제(NSAID)입니다.",
+  "primary_indications": [
+    "【FDA 승인 적응증】말: 근골격계 질환의 염증 및 통증 완화",
+    "산통 관련 내장 통증 완화. 소: 소 호흡기 질환(BRD) 관련 발열 조절",
+    "내독소혈증",
+    "급성 유방염",
+    "내독소혈증의 염증 조절",
+    "발굽 썩음병 관련 통증(경피 제형). 돼지: 돼지 호흡기 질환 관련 발열 조절. 【비승인(오프라벨) 사용】말: 제엽염",
+    "포도막염(망아지)",
+    "결장염"
+  ],
+  "mechanism_short": "사이클로옥시게나제(COX)의 강력한 억제제로서 프로스타글란딘 합성을 차단하여 진통, 항염증, 해열 효과를 나타냄. 패혈성 쇼크에서 혈역학 개선 효과도 보고됨."
 }

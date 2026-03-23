@@ -21,15 +21,21 @@
     "available_strengths": [
       {
         "value": 2.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -577,5 +583,14 @@
     "source_file": "plumbs_output/7.jsonl",
     "extracted_at": "2026-03-10T15:33:26.480101+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "버디넥소르(Verdinexor)은(는) 악성 종양(암) 치료에 사용되는 항종양제입니다.",
+  "primary_indications": [
+    "개의 T세포 또는 B세포 림프종 치료(FDA 조건부 승인). 조건부 승인 약물로 라벨 외 사용은 미국 연방법 위반. 세포주 연구에서 유방암종",
+    "비만세포종",
+    "흑색종",
+    "골육종",
+    "이행세포암종에 대한 생물학적 활성도 확인됨(임상 적응증 아님)."
+  ],
+  "mechanism_short": "핵 수출 선택적 억제제(SINE)로서 CRM1(exportin-1/XPO1)을 가역적으로 억제하여 종양 억제 단백질(p53, RB1) 및 성장 조절 단백질(p21)의 세포핵 외 수송을 차단하고, 이를 통해 암세포의 세포자멸사를 유도함."
 }

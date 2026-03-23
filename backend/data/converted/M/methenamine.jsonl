@@ -26,11 +26,15 @@
     "available_strengths": [
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -509,5 +513,10 @@
     "source_file": "plumbs_output/63.jsonl",
     "extracted_at": "2026-03-11T09:04:00.458021+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "메테나민(Methenamine)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "재발성 요로감염(UTI) 예방 — 개와 고양이에서 비공식(extra-label) 사용. 공식 수의학 승인 제품 없음. 효능 근거 부족으로 일상적 사용은 권장되지 않음."
+  ],
+  "mechanism_short": "산성 소변(pH <6.5) 환경에서 포름알데히드로 전환되어 비특이적 살균 효과를 나타냄. 포름알데히드는 그람양성균(Staphylococcus aureus, S. epidermidis, Enterococcus spp) 및 그람음성균(E. coli, Enterobacter spp, Klebsiella spp, Proteus spp, Pseudomonas aeruginosa)에 활성을 가짐. 진균성 요로감염에도 활성이 있다고 보고됨."
 }

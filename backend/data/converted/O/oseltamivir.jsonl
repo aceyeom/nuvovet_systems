@@ -22,19 +22,27 @@
     "available_strengths": [
       {
         "value": 30,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 45,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 75,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 6,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -371,5 +379,11 @@
     "source_file": "plumbs_output/30.jsonl",
     "extracted_at": "2026-03-10T22:25:00.612637+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "오셀타미비르(Oseltamivir)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【허가 외 사용】개 파보바이러스 장염 보조치료(근거 제한적)",
+    "말 인플루엔자 A 치료 및 예방(소규모 실험적 연구). 이차 세균 감염이 동반된 기타 바이러스 감염의 보조치료 가능성 제시되나 근거 부족."
+  ],
+  "mechanism_short": "오셀타미비르 포스페이트는 프로드럭으로, 흡수 후 활성형인 오셀타미비르 카르복실레이트로 가수분해됨. 활성 대사체는 인플루엔자 바이러스 뉴라미니다제를 경쟁적으로 억제하여 바이러스 복제, 감염 세포로부터의 바이러스 방출, 방출 후 바이러스 응집 형성 방지에 필요한 효소를 차단함."
 }

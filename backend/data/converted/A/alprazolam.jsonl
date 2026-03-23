@@ -25,27 +25,39 @@
     "available_strengths": [
       {
         "value": 0.25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 3.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -684,5 +696,17 @@
     "source_file": "plumbs_output/53.jsonl",
     "extracted_at": "2026-03-11T05:50:28.396049+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "알프라졸람(Alprazolam)은(는) 진정 및 불안 완화에 사용되는 진정제입니다.",
+  "primary_indications": [
+    "개: 불안 장애",
+    "공포증(천둥",
+    "폭죽)",
+    "공황 반응의 보조 치료",
+    "SSRI 등 장기 작용 약물이 치료 농도에 도달하는 동안 불안 관리. 고양이: 불안 장애",
+    "공포증",
+    "부적절한 배변/마킹의 보조 치료",
+    "동물병원 방문 전 고도로 흥분된 고양이의 진정. 말: 공격적인 어미 말의 어미-새끼 유대 형성 촉진(증례 보고). 모두 오프라벨 사용."
+  ],
+  "mechanism_short": "피질하 CNS(주로 변연계, 시상, 시상하부)를 억제하여 항불안, 진정, 골격근 이완, 항경련 효과를 나타냅니다. 세로토닌 길항, GABA 활성 증가/촉진, CNS 내 아세틸콜린 방출 또는 전환 감소가 기전으로 제시됩니다."
 }

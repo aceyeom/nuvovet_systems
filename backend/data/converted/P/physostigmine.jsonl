@@ -22,7 +22,9 @@
     "available_strengths": [
       {
         "value": 1.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -538,5 +540,12 @@
     "source_file": "plumbs_output/19.jsonl",
     "extracted_at": "2026-03-10T19:04:54.159887+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "피조스티그민(Physostigmine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "개: 이버멕틴 독성 진단 보조(엑스트라라벨)",
+    "기면증/탈력발작 유발 검사(엑스트라라벨). 말: 기면증/탈력발작 진단 검사(엑스트라라벨)",
+    "이소플루란 마취 후 회복 개선(엑스트라라벨). 소: tall larkspur(Delphinium barbeyi) 중독 치료(엑스트라라벨). 항콜린성 독성 치료에 사용 가능하나 더 안전한 대안 존재."
+  ],
+  "mechanism_short": "아세틸콜린에스테라제를 가역적으로 억제하여 수용체 부위에서 아세틸콜린의 효과를 연장시킴. 3차 아민으로 혈뇌장벽을 통과하여 중추 및 말초 모두에서 작용함."
 }

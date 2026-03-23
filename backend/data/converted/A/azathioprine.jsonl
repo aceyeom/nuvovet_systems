@@ -23,19 +23,27 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 75,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -301,7 +309,7 @@
           "logic_type": "linear",
           "context": "면역매개성 용혈성 빈혈(IMHA) / 면역매개성 혈소판감소증(IMT)",
           "value": "2",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "PO",
           "frequency": "SID",
           "max_dose_mg_kg": 2.0,
@@ -312,7 +320,7 @@
           "logic_type": "fixed",
           "context": "면역매개성 용혈성 빈혈(IMHA) / 면역매개성 혈소판감소증(IMT) - 체표면적 기준",
           "value": "50",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "PO",
           "frequency": "SID",
           "max_dose_mg_kg": null,
@@ -612,5 +620,17 @@
     "source_file": "plumbs_output/50.jsonl",
     "extracted_at": "2026-03-11T04:36:24.882545+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아자티오프린(Azathioprine)은(는) 면역 반응을 억제하는 면역억제제입니다.",
+  "primary_indications": [
+    "개: 면역매개성 용혈성 빈혈(IMHA)",
+    "면역매개성 혈소판감소증(IMT)",
+    "염증성 장질환(IBD)",
+    "면역매개성 다발성 관절염",
+    "원인불명 뇌수막뇌척수염(MUE)",
+    "항문주위 누공",
+    "만성 간염",
+    "면역매개성 사구체 질환"
+  ],
+  "mechanism_short": "퓨린 길항제(purine antagonist) 항대사물질. 핵산에 통합되어 DNA/RNA 합성을 방해하고 복제 과정을 종료시킴. 세포 대사 교란 및 T 림프구의 CD28 공동자극 신호를 세포자멸사(apoptosis) 유도 신호로 전환시킴으로써 면역억제 효과를 나타냄. 지연형 과민반응 및 세포성 면역에 더 강한 효과를 보임."
 }

@@ -22,7 +22,9 @@
     "available_strengths": [
       {
         "value": 0.4,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -465,5 +467,15 @@
     "source_file": "plumbs_output/21.jsonl",
     "extracted_at": "2026-03-10T19:52:42.307460+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "프로피오니박테리움 아크네스 주사(Propionibacterium Acnes Injection)은(는) 면역 반응을 억제하는 면역억제제입니다.",
+  "primary_indications": [
+    "승인 적응증: 개의 만성 재발성 농피증 보조 치료(ImmunoRegulin®",
+    "USDA 허가)",
+    "말의 호흡기 질환 복합체 보조 치료(EqStim®",
+    "USDA 허가). 허가 외 사용: 개의 구강 및 피부 바이러스성 유두종증",
+    "구강 흑색종 및 비만세포종 보조 치료",
+    "고양이의 FeLV 및 고양이 헤르페스바이러스(비기관지염) 감염 보조 면역 자극 치료."
+  ],
+  "mechanism_short": "비생존 Propionibacterium acnes(현재 Cutibacterium acnes로 알려진 그람양성 혐기성 세균)에서 유래한 비특이적 면역 자극제. 대식세포 활성화 및 림포카인 생성 유도, 자연살해세포(NK cell) 활성 증가, 세포매개면역 강화, 종양 용해 특성 발휘."
 }

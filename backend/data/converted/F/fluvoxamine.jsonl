@@ -23,19 +23,27 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 150,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -606,5 +614,11 @@
     "source_file": "plumbs_output/43.jsonl",
     "extracted_at": "2026-03-11T02:28:06.018836+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "플루복사민(Fluvoxamine)은(는) 행동 장애 및 불안 치료에 사용되는 항우울제입니다.",
+  "primary_indications": [
+    "개와 고양이의 행동 관련 장애(공격성",
+    "상동증 및 기타 강박-충동 행동 포함) 치료에 보조적으로 사용 고려 가능 (모두 오프라벨 사용). 수의학적 안전성 및 효능을 문서화한 공개 정보가 부족하여 일반적으로 처방되지 않음."
+  ],
+  "mechanism_short": "CNS에서 세로토닌 재흡수를 고도로 선택적으로 억제하여 세로토닌의 약리학적 활성을 강화함. 도파민 또는 노르에피네프린에는 거의 영향을 미치지 않으며, 다른 신경전달물질에는 영향이 없는 것으로 보임."
 }

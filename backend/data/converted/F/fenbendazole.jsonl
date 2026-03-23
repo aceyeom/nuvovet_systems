@@ -29,27 +29,39 @@
     "available_strengths": [
       {
         "value": 222,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.5,
-        "unit": "%"
+        "unit": "%",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "%"
+        "unit": "%",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -659,5 +671,17 @@
     "source_file": "plumbs_output/41.jsonl",
     "extracted_at": "2026-03-11T01:46:11.790474+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "펜벤다졸(Fenbendazole)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "개(FDA 승인): 회충(Toxocara canis",
+    "Toxascaris leonina)",
+    "구충(Ancylostoma caninum",
+    "Uncinaria stenocephala)",
+    "편충(Trichuris vulpis)",
+    "조충(Taenia pisiformis). Extra-label: Giardia spp",
+    "Filaroides spp",
+    "Eucoleus spp"
+  ],
+  "mechanism_short": "벤즈이미다졸계 항기생충제로, 감수성 기생충의 세포 내 미세소관 수송 시스템을 교란한다. 튜불린에 결합하여 튜불린 중합을 방해하고 미세소관 형성을 억제한다. 고농도에서는 말레이트 탈수소효소 및 푸마레이트 환원효소를 포함한 대사 효소를 억제하여 기생충의 대사 경로를 교란한다. 시간 의존적 항기생충 효과를 나타낸다."
 }

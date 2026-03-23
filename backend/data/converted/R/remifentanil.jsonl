@@ -22,15 +22,21 @@
     "available_strengths": [
       {
         "value": 1,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -645,5 +651,10 @@
     "source_file": "plumbs_output/32.jsonl",
     "extracted_at": "2026-03-11T11:20:16.673440+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "레미펜타닐(Remifentanil)은(는) 중등도~중증 통증 관리에 사용되는 오피오이드 진통제입니다.",
+  "primary_indications": [
+    "고양이: 전신마취 보조 진통제 (엑스트라라벨). 말: 전신마취 보조 및 기립 진정 (엑스트라라벨). 간기능 또는 신기능 장애 환자에서 다른 오피오이드 대안으로 사용 가능."
+  ],
+  "mechanism_short": "뮤-오피오이드 수용체 완전 작용제. 뇌의 통증 조절 영역(변연계, 척수, 시상, 시상하부, 선조체, 중뇌)의 뮤 수용체에 작용하여 진통, 호흡억제, 신체적 의존성, 동공수축, 저체온 효과를 나타냄. 혈장·조직·적혈구의 비특이적 에스테라제에 의해 신속히 가수분해됨."
 }

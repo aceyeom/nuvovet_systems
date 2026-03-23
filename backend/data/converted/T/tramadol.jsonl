@@ -29,23 +29,33 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -785,5 +795,13 @@
     "source_file": "plumbs_output/48.jsonl",
     "extracted_at": "2026-03-11T04:03:28.292479+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "트라마돌(Tramadol)은(는) 중등도~중증 통증 관리에 사용되는 오피오이드 진통제입니다.",
+  "primary_indications": [
+    "개와 고양이에서 수술 후 또는 만성 통증의 보조 치료(오프라벨). NSAID",
+    "아만타딘",
+    "가바펜틴",
+    "알파-2 작용제 등과 병용 시 가장 유용. 고양이에서 진통 효능 근거가 더 강력함. 개에서 골관절염 통증에 대한 단독 효능은 위약 대비 이점 없음. 항기침제로도 사용되나 효능 근거 부족."
+  ],
+  "mechanism_short": "중추 작용성 부분 뮤(mu) 오피오이드 수용체 작용제로, 세로토닌 및 노르에피네프린 재흡수를 약하게 억제함. 진통 효과는 모체 화합물과 활성 대사체 M1(O-desmethyltramadol)에 의해 나타남."
 }

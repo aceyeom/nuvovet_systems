@@ -26,27 +26,39 @@
     "available_strengths": [
       {
         "value": 30,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 60,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 120,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 240,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 3,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 6,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -541,5 +553,11 @@
     "source_file": "plumbs_output/31.jsonl",
     "extracted_at": "2026-03-10T22:48:11.642581+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "슈도에페드린(Pseudoephedrine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【허가 외】개: 요실금(요도 괄약근 긴장도 증가)",
+    "역행성 사정. 고양이: 충혈 완화. 수의학 라벨 제품 없음."
+  ],
+  "mechanism_short": "알파 및 베타 아드레날린 수용체를 간접적으로 자극하여 노르에피네프린 유리를 촉진함. 혈관 수축, 심박수 증가, 관상동맥 혈류 증가, 혈압 상승, 경미한 CNS 자극, 비강 충혈 완화, 식욕 감소, 요도 괄약근 긴장도 증가 및 방광경부 폐쇄 효과를 나타냄."
 }

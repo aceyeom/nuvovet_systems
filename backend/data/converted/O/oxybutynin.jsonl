@@ -26,11 +26,15 @@
     "available_strengths": [
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -610,5 +614,11 @@
     "source_file": "plumbs_output/30.jsonl",
     "extracted_at": "2026-03-10T22:32:25.050506+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "옥시부티닌(Oxybutynin)은(는) 근육 이완에 사용되는 근이완제입니다.",
+  "primary_indications": [
+    "【오프라벨】개: 난치성 요실금(배뇨근 과반사) 보조 치료. 고양이: FeLV 관련 배뇨근 불안정 보조 치료. 인체에서는 과활동성 방광",
+    "신경인성 방광에 허가 사용."
+  ],
+  "mechanism_short": "항무스카린(아트로핀 유사) 및 평활근 직접 항경련(파파베린 유사) 작용. 방광 배뇨근 및 소장·대장 평활근에 가장 두드러진 항경련 효과. 방광 용량 증가, 배뇨근의 비억제성 수축 빈도 감소, 초기 배뇨 욕구 지연."
 }

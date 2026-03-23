@@ -22,7 +22,9 @@
     "available_strengths": [
       {
         "value": 1.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -336,7 +338,7 @@
           "logic_type": "linear",
           "context": "종양성 질환 (림프종, 혈관육종 등 복합 프로토콜)",
           "value": "0.5 - 0.75",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q12h",
           "max_dose_mg_kg": null,
@@ -347,7 +349,7 @@
           "logic_type": "fixed",
           "context": "전염성 성기 종양 (TVT) 단독 요법",
           "value": "0.5",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q12h",
           "max_dose_mg_kg": null,
@@ -396,7 +398,7 @@
           "logic_type": "linear",
           "context": "종양성 질환 (림프종 등 복합 프로토콜)",
           "value": "0.5 - 0.75",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q12h",
           "max_dose_mg_kg": null,
@@ -631,5 +633,13 @@
     "source_file": "plumbs_output/7.jsonl",
     "extracted_at": "2026-03-10T15:38:05.256669+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "빈크리스틴(Vincristine)은(는) 악성 종양(암) 치료에 사용되는 항종양제입니다.",
+  "primary_indications": [
+    "승인 적응증(수의학): 없음(수의용 제품 없음). 적응증 외(extra-label) 사용: 개와 고양이의 림프종(CHOP 프로토콜)",
+    "혈관육종(VAC 프로토콜)",
+    "개의 전염성 성기 종양(단독 요법)",
+    "면역매개성 혈소판감소증(ITP) 보조 치료. 말의 림프종(CAP 프로토콜). 페럿의 종양성 질환."
+  ],
+  "mechanism_short": "베타-튜불린에 결합하여 미세소관 형성을 차단하고 유사분열 방추사 형성을 억제함으로써 세포분열을 중기(metaphase)에서 정지시킴. 또한 글루탐산 이용 억제, 퓨린 합성, 구연산 회로, 요소 형성 방해를 통해 아미노산 대사에도 영향을 미침."
 }

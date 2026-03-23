@@ -28,23 +28,33 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 240,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -398,5 +408,11 @@
     "source_file": "plumbs_output/14.jsonl",
     "extracted_at": "2026-03-10T17:27:56.121207+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "도큐세이트(Docusate)은(는) 위장관 보호 및 궤양 치료에 사용되는 소화기 보호제입니다.",
+  "primary_indications": [
+    "【승인 적응증】 수의용 제품이 시판되고 있으나 FDA 승인 여부 불명확. 【엑스트라라벨 적응증】 개·고양이: 딱딱하거나 건조한 분변으로 인한 변비",
+    "항문직장 질환 시 분변 연화. 말: 대장 및 맹장 분변 매복(fecal impaction). 양: 부분적 탈원충(partial defaunation)을 통한 자발적 사료 섭취량 및 소화·흡수 증진."
+  ],
+  "mechanism_short": "계면활성제로서 표면장력을 감소시켜 수분과 지방이 장내 내용물 및 형성된 분변에 침투하도록 하여 변을 연화시킴. 또한 결장 점막 세포의 cAMP 농도를 증가시켜 이온 분비 및 수분 투과성을 높임."
 }

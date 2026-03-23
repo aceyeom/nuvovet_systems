@@ -22,7 +22,9 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -466,5 +468,15 @@
     "source_file": "plumbs_output/13.jsonl",
     "extracted_at": "2026-03-10T17:14:54.298462+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "다이머캅롤(Dimercaprol)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "비소 중독(주 적응증",
+    "오프라벨)",
+    "납 중독(에데테이트 칼슘 이나트륨과 병용",
+    "오프라벨)",
+    "수은 중독(오프라벨)",
+    "금 중독(오프라벨). 수의용 허가 제품 없음."
+  ],
+  "mechanism_short": "다이머캅롤의 설프하이드릴기가 중금속(비소, 납, 수은, 금)과 헤테로사이클릭 고리 복합체를 형성하여 설프하이드릴 의존성 효소에 대한 중금속 결합을 방지 또는 감소시킴."
 }

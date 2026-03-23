@@ -32,27 +32,39 @@
     "available_strengths": [
       {
         "value": 675,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 540,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1080,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1620,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 680,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -825,5 +837,10 @@
     "source_file": "plumbs_output/25.jsonl",
     "extracted_at": "2026-03-10T21:00:32.210838+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "구연산칼륨(Potassium Citrate)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "1) 칼슘 옥살산염 및 요산 요석 형성 억제 보조 치료 (extra-label)\n2) 저칼륨혈증 치료 (extra-label)\n3) 만성 신장 질환의 대사성 산증 보조 치료 (extra-label)\n4) 팬코니 증후군에서 Gonto 프로토콜의 일부로 사용 (extra-label)\n5) 골 건강 개선 (대사성 산증 환자에서 파골세포 활성 억제) (extra-label)"
+  ],
+  "mechanism_short": "구연산염은 간에서 산화되어 중탄산염을 생성하며, 전신 및 요알칼리화제로 작용함. 흡수된 구연산염의 대사는 알칼리 부하를 생성하여 요 pH를 높이고, 구연산염 청소율에 영향을 미쳐 요 구연산염을 증가시킴. 구연산염은 칼슘과 복합체를 형성하여 요 중 칼슘 옥살산염 농도를 감소시킴. 요알칼리화 효과는 요산의 용해도를 증가시킴."
 }

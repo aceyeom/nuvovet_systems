@@ -25,15 +25,21 @@
     "available_strengths": [
       {
         "value": 12.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -546,5 +552,12 @@
     "source_file": "plumbs_output/62.jsonl",
     "extracted_at": "2026-03-11T08:30:44.713061+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "메클리진(Meclizine)은(는) 구토 예방 및 치료에 사용되는 항구토제입니다.",
+  "primary_indications": [
+    "개 및 고양이에서 멀미 예방 및 치료",
+    "전정 질환에 의한 구토 예방 (모두 오프라벨). 토끼에서 구르기",
+    "두부 기울기 치료에도 오프라벨로 사용됨."
+  ],
+  "mechanism_short": "H1 수용체 차단 항히스타민제로 항콜린성 특성을 가짐. 항구토, CNS 억제, 항경련, 국소마취 효과를 나타냄. 항구토 및 멀미 방지 효과는 중추 항콜린성 및 CNS 억제 활성을 통해 화학수용체 유발대(CTZ)에서 매개되는 것으로 추정됨."
 }

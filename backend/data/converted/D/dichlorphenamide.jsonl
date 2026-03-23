@@ -30,7 +30,9 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -610,5 +612,12 @@
     "source_file": "plumbs_output/40.jsonl",
     "extracted_at": "2026-03-11T01:29:54.573013+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "디클로르페나마이드(Dichlorphenamide)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "녹내장 보조 치료 (허가 외). 국소 탄산탈수효소 억제제(도르졸라마이드",
+    "브린졸라마이드)가 우선 선택약이며",
+    "이를 사용할 수 없는 경우에 한해 전신 투여 고려."
+  ],
+  "mechanism_short": "탄산탈수효소(carbonic anhydrase)의 비경쟁적, 가역적 억제를 통해 수소이온 및 중탄산이온 생성을 감소시켜 안방수 생성 감소 및 안압 저하를 유발함."
 }

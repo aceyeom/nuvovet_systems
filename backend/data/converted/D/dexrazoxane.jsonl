@@ -23,11 +23,15 @@
     "available_strengths": [
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -188,7 +192,7 @@
           "logic_type": "fixed",
           "context": "독소루비신 혈관외 유출 치료 (오프라벨) - 체표면적 기반 용량 (인간 권장량 적용)",
           "value": "1000",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "Once",
           "max_dose_mg_kg": null,
@@ -199,7 +203,7 @@
           "logic_type": "linear",
           "context": "독소루비신 유발 심근병증 예방 (오프라벨) - 독소루비신 용량의 10배",
           "value": "10",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "Once",
           "max_dose_mg_kg": null,
@@ -357,5 +361,14 @@
     "source_file": "plumbs_output/39.jsonl",
     "extracted_at": "2026-03-11T01:18:23.789075+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "덱스라족산(Dexrazoxane)은(는) 악성 종양(암) 치료에 사용되는 항종양제입니다.",
+  "primary_indications": [
+    "【허가 외 사용(개)】 ① 독소루비신 혈관외 유출 치료: 혈관외 유출 후 6시간 이내(가능하면 3시간 이내) 독소루비신 용량의 10배를 IV 투여",
+    "24시간 및 48시간 후 반복. ② 독소루비신 유발 심근병증 예방: 기존 심장 질환",
+    "수축 기능 저하",
+    "누적 독소루비신 용량 180 mg/m² 이상",
+    "또는 심초음파 이상 소견이 있는 개에서 독소루비신 주입 10분 전 독소루비신 용량의 10배를 IV 투여."
+  ],
+  "mechanism_short": "덱스라족산은 활성 대사산물로 가수분해되어 세포내 철을 킬레이트화함으로써 안트라사이클린-철 복합체 자유 라디칼 형성을 억제하며, 이는 안트라사이클린 유발 심근병증 및 혈관외 유출 손상의 주요 원인으로 여겨짐."
 }

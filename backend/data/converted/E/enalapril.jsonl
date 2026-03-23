@@ -32,31 +32,45 @@
     "available_strengths": [
       {
         "value": 1,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 1.25,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -784,5 +798,15 @@
     "source_file": "plumbs_output/15.jsonl",
     "extracted_at": "2026-03-10T17:53:19.166242+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "에날라프릴(Enalapril)은(는) 혈압 강하 및 심부전 치료에 사용되는 ACE 억제제입니다.",
+  "primary_indications": [
+    "승인 적응증(개): 심부전 보조 치료. 비승인(extra-label) 적응증: 개 - 단백뇨",
+    "CKD 동반 전신 고혈압",
+    "고양이 - 심부전 만성 보조 치료",
+    "단백뇨",
+    "전신 고혈압(암로디핀 단독 조절 불충분 시). 기타: 페럿 심부전",
+    "조류 심부전."
+  ],
+  "mechanism_short": "에날라프릴은 간에서 활성 대사체 에날라프릴라트로 전환된다. 에날라프릴라트는 안지오텐신-I과 경쟁하여 ACE를 억제함으로써 강력한 혈관수축제인 안지오텐신-II의 생성을 차단한다. 이로 인해 알도스테론 분비가 감소하고 혈장 레닌 활성이 증가한다. 사구체 원심성 세동맥 저항을 감소시켜 신장 혈류를 증가시키고 단백뇨를 감소시킨다."
 }

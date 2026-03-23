@@ -23,19 +23,27 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -495,5 +503,11 @@
     "source_file": "plumbs_output/8.jsonl",
     "extracted_at": "2026-03-10T15:56:58.943195+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "조니사미드(Zonisamide)은(는) 발작(경련) 조절에 사용되는 항경련제입니다.",
+  "primary_indications": [
+    "개: 불응성 간질의 단독 또는 보조 치료(오프라벨). 고양이: 경련 조절 단독 또는 보조 치료(오프라벨",
+    "제한적 근거). 수의과 허가 제품 없음."
+  ],
+  "mechanism_short": "나트륨 채널 및 T형 칼슘 채널 억제를 통해 일시적 내향 전류를 감소시키고 신경막을 안정화하며 신경 과동기화를 억제. 세로토닌성 및 도파민성 신경전달을 강화할 수 있음. 탄산탈수효소 억제 활성 및 뇌 내 자유 라디칼 소거 작용."
 }

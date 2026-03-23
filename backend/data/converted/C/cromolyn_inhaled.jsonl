@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -302,5 +304,10 @@
     "source_file": "plumbs_output/37.jsonl",
     "extracted_at": "2026-03-11T00:29:55.154137+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "크로몰린 (흡입)(Cromolyn (Inhaled))은(는) 기관지 확장에 사용되는 기관지확장제입니다.",
+  "primary_indications": [
+    "말의 경증~중등도 천식(비만세포 증가 동반) 및 중증 말 천식의 예방적 보조 치료(오프라벨). 운동 유발성 폐출혈(EIPH) 예방에는 효과 없음. 개·고양이에 대한 승인 적응증 없음."
+  ],
+  "mechanism_short": "비만세포 안정화제. 감작된 비만세포에서 히스타민 및 류코트리엔의 방출을 억제하며, 칼슘 이온의 세포 내 유입 차단으로 추정됨. 폐 내 신경 반사 및 타키키닌에 의한 기관지 수축 억제, 염증세포(호중구, 단핵구, 호산구) 이동 억제, 림프구의 베타-2 아드레날린 수용체 하향 조절 방지 효과도 있음."
 }

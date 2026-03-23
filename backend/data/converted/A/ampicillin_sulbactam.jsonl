@@ -34,15 +34,21 @@
     "available_strengths": [
       {
         "value": 1.5,
-        "unit": "g"
+        "unit": "g",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 3.0,
-        "unit": "g"
+        "unit": "g",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 15.0,
-        "unit": "g"
+        "unit": "g",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -453,5 +459,11 @@
     "source_file": "암피실린_복합체.pdf",
     "extracted_at": "2026-03-21T12:04:29+09:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "암피실린/설박탐(Ampicillin/Sulbactam)은(는) 베타-락타마제 억제제가 결합된 광범위 페니실린 항생제입니다.",
+  "primary_indications": [
+    "Treatment of aerobic or anaerobic gram-positive and gram-negative infections when parenteral therapy is required. Considered when oral amoxicillin/clavulanate is not viable",
+    "or for surgical prophylaxis."
+  ],
+  "mechanism_short": "Ampicillin inhibits bacterial cell wall synthesis. Sulbactam is a beta-lactamase inhibitor that broadens the spectrum by protecting ampicillin from hydrolysis."
 }

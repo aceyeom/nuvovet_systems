@@ -22,11 +22,15 @@
     "available_strengths": [
       {
         "value": 0.5,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 0.25,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -451,5 +455,10 @@
     "source_file": "plumbs_output/9.jsonl",
     "extracted_at": "2026-03-10T16:14:38.890692+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "베탁솔롤 점안액(Betaxolol Ophthalmic)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "원발성 녹내장의 안압 감소 치료 및 편측성 녹내장 동물의 정상안에서 녹내장 예방 목적으로 사용 (적응증 외). 타플루프로스트와 병용 시 개에서 안압 감소 효과 증대."
+  ],
+  "mechanism_short": "섬모체 상피의 베타-1 수용체 차단을 통해 방수 생성을 감소시켜 안압(IOP)을 낮춤. cAMP 활성화 감소, Na+K+ATPase 억제, 홍채 및 섬모체의 혈관 작용 기전이 관여함. 또한 글루타민 유발 세포내 칼슘 및 나트륨 증가를 억제하여 망막 허혈 손상에 대한 보호 효과 가능."
 }

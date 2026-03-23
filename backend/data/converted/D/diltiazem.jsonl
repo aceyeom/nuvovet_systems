@@ -30,43 +30,63 @@
     "available_strengths": [
       {
         "value": 30,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 60,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 90,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 120,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 180,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 240,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 360,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 420,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -819,5 +839,16 @@
     "source_file": "plumbs_output/13.jsonl",
     "extracted_at": "2026-03-10T17:11:40.705409+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "딜티아젬(Diltiazem)은(는) 심장 기능 개선에 사용되는 심장약입니다.",
+  "primary_indications": [
+    "【승인 적응증】 없음 (수의학적 승인 제품 없음)\n【Extra-label 적응증】\n- 개: 상심실성 빈맥(SVT)",
+    "심방세동의 심실 박동수 조절",
+    "전신성/폐동맥 고혈압 보조 치료(3차 선택)\n- 고양이: 급성 SVT",
+    "비후성 심근병증 보조 치료(역사적 사용",
+    "현재 권고 약화)",
+    "전신성/폐동맥 고혈압 보조 치료\n- 페럿: 비후성 심근병증\n- 말: 심방세동 중 심실 박동수 조절(퀴니딘 치료 보조)\n- 소형 포유류(토끼",
+    "설치류): SVT"
+  ],
+  "mechanism_short": "벤조티아제핀계 칼슘 채널 차단제(Class IV 항부정맥제). 심장 및 혈관 평활근 세포로의 세포외 칼슘 이온 유입을 억제하여 방실결절 전도를 늦추고 불응기를 연장시킴. 주로 결절 세포에 작용하며 약한 음성 변력 효과를 나타냄."
 }

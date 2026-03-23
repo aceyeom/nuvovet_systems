@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 0.05,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -304,5 +306,10 @@
     "source_file": "plumbs_output/11.jsonl",
     "extracted_at": "2026-03-10T16:40:07.206053+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "에피나스틴 점안액(Epinastine Ophthalmic)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "알레르기성 결막염과 관련된 소양증의 치료 및 예방 (오프라벨). 수의학적 허가 적응증 없음."
+  ],
+  "mechanism_short": "H1 수용체 선택적 길항제로 히스타민 방출 억제(비만세포 안정화) 및 H2 수용체 친화성 보유. 알파-1, 알파-2, 5-HT2 수용체에도 친화성을 가짐."
 }

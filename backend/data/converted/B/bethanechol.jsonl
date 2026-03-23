@@ -31,23 +31,33 @@
     "available_strengths": [
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -614,5 +624,13 @@
     "source_file": "plumbs_output/50.jsonl",
     "extracted_at": "2026-03-11T04:45:41.136170+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "베타네콜(Bethanechol)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "▶ 개/고양이: 배뇨근 무긴장증으로 인한 방광 수축력 감소 치료 (엑스트라라벨)\n▶ 개/고양이: 자율신경이상증 관련 임상증상 치료 (엑스트라라벨)\n▶ 개: 위장관 운동촉진제",
+    "거대식도 (엑스트라라벨)\n▶ 말: 위궤양 증후군(EGUS) 보조 치료",
+    "무동성 장폐색",
+    "위십이지장 역류 (엑스트라라벨)\n▶ 소: 맹장 확장/전위 보조 치료 (엑스트라라벨)"
+  ],
+  "mechanism_short": "무스카린성 콜린성 수용체 직접 자극제. 아세틸콜린보다 콜린에스테라제에 의한 가수분해에 저항성이 높아 작용 지속시간이 길다. 주로 위장관 및 비뇨기계에 작용하며 니코틴성 활성은 미미함."
 }

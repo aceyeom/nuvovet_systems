@@ -28,15 +28,21 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -955,5 +961,15 @@
     "source_file": "plumbs_output/60.jsonl",
     "extracted_at": "2026-03-11T07:56:01.393350+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아세프로마진(Acepromazine)은(는) 진정 및 불안 완화에 사용되는 진정제입니다.",
+  "primary_indications": [
+    "승인 적응증: 개·고양이에서 다루기 힘든 동물 억제 보조",
+    "피부 자극에 의한 가려움 완화",
+    "멀미 관련 구토 억제(항구토)",
+    "마취 전처치. 말에서 난폭한 동물 억제 보조 및 국소마취 보조. 엑스트라라벨: 수컷 고양이 요도폐색 보조치료",
+    "말 제엽염 혈류 개선",
+    "소·양·염소·돼지·토끼·페럿 등 기타 동물종 진정."
+  ],
+  "mechanism_short": "페노티아진계 신경이완제로 CNS 내 시냅스후 도파민 수용체를 차단하고 도파민 방출을 억제하며 전환율을 증가시킴. 망상활성계 억제, 알파-1 아드레날린 수용체 차단(혈관확장, 저혈압), 항콜린, 항히스타민, 항경련, 항구토 효과를 나타냄."
 }

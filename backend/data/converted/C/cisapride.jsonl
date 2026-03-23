@@ -22,11 +22,15 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -747,5 +751,15 @@
     "source_file": "plumbs_output/25.jsonl",
     "extracted_at": "2026-03-10T20:55:53.388865+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "시사프라이드(Cisapride)은(는) 위장관 보호 및 궤양 치료에 사용되는 소화기 보호제입니다.",
+  "primary_indications": [
+    "【허가 외 사용】 ① 고양이: 변비",
+    "거대결장 ② 개·고양이: 위식도 역류",
+    "역류성 식도염",
+    "원발성 위 운동장애 ③ 개: 마취 중 역류 및 흡인성 폐렴 예방(IV) ④ 말: 위장관 운동 촉진(신생아 허혈",
+    "만성 풀병) ⑤ 토끼/소형 포유류: 위장관 정체. 위장관 천공",
+    "출혈 환자에서는 금기."
+  ],
+  "mechanism_short": "5-HT4 수용체 작용제로서 장근신경총에서 아세틸콜린 분비를 촉진하여 위장관 운동을 증가시킴. 또한 5-HT1 및 5-HT3 수용체 길항제이며, 결장 평활근에서 직접적인 5-HT2-알파 수용체 작용제로 작용함. 도파민 수용체 차단 효과는 메토클로프라미드보다 약함."
 }

@@ -23,11 +23,15 @@
     "available_strengths": [
       {
         "value": 30,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 3,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -643,5 +647,10 @@
     "source_file": "plumbs_output/33.jsonl",
     "extracted_at": "2026-03-10T23:27:17.873508+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "로피니롤(Ropinirole)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "개에서 구토가 적절한 상황(예: 독소 또는 이물질 섭취 후 2시간 이내)에서 구토 유발. 인간에서는 파킨슨병 및 하지불안증후군 치료에 사용(수의학적 적응증 아님)."
+  ],
+  "mechanism_short": "도파민 D2/D3 수용체 선택적 효현제. 화학수용체 유발대(CTZ)의 D2 수용체를 통해 주로 구토를 유발하며, 말초 및 중추 도파민 수용체 모두에 작용함. 세로토닌성, 아드레날린성 수용체에 대한 비표적 결합이 적어 다른 구토제보다 선택적임."
 }

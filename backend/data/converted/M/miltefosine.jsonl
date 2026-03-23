@@ -24,11 +24,15 @@
     "available_strengths": [
       {
         "value": 20,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -420,5 +424,12 @@
     "source_file": "plumbs_output/65.jsonl",
     "extracted_at": "2026-03-11T09:36:48.303240+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "밀테포신(Miltefosine)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "개 리슈만편모충증(Leishmania infantum 감염) - 단독 또는 알로퓨리놀 병용 치료 (extra-label). 페럿 리슈만편모충증 (증례 보고 수준",
+    "extra-label). 원래 항종양제로 개발되었으며 항아메바",
+    "항바이러스 활성도 보유."
+  ],
+  "mechanism_short": "리슈만편모충에 대한 정확한 작용 기전은 불명확하나, 대식세포 내 기생충 생존에 필수적인 글리코솜 및 글리코실포스파티딜이노시톨 앵커와 상호작용하여 대식세포 내 침투를 억제하는 것으로 추정됨. 포스포리파제 억제를 통해 리슈만편모충 막 신호 전달을 방해하며, 미토콘드리아 기능 억제 및 세포자멸사 유사 효과를 통한 세포사도 가능한 기전으로 제시됨. 항종양, 면역조절, 항아메바, 항바이러스 활성도 보유."
 }

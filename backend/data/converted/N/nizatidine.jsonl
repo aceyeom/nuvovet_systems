@@ -24,19 +24,27 @@
     "available_strengths": [
       {
         "value": 75,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 150,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 15,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -454,5 +462,12 @@
     "source_file": "plumbs_output/28.jsonl",
     "extracted_at": "2026-03-10T22:05:21.332370+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "니자티딘(Nizatidine)은(는) 위장관 보호 및 궤양 치료에 사용되는 소화기 보호제입니다.",
+  "primary_indications": [
+    "위 배출 지연",
+    "장 가성 폐쇄",
+    "변비 등의 위장관 운동 장애 치료(적응증 외). 위산 분비 감소 목적(H2 차단제로서). 위궤양 예방 및 치료(적응증 외)."
+  ],
+  "mechanism_short": "H2 수용체 길항제로서 위벽세포의 H2 수용체에서 히스타민과 경쟁적으로 결합하여 기저 및 자극 유발 위산 분비를 억제함. 아세틸콜린에스테라제 억제를 통해 무스카린 수용체에서 아세틸콜린을 증가시켜 위장관 운동을 촉진함. M3 무스카린 수용체에 대한 직접 효현 작용도 가능함."
 }

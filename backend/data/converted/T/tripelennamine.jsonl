@@ -22,7 +22,9 @@
     "available_strengths": [
       {
         "value": 20,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -440,5 +442,10 @@
     "source_file": "plumbs_output/49.jsonl",
     "extracted_at": "2026-03-11T04:16:33.469067+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "트리펠렌나민(Tripelennamine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "말과 소에서 항히스타민 치료가 일부 질병 증상을 완화할 것으로 기대되는 상태에 사용. 소에서 IV 서서히 투여 시 쓰러진 소(downer cow)의 CNS 자극제로도 사용됨."
+  ],
+  "mechanism_short": "H1 수용체에서 히스타민을 경쟁적으로 억제하는 1세대 항히스타민제. 히스타민을 불활성화하거나 방출을 억제하지는 않으며, 세포에 대한 히스타민의 작용을 차단함. 중등도의 진정 효과와 최소한의 항콜린 효과를 가짐."
 }

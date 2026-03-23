@@ -30,15 +30,21 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 1,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -388,5 +394,11 @@
     "source_file": "plumbs_output/11.jsonl",
     "extracted_at": "2026-03-10T16:43:02.192536+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "플루오레세인 안과용 염색제(Fluorescein Stain Ophthalmic)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "1) 각막 궤양(각막 상피 결손) 진단 - 국소 안과 적용\n2) 눈물막 파괴 시간(TFBUT) 평가 - 눈물막 질 평가\n3) 비루관 개통성 확인(Jones test) - 비루관 기능 평가\n4) 형광안저혈관조영술(Fluorescein angiography) - IV 투여",
+    "안구 내 혈류 패턴 평가 (수의 안과 전문의 시행)"
+  ],
+  "mechanism_short": "플루오레세인은 수용성 형광 염료로, 정상 각막 상피(소수성)를 통과하지 못하나 상피 결손 시 친수성 각막 기질에 침투하여 밝은 황록색으로 염색됨. 485~500 nm 파장의 빛에서 형광 발현, 최대 방출 파장 520~530 nm."
 }

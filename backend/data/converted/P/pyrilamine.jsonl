@@ -35,11 +35,15 @@
     "available_strengths": [
       {
         "value": 20,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 600,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -409,5 +413,13 @@
     "source_file": "plumbs_output/32.jsonl",
     "extracted_at": "2026-03-10T22:56:42.774937+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "피릴아민(Pyrilamine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "말: 항히스타민 치료가 임상 증상을 완화할 수 있는 알레르기 상태 치료. 성체 말 IV 0.88–1.3 mg/kg q6–12h",
+    "망아지 IV 0.44 mg/kg q6–12h",
+    "경구 0.66 mg/kg q12h(비FDA 승인). 개·고양이: 승인된 적응증 없음",
+    "알레르기 상태에 오프라벨로 사용될 수 있으나 근거 데이터 부족."
+  ],
+  "mechanism_short": "H1 수용체에서 히스타민과 경쟁적으로 결합하여 히스타민의 세포 작용을 차단함. 항콜린 작용 및 CNS 효과(진정)도 나타남."
 }

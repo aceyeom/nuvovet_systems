@@ -364,5 +364,13 @@
     "source_file": "plumbs_output/27.jsonl",
     "extracted_at": "2026-03-10T21:32:16.390597+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "몰리브덴산염(Molybdates)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "구리 독성증 치료 (식용 동물",
+    "특히 양 - extra-label)",
+    "개의 구리 연관 만성 간병증 (extra-label",
+    "investigational). 승인된 적응증 없음."
+  ],
+  "mechanism_short": "구리 킬레이트제로서 구리와 비가역적으로 결합하여 배설을 촉진하고, 위장관 내에서 구리와 결합하여 장내 구리 흡수를 억제함."
 }

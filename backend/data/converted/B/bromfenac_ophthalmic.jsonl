@@ -22,15 +22,21 @@
     "available_strengths": [
       {
         "value": 0.07,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 0.075,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 0.09,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -368,5 +374,12 @@
     "source_file": "plumbs_output/10.jsonl",
     "extracted_at": "2026-03-10T16:20:47.579505+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "브롬페낙 점안액(Bromfenac Ophthalmic)은(는) 통증과 염증을 완화하는 비스테로이드성 항염증제(NSAID)입니다.",
+  "primary_indications": [
+    "전방 안구 염증(결막염",
+    "각막염",
+    "전방 포도막염) 조절 및 백내장 수술 후 안구 통증 완화 (모두 extra-label 사용). 개에서 백내장 수술 후 염증 조절에 프레드니솔론 아세테이트와 유사한 효과가 연구에서 보고됨."
+  ],
+  "mechanism_short": "사이클로옥시게나제(COX-1 및 COX-2) 억제를 통한 프로스타글란딘 합성 차단. 안내 염증으로 인한 혈방수 장벽 파괴, 혈관 확장, 혈관 투과성 증가, 백혈구 증가, 안압 상승 등의 부작용을 최소화함."
 }

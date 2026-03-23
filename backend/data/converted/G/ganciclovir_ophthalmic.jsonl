@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 1.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -334,5 +336,13 @@
     "source_file": "plumbs_output/12.jsonl",
     "extracted_at": "2026-03-10T16:49:10.412220+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "간시클로버 점안제(Ganciclovir Ophthalmic)은(는) 바이러스 감염 치료에 사용되는 항바이러스제입니다.",
+  "primary_indications": [
+    "고양이 FHV-1 유발 안표면 질환(각막궤양",
+    "각막혈관신생",
+    "결막염 포함) — 허가 외 사용. 개 CHV-1 각막염 — 허가 외 사용. 수의 허가 제품 없음",
+    "인체용 Zirgan® 0.15% 점안 겔 사용."
+  ],
+  "mechanism_short": "구아노신 유도체로, 바이러스 및 세포 티미딘 키나제(TK)에 의해 간시클로버 삼인산염으로 인산화된 후 바이러스 DNA 중합효소를 경쟁적으로 억제하고 DNA 신장을 방해하여 헤르페스 바이러스의 DNA 복제를 억제함."
 }

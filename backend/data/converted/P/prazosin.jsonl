@@ -21,15 +21,21 @@
     "available_strengths": [
       {
         "value": 1,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -572,5 +578,15 @@
     "source_file": "plumbs_output/21.jsonl",
     "extracted_at": "2026-03-10T19:36:18.074519+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "프라조신(Prazosin)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【개】기능성 요도 폐색(방광요도 반사 이상연동",
+    "VURD) - extra-label",
+    "전립선 암종 관련 배뇨 곤란 - extra-label",
+    "전신 고혈압 보조 치료 - extra-label",
+    "울혈성 심부전 보조 치료 - extra-label(현재 선호도 낮음). 【고양이】기능성 요도 폐색 - extra-label(효능 논란)",
+    "고혈압 - extra-label."
+  ],
+  "mechanism_short": "시냅스 후 알파-1 아드레날린 수용체의 선택적, 경쟁적 억제를 통해 혈관 평활근을 직접 이완시켜 혈압 및 말초혈관 저항을 감소시킴."
 }

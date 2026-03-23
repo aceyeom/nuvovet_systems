@@ -39,43 +39,63 @@
     "available_strengths": [
       {
         "value": 3,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 6,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 75,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 150,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "%"
+        "unit": "%",
+        "form": "topical",
+        "is_splittable": null
       }
     ]
   },
@@ -660,5 +680,17 @@
     "source_file": "plumbs_output/15.jsonl",
     "extracted_at": "2026-03-10T17:39:37.750195+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "독세핀(Doxepin)은(는) 행동 장애 및 불안 치료에 사용되는 항우울제입니다.",
+  "primary_indications": [
+    "【허가 적응증】 없음 (수의학적 허가 제품 없음)\n【오프라벨 적응증】\n- 개: 아토피성 피부염 관련 소양증",
+    "정신성 피부질환(꼬리 물기",
+    "옆구리 빨기",
+    "항문 핥기",
+    "말단 핥기 피부염",
+    "과도한 그루밍",
+    "정신성 탈모)\n- 고양이: 정신성 피부질환",
+    "알레르기"
+  ],
+  "mechanism_short": "삼환계 항우울제로서 시냅스 전 신경막에서 노르에피네프린 및 세로토닌(5-HT) 재흡수를 억제하여 시냅스 내 농도를 증가시킴. 항콜린, 알파-1 아드레날린 차단, 강력한 항히스타민(H1, H2) 효과도 보유."
 }

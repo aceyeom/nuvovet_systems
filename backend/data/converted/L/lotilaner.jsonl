@@ -22,31 +22,45 @@
     "available_strengths": [
       {
         "value": 12,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 48,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 56.25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 112.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 225,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 450,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 900,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -478,5 +492,17 @@
     "source_file": "plumbs_output/59.jsonl",
     "extracted_at": "2026-03-11T07:46:08.006194+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "로틸라너(Lotilaner)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "【허가 적응증 - 개】 벼룩(Ctenocephalides felis) 감염 치료 및 예방",
+    "미국개진드기(Dermacentor variabilis)",
+    "검은다리진드기(Ixodes scapularis)",
+    "론스타진드기(Amblyomma americanum)",
+    "갈색개진드기(Rhipicephalus sanguineus) 감염 치료 및 조절 (월 1회). 【허가 적응증 - 고양이】 벼룩(Ctenocephalides felis) 감염 치료 및 예방 (8주령 이상",
+    "0.9 kg 이상)",
+    "검은다리진드기(Ixodes scapularis) 감염 치료 및 조절 (6개월령 이상",
+    "0.9 kg 이상). 【비허가 용도 - 개】 전신성 모낭충증"
+  ],
+  "mechanism_short": "이소옥사졸린계 살충제 및 살비제. 곤충 및 진드기의 말초 및 중추 신경계에서 GABA 개폐 염화물 채널을 억제하여 세포막을 통한 염화물 이온 전달을 차단함. 결과적인 신경 과흥분이 감수성 곤충 및 진드기의 신속한 사망을 유발함."
 }

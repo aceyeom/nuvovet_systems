@@ -30,11 +30,15 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -516,5 +520,12 @@
     "source_file": "plumbs_output/47.jsonl",
     "extracted_at": "2026-03-11T03:47:51.393674+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "티오프로닌(Tiopronin)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "개에서 시스틴 요로결석의 예방 및 용해 (오프라벨). 식이 요법",
+    "충분한 수분 섭취",
+    "소변 알칼리화만으로 충분하지 않을 때 추가적으로 사용. 고양이에서는 사용 금기."
+  ],
+  "mechanism_short": "티오프로닌은 티올-이황화물 교환 반응을 통해 시스틴(시스테인-시스테인 이황화물)과 반응하여 수용성이 높은 티오프로닌-시스틴 이황화물 복합체를 형성함으로써 시스틴 결석 형성을 억제하는 킬레이트제."
 }

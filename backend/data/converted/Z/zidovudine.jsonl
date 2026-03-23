@@ -24,15 +24,21 @@
     "available_strengths": [
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -468,5 +474,10 @@
     "source_file": "plumbs_output/8.jsonl",
     "extracted_at": "2026-03-10T15:53:04.509398+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "지도부딘(Zidovudine)은(는) 바이러스 감염 치료에 사용되는 항바이러스제입니다.",
+  "primary_indications": [
+    "고양이 면역결핍 바이러스(FIV) 및 고양이 백혈병 바이러스(FeLV) 감염의 보조 치료 (오프라벨). 바이러스 부하 감소 및 임상 증상 개선 효과가 있으나 질병의 자연 경과를 크게 변화시키지 못할 수 있음. 증상적/지지적 치료가 효과 없는 경우에 사용 고려 권장."
+  ],
+  "mechanism_short": "지도부딘은 체내에서 활성 대사체(트리포스페이트)로 전환되어 바이러스의 RNA 지향성 DNA 중합효소(역전사효소)를 억제함으로써 레트로바이러스에 대한 바이러스 정지 효과를 나타냄."
 }

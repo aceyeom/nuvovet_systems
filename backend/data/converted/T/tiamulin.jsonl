@@ -24,19 +24,27 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "%"
+        "unit": "%",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 12.3,
-        "unit": "%"
+        "unit": "%",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 12.5,
-        "unit": "%"
+        "unit": "%",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 162,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -363,5 +371,13 @@
     "source_file": "plumbs_output/47.jsonl",
     "extracted_at": "2026-03-11T03:35:27.291141+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "티아뮬린(Tiamulin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "【허가 적응증 - 돼지】 Actinobacillus pleuropneumoniae에 의한 폐렴",
+    "Brachyspira hyodysenteriae에 의한 돼지 이질. 【허가 외 사용 - 가금류】 닭 및 칠면조에서 마이코플라즈마 질환(음수 투여). 【영국 허가】 닭·칠면조의 마이코플라즈마 질환",
+    "돼지의 이질·대장염·폐렴",
+    "토끼의 장결장염."
+  ],
+  "mechanism_short": "50S 리보솜 소단위에 결합하여 세균 단백질 합성을 억제하는 플레우로무틸린계 항생제. 일반적으로 정균 작용을 하나 고농도에서는 살균 작용을 나타낼 수 있음. 세포 내 침투력이 우수함."
 }

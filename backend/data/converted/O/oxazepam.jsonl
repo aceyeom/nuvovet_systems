@@ -21,15 +21,21 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 15,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 30,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -538,5 +544,12 @@
     "source_file": "plumbs_output/30.jsonl",
     "extracted_at": "2026-03-10T22:28:22.888869+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "옥사제팜(Oxazepam)은(는) 진정 및 불안 완화에 사용되는 진정제입니다.",
+  "primary_indications": [
+    "【오프라벨】 개: 공포증 및 공포 반응(천둥 공포증",
+    "분리불안 등) 보조 치료. 고양이: 식욕 자극",
+    "행동 관련 질환 보조 치료. 활성 대사체가 없어 노령 동물 및 간기능 저하 환자에 상대적으로 적합할 수 있음."
+  ],
+  "mechanism_short": "벤조디아제핀 수용체에 결합하여 GABA 활성을 촉진하고, 피질하 CNS(변연계, 시상, 시상하부)를 억제함으로써 항불안, 진정, 골격근 이완, 항경련 효과를 나타냄. 세로토닌 길항, 아세틸콜린 방출 감소도 관여 가능."
 }

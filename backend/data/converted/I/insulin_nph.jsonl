@@ -22,7 +22,9 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -674,5 +676,12 @@
     "source_file": "plumbs_output/2.jsonl",
     "extracted_at": "2026-03-10T14:23:54.819259+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "인슐린 NPH (중간형 인슐린)(Insulin, NPH (Neutral Protamine Hagedorn))은(는) 호르몬 불균형 치료에 사용되는 호르몬제입니다.",
+  "primary_indications": [
+    "개의 합병증 없는 당뇨병 초기 치료 및 장기 관리 (extra-label). 말",
+    "낙타과 동물",
+    "기니피그의 당뇨병 치료에도 고려 가능. 고양이에서는 권장되지 않음."
+  ],
+  "mechanism_short": "인슐린의 주요 작용은 포도당 대사 조절입니다. 인슐린과 그 유사체는 말초 조직(특히 골격근과 지방)에서 포도당 흡수를 증가시켜 혈당을 낮춥니다. 간에서는 글리코겐 저장을 증가시키고 포도당신생합성을 억제합니다. 인슐린의 동화 작용은 지방산 및 단백질 합성을 촉진하고 지방분해 및 단백질분해를 억제합니다."
 }

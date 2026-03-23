@@ -34,7 +34,9 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -770,5 +772,17 @@
     "source_file": "plumbs_output/22.jsonl",
     "extracted_at": "2026-03-11T11:18:01.239976+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "프로포폴(Propofol)은(는) 진정 및 불안 완화에 사용되는 진정제입니다.",
+  "primary_indications": [
+    "개와 고양이에서 단기 시술을 위한 전신마취 단회 주사",
+    "최대 20분간 증량 투여를 통한 마취 유도 및 유지",
+    "흡입 마취제로 유지되는 전신마취 유도. Extra-label: 난치성 간질중첩증 치료",
+    "TIVA 유지",
+    "안락사 전 진정. 말",
+    "당나귀",
+    "알파카",
+    "설치류"
+  ],
+  "mechanism_short": "GABA 수용체에서 GABA의 해리 속도를 감소시켜 GABA의 효과를 강화하며, 염소 이온 유입을 통한 시냅스후 세포막 과분극을 유발하는 단기 작용 진정-최면 마취제. 글리신 및 NMDA 수용체에도 작용 가능성이 있다."
 }

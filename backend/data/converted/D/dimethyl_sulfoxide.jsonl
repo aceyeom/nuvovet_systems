@@ -29,31 +29,45 @@
     "available_strengths": [
       {
         "value": 90,
-        "unit": "%"
+        "unit": "%",
+        "form": "topical",
+        "is_splittable": null
       },
       {
         "value": 99,
-        "unit": "%"
+        "unit": "%",
+        "form": "topical",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "%"
+        "unit": "%",
+        "form": "topical",
+        "is_splittable": null
       },
       {
         "value": 60,
-        "unit": "%"
+        "unit": "%",
+        "form": "topical",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "%"
+        "unit": "%",
+        "form": "topical",
+        "is_splittable": null
       },
       {
         "value": 30,
-        "unit": "%"
+        "unit": "%",
+        "form": "topical",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "%"
+        "unit": "%",
+        "form": "topical",
+        "is_splittable": null
       }
     ]
   },
@@ -502,5 +516,17 @@
     "source_file": "plumbs_output/14.jsonl",
     "extracted_at": "2026-03-10T17:17:07.238580+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "디메틸설폭사이드(Dimethyl Sulfoxide)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "FDA 승인: 외상으로 인한 급성 부종 감소(국소 도포",
+    "개 및 말). 비라벨 사용: 일과성 허혈 상태의 보조 치료",
+    "CNS 외상 및 뇌부종",
+    "석회증",
+    "자궁내막염",
+    "피부 궤양",
+    "장 수술 보조 치료",
+    "수술 후 또는 난치성 통증의 진통"
+  ],
+  "mechanism_short": "자유 라디칼(수산화 라디칼 및 산소 라디칼) 포획을 통한 항염증, 냉동보존, 항허혈, 방사선 보호 효과. 피부 투과 및 다른 물질의 경피 흡수 촉진. 알코올 탈수소효소 억제, 항콜린에스테라제 활성, 비만세포 탈과립 유발, 이뇨 작용."
 }

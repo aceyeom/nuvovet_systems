@@ -21,15 +21,21 @@
     "available_strengths": [
       {
         "value": 20,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 60,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -519,5 +525,11 @@
     "source_file": "plumbs_output/0.jsonl",
     "extracted_at": "2026-03-10T13:24:25.128729+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "그라피프란트(Grapiprant)은(는) 통증과 염증을 완화하는 비스테로이드성 항염증제(NSAID)입니다.",
+  "primary_indications": [
+    "승인 적응증: 개의 골관절염 관련 통증 및 염증 조절 (FDA 승인",
+    "NADA #141-455). UK/유럽에서는 경증~중등도 골관절염에 특이적으로 승인. 비표준 사용: MDR1 유전자 돌연변이 개에서 용량 조절 투여. 실험적: 토끼에서 항통각 효과 확인(임상 사용 전 추가 연구 필요)."
+  ],
+  "mechanism_short": "프로스타글란딘 E2(PGE2) EP4 수용체 길항제로, COX를 억제하지 않고 EP4 수용체를 직접 차단하여 PGE2의 염증 효과를 감소시키고 감각 신경에서의 통증 전달을 억제함."
 }

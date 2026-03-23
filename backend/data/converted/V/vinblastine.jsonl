@@ -33,11 +33,15 @@
     "available_strengths": [
       {
         "value": 1.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 10.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -342,7 +346,7 @@
           "logic_type": "fixed",
           "context": "항종양제 (허가 외) - 림프종, 암종, 비만세포종 등 다양한 종양",
           "value": "1.5 - 3",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q12h",
           "max_dose_mg_kg": null,
@@ -358,7 +362,7 @@
           "logic_type": "fixed",
           "context": "항종양제 (허가 외) - 림프종 등 종양 치료 (COP 기반 프로토콜)",
           "value": "1.5 - 3",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q12h",
           "max_dose_mg_kg": null,
@@ -581,5 +585,11 @@
     "source_file": "plumbs_output/7.jsonl",
     "extracted_at": "2026-03-10T15:35:39.555839+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "빈블라스틴(Vinblastine)은(는) 악성 종양(암) 치료에 사용되는 항종양제입니다.",
+  "primary_indications": [
+    "허가 외(extra-label) 사용: 개와 고양이의 림프종",
+    "비만세포종. 개의 방광 이행세포암종. 재발성 개 림프종(약 25% 반응률). 고양이 림프종에서 COP 기반 프로토콜의 일부로 사용 가능."
+  ],
+  "mechanism_short": "미세소관 단백질(튜불린)에 결합하여 유사분열 방추사를 억제함으로써 중기(metaphase)에서 세포분열을 차단. 또한 글루탐산 이용 억제, 퓨린 합성, 구연산 회로, 요소 형성을 방해하여 아미노산 대사에도 영향을 미침."
 }

@@ -22,7 +22,9 @@
     "available_strengths": [
       {
         "value": 1000,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -403,5 +405,13 @@
     "source_file": "plumbs_output/43.jsonl",
     "extracted_at": "2026-03-11T02:31:22.691908+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "포메피졸(Fomepizole)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "에틸렌 글리콜 독성 치료 (개: 섭취 후 8시간 이내",
+    "고양이: 섭취 후 3시간 이내",
+    "오프라벨 고용량). 수의학 전용 제품은 현재 시판되지 않으며",
+    "인간용 제품을 오프라벨로 사용한다."
+  ],
+  "mechanism_short": "알코올 탈수소효소(alcohol dehydrogenase)의 경쟁적 억제제로, 에틸렌 글리콜이 독성 대사산물(글리콜알데히드, 글리콜산, 글리옥실산, 옥살산)로 전환되는 것을 차단하여 에틸렌 글리콜이 주로 미변화 상태로 소변을 통해 배설되도록 한다."
 }

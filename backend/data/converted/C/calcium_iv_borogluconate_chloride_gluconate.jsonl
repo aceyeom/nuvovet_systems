@@ -25,11 +25,15 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 230,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -593,5 +597,16 @@
     "source_file": "plumbs_output/52.jsonl",
     "extracted_at": "2026-03-11T05:21:26.227538+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "칼슘 주사제 (보로글루코네이트/클로라이드/글루코네이트)(Calcium, IV (Borogluconate, Chloride, Gluconate))은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "승인 적응증: 소의 저칼슘혈증(수의용 라벨",
+    "FDA 미승인). Extra-label 적응증(개/고양이): 저칼슘혈증(강직",
+    "경련)",
+    "고칼륨혈증성 심장독성",
+    "고마그네슘혈증",
+    "칼슘 채널 차단제 독성",
+    "비폐쇄성 난산 보조 치료."
+  ],
+  "mechanism_short": "칼슘은 신경계 및 근골격계 기능, 세포막 및 모세혈관 투과성, 효소 반응 활성화 등 다양한 생리적 기능에 필수적인 양이온임. 이온화 칼슘을 직접 보충하여 저칼슘혈증을 교정하고, 고칼륨혈증 및 고마그네슘혈증의 심장독성 효과를 길항함."
 }

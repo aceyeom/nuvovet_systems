@@ -23,19 +23,27 @@
     "available_strengths": [
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -780,5 +788,17 @@
     "source_file": "plumbs_output/24.jsonl",
     "extracted_at": "2026-03-10T20:35:47.913885+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "클로람페니콜(Chloramphenicol)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "개(FDA 승인): 세균성 폐렴",
+    "개 호흡기 질환 복합체",
+    "안구 감염",
+    "중이염",
+    "요로감염(감수성 세균). 비라벨 외용: 메티실린 내성 포도상구균 감염",
+    "세균성 전립선염. 고양이(비라벨): 헤모바르토넬라증",
+    "클라미디아증",
+    "안구 감염"
+  ],
+  "mechanism_short": "50S 리보솜 소단위에 결합하여 세균 단백질 합성을 억제하는 시간 의존적 정균 항생제. 고농도 또는 일부 감수성 균에 대해서는 살균 효과. 포유류 세포(특히 골수)의 미토콘드리아 리보솜에도 친화성을 가져 가역적 골수억제 유발 가능."
 }

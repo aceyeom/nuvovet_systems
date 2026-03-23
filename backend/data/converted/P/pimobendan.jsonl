@@ -26,27 +26,39 @@
     "available_strengths": [
       {
         "value": 1.25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.75,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 3.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -560,5 +572,15 @@
     "source_file": "plumbs_output/19.jsonl",
     "extracted_at": "2026-03-10T19:09:18.950218+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "피모벤단(Pimobendan)은(는) 심장 기능 개선에 사용되는 심장약입니다.",
+  "primary_indications": [
+    "【승인 적응증 - 개】 AV 판막 부전 또는 확장성 심근병증으로 인한 경증~중증 울혈성 심부전 관리 (FDA 승인). 【Extra-label 적응증 - 개】 전임상 확장성 심근병증 보조 치료",
+    "B2기 및 C기 방실판막 부전 보조 치료",
+    "D기(말기",
+    "불응성) 심부전 보조 치료",
+    "방실판막 부전에 속발한 폐동맥 고혈압 보조 치료. 【Extra-label 적응증 - 고양이】 좌심실 수축 기능 장애",
+    "신부전 또는 중증 불응성 폐부종을 동반한 심부전."
+  ],
+  "mechanism_short": "PDE-III(포스포디에스테라제 III) 억제 및 심근 수축 장치의 세포내 칼슘 감수성 증가를 통한 양성 변력 효과. 혈관 PDE-III 억제를 통한 동맥 및 정맥 확장 효과(혈관 확장). 심부전 동물에서 간접적으로 심박수를 감소시키는 음성 변시 효과."
 }

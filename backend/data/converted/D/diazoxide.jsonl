@@ -29,7 +29,9 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -432,5 +434,11 @@
     "source_file": "plumbs_output/39.jsonl",
     "extracted_at": "2026-03-11T01:28:07.705182+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "디아족사이드(Diazoxide)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "인슐린 과분비(인슐린종)에 의한 저혈당 치료 (글루코코르티코이드 및 식이 요법에 반응하지 않는 경우). 개",
+    "기니피그에서 오프라벨로 사용됨."
+  ],
+  "mechanism_short": "췌장 베타세포에서 인슐린 분비를 직접 억제하고, 간의 당신생 및 글리코겐 분해를 촉진하며, 베타 아드레날린 시스템을 자극하여 에피네프린 분비를 유도하고 조직의 포도당 이용을 억제함으로써 혈당을 상승시킴. 또한 말초 세동맥 평활근에 직접 혈관확장 효과를 나타냄."
 }

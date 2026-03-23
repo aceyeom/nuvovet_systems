@@ -24,27 +24,39 @@
     "available_strengths": [
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 600,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -749,5 +761,17 @@
     "source_file": "plumbs_output/50.jsonl",
     "extracted_at": "2026-03-11T04:38:51.036122+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아지스로마이신(Azithromycin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "【승인 적응증】 없음 (수의학적 승인 제품 없음)\n【오프라벨 적응증】\n- 개: 감수성 세균 감염",
+    "Babesia gibsoni/microti (아토바쿠온 병용)",
+    "타일레리아증",
+    "크립토스포리디움증",
+    "위장관 운동 촉진",
+    "사이클로스포린 유발 치은 과증식",
+    "유두종증\n- 고양이: 감수성 세균 감염",
+    "상부 호흡기 감염"
+  ],
+  "mechanism_short": "세균 세포벽을 투과하여 50S 리보솜 소단위에 결합함으로써 단백질 합성을 억제하는 정균성 항생제. 대식세포, 호중구, 폐 상피 내층액에 고농도로 축적됨. 항원충 효과는 아피코플라스트 단백질 번역 억제를 통해 나타남."
 }

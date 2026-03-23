@@ -32,27 +32,39 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 2,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -657,11 +669,11 @@
           "logic_type": "fixed",
           "context": "수술 전 진통 - QUAD 프로토콜 IM",
           "value": "5",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IM",
           "frequency": "Once",
           "max_dose_mg_kg": null,
-          "duration_note": "주의: mg/m² 단위 사용(mg/kg 아님). 메데토미딘 600 µg/m², 케타민 60 mg/m², 미다졸람 3 mg/m² 병용; 마취 10분 전 투여",
+          "duration_note": "주의:사용(mg/kg 아님). 메데토미딘 600 µg/m², 케타민 60 mg/m², 미다졸람 3 mg/m² 병용; 마취 10분 전 투여",
           "evidence": "QUAD protocol: methadone 5 mg/m² (NOT mg/kg), medetomidine 600 µg/m², ketamine 60 mg/m², midazolam 3 mg/m² IM 10 minutes prior to anesthesia"
         },
         {
@@ -1105,5 +1117,17 @@
     "source_file": "plumbs_output/63.jsonl",
     "extracted_at": "2026-03-11T09:00:38.236506+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "메타돈(Methadone)은(는) 중등도~중증 통증 관리에 사용되는 오피오이드 진통제입니다.",
+  "primary_indications": [
+    "【허가 외(오프라벨) 적응증】\n- 개·고양이: 수술 전 진통(전처치)",
+    "마취 전처치",
+    "수술 후 진통",
+    "경막외 진통",
+    "지속주입(CRI) 진통\n- 말: 진통",
+    "경막외 진통",
+    "마취 전처치\n- 양/염소: 진정",
+    "요천추 경막외 진통\n【참고】 영국·호주 등 일부 국가에서는 수의용 허가 제품(10 mg/mL 주사제) 존재"
+  ],
+  "mechanism_short": "합성 mu-오피오이드 수용체 작용제(라세믹 혼합물). L-이성질체가 D-이성질체보다 mu-작용제로서 최대 50배 강력. 전시냅스에서 칼슘 이온 채널 폐쇄 및 신경전달물질 방출 감소, 후시냅스에서 칼륨 채널 개방으로 과분극 및 억제. 두 이성질체 모두 NMDA 수용체의 비경쟁적 억제제이며 노르에피네프린 재흡수 억제 효과도 있음."
 }

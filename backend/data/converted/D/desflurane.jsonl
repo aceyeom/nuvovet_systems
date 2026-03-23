@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 240,
-        "unit": "ml/kg"
+        "unit": "ml/kg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -529,5 +531,12 @@
     "source_file": "plumbs_output/38.jsonl",
     "extracted_at": "2026-03-11T01:03:19.276564+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "데스플루란(Desflurane)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "전신마취가 필요하고 빠른 회복이 요구되는 경우에 사용된다(허가 외). 개 MAC 7–10.3%",
+    "고양이 MAC 9.8%. 유도 농도 8–15%",
+    "유지 농도 5–9%."
+  ],
+  "mechanism_short": "할로겐화 흡입 마취제로, GABAA 수용체 및 전압 개폐 채널에 작용하여 뇌 신경세포 기능을 억제함으로써 전신마취 효과를 나타낸다. 혈액/가스 분배계수가 0.42로 매우 낮아 빠른 유도 및 회복이 가능하다."
 }

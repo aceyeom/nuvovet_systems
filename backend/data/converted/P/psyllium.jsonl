@@ -31,15 +31,21 @@
     "available_strengths": [
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 3.4,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -436,5 +442,12 @@
     "source_file": "plumbs_output/31.jsonl",
     "extracted_at": "2026-03-10T22:49:34.192232+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "실리움(Psyllium)은(는) 위장관 보호 및 궤양 치료에 사용되는 소화기 보호제입니다.",
+  "primary_indications": [
+    "【허가 외 사용】 ① 개: 특발성 대장 설사 보조 치료",
+    "간성 뇌증 보조 치료(가용성 섬유 공급원) ② 고양이: 만성 변비 ③ 말: 모래 산통 치료 및 예방",
+    "대사 증후군 관리 보조. FDA 승인 동물용 제품 없음."
+  ],
+  "mechanism_short": "실리움은 수용성 서서히 발효되는 섬유소로, 수분을 흡수하여 겔 형태로 팽창함으로써 장내 부피를 증가시키고 연동 운동을 유도하며 장 통과 시간을 단축시킨다. 변 내 총 수분량은 변하지 않는다."
 }

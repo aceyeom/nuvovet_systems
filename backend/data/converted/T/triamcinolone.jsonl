@@ -25,27 +25,39 @@
     "available_strengths": [
       {
         "value": 0.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 6,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -906,5 +918,17 @@
     "source_file": "plumbs_output/48.jsonl",
     "extracted_at": "2026-03-11T04:10:26.926363+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "트리암시놀론 아세토니드(Triamcinolone Acetonide)은(는) 항염증 및 면역억제 효과를 가진 부신피질 호르몬제입니다.",
+  "primary_indications": [
+    "승인 적응증: 개",
+    "고양이",
+    "말에서 염증 및 관련 장애",
+    "고양이에서 급성 관절염",
+    "알레르기 및 피부과적 장애. 비승인(extra-label) 적응증: 알레르기성 소양증(고양이)",
+    "자가면역 피부 질환",
+    "천포창(고양이)",
+    "고관절 골관절염(개)"
+  ],
+  "mechanism_short": "합성 글루코코르티코이드로서 히드로코르티손보다 4~10배(일부 보고에서 최대 40배) 강력한 항염증 및 면역억제 효과를 나타냄. 무기질코르티코이드 활성은 거의 없음. 세포 내 글루코코르티코이드 수용체에 결합하여 염증 매개체 생성 억제, 면역세포 기능 조절, 단백질 및 탄수화물 대사 변화 등 광범위한 효과를 나타냄."
 }

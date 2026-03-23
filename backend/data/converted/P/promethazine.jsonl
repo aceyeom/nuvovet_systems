@@ -25,27 +25,39 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 1.25,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 12.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -595,5 +607,14 @@
     "source_file": "plumbs_output/21.jsonl",
     "extracted_at": "2026-03-10T19:48:56.643077+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "프로메타진(Promethazine)은(는) 구토 예방 및 치료에 사용되는 항구토제입니다.",
+  "primary_indications": [
+    "개: 구토 억제",
+    "멀미 예방 (오프라벨",
+    "PO). 고양이: 자일라진 유발 구토 억제 (오프라벨",
+    "IM). 말: 저혈압 위험 환자에서 아세프로마진 대안 (오프라벨",
+    "IV). 아토피 피부염의 소양증 치료에는 효과 불량."
+  ],
+  "mechanism_short": "H1 수용체, 알파2-아드레날린 수용체, 무스카린 수용체 길항 작용; 도파민 길항 작용(다른 페노티아진보다 약함). 구토 억제는 주로 뇌의 구토 중추 및 화학수용체 유발대(CTZ)에 대한 작용에 의함."
 }

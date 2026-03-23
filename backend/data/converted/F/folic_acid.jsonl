@@ -24,27 +24,39 @@
     "available_strengths": [
       {
         "value": 0.4,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.8,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -468,5 +480,15 @@
     "source_file": "plumbs_output/43.jsonl",
     "extracted_at": "2026-03-11T02:29:45.523805+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "엽산(Folic Acid)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "엽산 결핍 치료 및 예방: 소장 염증성 질환(IBD)",
+    "외분비 췌장 부전",
+    "디하이드로엽산 환원효소 억제제(트리메토프림",
+    "오르메토프림",
+    "피리메타민",
+    "메토트렉세이트) 장기 투여 시. 임신 중 신경관 결손 예방(인체). 퍼그·치와와 임신견에서 구개열 예방 목적(오프라벨). 모든 적응증이 수의학적 오프라벨 사용임."
+  ],
+  "mechanism_short": "디하이드로엽산 환원효소에 의해 테트라하이드로엽산(5-메틸테트라하이드로엽산)으로 환원되어 퓨린 및 피리미딘 뉴클레오타이드 합성(DNA 합성)에 필요한 조효소로 작용. 정상 적혈구 생성 유지에도 필수적."
 }

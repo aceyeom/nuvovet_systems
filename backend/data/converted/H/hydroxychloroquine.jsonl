@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -512,5 +514,13 @@
     "source_file": "plumbs_output/1.jsonl",
     "extracted_at": "2026-03-11T11:13:57.230927+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "하이드록시클로로퀸(Hydroxychloroquine)은(는) 면역 반응을 억제하는 면역억제제입니다.",
+  "primary_indications": [
+    "개의 박탈성 피부 루푸스 홍반증(exfoliative cutaneous lupus erythematosus) 및 전신성 원판상 루푸스 홍반증(generalized discoid lupus erythematosus) 보조 치료 (오프라벨",
+    "실험적). 사람에서는 말라리아 예방 및 치료",
+    "류마티스 관절염",
+    "전신성 루푸스 홍반증 치료에 허가됨."
+  ],
+  "mechanism_short": "4-아미노퀴놀린 계열 항말라리아 및 면역조절제. 호중구 식균작용 및 초산화물 생성 억제, 화학주성 억제, TLR-9 자극 억제를 통해 면역조절 효과 발휘. 자외선 감수성 감소, 항혈소판 및 항고지혈증 효과도 기여. 항말라리아 효과는 기생충의 소화 공포에 농축되어 헤모글로빈 대사를 방해함으로써 나타남."
 }

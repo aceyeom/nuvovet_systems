@@ -25,15 +25,21 @@
     "available_strengths": [
       {
         "value": 0.02,
-        "unit": "%"
+        "unit": "%",
+        "form": "inhalation",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mcg"
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 17,
-        "unit": "mcg"
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -378,5 +384,11 @@
     "source_file": "plumbs_output/3.jsonl",
     "extracted_at": "2026-03-10T14:35:34.540820+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "이프라트로피움(Ipratropium)은(는) 기관지 확장에 사용되는 기관지확장제입니다.",
+  "primary_indications": [
+    "기관지경련 상태(재발성 기도 폐색[RAO]",
+    "헤이브스)의 보조 치료. 고양이에서 기관지경련의 단기 치료. 말에서 RAO/헤이브스의 보조 치료 (오프라벨). 폐렴이 있는 망아지의 중증 기관지경련 (오프라벨). 쥐에서 기관지확장제로 사용 (오프라벨)."
+  ],
+  "mechanism_short": "아세틸콜린을 길항하여 미주신경 매개 반사를 억제함. 아세틸콜린에 의한 세포 내 cGMP 농도 증가를 차단하여 기관지 평활근 수축을 감소시킴. 아트로핀과 달리 점액섬모 청소율을 감소시키지 않음."
 }

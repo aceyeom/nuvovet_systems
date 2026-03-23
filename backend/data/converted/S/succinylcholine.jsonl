@@ -23,11 +23,15 @@
     "available_strengths": [
       {
         "value": 20,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -770,5 +774,13 @@
     "source_file": "plumbs_output/45.jsonl",
     "extracted_at": "2026-03-11T03:01:23.140067+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "석시닐콜린(Succinylcholine)은(는) 근육 이완에 사용되는 근이완제입니다.",
+  "primary_indications": [
+    "진단 시술",
+    "기계적 환기 중 단기 근육 이완 (extra-label). 기관내 삽관 보조 (인체 적응증). 개",
+    "고양이",
+    "파충류에서 extra-label로 사용. 수의학적으로 승인된 제품 없음."
+  ],
+  "mechanism_short": "운동 종판의 니코틴성 콜린성 수용체에 결합하여 탈분극을 유발하는 초단시간 작용 탈분극성 골격근 이완제. 충분한 양의 석시닐콜린이 남아있는 동안 신경근 차단이 지속되며 이완성 마비로 나타남."
 }

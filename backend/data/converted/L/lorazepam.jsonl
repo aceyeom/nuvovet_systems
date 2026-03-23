@@ -24,23 +24,33 @@
     "available_strengths": [
       {
         "value": 0.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 4.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -632,5 +642,17 @@
     "source_file": "plumbs_output/59.jsonl",
     "extracted_at": "2026-03-11T07:42:24.414472+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "로라제팜(Lorazepam)은(는) 진정 및 불안 완화에 사용되는 진정제입니다.",
+  "primary_indications": [
+    "승인 적응증(수의학): 없음(수의학적 승인 제품 없음). 오프라벨 사용: 개의 간질 중첩증(IV 또는 비강 내)",
+    "개/고양이의 행동 장애(공포",
+    "공포증",
+    "야간 각성). 사람 의학: 간질 중첩증",
+    "항불안",
+    "항구토(화학요법 유발)",
+    "알코올 금단",
+    "항정신병약 유발 좌불안석증."
+  ],
+  "mechanism_short": "GABAA 수용체에 결합하여 GABA에 대한 수용체 친화성을 증가시키고, 염화물 전도도 증가 및 시냅스 후 세포막 과분극을 유발함. CNS 피질하 수준(주로 변연계, 시상, 시상하부)을 억제하여 항불안, 진정, 골격근 이완, 항경련 효과를 나타냄."
 }

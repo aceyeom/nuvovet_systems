@@ -24,15 +24,21 @@
     "available_strengths": [
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -523,5 +529,13 @@
     "source_file": "plumbs_output/42.jsonl",
     "extracted_at": "2026-03-11T02:10:02.926454+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "플루시토신(Flucytosine)은(는) 진균(곰팡이) 감염 치료에 사용되는 항진균제입니다.",
+  "primary_indications": [
+    "크립토콕쿠스증(CNS 포함)",
+    "칸디다증",
+    "아스페르길루스증",
+    "피부/피하 크로모블라스토마이코시스. 모두 오프라벨(수의과 승인 제품 없음). 반드시 다른 항진균제와 병용 사용."
+  ],
+  "mechanism_short": "플루시토신은 진균 세포 내로 침투하여 시토신 탈아미노효소에 의해 플루오로우라실로 전환됨. 플루오로우라실은 항대사물질로 작용하여 우라실과 경쟁함으로써 피리미딘 대사, RNA 및 단백질 합성을 방해함. 이후 플루오로데옥시우리딜산으로 전환되어 티미딜산 합성 및 DNA 합성을 억제함."
 }

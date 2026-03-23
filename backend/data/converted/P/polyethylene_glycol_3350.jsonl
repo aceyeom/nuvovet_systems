@@ -31,23 +31,33 @@
     "available_strengths": [
       {
         "value": 17,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 227.1,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 236,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 240,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 420,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -552,5 +562,12 @@
     "source_file": "plumbs_output/20.jsonl",
     "extracted_at": "2026-03-10T19:18:08.500854+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "폴리에틸렌 글리콜 3350(Polyethylene Glycol 3350)은(는) 위장관 보호 및 궤양 치료에 사용되는 소화기 보호제입니다.",
+  "primary_indications": [
+    "고양이 변비 보조 치료 (오프라벨)",
+    "개/고양이 대장 내시경 전 장 세척 (오프라벨)",
+    "경구 섭취 독소의 장내 흡수 감소를 위한 장세척 (오프라벨). 수의학적 허가 적응증 없음."
+  ],
+  "mechanism_short": "PEG 3350은 비흡수성 삼투성 완하제로, 장내 수분을 유지하여 대변을 연화시키고 장 통과 시간을 단축시킴. 영양소, 포도당, 전해질 흡수에 영향을 미치지 않음."
 }

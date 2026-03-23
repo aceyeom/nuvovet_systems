@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 90,
-        "unit": "%"
+        "unit": "%",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -479,5 +481,11 @@
     "source_file": "plumbs_output/44.jsonl",
     "extracted_at": "2026-03-11T02:55:26.757137+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "글리세린 (경구)(Glycerin, Oral)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "소동물 급성 녹내장에서 안압 신속 감소 (extra-label",
+    "응급 처치). CSF 압력 증가 감소 고려 가능 (extra-label)."
+  ],
+  "mechanism_short": "경구 투여 시 혈장 삼투압을 증가시켜 세포외 공간(안방수 포함)의 수분을 혈액으로 이동시킴으로써 안압(IOP) 및 CSF 압력을 감소시키는 삼투성 제제."
 }

@@ -22,15 +22,21 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -361,5 +367,10 @@
     "source_file": "plumbs_output/4.jsonl",
     "extracted_at": "2026-03-10T14:54:13.018578+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "필로카르핀 점안액(Pilocarpine Ophthalmic)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【오프라벨】개의 신경인성 건성각결막염(KCS) 치료 (점안 및/또는 경구 투여). 동안신경 병변에 의한 안구 부교감신경 차단 진단. 개의 원발성 녹내장 치료 (현재는 다른 약물로 대체됨). 말에서는 안압 감소 효과가 없어 사용하지 않음."
+  ],
+  "mechanism_short": "아세틸콜린을 모방하여 신경근 접합부에서 직접 작용하는 콜린성 작용제. 안구 내 콜린성 자극을 통해 누액 분비를 촉진하고, 모양체근 수축을 유발하여 홍채 기저부에 후방 방향의 장력을 가해 홍채각막각을 기계적으로 개방시켜 방수 유출을 증가시킴."
 }

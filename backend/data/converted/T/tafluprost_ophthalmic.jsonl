@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 0.015,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -364,5 +366,10 @@
     "source_file": "plumbs_output/5.jsonl",
     "extracted_at": "2026-03-10T15:05:38.070164+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "타플루프로스트 점안액(Tafluprost Ophthalmic)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "개의 원발성 녹내장에서 안압 감소 (오프라벨). 고양이 및 말 녹내장에는 효과가 없을 가능성이 높아 권장되지 않음."
+  ],
+  "mechanism_short": "프로스타글란딘 F2-알파 유사체로서 프로스타글란딘 수용체를 활성화하여 섬유주 및 포도막공막 경로를 통한 방수 유출을 증가시켜 안압을 낮춤. 또한 홍채 프로스타글란딘 수용체 활성화를 통해 축동을 유발함."
 }

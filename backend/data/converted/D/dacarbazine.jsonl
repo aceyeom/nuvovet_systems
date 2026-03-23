@@ -32,15 +32,21 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -238,7 +244,7 @@
           "logic_type": "fixed",
           "context": "항종양제 (오프라벨) - 프로토콜 A: 재발성 림프종, 연조직 육종, 흑색종 등",
           "value": "600 - 1000",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q48h",
           "max_dose_mg_kg": null,
@@ -249,7 +255,7 @@
           "logic_type": "fixed",
           "context": "항종양제 (오프라벨) - 프로토콜 B: 재발성 림프종, 연조직 육종, 흑색종 등",
           "value": "200 - 250",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "SID",
           "max_dose_mg_kg": null,
@@ -493,5 +499,17 @@
     "source_file": "plumbs_output/37.jsonl",
     "extracted_at": "2026-03-11T00:45:50.702686+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "다카르바진(Dacarbazine)은(는) 악성 종양(암) 치료에 사용되는 항종양제입니다.",
+  "primary_indications": [
+    "【개 - 오프라벨】재발성 림프종(단독 또는 독소루비신",
+    "미톡산트론",
+    "빈크리스틴",
+    "로무스틴과 병용)",
+    "연조직 육종",
+    "조직구성 육종",
+    "흑색종",
+    "혈관육종. 【고양이】사용 비권장."
+  ],
+  "mechanism_short": "간의 CYP450 효소에 의해 활성 대사체 MTIC으로 전환됨. MTIC은 자발적으로 분해되어 메틸 다이아조늄을 방출하고, 이것이 구아닌의 O6 및 N7 위치를 메틸화하여 DNA 복제 연장을 중단시키고 DNA 이중 가닥 절단을 유발하는 알킬화제임."
 }

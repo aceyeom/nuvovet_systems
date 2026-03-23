@@ -20,11 +20,15 @@
     "available_strengths": [
       {
         "value": 0.5,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -341,5 +345,11 @@
     "source_file": "plumbs_output/10.jsonl",
     "extracted_at": "2026-03-10T16:23:23.317853+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "클로람페니콜 점안제(Chloramphenicol Ophthalmic)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "감수성 세균에 의한 결막 및 각막 표면 감염 (허가 외 사용). 고양이 Mycoplasma spp 또는 Chlamydia spp 안구 감염. Pseudomonas spp 감염에는 효과가 낮음. WHO 인체 의학 고중요 항균제",
+    "OIE 수의학 핵심 중요 항균제로 지정됨."
+  ],
+  "mechanism_short": "단백질 합성 억제: 가용성 RNA에서 리보솜으로의 활성화된 아미노산 전달을 방해하여 단백질 신장을 억제하는 광범위 정균성 항생제."
 }

@@ -25,19 +25,27 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 75,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -512,5 +520,13 @@
     "source_file": "plumbs_output/46.jsonl",
     "extracted_at": "2026-03-11T03:22:38.052539+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "테스토스테론(Testosterone)은(는) 호르몬 불균형 치료에 사용되는 호르몬제입니다.",
+  "primary_indications": [
+    "【승인 적응증】 없음 (수의용 FDA 승인 단독 제품 없음). 【오프라벨 적응증】 중성화 수컷 개/고양이의 테스토스테론 반응성 요실금",
+    "중성화 수컷 개의 양측성 탈모를 동반한 피부염",
+    "암컷 개의 발정 억제(거의 권장되지 않음)",
+    "가성임신 시 유선 비대 감소(거의 권장되지 않음). 【소 적응증】 발정 감지 동물(teaser) 생산 (오프라벨)."
+  ],
+  "mechanism_short": "주요 내인성 안드로겐 스테로이드로서 남성 이차 성징 발달, 수컷 생식기관 성숙 및 성장, 성욕 증가를 담당함. 단백질 동화 작용, 질소·나트륨·칼륨·인 보유, 요중 칼슘 배설 감소, 적혈구 생성 자극인자 자극을 통한 적혈구 생성 촉진 효과를 가짐."
 }

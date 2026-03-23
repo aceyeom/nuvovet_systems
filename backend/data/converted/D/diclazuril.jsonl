@@ -24,15 +24,21 @@
     "available_strengths": [
       {
         "value": 1.56,
-        "unit": "%"
+        "unit": "%",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.2,
-        "unit": "%"
+        "unit": "%",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -357,5 +363,13 @@
     "source_file": "plumbs_output/40.jsonl",
     "extracted_at": "2026-03-11T01:31:16.174646+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "디클라주릴(Diclazuril)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "【승인 적응증】 말: Sarcocystis neurona에 의한 원충성 척수뇌염(EPM) 치료 (1 mg/kg/day PO",
+    "28일). 브로일러 닭 및 칠면조: 콕시듐증 예방 (사료 첨가). 【허가 외 적응증】 개·고양이: 콕시듐증(Cystoisospora spp.)",
+    "Neospora caninum",
+    "Toxoplasma spp. 감염. 말: EPM 예방 (0.5 mg/kg/day 또는 주 2회). 송아지·어린 양: 콕시듐증 치료 및 예방. 토끼: 콕시듐증 (음수 투여)."
+  ],
+  "mechanism_short": "트리아진계 항원충제로, Apicomplexa 문에 속하는 원충의 플라스티드 소기관을 표적으로 하는 것으로 추정됨. 정확한 작용 기전은 명확히 밝혀지지 않음. 시험관 내에서 Sarcocystis neurona의 95% 억제 농도는 약 1 ng/mL."
 }

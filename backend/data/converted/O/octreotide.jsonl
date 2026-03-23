@@ -26,35 +26,51 @@
     "available_strengths": [
       {
         "value": 0.05,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.1,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.2,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 10.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 30.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -574,5 +590,12 @@
     "source_file": "plumbs_output/29.jsonl",
     "extracted_at": "2026-03-10T22:13:41.447991+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "옥트레오타이드(Octreotide)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【오프라벨】개/고양이: 인슐린종(특히 다른 치료에 불응하거나 내약성이 없는 경우)",
+    "가스트린종. 개: 글루카곤종에 의한 괴사성 이동성 홍반",
+    "아마톡신 버섯 중독. 고양이: 유미흉(부분 수술적 해결 후 보조 치료). 페럿: 인슐린종. 말: 인슐린 조절 이상 진단(연구 목적)."
+  ],
+  "mechanism_short": "소마토스타틴의 합성 장기작용 유사체로, 인슐린, 글루카곤, 세크레틴, 성장호르몬, 가스트린, 모틸린의 합성 및 분비를 억제함. 소마토스타틴 수용체(SSTR) 아형에 결합하며, 특히 SSTR2에 우선적으로 결합함."
 }

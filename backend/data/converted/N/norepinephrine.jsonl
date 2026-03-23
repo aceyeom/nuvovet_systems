@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 1.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -509,5 +511,16 @@
     "source_file": "plumbs_output/29.jsonl",
     "extracted_at": "2026-03-10T22:07:07.752728+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "노르에피네프린(Norepinephrine)은(는) 심장 기능 개선에 사용되는 심장약입니다.",
+  "primary_indications": [
+    "수의학적 승인 제품 없음 (Extra-label 사용). 적응증: ① 수액 보충 후에도 지속되는 심각한 저혈압 (패혈성 쇼크 포함) - 개",
+    "고양이",
+    "알파카",
+    "② 이소플루란 유발 저혈압 - 개",
+    "알파카",
+    "③ 아세프로마진 유발 저혈압 - 말. 인체에서는 소생술 후 쇼크",
+    "상부 위장관 출혈 치료에도 사용."
+  ],
+  "mechanism_short": "강력한 알파-1 및 알파-2 아드레날린 수용체 작용제이자 중등도 베타-1 작용제. 말초 혈관 수축(알파 작용), 심장 수축력 증가(베타-1 작용), 관상동맥 확장(베타 작용)을 통해 수축기 및 이완기 혈압을 상승시킴."
 }

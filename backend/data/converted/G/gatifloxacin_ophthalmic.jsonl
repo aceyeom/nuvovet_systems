@@ -23,11 +23,15 @@
     "available_strengths": [
       {
         "value": 3.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 5.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -355,5 +359,14 @@
     "source_file": "plumbs_output/12.jsonl",
     "extracted_at": "2026-03-10T16:50:33.116053+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "가티플록사신 점안액(Gatifloxacin Ophthalmic)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "세균성 결막염 (Staphylococcus spp.",
+    "Streptococcus spp.",
+    "Pseudomonas aeruginosa",
+    "Chlamydophila spp.",
+    "Haemophilus spp. 등 감수성 균주에 의한 경우) 및 세균성 각막염의 치료. 모든 수의학적 적응증은 오프라벨 사용에 해당함."
+  ],
+  "mechanism_short": "토포이소머라제 II (DNA 자이라제) 및 토포이소머라제 IV 동시 억제를 통해 세균 DNA 합성을 저해하는 4세대 플루오로퀴놀론 항생제. 두 효소의 동시 억제로 내성 발현이 감소됨."
 }

@@ -24,31 +24,45 @@
     "available_strengths": [
       {
         "value": 125,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 750,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -519,5 +533,17 @@
     "source_file": "plumbs_output/23.jsonl",
     "extracted_at": "2026-03-10T20:23:42.765938+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "세푸록심(Cefuroxime)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "1세대 세팔로스포린 내성 세균 감염 치료(오프라벨)",
+    "수술 예방적 항생제(오프라벨)",
+    "뇌수막 염증 동반 CNS 감염(오프라벨). 감수성 균: E. coli",
+    "Klebsiella pneumoniae",
+    "Salmonella spp.",
+    "Enterobacter spp. 비감수성: MRSA",
+    "Pseudomonas spp.",
+    "Serratia spp."
+  ],
+  "mechanism_short": "세포벽 합성 억제를 통한 시간 의존성 살균 항생제. 2세대 세팔로스포린으로 1세대보다 그람 음성균(E. coli, Klebsiella pneumoniae, Salmonella spp., Enterobacter spp.)에 대한 활성이 강화됨."
 }

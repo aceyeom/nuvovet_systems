@@ -33,15 +33,21 @@
     "available_strengths": [
       {
         "value": 1.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 10.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 6.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -699,5 +705,10 @@
     "source_file": "plumbs_output/55.jsonl",
     "extracted_at": "2026-03-11T06:29:20.677497+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아포모르핀(Apomorphine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "개에서 독소 또는 이물 섭취 후 구토 유도(extra-label). 이물 섭취 시 약 75%에서 성공적으로 이물 제거. 페럿에서도 extra-label로 사용 가능. 고양이에서는 효과 불확실로 거의 사용하지 않음."
+  ],
+  "mechanism_short": "화학수용체 유발대(CTZ)의 도파민 수용체를 자극하여 구토를 유발하는 중추성 구토제. 알파-아드레날린 수용체에도 친화성을 가짐(인체 데이터)."
 }

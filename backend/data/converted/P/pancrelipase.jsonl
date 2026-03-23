@@ -29,11 +29,15 @@
     "available_strengths": [
       {
         "value": 2.8,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 9000,
-        "unit": "IU"
+        "unit": "IU",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -412,5 +416,12 @@
     "source_file": "plumbs_output/31.jsonl",
     "extracted_at": "2026-03-10T22:42:13.576192+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "판크렐리파제(Pancrelipase)은(는) 위장관 보호 및 궤양 치료에 사용되는 소화기 보호제입니다.",
+  "primary_indications": [
+    "외분비 췌장 기능 부전(EPI) 치료 (개",
+    "고양이",
+    "토끼 등). 모든 동물 적응증은 extra-label 사용에 해당합니다."
+  ],
+  "mechanism_short": "판크렐리파제는 돼지 유래 리파제, 프로테아제, 아밀라제의 복합체로, 지방을 글리세롤과 지방산으로 가수분해하고, 단백질을 아미노산으로 분해하며, 전분을 덱스트린과 당으로 전환하여 지방, 단백질, 탄수화물의 소화 및 흡수를 돕습니다."
 }

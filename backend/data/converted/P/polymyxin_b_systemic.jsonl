@@ -19,7 +19,9 @@
     "available_strengths": [
       {
         "value": 500000,
-        "unit": "IU"
+        "unit": "IU",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -449,5 +451,14 @@
     "source_file": "plumbs_output/20.jsonl",
     "extracted_at": "2026-03-10T19:19:47.918250+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "폴리믹신 B(Polymyxin B)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "말: 내독소혈증 관련 임상 증상 완화 (허가 외). 고양이: 실험적 내독소혈증 모델에서 연구됨 (허가 외",
+    "추가 임상 연구 필요). 사람: 감수성 세균에 의한 패혈증",
+    "균혈증",
+    "요로감염",
+    "호흡기 감염 치료 (더 안전한 항생제 사용 불가 시)."
+  ],
+  "mechanism_short": "세균 세포막의 인지질에 결합하여 세포막 투과성을 증가시키고 세포 내 성분 유출 및 세포사를 유발하는 농도 의존성 살균 항생제. 내독소혈증 치료 시 지질다당류(LPS) 성분에 결합하여 불활성화."
 }

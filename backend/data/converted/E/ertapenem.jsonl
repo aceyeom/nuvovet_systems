@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -397,5 +399,11 @@
     "source_file": "plumbs_output/16.jsonl",
     "extracted_at": "2026-03-10T18:14:17.130676+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "에르타페넴(Ertapenem)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "다제내성 그람음성균 감염(허가 외 사용): 배양 및 감수성 검사에서 다른 모든 치료 옵션에 내성이 확인된 경우. 아미노글리코사이드 사용이 위험하거나 효과 없는 경우(신부전",
+    "CNS 감염). 혼합 혐기성 및 그람음성 호기성 감염(Pseudomonas spp.가 주요 병원체가 아닌 경우). 경험적 사용 금지."
+  ],
+  "mechanism_short": "세균 세포벽 합성 억제 (베타-락탐계). 시간 의존적 살균 작용. 신장 디하이드로펩티다제 I에 안정적이어서 실라스타틴 병용 불필요."
 }

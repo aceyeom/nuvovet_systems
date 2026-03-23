@@ -1,6 +1,5 @@
 {
   "id": "ocular_lubricants",
-
   "drug_identity": {
     "name_ko": "안과용 윤활제 (인공눈물)",
     "name_en": "Ocular Lubricants",
@@ -37,11 +36,12 @@
     "available_strengths": [
       {
         "value": 0.0,
-        "unit": "Various OTC concentrations"
+        "unit": "Various OTC concentrations",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
-
   "metabolism_and_clearance": {
     "primary_metabolic_organ": "Unknown",
     "clearance_organ": "Mixed",
@@ -54,25 +54,73 @@
     },
     "extra_information": "Basic components include demulcents (soothing agents), emollients, inactive ingredients, and preservatives."
   },
-
   "organ_burden_logic": {
     "note": "Topical ophthalmic administration limits systemic exposure. Organ burden is negligible.",
     "dog": {
-      "brain": { "calculated_score": 0, "triggered_keywords": [], "index": 1, "evidence": null },
-      "blood": { "calculated_score": 0, "triggered_keywords": [], "index": 2, "evidence": null },
-      "kidney": { "calculated_score": 0, "triggered_keywords": [], "index": 3, "evidence": null },
-      "liver": { "calculated_score": 0, "triggered_keywords": [], "index": 4, "evidence": null },
-      "heart": { "calculated_score": 0, "triggered_keywords": [], "index": 5, "evidence": null }
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": null
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 2,
+        "evidence": null
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 3,
+        "evidence": null
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 4,
+        "evidence": null
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 5,
+        "evidence": null
+      }
     },
     "cat": {
-      "brain": { "calculated_score": 0, "triggered_keywords": [], "index": 1, "evidence": null },
-      "blood": { "calculated_score": 0, "triggered_keywords": [], "index": 2, "evidence": null },
-      "kidney": { "calculated_score": 0, "triggered_keywords": [], "index": 3, "evidence": null },
-      "liver": { "calculated_score": 0, "triggered_keywords": [], "index": 4, "evidence": null },
-      "heart": { "calculated_score": 0, "triggered_keywords": [], "index": 5, "evidence": null }
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 1,
+        "evidence": null
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 2,
+        "evidence": null
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 3,
+        "evidence": null
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 4,
+        "evidence": null
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": 5,
+        "evidence": null
+      }
     }
   },
-
   "timing_profile": {
     "onset_min": null,
     "t_max_hr": null,
@@ -86,11 +134,8 @@
     "protein_binding_percent": null,
     "evidence": "Acts locally and immediately upon instillation."
   },
-
   "_ddi_note": "Apply at least 5 minutes after other eye medications. Interactions with other topical ocular preparations may occur, leading to decreased efficacy or precipitate formation.",
-
   "drug_interactions": [],
-
   "additive_risks": {
     "nephrotoxic": false,
     "hepatotoxic": false,
@@ -99,7 +144,6 @@
     "sedation": false,
     "qt_prolongation": false
   },
-
   "risk_flags": {
     "nephrotoxic": "none",
     "hepatotoxic": "none",
@@ -107,7 +151,6 @@
     "bleeding": "none",
     "qt_prolongation": "none"
   },
-
   "species_flags": {
     "species_contraindicated": [],
     "mdr1_sensitive": false,
@@ -116,7 +159,6 @@
     "narrow_therapeutic_index": false,
     "washout_period_days": null
   },
-
   "dosage_and_kinetics": {
     "dog": {
       "is_approved": false,
@@ -173,7 +215,6 @@
       ]
     }
   },
-
   "renal_dose_adjustment": {
     "creatinine_threshold_dog_mg_dL": null,
     "creatinine_threshold_cat_mg_dL": null,
@@ -181,14 +222,12 @@
     "adjustment_factor": null,
     "note": null
   },
-
   "hepatic_dose_adjustment": {
     "applies": false,
     "alt_threshold_multiplier": null,
     "adjustment_type": "none specified",
     "note": null
   },
-
   "contraindications": [
     {
       "condition": "Hypersensitivity to any component",
@@ -233,14 +272,12 @@
       }
     }
   ],
-
   "genetic_sensitivity": {
     "has_genetic_risk": false,
     "affected_breeds": [],
     "gene": null,
     "evidence": null
   },
-
   "effects_and_mechanisms": {
     "common_mechanism": "Improves the quality (viscosity, osmolarity, retention time) of the precorneal tear film. Demulcents soothe and relieve inflammation, emollients protect tissues and stabilize the lipid layer.",
     "common_extra_effects": [
@@ -254,12 +291,10 @@
     "cat_mechanism": null,
     "cat_extra_effects": []
   },
-
   "species_notes": {
     "dog": "Hyaluronic acid-containing preparations may accelerate the healing of corneal ulcers.",
     "cat": "Hyaluronic acid-containing preparations may accelerate the healing of corneal ulcers."
   },
-
   "precautions": {
     "dog": {
       "status": 1,
@@ -270,7 +305,6 @@
       "evidence": "Preservative-free solutions are less likely to cause stinging or corneal damage with long-term use."
     }
   },
-
   "storage_and_forms": {
     "storage": "Store at controlled room temperature (20°C-25°C [68°F-77°F]) away from moisture and sunlight. Do not freeze.",
     "forms": [
@@ -279,13 +313,11 @@
       "Ophthalmic ointment"
     ]
   },
-
   "section_1_2_10": {
     "highlights": "Used for temporary enhancement of tear film. Most are OTC human products. Preservative-free solutions are better for long-term use. Avoid petroleum-based products if combustion or intraocular contact is possible.",
     "indications": "Decreased tear production (KCS), increased tear evaporation, buphthalmos, lagophthalmos. Used to prevent corneal desiccation during sedation/anesthesia.",
     "client_info": "Administer drops frequently during the day, long-acting ointments at bedtime. If applying multiple ocular medications, apply lubricants last, at least 5 minutes after others. Avoid touching dropper tip to the eye."
   },
-
   "_data_quality": {
     "overall_confidence": 4,
     "renal_adjustment_confidence": "high",
@@ -314,12 +346,19 @@
     "requires_pmc_rag": false,
     "pmc_rag_fields": []
   },
-
   "_extraction_metadata": {
     "model_used": "Gemini 3.1 Pro",
     "extraction_pass": 1,
     "source_file": "Plumbs Veterinary Drugs",
     "extracted_at": "2026-03-21T14:04:45Z",
     "reviewer": null
-  }
+  },
+  "brief_description": "안과용 윤활제 (인공눈물)(Ocular Lubricants)은(는) 안구 건조 치료에 사용되는 인공 눈물/윤활제입니다.",
+  "primary_indications": [
+    "Decreased tear production (KCS)",
+    "increased tear evaporation",
+    "buphthalmos",
+    "lagophthalmos. Used to prevent corneal desiccation during sedation/anesthesia."
+  ],
+  "mechanism_short": "Improves the quality (viscosity, osmolarity, retention time) of the precorneal tear film. Demulcents soothe and relieve inflammation, emollients protect tissues and stabilize the lipid layer."
 }

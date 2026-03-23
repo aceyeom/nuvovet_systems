@@ -21,19 +21,27 @@
     "available_strengths": [
       {
         "value": 12,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 75,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -676,5 +684,13 @@
     "source_file": "plumbs_output/38.jsonl",
     "extracted_at": "2026-03-11T01:01:35.872816+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "데라콕시브(Deracoxib)은(는) 통증과 염증을 완화하는 비스테로이드성 항염증제(NSAID)입니다.",
+  "primary_indications": [
+    "【승인 적응증 (개)】 골관절염 관련 통증 및 염증 조절 (1–2 mg/kg PO SID",
+    "지속 투여) | 치과 수술 후 통증 및 염증 조절 (1–2 mg/kg PO SID",
+    "최대 3일) | 정형외과 수술 후 통증 및 염증 조절 (3–4 mg/kg PO SID",
+    "최대 7일)\n【오프라벨 적응증】 방광 이행세포암종의 보조 치료 (피록시캄 대안으로 사용 가능) | 개 비장 혈관육종 치료 (유망성 보고)"
+  ],
+  "mechanism_short": "COX-2 선택적 억제를 통해 통증 및 염증에 기여하는 프로스타글란딘 생성을 억제함. 치료 용량에서 COX-1을 상대적으로 보존하여 이론적으로 위장관 및 신장 기능 유지에 기여하는 프로스타글란딘을 보호함. 단, 고용량에서는 선택성이 소실됨."
 }

@@ -24,19 +24,27 @@
     "available_strengths": [
       {
         "value": 40,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 80,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -505,5 +513,16 @@
     "source_file": "plumbs_output/61.jsonl",
     "extracted_at": "2026-03-11T08:18:05.816945+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "마그네슘 (정맥주사용)(Magnesium, IV)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "저마그네슘혈증 치료(개",
+    "고양이",
+    "양/염소)",
+    "불응성 심실 부정맥/비틀림 심실빈맥(개",
+    "고양이",
+    "돼지의 악성 고열증 보조 치료",
+    "말 허혈성 뇌병증 및 주산기 질식 증후군 보조 치료. 인체에서는 갈색세포종 고혈압 위기 치료에도 사용된다."
+  ],
+  "mechanism_short": "마그네슘은 다양한 효소 시스템의 보조인자로 작용하며, 근육 흥분성 및 신경화학적 전달에 관여한다."
 }

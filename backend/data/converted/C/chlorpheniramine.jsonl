@@ -23,15 +23,21 @@
     "available_strengths": [
       {
         "value": 4,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 12,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -553,5 +559,11 @@
     "source_file": "plumbs_output/24.jsonl",
     "extracted_at": "2026-03-10T20:39:34.426160+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "클로르페니라민(Chlorpheniramine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "히스타민 매개 소양증 및 알레르기 질환(두드러기",
+    "곤충 교상 과민반응)의 보조 치료 및 예방. 아토피 피부염 보조 치료(오프라벨). 비만세포종 수술 시 국소 히스타민 방출 예방 보조제. 경도 진정 목적(오프라벨)."
+  ],
+  "mechanism_short": "H1 수용체 길항제로서 히스타민 H1 수용체를 경쟁적으로 억제함. 히스타민을 불활성화하거나 방출을 억제하지는 않으나 세포에 대한 히스타민 작용을 차단함. 항콜린, 진정, 항경련, 국소마취, 경도 기관지확장, 항구토 작용도 있음."
 }

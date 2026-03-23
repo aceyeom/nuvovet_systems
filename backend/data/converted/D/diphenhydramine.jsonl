@@ -32,31 +32,45 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 12.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 30,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 12.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -597,5 +611,17 @@
     "source_file": "plumbs_output/14.jsonl",
     "extracted_at": "2026-03-10T17:22:56.089011+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "디펜히드라민(Diphenhydramine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "개·고양이: 알레르기성 소양증",
+    "두드러기",
+    "혈관부종",
+    "곤충 교상 과민반응",
+    "아토피 피부염 보조 치료",
+    "아나필락시스 보조 치료",
+    "비만세포종 수술 전 보조 치료",
+    "백신/수혈 반응 예방"
+  ],
+  "mechanism_short": "H1 히스타민 수용체 길항제(1세대). 항히스타민, 항구토, 항콜린, CNS 억제, 국소마취 효과를 가짐."
 }

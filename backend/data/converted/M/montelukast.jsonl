@@ -22,15 +22,21 @@
     "available_strengths": [
       {
         "value": 4,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -352,5 +358,17 @@
     "source_file": "plumbs_output/27.jsonl",
     "extracted_at": "2026-03-10T21:33:35.679373+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "몬테루카스트(Montelukast)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【고양이 (extra-label)】 고양이 천식",
+    "알레르기성 비염",
+    "경증 IBD",
+    "아토피",
+    "심장사상충 관련 호흡기질환의 보조 치료 (일화적 근거만 존재). 【인체 승인】 알레르기성 비염",
+    "천식. 【인체 비공인】 아토피 피부염",
+    "두드러기",
+    "호산구성 식도염."
+  ],
+  "mechanism_short": "시스테이닐 류코트리엔(CysLT1) 수용체 길항제. LTC4, LTD4, LTE4 등 아라키돈산 대사 산물인 프로염증성 류코트리엔의 작용을 차단하여 항염증 및 기관지 보호 효과를 나타냄."
 }

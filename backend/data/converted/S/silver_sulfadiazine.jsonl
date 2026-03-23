@@ -24,7 +24,9 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -351,5 +353,10 @@
     "source_file": "plumbs_output/5.jsonl",
     "extracted_at": "2026-03-10T15:01:32.286237+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "실버 설파디아진(Silver Sulfadiazine)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "세균성 및 진균성 각막염(엑스트라라벨). 말에서 진균성 각막염의 기존 치료법(나타마이신)에 비해 비용 효율적인 대안으로 사용됨. 진균 분리주에 대한 감수성 시험에서 나타마이신보다 우수한 결과 보고."
+  ],
+  "mechanism_short": "항균 및 항진균 작용의 정확한 기전은 밝혀지지 않았으나, 은(silver)과 설파디아진 성분의 상승 작용 또는 각 성분의 개별 작용으로 추정됨. 은은 효소 억제, 단백질 변성, 막 누출 등 다양한 효과를 나타내는 살균제이며, 설파디아진은 세균의 디하이드로프테로에이트 합성효소의 경쟁적 억제를 통해 엽산 합성을 방해함."
 }

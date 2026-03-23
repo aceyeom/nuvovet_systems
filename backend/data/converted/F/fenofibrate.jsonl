@@ -29,75 +29,111 @@
     "available_strengths": [
       {
         "value": 35,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 43,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 45,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 48,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 54,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 67,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 90,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 105,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 120,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 130,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 134,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 135,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 145,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 150,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 160,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -581,5 +617,11 @@
     "source_file": "plumbs_output/41.jsonl",
     "extracted_at": "2026-03-11T01:47:58.328526+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "페노피브레이트(Fenofibrate)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【개 - 오프라벨】 식이 조절만으로 불충분한 고중성지방혈증 치료. 6.5~10 mg/kg PO SID",
+    "하루 첫 번째 식사와 함께 투여. 【사람 - 허가】 생활습관 개선의 보조요법으로 이상지질혈증(주로 고중성지방혈증) 관리. 【고양이】 임상 데이터 부재로 사용 권장 불가."
+  ],
+  "mechanism_short": "페노피브르산(활성형)이 퍼옥시좀 증식인자 활성화 수용체(PPAR)를 활성화하여 지단백 리파아제 농도 및 활성을 증가시킴. 이로 인해 초저밀도 지단백(VLDL) 및 중성지방의 청소율이 증가하고, LDL-콜레스테롤이 덜 동맥경화성으로 변하며 더 쉽게 제거됨. 요산의 요중 배설도 증가시킴."
 }

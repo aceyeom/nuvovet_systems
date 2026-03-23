@@ -24,35 +24,51 @@
     "available_strengths": [
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 750,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 15,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -568,5 +584,14 @@
     "source_file": "plumbs_output/58.jsonl",
     "extracted_at": "2026-03-11T07:14:39.535451+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "레베티라세탐(Levetiracetam)은(는) 발작(경련) 조절에 사용되는 항경련제입니다.",
+  "primary_indications": [
+    "개: 난치성 간질(보조 요법)",
+    "상태 간질 및 군발 발작(IV/직장/SC)",
+    "문맥전신단락 수술 전 발작 예방",
+    "반응성 발작. 고양이: 간질(보조 또는 단독 요법)",
+    "근간대성 발작. 말: 항경련(오프라벨). 모두 오프라벨 사용."
+  ],
+  "mechanism_short": "시냅스 소포의 전시냅스 단백질 SV2A에 선택적으로 결합하여 CNS 내 신경전달물질 방출에 영향을 미침. 간질형 폭발 발화의 과동기화 및 발작 활동 전파를 선택적으로 억제하는 것으로 추정됨. 정상 신경 흥분성에는 영향을 미치지 않음."
 }

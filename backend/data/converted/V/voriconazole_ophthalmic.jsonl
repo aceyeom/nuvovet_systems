@@ -23,11 +23,15 @@
     "available_strengths": [
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -318,5 +322,13 @@
     "source_file": "plumbs_output/6.jsonl",
     "extracted_at": "2026-03-10T15:17:28.486799+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "보리코나졸 점안제(Voriconazole Ophthalmic)은(는) 진균(곰팡이) 감염 치료에 사용되는 항진균제입니다.",
+  "primary_indications": [
+    "진균성 각막염(각막진균증): 말에서 가장 흔히 사용되나 개",
+    "고양이 등 다른 종에서도 사용됨. Aspergillus spp.",
+    "Candida spp.",
+    "Fusarium spp. 등 수의학적으로 중요한 대부분의 진균 및 효모균에 광범위한 항진균 스펙트럼을 보임. 각막내 주사 및 결막하 주사로도 사용 가능. 인체에서는 진균성 안내염 치료를 위한 유리체내 투여에 사용됨. 모든 적응증은 extra-label 사용임."
+  ],
+  "mechanism_short": "14-알파-스테롤 탈메틸화효소(cytochrome P-450 효소)와 상호작용하여 라노스테롤에서 에르고스테롤로의 전환을 억제함. 에르고스테롤은 진균 세포막의 필수 성분으로, 합성 억제 시 세포 투과성 증가 및 세포 내용물 누출 유발. 추가적으로 내인성 호흡 억제, 퓨린 흡수 억제, 효모의 균사 형태 전환 억제, 트리글리세리드 및 인지질 생합성 장애 유발."
 }

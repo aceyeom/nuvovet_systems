@@ -35,43 +35,63 @@
     "available_strengths": [
       {
         "value": 68,
-        "unit": "mcg"
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 136,
-        "unit": "mcg"
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 272,
-        "unit": "mcg"
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 55,
-        "unit": "mcg"
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 165,
-        "unit": "mcg"
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 1.87,
-        "unit": "%"
+        "unit": "%",
+        "form": "topical",
+        "is_splittable": null
       },
       {
         "value": 0.08,
-        "unit": "%"
+        "unit": "%",
+        "form": "topical",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 3,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -914,5 +934,17 @@
     "source_file": "plumbs_output/57.jsonl",
     "extracted_at": "2026-03-11T06:50:41.587456+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "이버멕틴(Ivermectin)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "개: 심사상충 예방(FDA 승인)",
+    "성충 심사상충 감염 보조 치료(extra-label)",
+    "미세사상충 각막염(extra-label)",
+    "전신성 모낭충증(extra-label)",
+    "개선충증(extra-label)",
+    "털진드기증(extra-label)",
+    "귀 진드기증(extra-label)",
+    "비강 진드기(extra-label). 고양이: 심사상충 예방 및 구충 제거(FDA 승인). 말: 대형 및 소형 원충"
+  ],
+  "mechanism_short": "이버멕틴은 무척추동물의 신경 및 근육 세포 내 글루타메이트 개폐 염화물 이온 채널에 결합하여 염화물 이온에 대한 세포 투과성을 증가시킨다. 결과적인 세포 과분극은 기생충의 마비 및 사멸을 유발한다. 포유류는 글루타메이트 개폐 염화물 이온 채널이 없으며, 이버멕틴은 다른 염화물 이온 채널에 대한 친화성이 낮다. GABA 개폐 염화물 채널에도 활성을 가질 수 있다."
 }

@@ -22,15 +22,21 @@
     "available_strengths": [
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -432,5 +438,12 @@
     "source_file": "plumbs_output/50.jsonl",
     "extracted_at": "2026-03-11T04:46:58.251348+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "비사코딜(Bisacodyl)은(는) 위장관 보호 및 궤양 치료에 사용되는 소화기 보호제입니다.",
+  "primary_indications": [
+    "개와 고양이의 변비 완화(비허가 사용). 대장내시경 전처치(개",
+    "비허가 사용 - 단",
+    "PEG 전해질 용액보다 효과 낮을 수 있음)."
+  ],
+  "mechanism_short": "장관 평활근의 벽내 신경총을 직접 자극하여 연동운동을 증가시키는 자극성 완하제. 결장 내 수분 및 이온 축적을 증가시켜 배변을 촉진함."
 }

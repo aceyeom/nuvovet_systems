@@ -21,15 +21,21 @@
     "available_strengths": [
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 3000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -247,7 +253,7 @@
           "logic_type": "fixed",
           "context": "림프종 및 육종 보조 치료 (체중 10 kg 초과, 오프라벨) - 프로토콜 A",
           "value": "375",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q21d",
           "max_dose_mg_kg": null,
@@ -258,7 +264,7 @@
           "logic_type": "fixed",
           "context": "림프종 및 육종 보조 치료 (체중 10 kg 미만, 오프라벨) - 프로토콜 B",
           "value": "350",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q21d",
           "max_dose_mg_kg": null,
@@ -274,7 +280,7 @@
           "logic_type": "fixed",
           "context": "림프종 및 백신 관련 육종 보조 치료 (오프라벨)",
           "value": "900",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "q21d",
           "max_dose_mg_kg": null,
@@ -514,5 +520,14 @@
     "source_file": "plumbs_output/1.jsonl",
     "extracted_at": "2026-03-10T14:02:06.118595+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "이포스파미드(Ifosfamide)은(는) 악성 종양(암) 치료에 사용되는 항종양제입니다.",
+  "primary_indications": [
+    "개와 고양이의 림프종 및 연조직 육종",
+    "백신 관련 육종(고양이)에 대한 복합 화학요법(오프라벨). 사람에서는 방광암",
+    "자궁경부암",
+    "난소암",
+    "일부 림프종 치료에 사용됨."
+  ],
+  "mechanism_short": "알킬화 항종양제. 암세포 DNA 가닥의 알킬화를 통해 교차결합을 유발하고 종양 성장, DNA 복제, RNA 전사, 단백질 합성을 억제함. 이포스파미드는 프로드럭으로 간에서 활성 알킬화제(이포스파미드 머스타드)로 대사됨."
 }

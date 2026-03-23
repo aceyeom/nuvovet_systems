@@ -22,23 +22,33 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 47,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 9.4,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 4.7,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -674,5 +684,14 @@
     "source_file": "plumbs_output/16.jsonl",
     "extracted_at": "2026-03-10T18:00:34.253299+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "에페드린(Ephedrine)은(는) 기관지 확장에 사용되는 기관지확장제입니다.",
+  "primary_indications": [
+    "【허가 적응증】 없음 (수의학적 허가 제품 없음)\n【오프라벨 적응증】\n- 개",
+    "고양이",
+    "말: 마취 관련 저혈압 치료 (IV 볼루스 또는 CRI)\n- 개",
+    "고양이: 요도 괄약근 저긴장증으로 인한 요실금 치료 (경구",
+    "단 미국에서 경구 제형 판매 중단)"
+  ],
+  "mechanism_short": "비카테콜아민 교감신경 흥분제로, 알파 및 베타 아드레날린 수용체에 직접 작용하고 교감신경에서 내인성 노르에피네프린의 방출을 간접적으로 유도하며, MAO에 의한 노르에피네프린 대사를 억제함. 혈관 수축, 심박수 증가, 관상동맥 혈류 증가, 혈압 상승, 경미한 CNS 자극, 기관지 수축 감소, 비강 충혈 감소, 식욕 감소 효과를 나타냄."
 }

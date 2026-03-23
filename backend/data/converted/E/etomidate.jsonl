@@ -24,7 +24,9 @@
     "available_strengths": [
       {
         "value": 2.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -484,5 +486,11 @@
     "source_file": "plumbs_output/17.jsonl",
     "extracted_at": "2026-03-10T18:32:46.711793+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "에토미데이트(Etomidate)은(는) 진정 및 불안 완화에 사용되는 진정제입니다.",
+  "primary_indications": [
+    "소동물(개",
+    "고양이)에서 전신마취 유도제로 오프라벨 사용. 특히 기존 심장 기능 장애 또는 중증 환자에서 알팍살론 또는 프로포폴의 대안. 페럿 및 소형 포유류(토끼 등)에서도 심혈관 불안정 환자의 마취 유도에 오프라벨 사용."
+  ],
+  "mechanism_short": "CNS의 GABA 수용체에 작용하여 염화물 전도도를 증가시키고, 시냅스 후 뉴런의 과분극을 유발하여 최면 및 CNS 억제를 일으킴."
 }

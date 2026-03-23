@@ -31,11 +31,15 @@
     "available_strengths": [
       {
         "value": 300,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 23,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -469,5 +473,14 @@
     "source_file": "plumbs_output/42.jsonl",
     "extracted_at": "2026-03-11T02:05:37.094940+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "플로르페니콜(Florfenicol)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "소: 소 호흡기 질환(BRD)",
+    "소 지간 봉와직염(족부 부패)",
+    "감염성 소 각결막염(IBK",
+    "허가 외). 돼지: 돼지 호흡기 질환(SRD). 양/염소: 호흡기 질환 복합체(허가 외). 낙타류: 감수성 병원체 감염(허가 외). 개/고양이: 용량 기준 미확립",
+    "허가 외 사용 사례 있으나 효능 데이터 부족."
+  ],
+  "mechanism_short": "50S 리보솜에 결합하여 세균 단백질 합성을 억제하는 시간 의존성 광범위 항생제. 주로 정균 작용을 하나 일부 세균에 대해서는 살균 작용을 함."
 }

@@ -20,11 +20,15 @@
     "available_strengths": [
       {
         "value": 1,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -388,5 +392,11 @@
     "source_file": "plumbs_output/11.jsonl",
     "extracted_at": "2026-03-10T16:45:57.012029+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "플루오로우라실 점안제(Fluorouracil Ophthalmic)은(는) 악성 종양(암) 치료에 사용되는 항종양제입니다.",
+  "primary_indications": [
+    "1) 녹내장 배액 수술(배액 션트 삽입 또는 방수 유출로 변경) 보조 — 섬유아세포 증식 억제 및 반흔 형성 방지 목적 (extra-label). 2) 안구 표면 종양(편평세포암종",
+    "육종) 치료 — 1% 점안액 또는 연고 1일 4회 적용 (extra-label). 수술 관련 프로토콜은 수의 안과 전문의가 결정함."
+  ],
+  "mechanism_short": "피리미딘 유사체로서 세포 내에서 여러 활성 대사체로 전환되어 DNA 및 RNA 합성을 억제하고 세포 성장을 저해하며 세포 사멸을 유도함. 항섬유화 작용으로 섬유아세포 증식을 억제하여 수술 후 반흔 형성을 방지함."
 }

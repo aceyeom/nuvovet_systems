@@ -29,27 +29,39 @@
     "available_strengths": [
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.1,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -565,5 +577,17 @@
     "source_file": "plumbs_output/19.jsonl",
     "extracted_at": "2026-03-10T19:07:02.956204+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "피토나디온(Phytonadione)은(는) 약물 효과를 역전시키는 길항제/해독제입니다.",
+  "primary_indications": [
+    "승인 적응증(라벨): 급성/비급성 저프로트롬빈혈증(출혈 동반). 오프라벨: 항응고제 살서제 독성(와파린",
+    "브로디파쿰",
+    "브로마디올론 등)",
+    "간 질환으로 인한 과도한 출혈(침습적 시술 전)",
+    "남조류 노출로 인한 간부전 보조 치료",
+    "반추동물의 달콤한 클로버 섭취로 인한 디쿠마롤 독성",
+    "설파퀴녹살린 독성",
+    "지방 흡수 장애(염증성 장 질환"
+  ],
+  "mechanism_short": "비타민 K는 간에서 혈액 응고인자 II(프로트롬빈), VII, IX, X 및 항응고 단백질 C와 S의 활성화에 필요한 보조인자이다. 비타민 K 없이는 이들 응고 단백질이 비활성 상태로 남아 기능하지 못한다. 피토나디온은 비타민 K 결핍 환자에서만 약리학적 효과를 나타내며, 정상 환자에서는 효과가 없는 것으로 보인다."
 }

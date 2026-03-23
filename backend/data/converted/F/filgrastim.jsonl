@@ -29,11 +29,15 @@
     "available_strengths": [
       {
         "value": 300,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mcg/mL"
+        "unit": "mcg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -448,5 +452,11 @@
     "source_file": "plumbs_output/41.jsonl",
     "extracted_at": "2026-03-11T02:00:08.424112+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "필그라스팀(Filgrastim)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "고양이",
+    "알파카에서의 호중구감소증 합병증(예: 감염) 보조 치료 (모두 허가 외). 골수에 과립구 전구세포가 존재하고 내인성 사이토카인 반응이 불충분하다고 판단될 때만 사용. 항암화학요법 유발 호중구감소증의 기간 및 중증도 감소."
+  ],
+  "mechanism_short": "재조합 인간 과립구 집락 자극 인자(G-CSF)로, 골수에서 호중구-과립구 계열 전구세포의 증식, 분화 및 활성화를 촉진함. 호중구 전구세포 수 증가, 호중구 생산 속도 증가, 성숙 시간 단축을 유도함."
 }

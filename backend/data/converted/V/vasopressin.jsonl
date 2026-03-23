@@ -24,7 +24,9 @@
     "available_strengths": [
       {
         "value": 20,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -650,5 +652,12 @@
     "source_file": "plumbs_output/6.jsonl",
     "extracted_at": "2026-03-10T15:27:15.034769+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "바소프레신(Vasopressin)은(는) 호르몬 불균형 치료에 사용되는 호르몬제입니다.",
+  "primary_indications": [
+    "【허가 외 사용】 ① 당뇨 무감증 진단(변형 수분 박탈 검사 보조) ② 심폐소생술 보조 치료(심실 무수축",
+    "무맥성 전기 활동) ③ 혈관확장성 쇼크/패혈성 쇼크/SIRS 유발 저혈압 보조 치료(노르에피네프린 후 2차 선택제). 수의학적 허가 제품 없음",
+    "인간용 Vasostrict® 사용."
+  ],
+  "mechanism_short": "V1, V2, V3 수용체 및 옥시토신 수용체, 퓨린성 P2 수용체를 통해 작용. V2 수용체: 원위 세뇨관 및 집합관에서 수분 재흡수 촉진(cAMP 증가, 요삼투압 증가). V1 수용체: 평활근 수축, 혈관수축(모세혈관 및 소동맥). 고용량에서 K+-감수성 ATP 채널 차단."
 }

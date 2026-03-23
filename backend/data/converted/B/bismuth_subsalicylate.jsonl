@@ -44,23 +44,33 @@
     "available_strengths": [
       {
         "value": 17.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 262,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -585,5 +595,15 @@
     "source_file": "plumbs_output/50.jsonl",
     "extracted_at": "2026-03-11T04:48:54.743215+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "비스무트 서브살리실레이트(Bismuth Subsalicylate)은(는) 위장관 보호 및 궤양 치료에 사용되는 소화기 보호제입니다.",
+  "primary_indications": [
+    "수의학적 적응증(모두 엑스트라-라벨): 개와 고양이의 급성 설사",
+    "위장관 보호",
+    "헬리코박터 위염 삼중/사중 요법(메트로니다졸",
+    "아목시실린과 병용). 인체 적응증: 소화불량",
+    "가스 통증",
+    "여행자 설사 치료 및 예방."
+  ],
+  "mechanism_short": "소장에서 비스무트 카보네이트와 살리실레이트로 분해됨. 비스무트 성분은 위장관 보호, 항내독소, 약한 항균 작용을 가짐. 살리실레이트 성분은 프로스타글란딘 합성 억제를 통해 분비성 설사의 임상 증상을 감소시킴."
 }

@@ -22,15 +22,21 @@
     "available_strengths": [
       {
         "value": 200,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 26.75,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -558,5 +564,13 @@
     "source_file": "plumbs_output/54.jsonl",
     "extracted_at": "2026-03-11T06:11:29.859429+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "염화암모늄(Ammonium Chloride)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "허가 외 사용: 개·고양이에서 요산성화(스트루바이트 요석 예방/치료)",
+    "독성 물질 신장 배설 촉진",
+    "특정 항균제 효능 강화",
+    "암모니아 내성 검사(간기능 평가). 말에서 요산성화 및 스트리크닌 독성 관리. 소반추동물(양·염소)에서 요석증 예방."
+  ],
+  "mechanism_short": "염화암모늄은 체내에서 염화물 이온과 암모늄 이온으로 해리됨. 암모늄 양이온은 간에서 요소로 전환되며 수소 이온이 방출됨. 이 수소 이온은 중탄산염과 결합하여 물과 이산화탄소를 형성함. 세포외액에서 염화물 이온은 고정 염기와 결합하여 체내 알칼리 저장량을 감소시킴. 결과적으로 혈청 중탄산염 수치 감소 및 혈액·소변 pH 저하가 나타남."
 }

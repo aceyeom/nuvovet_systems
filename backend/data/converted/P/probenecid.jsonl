@@ -22,7 +22,9 @@
     "available_strengths": [
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -537,5 +539,11 @@
     "source_file": "plumbs_output/21.jsonl",
     "extracted_at": "2026-03-10T19:41:19.457403+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "프로베네시드(Probenecid)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "파충류 통풍(고요산혈증) 치료(오프라벨). 베타-락탐 항생제 혈중 농도 증가 및 투여 간격 연장 보조(오프라벨",
+    "말에서 일부 데이터 있음). 수의학적으로 승인된 제품 없음."
+  ],
+  "mechanism_short": "근위 신세뇨관에서 요산 재흡수를 경쟁적으로 억제하여 요산 배설을 증가시키고 혈청 요산 농도를 낮춤. 또한 약산성 유기산(페니실린, 일부 세팔로스포린, 설박탐, 타조박탐, 오셀타미비르 등)의 신세뇨관 분비를 경쟁적으로 억제하여 이들 약물의 혈중 농도를 높임."
 }

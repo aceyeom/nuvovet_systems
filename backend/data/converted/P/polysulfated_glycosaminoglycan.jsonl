@@ -24,11 +24,15 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -469,5 +473,10 @@
     "source_file": "plumbs_output/20.jsonl",
     "extracted_at": "2026-03-10T19:21:23.310798+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "폴리설페이트 글리코사미노글리칸(Polysulfated Glycosaminoglycan)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "개(FDA 승인): 비감염성 퇴행성 및/또는 외상성 활막 관절염. 개(허가 외): 천포창 엽상형(증례 보고). 고양이(허가 외): 연골 보호 목적. 말(FDA 승인): 비감염성 퇴행성 및/또는 외상성 관절 기능 장애 및 관련 파행."
+  ],
+  "mechanism_short": "관절 조직 내 단백분해효소(세린 프로테아제, 엘라스타제, 메탈로프로테아제, 히알루로니다제) 억제를 통해 프로테오글리칸, 콜라겐, 히알루론산 분해를 방지. 프로스타글란딘 E2 합성 억제. 프로테오글리칸 및 히알루로네이트 합성 전구체로 작용하여 관절 염증 감소 및 활막액 점도 회복."
 }

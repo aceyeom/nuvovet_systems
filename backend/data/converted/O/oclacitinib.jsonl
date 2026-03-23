@@ -21,15 +21,21 @@
     "available_strengths": [
       {
         "value": 3.6,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 5.4,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 16.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -588,5 +594,17 @@
     "source_file": "plumbs_output/29.jsonl",
     "extracted_at": "2026-03-10T22:11:47.663691+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "오클라시티닙(Oclacitinib)은(는) 면역 반응을 억제하는 면역억제제입니다.",
+  "primary_indications": [
+    "【승인 적응증(개)】 알레르기성 피부염(벼룩 알레르기 포함) 및 아토피성 피부염 관련 소양감 조절 (12개월 이상 개). 【Extra-label 적응증(개)】 허혈성 피부병증",
+    "과각화성 다형홍반",
+    "자가면역 표피하 수포성 피부증",
+    "귀 끝 궤양성 피부염",
+    "피부 상피친화성 T세포 림프종(부분 관해)",
+    "옴 관련 소양감 일시적 완화",
+    "루푸스",
+    "천포창. 【Extra-label 적응증(고양이)】 고양이 아토피성 피부 증후군(FASS)"
+  ],
+  "mechanism_short": "비선택적 JAK(Janus Kinase) 억제제로, 주로 JAK1 효소 활성을 억제하고 JAK2 및 JAK3도 일부 억제함. IL-31(소양증 유발 사이토카인), IL-2, IL-4, IL-6, IL-13 등 염증성 사이토카인을 억제하여 소양감 및 염증을 감소시킴."
 }

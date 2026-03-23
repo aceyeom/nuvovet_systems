@@ -21,19 +21,27 @@
     "available_strengths": [
       {
         "value": 12.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -380,5 +388,10 @@
     "source_file": "plumbs_output/16.jsonl",
     "extracted_at": "2026-03-10T18:10:52.507117+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "엡시프란텔(Epsiprantel)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "【승인 적응증】 개: Dipylidium caninum 및 Taenia pisiformis 제거. 고양이: Dipylidium caninum 및 Taenia taeniaeformis 제거. 【허가 외 사용】 개 및 고양이: Echinococcus spp (개) 및 Echinococcus multilocularis (고양이) 성충 단계 제거."
+  ],
+  "mechanism_short": "조충의 칼슘 조절 능력을 방해하여 강직(tetany)을 유발하고 숙주에 대한 부착을 방해한다. 외피(integument) 변형으로 인해 숙주 동물의 소화 효소에 취약해진다."
 }

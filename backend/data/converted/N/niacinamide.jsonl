@@ -20,11 +20,15 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -426,5 +430,17 @@
     "source_file": "plumbs_output/28.jsonl",
     "extracted_at": "2026-03-10T21:55:24.303335+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "니아시나마이드(Niacinamide)은(는) 면역 반응을 억제하는 면역억제제입니다.",
+  "primary_indications": [
+    "【오프라벨 적응증 (개)】 원판상 홍반성 루푸스(DLE)",
+    "피부 수포성 홍반성 루푸스",
+    "무균성 육아종/화농성 육아종 증후군",
+    "무균성 결절성 지방층염",
+    "피부 반응성 조직구증",
+    "천포창 복합체",
+    "점막 천포창",
+    "특발성 대칭성(루포이드) 조갑이영양증/조갑염"
+  ],
+  "mechanism_short": "IgE 유도 히스타민 유리 및 비만세포 탈과립 억제; 포스포디에스테라제 억제; 프로테아제 유리 감소; 테트라사이클린과 병용 시 항체-항원 복합체에 의한 보체 활성화 이후 백혈구 화학주성 억제."
 }

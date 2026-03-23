@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 3.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -346,5 +348,14 @@
     "source_file": "plumbs_output/4.jsonl",
     "extracted_at": "2026-03-10T14:50:11.426819+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "오플록사신 점안액(Ofloxacin Ophthalmic)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "세균성 결막염(Staphylococcus spp",
+    "Streptococcus spp",
+    "Pseudomonas aeruginosa",
+    "Chlamydophila spp",
+    "Haemophilus spp 등 감수성 균주에 의한 경우) 및 세균성 각막염의 치료. 모든 수의학적 적응증은 오프라벨 사용임."
+  ],
+  "mechanism_short": "세균 DNA 자이라제(II형 토포이소머라제)를 억제하여 DNA 초나선화 및 DNA 합성을 방해하는 살균성, 농도 의존성 플루오로퀴놀론 항생제. 그람 음성균에 대한 활성이 그람 양성균보다 강함."
 }

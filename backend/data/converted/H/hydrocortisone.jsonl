@@ -25,43 +25,63 @@
     "available_strengths": [
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 0.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -727,5 +747,13 @@
     "source_file": "plumbs_output/1.jsonl",
     "extracted_at": "2026-03-10T13:42:33.333261+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "하이드로코르티손(Hydrocortisone)은(는) 항염증 및 면역억제 효과를 가진 부신피질 호르몬제입니다.",
+  "primary_indications": [
+    "급성 부신피질 기능부전(애디슨 위기) 보조 치료(오프라벨)",
+    "부신피질 기능저하증 장기 유지 치료(오프라벨)",
+    "중증 질환 관련 코르티코스테로이드 부전(CIRCI)(오프라벨)",
+    "심폐소생술 후 혈역학적 불안정 시(오프라벨). 경구 제형은 부신피질 기능저하증 장기 유지에 사용 가능하나 수의 임상에서 일반적으로 잘 사용되지 않음."
+  ],
+  "mechanism_short": "글루코코르티코이드 수용체에 결합하여 포유류의 거의 모든 세포 유형 및 시스템에 영향을 미침. 항염증, 면역억제, 대사 조절, 미네랄코르티코이드 효과를 나타냄."
 }

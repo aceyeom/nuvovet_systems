@@ -21,23 +21,33 @@
     "available_strengths": [
       {
         "value": 6,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 30,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 75,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 95,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -584,5 +594,11 @@
     "source_file": "plumbs_output/62.jsonl",
     "extracted_at": "2026-03-11T08:29:16.741773+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "마바콕시브(Mavacoxib)은(는) 통증과 염증을 완화하는 비스테로이드성 항염증제(NSAID)입니다.",
+  "primary_indications": [
+    "개에서 1개월 이상의 지속 치료가 필요한 퇴행성 관절 질환(골관절염)과 관련된 통증 및 염증 치료. 12개월 이상",
+    "5kg 이상의 개에서 사용. 미국 내 사용은 extra-label에 해당."
+  ],
+  "mechanism_short": "COX-2 선택적 억제제(coxib 계열). COX-2 억제를 통해 통증 및 염증에 기여하는 프로스타글란딘 생성을 억제하며, COX-1은 상대적으로 보존하여 정상적인 위장관 및 신장 기능 유지에 관여하는 프로스타글란딘을 보호합니다."
 }

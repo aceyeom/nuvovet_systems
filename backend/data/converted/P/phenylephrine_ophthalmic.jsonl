@@ -21,15 +21,21 @@
     "available_strengths": [
       {
         "value": 1.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 2.5,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 10.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -413,5 +419,10 @@
     "source_file": "plumbs_output/4.jsonl",
     "extracted_at": "2026-03-10T14:52:48.147094+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "페닐에프린 점안액(Phenylephrine Ophthalmic)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "1) 백내장 수술(수정체유화술) 전 산동 유도 (extra-label)\n2) 결막 생검 등 경미한 안구 표면 수술 시 출혈 감소 (extra-label)\n3) 호너 증후군의 2차 및 3차 병변 감별 진단 (extra-label)\n※ 수의과 승인 제품 없음. 모든 동물 적용은 적응증 외 사용임."
+  ],
+  "mechanism_short": "직접 작용 알파-1 아드레날린 수용체 작용제로, 홍채 방사상 확장근을 직접 자극하여 산동을 유발하고 강력한 국소 혈관수축 효과를 나타냄."
 }

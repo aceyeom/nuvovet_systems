@@ -27,23 +27,33 @@
     "available_strengths": [
       {
         "value": 5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 35,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 70,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -503,5 +513,13 @@
     "source_file": "plumbs_output/61.jsonl",
     "extracted_at": "2026-03-11T08:16:24.581889+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "알렌드로네이트(Alendronate)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【허가 외 사용】 개: 불응성 고칼슘혈증",
+    "골종양 관련 통증 감소",
+    "골육종 보조 치료. 고양이: 특발성 고칼슘혈증",
+    "치아 흡수 병변 진행 억제. 수의용 허가 제품 없음."
+  ],
+  "mechanism_short": "뼈 하이드록시아파타이트에 결합하여 파골세포 기능을 억제함으로써 골 흡수를 감소시킴. 이차적으로 세포자멸사 촉진, 파골세포 생성 억제, 혈관신생 억제, 암세포 증식 억제 효과도 있음."
 }

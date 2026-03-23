@@ -395,5 +395,13 @@
     "source_file": "plumbs_output/26.jsonl",
     "extracted_at": "2026-03-10T21:13:10.363709+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "클로파지민(Clofazimine)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "소동물에서 비결핵 마이코박테리아 감염(M. avium complex",
+    "개 나병양 육아종 증후군",
+    "고양이 나병 등)에 대한 다제 병용 요법의 일환으로 사용(모두 extra-label). 인체에서는 나병(리팜핀",
+    "답손과 병용) 및 MAC 치료에 사용됨."
+  ],
+  "mechanism_short": "마이코박테리아 DNA에 결합하여 성장을 억제하는 서서히 작용하는 살균제. 항염증 및 면역억제 효과도 있으나 기전 불명확. 페나진 계열 적색 염료로 조직, 피부, 체액 변색 유발."
 }

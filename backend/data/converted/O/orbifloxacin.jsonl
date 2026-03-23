@@ -24,15 +24,21 @@
     "available_strengths": [
       {
         "value": 22.7,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 68.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 30.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -645,5 +651,14 @@
     "source_file": "plumbs_output/29.jsonl",
     "extracted_at": "2026-03-10T22:21:40.440434+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "오르비플록사신(Orbifloxacin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "승인 적응증: 개와 고양이의 감수성 세균에 의한 피부·연조직 감염",
+    "개의 세균성 요로감염(UTI). 비라벨 외 사용: 아목시실린 또는 트리메토프림-설폰아미드가 적절하지 않은 산발성 방광염(3~5일)",
+    "말의 감수성 감염(5~7.5 mg/kg PO SID)",
+    "토끼의 감수성 감염(20 mg/kg PO SID)",
+    "일본 메추라기(20 mg/kg PO SID). 신우신염 또는 전립선 감염의 1차 선택약으로 적합. 세균성 모낭염의 2차 치료제."
+  ],
+  "mechanism_short": "세균 DNA 자이라제(II형 토포이소머라제)를 억제하여 DNA 초나선 형성 및 DNA 합성을 방해함으로써 세균 세포 복제를 차단하는 농도 의존성 살균제."
 }

@@ -24,27 +24,39 @@
     "available_strengths": [
       {
         "value": 4.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 4.2,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 7.5,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 8.4,
-        "unit": "%"
+        "unit": "%",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 325.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 650.0,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -725,5 +737,13 @@
     "source_file": "plumbs_output/34.jsonl",
     "extracted_at": "2026-03-10T23:49:26.981700+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "탄산수소나트륨(Sodium Bicarbonate)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "▶ 중증 대사성 산증 (심폐소생술",
+    "신부전",
+    "신세뇨관 산증",
+    "독소 노출 등에 의한 경우) - 허가 외\n▶ 고칼륨혈증 위기 보조 치료 - 허가 외\n▶ 고칼슘혈증 보조 치료 - 허가 외\n▶ 소변 알칼리화 - 허가 외\n▶ 수의용 주사제(8.4%)는 FDA 미승인 제품임"
+  ],
+  "mechanism_short": "중탄산염 이온은 체내 세포외액의 주요 완충계(중탄산염:탄산 완충계)의 공액 염기 성분으로 작용하여 산을 중화하고 혈액 및 소변의 pH를 상승시킨다."
 }

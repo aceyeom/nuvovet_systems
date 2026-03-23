@@ -22,39 +22,57 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mcg"
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mcg"
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mcg"
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 60,
-        "unit": "mcg"
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mcg"
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 150,
-        "unit": "mcg"
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 200,
-        "unit": "mcg"
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mcg"
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mcg"
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -479,5 +497,11 @@
     "source_file": "plumbs_output/38.jsonl",
     "extracted_at": "2026-03-11T00:56:19.577255+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "다베포에틴 알파(Darbepoetin Alfa)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【허가 외 사용】개와 고양이의 만성신장질환(CKD)과 관련된 정색소성 정구성 비재생성 빈혈 치료. PCV 20% 미만이거나 빈혈 관련 임상 증상이 있을 때 치료 시작 권장. 에포에틴 알파의 대안으로 사용 가능(더 긴 반감기",
+    "낮은 면역원성)."
+  ],
+  "mechanism_short": "과당화된 합성 인간 재조합 에리스로포이에틴 유사체로, 내인성 에리스로포이에틴과 동일한 기전으로 조혈 전구 줄기세포와 상호작용하여 적혈구 생성을 자극함."
 }

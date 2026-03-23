@@ -21,11 +21,15 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -605,5 +609,17 @@
     "source_file": "plumbs_output/57.jsonl",
     "extracted_at": "2026-03-11T07:07:07.096603+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "레플루노마이드(Leflunomide)은(는) 면역 반응을 억제하는 면역억제제입니다.",
+  "primary_indications": [
+    "개: 면역매개성 용혈성 빈혈(IMHA)",
+    "면역매개성 혈소판감소증(IMT)",
+    "에반스 증후군",
+    "전신성/피부성 반응성 조직구증",
+    "면역매개성 다발성 관절염",
+    "염증성 장질환",
+    "범혈구감소증",
+    "혈관염"
+  ],
+  "mechanism_short": "피리미딘 합성 억제제. 활성 대사체 테리플루노마이드(A77 1726)가 미토콘드리아 효소 디하이드로오로테이트 탈수소효소(DHODH)를 가역적으로 억제하여 리보뉴클레오타이드 UMP 형성을 차단, DNA/RNA 합성 감소, 세포 증식 억제 및 G1 세포주기 정지를 유발. 주로 림프구에 작용하여 자가면역 T세포 증식 및 B세포의 자가항체 생성을 억제."
 }

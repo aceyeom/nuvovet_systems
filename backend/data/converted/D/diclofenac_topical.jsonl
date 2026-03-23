@@ -31,19 +31,27 @@
     "available_strengths": [
       {
         "value": 1.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "topical",
+        "is_splittable": null
       },
       {
         "value": 1.3,
-        "unit": "%"
+        "unit": "%",
+        "form": "topical",
+        "is_splittable": null
       },
       {
         "value": 1.5,
-        "unit": "%"
+        "unit": "%",
+        "form": "topical",
+        "is_splittable": null
       },
       {
         "value": 3.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "topical",
+        "is_splittable": null
       }
     ]
   },
@@ -442,5 +450,16 @@
     "source_file": "plumbs_output/40.jsonl",
     "extracted_at": "2026-03-11T01:32:46.827504+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "디클로페낙 (국소용)(Diclofenac, Topical)은(는) 통증과 염증을 완화하는 비스테로이드성 항염증제(NSAID)입니다.",
+  "primary_indications": [
+    "말의 비절(hock)",
+    "완관절(knee)",
+    "전지 구절(forelimb fetlock)",
+    "후지 구절(hindlimb fetlock)",
+    "근위 지절간관절(pastern) 골관절염과 관련된 통증 및 염증 조절(FDA 승인",
+    "최대 10일). 아미카신 IV 국소 관류 주사 부위 염증 감소(오프라벨). 토끼의 광선각화증 치료(증례 보고",
+    "오프라벨)."
+  ],
+  "mechanism_short": "사이클로옥시게나제(COX1 및 COX2) 비선택적 억제제로, COX2 억제를 통해 통증, 발열, 염증과 관련된 프로스타글란딘 생성을 감소시킨다. 리폭시게나제에 대한 일부 억제 효과도 있을 수 있다."
 }

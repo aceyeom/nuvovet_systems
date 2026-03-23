@@ -26,15 +26,21 @@
     "available_strengths": [
       {
         "value": 200,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 324,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -856,5 +862,16 @@
     "source_file": "plumbs_output/32.jsonl",
     "extracted_at": "2026-03-10T23:02:25.449534+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "퀴니딘(Quinidine)은(는) 심장 기능 개선에 사용되는 심장약입니다.",
+  "primary_indications": [
+    "승인 적응증(수의과 승인 제품 없음",
+    "오프라벨 사용): 개-심실 부정맥(PVC",
+    "심실빈맥)",
+    "난치성 상심실성 빈맥",
+    "WPW 증후군 관련 상심실성 부정맥",
+    "심방세동의 동율동 전환",
+    "말-심방세동의 약물적 심율동전환(주요 적응증). 고양이에서 경구 투여는 일반적으로 사용되지 않음."
+  ],
+  "mechanism_short": "Class IA 항부정맥제. 활동전위 탈분극(phase 0) 시 빠른 나트륨 채널을 차단하여 심근 흥분성, 전도 속도, 수축력을 억제함. 활동전위 지속시간 및 유효 불응기를 연장하여 재진입 현상을 방지하고 전도 시간을 증가시킴. 항콜린 작용으로 미주신경 긴장도를 감소시켜 AV 전도를 촉진할 수 있음."
 }

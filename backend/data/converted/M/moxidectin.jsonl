@@ -38,31 +38,45 @@
     "available_strengths": [
       {
         "value": 10.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "topical",
+        "is_splittable": null
       },
       {
         "value": 2.5,
-        "unit": "%"
+        "unit": "%",
+        "form": "topical",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "topical",
+        "is_splittable": null
       },
       {
         "value": 5.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 10.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 1.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 20.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -639,5 +653,17 @@
     "source_file": "plumbs_output/27.jsonl",
     "extracted_at": "2026-03-10T21:39:59.699643+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "목시덱틴(Moxidectin)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "개: 심장사상충 예방",
+    "구충(구충",
+    "회충)",
+    "벼룩/진드기 구제",
+    "모낭충증(extra-label). 고양이: 심장사상충 예방",
+    "귀 진드기",
+    "벼룩/진드기 구제",
+    "폐충증(extra-label)"
+  ],
+  "mechanism_short": "밀베마이신 계열 항기생충제로, 선충 및 절지동물의 신경계에서 글루타메이트 개폐 염화물 이온 채널에 결합하여 막 투과성을 증가시키고 신경세포(선충) 및 근육세포(절지동물)의 전기적 활성을 억제하여 마비 및 사멸을 유발함. 또한 시냅스 전 뉴런에서 GABA 방출을 증강시켜 억제성 신경전달을 강화함."
 }

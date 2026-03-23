@@ -25,31 +25,45 @@
     "available_strengths": [
       {
         "value": 12.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 80,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -849,5 +863,17 @@
     "source_file": "plumbs_output/43.jsonl",
     "extracted_at": "2026-03-11T02:38:33.465314+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "푸로세미드(Furosemide)은(는) 체액 저류 치료에 사용되는 이뇨제입니다.",
+  "primary_indications": [
+    "승인 적응증: 개·고양이에서 심부전 관련 부종(폐울혈",
+    "복수)",
+    "소에서 분만 후 유방 부종. 허가 외 적응증: 고칼슘혈증",
+    "급성 신손상",
+    "고칼륨혈증 보조 치료",
+    "전신 고혈압 보조 치료",
+    "사이클로포스파미드 유발 출혈성 방광염 예방(개)",
+    "말에서 운동 유발 폐출혈(EIPH) 예방."
+  ],
+  "mechanism_short": "헨레 고리 상행각 수질부에서 NA⁺-K⁺-2Cl⁻ 공동수송체 활성을 억제하여 전해질 재흡수를 감소시키는 루프 이뇨제. 원위 세뇨관에서 칼륨 배설 증가, 근위 세뇨관에서 전해질 수송에 직접 영향. 탄산탈수효소에는 영향 없으며 알도스테론을 길항하지 않음."
 }

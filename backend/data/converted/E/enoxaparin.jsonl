@@ -26,39 +26,57 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 30,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 60,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 80,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 120,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 150,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -510,5 +528,10 @@
     "source_file": "plumbs_output/15.jsonl",
     "extracted_at": "2026-03-10T17:55:15.654683+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "에녹사파린(Enoxaparin)은(는) 혈액 응고를 억제하는 항응고제입니다.",
+  "primary_indications": [
+    "【오프라벨】개: 혈전색전증 예방 (면역매개성 용혈성 빈혈 포함). 고양이: 혈전색전증 예방. 말: 산통 수술 후 제엽염 예방. 【인체 허가】불안정형 협심증 및 비Q파 심근경색과 관련된 허혈성 합병증 예방."
+  ],
+  "mechanism_short": "항트롬빈에 결합하여 이를 가속화함으로써 인자 Xa 및 트롬빈 억제를 강화하는 저분자량 헤파린(LMWH). 표준 헤파린에 비해 인자 Xa를 선택적으로 억제하며 응고 시간(PT, TT, aPTT)에 미치는 영향은 최소화됨."
 }

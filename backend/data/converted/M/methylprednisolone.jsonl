@@ -28,39 +28,57 @@
     "available_strengths": [
       {
         "value": 1,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 4,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 8,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 16,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 32,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 80,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -954,5 +972,17 @@
     "source_file": "plumbs_output/64.jsonl",
     "extracted_at": "2026-03-11T09:19:23.537927+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "메틸프레드니솔론(Methylprednisolone)은(는) 항염증 및 면역억제 효과를 가진 부신피질 호르몬제입니다.",
+  "primary_indications": [
+    "1) 부신피질기능저하증(하이포아드레노코르티시즘) 또는 상대적 부신 기능 부전(패혈성 쇼크)에서의 글루코코르티코이드 보충",
+    "2) 항염증 치료(아토피 피부염",
+    "알레르기",
+    "과민성 피부염)",
+    "3) 면역억제 치료",
+    "4) 항종양 치료. 아나필락시스 보조 치료(소듐 숙시네이트 제형",
+    "extra-label). 흉요추 추간판 탈출증",
+    "출혈성/저혈량성 쇼크"
+  ],
+  "mechanism_short": "합성 글루코코르티코이드로서 코르티솔 대비 약 4~5배의 항염증 효능을 가지며, 미네랄코르티코이드 활성은 거의 없음. 글루코코르티코이드 수용체에 결합하여 항염증, 면역억제, 항종양 효과를 나타냄."
 }

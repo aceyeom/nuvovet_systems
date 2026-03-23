@@ -23,27 +23,39 @@
     "available_strengths": [
       {
         "value": 330,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 300,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 400,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -389,5 +401,13 @@
     "source_file": "plumbs_output/53.jsonl",
     "extracted_at": "2026-03-11T05:33:05.457255+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "레보카르니틴(Levocarnitine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【개】확장성 심근병증(DCM) 보조 치료 (오프라벨)",
+    "시스테인/요산 요로결석 보조 치료 (오프라벨)",
+    "독소루비신 유발 심근병증 예방 (오프라벨)",
+    "발프로산 독성 보조 치료 (오프라벨). 【고양이】간지방증 보조 치료 (오프라벨). 수의학적 허가 적응증 없음."
+  ],
+  "mechanism_short": "레보카르니틴은 장쇄 지방산이 세포 미토콘드리아 내로 진입하는 것을 촉진하여 에너지 생산을 위한 산화에 이용될 수 있도록 함. 정상적인 지방 이용 및 에너지 대사에 필수적인 내인성 물질임."
 }

@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -379,5 +381,10 @@
     "source_file": "plumbs_output/34.jsonl",
     "extracted_at": "2026-03-10T23:50:49.229290+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "소듐 스티보글루코네이트(Sodium Stibogluconate)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "개의 피부 리슈만편모충증 치료 (extra-label). 메글루민 안티모니에이트를 구할 수 없는 경우 대안으로 사용. 고양이에 대한 승인 또는 권장 용량 없음."
+  ],
+  "mechanism_short": "5가 안티몬 화합물로, 감수성 있는 아마스티고트에서 ATP 및 GTP 합성을 억제하는 것으로 추정됨. 막 투과성 또는 능동 수송 기전 변화도 관여할 수 있음. 정확한 작용 기전은 불명확."
 }

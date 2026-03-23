@@ -23,15 +23,21 @@
     "available_strengths": [
       {
         "value": 0.1,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.3,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 10.0,
-        "unit": "mcg"
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -400,5 +406,12 @@
     "source_file": "plumbs_output/9.jsonl",
     "extracted_at": "2026-03-10T16:16:07.876990+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "비마토프로스트 점안액(Bimatoprost Ophthalmic)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "개의 원발성 녹내장 및 안압 상승 치료 (오프라벨). 포도막염",
+    "수정체 탈구",
+    "안내 종양에 의한 속발성 녹내장에는 적합하지 않음. 고양이 및 말의 녹내장에는 효과 없음."
+  ],
+  "mechanism_short": "프로스타마이드 유사체로서 섬유주 및 포도막공막 경로를 통한 방수 유출을 증가시켜 안압을 낮춤."
 }

@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 1.0,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -320,5 +322,12 @@
     "source_file": "plumbs_output/6.jsonl",
     "extracted_at": "2026-03-10T15:13:17.387535+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "트리플루리딘 점안액(Trifluridine Ophthalmic)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【허가 외 사용】 고양이 헤르페스바이러스-1(FHV-1) 각막염",
+    "개 헤르페스바이러스-1(CHV-1) 각막염. 수의과 허가 제품 없음",
+    "인체용 1% 점안액을 허가 외로 사용."
+  ],
+  "mechanism_short": "DNA 합성 방해: 바이러스 DNA에 삽입되어 티미딜레이트 합성효소(thymidylate synthetase)를 가역적으로 억제함으로써 바이러스 복제를 억제(바이러스 정지 작용, virustatic)."
 }

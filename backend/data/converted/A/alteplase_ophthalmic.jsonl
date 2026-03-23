@@ -22,11 +22,15 @@
     "available_strengths": [
       {
         "value": 1.0,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 0.25,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -416,5 +420,10 @@
     "source_file": "plumbs_output/8.jsonl",
     "extracted_at": "2026-03-10T16:01:58.472897+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "알테플라제 안과용(Alteplase Ophthalmic)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "안내 섬유소 용해 (오프라벨): 안내 염증 또는 출혈로 인한 전방 내 피브린 및 혈전 용해. 유착 형성 예방 및 방수 흐름 장애 완화. 녹내장 예방 목적."
+  ],
+  "mechanism_short": "알테플라제(조직 플라스미노겐 활성화제)는 혈전 내 피브린에 결합하는 세린 프로테아제로, 혈전의 플라스미노겐을 플라스민으로 전환시켜 국소 섬유소 용해를 유도함."
 }

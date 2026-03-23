@@ -25,7 +25,9 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -210,7 +212,7 @@
           "logic_type": "fixed",
           "context": "림프종 1차 치료(T세포) 또는 구제 요법 - MOPP, MPP, MOMP 프로토콜 (오프라벨)",
           "value": "3",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "Once",
           "max_dose_mg_kg": null,
@@ -226,7 +228,7 @@
           "logic_type": "fixed",
           "context": "림프종 구제 요법 - MOPP, MOMP 프로토콜 (오프라벨)",
           "value": "3",
-          "unit": "mg/kg",
+          "unit": "mg/m²",
           "route": "IV",
           "frequency": "Once",
           "max_dose_mg_kg": null,
@@ -425,5 +427,17 @@
     "source_file": "plumbs_output/62.jsonl",
     "extracted_at": "2026-03-11T11:33:44.462320+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "메클로레타민(Mechlorethamine)은(는) 악성 종양(암) 치료에 사용되는 항종양제입니다.",
+  "primary_indications": [
+    "개와 고양이의 림프종(T세포 림프종 포함) 1차 및 구제 치료를 위한 MOPP(메클로레타민",
+    "빈크리스틴",
+    "프로카르바진",
+    "프레드니손)",
+    "MPP(메클로레타민",
+    "프로카르바진",
+    "프레드니손)",
+    "MOMP(메클로레타민"
+  ],
+  "mechanism_short": "알킬화제로서 DNA 복제, RNA 전사, 단백질 합성을 방해하는 이중기능 알킬화제. 세포주기 비특이적."
 }

@@ -22,11 +22,15 @@
     "available_strengths": [
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 250,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -581,5 +585,14 @@
     "source_file": "plumbs_output/54.jsonl",
     "extracted_at": "2026-03-11T05:57:54.049669+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아미카신(Amikacin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "심각한 그람음성균 및 다제내성 포도상구균 감염 치료. 개에서 비경구 투여 FDA 승인. 고양이",
+    "파충류 등 다양한 동물종에서 허가 외 사용. 말에서 자궁내 주입 FDA 승인(식용 목적이 아닌 말). 외이염(개",
+    "EDTA-Triz와 병용)",
+    "관절내 감염",
+    "정맥 국소 사지 관류(IVRLP) 등에도 사용."
+  ],
+  "mechanism_short": "30S 리보솜 소단위에 비가역적으로 결합하여 단백질 합성을 억제하는 농도 의존성 살균 항생제."
 }

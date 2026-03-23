@@ -23,23 +23,33 @@
     "available_strengths": [
       {
         "value": 10,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 4,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 20,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 80,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -656,5 +666,12 @@
     "source_file": "plumbs_output/46.jsonl",
     "extracted_at": "2026-03-11T03:16:29.431200+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "텔미사르탄(Telmisartan)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "고양이: 전신 고혈압 조절(FDA 승인)",
+    "CKD 관련 단백뇨 감소(EU 승인",
+    "미국 extra-label). 개: CKD 관련 단백뇨 감소 및 전신 고혈압(extra-label). 개에서 난치성 특발성 간질의 보조 항간질제로 연구 중."
+  ],
+  "mechanism_short": "안지오텐신-II 수용체 차단제(ARB)로서 AT1 수용체를 선택적으로 차단하여 알도스테론 합성 및 분비를 감소시키고, 혈관 확장 및 나트륨 배설 증가를 유발함. 레닌-안지오텐신계에 작용하나 서브스턴스 P 또는 브래디키닌 반응에는 영향을 미치지 않음."
 }

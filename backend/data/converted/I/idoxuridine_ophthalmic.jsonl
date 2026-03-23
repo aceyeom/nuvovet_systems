@@ -20,11 +20,15 @@
     "available_strengths": [
       {
         "value": 0.1,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       },
       {
         "value": 0.5,
-        "unit": "%"
+        "unit": "%",
+        "form": "ophthalmic",
+        "is_splittable": null
       }
     ]
   },
@@ -313,5 +317,13 @@
     "source_file": "plumbs_output/12.jsonl",
     "extracted_at": "2026-03-10T16:54:52.778661+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아이독수리딘 점안제(Idoxuridine Ophthalmic)은(는) 바이러스 감염 치료에 사용되는 항바이러스제입니다.",
+  "primary_indications": [
+    "고양이 헤르페스바이러스-1(FHV-1)에 의한 결막염 및 각막염 (extra-label)",
+    "개 헤르페스바이러스-1(CHV-1) 각막염 (extra-label)",
+    "말 헤르페스바이러스-2(EHV-2)에 의한 각결막염 (extra-label",
+    "망아지)."
+  ],
+  "mechanism_short": "티미딘과 화학적으로 유사하여 바이러스 DNA에 삽입됨으로써 바이러스 유전 코드의 오독을 유발하고 바이러스 복제를 억제하는 비특이적 DNA 합성 억제제 (바이러스 정지 작용)."
 }

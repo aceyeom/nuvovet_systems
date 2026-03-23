@@ -22,15 +22,21 @@
     "available_strengths": [
       {
         "value": 120,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 100,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 85,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -600,5 +606,17 @@
     "source_file": "plumbs_output/2.jsonl",
     "extracted_at": "2026-03-10T14:10:04.391627+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "이미도카브(Imidocarb)은(는) 기생충 감염 예방 및 치료에 사용되는 구충제입니다.",
+  "primary_indications": [
+    "승인 적응증: 개의 바베시아증(Babesia canis). 엑스트라라벨 적응증: 개의 Babesia gibsoni 감염(CDI 프로토콜)",
+    "에를리키아증(Ehrlichia canis",
+    "독시사이클린 병용)",
+    "간조충증(Hepatozoon canis)",
+    "고양이의 사이토옥스주노시스(Cytauxzoon felis)",
+    "고양이 바베시아증(대형 바베시아)",
+    "고양이 헤모플라스마증",
+    "말의 피로플라스마증(Babesia caballi"
+  ],
+  "mechanism_short": "이미도카브는 감수성 원충의 DNA 핵산과 결합하여 DNA를 풀고 변성시킴으로써 세포 복구 및 복제를 억제한다. 또한 기생충의 포도당 조절 능력을 변화시키는 것으로 알려져 있다. 콜린성 특성을 가지고 있어 독성 프로파일에 기여한다."
 }

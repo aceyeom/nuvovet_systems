@@ -28,23 +28,33 @@
     "available_strengths": [
       {
         "value": 200,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 1000,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 62.5,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 65,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 130,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -497,5 +507,17 @@
     "source_file": "plumbs_output/3.jsonl",
     "extracted_at": "2026-03-10T14:32:02.162782+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "요오드화물 (포타슘-, 소듐-)(Iodide (Potassium-, Sodium-))은(는) 진균(곰팡이) 감염 치료에 사용되는 항진균제입니다.",
+  "primary_indications": [
+    "【허가 용도】소에서 방선균증(Lump jaw)",
+    "방선간균증(Woody tongue)",
+    "괴사성 구내염 치료 (소듐 요오드화물 20%",
+    "IV). 【허가 외 용도】개",
+    "고양이",
+    "말에서 스포로트리코시스",
+    "말에서 피티오시스 보조 치료",
+    "말에서 콘디오볼로마이코시스"
+  ],
+  "mechanism_short": "정확한 작용 기전은 불명확하나, 육아종성 염증 과정에 영향을 미치는 것으로 추정됨. 시험관 내 항균 활성은 거의 없음. 갑상선으로의 요오드 운반 및 갑상선 기능 조절에 관여."
 }

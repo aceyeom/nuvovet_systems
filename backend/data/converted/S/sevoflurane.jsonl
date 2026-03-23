@@ -26,7 +26,9 @@
     "available_strengths": [
       {
         "value": 250,
-        "unit": "ml/kg"
+        "unit": "ml/kg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -639,5 +641,16 @@
     "source_file": "plumbs_output/34.jsonl",
     "extracted_at": "2026-03-10T23:45:14.509860+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "세보플루란(Sevoflurane)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "전신마취 유도 및 유지 (개: FDA 승인",
+    "고양이",
+    "소형 포유류",
+    "반추동물",
+    "파충류",
+    "양서류: 비라벨). 빠른 마취 유도 및 회복이 필요한 경우",
+    "쇠약하거나 노령 환자에서 특히 유용하다."
+  ],
+  "mechanism_short": "신경세포 지질막 기질에 작용하여 신경이온채널(특히 빠른 시냅스 신경전달물질 수용체)의 활성을 변화시킴으로써 전신마취 효과를 나타낸다. 혈액-가스 분배계수(0.6)가 낮아 빠른 마취 유도 및 회복이 가능하다."
 }

@@ -22,11 +22,15 @@
     "available_strengths": [
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -441,5 +445,11 @@
     "source_file": "plumbs_output/40.jsonl",
     "extracted_at": "2026-03-11T01:34:22.882708+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "디클록사실린(Dicloxacillin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "페니실리나제 생성 포도상구균에 의한 소동물의 골",
+    "피부 및 연조직 감염 치료(경구). 메티실린 내성 포도상구균(MRSA/MRSP)에는 효과 없음."
+  ],
+  "mechanism_short": "베타락탐 항균제로서 세균 세포벽 내 페니실린 결합 단백질(PBP)에 결합하여 펩티도글리칸 합성을 억제함으로써 세포벽 결함 및 삼투압 불안정 구형체를 형성하여 살균 작용을 나타냄. 페니실리나제 내성 페니실린으로 페니실리나제 생성 포도상구균에 효과적임."
 }

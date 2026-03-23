@@ -25,27 +25,39 @@
     "available_strengths": [
       {
         "value": 160,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 325,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 80,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 650,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 32,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -601,5 +613,13 @@
     "source_file": "plumbs_output/60.jsonl",
     "extracted_at": "2026-03-11T07:58:06.336846+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "아세트아미노펜(Acetaminophen)은(는) 통증 완화에 사용되는 진통제입니다.",
+  "primary_indications": [
+    "【승인 적응증】 없음 (수의과 허가 제품 없음)\n【오프라벨 적응증】\n- 개: 진통 및 해열 (10~15 mg/kg PO q8h",
+    "장기 사용 시 q12h)\n- 말: 진통 및 해열 (20 mg/kg PO 1일 1~2회)\n- 토끼/설치류/소형 포유류: 경증~중등도 통증 조절 (Children's Tylenol® 사용",
+    "음수에 1~2 mg/mL 농도로 희석)\n- 다른 진통제(NSAIDs",
+    "오피오이드)를 사용할 수 없는 만성 통증 상태에 특히 유용"
+  ],
+  "mechanism_short": "사이클로옥시게나제(COX) 및 프로스타글란딘 H2 합성효소의 퍼옥시다제 부위 억제를 통한 진통 및 해열 효과. 세로토닌성 활성도 진통 효과에 기여할 수 있습니다. 아스피린과 달리 임상 권장 용량에서는 유의한 항염증 활성이나 혈소판 기능 억제가 없습니다."
 }

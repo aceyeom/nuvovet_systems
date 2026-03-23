@@ -23,27 +23,39 @@
     "available_strengths": [
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 25,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 37.4,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 50,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 75,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -443,5 +455,17 @@
     "source_file": "plumbs_output/53.jsonl",
     "extracted_at": "2026-03-11T05:40:59.748707+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "세파클로르(Cefaclor)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "1세대 세팔로스포린(세팔렉신",
+    "세파드록실) 내성이나 세파클로르에 감수성인 세균 감염(E. coli",
+    "K. pneumoniae",
+    "P. mirabilis 등 그람음성균 포함). 수의학에서는 오프라벨 사용. 장내구균",
+    "Enterobacter",
+    "대부분의 Pseudomonas",
+    "MRSA",
+    "ESBL 생성균에는 효과 없음."
+  ],
+  "mechanism_short": "세포벽 합성 억제를 통한 살균 작용. 그람음성균(E. coli, K. pneumoniae, P. mirabilis 포함)에 대해 1세대 세팔로스포린보다 넓은 스펙트럼 보유."
 }

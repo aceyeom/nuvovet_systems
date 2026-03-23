@@ -23,19 +23,27 @@
     "available_strengths": [
       {
         "value": 2.25,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 3.375,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 4.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 40.5,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -489,5 +497,10 @@
     "source_file": "plumbs_output/19.jsonl",
     "extracted_at": "2026-03-10T19:11:10.917797+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "피페라실린/타조박탐(Piperacillin/Tazobactam)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "세균 배양 및 감수성 검사에 근거한 세균 감염 치료(세균성 패혈증 포함). 그람음성균 또는 혼합 호기성/혐기성 감염이 우려되는 수술 예방적 항생제 투여. 오프라벨 사용."
+  ],
+  "mechanism_short": "피페라실린은 세균의 세포벽 합성 및 격막 형성을 억제하는 살균성 확장 스펙트럼 아실아미노페니실린임. 타조박탐은 베타-락타마제에 비가역적으로 결합하여 피페라실린의 베타-락탐 고리를 가수분해로부터 보호하고 스펙트럼을 확장함."
 }

@@ -21,15 +21,21 @@
     "available_strengths": [
       {
         "value": 1000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 2000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 10000,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -469,5 +475,11 @@
     "source_file": "plumbs_output/30.jsonl",
     "extracted_at": "2026-03-10T22:26:35.299252+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "옥사실린(Oxacillin)은(는) 세균 감염 치료에 사용되는 항생제입니다.",
+  "primary_indications": [
+    "페니실리나제 생성 포도상구균에 의한 감수성 감염(피부",
+    "연조직 등) 치료. 수의학에서 오프라벨 사용. 경구 치료가 필요한 경우 디클록사실린 캡슐로 대체 가능."
+  ],
+  "mechanism_short": "페니실리나제 내성 페니실린으로, 세균 세포벽 합성에 필수적인 페니실린 결합 단백질(PBP)에 결합하여 세포벽 합성을 억제함으로써 살균 작용을 나타냄. 페니실리나제 생성 포도상구균에 효과적."
 }

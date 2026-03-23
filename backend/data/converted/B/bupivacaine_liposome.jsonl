@@ -22,7 +22,9 @@
     "available_strengths": [
       {
         "value": 13.3,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -490,5 +492,10 @@
     "source_file": "plumbs_output/51.jsonl",
     "extracted_at": "2026-03-11T05:00:47.124391+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "부피바카인 리포솜(Bupivacaine Liposome)은(는) 통증 완화에 사용되는 진통제입니다.",
+  "primary_indications": [
+    "【승인 적응증】개: 전방십자인대(CCL) 수술 시 절개 봉합 시점에 수술 부위 조직층 침윤 주사로 수술 후 국소 진통. 고양이: 발톱제거술 후 국소 진통을 위한 말초신경 차단. 【비라벨 적응증】고양이: 난소자궁절제술 후 절개 부위 차단(연구 보고)."
+  ],
+  "mechanism_short": "아미드형 국소마취제. 신경세포막의 나트륨 이온 투과성을 감소시켜 신경 충격의 발생 및 전도를 차단함. 탈분극 속도를 감소시키고 전기적 흥분 역치를 높여 활동전위 전파를 억제함. 리포솜 제형은 약물을 서서히 방출하여 표준 부피바카인 용액보다 긴 마취 지속 시간을 제공함."
 }

@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 40,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -680,5 +682,12 @@
     "source_file": "plumbs_output/3.jsonl",
     "extracted_at": "2026-03-10T14:26:18.024154+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "프로타민 아연 재조합 인간 인슐린(Insulin, Protamine Zinc Recombinant Human (rPZI))은(는) 호르몬 불균형 치료에 사용되는 호르몬제입니다.",
+  "primary_indications": [
+    "개와 고양이의 당뇨병 초기 치료 및 장기 관리(FDA 승인). 고양이 당뇨병의 1차 선택 인슐린. 개 당뇨병의 1차 선택 인슐린 중 하나(중간 작용형 인슐린과 함께). 비라벨 적응증: 낙타과 동물의 중증 고지혈증",
+    "조랑말의 고지혈증",
+    "소의 케톤증 보조 치료."
+  ],
+  "mechanism_short": "인슐린의 주요 작용은 포도당 대사 조절. 말초 조직(특히 골격근 및 지방)에서 포도당 흡수를 증가시켜 혈당을 낮춤. 간에서 포도당 저장(글리코겐) 증가 및 당신생 억제. 지방산 및 단백질 합성 촉진, 지방분해 및 단백질 분해 억제."
 }

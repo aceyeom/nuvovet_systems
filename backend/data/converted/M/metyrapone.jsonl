@@ -21,7 +21,9 @@
     "available_strengths": [
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -392,5 +394,10 @@
     "source_file": "plumbs_output/64.jsonl",
     "extracted_at": "2026-03-11T09:28:23.178042+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "메티라폰(Metyrapone)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【오프라벨】고양이 부신피질기능항진증 (쿠싱증후군): 30–70 mg/kg PO BID 또는 250–500 mg/마리/일 PO. 사람에서는 시상하부/뇌하수체/부신 장애 진단을 위한 메티라폰 검사에 사용됨."
+  ],
+  "mechanism_short": "11-베타-하이드록실라제(11-beta-hydroxylase) 억제를 통해 코르티솔 및 코르티코스테론 생성을 감소시킴. 11-데옥시코르티솔의 코르티솔 전환을 차단하여 부신피질 스테로이드 합성을 억제함."
 }

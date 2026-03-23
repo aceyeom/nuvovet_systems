@@ -24,19 +24,27 @@
     "available_strengths": [
       {
         "value": 250,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 375,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 125,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       },
       {
         "value": 500,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -408,5 +416,10 @@
     "source_file": "plumbs_output/45.jsonl",
     "extracted_at": "2026-03-11T03:14:05.383050+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "타우린(Taurine)은(는) 수의학에서 사용되는 약물입니다.",
+  "primary_indications": [
+    "【승인 적응증】 없음 (영양 보충제로 분류). 【오프라벨 적응증】 ① 개·고양이 타우린 결핍성 확장성 심근병증(DCM) 예방 및 보조 치료 ② 고양이 망막 변성 예방 ③ 개·고양이 항경련 보조 치료 ④ 고양이 간질환(간지방증 등) 보조 치료 (일화적 근거만 존재)"
+  ],
+  "mechanism_short": "타우린은 담즙산 포합, 칼슘 플럭스 조절, 혈소판 응집 억제, 신경막 안정화, 심장 기능 조절(양성 변력 효과, 이온 전류 조절)에 관여하는 필수 아미노산이다. GABA 유사 효과를 통해 CNS에도 작용한다."
 }

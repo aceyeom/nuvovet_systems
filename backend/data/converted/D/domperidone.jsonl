@@ -23,11 +23,15 @@
     "available_strengths": [
       {
         "value": 110,
-        "unit": "mg/mL"
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "mg"
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
       }
     ]
   },
@@ -531,5 +535,11 @@
     "source_file": "plumbs_output/14.jsonl",
     "extracted_at": "2026-03-10T17:31:32.466808+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "돔페리돈(Domperidone)은(는) 구토 예방 및 치료에 사용되는 항구토제입니다.",
+  "primary_indications": [
+    "【승인 적응증】말: 분만 전후 암말의 페스큐 독성증 예방 (FDA 승인",
+    "Equidone® Gel). 【엑스트라라벨】개: 경증~중등도 리슈만편모충증 치료 및 예방. 말: 뇌하수체 중간부 기능장애(PPID) 진단 보조(돔페리돈 반응 검사)."
+  ],
+  "mechanism_short": "도파민 D2 수용체 길항제로, 위장관 및 화학수용체 유발대(CTZ)에서 도파민을 길항하여 위장관 운동 촉진 및 구토 억제 효과를 나타냄. 또한 위에서 알파-2 및 베타-2 아드레날린 수용체를 길항하며, 프로락틴 분비를 증가시킴."
 }

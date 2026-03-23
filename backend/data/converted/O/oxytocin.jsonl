@@ -21,11 +21,15 @@
     "available_strengths": [
       {
         "value": 20,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       },
       {
         "value": 10,
-        "unit": "IU/mL"
+        "unit": "IU/mL",
+        "form": "injectable",
+        "is_splittable": null
       }
     ]
   },
@@ -577,5 +581,17 @@
     "source_file": "plumbs_output/30.jsonl",
     "extracted_at": "2026-03-10T22:38:50.744590+00:00",
     "reviewer": null
-  }
+  },
+  "brief_description": "옥시토신(Oxytocin)은(는) 호르몬 불균형 치료에 사용되는 호르몬제입니다.",
+  "primary_indications": [
+    "【승인 적응증】 분만 시 자궁 수축 유도 또는 강화",
+    "산후 자궁 내 잔류물 배출 및 자궁 출혈 조절",
+    "무유증 치료",
+    "유즙 분비 촉진 (소",
+    "돼지). 【오프라벨 적응증】 자궁 탈출 수동 정복 후 자궁 복구 촉진 (개)",
+    "급성 자궁내막염 보조 치료",
+    "식도 폐색 치료 (말)",
+    "난산 치료 (조류"
+  ],
+  "mechanism_short": "옥시토신은 자궁 근섬유의 나트륨 투과성을 증가시켜 자궁 수축을 자극한다. 임신 기간이 길수록, 에스트로겐 수치가 높을수록, 이미 분만 중인 경우 옥시토신에 의한 자궁 수축 역치가 낮아진다. 또한 유즙 분비를 촉진하고 약한 항이뇨 작용을 가진다."
 }
