@@ -137,6 +137,33 @@ def init_db() -> None:
                 ON account_patients(account_id, updated_at DESC)
                 """
             )
+            cur.execute(
+                """
+                CREATE TABLE IF NOT EXISTS patient_medications (
+                    id TEXT PRIMARY KEY,
+                    account_id TEXT NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+                    patient_id TEXT NOT NULL,
+                    drug_id TEXT,
+                    drug_name TEXT NOT NULL,
+                    dose TEXT,
+                    unit TEXT,
+                    route TEXT,
+                    frequency TEXT,
+                    status TEXT NOT NULL DEFAULT 'active',
+                    indication TEXT,
+                    start_date DATE,
+                    stop_date DATE,
+                    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+                    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+                )
+                """
+            )
+            cur.execute(
+                """
+                CREATE INDEX IF NOT EXISTS idx_patient_medications_patient
+                ON patient_medications(account_id, patient_id, status)
+                """
+            )
 
             cur.execute(
                 "SELECT id FROM accounts WHERE username = %s",

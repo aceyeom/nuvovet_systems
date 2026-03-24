@@ -182,6 +182,63 @@ export async function saveAccountStateApi(state) {
   return data?.data ?? null;
 }
 
+// ── Patient medication history ───────────────────────────────
+
+/**
+ * List medications for a patient.
+ * @param {string} patientId
+ * @param {string} status  'active'|'stopped'|'prn'|'all' (default: 'all')
+ * @returns {Promise<Array|null>}
+ */
+export async function getPatientMedicationsApi(patientId, status = 'all') {
+  const params = new URLSearchParams();
+  if (status && status !== 'all') params.set('status', status);
+  const data = await apiFetch(`/api/patients/${encodeURIComponent(patientId)}/medications?${params}`);
+  return data?.medications ?? null;
+}
+
+/**
+ * Add a medication to a patient's medication history.
+ * @param {string} patientId
+ * @param {object} medication  { drug_id, drug_name, dose, unit, route, frequency, status, indication, start_date, stop_date }
+ * @returns {Promise<object|null>}
+ */
+export async function addPatientMedicationApi(patientId, medication) {
+  const data = await apiFetch(`/api/patients/${encodeURIComponent(patientId)}/medications`, {
+    method: 'POST',
+    body: JSON.stringify(medication),
+  });
+  return data?.medication ?? null;
+}
+
+/**
+ * Update a medication entry.
+ * @param {string} patientId
+ * @param {string} medId
+ * @param {object} updates
+ * @returns {Promise<object|null>}
+ */
+export async function updatePatientMedicationApi(patientId, medId, updates) {
+  const data = await apiFetch(`/api/patients/${encodeURIComponent(patientId)}/medications/${encodeURIComponent(medId)}`, {
+    method: 'PUT',
+    body: JSON.stringify(updates),
+  });
+  return data?.medication ?? null;
+}
+
+/**
+ * Delete a medication entry.
+ * @param {string} patientId
+ * @param {string} medId
+ * @returns {Promise<boolean>}
+ */
+export async function deletePatientMedicationApi(patientId, medId) {
+  const data = await apiFetch(`/api/patients/${encodeURIComponent(patientId)}/medications/${encodeURIComponent(medId)}`, {
+    method: 'DELETE',
+  });
+  return Boolean(data?.ok);
+}
+
 // ── Health check ─────────────────────────────────────────────────
 
 /**

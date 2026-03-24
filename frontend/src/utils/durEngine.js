@@ -1,19 +1,31 @@
 /**
- * Client-side DUR Interaction Engine — v2.0 Clinical Stress Test
+ * Client-side DUR Interaction Engine — v3.0 Comprehensive Clinical DUR
  *
  * runFullDURAnalysis(drugs, species, weightKg, patient)
- *   patient = { breed, ageNum, ageUnit, conditions, creatinine, alt }
+ *   patient = { breed, ageNum, ageUnit, conditions, creatinine, alt, sex,
+ *               isNeutered, isPregnant, trimester, allergies, currentMedications }
  *
  * Produces:
  *   interactions    — pairwise DDI alerts
  *   drugFlags       — per-drug source / species / NTI flags
- *   patientAlerts   — patient-context alerts (breed, age, condition, dose, lab)
+ *   patientAlerts   — patient-context alerts (breed, age, condition, dose, lab,
+ *                      disease, pregnancy, allergy, gender, food, washout)
  *   overallSeverity
  *   confidenceScore
  *   speciesNotes
  */
 
 import { DRUG_SOURCE } from '../data/drugDatabase';
+import {
+  checkDrugDiseaseRules,
+  checkDrugAgeRules,
+  checkDrugPregnancyRules,
+  checkAllergyRules,
+  checkDrugFoodRules,
+  checkGenderRules,
+  checkLabInterference,
+  checkWashoutRules,
+} from './drugClassRules';
 
 // ── Severity definitions ─────────────────────────────────────────
 const SEVERITY = {
@@ -130,6 +142,66 @@ function resolveField(field, drugA, drugB) {
   return typeof field === 'function' ? field(drugA, drugB) : field;
 }
 
+/**
+ * Split multi-substance drugs into virtual sub-drugs for interaction checking.
+ * E.g., "Temaril-P" (Trimeprazine + Prednisolone) → two virtual drug objects.
+ * Each retains the parent's metadata but gets the individual active ingredient's class.
+ */
+function splitMultiSubstanceDrug(drug) {
+  const activeIngredient = drug.activeSubstance || drug.name;
+  if (!activeIngredient) return [drug];
+
+  // Split on common delimiters: /, +, " and ", " & "
+  const parts = activeIngredient.split(/[\/\+]|(?:\s+and\s+)|(?:\s+&\s+)/i).map(s => s.trim()).filter(Boolean);
+  if (parts.length <= 1) return [drug];
+
+  // Known ingredient → class mappings for common compounds
+  const INGREDIENT_CLASS_MAP = {
+    prednisolone: 'Glucocorticoid', prednisone: 'Glucocorticoid',
+    dexamethasone: 'Glucocorticoid', methylprednisolone: 'Glucocorticoid',
+    trimeprazine: 'Antihistamine', trimethoprim: 'Antibiotic',
+    sulfadiazine: 'Antibiotic', sulfamethoxazole: 'Antibiotic',
+    clavulanate: 'Antibiotic', 'clavulanic acid': 'Antibiotic',
+    amoxicillin: 'Antibiotic', enrofloxacin: 'Antibiotic',
+    metronidazole: 'Antibiotic', spiramycin: 'Antibiotic',
+    praziquantel: 'Antiparasitic', pyrantel: 'Antiparasitic',
+    febantel: 'Antiparasitic', ivermectin: 'Antiparasitic',
+    imidacloprid: 'Antiparasitic', moxidectin: 'Antiparasitic',
+    atropine: 'Anticholinergic', diphenoxylate: 'Antidiarrheal',
+    omeprazole: 'GI Protectant', famotidine: 'GI Protectant',
+  };
+
+  return parts.map((ingredient, idx) => {
+    const ingredientLower = ingredient.toLowerCase();
+    const matchedClass = Object.entries(INGREDIENT_CLASS_MAP).find(
+      ([key]) => ingredientLower.includes(key)
+    );
+    return {
+      ...drug,
+      id: `${drug.id}__component_${idx}`,
+      name: ingredient,
+      activeSubstance: ingredient,
+      class: matchedClass ? matchedClass[1] : drug.class,
+      _isVirtualComponent: true,
+      _parentDrugId: drug.id,
+      _parentDrugName: drug.name,
+    };
+  });
+}
+
+/**
+ * Expand drugs list: split multi-substance drugs into virtual components.
+ * Returns both originals (for display) and expanded list (for analysis).
+ */
+function expandDrugsForAnalysis(drugs) {
+  const expanded = [];
+  for (const drug of drugs) {
+    const components = splitMultiSubstanceDrug(drug);
+    expanded.push(...components);
+  }
+  return expanded;
+}
+
 // ── Predefined pairwise interaction matrix ───────────────────────
 const INTERACTION_MATRIX = [
   // Duplicate NSAID
@@ -156,8 +228,8 @@ const INTERACTION_MATRIX = [
       const steroid = a.class === 'Corticosteroid' ? a : b;
       return `${nsaid.name} (NSAID) + ${steroid.name} (corticosteroid): this combination carries the highest risk of fatal GI ulceration and perforation in small animal practice. NSAIDs inhibit mucosal prostaglandin synthesis while corticosteroids impair mucosal repair — additive damage is NOT merely additive but synergistic. Both drugs have additive_risks.gi_ulcer = true.`;
     },
-    recommendation: 'HARD STOP — avoid concurrent use. If both are clinically necessary, add omeprazole 1 mg/kg PO SID and monitor for GI bleeding (melena, haematochezia, vomiting blood). Allow a 5–7 day washout when switching drug classes.',
-    alternativeSuggestion: 'Replace the NSAID with Gabapentin 10 mg/kg PO TID for pain control. If steroid is essential, use the lowest effective dose of Prednisolone + Omeprazole 1 mg/kg PO SID for mucosal protection.',
+    recommendation: 'HARD STOP — avoid concurrent use. If both are clinically necessary, add Omeprazole 0.5–1.5 mg/kg PO BID (per ACVIM consensus — BID dosing required for adequate acid suppression; SID is subtherapeutic). Monitor for GI bleeding (melena, haematochezia, vomiting blood). Allow a 5–7 day washout when switching drug classes.',
+    alternativeSuggestion: 'Replace the NSAID with Gabapentin 10 mg/kg PO TID for pain control. If steroid is essential, use the lowest effective dose of Prednisolone + Omeprazole 0.5–1.5 mg/kg PO BID for mucosal protection. Do NOT combine H2RA (famotidine) with PPI — this decreases PPI efficacy (ACVIM 2018).',
     literatureSummary: 'GI perforation risk: dogs receiving both NSAIDs and corticosteroids had a 15× higher rate of GI ulceration than either alone, with fatal perforations in 3.2% of cases (Lascelles, JVIM 2005). This is the most common fatal prescription combination in small animal practice.',
     literature: [
       { title: 'Lascelles BDX, et al. GI effects of NSAID-corticosteroid combination in dogs.', source: 'J Vet Intern Med 2005;19(5):633-643', confidence: 92 },
@@ -264,7 +336,7 @@ const INTERACTION_MATRIX = [
     literature: [{ title: 'Cowgill LD, Francey T. Acute kidney injury in dogs and cats.', source: 'Vet Clin North Am 2011;41(1):1-14', confidence: 78 }],
   },
 
-  // Bleeding risk stacking
+  // Bleeding risk stacking — dynamic templates per drug pair
   {
     match: (a, b) => {
       const rs = { high: 3, moderate: 2, low: 1, none: 0 };
@@ -272,11 +344,43 @@ const INTERACTION_MATRIX = [
     },
     severity: SEVERITY.MODERATE,
     rule: 'Bleeding Risk Stacking',
-    mechanism: 'Both drugs carry significant bleeding risk. Combined use increases the likelihood of hemorrhagic complications.',
-    recommendation: 'Monitor for signs of bleeding (melena, petechiae). Check coagulation parameters before and during therapy. Add Omeprazole 1 mg/kg PO SID for GI protection.',
-    alternativeSuggestion: 'Consider reducing the NSAID to the lowest effective dose. Gabapentin 10 mg/kg PO TID provides pain control without bleeding risk.',
-    literatureSummary: 'Combining bleeding-risk agents in post-surgical dogs resulted in a 3.7× increase in hemorrhagic complications (Budsberg 2009).',
-    literature: [{ title: 'Budsberg SC. Nonsteroidal anti-inflammatory drugs and bleeding.', source: 'Vet Surg 2009;38(1):E1-E10', confidence: 82 }],
+    mechanism: (a, b) => {
+      const mechanisms = [];
+      if (a.class === 'NSAID' || b.class === 'NSAID') {
+        const nsaid = a.class === 'NSAID' ? a : b;
+        mechanisms.push(`${nsaid.name} inhibits cyclooxygenase (COX), impairing platelet thromboxane A2 synthesis and reducing platelet aggregation`);
+      }
+      if (a.class === 'Corticosteroid' || a.class === 'Glucocorticoid' || b.class === 'Corticosteroid' || b.class === 'Glucocorticoid') {
+        const steroid = (a.class === 'Corticosteroid' || a.class === 'Glucocorticoid') ? a : b;
+        mechanisms.push(`${steroid.name} impairs mucosal repair and increases capillary fragility, potentiating GI bleeding risk`);
+      }
+      if (a.additiveRisks?.bleeding && !['NSAID', 'Corticosteroid', 'Glucocorticoid'].includes(a.class)) {
+        mechanisms.push(`${a.name} (${a.class}) carries independent bleeding risk via ${a.effects_and_mechanisms?.common_mechanism || 'direct pharmacological action'}`);
+      }
+      if (b.additiveRisks?.bleeding && !['NSAID', 'Corticosteroid', 'Glucocorticoid'].includes(b.class)) {
+        mechanisms.push(`${b.name} (${b.class}) carries independent bleeding risk via ${b.effects_and_mechanisms?.common_mechanism || 'direct pharmacological action'}`);
+      }
+      return `${a.name} + ${b.name}: ${mechanisms.join('. ')}. Combined use creates synergistic hemorrhagic risk — the bleeding probability is multiplicative, not merely additive.`;
+    },
+    recommendation: (a, b) => {
+      const isNsaidSteroid = (a.class === 'NSAID' && (b.class === 'Corticosteroid' || b.class === 'Glucocorticoid')) ||
+                             (b.class === 'NSAID' && (a.class === 'Corticosteroid' || a.class === 'Glucocorticoid'));
+      const giProtection = 'Add Omeprazole 0.5–1.5 mg/kg PO BID (per ACVIM consensus — BID dosing required for adequate acid suppression) for GI protection.';
+      if (isNsaidSteroid) {
+        return `AVOID concurrent use of ${a.name} + ${b.name} if possible. If clinically essential: ${giProtection} Monitor for melena, haematochezia, petechiae, prolonged bleeding from venipuncture sites. Check PCV/TS and coagulation panel (PT/PTT) before and 48h after starting therapy.`;
+      }
+      return `Monitor ${a.name} + ${b.name} combination closely for signs of bleeding (melena, petechiae, ecchymoses, prolonged bleeding). ${giProtection} Check coagulation parameters (PT/PTT, PCV/TS) before and during therapy.`;
+    },
+    alternativeSuggestion: (a, b) => {
+      const nsaid = [a, b].find(d => d.class === 'NSAID');
+      if (nsaid) return `Consider replacing ${nsaid.name} with Gabapentin 10 mg/kg PO TID (no bleeding risk) or reducing to the lowest effective NSAID dose.`;
+      return `Evaluate if both ${a.name} and ${b.name} are essential. Consider sequential rather than concurrent therapy if clinically feasible.`;
+    },
+    literatureSummary: 'Combining bleeding-risk agents in post-surgical dogs resulted in a 3.7× increase in hemorrhagic complications (Budsberg 2009). ACVIM consensus recommends PPI BID dosing for adequate gastroprotection.',
+    literature: [
+      { title: 'Budsberg SC. Nonsteroidal anti-inflammatory drugs and bleeding.', source: 'Vet Surg 2009;38(1):E1-E10', confidence: 82 },
+      { title: 'Marks SL, et al. ACVIM consensus: rational administration of GI protectants.', source: 'J Vet Intern Med 2018;32(6):1823-1840', confidence: 90 },
+    ],
   },
 
   // CYP induction — reduces substrate efficacy (Case 22: Phenobarbital + Methimazole)
@@ -688,7 +792,10 @@ export function runFullDURAnalysis(drugs, species, weightKg, patient = {}) {
     timestamp: new Date().toISOString(),
   };
 
-  // ── Per-drug flags ─────────────────────────────────────────────
+  // ── Expand multi-substance drugs for analysis ──────────────────
+  const expandedDrugs = expandDrugsForAnalysis(drugs);
+
+  // ── Per-drug flags (use original drugs for display) ────────────
   for (const drug of drugs) {
     const flag = {
       drugId: drug.id,
@@ -784,46 +891,168 @@ export function runFullDURAnalysis(drugs, species, weightKg, patient = {}) {
   }
 
   // ── Per-drug patient-context alerts ────────────────────────────
-  for (const drug of drugs) {
+  for (const drug of expandedDrugs) {
     const drugAlerts = generatePerDrugPatientAlerts(drug, species, weightKg, patient);
     results.patientAlerts.push(...drugAlerts);
   }
 
+  // ── Class-based rules (drug-disease, drug-age, drug-pregnancy, etc.) ──
+  const conditions = patient.conditions || [];
+  const allergies = patient.allergies || [];
+  const ageMonthsVal = ageInMonths(patient);
+  const currentMedications = patient.currentMedications || [];
+
+  for (const drug of expandedDrugs) {
+    // Drug-Disease class rules (beta-blocker + asthma, NSAID + CKD, etc.)
+    const diseaseAlerts = checkDrugDiseaseRules(drug, conditions, species);
+    for (const alert of diseaseAlerts) {
+      // Avoid duplicating alerts already caught by rawContraindications
+      const isDup = results.patientAlerts.some(a =>
+        a.type === 'drug-disease' && a.drug === (drug._parentDrugName || drug.name) &&
+        a.matchedCondition === alert.matchedCondition
+      );
+      if (!isDup) {
+        results.patientAlerts.push({
+          ...alert,
+          drug: drug._parentDrugName || drug.name,
+          severity: alert.severity === 'CRITICAL' ? SEVERITY.CRITICAL : SEVERITY.MODERATE,
+        });
+      }
+    }
+
+    // Drug-Age class rules
+    if (ageMonthsVal !== null) {
+      const ageAlerts = checkDrugAgeRules(drug, ageMonthsVal, species);
+      for (const alert of ageAlerts) {
+        const isDup = results.patientAlerts.some(a =>
+          a.type === 'drug-age' && a.drug === (drug._parentDrugName || drug.name)
+        );
+        if (!isDup) {
+          results.patientAlerts.push({
+            ...alert,
+            drug: drug._parentDrugName || drug.name,
+            severity: alert.severity === 'CRITICAL' ? SEVERITY.CRITICAL : SEVERITY.MODERATE,
+          });
+        }
+      }
+    }
+
+    // Drug-Pregnancy rules
+    if (patient.isPregnant) {
+      const pregAlerts = checkDrugPregnancyRules(drug, true, patient.trimester);
+      for (const alert of pregAlerts) {
+        results.patientAlerts.push({
+          ...alert,
+          drug: drug._parentDrugName || drug.name,
+          severity: alert.severity === 'CRITICAL' ? SEVERITY.CRITICAL : SEVERITY.MODERATE,
+        });
+      }
+    }
+
+    // Drug-Allergy cross-reactivity
+    if (allergies.length > 0) {
+      const allergyAlerts = checkAllergyRules(drug, allergies);
+      for (const alert of allergyAlerts) {
+        results.patientAlerts.push({
+          ...alert,
+          drug: drug._parentDrugName || drug.name,
+          severity: alert.severity === 'CRITICAL' ? SEVERITY.CRITICAL : SEVERITY.MODERATE,
+        });
+      }
+    }
+
+    // Drug-Food interaction warnings
+    const foodAlerts = checkDrugFoodRules(drug);
+    for (const alert of foodAlerts) {
+      results.patientAlerts.push({
+        ...alert,
+        drug: drug._parentDrugName || drug.name,
+        severity: SEVERITY.MODERATE,
+      });
+    }
+
+    // Drug-Gender/Neuter rules
+    if (patient.sex) {
+      const genderAlerts = checkGenderRules(drug, patient.sex, patient.isNeutered);
+      for (const alert of genderAlerts) {
+        results.patientAlerts.push({
+          ...alert,
+          drug: drug._parentDrugName || drug.name,
+          severity: alert.severity === 'CRITICAL' ? SEVERITY.CRITICAL : SEVERITY.MODERATE,
+        });
+      }
+    }
+
+    // Drug-Lab interference warnings
+    const labAlerts = checkLabInterference(drug);
+    for (const alert of labAlerts) {
+      results.patientAlerts.push({
+        ...alert,
+        drug: drug._parentDrugName || drug.name,
+        severity: SEVERITY.MODERATE,
+      });
+    }
+
+    // Washout period checking against current medications
+    if (currentMedications.length > 0) {
+      const washoutAlerts = checkWashoutRules(drug, currentMedications);
+      for (const alert of washoutAlerts) {
+        results.patientAlerts.push({
+          ...alert,
+          drug: drug._parentDrugName || drug.name,
+          severity: alert.severity === 'CRITICAL' ? SEVERITY.CRITICAL : SEVERITY.MODERATE,
+        });
+      }
+    }
+  }
+
   // ── Multi-drug systemic alerts ─────────────────────────────────
-  const multiAlerts = generateMultiDrugAlerts(drugs, species, weightKg, patient);
+  const multiAlerts = generateMultiDrugAlerts(expandedDrugs, species, weightKg, patient);
   results.patientAlerts.push(...multiAlerts);
 
-  // ── Pairwise interaction checks ─────────────────────────────────
-  for (let i = 0; i < drugs.length; i++) {
-    for (let j = i + 1; j < drugs.length; j++) {
-      const drugA = drugs[i];
-      const drugB = drugs[j];
+  // ── Pairwise interaction checks (use expanded drugs for multi-substance) ──
+  for (let i = 0; i < expandedDrugs.length; i++) {
+    for (let j = i + 1; j < expandedDrugs.length; j++) {
+      const drugA = expandedDrugs[i];
+      const drugB = expandedDrugs[j];
+      // Skip interactions between components of the same parent drug
+      if (drugA._parentDrugId && drugA._parentDrugId === drugB._parentDrugId) continue;
 
       for (const rule of INTERACTION_MATRIX) {
         if (rule.match(drugA, drugB) || rule.match(drugB, drugA)) {
           const [a, b] = rule.match(drugA, drugB) ? [drugA, drugB] : [drugB, drugA];
-          results.interactions.push({
-            drugA: a.name,
-            drugB: b.name,
-            drugAClass: a.class,
-            drugBClass: b.class,
-            drugAData: a,
-            drugBData: b,
-            severity: rule.severity,
-            rule: rule.rule,
-            mechanism: resolveField(rule.mechanism, a, b),
-            recommendation: resolveField(rule.recommendation, a, b),
-            alternativeSuggestion: resolveField(rule.alternativeSuggestion, a, b),
-            literatureSummary: resolveField(rule.literatureSummary, a, b),
-            literature: rule.literature,
-          });
+          const displayNameA = a._parentDrugName ? `${a.name} (from ${a._parentDrugName})` : a.name;
+          const displayNameB = b._parentDrugName ? `${b.name} (from ${b._parentDrugName})` : b.name;
+          // Deduplicate: don't add if same parent drugs already have this interaction
+          const existingParent = results.interactions.find(int =>
+            int.rule === rule.rule &&
+            ((int.drugAData?._parentDrugId === a._parentDrugId && int.drugBData?._parentDrugId === b._parentDrugId) ||
+             (int.drugAData?._parentDrugId === b._parentDrugId && int.drugBData?._parentDrugId === a._parentDrugId))
+          );
+          if (!existingParent) {
+            results.interactions.push({
+              drugA: displayNameA,
+              drugB: displayNameB,
+              drugAClass: a.class,
+              drugBClass: b.class,
+              drugAData: a,
+              drugBData: b,
+              severity: rule.severity,
+              rule: rule.rule,
+              mechanism: resolveField(rule.mechanism, a, b),
+              recommendation: resolveField(rule.recommendation, a, b),
+              alternativeSuggestion: resolveField(rule.alternativeSuggestion, a, b),
+              literatureSummary: resolveField(rule.literatureSummary, a, b),
+              literature: rule.literature,
+            });
+          }
           break;
         }
       }
     }
   }
 
-  // ── Unknown drug pairwise fallback ──────────────────────────────
+  // ── Unknown drug pairwise fallback (use original drugs, not expanded) ──
   for (let i = 0; i < drugs.length; i++) {
     for (let j = i + 1; j < drugs.length; j++) {
       if (drugs[i].source !== DRUG_SOURCE.UNKNOWN && drugs[j].source !== DRUG_SOURCE.UNKNOWN) continue;
@@ -855,10 +1084,11 @@ export function runFullDURAnalysis(drugs, species, weightKg, patient = {}) {
 
   // ── Fluoroquinolone + antacid absorption check (Case 21) ────────
   // Detect via rawInteractions on the fluoroquinolone for chelation keywords
-  for (let i = 0; i < drugs.length; i++) {
-    for (let j = i + 1; j < drugs.length; j++) {
-      const a = drugs[i];
-      const b = drugs[j];
+  for (let i = 0; i < expandedDrugs.length; i++) {
+    for (let j = i + 1; j < expandedDrugs.length; j++) {
+      if (expandedDrugs[i]._parentDrugId && expandedDrugs[i]._parentDrugId === expandedDrugs[j]._parentDrugId) continue;
+      const a = expandedDrugs[i];
+      const b = expandedDrugs[j];
       // Check a's rawInteractions for chelation with b's name, and vice versa
       for (const [substrate, other] of [[a, b], [b, a]]) {
         const chelationInter = (substrate.rawInteractions || []).find(inter => {
