@@ -143,6 +143,37 @@ function resolveField(field, drugA, drugB) {
 }
 
 /**
+ * Search rawInteractions of drugA for an entry mentioning drugB (and vice versa).
+ * Returns { evidence, keywords, severity, source } or null.
+ * This provides traceable, JSONL-sourced evidence for any drug pair.
+ */
+function findRawInteractionEvidence(drugA, drugB) {
+  for (const [source, target] of [[drugA, drugB], [drugB, drugA]]) {
+    const interactions = source.rawInteractions || [];
+    const targetName = (target.name || '').toLowerCase();
+    const targetId = (target.id || '').toLowerCase();
+    const targetActive = (target.activeSubstance || '').toLowerCase();
+    for (const inter of interactions) {
+      const intDrug = (inter.drug || '').toLowerCase();
+      if (
+        intDrug.includes(targetName) || targetName.includes(intDrug) ||
+        intDrug.includes(targetId) || intDrug.includes(targetActive) ||
+        (targetName.length > 3 && intDrug.includes(targetName.slice(0, Math.min(targetName.length, 8))))
+      ) {
+        return {
+          evidence: inter.evidence || '',
+          keywords: inter.keywords || [],
+          severity: inter.severity || 1,
+          sourceDrug: source.name,
+          targetDrug: target.name,
+        };
+      }
+    }
+  }
+  return null;
+}
+
+/**
  * Split multi-substance drugs into virtual sub-drugs for interaction checking.
  * E.g., "Temaril-P" (Trimeprazine + Prednisolone) → two virtual drug objects.
  * Each retains the parent's metadata but gets the individual active ingredient's class.
@@ -237,17 +268,36 @@ const INTERACTION_MATRIX = [
     ],
   },
 
-  // CYP3A4 inhibitor + CYP3A4 substrate (includes Cyclosporine + Ketoconazole, Case 20)
+  // CYP3A4 inhibitor + CYP3A4 substrate — generic (no drug-specific hardcoded text)
   {
     match: (a, b) =>
       a.cypProfile?.inhibitor?.some(c => ['CYP3A4', 'CYP3A', 'CYP3A12'].includes(c)) &&
       b.cypProfile?.substrate?.some(c => ['CYP3A4', 'CYP3A', 'CYP3A12'].includes(c)),
     severity: SEVERITY.MODERATE,
     rule: 'CYP3A4 Inhibition — Elevated Substrate Levels',
-    mechanism: (a, b) => `${a.name} is a strong CYP3A4 inhibitor. Co-administration with ${b.name} (CYP3A4 substrate) will increase plasma concentrations of ${b.name} — potentially into the toxic range. For cyclosporine + ketoconazole, blood levels can rise 2–5× above therapeutic range causing acute nephrotoxicity.`,
-    recommendation: (a, b) => `Reduce ${b.name} dose by 25–50% while co-administering with ${a.name}. Monitor for signs of ${b.name} toxicity. Perform therapeutic drug monitoring if available. For cyclosporine, monitor renal function (creatinine, BUN) weekly.`,
+    mechanism: (a, b) => {
+      const matchedCYPs = (a.cypProfile?.inhibitor || []).filter(c =>
+        (b.cypProfile?.substrate || []).includes(c)
+      );
+      const cypStr = matchedCYPs.join(', ') || 'CYP3A4';
+      const raw = findRawInteractionEvidence(a, b);
+      const evidencePart = raw
+        ? ` Drug data evidence (${raw.sourceDrug}): "${raw.evidence}"`
+        : '';
+      return `${a.name} inhibits ${cypStr}. Co-administration with ${b.name} (${cypStr} substrate) will increase plasma concentrations of ${b.name}, potentially into the toxic range.${evidencePart}`;
+    },
+    recommendation: (a, b) => {
+      const raw = findRawInteractionEvidence(a, b);
+      const monitorTarget = raw ? ` Monitor for signs of ${b.name} toxicity (${(raw.keywords || []).join(', ')}).` : ` Monitor for signs of ${b.name} toxicity.`;
+      return `Reduce ${b.name} dose by 25–50% while co-administering with ${a.name}.${monitorTarget} Perform therapeutic drug monitoring if available.`;
+    },
     alternativeSuggestion: (a, b) => `If ${a.name} is the antifungal, consider Fluconazole (weaker CYP3A4 inhibitor) as an alternative, or reduce ${b.name} dose by 50% and monitor closely.`,
-    literatureSummary: 'Ketoconazole inhibits CYP3A4 and can increase cyclosporine blood levels by 2–5× in dogs, bringing them into the nephrotoxic range. Renal monitoring and dose reduction of the substrate drug are mandatory.',
+    literatureSummary: (a, b) => {
+      const raw = findRawInteractionEvidence(a, b);
+      return raw
+        ? `${raw.sourceDrug} → ${raw.targetDrug}: "${raw.evidence}" (severity ${raw.severity}/3).`
+        : `CYP3A4 inhibition by ${a.name} can significantly increase ${b.name} plasma levels. Dose reduction and TDM are recommended (Court 2013).`;
+    },
     literature: [{ title: 'Court MH. Canine cytochrome P450 pharmacogenetics.', source: 'Vet Clin North Am Small Anim Pract 2013;43(5):1027-1038', confidence: 85 }],
   },
 
@@ -482,15 +532,20 @@ function generatePerDrugPatientAlerts(drug, species, weightKg, patient) {
       const isSevere = contra.severity === 'absolute' || contra.action === 'contraindicated';
       const sev = isSevere ? SEVERITY.CRITICAL : SEVERITY.MODERATE;
 
-      // Enrich mechanism from rawInteractions if there's a relevant DDI evidence entry
+      // Enrich mechanism from rawInteractions using the MATCHED contraindication's
+      // own matchTerms — not a fixed keyword list. This ensures the evidence pulled
+      // is relevant to the specific condition (e.g. bronchospasm, not diabetes).
+      const contraMatchTermsLow = (contra.matchTerms || []).map(t => t.toLowerCase());
       const condLow = cond.toLowerCase();
       const relevantDDI = (drug.rawInteractions || []).find(i => {
         const kws = (i.keywords || []).map(k => k.toLowerCase());
         const ev  = (i.evidence || '').toLowerCase();
-        return kws.some(k => condLow.includes(k.slice(0, 8)) || k.includes('masked') || k.includes('hypogly') || k.includes('glucose')) ||
-               ev.includes('hypoglycemia') || ev.includes('masked') || ev.includes('glucose') ||
-               ev.includes('diabetes') || ev.includes('monitoring') || ev.includes('seizure') ||
-               ev.includes('thyroid') || ev.includes('adrenal');
+        const drugField = (i.drug || '').toLowerCase();
+        return contraMatchTermsLow.some(ct =>
+          kws.some(k => k.includes(ct) || ct.includes(k)) ||
+          ev.includes(ct) ||
+          drugField.includes(ct)
+        ) || kws.some(k => condLow.includes(k) || k.includes(condLow.slice(0, 6)));
       });
 
       const mechanismBase = `Patient condition "${cond}" matches a ${contra.severity || 'relative'} contraindication for ${drug.name}. Contraindication: "${contra.condition}" (action: ${contra.action || 'review'}).`;
@@ -1082,36 +1137,41 @@ export function runFullDURAnalysis(drugs, species, weightKg, patient = {}) {
     }
   }
 
-  // ── Fluoroquinolone + antacid absorption check (Case 21) ────────
-  // Detect via rawInteractions on the fluoroquinolone for chelation keywords
+  // ── Chelation / absorption interaction check (Case 21) ────────
+  // Only fires when: (1) a rawInteraction entry has chelation/absorption keywords,
+  // AND (2) the OTHER drug's name actually appears in that entry's drug field,
+  // OR the other drug is genuinely an antacid/GI protectant class.
+  // This prevents false matches (e.g. Ketoconazole + Propranolol).
+  const ANTACID_GI_TERMS = ['antacid', 'aluminum', 'magnesium', 'calcium carbonate',
+    'famotidine', 'omeprazole', 'cimetidine', 'ranitidine', 'sucralfate',
+    'h2 blocker', 'h2-receptor', 'ppi', 'proton pump'];
   for (let i = 0; i < expandedDrugs.length; i++) {
     for (let j = i + 1; j < expandedDrugs.length; j++) {
       if (expandedDrugs[i]._parentDrugId && expandedDrugs[i]._parentDrugId === expandedDrugs[j]._parentDrugId) continue;
       const a = expandedDrugs[i];
       const b = expandedDrugs[j];
-      // Check a's rawInteractions for chelation with b's name, and vice versa
       for (const [substrate, other] of [[a, b], [b, a]]) {
         const chelationInter = (substrate.rawInteractions || []).find(inter => {
           const kws = (inter.keywords || []).map(k => k.toLowerCase());
           const hasChel = kws.some(k =>
-            k.includes('chelat') || k.includes('absorption') || k.includes('흡수') || k.includes('킬레이')
+            k.includes('chelat') || k.includes('reduced absorption') ||
+            k.includes('흡수 감소') || k.includes('킬레이')
           );
           if (!hasChel) return false;
           const intDrugLow = (inter.drug || '').toLowerCase();
           const otherNameLow = other.name.toLowerCase();
-          const otherClass = (other.class || '').toLowerCase();
-          return intDrugLow.includes(otherNameLow) ||
-            otherNameLow.includes('antacid') ||
-            otherClass.includes('gi protectant') ||
-            intDrugLow.includes('antacid') ||
-            intDrugLow.includes('aluminum') ||
-            intDrugLow.includes('famotidine') ||
-            intDrugLow.includes('h2') ||
-            intDrugLow.includes('cimetidine') ||
-            intDrugLow.includes('omeprazole') ||
-            otherNameLow.includes('famotidine') ||
-            otherNameLow.includes('omeprazole') ||
-            otherNameLow.includes('aluminum');
+          const otherIdLow = (other.id || '').toLowerCase();
+          const otherClassLow = (other.class || '').toLowerCase();
+          // Strict match: the rawInteraction must name the OTHER drug specifically
+          const directMatch = intDrugLow.includes(otherNameLow) ||
+            otherNameLow.includes(intDrugLow.split(/[(\s,]/)[0]); // first word of inter.drug
+          // OR: the other drug is genuinely an antacid/GI protectant
+          const isOtherAntacid = ANTACID_GI_TERMS.some(t =>
+            otherNameLow.includes(t) || otherIdLow.includes(t) || otherClassLow.includes(t)
+          );
+          // OR: the rawInteraction's drug field names an antacid class AND the other IS that class
+          const interNamesAntacid = ANTACID_GI_TERMS.some(t => intDrugLow.includes(t));
+          return directMatch || (isOtherAntacid && interNamesAntacid);
         });
         if (chelationInter) {
           const exists = results.interactions.some(
@@ -1127,12 +1187,12 @@ export function runFullDURAnalysis(drugs, species, weightKg, patient = {}) {
               drugAData: substrate,
               drugBData: other,
               severity: SEVERITY.MODERATE,
-              rule: 'Fluoroquinolone Absorption Chelation',
-              mechanism: `${other.name} may bind to ${substrate.name} in the GI tract through chelation, significantly reducing ${substrate.name} oral bioavailability and therapeutic efficacy. Schema evidence: "${chelationInter.evidence || 'Reduced absorption through chelation.'}". This can result in sub-therapeutic fluoroquinolone blood levels and treatment failure.`,
-              recommendation: `Separate the doses of ${substrate.name} and ${other.name} by at least 2 hours (give ${substrate.name} first, or 2 hours after ${other.name}). If possible, administer ${substrate.name} IV to bypass GI absorption interaction.`,
+              rule: 'Absorption Interaction — Chelation/pH-Dependent',
+              mechanism: `${other.name} may reduce ${substrate.name} absorption in the GI tract via chelation or pH alteration. Drug data evidence (${substrate.name}): "${chelationInter.evidence || 'Reduced absorption documented.'}". This can result in sub-therapeutic blood levels and treatment failure.`,
+              recommendation: `Separate doses of ${substrate.name} and ${other.name} by at least 2 hours. If possible, administer ${substrate.name} IV to bypass GI absorption interaction.`,
               alternativeSuggestion: null,
-              literatureSummary: 'Aluminium, calcium, magnesium, and iron-containing products chelate fluoroquinolones, reducing oral bioavailability by 25–90%. Famotidine reduces gastric acid but through a different mechanism — always separate by ≥2 hours.',
-              literature: [{ title: "Plumb's Veterinary Drug Handbook — Enrofloxacin monograph.", source: 'Wiley-Blackwell', confidence: 88 }],
+              literatureSummary: 'Polyvalent cations (Al³⁺, Ca²⁺, Mg²⁺, Fe²⁺) chelate fluoroquinolones and tetracyclines, reducing oral bioavailability by 25–90%. H2 blockers and PPIs reduce gastric acidity needed for ketoconazole dissolution.',
+              literature: [{ title: "Plumb's Veterinary Drug Handbook — Enrofloxacin/Ketoconazole monographs.", source: 'Wiley-Blackwell', confidence: 88 }],
             });
           }
           break;

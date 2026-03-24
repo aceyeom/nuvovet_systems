@@ -260,3 +260,18 @@ export async function isBackendAvailable() {
     return false;
   }
 }
+
+// ── Mechanism Formatting (Claude Haiku) ─────────────────────────
+
+/**
+ * Format drug interaction mechanism data into structured clinical text
+ * via the Claude Haiku formatting endpoint.
+ * @param {object} data - FormatMechanismRequest payload
+ * @returns {Promise<{formatted_mechanism, formatted_recommendation, formatted_full, data_sources, ai_formatted}|null>}
+ */
+export async function formatMechanismApi(data) {
+  return apiFetch('/api/format/mechanism', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+}

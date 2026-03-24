@@ -85,13 +85,13 @@ const DRUG_DISEASE_RULES = [
     message: 'Corticosteroids increase GI ulceration risk, especially when combined with NSAIDs.',
     species: null,
   },
-  // Beta-blocker + asthma (feline)
+  // Beta-blocker + asthma/bronchospastic disease (all species)
   {
-    drugTerms: ['beta-blocker', 'atenolol', 'propranolol', 'metoprolol', 'carvedilol'],
-    conditionTerms: ['asthma', 'bronchospasm', 'feline asthma', 'bronchial'],
+    drugTerms: ['beta-blocker', 'atenolol', 'propranolol', 'metoprolol', 'carvedilol', 'sotalol', 'timolol', 'nadolol'],
+    conditionTerms: ['asthma', 'bronchospasm', 'feline asthma', 'bronchial', 'copd', 'bronchoconstric'],
     severity: 'CRITICAL',
-    message: 'Beta-blockers are contraindicated in patients with bronchospastic disease — may trigger life-threatening bronchoconstriction.',
-    species: 'cat',
+    message: 'Beta-blockers (especially non-selective: propranolol, nadolol, timolol) block β₂-adrenergic receptors in bronchial smooth muscle, causing bronchoconstriction. In patients with bronchospastic disease this can trigger acute, life-threatening respiratory distress. Contraindicated regardless of species.',
+    species: null,
   },
   // Aminoglycoside + renal disease
   {
