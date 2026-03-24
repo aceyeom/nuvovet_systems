@@ -33,7 +33,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from auth import router as auth_router, init_db
 from routers.drugs import router as drugs_router
 from routers.clinical import router as clinical_router
+from routers.medications import router as medications_router
 from routers.ocr import router as ocr_router, get_api_key as ocr_api_key
+from routers.format_mechanism import router as format_router
 from services.drug_loader import get_drug_db
 from services.drug_sync import sync_drug_data
 
@@ -46,7 +48,9 @@ app = FastAPI(title="NuvoVet DUR API", version="1.0.0")
 app.include_router(auth_router)
 app.include_router(drugs_router)
 app.include_router(clinical_router)
+app.include_router(medications_router)
 app.include_router(ocr_router)
+app.include_router(format_router)
 
 # ── CORS ──────────────────────────────────────────────────────────
 app.add_middleware(

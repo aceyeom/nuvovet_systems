@@ -14,6 +14,118 @@ import { OrganLoadIndicator } from './OrganLoadIndicator';
 import { ConfidenceProvenance } from './ConfidenceProvenance';
 import { ScanExportButton } from './ScanExportPDF';
 import { useI18n } from '../i18n';
+import { formatMechanismApi } from '../lib/api';
+
+// ── Formatted Mechanism Display ─────────────────────────────────
+// Renders mechanism text with structure: either AI-formatted (bullet points)
+// or raw text with basic formatting applied.
+function FormattedMechanismText({ text, className = '' }) {
+  if (!text) return null;
+
+  // Check if text contains bullet point markers (from AI formatting or templates)
+  const hasBullets = text.includes('•') || text.includes('MECHANISM') || text.includes('RECOMMENDED');
+
+  if (hasBullets) {
+    const lines = text.split('\n');
+    return (
+      <div className={`space-y-1 ${className}`}>
+        {lines.map((line, i) => {
+          const trimmed = line.trim();
+          if (!trimmed) return null;
+          // Section headers (ALL CAPS)
+          if (/^[A-Z\s]{4,}$/.test(trimmed) && !trimmed.startsWith('•')) {
+            return (
+              <p key={i} className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mt-2 first:mt-0">
+                {trimmed}
+              </p>
+            );
+          }
+          // Bullet points
+          if (trimmed.startsWith('•')) {
+            return (
+              <p key={i} className="text-[12px] text-slate-700 leading-relaxed pl-3">
+                {trimmed}
+              </p>
+            );
+          }
+          // Regular text
+          return <p key={i} className="text-[12px] text-slate-700 leading-relaxed">{trimmed}</p>;
+        })}
+      </div>
+    );
+  }
+
+  // Plain text — render as-is
+  return <p className={`text-[12px] text-slate-700 leading-relaxed ${className}`}>{text}</p>;
+}
+
+// ── AI Format Button ────────────────────────────────────────────
+// Calls the /api/format/mechanism endpoint to get structured text
+function AIFormatButton({ interaction, onFormatted }) {
+  const [loading, setLoading] = useState(false);
+  const [formatted, setFormatted] = useState(null);
+  const { t } = useI18n();
+
+  const handleFormat = async (e) => {
+    e.stopPropagation();
+    if (formatted || loading) return;
+    setLoading(true);
+    try {
+      const result = await formatMechanismApi({
+        drug_a_name: interaction.drugA || '',
+        drug_b_name: interaction.drugB || '',
+        interaction_type: interaction.rule?.includes('Disease') ? 'drug-disease' : 'drug-drug',
+        severity: interaction.severity?.label || 'Unknown',
+        rule_name: interaction.rule || '',
+        mechanism_text: interaction.mechanism || '',
+        recommendation_text: interaction.recommendation || '',
+        alternative_suggestion: interaction.alternativeSuggestion || '',
+        literature_summary: interaction.literatureSummary || '',
+        raw_interaction_keywords: [],
+        drug_a_class: interaction.drugAClass || '',
+        drug_b_class: interaction.drugBClass || '',
+        literature_refs: (interaction.literature || []).map(r => ({
+          title: r.title, source: r.source, confidence: r.confidence,
+        })),
+      });
+      if (result) {
+        setFormatted(result);
+        if (onFormatted) onFormatted(result);
+      }
+    } catch (err) {
+      console.warn('Format mechanism failed:', err);
+    }
+    setLoading(false);
+  };
+
+  if (formatted) {
+    return (
+      <div className="mt-2 space-y-2">
+        <div className="flex items-center gap-1.5 text-[10px] text-blue-500 font-medium">
+          <FlaskConical size={10} />
+          <span>AI-formatted from verified data</span>
+          {formatted.data_sources?.length > 0 && (
+            <span className="text-slate-400 ml-1">
+              (sources: {formatted.data_sources.join(', ')})
+            </span>
+          )}
+        </div>
+        <FormattedMechanismText text={formatted.formatted_full} />
+      </div>
+    );
+  }
+
+  return (
+    <button
+      onClick={handleFormat}
+      disabled={loading}
+      className="flex items-center gap-1.5 text-[10px] font-medium text-blue-500 hover:text-blue-700 transition-colors mt-1.5 disabled:opacity-50"
+    >
+      <FlaskConical size={10} />
+      {loading ? 'Formatting...' : 'Format with AI'}
+    </button>
+  );
+}
 
 // ── Demo Upgrade Banner ─────────────────────────────────────────
 function DemoUpgradeBanner({ lang }) {
@@ -506,7 +618,8 @@ function InteractionCard({ interaction, index, acknowledged, noted, onAcknowledg
           {/* Zone 2: Mechanism */}
           <div className="px-4 py-3 bg-white border-t border-slate-100/50">
             <h4 className="typo-section-header text-[11px] mb-1.5">{t.results.whatHappens.toUpperCase()}</h4>
-            <p className="typo-body leading-relaxed">{interaction.mechanism}</p>
+            <FormattedMechanismText text={interaction.mechanism} />
+            <AIFormatButton interaction={interaction} />
           </div>
 
           {/* "Why is this dangerous?" — severity Moderate + Critical only */}
@@ -534,7 +647,7 @@ function InteractionCard({ interaction, index, acknowledged, noted, onAcknowledg
             </div>
           </div>
 
-          {/* Literature — per-interaction evidence only, no shared static list */}
+          {/* Literature — interaction-level refs + PMC references from drug data */}
           <div className="px-4 pb-3">
             <button
               onClick={(e) => { e.stopPropagation(); setShowLiterature(!showLiterature); }}
@@ -547,19 +660,65 @@ function InteractionCard({ interaction, index, acknowledged, noted, onAcknowledg
             {showLiterature && (
               <div className="mt-2 space-y-2 animate-fade-in">
                 {interaction.literatureSummary ? (
-                  <p className="typo-body bg-slate-50/80 px-3 py-2 rounded-lg border border-slate-100">{interaction.literatureSummary}</p>
+                  <FormattedMechanismText
+                    text={interaction.literatureSummary}
+                    className="bg-slate-50/80 px-3 py-2 rounded-lg border border-slate-100"
+                  />
                 ) : null}
-                {(interaction.literature || []).length > 0 ? (
-                  interaction.literature.map((ref, i) => (
-                    <div key={i} className="text-[11px] text-slate-500 px-2.5 py-1.5 bg-slate-50 rounded">
-                      <p className="font-medium text-slate-600">{ref.title}</p>
-                      <p className="typo-label">{ref.source}</p>
+                {/* Interaction-level literature references */}
+                {(interaction.literature || []).length > 0 && (
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Rule References</p>
+                    {interaction.literature.map((ref, i) => (
+                      <div key={`rule-${i}`} className="text-[11px] text-slate-500 px-2.5 py-1.5 bg-slate-50 rounded mb-1">
+                        <p className="font-medium text-slate-600">{ref.title}</p>
+                        <p className="typo-label">{ref.source}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {/* PMC references from drug_references table (via evidenceReferences on drug data) */}
+                {(() => {
+                  const pmcRefs = [
+                    ...(interaction.drugAData?.evidenceReferences || []),
+                    ...(interaction.drugBData?.evidenceReferences || []),
+                  ].filter(r => r.pmc_id && r.title);
+                  // Deduplicate by pmc_id
+                  const seen = new Set();
+                  const uniqueRefs = pmcRefs.filter(r => {
+                    if (seen.has(r.pmc_id)) return false;
+                    seen.add(r.pmc_id);
+                    return true;
+                  }).slice(0, 5); // Show top 5
+                  if (uniqueRefs.length === 0) return null;
+                  return (
+                    <div>
+                      <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">PMC Literature</p>
+                      {uniqueRefs.map((ref, i) => (
+                        <div key={`pmc-${i}`} className="text-[11px] text-slate-500 px-2.5 py-1.5 bg-blue-50/50 rounded mb-1 border border-blue-100/50">
+                          <p className="font-medium text-slate-600">{ref.title}</p>
+                          <div className="flex items-center gap-2 mt-0.5">
+                            <span className="typo-label text-blue-600">PMC{ref.pmc_id}</span>
+                            {ref.if_score && <span className="typo-label">IF: {ref.if_score}</span>}
+                            {ref.url && (
+                              <a href={ref.url} target="_blank" rel="noopener noreferrer"
+                                 className="text-blue-500 hover:text-blue-700 underline typo-label"
+                                 onClick={e => e.stopPropagation()}>
+                                View
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  ))
-                ) : (
-                  !interaction.literatureSummary && (
-                    <p className="text-[11px] text-slate-400 italic px-1">{t.results.sourceNotAvailable}</p>
-                  )
+                  );
+                })()}
+                {/* No references at all */}
+                {(interaction.literature || []).length === 0 &&
+                 !interaction.literatureSummary &&
+                 !(interaction.drugAData?.evidenceReferences?.length) &&
+                 !(interaction.drugBData?.evidenceReferences?.length) && (
+                  <p className="text-[11px] text-slate-400 italic px-1">{t.results.sourceNotAvailable}</p>
                 )}
               </div>
             )}

@@ -36,7 +36,7 @@ TEXT_OUTPUT_FILENAME = "test_pmc_references.txt"
 JSON_OUTPUT_FILENAME = "test_pmc_references.json"
 # 기본 샘플 수를 늘려 한 번에 더 많은 약물을 점검
 RANDOM_SAMPLE_SIZE = int(os.environ.get("RANDOM_SAMPLE_SIZE", "30"))
-SEARCH_CANDIDATE_COUNT = 20 # 후보군 확대
+SEARCH_CANDIDATE_COUNT = int(os.environ.get("SEARCH_CANDIDATE_COUNT", "20"))
 SELECT_REFERENCE_COUNT = 2
 API_DELAY_SECONDS = 0.5
 REQUEST_TIMEOUT_SECONDS = 20
@@ -184,7 +184,7 @@ def load_drug_payload(file_path: Path):
 # --- [약물 분류 및 동적 쿼리 빌더 (HYBRID 적용)] ---
 def get_ingredients(drug_name: str):
     """복합제 이름 분리 및 제형 키워드 제거"""
-    clean_name = re.sub(r"_(ophthalmic|topical|otic|oral|injectable)", "", drug_name.lower())
+    clean_name = re.sub(r"_(ophthalmic|topical|otic|oral|injectable|systemic|intravenous|transdermal)", "", drug_name.lower())
     return [i.strip() for i in re.split(r"[_/]", clean_name) if i.strip()]
 
 def is_topical_drug(drug_name: str) -> bool:
@@ -209,6 +209,29 @@ def build_dynamic_query(drug_name: str) -> str:
     exclusion_block = '("In Vitro Techniques"[Mesh] OR "vehicle control"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR "cell line"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])'
     
     return f"{drug_block} AND {species_block} AND {relevance_block} NOT {exclusion_block}"
+
+
+def build_species_relaxed_query(drug_name: str) -> str:
+    ingredients = get_ingredients(drug_name)
+    drug_queries = [f'("{ing}"[Title/Abstract] OR "{ing}"[Name of Substance])' for ing in ingredients]
+    drug_block = f"({' OR '.join(drug_queries)})"
+    relevance_block = '("Pharmacokinetics"[Mesh] OR "Drug Interactions"[Mesh] OR "Toxicity"[Mesh] OR pharmacokinetic*[Title/Abstract] OR pharmacology[Title/Abstract] OR metabolism[Title/Abstract] OR clearance[Title/Abstract] OR "half-life"[Title/Abstract] OR bioavailability[Title/Abstract] OR dosage[Title/Abstract] OR dosing[Title/Abstract] OR safety[Title/Abstract] OR toxicity[Title/Abstract] OR adverse[Title/Abstract] OR contraindication*[Title/Abstract] OR "drug interaction"[Title/Abstract] OR efficacy[Title/Abstract] OR label[Title/Abstract] OR approved[Title/Abstract])'
+    exclusion_block = '("In Vitro Techniques"[Mesh] OR "vehicle control"[Title/Abstract] OR solvent[Title/Abstract] OR solvents[Title/Abstract] OR excipient[Title/Abstract] OR reagent[Title/Abstract] OR transcriptome[Title/Abstract] OR dataset[Title/Abstract] OR "cell line"[Title/Abstract] OR organoid[Title/Abstract] OR screening[Title/Abstract])'
+    return f"{drug_block} AND {relevance_block} NOT {exclusion_block}"
+
+
+def build_broad_query(drug_name: str) -> str:
+    ingredients = get_ingredients(drug_name)
+    drug_queries = [f'("{ing}"[Title/Abstract] OR "{ing}"[Name of Substance])' for ing in ingredients]
+    return f"({' OR '.join(drug_queries)})"
+
+
+def build_fallback_queries(drug_name: str):
+    return [
+        ("strict", build_dynamic_query(drug_name), True, 4),
+        ("species_relaxed", build_species_relaxed_query(drug_name), True, 3),
+        ("broad", build_broad_query(drug_name), False, 3),
+    ]
 
 def ncbi_get(endpoint: str, params: dict):
     response = requests.get(f"{NCBI_EUTILS_BASE}/{endpoint}", params={**params, "email": NCBI_EMAIL, "tool": NCBI_TOOL}, timeout=REQUEST_TIMEOUT_SECONDS)
@@ -272,7 +295,7 @@ def check_contextual_distance(text: str, ingredients: list) -> bool:
     return False
 
 # --- [기존 스코어링 로직 연동 (HYBRID 평가)] ---
-def evaluate_candidate(drug_name: str, title: str, abstract_text: str):
+def evaluate_candidate(drug_name: str, title: str, abstract_text: str, require_species: bool = True):
     title_abstract = f"{title} {abstract_text}".strip()
     normalized_title_abstract = normalize_text(title_abstract)
     title_lower = title.lower()
@@ -309,9 +332,11 @@ def evaluate_candidate(drug_name: str, title: str, abstract_text: str):
     if species_hits:
         score += 4
         reasons.append(f"species:{', '.join(species_hits[:3])}")
-    else:
+    elif require_species:
         excluded = True
         reasons.append("excluded_no_species")
+    else:
+        reasons.append("species_not_required_fallback")
 
     if drug_hit and species_hits:
         if check_contextual_distance(title_abstract, ingredients):
@@ -396,67 +421,75 @@ def validate_with_claude(drug_name: str, title: str, abstract_text: str) -> bool
 def get_pmc_references(drug_name: str):
     query = build_dynamic_query(drug_name)
     try:
-        pmc_ids = search_pmc_ids(query)
-        
-        # [Fallback] 결과가 없을 때, 종 조건을 제거하고 더 넓게 검색 (복합제/점안제 구제)
-        if not pmc_ids:
-            print(f"  [-] '{drug_name}' 종 필터 검색결과 0건. 광범위 검색 재시도...")
-            ingredients = get_ingredients(drug_name)
-            drug_queries = [f'("{ing}"[Title/Abstract] OR "{ing}"[Name of Substance])' for ing in ingredients]
-            fallback_query = f"({' OR '.join(drug_queries)})"
-            pmc_ids = search_pmc_ids(fallback_query)
+        for query_mode, current_query, require_species, min_score in build_fallback_queries(drug_name):
+            pmc_ids = search_pmc_ids(current_query)
+            if not pmc_ids:
+                continue
 
-        if not pmc_ids: return query, []
+            summaries = fetch_summaries(pmc_ids)
+            article_metadata = fetch_article_metadata(pmc_ids)
 
-        summaries = fetch_summaries(pmc_ids)
-        article_metadata = fetch_article_metadata(pmc_ids)
+            candidates = []
+            for pmc_id in pmc_ids:
+                summary = summaries.get(pmc_id, {})
+                title = summary.get("title", "Title Not Found")
+                article_record = article_metadata.get(pmc_id, {})
+                abstract_text = article_record.get("abstract", "")
 
-        candidates = []
-        for pmc_id in pmc_ids:
-            summary = summaries.get(pmc_id, {})
-            title = summary.get("title", "Title Not Found")
-            article_record = article_metadata.get(pmc_id, {})
-            abstract_text = article_record.get("abstract", "")
-            
-            evaluation = evaluate_candidate(drug_name, title, abstract_text)
+                evaluation = evaluate_candidate(
+                    drug_name,
+                    title,
+                    abstract_text,
+                    require_species=require_species,
+                )
 
-            if evaluation["excluded"] or evaluation["score"] < 4: continue
+                if evaluation["excluded"] or evaluation["score"] < min_score:
+                    continue
 
-            candidates.append({
-                "pmc_id": pmc_id, "title": title, "url": summary.get("url"), 
-                "abstract": abstract_text, "journal_title": article_record.get("journal_title", ""),
-                "journal_issns": article_record.get("journal_issns", []), 
-                "journal_metrics": build_journal_metrics(article_record.get("journal_title", ""), article_record.get("journal_issns", [])),
-                "score": evaluation["score"], "reasons": evaluation["reasons"],
-                "ddi_relevant": evaluation["ddi_relevant"], "fda_relevant": evaluation["fda_relevant"]
-            })
+                candidates.append({
+                    "pmc_id": pmc_id,
+                    "title": title,
+                    "url": summary.get("url"),
+                    "abstract": abstract_text,
+                    "journal_title": article_record.get("journal_title", ""),
+                    "journal_issns": article_record.get("journal_issns", []),
+                    "journal_metrics": build_journal_metrics(article_record.get("journal_title", ""), article_record.get("journal_issns", [])),
+                    "score": evaluation["score"],
+                    "reasons": evaluation["reasons"] + [f"query_mode:{query_mode}"],
+                    "ddi_relevant": evaluation["ddi_relevant"],
+                    "fda_relevant": evaluation["fda_relevant"],
+                })
 
-        candidates.sort(key=lambda item: item["score"], reverse=True)
+            if not candidates:
+                continue
 
-        final_valid = []
-        llm_rejected = []
+            candidates.sort(key=lambda item: item["score"], reverse=True)
 
-        for candidate in candidates:
-            # 이미 충분한 VALID 논문을 확보했으면 중단
-            if len(final_valid) >= SELECT_REFERENCE_COUNT:
-                break
+            final_valid = []
+            llm_rejected = []
 
-            is_valid = validate_with_claude(drug_name, candidate["title"], candidate["abstract"])
-            if is_valid:
-                candidate["llm_invalid"] = False
-                candidate["reasons"].append("llm_validated_in_vivo")
-                final_valid.append(candidate)
-            else:
-                candidate["llm_invalid"] = True
-                candidate["reasons"].append("llm_rejected")
-                llm_rejected.append(candidate)
+            for candidate in candidates:
+                if len(final_valid) >= SELECT_REFERENCE_COUNT:
+                    break
 
-        # VALID 수가 부족하면 점수 순 INVALID 논문으로 빈 슬롯 채우기
-        remaining = SELECT_REFERENCE_COUNT - len(final_valid)
-        if remaining > 0 and llm_rejected:
-            final_valid.extend(llm_rejected[:remaining])
+                is_valid = validate_with_claude(drug_name, candidate["title"], candidate["abstract"])
+                if is_valid:
+                    candidate["llm_invalid"] = False
+                    candidate["reasons"].append("llm_validated_in_vivo")
+                    final_valid.append(candidate)
+                else:
+                    candidate["llm_invalid"] = True
+                    candidate["reasons"].append("llm_rejected")
+                    llm_rejected.append(candidate)
 
-        return query, final_valid
+            remaining = SELECT_REFERENCE_COUNT - len(final_valid)
+            if remaining > 0 and llm_rejected:
+                final_valid.extend(llm_rejected[:remaining])
+
+            if final_valid:
+                return current_query, final_valid
+
+        return query, []
 
     except Exception as error:
         print(f"Error fetching data for {drug_name}: {error}")
@@ -513,7 +546,29 @@ def build_arg_parser():
     parser.add_argument("--seed", type=int, default=None)
     parser.add_argument("--shuffle", action="store_true")
     parser.add_argument("--output-prefix", type=str, default=Path(JSON_OUTPUT_FILENAME).with_suffix("").name)
+    parser.add_argument("--drug-ids-file", type=str, default=None, help="처리할 drug_id 목록 파일(txt/json)")
     return parser
+
+
+def load_target_drug_ids(path_str: str | None):
+    if not path_str:
+        return None
+    path = Path(path_str)
+    if not path.exists():
+        raise FileNotFoundError(f"drug id 파일을 찾을 수 없습니다: {path}")
+
+    text = path.read_text(encoding="utf-8").strip()
+    if not text:
+        return set()
+
+    try:
+        payload = json.loads(text)
+        if isinstance(payload, list):
+            return {str(item).strip() for item in payload if str(item).strip()}
+    except json.JSONDecodeError:
+        pass
+
+    return {line.strip() for line in text.splitlines() if line.strip()}
 
 def main():
     args = build_arg_parser().parse_args()
@@ -521,6 +576,16 @@ def main():
     
     print("🚀 PMC 레퍼런스 수집(Hybrid)을 시작합니다...")
     all_records = list(iter_drug_records())
+    target_ids = load_target_drug_ids(args.drug_ids_file)
+
+    if target_ids is not None:
+        filtered_records = []
+        for record in all_records:
+            payload = load_drug_payload(record["file_path"])
+            if payload.get("id") in target_ids:
+                filtered_records.append(record)
+        all_records = filtered_records
+        print(f"target drug_id 필터 적용: {len(target_ids)}개 요청 / {len(all_records)}개 매칭")
     
     # 레코드 선택 로직
     records = list(all_records)

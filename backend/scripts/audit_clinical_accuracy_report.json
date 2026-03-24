@@ -1,0 +1,2059 @@
+{
+  "total_drugs": 670,
+  "total_issues": 177,
+  "severity_totals": {
+    "HIGH": 51,
+    "LOW": 96,
+    "MODERATE": 30,
+    "CRITICAL": 0
+  },
+  "issue_type_counts": {
+    "EMPTY_CYP_SUBSTRATES": 5,
+    "EMPTY_CYP_INHIBITORS": 2,
+    "MISSING_CONTRAINDICATION": 1,
+    "GENERIC_INTERACTION_NAME": 96,
+    "LOW_CONFIDENCE_CRITICAL_DRUG": 43,
+    "KOREAN_ONLY_MATCH_TERMS": 30
+  },
+  "issues": [
+    {
+      "drug_id": "erythromycin",
+      "issue": "EMPTY_CYP_SUBSTRATES",
+      "severity": "HIGH",
+      "detail": "Missing CYP substrates. Known: ['CYP3A4'] (source: DrugBank DB00199)",
+      "fix": {
+        "field": "metabolism_and_clearance.cyp_profile.substrates",
+        "value": [
+          "CYP3A4"
+        ]
+      }
+    },
+    {
+      "drug_id": "propranolol",
+      "issue": "EMPTY_CYP_SUBSTRATES",
+      "severity": "HIGH",
+      "detail": "Missing CYP substrates. Known: ['CYP1A2', 'CYP2D6', 'CYP2C19', 'CYP3A4'] (source: DrugBank DB00571; FDA label)",
+      "fix": {
+        "field": "metabolism_and_clearance.cyp_profile.substrates",
+        "value": [
+          "CYP1A2",
+          "CYP2D6",
+          "CYP2C19",
+          "CYP3A4"
+        ]
+      }
+    },
+    {
+      "drug_id": "propranolol",
+      "issue": "EMPTY_CYP_INHIBITORS",
+      "severity": "HIGH",
+      "detail": "Missing CYP inhibitors. Known: ['CYP2D6', 'CYP1A2'] (source: DrugBank DB00571; FDA label)",
+      "fix": {
+        "field": "metabolism_and_clearance.cyp_profile.inhibitors",
+        "value": [
+          "CYP2D6",
+          "CYP1A2"
+        ]
+      }
+    },
+    {
+      "drug_id": "diazepam",
+      "issue": "EMPTY_CYP_SUBSTRATES",
+      "severity": "HIGH",
+      "detail": "Missing CYP substrates. Known: ['CYP3A4', 'CYP2C19', 'CYP2B6'] (source: DrugBank DB00829)",
+      "fix": {
+        "field": "metabolism_and_clearance.cyp_profile.substrates",
+        "value": [
+          "CYP3A4",
+          "CYP2C19",
+          "CYP2B6"
+        ]
+      }
+    },
+    {
+      "drug_id": "chloramphenicol",
+      "issue": "EMPTY_CYP_SUBSTRATES",
+      "severity": "HIGH",
+      "detail": "Missing CYP substrates. Known: ['CYP3A4'] (source: DrugBank DB00446)",
+      "fix": {
+        "field": "metabolism_and_clearance.cyp_profile.substrates",
+        "value": [
+          "CYP3A4"
+        ]
+      }
+    },
+    {
+      "drug_id": "metronidazole",
+      "issue": "EMPTY_CYP_SUBSTRATES",
+      "severity": "HIGH",
+      "detail": "Missing CYP substrates. Known: ['CYP3A4', 'CYP2C9'] (source: DrugBank DB00916)",
+      "fix": {
+        "field": "metabolism_and_clearance.cyp_profile.substrates",
+        "value": [
+          "CYP3A4",
+          "CYP2C9"
+        ]
+      }
+    },
+    {
+      "drug_id": "metronidazole",
+      "issue": "EMPTY_CYP_INHIBITORS",
+      "severity": "HIGH",
+      "detail": "Missing CYP inhibitors. Known: ['CYP2C9'] (source: DrugBank DB00916)",
+      "fix": {
+        "field": "metabolism_and_clearance.cyp_profile.inhibitors",
+        "value": [
+          "CYP2C9"
+        ]
+      }
+    },
+    {
+      "drug_id": "metronidazole",
+      "issue": "MISSING_CONTRAINDICATION",
+      "severity": "HIGH",
+      "detail": "Missing contraindication for: ['seizure', 'epilepsy'] (neurotoxicity/seizure threshold lowering). Expected severity: relative",
+      "fix": {
+        "field": "contraindications",
+        "action": "add_entry",
+        "suggested_match_terms": [
+          "seizure",
+          "epilepsy"
+        ]
+      }
+    },
+    {
+      "drug_id": "glyburide",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [0] uses generic class name 'ACE Inhibitors' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[0].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "glyburide",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [3] uses generic class name 'Beta-Blockers' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[3].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "glipizide",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [4] uses generic class name 'Corticosteroids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[4].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "neostigmine",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [7] uses generic class name 'Aminoglycosides' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[7].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "succinylcholine",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [3] uses generic class name 'Opioids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[3].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "succinylcholine",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [5] uses generic class name 'Aminoglycosides' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[5].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "spironolactone_benazepril",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [6] uses generic class name 'Corticosteroids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[6].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "sulfasalazine",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [6] uses generic class name 'NSAIDs' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[6].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "sevoflurane",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [0] uses generic class name 'Aminoglycosides' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[0].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "sevoflurane",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [10] uses generic class name 'Opioids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[10].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "sevelamer",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [0] uses generic class name 'Fluoroquinolones' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[0].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "sotalol",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [13] uses generic class name 'Fluoroquinolones' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[13].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "sotalol",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [17] uses generic class name 'NSAIDs' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[17].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "imipenem_cilastatin",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [0] uses generic class name 'Aminoglycosides' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[0].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "isoniazid",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [6] uses generic class name 'Corticosteroids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[6].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "isoflupredone",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [5] uses generic class name 'NSAIDs' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[5].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "insulin_detemir",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [3] uses generic class name 'Corticosteroids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[3].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "enrofloxacin",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [1] uses generic class name 'Aminoglycosides' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[1].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "enrofloxacin",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [7] uses generic class name 'Corticosteroids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[7].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "ergocalciferol",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [2] uses generic class name 'Corticosteroids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[2].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "leucovorin",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [0] uses generic class name 'Barbiturates' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[0].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "zoledronate",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [0] uses generic class name 'Aminoglycosides' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[0].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "pamidronate",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [0] uses generic class name 'Aminoglycosides' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[0].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "pamidronate",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [1] uses generic class name 'Corticosteroids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[1].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "pamidronate",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [4] uses generic class name 'NSAIDs' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[4].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "pradofloxacin",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [2] uses generic class name 'Corticosteroids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[2].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "pradofloxacin",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [6] uses generic class name 'NSAIDs' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[6].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "penicillin_v",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [0] uses generic class name 'Aminoglycosides' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[0].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "pralidoxime_2pam",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [1] uses generic class name 'Barbiturates' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[1].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "pralidoxime_2pam",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [5] uses generic class name 'Opioids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[5].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "prednisolone_prednisone",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [3] uses generic class name 'Barbiturates' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[3].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "prednisolone_prednisone",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [11] uses generic class name 'Fluoroquinolones' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[11].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "penicillin_g",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [0] uses generic class name 'Aminoglycosides' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[0].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "pentobarbital",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [6] uses generic class name 'Opioids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[6].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "pentobarbital",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [10] uses generic class name 'Beta-Blockers' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[10].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "pentobarbital",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [13] uses generic class name 'Corticosteroids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[13].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "tolfenamic_acid",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [1] uses generic class name 'Corticosteroids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[1].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "trimeprazine_prednisolone",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [2] uses generic class name 'Fluoroquinolones' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[2].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "tiletamine_zolazepam",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [11] uses generic class name 'Opioids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[11].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "dimethyl_sulfoxide",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [2] uses generic class name 'Corticosteroids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[2].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "dexamethasone",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [16] uses generic class name 'NSAIDs' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[16].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "dipyrone",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [4] uses generic class name 'Corticosteroids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[4].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "diphenoxylate_atropine",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [6] uses generic class name 'Opioids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[6].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "desflurane",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [3] uses generic class name 'Aminoglycosides' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[3].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "dicloxacillin",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [0] uses generic class name 'Aminoglycosides' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[0].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "benazepril",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [9] uses generic class name 'Barbiturates' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[9].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "romifidine",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [1] uses generic class name 'Opioids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[1].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "albuterol",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [2] uses generic class name 'Diuretics' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[2].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "antivenom_north_american_coral_snake",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [2] uses generic class name 'Opioids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[2].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "alfaxalone",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [4] uses generic class name 'Opioids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[4].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "ampicillin_sulbactam",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [1] uses generic class name 'Aminoglycosides' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[1].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "acetazolamide",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [3] uses generic class name 'Corticosteroids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[3].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "florfenicol",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [1] uses generic class name 'Aminoglycosides' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[1].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "fluoxetine",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [16] uses generic class name 'Diuretics' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[16].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "cefpodoxime",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [0] uses generic class name 'Aminoglycosides' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[0].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "cefaclor",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [0] uses generic class name 'Aminoglycosides' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[0].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "cefquinome",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [0] uses generic class name 'Aminoglycosides' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[0].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "carprofen",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [4] uses generic class name 'Corticosteroids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[4].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "chloramphenicol",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [16] uses generic class name 'Opioids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[16].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "clindamycin",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [0] uses generic class name 'Aminoglycosides' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[0].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "cefepime",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [0] uses generic class name 'Aminoglycosides' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[0].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "calcium_acetate",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [7] uses generic class name 'Fluoroquinolones' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[7].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "cephalexin",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [0] uses generic class name 'Aminoglycosides' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[0].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "cefovecin",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [5] uses generic class name 'NSAIDs' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[5].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "chlorothiazide",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [3] uses generic class name 'Corticosteroids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[3].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "chlorothiazide",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [11] uses generic class name 'NSAIDs' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[11].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "ceftriaxone",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [0] uses generic class name 'Aminoglycosides' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[0].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "cefotetan",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [1] uses generic class name 'Aminoglycosides' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[1].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "cefoxitin",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [0] uses generic class name 'Aminoglycosides' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[0].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "ciprofloxacin",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [1] uses generic class name 'Aminoglycosides' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[1].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "ciprofloxacin",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [6] uses generic class name 'Corticosteroids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[6].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "cefazolin",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [0] uses generic class name 'Aminoglycosides' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[0].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "hydralazine",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [2] uses generic class name 'Diuretics' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[2].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "heparin_ufh",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [4] uses generic class name 'NSAIDs' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[4].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "hydrochlorothiazide",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [4] uses generic class name 'Corticosteroids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[4].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "hydrochlorothiazide",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [13] uses generic class name 'NSAIDs' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[13].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "metformin",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [0] uses generic class name 'ACE Inhibitors' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[0].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "meperidine",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [10] uses generic class name 'Diuretics' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[10].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "marbofloxacin",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [1] uses generic class name 'Corticosteroids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[1].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "megestrol",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [0] uses generic class name 'Corticosteroids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[0].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "metyrapone",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [1] uses generic class name 'Corticosteroids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[1].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "medroxyprogesterone",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [0] uses generic class name 'Corticosteroids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[0].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "meropenem",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [0] uses generic class name 'Aminoglycosides' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[0].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "morphine",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [8] uses generic class name 'Diuretics' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[8].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "mexiletine",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [9] uses generic class name 'Opioids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[9].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "voriconazole",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [16] uses generic class name 'Corticosteroids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[16].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "verapamil",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [11] uses generic class name 'Diuretics' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[11].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "vancomycin",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [0] uses generic class name 'Aminoglycosides' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[0].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "orbifloxacin",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [1] uses generic class name 'Aminoglycosides' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[1].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "oxacillin",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [0] uses generic class name 'Aminoglycosides' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[0].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "olsalazine",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [2] uses generic class name 'NSAIDs' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[2].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "oxymorphone",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [7] uses generic class name 'Diuretics' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[7].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "warfarin",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [11] uses generic class name 'Fluoroquinolones' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[11].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "warfarin",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [19] uses generic class name 'NSAIDs' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[19].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "warfarin",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [30] uses generic class name 'Barbiturates' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[30].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "warfarin",
+      "issue": "GENERIC_INTERACTION_NAME",
+      "severity": "LOW",
+      "detail": "Interaction [31] uses generic class name 'Corticosteroids' instead of specific drug. May cause false positive matching.",
+      "fix": {
+        "field": "drug_interactions[31].drug",
+        "action": "specify_individual_drugs"
+      }
+    },
+    {
+      "drug_id": "glyburide",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 42/100 on a drug used in DUR engine rules. Missing sections: ['Veterinary PK studies (cat/dog)', 'Bioavailability data', 'Half-life data (cat)', 'Protein binding data', 'CYP enzyme profile', 'Onset/Tmax data', 'Dog dosage']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Veterinary PK studies (cat/dog)",
+          "Bioavailability data",
+          "Half-life data (cat)",
+          "Protein binding data",
+          "CYP enzyme profile",
+          "Onset/Tmax data",
+          "Dog dosage"
+        ]
+      }
+    },
+    {
+      "drug_id": "spironolactone_benazepril",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 5/100 on a drug used in DUR engine rules. Missing sections: []",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": []
+      }
+    },
+    {
+      "drug_id": "sulfa_trimethoprim",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 5/100 on a drug used in DUR engine rules. Missing sections: []",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": []
+      }
+    },
+    {
+      "drug_id": "spectinomycin",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 42/100 on a drug used in DUR engine rules. Missing sections: ['Dog-specific dosage', 'Cat-specific dosage', 'CYP profile', 'Protein binding (quantified)', 'Veterinary species-specific PK studies', 'Renal dose adjustment guidelines', 'Hepatic dose adjustment guidelines', 'Genetic sensitivity data']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Dog-specific dosage",
+          "Cat-specific dosage",
+          "CYP profile",
+          "Protein binding (quantified)",
+          "Veterinary species-specific PK studies",
+          "Renal dose adjustment guidelines",
+          "Hepatic dose adjustment guidelines",
+          "Genetic sensitivity data"
+        ]
+      }
+    },
+    {
+      "drug_id": "silver_sulfadiazine",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 40/100 on a drug used in DUR engine rules. Missing sections: ['Pharmacokinetics', 'Drug Interactions', 'Reproductive Safety', 'Overdosage']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Pharmacokinetics",
+          "Drug Interactions",
+          "Reproductive Safety",
+          "Overdosage"
+        ]
+      }
+    },
+    {
+      "drug_id": "same_silybin",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 5/100 on a drug used in DUR engine rules. Missing sections: []",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": []
+      }
+    },
+    {
+      "drug_id": "sulfadimethoxine_ormetoprim",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 5/100 on a drug used in DUR engine rules. Missing sections: ['Compatibility/Compounding Considerations (No specific information noted)']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Compatibility/Compounding Considerations (No specific information noted)"
+        ]
+      }
+    },
+    {
+      "drug_id": "insulin_lispro",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 5/100 on a drug used in DUR engine rules. Missing sections: ['Client Information (Extracted implicitly from Monitoring and Toxicity)']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Client Information (Extracted implicitly from Monitoring and Toxicity)"
+        ]
+      }
+    },
+    {
+      "drug_id": "insulin_aspart",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 5/100 on a drug used in DUR engine rules. Missing sections: ['Client Information (Extracted implicitly from Monitoring and Toxicity)']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Client Information (Extracted implicitly from Monitoring and Toxicity)"
+        ]
+      }
+    },
+    {
+      "drug_id": "insulin_glargine",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 5/100 on a drug used in DUR engine rules. Missing sections: []",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": []
+      }
+    },
+    {
+      "drug_id": "isoflupredone",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 42/100 on a drug used in DUR engine rules. Missing sections: ['Pharmacokinetics (specific values)', 'Dog dosage', 'Cat dosage', 'CYP profile', 'Half-life data', 'Bioavailability data', 'Protein binding data', 'Onset of action data']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Pharmacokinetics (specific values)",
+          "Dog dosage",
+          "Cat dosage",
+          "CYP profile",
+          "Half-life data",
+          "Bioavailability data",
+          "Protein binding data",
+          "Onset of action data"
+        ]
+      }
+    },
+    {
+      "drug_id": "insulin_regular",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 5/100 on a drug used in DUR engine rules. Missing sections: ['Client Information (Extracted implicitly from Monitoring and Toxicity)']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Client Information (Extracted implicitly from Monitoring and Toxicity)"
+        ]
+      }
+    },
+    {
+      "drug_id": "insulin_detemir",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 9/100 on a drug used in DUR engine rules. Missing sections: []",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": []
+      }
+    },
+    {
+      "drug_id": "eprinomectin_praziquantel",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 4/100 on a drug used in DUR engine rules. Missing sections: ['Compatibility/Compounding Considerations (No information noted)']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Compatibility/Compounding Considerations (No information noted)"
+        ]
+      }
+    },
+    {
+      "drug_id": "estradiol",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 45/100 on a drug used in DUR engine rules. Missing sections: ['Dosages (Dog)', 'Dosages (Cat)', 'Veterinary pharmacokinetics data', 'Half-life data', 'Bioavailability data', 'Protein binding data', 'Renal dose adjustment guidelines', 'CYP enzyme profile']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Dosages (Dog)",
+          "Dosages (Cat)",
+          "Veterinary pharmacokinetics data",
+          "Half-life data",
+          "Bioavailability data",
+          "Protein binding data",
+          "Renal dose adjustment guidelines",
+          "CYP enzyme profile"
+        ]
+      }
+    },
+    {
+      "drug_id": "loratadine",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 42/100 on a drug used in DUR engine rules. Missing sections: ['Veterinary-specific pharmacokinetics (dog/cat)', 'Veterinary-specific efficacy data', 'CYP enzyme profile', 'Oral bioavailability (dog/cat)']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Veterinary-specific pharmacokinetics (dog/cat)",
+          "Veterinary-specific efficacy data",
+          "CYP enzyme profile",
+          "Oral bioavailability (dog/cat)"
+        ]
+      }
+    },
+    {
+      "drug_id": "leuprolide",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 35/100 on a drug used in DUR engine rules. Missing sections: ['Veterinary pharmacokinetic data', 'Dog/cat specific dosing', 'CYP metabolism data', 'Renal/hepatic dose adjustment', 'Protein binding data', 'Bioavailability data', 'Half-life data']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Veterinary pharmacokinetic data",
+          "Dog/cat specific dosing",
+          "CYP metabolism data",
+          "Renal/hepatic dose adjustment",
+          "Protein binding data",
+          "Bioavailability data",
+          "Half-life data"
+        ]
+      }
+    },
+    {
+      "drug_id": "propranolol",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 35/100 on a drug used in DUR engine rules. Missing sections: ['Pharmacokinetics', 'Dosages', 'Drug Interactions', 'Adverse Effects', 'Overdosage', 'Storage']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Pharmacokinetics",
+          "Dosages",
+          "Drug Interactions",
+          "Adverse Effects",
+          "Overdosage",
+          "Storage"
+        ]
+      }
+    },
+    {
+      "drug_id": "probenecid",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 42/100 on a drug used in DUR engine rules. Missing sections: ['Dog dosage', 'Cat dosage', 'CYP profile', 'Oral bioavailability (dog/cat)', 'Protein binding (dog/cat)', 'Tmax (dog/cat)', 'Onset of action']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Dog dosage",
+          "Cat dosage",
+          "CYP profile",
+          "Oral bioavailability (dog/cat)",
+          "Protein binding (dog/cat)",
+          "Tmax (dog/cat)",
+          "Onset of action"
+        ]
+      }
+    },
+    {
+      "drug_id": "triamterene",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 42/100 on a drug used in DUR engine rules. Missing sections: ['Veterinary PK data (dog/cat)', 'Cat dosage', 'CYP profile', 'Protein binding', 'Renal elimination fraction']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Veterinary PK data (dog/cat)",
+          "Cat dosage",
+          "CYP profile",
+          "Protein binding",
+          "Renal elimination fraction"
+        ]
+      }
+    },
+    {
+      "drug_id": "tiamulin",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 45/100 on a drug used in DUR engine rules. Missing sections: ['Dog dosage', 'Cat dosage', 'Half-life data', 'Protein binding data', 'CYP enzyme profile', 'Renal dose adjustment', 'Hepatic dose adjustment', 'Genetic sensitivity']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Dog dosage",
+          "Cat dosage",
+          "Half-life data",
+          "Protein binding data",
+          "CYP enzyme profile",
+          "Renal dose adjustment",
+          "Hepatic dose adjustment",
+          "Genetic sensitivity"
+        ]
+      }
+    },
+    {
+      "drug_id": "trientine",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 45/100 on a drug used in DUR engine rules. Missing sections: ['Veterinary pharmacokinetics', 'Cat dosage', 'CYP profile', 'Protein binding', 'Bioavailability', 'Renal dose adjustment guidelines', 'Hepatic dose adjustment guidelines']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Veterinary pharmacokinetics",
+          "Cat dosage",
+          "CYP profile",
+          "Protein binding",
+          "Bioavailability",
+          "Renal dose adjustment guidelines",
+          "Hepatic dose adjustment guidelines"
+        ]
+      }
+    },
+    {
+      "drug_id": "demecarium_ophthalmic",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 42/100 on a drug used in DUR engine rules. Missing sections: ['Pharmacokinetics', 'Drug Interactions', 'Overdosage', 'Reproductive Safety']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Pharmacokinetics",
+          "Drug Interactions",
+          "Overdosage",
+          "Reproductive Safety"
+        ]
+      }
+    },
+    {
+      "drug_id": "reserpine",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 45/100 on a drug used in DUR engine rules. Missing sections: ['Dog dosage', 'Cat dosage', 'CYP profile', 'Protein binding', 'Renal dose adjustment', 'Hepatic dose adjustment', 'Genetic sensitivity']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Dog dosage",
+          "Cat dosage",
+          "CYP profile",
+          "Protein binding",
+          "Renal dose adjustment",
+          "Hepatic dose adjustment",
+          "Genetic sensitivity"
+        ]
+      }
+    },
+    {
+      "drug_id": "apramycin",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 42/100 on a drug used in DUR engine rules. Missing sections: ['Dog dosage', 'Cat dosage', 'CYP profile', 'Oral bioavailability (F%)', 'Protein binding', 'Onset of action', 'Human-labeled products']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Dog dosage",
+          "Cat dosage",
+          "CYP profile",
+          "Oral bioavailability (F%)",
+          "Protein binding",
+          "Onset of action",
+          "Human-labeled products"
+        ]
+      }
+    },
+    {
+      "drug_id": "alendronate",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 45/100 on a drug used in DUR engine rules. Missing sections: ['Specific veterinary PK values for cats', 'CYP enzyme profile', 'Protein binding percentage (dog/cat)', 'Onset of action', 'T_max', 'Oral bioavailability exact value for cats', 'Renal dose adjustment thresholds for dogs/cats']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Specific veterinary PK values for cats",
+          "CYP enzyme profile",
+          "Protein binding percentage (dog/cat)",
+          "Onset of action",
+          "T_max",
+          "Oral bioavailability exact value for cats",
+          "Renal dose adjustment thresholds for dogs/cats"
+        ]
+      }
+    },
+    {
+      "drug_id": "amikacin_ophthalmic",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 45/100 on a drug used in DUR engine rules. Missing sections: ['Pharmacokinetics', 'Drug Interactions', 'Overdosage', 'Reproductive Safety']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Pharmacokinetics",
+          "Drug Interactions",
+          "Overdosage",
+          "Reproductive Safety"
+        ]
+      }
+    },
+    {
+      "drug_id": "acyclovir_ophthalmic",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 45/100 on a drug used in DUR engine rules. Missing sections: ['Pharmacokinetics', 'Drug Interactions', 'Overdosage', 'Reproductive Safety']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Pharmacokinetics",
+          "Drug Interactions",
+          "Overdosage",
+          "Reproductive Safety"
+        ]
+      }
+    },
+    {
+      "drug_id": "fluorouracil_ophthalmic",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 45/100 on a drug used in DUR engine rules. Missing sections: ['Pharmacokinetics', 'Drug Interactions', 'Overdosage', 'Reproductive Safety']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Pharmacokinetics",
+          "Drug Interactions",
+          "Overdosage",
+          "Reproductive Safety"
+        ]
+      }
+    },
+    {
+      "drug_id": "florfenicol",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 45/100 on a drug used in DUR engine rules. Missing sections: ['Dog/Cat approved dosage', 'Renal dose adjustment', 'Hepatic dose adjustment', 'Specific CYP metabolism data for dogs/cats', 'Onset time', 'T_max', 'Protein binding for dogs/cats']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Dog/Cat approved dosage",
+          "Renal dose adjustment",
+          "Hepatic dose adjustment",
+          "Specific CYP metabolism data for dogs/cats",
+          "Onset time",
+          "T_max",
+          "Protein binding for dogs/cats"
+        ]
+      }
+    },
+    {
+      "drug_id": "ceftiofur_crystalline_free_acid",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 42/100 on a drug used in DUR engine rules. Missing sections: ['Dog dosage', 'Cat dosage', 'CYP metabolism profile', 'Oral bioavailability', 'Protein binding percent', 'Renal elimination fraction', 'Hepatic dose adjustment', 'Renal dose adjustment thresholds']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Dog dosage",
+          "Cat dosage",
+          "CYP metabolism profile",
+          "Oral bioavailability",
+          "Protein binding percent",
+          "Renal elimination fraction",
+          "Hepatic dose adjustment",
+          "Renal dose adjustment thresholds"
+        ]
+      }
+    },
+    {
+      "drug_id": "cefquinome",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 42/100 on a drug used in DUR engine rules. Missing sections: ['Dog dosage', 'Cat dosage', 'CYP profile', 'Protein binding (quantified)', 'Oral bioavailability (dog/cat)', 'Genetic sensitivity', 'QT prolongation data']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Dog dosage",
+          "Cat dosage",
+          "CYP profile",
+          "Protein binding (quantified)",
+          "Oral bioavailability (dog/cat)",
+          "Genetic sensitivity",
+          "QT prolongation data"
+        ]
+      }
+    },
+    {
+      "drug_id": "clofazimine",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 42/100 on a drug used in DUR engine rules. Missing sections: ['Veterinary pharmacokinetics (dog/cat)', 'Renal dose adjustment', 'Hepatic dose adjustment', 'CYP profile', 'Protein binding', 'T_max', 'Onset', 'Available strengths']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Veterinary pharmacokinetics (dog/cat)",
+          "Renal dose adjustment",
+          "Hepatic dose adjustment",
+          "CYP profile",
+          "Protein binding",
+          "T_max",
+          "Onset",
+          "Available strengths"
+        ]
+      }
+    },
+    {
+      "drug_id": "colchicine",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 45/100 on a drug used in DUR engine rules. Missing sections: ['Veterinary-specific pharmacokinetics', 'Cat dosage', 'Bioavailability data', 'Protein binding data', 'Onset of action data', 'T-max data']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Veterinary-specific pharmacokinetics",
+          "Cat dosage",
+          "Bioavailability data",
+          "Protein binding data",
+          "Onset of action data",
+          "T-max data"
+        ]
+      }
+    },
+    {
+      "drug_id": "clodronate",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 35/100 on a drug used in DUR engine rules. Missing sections: ['Dog dosage', 'Cat dosage', 'CYP profile', 'Oral bioavailability', 'Protein binding', 'Onset of action', 'T_max', 'Hepatic dose adjustment', 'Genetic sensitivity']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Dog dosage",
+          "Cat dosage",
+          "CYP profile",
+          "Oral bioavailability",
+          "Protein binding",
+          "Onset of action",
+          "T_max",
+          "Hepatic dose adjustment",
+          "Genetic sensitivity"
+        ]
+      }
+    },
+    {
+      "drug_id": "chlortetracycline",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 42/100 on a drug used in DUR engine rules. Missing sections: ['Pharmacokinetics (개/고양이 종별 PK 데이터 없음; Oxytetracycline 참조 안내만 있음)']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Pharmacokinetics (개/고양이 종별 PK 데이터 없음; Oxytetracycline 참조 안내만 있음)"
+        ]
+      }
+    },
+    {
+      "drug_id": "ceftiofur_hcl",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 45/100 on a drug used in DUR engine rules. Missing sections: ['Dog dosage', 'Cat dosage', 'CYP profile', 'Oral bioavailability', 'Protein binding', 'Renal elimination fraction', 'Hepatic dose adjustment', 'Renal dose adjustment thresholds', 'Genetic sensitivity']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Dog dosage",
+          "Cat dosage",
+          "CYP profile",
+          "Oral bioavailability",
+          "Protein binding",
+          "Renal elimination fraction",
+          "Hepatic dose adjustment",
+          "Renal dose adjustment thresholds",
+          "Genetic sensitivity"
+        ]
+      }
+    },
+    {
+      "drug_id": "hydroxychloroquine",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 35/100 on a drug used in DUR engine rules. Missing sections: ['Veterinary pharmacokinetics (dog/cat)', 'Cat dosage', 'CYP profile', 'Protein binding', 'Onset of action', 'T_max', 'Renal elimination fraction', 'Specific renal/hepatic dose adjustment guidelines']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Veterinary pharmacokinetics (dog/cat)",
+          "Cat dosage",
+          "CYP profile",
+          "Protein binding",
+          "Onset of action",
+          "T_max",
+          "Renal elimination fraction",
+          "Specific renal/hepatic dose adjustment guidelines"
+        ]
+      }
+    },
+    {
+      "drug_id": "molybdates",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 42/100 on a drug used in DUR engine rules. Missing sections: ['Drug Interactions (formal section)', 'Overdosage/Acute Toxicity', 'Client Information (formal section)']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Drug Interactions (formal section)",
+          "Overdosage/Acute Toxicity",
+          "Client Information (formal section)"
+        ]
+      }
+    },
+    {
+      "drug_id": "mitomycin_ophthalmic",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 42/100 on a drug used in DUR engine rules. Missing sections: ['Pharmacokinetics', 'Drug Interactions', 'Overdosage', 'Reproductive Safety']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Pharmacokinetics",
+          "Drug Interactions",
+          "Overdosage",
+          "Reproductive Safety"
+        ]
+      }
+    },
+    {
+      "drug_id": "methenamine",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 45/100 on a drug used in DUR engine rules. Missing sections: ['Veterinary PK data (dog/cat)', 'Half-life data', 'Bioavailability data', 'Protein binding data', 'CYP profile', 'Onset of action (minutes)']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Veterinary PK data (dog/cat)",
+          "Half-life data",
+          "Bioavailability data",
+          "Protein binding data",
+          "CYP profile",
+          "Onset of action (minutes)"
+        ]
+      }
+    },
+    {
+      "drug_id": "montelukast",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 38/100 on a drug used in DUR engine rules. Missing sections: ['Veterinary PK data (cat/dog)', 'Monitoring parameters (detailed)', 'Renal dose adjustment', 'Hepatic dose adjustment', 'Dog dosage']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Veterinary PK data (cat/dog)",
+          "Monitoring parameters (detailed)",
+          "Renal dose adjustment",
+          "Hepatic dose adjustment",
+          "Dog dosage"
+        ]
+      }
+    },
+    {
+      "drug_id": "miconazole_ophthalmic",
+      "issue": "LOW_CONFIDENCE_CRITICAL_DRUG",
+      "severity": "HIGH",
+      "detail": "Confidence 42/100 on a drug used in DUR engine rules. Missing sections: ['Pharmacokinetics', 'Drug Interactions', 'Reproductive Safety', 'Overdosage']",
+      "fix": {
+        "action": "re_extract_from_source",
+        "missing_sections": [
+          "Pharmacokinetics",
+          "Drug Interactions",
+          "Reproductive Safety",
+          "Overdosage"
+        ]
+      }
+    },
+    {
+      "drug_id": "nitenpyram",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [0] has Korean-only match_terms: ['저체중', '체중 미달', '소형 동물']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[0].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "nitenpyram",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [1] has Korean-only match_terms: ['신생아', '4주 미만']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[1].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "nitenpyram",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [2] has Korean-only match_terms: ['8주 미만', '어린 동물']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[2].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "sarolaner",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [0] has Korean-only match_terms: ['저체중', '소형견']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[0].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "sarolaner",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [1] has Korean-only match_terms: ['어린 강아지', '6개월 미만']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[1].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "sarolaner",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [2] has Korean-only match_terms: ['어린 강아지', '8주 미만']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[2].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "sarolaner",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [3] has Korean-only match_terms: ['발작', '간질', '신경계 질환']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[3].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "sarolaner",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [4] has Korean-only match_terms: ['임신', '수유', '번식용']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[4].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "sarolaner",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [5] has Korean-only match_terms: ['고양이', '단독 경구']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[5].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "ivermectin_clorsulon",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [0] has Korean-only match_terms: ['개', '고양이', '비소 동물']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[0].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "parapox_ovis_virus",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [1] has Korean-only match_terms: ['만성 질환', '원인 불명 만성 질환']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[1].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "parapox_ovis_virus",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [2] has Korean-only match_terms: ['임신', '수유', '번식']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[2].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "praziquantel",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [0] has Korean-only match_terms: ['프라지콴텔 과민반응', '약물 알레르기']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[0].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "praziquantel",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [1] has Korean-only match_terms: ['강아지 연령 제한', '4주령 미만']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[1].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "praziquantel",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [2] has Korean-only match_terms: ['새끼 고양이 연령 제한', '6주령 미만']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[2].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "praziquantel",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [3] has Korean-only match_terms: ['간부전', '간기능 저하', '간질환']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[3].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "praziquantel",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [4] has Korean-only match_terms: ['임신', '임신 동물']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[4].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "domperidone",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [0] has Korean-only match_terms: ['돔페리돈 과민반응', '약물 알레르기']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[0].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "rocuronium",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [0] has Korean-only match_terms: ['약물 과민반응', '아나필락시스']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[0].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "rocuronium",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [3] has Korean-only match_terms: ['간부전', '간경변', '간질환']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[3].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "rocuronium",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [4] has Korean-only match_terms: ['마취 없이 사용', '환기 지원 불가']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[4].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "flurbiprofen_ophthalmic",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [1] has Korean-only match_terms: ['출혈 경향', '간질환', '응고 장애']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[1].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "flurbiprofen_ophthalmic",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [2] has Korean-only match_terms: ['헤파린 투여', '리바록사반 투여', '항응고 치료']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[2].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "flurbiprofen_ophthalmic",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [3] has Korean-only match_terms: ['각막 궤양', '각막 미란', '각막 상처']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[3].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "clomipramine",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [3] has Korean-only match_terms: ['발작 역치 저하 약물']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[3].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "clomipramine",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [11] has Korean-only match_terms: ['6개월 미만', '어린 강아지']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[11].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "chlorpromazine",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [0] has Korean-only match_terms: ['클로르프로마진 과민증', '페노티아진 과민증']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[0].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "melarsomine",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [1] has Korean-only match_terms: ['정맥 투여', '피하 투여']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[1].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "melarsomine",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [3] has Korean-only match_terms: ['임신', '수유', '번식']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[3].match_terms",
+        "action": "add_english_equivalents"
+      }
+    },
+    {
+      "drug_id": "melarsomine",
+      "issue": "KOREAN_ONLY_MATCH_TERMS",
+      "severity": "MODERATE",
+      "detail": "Contraindication [5] has Korean-only match_terms: ['노령견', '8세 이상']. Engine matching is English-based.",
+      "fix": {
+        "field": "contraindications[5].match_terms",
+        "action": "add_english_equivalents"
+      }
+    }
+  ]
+}
