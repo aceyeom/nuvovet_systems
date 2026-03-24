@@ -95,13 +95,13 @@ export default function MedicationHistory({ patientId, species, onMedsChange, is
 
     if (isDemo) {
       const demoMed = { ...newMed, id: `demo_${Date.now()}`, created_at: new Date().toISOString() };
-      const updated = [...medications, demoMed];
+      const updated = [demoMed, ...medications];
       setMedications(updated);
       onMedsChange?.(updated);
     } else if (patientId) {
       const saved = await addPatientMedicationApi(patientId, newMed);
       if (saved) {
-        const updated = [...medications, saved];
+        const updated = [saved, ...medications];
         setMedications(updated);
         onMedsChange?.(updated);
       }
