@@ -4,12 +4,14 @@ Drug endpoints — search, get, and list drugs.
 
 import logging
 import re
-from typing import Optional
+from typing import Any, Dict, Optional
 
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query
 
-from services.drug_loader import get_drug_db, get_search_index
+from auth import get_current_user
+from services.drug_loader import get_drug_db, get_search_index, refresh_drug_db
 from services.drug_mapper import map_drug
+from services.drug_sync import sync_drug_data
 
 logger = logging.getLogger("nuvovet")
 
@@ -43,6 +45,20 @@ def _token_subset_match(query_norm: str, target_norm: str) -> bool:
 def health():
     db = get_drug_db()
     return {"status": "ok", "drug_count": len(db)}
+
+
+@router.post("/admin/drugs/reload")
+def reload_drugs(account: Dict[str, Any] = Depends(get_current_user)):
+    if account.get("username") != "admin":
+        raise HTTPException(status_code=403, detail="Admin account required")
+
+    summary = sync_drug_data()
+    db = refresh_drug_db()
+    return {
+        "status": "ok",
+        **summary,
+        "cache_drug_count": len(db),
+    }
 
 
 @router.get("/drugs/search")

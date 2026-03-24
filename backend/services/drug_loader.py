@@ -178,6 +178,17 @@ def get_drug_db() -> Dict[str, Any]:
     return _DRUG_CACHE
 
 
+def reset_drug_db() -> None:
+    global _DRUG_CACHE, _SEARCH_INDEX
+    _DRUG_CACHE = None
+    _SEARCH_INDEX = None
+
+
+def refresh_drug_db() -> Dict[str, Any]:
+    reset_drug_db()
+    return get_drug_db()
+
+
 def get_search_index() -> List[Dict[str, Any]]:
     get_drug_db()  # ensure loaded
     return _SEARCH_INDEX or []

@@ -35,6 +35,7 @@ from routers.drugs import router as drugs_router
 from routers.clinical import router as clinical_router
 from routers.ocr import router as ocr_router, get_api_key as ocr_api_key
 from services.drug_loader import get_drug_db
+from services.drug_sync import sync_drug_data
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("nuvovet")
@@ -59,10 +60,19 @@ app.add_middleware(
 
 # ── Startup ───────────────────────────────────────────────────────
 
+def _env_flag_enabled(name: str) -> bool:
+    return (os.getenv(name) or "").strip().lower() in {"1", "true", "yes", "on"}
+
+
+
 @app.on_event("startup")
 async def startup_event():
     logger.info("Initialising user database...")
     init_db()
+    if _env_flag_enabled("NUVOVET_SYNC_DRUGS_ON_STARTUP"):
+        logger.info("NUVOVET_SYNC_DRUGS_ON_STARTUP enabled; syncing JSONL drug data into PostgreSQL...")
+        summary = sync_drug_data()
+        logger.info("Startup drug sync finished: %s", summary)
     logger.info("Loading drug database...")
     get_drug_db()
     logger.info("Drug database ready.")
