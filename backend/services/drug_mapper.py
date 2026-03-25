@@ -253,6 +253,9 @@ def map_drug(raw: dict) -> dict:
         "reversalAgent": identity.get("reversal_agent"),
         "formularyStatus": identity.get("formulary_status", "active"),
         "brandNames": identity.get("brand_names") or [],
+        "productNamesKo": identity.get("product_names_ko") or [],
+        "productNamesEn": identity.get("product_names_en") or [],
+        "cautionaryNoticesKo": raw.get("cautionary_notices_ko") or [],
         "dosageForms": identity.get("dosage_form") or [],
         "availableStrengths": [
             {

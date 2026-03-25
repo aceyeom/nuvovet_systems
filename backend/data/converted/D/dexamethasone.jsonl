@@ -46,6 +46,12 @@
         "form": "oral",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "덱사주"
+    ],
+    "product_names_en": [
+      "Dexa inj."
     ]
   },
   "metabolism_and_clearance": {
@@ -999,5 +1005,103 @@
     "자가면역 질환",
     "혈액 질환"
   ],
-  "mechanism_short": "합성 글루코코르티코이드로서 글루코코르티코이드 수용체에 결합하여 항염증, 면역억제, 대사 조절 효과를 나타냄. 히드로코르티손보다 30배 강력하며 무기질코르티코이드 활성은 없음. 모세혈관 투과성 감소, 혈관 수축 강화, 리소좀막 안정화, 사이토카인 및 염증 매개체 생성 억제 등의 기전으로 작용."
+  "mechanism_short": "합성 글루코코르티코이드로서 글루코코르티코이드 수용체에 결합하여 항염증, 면역억제, 대사 조절 효과를 나타냄. 히드로코르티손보다 30배 강력하며 무기질코르티코이드 활성은 없음. 모세혈관 투과성 감소, 혈관 수축 강화, 리소좀막 안정화, 사이토카인 및 염증 매개체 생성 억제 등의 기전으로 작용.",
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "- 결핵, 만성신부전, 부신피질기능항진증(쿠싱증후"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 울혈성심부전, 당뇨, 골다공증이 있는 환축"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 바이러스감염으로 인한 바이러스혈증단계에 있는"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "다음 환축에는 신중히 투여할 것"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 신부전, 당뇨, 만성신염, 울혈성심부전, 골다공증"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": ", 바이러스감염, 임신한 동물"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 덱사메타손을 투여받고 있는 환축에서 세밀한 관"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "찰을 요함. 코르티코스테로이드의 항염증작용으로"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "감염의 증상이 드러나지 않을 수 있으므로 더 이상"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "의 진단이 있을 때까지 치료를 중단할 필요가 있"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 수의사의 지시에 따라 사용할 것"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 어린이의 손이 닿지 않는 곳에 보관할 것"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 개에서 SAP, SGPT효소치의 상승, 체중감소, 식욕"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "부진, 다뇨, 다갈, 다식이 있을 수 있다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 개, 고양이에서 구토와 설사가 관찰될 수 있다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 저칼륨혈증, 피부석회증, 면역억압, 상처치유지"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 개의 쿠싱증후군은 지속적 또는 반복적 스테로이"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "드치료와 관련이 있다는 보고가 있다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 임신한 개에서 코르티코스테로이드의 투여는 태"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "아에 구개열 또는 전지 기형, 단지증, 전신부종 등"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "의 선천성 기형을 일으킬 수 있다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 일부 글루코코르티코이드의 과량투여는 나트륨,"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "체액보유, 칼륨손실, 체중증가의 결과를 유도할"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 설명서를 충분히 읽어본 후 사용할 것"
+    }
+  ]
 }

@@ -52,6 +52,14 @@
         "form": "oral",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "네오프로펜 애견용 주(케토프로펜)",
+      "이글 애견용 케토프로펜 10% 주(케토프로펜)",
+      "케토로펜 애견용 주(케토프로펜)"
+    ],
+    "product_names_en": [
+      "KETOROFEN for pet"
     ]
   },
   "metabolism_and_clearance": {
@@ -717,5 +725,91 @@
     "최대 3일). 【Extra-label 적응증】 개·고양이: 급성 및 만성 통증/항염증. 양",
     "랫트/마우스: 진통·항염증·해열 목적."
   ],
-  "mechanism_short": "COX-1 및 COX-2의 비선택적·가역적 억제를 통해 아라키돈산에서 프로스타글란딘 전구체(엔도퍼옥사이드)로의 전환을 차단하여 조직 내 프로스타글란딘 합성을 억제함. 리폭시게나제 억제 활성도 주장되나 in vitro 연구에서 확인되지 않음. 라세믹 혼합물로 S(+) 에난티오머가 항프로스타글란딘 활성 및 독성과 관련, R(-) 에난티오머가 진통 효과와 관련됨."
+  "mechanism_short": "COX-1 및 COX-2의 비선택적·가역적 억제를 통해 아라키돈산에서 프로스타글란딘 전구체(엔도퍼옥사이드)로의 전환을 차단하여 조직 내 프로스타글란딘 합성을 억제함. 리폭시게나제 억제 활성도 주장되나 in vitro 연구에서 확인되지 않음. 라세믹 혼합물로 S(+) 에난티오머가 항프로스타글란딘 활성 및 독성과 관련, R(-) 에난티오머가 진통 효과와 관련됨.",
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "- 신장장애가 있는 동물, 원인불명의 출혈이 있는 동물, 케토프로펜에 과민한"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "반응이 있는 동물에는 투약하지 말 것"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 주사방법이 잘못되면 동통, 경결 및 화농이 생길 수 있음"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "임신, 수유축, 신생축, 어린가축, 쇠약축 등에 대한 투여"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 안전사고 방지를 위하여 어린이의 손이 닿지 않고 동물의 접근이 불가능한      곳에 보관할 것."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 유효성 및 안정성에 변화를 초래할 수 있으므로 정하여진"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "다른 비스테로이드성 소염제, 이뇨제, 항혈액응고제 등과 같이 투약하지 말 것"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 신장장해가 있는 동물에는 투여하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 위장관의 심한 궤양으로 인한 출혈이 있는 동물에는 투여하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 케토프로펜에 과민한 반응이 있는 동물에는 투여하지 마십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 다른 비스테로이드성 소염제, 이뇨제, 항 혈액응고제 등과 동시에 투여하지"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "임신, 수유축, 신생축, 어린가축, 쇠약축 등에 대한 투여"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 임신한 동물이나 생후 15일 이전의 어린 동물에는 투여하지 마십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 사용시 충분히 흔들어서 사용하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 다른 약제와 혼합하여 사용하지 마십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 주사방법이 잘못되면 동통, 경절 및 화농이 생길 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 체중 200kg이상의 경우, 두 곳 이상에 나누어 주사 하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 안전사고 방지를 위하여 어린이의 손이 닿지 않고 동물의 접근이 불가능한 곳에 보관하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 안전성 및 유효성에 변화를 초래할 수 있으므로 정해진"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "-다른 비스테로이드성 소염제, 이뇨제, 항 혈액응고제 등과 동시에 투여하지     마십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 안전사고 방지를 위하여 어린이의 손이 닿지 않고 동물의 접근이 불가능한      곳에 보관하십시오."
+    }
+  ]
 }

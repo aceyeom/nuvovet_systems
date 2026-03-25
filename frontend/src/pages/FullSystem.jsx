@@ -618,11 +618,22 @@ function DosageSummaryPanel({ results, drugs, species, patientInfo, onUpdateDrug
             return (
               <div key={drug.id} className={`px-3 py-2.5 ${idx !== drugs.length - 1 ? 'border-b border-slate-100' : ''}`}>
                 <div className="flex items-center gap-2">
-                  <p className="text-[12px] font-semibold text-slate-900 truncate">{drug.name}</p>
+                  <p className="text-[12px] font-semibold text-slate-900 truncate">{drug.nameKr || drug.name}</p>
+                  {drug.nameKr && drug.name && <span className="text-[10px] text-slate-400 truncate">{drug.name}</span>}
                   {dosePerKg > 0 && totalMg && (
                     <span className="ml-auto text-[11px] font-bold text-slate-700 shrink-0">{totalMg} mg</span>
                   )}
                 </div>
+                {drug.productNamesKo?.length > 0 && (
+                  <div className="flex flex-wrap gap-0.5 mt-0.5">
+                    {drug.productNamesKo.slice(0, 2).map(p => (
+                      <span key={p} className="text-[8px] px-1 py-0.5 bg-blue-50 text-blue-500 rounded border border-blue-100 truncate max-w-[100px]">{p}</span>
+                    ))}
+                    {drug.productNamesKo.length > 2 && (
+                      <span className="text-[8px] text-slate-400">+{drug.productNamesKo.length - 2}</span>
+                    )}
+                  </div>
+                )}
 
                 <div className="mt-0.5 flex flex-wrap items-center gap-x-2.5 gap-y-0.5 text-[11px] text-slate-500">
                   {dosePerKg > 0 && <span>{dosePerKg} {drug.unit || 'mg/kg'}</span>}

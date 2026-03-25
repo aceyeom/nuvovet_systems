@@ -1,0 +1,373 @@
+{
+  "id": "세팔렉신cephalexin_as_monohydrate",
+  "drug_identity": {
+    "name_ko": "세팔렉신Cephalexin,as monohydrate, )",
+    "name_en": "세팔렉신Cephalexin,as monohydrate, )",
+    "active_ingredient": "세팔렉신Cephalexin,as monohydrate, )",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Antibiotic",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Tab"
+    ],
+    "available_strengths": [
+      {
+        "value": 600.0,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "리렉신 츄어블 정 600mg(세팔렉신)"
+    ],
+    "product_names_en": [
+      "Rilexin palatable tablet 600mg"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": []
+    },
+    "cat": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "linear",
+          "context": "1) 대상동물 : 개, 고양이\n2) 효능 및 효과 : 개와 고양이의 포도상구균(Staphylococcus spp.)\n                  감염에 의한 세균성 피부염의 치",
+          "value": "30",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "SID",
+          "max_dose_mg_kg": null,
+          "duration_note": "10일",
+          "evidence": "한국 수의약품 허가사항"
+        }
+      ]
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Tab"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "1) 대상동물 : 개, 고양이\n2) 효능 및 효과 : 개와 고양이의 포도상구균(Staphylococcus spp.)\n                  감염에 의한 세균성 피부염의 치료",
+    "indications": "1) 대상동물 : 개, 고양이\n2) 효능 및 효과 : 개와 고양이의 포도상구균(Staphylococcus spp.)\n                  감염에 의한 세균성 피부염의 치료",
+    "client_info": ""
+  },
+  "brief_description": "1) 대상동물 : 개, 고양이\n2) 효능 및 효과 : 개와 고양이의 포도상구균(Staphylococcus spp.)\n                  감염에 의한 세균성 피부염의 치료",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "- 세팔로스포린계 및 β-락탐계 항생제에 과민반응이"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "있었던 동물에는 투여하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 세팔렉신 내성이 있는 경우에는 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "다음 환축에게는 신중히 투여할 것"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "신장기능부전이 있는 동물에 사용 시에는 수의사의"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "위험-유익 평가에 따라 사용하고 투여량을 주의 깊게"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "개와 고양이에서 구토와 설사가 관찰되었다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 세팔로스포린계 항생제의 살균작용은 정균 작용을"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "가지는 항생제들(마크로라이드계, 설포나마이드계"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "그리고 테트라사이클린)과 함께 사용 시 약효가"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 1세대 세팔로스포린과 폴리펩티드 항생제, 아미노"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "글리코사이드 및 이뇨제(푸로세마이드)를 함께"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "투여하면 신독성을 증가시킬 수 있다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "임신 및 수유 동물에 대한 투여"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "실험동물에서의 연구 자료에서 세팔렉신의 최기형성"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "효과에 대한 증거는 발견되지 않았다. 그러나 목적"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "동물에서는 평가하지 않았으므로, 수의사의 위험-유익"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 항생제 감수성 시험 결과에 따라 사용하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 페니실린과 세팔로스포린의 과민반응은 교차되므로"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "이 두 항생제에 과민반응이 있는 사용자는 본제에"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "직접 접촉하는 것을 피하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 사람이 본제를 우발적으로 섭취하였거나, 본제에"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "노출된 후 발적, 얼굴과 눈, 입 등의 부종, 또는"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "호흡곤란이 있을 경우, 사용설명서를 지참하여 즉시"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "의사의 진료를 받으십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 어린이의 손이 닿지 않고 동물의 접근이 불가능한"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "장소에 보관하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 유효기간이 경과 시, 안전하게 폐기처리 하십시오."
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.183974+00:00",
+    "reviewer": null
+  }
+}

@@ -49,6 +49,16 @@
         "form": "injectable",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "겐타마이신-100주",
+      "이소틱",
+      "오티벳"
+    ],
+    "product_names_en": [
+      "GENTAMICIN-100 INJECTION",
+      "Easotic",
+      "OTIVET"
     ]
   },
   "metabolism_and_clearance": {
@@ -661,5 +671,131 @@
     "개). 돼지",
     "가금류의 장관 감염(FDA 승인)."
   ],
-  "mechanism_short": "30S 리보솜 소단위에 비가역적으로 결합하여 단백질 합성을 억제하는 농도 의존성 살균 항생제. 최적 항균 효과를 위해 최고 혈중 농도/MIC 비율 10 이상 권장."
+  "mechanism_short": "30S 리보솜 소단위에 비가역적으로 결합하여 단백질 합성을 억제하는 농도 의존성 살균 항생제. 최적 항균 효과를 위해 최고 혈중 농도/MIC 비율 10 이상 권장.",
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "식용동물에는 어린 가축에만 사용할 것."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "수의사의 지시에 따라 사용하십시오"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 제품의 성분에 과민반응이 있는 환축에 투여하지"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 고막이 천공 되었을 경우 사용하지 마십시오"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 이독성을 일으키는 물질과 사용하지 마십시오"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 전신적 모낭충증에 사용하지 마십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 경미한 발적(치료견의 2.4%), 드물게 구진(치료견"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "의 1%미만), 모든 경우 특별한 처치없이 회복"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 제품 사용과 관련하여 (일시적)청력장애가 발생("
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "주로 노령견)할 경우 사용을 중단하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 투여 시 환부를 깨끗이 닦아내고 건조시킨 후 사용"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "하며 환부와 그 주위의 모발을 제거하도록 할 것"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 실온 보관해 차가운 상태로 제품을 적용하지 마십"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 환축과 사람에 안자극성이 있을 수 있으므로 본 제"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "품이 환축이나 사람의 눈에 직접 접촉하지 않도록"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 어린이의 손이 닿지 않고 동물의 접근이 불가능한"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 유효기간이 경과 시, 안전하게 폐기처리 하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 수의사의 지시에 따라 사용하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 동물용의약품이므로 사람에게 절대 사용하지 마십"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 기타 제품에 대하여 문의하실 사항이 있으신 경우"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "수입사로 연락하여 주시기 바랍니다"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "본제 및 다른 아미노글리코시드계 항생물질에 대한 쇼크와"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "과민반응이 있었던 동물에는 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "고막에 천공이 있는 개에는 사용하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "아미노글리코시드계는 신독성, 이독성등이 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "본제를 장기간 사용하거나 권장용량을 초과하여 사용하면"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "면역 억제 효과가 발생 할 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "치료하는 동안 동물의 청력이나 전정기능에 장애가 발견되면"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "즉시 도포를 중지하고 비신경독성 용액으로 깨끗이 씻어내십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 본제는 Beta-lactam antiboitics, cephalosporins, loop, osmotic,"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "nephrotoxic drugs 등과 병용하지 마십시오."
+    }
+  ]
 }

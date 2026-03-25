@@ -37,6 +37,12 @@
         "form": "injectable",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "바이콕스 아이언 주사액"
+    ],
+    "product_names_en": [
+      "Baycox Iron injection"
     ]
   },
   "metabolism_and_clearance": {
@@ -351,5 +357,35 @@
     "5~10 mg/kg PO",
     "2일). 일부 국가에서 송아지(Eimeria bovis"
   ],
-  "mechanism_short": "원충의 효소 시스템 및 세포 분열 억제, 세포 내 구조물 손상. 분열소체 및 소·대배우자모세포를 포함한 콕시디아의 모든 세포 내 단계에 작용. 원충 핵 분열 및 미토콘드리아 활성 방해, 소배우자의 벽 형성체 손상, 모든 세포 내 발달 단계에서 원충 소포체의 심한 공포화 유발."
+  "mechanism_short": "원충의 효소 시스템 및 세포 분열 억제, 세포 내 구조물 손상. 분열소체 및 소·대배우자모세포를 포함한 콕시디아의 모든 세포 내 단계에 작용. 원충 핵 분열 및 미토콘드리아 활성 방해, 소배우자의 벽 형성체 손상, 모든 세포 내 발달 단계에서 원충 소포체의 심한 공포화 유발.",
+  "cautionary_notices_ko": [
+    {
+      "type": "adverse_effect",
+      "text_ko": "근육주사 후 간혹 국소적 조직반응(탈색이나 부종 등)이"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "관찰될 수 있으나 일시적이며 부가적인 치료 없이 사라집니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "드물게 아나필락시스 반응을 보일 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "자돈에 철분제 주사 후 유전적 소인이나 비타민 E 또는"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "셀레늄 결핍으로 인해 폐사가 발생할 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "세망내피계의 일시적인 차단으로 인해 감염의 감수성이"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "증가할 수 있으며 폐사로 이를 수 있습니다."
+    }
+  ]
 }

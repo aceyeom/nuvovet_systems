@@ -1,0 +1,381 @@
+{
+  "id": "sodium_methiolate",
+  "drug_identity": {
+    "name_ko": "Sodium methiolate",
+    "name_en": "Sodium methiolate",
+    "active_ingredient": "Sodium methiolate",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Unknown",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Unknown"
+    ],
+    "available_strengths": [
+      {
+        "value": 0.1,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "캔글로브 P"
+    ],
+    "product_names_en": [
+      "Canglob P"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "linear",
+          "context": "1) 대상동물 : 개\n2) 효능범위 : 파보바이러스증의 보조치료",
+          "value": "0.4",
+          "unit": "ml/kg",
+          "route": "SC",
+          "frequency": "SID",
+          "max_dose_mg_kg": null,
+          "duration_note": null,
+          "evidence": "한국 수의약품 허가사항"
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "linear",
+          "context": "1) 대상동물 : 개\n2) 효능범위 : 파보바이러스증의 보조치료",
+          "value": "0.4",
+          "unit": "ml/kg",
+          "route": "SC",
+          "frequency": "SID",
+          "max_dose_mg_kg": null,
+          "duration_note": null,
+          "evidence": "한국 수의약품 허가사항"
+        }
+      ]
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Unknown"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "1) 대상동물 : 개\n2) 효능범위 : 파보바이러스증의 보조치료",
+    "indications": "1) 대상동물 : 개\n2) 효능범위 : 파보바이러스증의 보조치료",
+    "client_info": ""
+  },
+  "brief_description": "1) 대상동물 : 개\n2) 효능범위 : 파보바이러스증의 보조치료",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본제를 투여시 드물게 알레르기 또는 과민 반응이"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "일어날 수 있으며 특히 반복투여 시에 발생할 수"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "있다. 체온 상승, 일시적 식욕부진과 전신 쇠약이"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "일어 날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 알레르기와 과민반응이 발생하는 경우에 본제의 사"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본 제의 사용시 반드시 알러지 반응시험을 개체별"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "로 매 접종전마다 실시한 후 사용하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 임신견에 접종은 피하도록 하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 질병이 진행된 상태 및 본제로 치료할 경우 위험성"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "이 있다고 판단하는 경우에는 금기를 할 것인지 수"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "의사의 처방에 따릅니다,."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 이종 면역글로블린을 투여하면 7일 이내에 수동면"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "역이 촉진되므로 이 기간에 개 파보 바이러스 생백"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "신을 접종하지 말아야 하며 투여 경로, 치료 및 예"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "방 기간에 수의사의 처방을 따릅니다"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 예방 또는 치료 목적으로 사용할 것인지 결정하여"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 타약제를 투여하여도 본제의 수동면역형성에 지장"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "을 주지 않으나 부작용이 발생할 때에는 보조 치료"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 사용 전에 사용설명서를 충분히 읽고 사용하십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 높은 온도에서 또는 직사광선에 오랫동안 노출하면"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "역가에 영향을 미칠 수 있습니다"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 일단 개봉하면 가급적 전량을 다 사용하십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 본제를 투여할 때는 멸균된 실린지와 바늘을 사용"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 소독제가 미량이라도 본제를 불활성화시킬 수 있기"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "때문에 화학 물질로 멸균시키지 않도록 하십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 다 쓴 용기 및 아직 사용하지 않은 잔량은 소각시"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 수의사의 지시와 처방에 따라 사용하십시오"
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.184799+00:00",
+    "reviewer": null
+  }
+}

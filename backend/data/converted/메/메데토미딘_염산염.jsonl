@@ -1,0 +1,331 @@
+{
+  "id": "메데토미딘_염산염",
+  "drug_identity": {
+    "name_ko": "메데토미딘 염산염",
+    "name_en": "메데토미딘 염산염",
+    "active_ingredient": "메데토미딘 염산염",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Unknown",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Tab",
+      "Inj"
+    ],
+    "available_strengths": [
+      {
+        "value": 1.0,
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "메디토르",
+      "토미딘",
+      "세다토",
+      "젠알파주",
+      "메데틴"
+    ],
+    "product_names_en": [
+      "Medetor"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "linear",
+          "context": "대상 동물\n   \n   효능․효과 및 적응증\n   \n  \n  \n   개\n   \n   - 개의 임상검사, 치료 및 가벼운 외과 수술시 진정 및 진통 효과\n - 개에서 티오바르비투르산",
+          "value": "2-4",
+          "unit": "mg/kg",
+          "route": "SC",
+          "frequency": "SID",
+          "max_dose_mg_kg": null,
+          "duration_note": null,
+          "evidence": "한국 수의약품 허가사항"
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "linear",
+          "context": "대상 동물\n   \n   효능․효과 및 적응증\n   \n  \n  \n   개\n   \n   - 개의 임상검사, 치료 및 가벼운 외과 수술시 진정 및 진통 효과\n - 개에서 티오바르비투르산",
+          "value": "2-4",
+          "unit": "mg/kg",
+          "route": "SC",
+          "frequency": "SID",
+          "max_dose_mg_kg": null,
+          "duration_note": null,
+          "evidence": "한국 수의약품 허가사항"
+        }
+      ]
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Tab",
+      "Inj"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "대상 동물\n   \n   효능․효과 및 적응증\n   \n  \n  \n   개\n   \n   - 개의 임상검사, 치료 및 가벼운 외과 수술시 진정 및 진통 효과\n - 개에서 티오바르비투르산유도체(Thiobarbiturate), 할로탄(Halothane) 또는\n 케타민 (Ketamine) 마취시 전마취제로 사용",
+    "indications": "대상 동물\n   \n   효능․효과 및 적응증\n   \n  \n  \n   개\n   \n   - 개의 임상검사, 치료 및 가벼운 외과 수술시 진정 및 진통 효과\n - 개에서 티오바르비투르산유도체(Thiobarbiturate), 할로탄(Halothane) 또는\n 케타민 (Ketamine) 마취시 전마취제로 사용",
+    "client_info": ""
+  },
+  "brief_description": "대상 동물\n   \n   효능․효과 및 적응증\n   \n  \n  \n   개\n   \n   - 개의 임상검사, 치료 및 가벼운 외과 수술시 진정 및 진통 효과\n - 개에서 티오바르비투르산유도체(Thiobarbiturate), 할로탄(Halothane) 또는\n 케타민 (Ketamine) 마취시 전마취제로 사용",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "심한 심맥관계나 호흡기 질환 혹은 간이나 신장기능이 손상된 경우."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "위장관의 기계적 장애(위염전, 감돈, 식도폐색)가 있는 경우."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "쇼크상태에 있거나 심각하게 쇠약한 동물."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "본제의 성분에 과민반응이 있는 동물"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "안구내압의 증가가 해로울 수 있는 안구질환이 있는 경우."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "방실차단으로 인한 서맥과 이상 수축이 발생하면 아트로핀이 박동수를 증가시켜 줄 수 있다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "일부 동물에서 주사 후 5-10분 내에 구토가 발생할 수 있다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "이뇨의 증가, 저체온증, 동공산대, 호흡 억제, 청색증, 주사부위 통증 및 근육진전이 있을 수 있다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "개의 경우 인슐린 분비 억제에 의한 가역적 고혈당증이 있다는 보고가 있다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "드물게 폐부종이 관찰되었다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "호흡기계나 혈관계 억제가 발생할 경우 산소를 공급한다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "10kg 미만의 개는 위의 효과가 보다 자주 발생할 수도 있다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "전신마취 유도를 위해 본제를 함께 투여하면 다른 주요 작용 마취제(진정제, 진통제, 수면제, 휘발성 마취제)의 효과를 강력하게 해준다. 주 작용 마취제 용량은 조절해 사용한다. Medetomidine의 효과는 Atipamezole 이나 Yohimbine 의 투여로 무효화 된다."
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.180845+00:00",
+    "reviewer": null
+  }
+}

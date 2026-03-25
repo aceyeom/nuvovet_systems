@@ -28,6 +28,9 @@
         "form": "injectable",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "도미토"
     ]
   },
   "metabolism_and_clearance": {

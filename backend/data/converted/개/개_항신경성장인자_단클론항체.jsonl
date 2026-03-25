@@ -1,0 +1,313 @@
+{
+  "id": "개_항신경성장인자_단클론항체",
+  "drug_identity": {
+    "name_ko": "개 항신경성장인자 단클론항체",
+    "name_en": "개 항신경성장인자 단클론항체",
+    "active_ingredient": "개 항신경성장인자 단클론항체",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Unknown",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Inj"
+    ],
+    "available_strengths": [
+      {
+        "value": 5.0,
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
+      },
+      {
+        "value": 10.0,
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
+      },
+      {
+        "value": 15.0,
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
+      },
+      {
+        "value": 20.0,
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
+      },
+      {
+        "value": 30.0,
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "리브렐라 주（Bedinvetmab)"
+    ],
+    "product_names_en": [
+      "Librela inj."
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": []
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": []
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Inj"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "가. 대상동물 : 개\n나. 적응증 : 골관절염에 의한 통증의 완화",
+    "indications": "가. 대상동물 : 개\n나. 적응증 : 골관절염에 의한 통증의 완화",
+    "client_info": ""
+  },
+  "brief_description": "가. 대상동물 : 개\n나. 적응증 : 골관절염에 의한 통증의 완화",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "본제에 대한 쇼크나 과민 반응이 있었던 동물에는 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "임신, 수유 중이거나 번식 예정인 개에는 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "12개월 이하 연령의 개에는 사용하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "주사 부위에서 경미한 반응(부종, 열감 등)이 관찰될 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "운동실조(고유수용성 감각상실 포함), 다음증, 요실금, 식욕 부진, 무기력 등의 증상이 드물게 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "아나필락시스, 안면 부종, 가려움증 등의 과민 반응이 매우 드물게 발생할 수 있으며, 이러한 증상이 나타날 경우 적절한 대증 치료를 시행해야 합니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "면역 매개성 용혈성 빈혈 및 혈소판 감소증이 매우 드물게 보고되었습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "NSAID(카프로펜)와 함께 투여 시, 2주간의 관찰 기간 동안 부작용이 관찰되지 않았습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "기생충구제제, 항생제, 국소 소독제, 코르티코스테로이드, 항히스타민제 및 백신 등의 약품과 동시 투여하였을 때, 약물 간의 상호작용이 관찰되지 않았습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "본제가 백신과 함께 동시에 투여되는 경우, 백신의 면역원성에 대한 잠재적 영향을 줄이기 위해 서로 다른 부위에 주사하십시오."
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.231929+00:00",
+    "reviewer": null
+  }
+}

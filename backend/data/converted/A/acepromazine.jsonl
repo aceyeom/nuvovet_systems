@@ -44,6 +44,12 @@
         "form": "injectable",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "칼미베트"
+    ],
+    "product_names_en": [
+      "CALMIVET, TABLETS"
     ]
   },
   "metabolism_and_clearance": {
@@ -971,5 +977,47 @@
     "말 제엽염 혈류 개선",
     "소·양·염소·돼지·토끼·페럿 등 기타 동물종 진정."
   ],
-  "mechanism_short": "페노티아진계 신경이완제로 CNS 내 시냅스후 도파민 수용체를 차단하고 도파민 방출을 억제하며 전환율을 증가시킴. 망상활성계 억제, 알파-1 아드레날린 수용체 차단(혈관확장, 저혈압), 항콜린, 항히스타민, 항경련, 항구토 효과를 나타냄."
+  "mechanism_short": "페노티아진계 신경이완제로 CNS 내 시냅스후 도파민 수용체를 차단하고 도파민 방출을 억제하며 전환율을 증가시킴. 망상활성계 억제, 알파-1 아드레날린 수용체 차단(혈관확장, 저혈압), 항콜린, 항히스타민, 항경련, 항구토 효과를 나타냄.",
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "스트레스를 받고 있는 고양이에게 투여하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "저혈량증이 있을 경우 투여하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "본제 성분에 과민반응이 있었던 동물에게는 투여하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "저혈압을 유발하기도 합니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "고양이에게서 무호흡증이 발견되기도 합니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "반복투여 시 백혈구 감소증, 백혈구 증가증, 호산구 증가증, 피부 반응,"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "피부 색소 침착이 발생 할 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "유기 인산 화합물 혹은 염산프로카인과 함께 사용하지 마십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "동일한 억제제 효과 (예: 모르핀, 바르비투르 및 자일라진)를 갖는 물질을     같이 투여할 경우"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "중추 신경계에 대한 아세프로마진의 억제 작용이 증가합니다."
+    }
+  ]
 }

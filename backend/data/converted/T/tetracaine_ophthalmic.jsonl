@@ -32,6 +32,12 @@
         "form": "ophthalmic",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "티-61"
+    ],
+    "product_names_en": [
+      "T-61"
     ]
   },
   "metabolism_and_clearance": {
@@ -358,5 +364,31 @@
     "각막 이식",
     "백내장 적출 등 병원 내 치료적 처치의 보조 마취. 개에서 프로파라카인 대비 더 빠르고 깊은 마취 유도 가능."
   ],
-  "mechanism_short": "전압 개폐 나트륨 채널의 세포 내 부위에 결합하여 나트륨의 세포 내 이동을 억제함으로써 신경 탈분극을 차단하고 활동 전위 생성을 방지하는 국소 마취 기전."
+  "mechanism_short": "전압 개폐 나트륨 채널의 세포 내 부위에 결합하여 나트륨의 세포 내 이동을 억제함으로써 신경 탈분극을 차단하고 활동 전위 생성을 방지하는 국소 마취 기전.",
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "대상 동물이 의식이 있는 경우 반드시 전마취 처치를 통해 진정 및 마취 상태를 확인한 후 사용할 것."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "취급시 본제가 몸에 직접 닿지 않도록 주의하고, 오염된 옷은 바로 제거한다."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "상처 또는 점막에 접촉하는 경우 즉시 물과 비누로 충분히 씻어낸다."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "실수로 주사기에 찔리는 경우, 즉시 찔린 부위는 꾹 눌러 짜내고 물과 비누로 충분히 씻어낸다."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "실수로 눈에 들어갔을 경우, 즉시 흐르는 깨끗한 물에 수분간 씻어낸다."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "실수로 섭취하는 경우, 즉시 의료기관을 방문하고 의사에게 라벨을 보여 도움을 받는다."
+    }
+  ]
 }

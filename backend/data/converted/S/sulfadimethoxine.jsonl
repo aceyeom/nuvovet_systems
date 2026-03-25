@@ -65,6 +65,12 @@
         "form": "injectable",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "설파신 주사"
+    ],
+    "product_names_en": [
+      "(수출명: Sulfaxin Injection)"
     ]
   },
   "metabolism_and_clearance": {
@@ -611,5 +617,6 @@
     "발굽 썩음병(FDA 승인). 가금류: 콕시디아증",
     "가금 콜레라"
   ],
-  "mechanism_short": "설폰아미드는 엽산 생합성 경로에서 파라-아미노벤조산(PABA)과 경쟁하여 테트라하이드로엽산 합성을 억제함으로써 세균 복제를 방해하는 시간 의존적 정균제이다. 자체적으로 엽산을 합성하는 미생물에만 효과적이다."
+  "mechanism_short": "설폰아미드는 엽산 생합성 경로에서 파라-아미노벤조산(PABA)과 경쟁하여 테트라하이드로엽산 합성을 억제함으로써 세균 복제를 방해하는 시간 의존적 정균제이다. 자체적으로 엽산을 합성하는 미생물에만 효과적이다.",
+  "cautionary_notices_ko": []
 }

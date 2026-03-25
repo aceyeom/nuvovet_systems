@@ -26,6 +26,14 @@
         "form": "injectable",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "안티세단",
+      "동방 안티메딘"
+    ],
+    "product_names_en": [
+      "ANTISEDAN",
+      "ANTIMEDIN"
     ]
   },
   "metabolism_and_clearance": {
@@ -509,5 +517,127 @@
     "데토미딘",
     "자일라진 포함) 역전. CPR 중 알파-2 작용제 역전. 아미트라즈 독성 치료."
   ],
-  "mechanism_short": "알파-2 아드레날린 수용체를 경쟁적으로 차단하여 알파-2 작용제(덱스메데토미딘, 메데토미딘 등)의 효과를 역전시킴."
+  "mechanism_short": "알파-2 아드레날린 수용체를 경쟁적으로 차단하여 알파-2 작용제(덱스메데토미딘, 메데토미딘 등)의 효과를 역전시킴.",
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "- 신경증세가 있거나 심장질환이 있는 동물에 사용시 특별한 주의를 요합니다."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 수의사의 처방 및 지시에 따라 사용할 것."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 과량투여시 일시적으로 지나친 경계심을 보이고 빈맥이 나타날 수 있습니다."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 본 약제에 대한 쇼크나 과민반응이 있었던 동물에"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "게는 사용하지 마십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 과량투여 시 일시적으로 지나친 경계심을 보이고"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "빈맥(Tachycardia)이 나타날 수 있습니다"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 신경증세가 있거나 심장질환이 있는 동물에 사용"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "시 특별한 주의를 요합니다"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 과용량으로 사용시 아트로핀으로 심장 증상을 경감"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 심부전증이 있거나 건강 상태가 좋지 않은 동물에"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "사용 시에는 주의를 필요로 하며, 심장서맥이 심하"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "게 나타나거나 방실 블록이 일어나면 아트로핀"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "02mg/kg을 정맥주사 하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 사용할 때마다 충분히 흔들어서 사용하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 사용 전에 주사액을 실온 또는 상온이 되도록 유지"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 다른 약제와 혼합하여 사용하지 마십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 멸균된 주사기와 주사바늘을 사용하며 1두 1침의"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "원칙으로 사용하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 주사방법이 잘못되면 동통, 경결 및 화농이 생길"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 근육주사로 인해 부분적인 조직손상이 일어날 수"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "있으므로 한 주사부위에 10ml이상 주사하지 마십시"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 환경이 불량하거나 주사부위가 오염된 경우에는 주"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "사부위에 염증 및 화농이 생길 수 있으므로 주사부"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "위를 70%알코올 등으로 깨끗이 소독한 후 사용하십"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 주사시 주사통증에 의해 접종자가 동물의 공격을"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "받을 수 있으므로 안전사고에 주의하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 안전사고 방지를 위하여 어린이의 손이 닿지 않고"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "동물의 접근이 불가능한 곳에 보관하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 안전성 및 유효성에 변화를 초래할 수 있으므로 정"
+    }
+  ]
 }

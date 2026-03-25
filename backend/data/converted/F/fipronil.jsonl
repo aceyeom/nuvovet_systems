@@ -1,0 +1,522 @@
+{
+  "id": "fipronil",
+  "drug_identity": {
+    "name_ko": "피프로닐",
+    "name_en": "Fipronil",
+    "active_ingredient": "Fipronil",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Antiparasitic",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Oral Liquid"
+    ],
+    "available_strengths": [
+      {
+        "value": 100.0,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "피프로포트",
+      "리펠러 스팟온"
+    ],
+    "product_names_en": [
+      "FIPROPORT"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": []
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": []
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Oral Liquid"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "개의 벼룩 및 진드기의 구제",
+    "indications": "개의 벼룩 및 진드기의 구제",
+    "client_info": ""
+  },
+  "brief_description": "개의 벼룩 및 진드기의 구제",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "- 2개월 미만의 강아지, 2kg 이하의 개에게는 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 아프거나(전신적 질병, 열 등) 질병 회복기에 있는 동물에는 사용하지 마십"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 본제의 유효물질 혹은 부형제에 과민반응이 있는 동물에는 사용하지 마십시"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 약품을 적용한 털을 핥을 경우 침을 흘릴 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 극히 드물게 나타나는 반응으로 적용부위 홍반, 가려움증, 탈모 등이 있으며"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "특히 민감한 경우, 유연, 쳐짐, 과흥분 및 구토와 같은 증상이 가역적으로"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 치료 전 동물의 몸무게를 정확히 측정하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본 제품은 점막과 눈에 자극이 있으므로 입과 눈 주위 및 상처 부위를 피해"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "사용하고, 만약 접촉했을 경우, 즉시 깨끗한 물로 씻어내십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본제를 적용한 후 2일 내에는 목욕/수영은 시키지 마시고, 꿀벌에 피해를 줄"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "수 있으니 동물이 벌통 가까이 가지 않도록 주의하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 임신 및 수유견에 사용 시에는 수의사의 처방에 따라 사용하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "사용방법상의 주의사항"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 손에 투약액이 묻지 않게 하고 사용 후 비누와 물로 손을 씻으십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 투약 중 흡연, 음주, 음식물 섭취를 삼가십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 투약 중 사용자의 눈, 입의 점막이나 상처부위에 닿지 않도록 주의하시고,"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "닿았을 경우 깨끗한 물로 씻어낸 후, 자극이 지속될 경우 사용설명서를 지참"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "하여 병원을 방문하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 약물을 적용한 곳이 완전히 마를 때까지 어린이나 동물이 적용부위에 접촉하"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "지 않도록 주의하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 알콜 용매가 함유되어 있어 페인트, 바니쉬 또는 이를 처리한 표면이나 가구"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "및 가죽 제품에 영향을 미칠 수 있으므로 주의하여 주십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 어린 아이의 손이 닿지 않고 동물의 접근이 불가능한 장소에 보관하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 곤충 및 수생식물에 독성이 있으므로 사용 후나 유효기간이 경과 시, 물에"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "버리지 말고, 안전하게 폐기처리 하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 사용설명서를 충분히 읽어본 후 사용하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 지정된 축종 이외에는 안전성 및 유효성이 확립되어 있지 않으며, 임의로 사"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "용하지 마십시오. 특히, 토끼 및 고양이 등에는 부작용이 나타날 수 있습니"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 2개월 미만의 강아지, 체중 2kg이하의 개에게는 사"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 아프거나(전신적 질병, 열 등) 질병 회복기에 있는"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "동물에는 사용하지 마십시오"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 본제의 유효물질 혹은 부형제에 과민반응이 있는"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 약품을 적용한 털을 핥을 경우 침을 흘릴 수 있습"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 극히 드물게 나타나는 반응으로 적용부위 홍반, 가"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "려움증, 탈모 등이 있으며, 특히 민감한 경우 유연"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "쳐짐, 과흥분 및 구토와 같은 증상이 가역적으로"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 치료 전 동물의 몸무게를 정확히 측정하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본 제품은 점막과 눈에 자극이 있으므로 입과 눈"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "주위 및 상처 부위를 피해 사용하고 만약 접촉했을"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "경우, 즉시 깨끗한 물로 씻어내십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본제를 적용한 후 2일 내에는 목욕/수영은 시키지"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "마시고 꿀벌에 피해를 줄 수 있으니 동물이 벌통"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "가까이 가지 않도록 주의하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 임신 및 수유견에 사용 시에는 수의사의 처방에 따"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 손에 투약액이 묻지 않게 하고 사용 후 비누와 물"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 투약 중 흡연, 음주, 음식물 섭취를 삼가십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 투약 중 사용자의 눈, 입의 점막이나 상처부위에"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "닿지 않도록 주의하시고 닿았을 경우 깨끗한 물로"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "씻어낸 후 자극이 지속될 경우 사용설명서를 지참"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "하여 병원을 방문하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 약물을 적용한 곳이 완전히 마를 때까지 어린이나"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "동물이 적용부위에 접촉하지 않도록 주의하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 알콜 용매가 함유되어 있어 페인트, 바니쉬 또는"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "이를 처리한 표면이나 가구 및 가죽 제품에 영향을"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "미칠 수 있으므로 주의하여 주십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 어린 아이의 손이 닿지 않고 동물의 접근이 불가"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "능한 곳에 보관하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 곤충 및 수생식물에 독성이 있으므로 사용 후나 유"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "효기간이 경과 시 물에 버리지 말고 안전하게 폐기"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 사용설명서를 충분히 읽어본 후 사용하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 지정된 축종 이외에는 안전성 및 유효성이 확립되"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "어 있지 않으며, 임의로 사용하지 마십시오. 특히"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "토끼 및 고양이 등에는 부작용이 나타날 수 있습"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 수의사의 지시에 따라 사용하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 동물용의약품이므로 사람에게는 절대 사용하지 마"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 기타 문의사항이 있을 시 수입/판매자에게 연락하"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "여 주시기 바랍니다."
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.197925+00:00",
+    "reviewer": null
+  }
+}

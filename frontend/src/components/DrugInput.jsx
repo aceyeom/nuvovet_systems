@@ -593,7 +593,7 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
         <div className="mt-0.5"><SourceIcon source={drug.source} /></div>
         <div className="flex-1 min-w-0 relative">
           <div className="flex items-center gap-1.5">
-            <p className="text-[13px] font-semibold text-slate-900 leading-tight">{drug.name}</p>
+            <p className="text-[13px] font-semibold text-slate-900 leading-tight">{drug.nameKr || drug.name}</p>
             <button
               onClick={(e) => { e.stopPropagation(); setShowInfo(v => !v); }}
               className="p-0.5 text-slate-300 hover:text-blue-500 transition-colors"
@@ -604,9 +604,9 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
           </div>
           {showInfo && <DrugInfoPopover drug={drug} onClose={() => setShowInfo(false)} />}
           <div className="flex items-center gap-1.5 mt-0.5 flex-wrap">
-            {drug.nameKr && <span className="text-[11px] text-slate-400">{drug.nameKr}</span>}
+            {drug.nameKr && drug.name && <span className="text-[11px] text-slate-400">{drug.name}</span>}
             {drug.class && <span className="text-[10px] font-medium text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded">{drug.class}</span>}
-            {drug.activeSubstance && drug.activeSubstance !== drug.name && (
+            {drug.activeSubstance && drug.activeSubstance !== drug.name && drug.activeSubstance !== drug.nameKr && (
               <span className="text-[10px] text-slate-400">{drug.activeSubstance}</span>
             )}
             {drug.isApproved?.[species] ? (
@@ -619,6 +619,16 @@ function DrugCard({ drug, species, weight, onRemove, onUpdateDrug, collapseSigna
               </span>
             )}
           </div>
+          {drug.productNamesKo?.length > 0 && (
+            <div className="flex flex-wrap gap-1 mt-1">
+              {drug.productNamesKo.slice(0, 4).map(p => (
+                <span key={p} className="text-[9px] px-1.5 py-0.5 bg-blue-50 text-blue-600 rounded-full border border-blue-100 truncate max-w-[130px]">{p}</span>
+              ))}
+              {drug.productNamesKo.length > 4 && (
+                <span className="text-[9px] text-slate-400 self-center">+{drug.productNamesKo.length - 4}</span>
+              )}
+            </div>
+          )}
         </div>
         {!expanded && (
           <div className="flex-1 min-w-0 flex flex-col items-center justify-center px-2 pt-1">
@@ -1261,9 +1271,20 @@ export function DrugInput({ drugs, onAddDrug, onRemoveDrug, onUpdateDrug, specie
                     <div className="mt-0.5"><SourceIcon source={drug.source} /></div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-baseline gap-2 flex-wrap">
-                        <span className="text-[13px] font-semibold text-slate-900">{drug.name}</span>
-                        {drug.nameKr && <span className="text-[12px] text-slate-500">{drug.nameKr}</span>}
+                        <span className="text-[13px] font-semibold text-slate-900">{drug.nameKr || drug.name}</span>
+                        {drug.nameKr && drug.name && <span className="text-[12px] text-slate-400">{drug.name}</span>}
+                        {!drug.nameKr && drug.name && null}
                       </div>
+                      {drug.productNamesKo?.length > 0 && (
+                        <div className="flex flex-wrap gap-1 mt-0.5">
+                          {drug.productNamesKo.slice(0, 3).map(p => (
+                            <span key={p} className="text-[9px] px-1.5 py-0.5 bg-blue-50 text-blue-600 rounded-full border border-blue-100 truncate max-w-[120px]">{p}</span>
+                          ))}
+                          {drug.productNamesKo.length > 3 && (
+                            <span className="text-[9px] text-slate-400">+{drug.productNamesKo.length - 3}</span>
+                          )}
+                        </div>
+                      )}
                       <div className="flex items-center gap-2 mt-0.5 flex-wrap">
                         {drug.class && <span className="text-[10px] font-medium text-slate-400">{drug.class}</span>}
                         {range && <span className="text-[10px] text-slate-400">{range[0]}–{range[1]} mg/kg</span>}

@@ -97,6 +97,12 @@
         "form": "injectable",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "리렉신 츄어블 정 75mg(세팔렉신)"
+    ],
+    "product_names_en": [
+      "Rilexine palatable tablet 75mg"
     ]
   },
   "metabolism_and_clearance": {
@@ -707,5 +713,135 @@
     "고양이/페럿/파충류/조류의 감수성 세균 감염",
     "상처 및 농양 감염."
   ],
-  "mechanism_short": "세포벽 합성 억제: 세균 세포막의 페니실린 결합 단백질(PBP; 카르복시펩티다제, 트랜스펩티다제, 엔도펩티다제)에 결합하여 무코펩티드 합성을 억제하고, 삼투압적으로 불안정한 구형체(spheroplast)를 형성하여 살균 작용을 나타냄. 시간 의존적 살균 항생제."
+  "mechanism_short": "세포벽 합성 억제: 세균 세포막의 페니실린 결합 단백질(PBP; 카르복시펩티다제, 트랜스펩티다제, 엔도펩티다제)에 결합하여 무코펩티드 합성을 억제하고, 삼투압적으로 불안정한 구형체(spheroplast)를 형성하여 살균 작용을 나타냄. 시간 의존적 살균 항생제.",
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "- 세팔로스포린계 및 β-락탐계 항생제에 과민반응이"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "있었던 동물에는 투여하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 세팔렉신 내성이 있는 경우에는 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "다음 환축에게는 신중히 투여할 것"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "신장기능부전이 있는 동물에 사용 시에는 수의사의"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "위험-유익 평가에 따라 사용하고 투여량을 주의 깊게"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "개와 고양이에서 구토와 설사가 관찰되었다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 세팔로스포린계 항생제의 살균작용은 정균 작용을"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "가지는 항생제들(마크로라이드계, 설포나마이드계"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "그리고 테트라사이클린)과 함께 사용 시 약효가 중화"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 1세대 세팔로스포린과 폴리펩티드 항생제, 아미노글"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "리코사이드 및 이뇨제(푸로세마이드)를 함께 투여하면"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "신독성을 증가시킬 수 있다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "임신 및 수유 동물에 대한 투여"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "실험동물에서의 연구 자료에서 세팔렉신의 최기형성 효"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "과에 대한 증거는 발견되지 않았다. 그러나 목적동물에"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "서는 평가하지 않았으므로, 수의사의 위험-유익 평가에"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 항생제 감수성 시험 결과에 따라 사용하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 페니실린과 세팔로스포린의 과민반응은 교차되므로"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "이 두 항생제에 과민반응이 있는 사용자는 본제에 직접"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "접촉하는 것을 피하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 사람이 본제를 우발적으로 섭취하였거나, 본제에 노출된"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "후 발적, 얼굴과 눈, 입 등의 부종, 또는 호흡곤란이 있을"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "경우, 사용설명서를 지참하여 즉시 의사의 진료를 받으십"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 어린이의 손이 닿지 않고 동물의 접근이 불가능한 장소에"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 유효기간이 경과 시, 안전하게 폐기처리 하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 사용설명서를 충분히 읽어본 후 사용하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 수의사의 지시에 따라 사용하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 동물용의약품이므로 사람에게는 절대 사용하지 마십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 목적동물 외에는 사용하지 마십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 기타 제품에 대하여 문의하실 사항이 있으신 경우 수입/"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "판매사로 연락하여 주시기 바랍니다."
+    }
+  ]
 }

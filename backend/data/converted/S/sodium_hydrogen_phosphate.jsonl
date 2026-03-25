@@ -1,0 +1,363 @@
+{
+  "id": "sodium_hydrogen_phosphate",
+  "drug_identity": {
+    "name_ko": "인산수소나트륨",
+    "name_en": "Sodium Hydrogen Phosphate",
+    "active_ingredient": "Sodium Hydrogen Phosphate",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Unknown",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Inj"
+    ],
+    "available_strengths": [
+      {
+        "value": 1.6,
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
+      },
+      {
+        "value": 2.4,
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "알러뮨 에이치디엠 주 2㎍(재조합형 Der f 2-풀루란복합체)"
+    ],
+    "product_names_en": [
+      "Allermmune HDM 2"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": []
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": []
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Inj"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "1) 대상축종: 반려견\n2) 집먼지 진드기의 Group 2 항원(Dermatophagoides farinae 약칭: Der.f2,\n   Dermatophagoides P teronyssinus 약칭: Der.p2)에 의한 아토피 피부염의 \n   증상개선",
+    "indications": "1) 대상축종: 반려견\n2) 집먼지 진드기의 Group 2 항원(Dermatophagoides farinae 약칭: Der.f2,\n   Dermatophagoides P teronyssinus 약칭: Der.p2)에 의한 아토피 피부염의 \n   증상개선",
+    "client_info": ""
+  },
+  "brief_description": "1) 대상축종: 반려견\n2) 집먼지 진드기의 Group 2 항원(Dermatophagoides farinae 약칭: Der.f2,\n   Dermatophagoides P teronyssinus 약칭: Der.p2)에 의한 아토피 피부염의 \n   증상개선",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "표재성 농피증, 모포염 및 말라세치아 감염증이 있는 경우"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "치료하고 투여 할 것."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "외부 기생충 및 벼룩 알러지성 피부염을 병발한 개에게는"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "과거 음식물이나 의약품등에 의한 과민증을 드러낸 사례가"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "확실한 개에게는 투여 하지 말 것."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "본제의 유효 성분은 단백질이므로 처치후 과민성 쇼크를"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "일으킬 가능성이 있음. 따라서 본제를 주사 후 30분간의"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "관찰이 필요함. 귀가를 해야 할 경우에는 가능한 한"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "안정을 취한 후 귀가시키고 당일은 귀가 후에도 관찰할 수 있도록"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "특히 집먼지 진드기의 그룹 2 알러젠에 특이적인 IgE 항체"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "보유 견에 있어서는 본제 투여 이후 과민 반응을 일으킬"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "가능성이 높으므로 충분히 관찰할 것"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "증상에 따른 다른 약물과의 병용시는 수의사의 판단에 따라"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "선택하여 사용할 것."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "주사기구는 멸균되어진 것을 사용 할 것."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "아토피성 피부염이 치료된 이후에도 1년 이내에 재발할 수도 있다."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "재발시 또는 용법·용량 이외의 추가 사용에 대한"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "치료효과는 조사된바 없음"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "본제는 사용할 때 용해하고 용해 후는 신속히 사용 할 것."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "사용 후의 용기는 지방 공공 단체 조례등에 따라 처분 할 것."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "본제를 폐기할 때에는 환경오염 없이 주의하고"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "지방 공공 단체 조례 등에 따라 처분 할 것"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "사용이 끝난 주사바늘은 침회수용의 전용 용기에 넣어"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "산업폐기물 처분 규정에 따라 처리할 것"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "부작용으로 확인되는 경우에는 신속히 수의사의 진찰을 받을 것."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "본제의 투여에 의한 드물게 안면 부종이 보일 때도 있다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "본제의 주사 후 드물게 주사 부위에 일과성 발적이 확인 될 때도 있다."
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.217925+00:00",
+    "reviewer": null
+  }
+}

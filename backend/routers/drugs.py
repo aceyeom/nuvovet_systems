@@ -12,6 +12,7 @@ from auth import get_current_user
 from services.drug_loader import get_drug_db, get_search_index, refresh_drug_db
 from services.drug_mapper import map_drug
 from services.drug_sync import sync_drug_data
+from services.fuzzy_search import fuzzy_score
 
 logger = logging.getLogger("nuvovet")
 
@@ -83,15 +84,21 @@ def search_drugs(
         active = entry["active"]
         brands = entry["brands"]
         drug_id = entry["id"]
+        products_ko = entry.get("products_ko") or []
+        products_en = entry.get("products_en") or []
 
         name_en_norm = _normalize_search_text(name_en)
         name_ko_norm = _normalize_search_text(name_ko)
         active_norm = _normalize_search_text(active)
         id_norm = _normalize_search_text(drug_id)
         brand_norms = [_normalize_search_text(b) for b in brands]
+        product_ko_norms = [_normalize_search_text(p) for p in products_ko]
+        product_en_norms = [_normalize_search_text(p) for p in products_en]
 
         score = 0
         if name_en.startswith(query) or (query_norm and name_en_norm.startswith(query_norm)):
+            score = 100
+        elif name_ko.startswith(query):
             score = 100
         elif active.startswith(query) or (query_norm and active_norm.startswith(query_norm)):
             score = 90
@@ -107,12 +114,17 @@ def search_drugs(
             score = 60
         elif any((query in b) or (query_norm and query_norm in bn) for b, bn in zip(brands, brand_norms)):
             score = 50
+        elif any(query in pk or (query_norm and query_norm in pkn) for pk, pkn in zip(products_ko, product_ko_norms)):
+            score = 40
+        elif any(query_norm and query_norm in pen for pen in product_en_norms):
+            score = 40
         elif query_norm and (
             _token_subset_match(query_norm, name_en_norm)
             or _token_subset_match(query_norm, name_ko_norm)
             or _token_subset_match(query_norm, active_norm)
             or _token_subset_match(query_norm, id_norm)
             or any(_token_subset_match(query_norm, bn) for bn in brand_norms)
+            or any(_token_subset_match(query_norm, pkn) for pkn in product_ko_norms)
         ):
             score = 45
         elif query_first_token and (
@@ -121,12 +133,24 @@ def search_drugs(
             or query_first_token in active_norm
             or query_first_token in id_norm
             or any(query_first_token in bn for bn in brand_norms)
+            or any(query_first_token in pkn for pkn in product_ko_norms)
         ):
             # Fallback for long/annotated queries like "dacarbazine dtic".
             score = 35
 
         if score > 0:
             results.append((score, drug_id))
+
+    # ── Fuzzy fallback: if exact/substring matching found < 3 results,
+    #    run trigram + jamo fuzzy matching on all entries ──
+    if len(results) < 3 and len(query) >= 2:
+        existing_ids = {r[1] for r in results}
+        for entry in get_search_index():
+            if entry["id"] in existing_ids:
+                continue
+            fscore = fuzzy_score(query, entry)
+            if fscore > 0:
+                results.append((fscore, entry["id"]))
 
     results.sort(key=lambda x: x[0], reverse=True)
     result_ids = [r[1] for r in results[:limit]]
