@@ -42,18 +42,32 @@ export function AuthProvider({ children }) {
     } catch { /* ignore */ }
   }, []);
 
-  // Validate stored token on mount
+  // Validate stored token on mount.
+  // Immediately trust locally cached user so the UI loads without waiting for Render.
+  // Background-validate with a 6s timeout — only clear auth on a definitive 401.
   useEffect(() => {
     const storedToken = (() => { try { return localStorage.getItem(TOKEN_KEY); } catch { return null; } })();
     if (!storedToken) { setLoading(false); return; }
 
     setAuthToken(storedToken);
+    // Show cached user immediately — don't block on network
+    setLoading(false);
+
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 6000);
+
     fetch(`${BASE_URL}/api/auth/me`, {
       headers: { Authorization: `Bearer ${storedToken}` },
+      signal: controller.signal,
     })
-      .then(r => (r.ok ? r.json() : null))
+      .then(r => (r.ok ? r.json() : r.status === 401 ? { _unauthorized: true } : null))
       .then(data => {
-        if (data?.authenticated) {
+        clearTimeout(timer);
+        if (data?._unauthorized) {
+          // Definitive rejection — clear auth
+          _clearAuth();
+        } else if (data?.authenticated) {
+          // Update with fresh server data
           setUser({
             username: data.username,
             plan: data.plan || 'free',
@@ -61,14 +75,10 @@ export function AuthProvider({ children }) {
             account_valid_until: data.account_valid_until || null,
           });
           setToken(storedToken);
-        } else {
-          _clearAuth();
         }
+        // Timeout / network error: keep cached user, try again next page load
       })
-      .catch(() => {
-        _clearAuth();
-      })
-      .finally(() => setLoading(false));
+      .catch(() => { clearTimeout(timer); });
   }, [_clearAuth]);
 
   const login = useCallback(async (email, password) => {

@@ -23,21 +23,26 @@ export function setAuthToken(token) {
   _authToken = token;
 }
 
-async function apiFetch(path, options = {}) {
+async function apiFetch(path, options = {}, timeoutMs = 12000) {
   const url = `${BASE_URL}${path}`;
   const headers = { 'Content-Type': 'application/json' };
   if (_authToken) headers['Authorization'] = `Bearer ${_authToken}`;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
     const res = await fetch(url, {
       headers,
+      signal: controller.signal,
       ...options,
     });
+    clearTimeout(timer);
     if (!res.ok) {
       const text = await res.text().catch(() => '');
       throw new Error(`API ${res.status}: ${text}`);
     }
     return res.json();
   } catch (err) {
+    clearTimeout(timer);
     // Surface in dev, swallow in prod so the UI can fall back gracefully
     if (import.meta.env.DEV) console.warn(`[NuvoVet API] ${url}`, err.message);
     return null;
