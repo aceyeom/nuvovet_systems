@@ -3,42 +3,115 @@ import { CheckCircle, Loader2, Database, Beaker, BookOpen, Dna, Globe, ShieldChe
 import { NuvovetLogo } from './NuvovetLogo';
 import { MolecularBackground } from './MolecularBackground';
 import { useI18n } from '../i18n';
+import { formatMechanismApi } from '../lib/api';
 
-export function AnalysisScreen({ onComplete, drugCount, species }) {
+// Build a format request payload from a DUR interaction object
+function buildFormatPayload(ix) {
+  return {
+    drug_a_name: ix.drugA || '',
+    drug_b_name: ix.drugB || '',
+    interaction_type: 'drug-drug',
+    severity: ix.severity?.label || 'Unknown',
+    rule_name: ix.rule || '',
+    mechanism_text: ix.mechanism || '',
+    recommendation_text: ix.recommendation || '',
+    alternative_suggestion: ix.alternativeSuggestion || '',
+    literature_summary: ix.literatureSummary || '',
+    raw_interaction_keywords: [],
+    drug_a_class: ix.drugAClass || '',
+    drug_b_class: ix.drugBClass || '',
+    literature_refs: (ix.literature || []).map(r => ({
+      title: r.title, source: r.source, confidence: r.confidence,
+    })),
+  };
+}
+
+// Props:
+//   onComplete(preformattedMap)  — called when done; map is { 'ix-N': formatResult }
+//   drugCount, species           — display only
+//   durResults                   — { interactions[], ... } from runFullDURAnalysis (already run)
+export function AnalysisScreen({ onComplete, drugCount, species, durResults }) {
   const { t, lang } = useI18n();
   const [completedSteps, setCompletedSteps] = useState([]);
   const [activeStep, setActiveStep] = useState(0);
   const onCompleteRef = useRef(onComplete);
   onCompleteRef.current = onComplete;
 
+  // Steps 0-4 are instant UI ticks; step 5 waits for real API calls
+  const QUICK_DURATION = 160; // ms per quick step
+
   const STEPS = [
-    { id: 'resolve',    label: t.analysis.step1, detail: t.analysis.step1Sub, icon: Database,    duration: 350 },
-    { id: 'korean_db',  label: t.analysis.step2, detail: t.analysis.step2Sub, icon: Globe,       duration: 450 },
-    { id: 'cyp',        label: t.analysis.step3, detail: t.analysis.step3Sub, icon: Dna,         duration: 400 },
-    { id: 'ddi',        label: t.analysis.step4, detail: t.analysis.step4Sub, icon: ShieldCheck,  duration: 500 },
-    { id: 'species',    label: t.analysis.step5, detail: t.analysis.step5Sub, icon: Beaker,      duration: 350 },
-    { id: 'literature', label: t.analysis.step6, detail: t.analysis.step6Sub, icon: BookOpen,    duration: 400 },
+    { id: 'resolve',    label: t.analysis.step1, detail: t.analysis.step1Sub, icon: Database    },
+    { id: 'korean_db',  label: t.analysis.step2, detail: t.analysis.step2Sub, icon: Globe       },
+    { id: 'cyp',        label: t.analysis.step3, detail: t.analysis.step3Sub, icon: Dna         },
+    { id: 'ddi',        label: t.analysis.step4, detail: t.analysis.step4Sub, icon: ShieldCheck  },
+    { id: 'species',    label: t.analysis.step5, detail: t.analysis.step5Sub, icon: Beaker      },
+    { id: 'literature', label: t.analysis.step6, detail: t.analysis.step6Sub, icon: BookOpen    },
   ];
-  // Total: ~2.45s + 200ms initial + 250ms final = ~2.9s (down from ~4.8s)
+
+  const QUICK_STEPS = STEPS.length - 1; // steps 0-4 are quick; step 5 waits for API
 
   useEffect(() => {
-    let timer;
-    const steps = STEPS;
+    let cancelled = false;
+    const timers = [];
 
-    const runStep = (index) => {
-      if (index >= steps.length) {
-        timer = setTimeout(() => onCompleteRef.current(), 250);
+    // Fire format API calls immediately for Critical + Moderate drug-drug interactions
+    const interactions = durResults?.interactions || [];
+    const toFormat = interactions.filter(
+      ix => ix.severity?.label === 'Critical' || ix.severity?.label === 'Moderate'
+    );
+
+    const formatPromise = toFormat.length > 0
+      ? Promise.all(
+          toFormat.map((ix, localIdx) => {
+            const globalIdx = interactions.indexOf(ix);
+            return formatMechanismApi(buildFormatPayload(ix))
+              .then(result => result ? { uid: `ix-${globalIdx}`, result } : null)
+              .catch(() => null);
+          })
+        ).then(items => {
+          const map = {};
+          items.forEach(item => { if (item?.result) map[item.uid] = item.result; });
+          return map;
+        })
+      : Promise.resolve({});
+
+    // Tick through quick steps while API calls run
+    const runQuickStep = (index) => {
+      if (cancelled) return;
+      if (index >= QUICK_STEPS) {
+        // All quick steps done — now wait for API calls
+        formatPromise.then(preformattedMap => {
+          if (cancelled) return;
+          setActiveStep(QUICK_STEPS);
+          const t1 = setTimeout(() => {
+            if (cancelled) return;
+            setCompletedSteps(prev => [...prev, STEPS[QUICK_STEPS].id]);
+            const t2 = setTimeout(() => {
+              if (!cancelled) onCompleteRef.current(preformattedMap);
+            }, 150);
+            timers.push(t1, t2);
+          }, 200);
+          timers.push(t1);
+        });
         return;
       }
       setActiveStep(index);
-      timer = setTimeout(() => {
-        setCompletedSteps(prev => [...prev, steps[index].id]);
-        runStep(index + 1);
-      }, steps[index].duration);
+      const tid = setTimeout(() => {
+        if (cancelled) return;
+        setCompletedSteps(prev => [...prev, STEPS[index].id]);
+        runQuickStep(index + 1);
+      }, QUICK_DURATION);
+      timers.push(tid);
     };
 
-    timer = setTimeout(() => runStep(0), 200);
-    return () => clearTimeout(timer);
+    const init = setTimeout(() => runQuickStep(0), 150);
+    timers.push(init);
+
+    return () => {
+      cancelled = true;
+      timers.forEach(clearTimeout);
+    };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const speciesLabel = species === 'dog'

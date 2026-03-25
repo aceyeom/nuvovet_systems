@@ -1029,19 +1029,22 @@ export default function Demo() {
     setDrugs((prev) => prev.filter((d) => d.id !== drugId));
   };
 
+  const pendingDurResultsRef = useRef(null);
+
   const handleRunAnalysis = () => {
     if (drugs.length < 1) return;
     setGuideStep('done');
+    const weight = selectedProfile?.weight ?? 12;
+    const species = selectedProfile?.species ?? 'dog';
+    pendingDurResultsRef.current = runFullDURAnalysis(drugs, species, weight);
     setStep('analyzing');
   };
 
-  const handleAnalysisComplete = useCallback(() => {
-    const weight = selectedProfile?.weight ?? 12;
-    const species = selectedProfile?.species ?? 'dog';
-    const analysisResults = runFullDURAnalysis(drugs, species, weight);
-    setResults(analysisResults);
+  const handleAnalysisComplete = useCallback((preformattedMap) => {
+    const analysisResults = pendingDurResultsRef.current || {};
+    setResults({ ...analysisResults, preformattedData: preformattedMap || {} });
     setStep('results');
-  }, [drugs, selectedProfile]);
+  }, []);
 
   const handleNewAnalysis = () => {
     setStep('profile_select');
@@ -1276,6 +1279,7 @@ export default function Demo() {
           onComplete={handleAnalysisComplete}
           drugCount={drugs.length}
           species={selectedProfile?.species || 'dog'}
+          durResults={pendingDurResultsRef.current}
         />
       )}
 

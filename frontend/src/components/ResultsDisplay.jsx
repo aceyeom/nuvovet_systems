@@ -948,7 +948,7 @@ function truncateMechanism(text, maxLen = 120) {
 }
 
 // ── Unified Alert Card for the Priority Stack ──────────────────
-function UnifiedAlertCard({ alert, index, acknowledged, noted, onAcknowledge, onNote, isFullSystem, wasRefined, lang }) {
+function UnifiedAlertCard({ alert, index, acknowledged, noted, onAcknowledge, onNote, isFullSystem, wasRefined, lang, preformatted }) {
   const isCritical = alert.severity?.label === 'Critical';
   const isModerate = alert.severity?.label === 'Moderate';
   const forceOpen = isCritical || isModerate;
@@ -989,7 +989,7 @@ function UnifiedAlertCard({ alert, index, acknowledged, noted, onAcknowledge, on
     ? (alert.flags || []).map(f => f.label).join(', ')
     : '';
 
-  const mechanism = alert.mechanism || alert.note || '';
+  const mechanism = alert.mechanism || alert.note || alert.message || '';
   const recommendation = alert.recommendation || '';
 
   return (
@@ -1039,12 +1039,25 @@ function UnifiedAlertCard({ alert, index, acknowledged, noted, onAcknowledge, on
               <h4 className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
                 기전 / Mechanism
               </h4>
-              <p className="text-[12px] text-slate-700 leading-relaxed">{mechanism}</p>
+              {preformatted ? (
+                <>
+                  <div className="flex items-center gap-1.5 text-[10px] text-blue-500 font-medium mb-1.5">
+                    <FlaskConical size={10} />
+                    <span>AI-formatted from verified data</span>
+                    {preformatted.data_sources?.length > 0 && (
+                      <span className="text-slate-400 ml-1">(sources: {preformatted.data_sources.join(', ')})</span>
+                    )}
+                  </div>
+                  <FormattedMechanismText text={preformatted.formatted_full} />
+                </>
+              ) : (
+                <p className="text-[12px] text-slate-700 leading-relaxed">{mechanism}</p>
+              )}
             </div>
           )}
 
           {/* Recommendation */}
-          {recommendation && (
+          {(recommendation || preformatted?.formatted_recommendation) && (
             <div className="px-4 py-3 border-t border-slate-100/50">
               <div className={`rounded-lg border px-3.5 py-3 ${
                 isCritical ? 'bg-red-100/70 border-red-200' :
@@ -1054,7 +1067,7 @@ function UnifiedAlertCard({ alert, index, acknowledged, noted, onAcknowledge, on
                 <h4 className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
                   권장 조치 / Recommended Action
                 </h4>
-                <p className="typo-rec text-slate-800 leading-relaxed text-[12px]">{recommendation}</p>
+                <p className="typo-rec text-slate-800 leading-relaxed text-[12px]">{preformatted?.formatted_recommendation || recommendation}</p>
               </div>
             </div>
           )}
@@ -1104,7 +1117,7 @@ function UnifiedAlertCard({ alert, index, acknowledged, noted, onAcknowledge, on
 function AlertPriorityStack({
   interactions, patientAlerts, drugFlags, speciesNotes, flaggedDrugs,
   acknowledged, noted, setAcknowledged, setNoted,
-  isFullSystem, wasRefined, species, lang, t,
+  isFullSystem, wasRefined, species, lang, t, preformattedData,
 }) {
   // Build unified alert list with deduplication
   const allAlerts = useMemo(() => {
@@ -1213,6 +1226,7 @@ function AlertPriorityStack({
         isFullSystem={isFullSystem}
         wasRefined={wasRefined}
         lang={lang}
+        preformatted={preformattedData?.[alert._uid]}
       />
     );
   };
@@ -1496,6 +1510,7 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
               species={species}
               lang={lang}
               t={t}
+              preformattedData={results.preformattedData}
             />
 
             {/* Interaction Severity Matrix — 3+ drugs AND at least 1 interaction */}

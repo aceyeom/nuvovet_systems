@@ -1131,6 +1131,8 @@ export default function FullSystem() {
     }
   };
 
+  const pendingDurResultsRef = useRef(null);
+
   const handleRunAnalysis = async () => {
     if (!canRun) {
       setMissingRequired({ species: isSpeciesMissing, weight: isWeightMissing, drugs: isDrugsMissing });
@@ -1138,14 +1140,15 @@ export default function FullSystem() {
       return;
     }
     await handleSavePatient();
+    const patientCtx = { breed, ageNum, ageUnit, conditions, creatinine, alt };
+    pendingDurResultsRef.current = runFullDURAnalysis(drugs, species, weightKg, patientCtx);
     setWorkflowStage('summary');
     setStep('analyzing');
   };
 
-  const handleAnalysisComplete = () => {
-    const patientCtx = { breed, ageNum, ageUnit, conditions, creatinine, alt };
-    const analysisResults = runFullDURAnalysis(drugs, species, weightKg, patientCtx);
-    setResults(analysisResults);
+  const handleAnalysisComplete = (preformattedMap) => {
+    const analysisResults = pendingDurResultsRef.current || {};
+    setResults({ ...analysisResults, preformattedData: preformattedMap || {} });
     setLastAnalyzedSignature(analysisSignature);
     setWorkflowStage('summary');
     setStep('results');
@@ -1308,7 +1311,7 @@ export default function FullSystem() {
 
         {/* ANALYZING */}
         {step === 'analyzing' && (
-          <AnalysisScreen onComplete={handleAnalysisComplete} drugCount={drugs.length} species={species} />
+          <AnalysisScreen onComplete={handleAnalysisComplete} drugCount={drugs.length} species={species} durResults={pendingDurResultsRef.current} />
         )}
 
         {/* INPUT — Two-panel layout */}
