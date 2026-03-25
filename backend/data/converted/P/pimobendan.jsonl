@@ -60,6 +60,12 @@
         "form": "injectable",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "베트메딘 주사액 (피모벤단)"
+    ],
+    "product_names_en": [
+      "Vetmedin 0.75mg/ml solution for injection for dogs"
     ]
   },
   "metabolism_and_clearance": {
@@ -582,5 +588,27 @@
     "방실판막 부전에 속발한 폐동맥 고혈압 보조 치료. 【Extra-label 적응증 - 고양이】 좌심실 수축 기능 장애",
     "신부전 또는 중증 불응성 폐부종을 동반한 심부전."
   ],
-  "mechanism_short": "PDE-III(포스포디에스테라제 III) 억제 및 심근 수축 장치의 세포내 칼슘 감수성 증가를 통한 양성 변력 효과. 혈관 PDE-III 억제를 통한 동맥 및 정맥 확장 효과(혈관 확장). 심부전 동물에서 간접적으로 심박수를 감소시키는 음성 변시 효과."
+  "mechanism_short": "PDE-III(포스포디에스테라제 III) 억제 및 심근 수축 장치의 세포내 칼슘 감수성 증가를 통한 양성 변력 효과. 혈관 PDE-III 억제를 통한 동맥 및 정맥 확장 효과(혈관 확장). 심부전 동물에서 간접적으로 심박수를 감소시키는 음성 변시 효과.",
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "본제 성분에 과민반응 보이는 경우 투여할 수 없음"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "안전성 및 유효성에 변화를 초래할 수 있으므로 정하여진"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "드물게 중등도 심박수 증가(positive chronotropic), 구토가 나타날 수 있음."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "드물게 일시적인 설사, 식욕부진, 무기력이 나타날 수 있음."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "피모벤단에 의하여 유도된 심장의 수축력 증가는 칼슘 길항제인 베라파밀과 베타수용체 길항제인 프로프라놀롤에 의하여 약해질 수 있음."
+    }
+  ]
 }

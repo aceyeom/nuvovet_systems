@@ -39,6 +39,14 @@
         "form": "injectable",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "럼푼 주사액",
+      "유니 자일라진"
+    ],
+    "product_names_en": [
+      "Rompun Injection",
+      "UNI XYLAZINE"
     ]
   },
   "metabolism_and_clearance": {
@@ -790,5 +798,95 @@
     "항불안제",
     "소/양/염소/낙타류/돼지/조류/페럿/토끼/설치류에서 화학적 보정 및 마취."
   ],
-  "mechanism_short": "알파-2 아드레날린 수용체 작용제로서 중추 및 말초 알파-2 수용체에 결합하여 진정, 진통, 근이완 효과를 나타낸다. 알파-2:알파-1 수용체 선택성은 160:1이다."
+  "mechanism_short": "알파-2 아드레날린 수용체 작용제로서 중추 및 말초 알파-2 수용체에 결합하여 진정, 진통, 근이완 효과를 나타낸다. 알파-2:알파-1 수용체 선택성은 160:1이다.",
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "- 패혈증, 심한 빈혈, 심장이나 폐의 기능장애가 있는 동물에는 투여하지 마십    시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 본제의 투여로 인하여 구토가 일어나는 경우가 있으므로 식도폐쇄, 위염전,     탈장 시에는 투여하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "다음 환축에게는 신중히 투여할 것"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 호흡기 장애가 있을 경우에는 주의하여야 합니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 자일라진은 안정, 마취, 근육이완의 성질을 가진 알파-2 아드레날린 작용제     로서, 약물이 체내에 흡수되면 용량-의존적 호흡위축, 서맥, 저혈압, 구강      건조, 고혈당 등의 증상이 나타날 수 있으며, 심실 부정맥 (Ventricular        Arrhythmia)이 보고된 적이 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 소, 말에서 누워있는 동안은 고창증 발생 가능성이 있으므로 우흉횡와(right    sternal recumbency) 자세로 하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 사용설명서(주의사항)를 충분히 읽어본 후 사용하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 오·남용에 의한 약화사고 및 경제적 손실을 초래할 수 있으므로 정해진"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "용법·용량을 준수하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 소, 말에서 높은 용량을 사용할 때는 사용 전에 24시간 절식시켜야 합니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 개, 고양이에서 구토를 방지하기 위하여 수술 전(~24시간)에 절식 시키는"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 실수로 과량을 투여하여 진정상태가 깊게 되거나 호흡장애가 나타날 때에는     인공호흡을 시켜주는 동시에 중추신경흥분제(4-aminopyridine)나 호흡촉진제     (Doxapram) 또는 α₂antagonist(Tolazolidone, Yohimbine)를 주사하여"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "임신, 수유축, 신생축, 어린가축, 쇠약축 등에 대한 투여"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 조산을 방지하기 위해 임신말기에는 사용하지 않는 것이 좋습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 마취된 동물은 부드러운 바닥에 놓아두거나 고정시켜 주십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 침이나 음식물이 기관내로 넘어가는 것을 방지하기 위해 머리와 목을 낮추어    주어야 합니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 마취상태가 오래 계속될 경우에는 직사광선이나 냉기로부터 동물을 보호해      주어야 합니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본제 사용 시 외부자극을 가하면 충분한 효과가 나타나지 않는 경우가 있으     므로 안정을 시켜야 합니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 육류 : 3일, 우유 : 3일"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 휴약기간을 준수하지 않을 경우 식육 등 축산식품에 약물이 잔류될 수 있으     므로 시간까지 정확히 계산하여 준수하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 안전사고 방지를 위하여 어린이의 손이 닿지 않고 동물의 접근이 불가능한      곳에 보관하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 안정성 및 유효성에 변화를 초래할 수 있으므로 정하여진"
+    }
+  ]
 }

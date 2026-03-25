@@ -1,0 +1,278 @@
+{
+  "id": "셀라멕틴",
+  "drug_identity": {
+    "name_ko": "셀라멕틴",
+    "name_en": "셀라멕틴",
+    "active_ingredient": "셀라멕틴",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Unknown",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Oral Liquid"
+    ],
+    "available_strengths": [
+      {
+        "value": 60.0,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "셀렉션60액",
+      "셀렉션120액",
+      "찬홀드 스팟온 액 120mg (셀라멕틴)",
+      "찬홀드 스팟온 액 60mg (셀라멕틴)",
+      "레볼루션 6%",
+      "에빅토 6% 액(셀라멕틴)",
+      "에빅토 12%액(셀라멕틴)",
+      "넥스포인트 60액(셀라멕틴)",
+      "셀라이트 액 60mg(셀라멕틴)",
+      "셀라이트 액 120mg(셀라멕틴)",
+      "에버웜 솔루션 스프레드 6%(셀라멕틴)",
+      "에버웜 솔루션 스프레드 12%(셀라멕틴)",
+      "셀라온 액 6%(셀라멕틴)",
+      "셀라온 액 12% (셀라멕틴)"
+    ],
+    "product_names_en": [
+      "SELECTION60 SOLUTION"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": []
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": []
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Oral Liquid"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "가. 개\n- 벼룩 감염 및 벼룩에 의해 야기되는 알레르기성 피부염의 예방과 치료\n- Dirofilaria immitis에 의한 심장사상충 감염의 예방\n- 귀에 기생하는 진드기(Otodectes cynotis)감염의 예방과 치료\n- 개선충의 예방과 치료\n- 회충의 예방과 치료\n- 이(lice)의 예방과 치료\n- 임신 수유중인 암캐에 투여 시, 7주령 이하의 강아지에 벼룩감염 예방\n- 참진드기류 (Rhipicephalus sanguineus, Dermacentor variabilis) 감염의 예방 및 치료\n나. 고양이\n- 벼룩 감염 및 벼룩에 의해 야기된 알레르기성 피부염의 예방과 치료\n- Dirofilaria immitis에 의한 심장사상충 감염의 예방과 치료\n- 귀에 기생하는 진드기(Otodectes cynotis)감염의 예방과 치료\n- 회충과 십이지장충 감염의 예방 및 치료\n- 이(lice)의 예방과 치료\n- 임신 수유중인 암고양이에 투여 시, 7주령 이하의 새끼에 벼룩감염 예방",
+    "indications": "가. 개\n- 벼룩 감염 및 벼룩에 의해 야기되는 알레르기성 피부염의 예방과 치료\n- Dirofilaria immitis에 의한 심장사상충 감염의 예방\n- 귀에 기생하는 진드기(Otodectes cynotis)감염의 예방과 치료\n- 개선충의 예방과 치료\n- 회충의 예방과 치료\n- 이(lice)의 예방과 치료\n- 임신 수유중인 암캐에 투여 시, 7주령 이하의 강아지에 벼룩감염 예방\n- 참진드기류 (Rhipicephalus sanguineus, Dermacentor variabilis) 감염의 예방 및 치료\n나. 고양이\n- 벼룩 감염 및 벼룩에 의해 야기된 알레르기성 피부염의 예방과 치료\n- Dirofilaria immitis에 의한 심장사상충 감염의 예방과 치료\n- 귀에 기생하는 진드기(Otodectes cynotis)감염의 예방과 치료\n- 회충과 십이지장충 감염의 예방 및 치료\n- 이(lice)의 예방과 치료\n- 임신 수유중인 암고양이에 투여 시, 7주령 이하의 새끼에 벼룩감염 예방",
+    "client_info": ""
+  },
+  "brief_description": "가. 개\n- 벼룩 감염 및 벼룩에 의해 야기되는 알레르기성 피부염의 예방과 치료\n- Dirofilaria immitis에 의한 심장사상충 감염의 예방\n- 귀에 기생하는 진드기(Otodectes cynotis)감염의 예방과 치료\n- 개선충의 예방과 치료\n- 회충의 예방과 치료\n- 이(lice)의 예방과 치료\n- 임신 수유중인 암캐에 투여 시, 7주령 이하의 강아지에 벼룩감염 예방\n- 참진드기류 (Rhipicephalus sanguineus, Dermacentor variabilis) 감염의 예방 및 치료\n나. 고양이\n- 벼룩 감염 및 벼룩에 의해 야기된 알레르기성 피부염의 예방과 치료\n- Dirofilaria immitis에 의한 심장사상충 감염의 예방과 치료\n- 귀에 기생하는 진드기(Otodectes cynotis)감염의 예방과 치료\n- 회충과 십이지장충 감염의 예방 및 치료\n- 이(lice)의 예방과 치료\n- 임신 수유중인 암고양이에 투여 시, 7주령 이하의 새끼에 벼룩감염 예방",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "adverse_effect",
+      "text_ko": "본제 사용 후 일시적으로 도포부위의 탈모, 염증이 고양이에서 드물게 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "매우 드물게 구토, 혈변 또는 설사, 무기력, 식욕부진, 침흘림, 빈호흡,"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "근육떨림이 일어날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "또한 소양감, 두드러기, 홍반, 운동실조, 발열, 발작이 매우 드물게 나타날 수 있습니다."
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.158979+00:00",
+    "reviewer": null
+  }
+}

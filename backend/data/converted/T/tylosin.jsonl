@@ -32,7 +32,11 @@
         "form": "injectable",
         "is_splittable": null
       }
-    ]
+    ],
+    "product_names_ko": [
+      "타이로세틴-F주"
+    ],
+    "product_names_en": []
   },
   "metabolism_and_clearance": {
     "primary_metabolic_organ": "Unknown",
@@ -493,5 +497,143 @@
     "IBD 보조 치료",
     "대장염"
   ],
-  "mechanism_short": "50S 리보솜에 결합하여 단백질 합성을 억제하는 정균성 마크로라이드 항생제. 에리스로마이신과 동일한 작용 기전. 주로 그람양성균(연쇄구균, 포도구균), Mycoplasma spp에 활성. 직접적 항염증 및 세포매개 면역 조절 효과도 보고됨."
+  "mechanism_short": "50S 리보솜에 결합하여 단백질 합성을 억제하는 정균성 마크로라이드 항생제. 에리스로마이신과 동일한 작용 기전. 주로 그람양성균(연쇄구균, 포도구균), Mycoplasma spp에 활성. 직접적 항염증 및 세포매개 면역 조절 효과도 보고됨.",
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "- 본제, Macrolide계 및 Sulfonamide계 항생제에 대"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "한 쇼크와 과민반응이 있었던 동물에는 사용하지"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본제 투여 후 일시적인 구토, 발열이 나타날 수 있"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본제 투여 후 주사부위에 통증, 홍반 및 부종이 발"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본제 성분 중 타일로신은 돼지의 직장 부종, 설사"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "및 부분적 항문탈장 등을 유발할 수 있습니다"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본제 성분 중 타일로신은 소의 1위정체 및 유량감"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "소를 유발할 수 있습니다"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본제 성분 중 설파독신은 결정뇨, 혈뇨, 요로폐쇄"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "등의 비뇨기계 장애를 유발할 수 있습니다"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본제 성분 중 설파독신은 과민반응에 의한 피부발"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "진을 유발할 수 있습니다"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본제 성분 중 설파독신과 트리메토프림은 빈혈, 백"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "혈구 감소증, 혈소판감소증을 유발할 수 있습니다"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- Lincosamide계 및 다른 Macrolide계의 항생제와 병"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "임신, 수유축, 신생축, 어린 가축, 쇠약축 등에 대"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 태아에 대한 안전성이 입증되지 않았으므로 임신중"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "인 동물에는 사용하지 마십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 사용할 때마다 충분히 흔들어서 사용하십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 사용 전에 주사액 전체가 25℃전후가 되도록 유지"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 다른 약제와 혼합하여 사용하지 마십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 멸균된 주사기와 주사바늘을 사용하며 1두 1침의"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "원칙으로 사용하십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 주사방법이 잘못되면 동통, 경결 및 화농이 생길"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 대량 주사시에는 여러 부위에 나누어 주사하십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 환경이 불량하거나 주사부위가 오염된 경우에는 주"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "사부위에 염증 및 화농이 생길 수 있으므로 주사부"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "위를 70% 알코올 등으로 깨끗이 소독한 후 사용하"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 주사시 주사통증에 의해 접종자가 동물의 공격을"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "받을 수 있으므로 안전사고에 주의하십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 소 : 28일(우유 : 4일)"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 안전사고 방지를 위하여 어린이의 손이 닿지 않고"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "동물의 접근이 불가능한 곳에 보관하십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 유효성 및 안정성에 변화를 초래할 수 있으므로 정"
+    }
+  ]
 }

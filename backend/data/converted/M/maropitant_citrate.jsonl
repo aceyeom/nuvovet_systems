@@ -1,0 +1,301 @@
+{
+  "id": "maropitant_citrate",
+  "drug_identity": {
+    "name_ko": "Maropitant Citrate",
+    "name_en": "Maropitant Citrate",
+    "active_ingredient": "Maropitant Citrate",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "GI Protectant",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Inj"
+    ],
+    "available_strengths": [
+      {
+        "value": 10.0,
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "세레니아 주사액"
+    ],
+    "product_names_en": [
+      "Cerenia, Solution for Injection for dogs and cats"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": []
+    },
+    "cat": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "linear",
+          "context": "가. 개\n 1) 구토 치료 및 예방\n 2) 화학요법으로 인한 오심의 치료 및 예방\n나. 고양이\n 1) 구토 치료 및 예방\n 2) 오심의 감소",
+          "value": "0.1",
+          "unit": "ml/kg",
+          "route": "SC",
+          "frequency": "SID",
+          "max_dose_mg_kg": null,
+          "duration_note": null,
+          "evidence": "한국 수의약품 허가사항"
+        }
+      ]
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Inj"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "가. 개\n 1) 구토 치료 및 예방\n 2) 화학요법으로 인한 오심의 치료 및 예방\n나. 고양이\n 1) 구토 치료 및 예방\n 2) 오심의 감소",
+    "indications": "가. 개\n 1) 구토 치료 및 예방\n 2) 화학요법으로 인한 오심의 치료 및 예방\n나. 고양이\n 1) 구토 치료 및 예방\n 2) 오심의 감소",
+    "client_info": ""
+  },
+  "brief_description": "가. 개\n 1) 구토 치료 및 예방\n 2) 화학요법으로 인한 오심의 치료 및 예방\n나. 고양이\n 1) 구토 치료 및 예방\n 2) 오심의 감소",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "interaction",
+      "text_ko": "- 혈장단백질에 결합하는 제제(NSAIDs, 심장약, 진경제 등)와 함께 사용 시 주의가 필요합니다"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "임신, 수유축, 신생축, 어린가축, 쇠약축 등에 대한 투여"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 8주령 미만의 어린 개와 임신견 및 수유견에 대해서는 안전성이 확립되어 있지 않으므로, 위 개체에는 사용하지 않도록 주의하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 16주령 미만의 어린 고양이와 임신묘 및 수유묘에 대해서는 안전성이 확립되어 있지 않으므로, 위 개체에는 사용하지 않도록 주의하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 피하주사용으로만 사용하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 본 제품을 다른 약제와 한 주사기에 담아서 사용하지 마십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 본 제품은 인자극성이 강하므로 눈에 들어갔을 경우, 즉시 깨끗한 물로 씻어내고 노출이 반복되었거나 노출정도가 심할 경우 즉시 의사와 상의하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 실수로 본 제를 자가 주사하였을 경우 즉시 의사와 상의하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 사용설명서를 준수할 것이며 수의사의 지시에 따라 사용하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 어린이의 손이 닿지 않는 곳에 보관하십시오."
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.177529+00:00",
+    "reviewer": null
+  }
+}

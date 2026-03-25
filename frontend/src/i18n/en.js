@@ -149,7 +149,10 @@ const en = {
   drugInput: {
     addMedication: 'Add Medication',
     addAllergy: 'Add Allergy',
-    searchPlaceholder: 'Search by drug name, substance, or class...',
+    searchPlaceholder: 'Search by drug name, substance, or product...',
+    productNames: 'Products',
+    moreProducts: '+{count} more',
+    koreanWarnings: 'Korean label warnings',
     searchByCategory: 'Browse by Category',
     allDrugs: 'All',
     filterByRoute: 'Route',

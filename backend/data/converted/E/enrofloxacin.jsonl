@@ -59,6 +59,46 @@
         "form": "injectable",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "엔로신 100주",
+      "엔로신 50주",
+      "케녹신 50주",
+      "케녹신 100주",
+      "가나 엔트릴 5 주사",
+      "DW 엔로샷 200주",
+      "바이트릴 플레이버 정 15mg",
+      "바이트릴 플레이버 정 150mg",
+      "엔로세이프10주사액",
+      "엔프로-50주",
+      "네오트릴 50 주사",
+      "플로트릴 100주사",
+      "엔로플록신50주",
+      "엔로플록신 100주",
+      "코미바이오트릴25주사",
+      "애니트릴-50주사",
+      "애니트릴-100주사",
+      "케어트릴 정"
+    ],
+    "product_names_en": [
+      "Enrocin 100 inj.",
+      "ENROCIN 50 INJ.",
+      "Kenoxin 50 Injection",
+      "KENOXIN 100 INJ.",
+      "GANADEXIL ENROFLOXACINA 5 INJECT",
+      "DW EnroShot 200 Inj.",
+      "Baytril Flavour Tablets-15MG",
+      "Baytril Flavour Tablets 150mg",
+      "ENROSAFE 10 INJECTION",
+      "Enpro inj.",
+      "Neotril 50 injection",
+      "FLOTRIL, 100 INJECTION",
+      "Enrofloxin 50 Inj.",
+      "Enrofloxin 100 inj.",
+      "KOMBIOTRIL 25 INJ",
+      "Anitril-50 inj.",
+      "Anitril-100 inj.",
+      "Caretrill tablet"
     ]
   },
   "metabolism_and_clearance": {
@@ -868,5 +908,1231 @@
     "뉴월드 낙타류",
     "설치류"
   ],
-  "mechanism_short": "세균 DNA 자이라제(II형 토포이소머라제)를 억제하여 DNA 초나선 형성 및 DNA 합성을 방해하는 농도 의존성 살균 항생제. 그람 음성 간균 및 구균에 광범위한 항균 스펙트럼을 가지며, 혐기성균에는 효과가 없다."
+  "mechanism_short": "세균 DNA 자이라제(II형 토포이소머라제)를 억제하여 DNA 초나선 형성 및 DNA 합성을 방해하는 농도 의존성 살균 항생제. 그람 음성 간균 및 구균에 광범위한 항균 스펙트럼을 가지며, 혐기성균에는 효과가 없다.",
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "본제에 대한 쇼크와 과민반응이 있었던 동물에는 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "간장애 및 신장애가 있는 동물에게는 투여하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "어린연령의 개(중형견 8개월 이하, 대형견 12개월 이하, 초대형견 18개월 이하)에서 연골기형을 유발할 수 있으므로 사용하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "성장기의 동물에 투여 시 관절이상(파행, 동통, 연골부전) 등이 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "위장관 장애(구토, 식욕감퇴, 설사, 복통 등)가 드물게 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "중추신경계 장애(현기증, 불안, 두통, 침울, 운동실조, 발작 등)가 나타날 수있으며 중추신경장애(발작 등)가 있는 동물에는 사용 시 증상이 악화될 수 있으므로 사용하지 마시기 바랍니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "과민반응, 결정뇨가 나타날 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "마크로라이드계, 테트라싸이클린계 항생제와 병용하지 마십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "마그네슘, 알루미늄, 칼슘이온이 함유된 제제와 혼합투여 시 생체 내 흡수율이 감소될 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "Theopylline, Caffeine과 함께 투여 시 Theopyline, Caffeine의 혈중농도를 높일 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "Probenecid는 본제의 세뇨관 배출을 막아 혈중 내 농도를 높일 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "Cyclosporine과 병용 시 Cyclosporine의 신장독성을 악화시킬 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "비스테로이드계 소염제와 병용 시 드물게 경련이 발현될 수 있습니다."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 본제에 대한 쇼크와 과민반응이 있었던 동물에는 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 간장애 및 신장애가 있는 동물에게는 투여하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 어린연령의 개(중형견 8개월 이하, 대형견 12개월이하,"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "초대형견 18개월이하)에서 연골기형을 유발할 수 있으므로"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 성장기의 동물에 투여시"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "관절이상(파행,동통,연골부전)등이 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 위장관 장애(구토,식욕감퇴,설사,복통 등)가 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 중추신경계장애(현기증,불안,두통,침울,운동실조,발작 등)가"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "나타날 수 있으며 중추신경장애(발작 등)가 있는 동물에는"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "사용시 증상이 악화될 수 있으므로 사용하지 마시기 바랍니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 과민반응, 결정뇨가 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 과량 투여시(10배이상)구토, 섭이저하 등의 이상이 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 고양이에 과량투여시(15mg/kg이상)산동, 망막변성 등이 나타날 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 마크로라이드계, 테트라싸이클린계 항생제와 병용하지 마십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 마그네슘,알루미늄,칼슘이온이 함유된 제제와 혼합투여 시"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "생체내 흡수율이 감소될 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- Theopylline, Caffeine과 함께 투여시 Theopylline Caffeine의 혈중 농도를    높일 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- Probenecid는 본제의 세뇨관 배출을 막아 혈중내 농도를 높일 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- Cyclospotine와 병용시 Cyclospotine의 신장독성을 악화시킬 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 비스테로이드계 소염제와 병용시 드물게 경련이 발현될 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "임신, 수유축,신생축,어린가축,쇠약축 등에 대한 투여"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 임신한 동물은 주사 스트레스를 받기 쉬우므로 항상 신중하게 투여하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 사용할 때마다 충분히 흔들어서 사용하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 사용 전에 주사액 전체가 25℃ 전후가 되도록 유지한 후 사용하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 다른 약제와 혼합하여 사용하지 마십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 멸균된 주사기와 주사바늘을 사용하며 1두 1침의 원칙으로 사용하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 주사방법이 잘못되면 동통, 경결 및 화농이 생길 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 환경이 불량하거나 주사부위가 오염된 경우에는"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "주사부위에 염증 및 화농이 생길 수 있으므로 주사부위를 70%알코올 등으로     깨끗이 소독한 후 사용하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 체중 200kg이상의 동물에 주사하는 경우 두 곳 이상에 나누어 주사하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 주사 시 주사통증에 의해 접종자가 동물의 공격을 받을 수 있으므로"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "안전사고에 주의하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 소 : 20일(우유 : 4일)"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 안전사고 방지를 위하여 어린이의 손이 닿지 않고"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "동물의 접근이 불가능한 곳에 보관하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 유효성 및 안정성에 변화를 초래할 수 있으므로"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "어린연령의 개(중형견 8개월이하, 대형견 12개월이하, 초대형견 18개월이하)에서 연골기형을 유발할 수 있으므로 사용하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "성장기의 동물에 투여시 관절이상(파행, 동통, 연골부전)등이 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "위장관 장애(구토, 식욕감퇴, 설사, 복통 등)가 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "중추신경계 장애(현기증, 불안, 두통, 침울, 운동실조, 발작 등)가 나타날 수 있으며 중추신경장애(발작 등)가 있는 동물에는 사용시 증상이 악화될 수 있으므로 사용하지 마시기 바랍니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "마그네슘, 알루미늄, 칼슘이온이 함유된 제제와 혼합투여시 생체내 흡수율이 감소될 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "Theopylline, Caffeine과 함께 투여시 Theopylline, Caffeine의 혈중농도를 높일 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "Probenecid는 본제의 세뇨관 배출을 막아 혈중내 농도를 높일 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "Cyclosporine와 병용시 Cyclosporine의 신장독성을 악화시킬 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "비스테로이드계 소염제와 병용시 드물게 경련이 발현될 수 있습니다."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 본제에 대한 쇼크와 과민반응이 있었던 어류에는"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 간장애 및 신장애가 있는 동물에게는 투여하지 마"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 어린연령의 개(중형견 8개월이하, 대형견 12개월"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "이하, 초대형견 18개월이하)에서 연골기형을 유발"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "할 수 있으므로 사용하지 마십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 성장기의 동물에 투여시 관절이상(파행,동통,연골"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "부전)등이 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 위장관 장애(구토,식욕감퇴,설사,복통 등)가 드물"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "게 나타날 수 있습니다"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 중추신경계 장애(현기증, 불안, 두통, 침울, 운동"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "실조, 발작 등)가 나타날 수 있으며 중추신경장애"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "(발작 등)가 있는 동물에는 사용시 증상이 악화될"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "수 있으므로 사용하지 마시기 바랍니다"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 과민반응, 결정뇨가 나타날 수 있습니다"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 과량 투여시(10배이상)섭이저하 등의 이상이 나타"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 고양이에 과량투여시(15mg/kg이상)산동, 망막변성"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "등이 나타날 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 마크로라이드계, 테트라싸이클린계 항생제와 병용"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 마그네슘, 알루미늄, 칼슘이온이 함유된 제제와 혼"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "합투여시 생체내 흡수율이 감소될 수 있습니다"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- Theopylline, Caffeine과 함께 투여시 Theopylline"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "Caffeine의 혈중농도를 높일 수 있습니다"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- Probenecid는 본제의 세뇨관 배출을 막아 혈중내"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "농도를 높일 수 있습니다"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- Cyclosporine와 병용시 Cyclosporine의 신장독성을"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "악화시킬 수 있습니다"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "-비스테로이드계 소염제와 병용시 드물게 경련이 발"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "임신, 수유축, 신생축, 어린가축, 쇠약축 등에 대"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 임신한 동물은 주사 스트레스를 받기 쉬우므로 항"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "상 신중하게 투여하십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 물에 타서 사용할 경우 24시간 이내에 사용하시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 음수에 혼합하여 투여할 경우 균질하게 혼합하지"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "않으면 약화사고를 초래하거나 투여목적을 달성할"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "수 없으므로 골고루 잘 혼합하여 사용하십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "동물의 접근이 불가능한 곳에 보관하십시오"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 본제에 대한 쇼크와 과민반응이 있었던 동물에는"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 고양이에 과량투여시(15mg/kg이상)산동,망막변성"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "등이 나타날 수 있습니다"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 비스테로이드계 소염제와 병용시 드물게 경련이 발"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 사용할 때마다 충분히 흔들어서 사용하십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 사용 전에 주사액 전체가 25℃전후가 되도록 유지"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 다른 약제와 혼합하여 사용하지 마십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 멸균된 주사기와 주사바늘을 사용하며 1두 1침의"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "원칙으로 사용하십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 주사방법이 잘못되면 동통, 경결 및 화농이 생길"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 환경이 불량하거나 주사부위가 오염된 경우에는 주"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "사부위에 염증 및 화농이 생길 수 있으므로 주사부"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "위를 70%알코올 등으로 깨끗이 소독한 후 사용하"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 체중 200kg이상의 동물에 주사하는 경우 두 곳 이"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "상에 나누어 주사하십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 주사시 주사통증에 의해 접종자가 동물의 공격을"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "받을 수 있으므로 안전사고에 주의하십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 소 : 20일 (우유 : 4일)"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "⑴ 본제에 대한 쇼크와 과민반응이 있었던 동물에는 사용하지"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "⑵ 간장애 및 신장애가 있는 동물에게는 투여하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "⑶ 어린연령의 개(중형견 8개월 이하, 대형견 12개월 이하,"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "초대형견 18개월 이하)에서연골기형을 유발할 수 있으므로"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "⑷ 중추간질성 발작증세가 있는 동물에는 사용하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "⑴ 성장기의 동물에 투여하면 관절이상(파행, 동통, 연골부전)"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "⑵ 위장관 장애(구토, 식욕감퇴, 설사, 복통 등)가 나타날 수"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "⑶ 중추신경계 장애(현기증, 불안, 두통, 침울, 운동실조, 발작"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "등)가 나타날 수 있으며 중추신경장애(발작 등)가 있는 동물에"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "사용하면 증상이 악화될 수 있으므로 사용하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "⑷ 과민반응, 결정뇨가 나타날 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "⑴ 마크로라이드계, 테트라사이클린계 항생제와 병용하지 마십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "⑵ 마그네슘, 알루미늄, 칼슘이온이 함유된 제제와 혼합 투여하면"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "생체 내 흡수율이 감소할 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "⑶ Theopylline, Caffeine과 함께 투여하면 Theopylline, Caffeine의"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "혈중농도를 높일 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "⑷ Probenecid는 본제의 세뇨관 배출을 막아 혈중농도를 높일 수"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "⑸ Cyclosporine과 병용하면 Cyclosporine의 신장독성을 악화시킬"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "⑹ 비스테로이드계 소염제와 병용하면 드물게 경련이 발현될"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 본제에 대한 쇼크와 과민반응이 있었던 동물에는 사용하지 마십시오"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "-  간 장애 및 신장애가 있는 동물에게는 투여하지 마십시오"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 어린 연령의 개(중형견 8개월이하, 대형견 12개월 이하, 초대형견 18개월이하)에서 연골기형을 유발할 수 있으므로 사용하지 마십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 성장기의 동물에 투여시 관절이상(파행, 동통,연골부전)등이 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 위장관 장애(구토, 식욕감퇴, 설사, 복통 등)가 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 중추신경계 장애(현기증, 불안, 두통, 침울, 운동실조, 발작등)가 나타날 수 있으며 중추신경계장애(발작 등)가 있는 동물에는 사용시 증상이 악화될 수 있으므로 사용하지 마시기 바랍니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 과민반응, 결졍뇨가 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본제의 부형제 성분 중 부틸알코올은 중등도의 피부자극성 물질이므로 피부나 눈에 접촉되지 않도록 주의하며 접촉시 즉시 물로 깨끗이 씻어낸 후 이상증상이 발견되는 즉시 의사의 진료를 받으십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 과량 투여시(10배이상) 구토, 섭이저하 등의 이상이 나타날 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 마그네슘, 알루미늄, 칼슘이온이 함유된 제제와 혼합투여시 생체내 흡수율이 감소될 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- Theopylline,Caffeine과 함께 투여시 Theopylline,Caffeine의 혈중농도를 높일수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- Probenecid는 본제의 세뇨관 배출을 막아 혈중 내 농도를 높일 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- Cyclosporine와 병용시 Cyclosporine의 신장독성을 악화시킬 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "임신, 수유축, 신생축, 어린 가축, 쇠약축 등에 대한투여"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 사용 전에 주사액 전체가 25도시 전후가 되도록 유지한 후 사용하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 환경이 불량하거나 주사부위가 오염된 경우에는 주사부위에 염증 및 화농이 생길 수 있으므로 주사부위를 70% 알코올 등으로 깨끗이 소독한 후 사용하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 한 부위에 2.5ml이상 접종하지 마십시오. 체중 200kg이상의 동물에 주사하는 경우 두 곳 이상에 나누어 주사하십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 주사 시 주사통증에 의해 접종자가 동물의 공격을 받을 수 있으므로 안전사고에 주의하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 소 20일(우유4일)"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 안전사고 방지를 위하여 어린이의 손이 닿지 않고 동물의 접근이 불가능한 곳에 보관하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 유효성 및 안정성에 변화를 초래할 수 있으므로 정하여진"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 어린연령의 개(중형견 8개월이하, 대형견 12개월이하, 초대형견"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "18개월이하)에서 연골기형을 유발할 수 있으므로 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 연골 성장에 이상이 있는 동물에게는 사용하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 성장기의 동물에 투여시 관절이상(파행, 동통, 연골부전)등이 나타날 수"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 위장관 장애(구토, 식욕감퇴, 설사, 복통 등)가 드물게 나타날 수"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 중추신경계 장애(현기증, 불안, 두통, 침울, 운동실조, 발작 등)가"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 비스테로이드계 소염제와 병용시 드물게 경련이 발현될 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 마그네슘, 알루미늄, 칼슘이온이 함유된 제제와 혼합투여시 생체내"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "흡수율이 감소될 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- Theopylline, Caffeine과 함께 투여시 Theopylline, Caffeine의 혈중농도를"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 어린 연령의 개(중형견 8개월 이하, 대형견 12개월 이하, 초대형견 18개월"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 과민반응, 결정뇨가 나타날 수 있음"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 본제의 부형제 성분 중 부틸알코올은 중등도의 피부자극성 물질이므로 피부"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "나 눈에 접촉되지 않도록 주의하고, 접촉 시 즉시 물로 깨끗이 씻어낸 후 이"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "상증상이 발견되는 즉시 의사의 진료를 받을 것."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 과량 투여시(10배 이상) 구토, 섭이저하 등의 이상이 나타날 수 있음"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 고양이에 과량투여 시(15mg/kg 체중 이상) 산동, 망막변성 등이 나타날 수"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 멸균된 주사기와 주사바늘을 사용하며 1두 1침을 원칙으로 할 것."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 주사방법이 잘못되면 동통, 경결 및 화농이 생길 수 있음."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 환경이 불량하거나 주사부위가 오염된 경우에는 주사부위에 염증 및 화농이"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "생길 수 있으므로 주사부위를 70% 알코올 등으로 깨끗이 소독한 후 사용할"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 성장기의 동물에 투여시 관절이상(파행, 동통, 연골부전)등이 나타날 수 있"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 마크로라이드계, 테트라싸이클린계 항생제와 병용하지 말 것"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 마그네슘, 알루미늄, 칼슘이온이 함유된 제제와 혼합투여시 생체내 흡수율이"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- Theopylline, Caffeine과 함께 투여시 Theopylline, Caffeine의 혈중농도를 높"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- Probenecid는 본제의 세뇨관 배출을 막아 혈중농도를 높일 수 있음."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- Cyclosporine과 병용시 Cyclosporine의 신장독성을 악화시킬 수 있음."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 비스테로이드계 소염제와 병용시 드물게 경련이 발현될 수 있음."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "임신, 수유축, 신생축, 어린가축, 쇠약축 등에 대한 투여"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 임신한 동물은 주사 스트레스를 받기 쉬우므로 항상 신중하게 투여할 것."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 사용할 때마다 충분히 흔들어서 사용할 것"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 사용 전에 주사액 전체가 25℃ 전후가 되도록 유지한 후 사용할 것."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 성장기의 동물에 투여 시 관절이상(파행, 동통, 연"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "골부전)등이 나타날 수 있습니다"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 위장관 장애(구토, 식욕감퇴, 설사, 복통등)가 드"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "물게 나타날 수 있습니다"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "(발작 등)가 있는 동물에는 사용시 증상이 약화될"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "수 있으므로 사용하지 마시기 바랍니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 과량 투여시(10배이상)구토, 섭이저하 등의 이상이"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "합투여시 생체 내 흡수율이 감소될 수 있습니다"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- Probenecid는 본제의 세뇨관 배출을 막아 혈중 내"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- Cyclosporine과 병용 시 Cyclosporine의 신장독성"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "을 악화시킬 수 있습니다"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 비스테로이드계 소염제와 병용 시 드물게 경련이"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "위를 70%알코올 등으로 깨끗이 소독한 후 사용하십"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 유효성 및 안정성에 변화를 초래할 수 있으므로 정"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 어린연령의 개(중형견 8개월 이하, 대형견 12개월"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "골부전)이 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 위장관장애(구토, 식욕감퇴, 설사, 복통 등)가 나"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "실조, 발작, 등)가 나타날 수 있으며 중추신경장애"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "(발작)가 있는 동물에는 사용시 증상이 악화될 수"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "있으므로 사용하지 마시기 바랍니다"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본 제의 부형제 성분 중 부틸알코올은 중등도의"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "피부자극성 물질이므로 피부나 눈에 접촉되지 않도"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "록 주의하며 접촉시 즉시 씻어낸 후 이상증상이 발"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "견되는 즉시 의사의 진료를 받으십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 과량 투여시(10배 이상)섭이저하 등의 이상이 나타"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "합투여 시 생체 내 흡수율이 감소될 수도 있습니다"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 본 제품은 동물용의약품이므로 사람에게 절대 사용"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 수의사의 지시에 따라 사용하십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 멸균된 주사기와 주사바늘은 사용하며 1두 1침의"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "위를 70%알콜 등으로 깨끗이 소독한 후 사용하십시"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 주사 시 주사통증에 의해 접종자가 동물의 공격을"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 소 : 20일(우유 :4일)"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 본 제에 대한 쇼크와 과민반응이 있었던 동물에는"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "이하, 초대형견 18개월 이하)에서 연골기형을 유발"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 성장기의 동물에 투여시 관절이상(파행, 동통, 연"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 위장관 장애(구토, 식욕감퇴, 설사, 복통 등)가 드"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "물게 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 중추신경계장애(현기증, 불안, 두통, 침울, 운동실"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "조, 발작 등)가 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 비스테로이드계 소염제와 병용시 드물게 경련이 발"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "약화시킬 수 있습니다"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 멸균된 주사기와 주사바늘을 사용하십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 주사바늘은 주기적으로 교환하여 오염되지 않도록"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "주의하시고 1두1침을 원칙으로 사용하십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "사부위에 염증 및 화농이 생길 수 있으므로 주사"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "부위를 70%알코올 등으로 깨끗이 소독한 후 사용"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 소 : 20일(우유 4일)"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 유효성 및 안전성에 변화를 초래할 수 있으므로 정"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 어린 연령의 개(중형견 8개월이하, 대형견 12개월"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "이하, 초대형견 18개월이하)에서 연골 기형을 유발"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 성장기의 동물에 투여시 관절 이상(파행, 동통,"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "연골부전)등이 나타날 수 있습니다"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 위장관 장애(구토, 식욕 감퇴, 설사, 복통 등)가"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 중추신경 장애(현기증, 불안, 두통, 침울, 운동실"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "조, 발작 등)가 나타날 수 있으며 중추신경 장애"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 과민 반응, 결정뇨가 나타날 수 있습니다"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본제의 부형제 성분중 부틸알콜은 중등도의 피부자"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "극성 물질이므로 피부나 눈에 접촉되지 않도록 주"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "의하며 접촉시 즉시 물로 깨끗이 씻어낸 후 이상증"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "상이 말견되는 즉시 의사의 진료를 받으십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본제의 부형제 성분중 파라옥시벤조산메틸, 파라옥"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "시벤조산프로필, 아황산수소나트륨은 과민성 반응"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "을 일으킬 수 있습니다"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 과량 투여시(10배이상) 구토, 섭이 저하 등의 이상"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "이 나타날 수 있습니다"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 고양이에 과량 투여시(15mg/kg 이상)산동, 망막변"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "성등이 나타날 수 있습니다"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 마그네슘, 알루미늄, 칼슘이온이 함유된 제제외 혼"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- Theophylline, Caffeine과 함께 투여시 Theophylli"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "ne, Caffeine혈중 농도를 높일 수 있습니다"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- Probebecid는 본제의 세뇨관 배출을 막아 혈중내"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- Cyclosporine과 병용시 Cyclosporine의 신장독성을"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "임신, 수유축, 신생축, 어린 가축, 쇠약축 등에 대"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "주사부위에 염증 및 화농이 생길 수 있으므로 주사"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "부위를 70%알코올 등으로 깨끗이 소독한 후 사용하"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 주사시 주사 통증에 의해 접종자가 동물의 공격을"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "(1) 본제에 대한 쇼크와 과민반응이 있었던 동물에는 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "(2) 간장애 및 신장애가 있는 동물에게는 투여하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "(3) 어린 연령의 개(중형견 8개월 이하, 대형견 12개월 이하, 초대형견 18개월 이하)에서 연골기형을 유발할 수 있으므로 사용하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "(1) 성장기의 동물에 투여시 관절이상(파행, 동통, 연골부전)등이 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "(2) 위장관 장애(구토, 식욕감퇴, 설사, 복통 등)가 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "(3) 중추신경계 장애(발작 등)가 있는 동물에는 사용 시 증상이 악화될 수 있으"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "므로 사용하지 마시기 바랍니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "(4) 과민반응, 결정뇨가 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "(5) 본제의 부형제 성분 중 부틸알코올은 중등도의 피부자극성 물질이므로 피부"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "나 눈에 접촉되지 않도록 주의하며 접촉시 즉시 물로 깨끗이 씻어낸 후 이상 증상이 발견되는 즉시 의사의 진료를 받으십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "(1) 마크로라이드계, 테트라싸이클린계 항생제와 병용하지 마십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "(2) 마그네슘, 알루미늄, 칼슘이온이 함유된 제제와 혼합투여시 생체내 흡수율이 감소될 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "(3) Theopylline, Caffeine과 함께 투여시 Theopylline, Caffeine의 혈중농도를 높일 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "(4) Probenecid는 본제의 세뇨관 배출을 막아 혈증 내 농도를 높일 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "(5) Cyclosporine와 병용시 Cyclosporine의 신장독성을 악화시킬 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "(6) 비스테로이드계 소염제와 병용시 드물게 경련이 발현될 수 있습니다."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 어린 연령의 개(중형견 8개월 이하, 대형견 12개월"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 위장관 장애(구토, 식욕감퇴, 설사, 복통 등)가 나"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 중추신경계 장애(발작 등)가 있는 동물에는 사용"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "시 증상이 악화될 수 있으므로 사용하지 마시기 바"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본제의 부형제 성분 중 부틸알코올은 중등도의 피"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "부자극성 물질이므로 피부나 눈에 접촉되지 않도록"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "주의하며 접촉시 즉시 물로 깨끗이 씻어낸 후 이상"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "증상이 발견되는 즉시 의사의 진료를 받으십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 고양이에 과량투여시(15mg/kg 이상)산동, 망막변성"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 임신한 동물은 주사스트레스를 받기 쉬우므로 항상"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "신중하게 투여하십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 사용전에 주사액 전체가 25℃전후가 되도록 유지한"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "원칙으로 상요하십시오"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "이하, 초대형견 18개월 이하)에서 연골 기형을 유"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "발할 수 있으므로 사용하지 마십시오"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 중추간질성 발작 증세가 있는 동물에는 사용하지"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "실조, 발작 등)가 나타날 수 있으며, 중추신경장"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "애(발작 등)가 있는 동물에는 사용시 증상이 악화"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "될 수 있으므로 사용하지 마십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 다른 플로르퀴놀론계 항생제와 마찬가지로 본 제제"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "에 저항성 균주가 나타날 수 있기 때문에 경미한"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "감염에는 사용하지 않도록 하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 만약 투여 3일 내 별다른 효과가 나타나지 않을 때"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "에는 항생제 감수성 검사를 실시하여 필요하다면"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "투여 항생제를 바꾸도록 하십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 마크로라이드계, 테트라사이클린계 항생제와 병용"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- Theopyline, Caffeine과 함께 투여시 Theopyline,"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "Caffeine의 혈중 농도를 높일 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- Cyclosporine와 병용시 Cyclosporine의 신장독성"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "발현될 수 있습니다."
+    }
+  ]
 }

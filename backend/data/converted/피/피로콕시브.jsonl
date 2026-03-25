@@ -1,0 +1,308 @@
+{
+  "id": "피로콕시브",
+  "drug_identity": {
+    "name_ko": "피로콕시브",
+    "name_en": "피로콕시브",
+    "active_ingredient": "피로콕시브",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Unknown",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Tab",
+      "Chewable"
+    ],
+    "available_strengths": [
+      {
+        "value": 57.0,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "프로콕스 정(피로콕시브)",
+      "프레비콕스정 57mg (피로콕시브)",
+      "브레비콕스정 57mg (피로콕시브)",
+      "보네티 츄어블(피로콕시브)",
+      "피로딜 츄어블 정 62.5mg(피로콕시브)",
+      "피로딜 츄어블 정 250mg(피로콕시브)"
+    ],
+    "product_names_en": [
+      "Procox Tab"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": []
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": []
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Tab",
+      "Chewable"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "개에서 골관절염과 관련한 염증의 치료 및 통증경감에 사용한다.\n개에서 연부조직, 정형외과수술 및 치과수술과 관련한 수술 후 통증경감에 사용한다.",
+    "indications": "개에서 골관절염과 관련한 염증의 치료 및 통증경감에 사용한다.\n개에서 연부조직, 정형외과수술 및 치과수술과 관련한 수술 후 통증경감에 사용한다.",
+    "client_info": ""
+  },
+  "brief_description": "개에서 골관절염과 관련한 염증의 치료 및 통증경감에 사용한다.\n개에서 연부조직, 정형외과수술 및 치과수술과 관련한 수술 후 통증경감에 사용한다.",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "탈수, 저혈량증, 저혈압 개체에 신장독성을 유발할 수 있으므로 사용하지 마십시오.."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "신장독성이 있는 약물과 병용투여 하지마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "때때로 구토나 설사 증상이 나타날 수 있으나 일시적이며, 치료를 중단할경우회복될 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "개에서 권장용량으로 사용한 경우 매우 드물게 신장 및 간 이상이 보고된 바있습니다. 치료 전 비임상적 신장 및 간 질병을 가진 경우 일어날 가능성이 있습니다. 따라서, 본 제품을 투약하기 전 또는 투약하는 동안 정기적으로 신장 및간장생화학적검사를 실시하는 것을 권장합니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "드물게 신경계 이상증상이 보고된 바 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "설사, 구토, 혈변, 급격한 체중감소, 식욕 감퇴, 무감각, 신장과 간장의 생화학적수치의 감소가 관찰되면 치료를 중단하고 수의사의 지시를 따릅니다. 다른NSAID계열의 약물과 같이, 심각한 부작용이 일어날 수 있고, 매우 드문 경우치명적입니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "* 드물게: (10,000마리 중 1∼10마리)"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "* 매우 드물게: (10,000마리 중 1마리 이하)"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "본 약제 투여전 다른 소염진통제로 전처치를 받고 있는 개체에는 부작용이증가할 수 있으므로 적어도 24시간의 휴약 기간이 필요합니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "본 약제는 다른 NSAID나 글루코코티코스테로이드계열의 약물과 함께 투여해서는 안됩니다. NSAID를 투약하고 있는 동물은 코티코스테로이드에 의해 위장관의궤양이 악화될 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "안지오텐신 전환효소 억제제(ACE inhibitors) 또는 이뇨제와 병용투여시 신혈류량에 영향을 줄 수 있으므로 반드시 임상적 모니터링이 필요합니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "잠재적으로 신장독성을 유발할 가능성이 있는 약물과 함께 복용하는 것은 피합니다. 이는 신장독성 유발 가능성을 높일 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "혈중 단백결합친화물이 높은 다른 약물과의 병용투여시 firocoxib와 경쟁적으로작용하여 독성효과를 일으킬 수 있습니다."
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.149739+00:00",
+    "reviewer": null
+  }
+}

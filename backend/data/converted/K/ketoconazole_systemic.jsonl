@@ -32,6 +32,12 @@
         "form": "injectable",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "케토코나졸 정제"
+    ],
+    "product_names_en": [
+      "Ketoconazole Tablets."
     ]
   },
   "metabolism_and_clearance": {
@@ -957,5 +963,47 @@
     "사이클로스포린 용량 절감(2.5~10 mg/kg PO SID). 고양이: 전신 진균증(50 mg/마리 또는 10 mg/kg PO q12~24h",
     "논란 있음). 역사적으로 개의 부신피질기능항진증 치료에 사용되었으나 현재는 미토탄 또는 트릴로스탄이 권장됨."
   ],
-  "mechanism_short": "진균 세포막의 에르고스테롤 합성에 필요한 사이토크롬 P450 의존성 탈메틸화 효소를 억제하여 세포막 투과성 증가 및 세포 내용물 누출을 유발하는 정진균 작용. 고농도 또는 감수성 높은 균에서는 살진균 작용. 또한 5-리폭시게나아제 억제를 통한 항염증 작용, T-림프구 증식 억제를 통한 면역억제 작용, 여러 P450 효소계 차단을 통한 스테로이드 합성 억제 작용을 가짐."
+  "mechanism_short": "진균 세포막의 에르고스테롤 합성에 필요한 사이토크롬 P450 의존성 탈메틸화 효소를 억제하여 세포막 투과성 증가 및 세포 내용물 누출을 유발하는 정진균 작용. 고농도 또는 감수성 높은 균에서는 살진균 작용. 또한 5-리폭시게나아제 억제를 통한 항염증 작용, T-림프구 증식 억제를 통한 면역억제 작용, 여러 P450 효소계 차단을 통한 스테로이드 합성 억제 작용을 가짐.",
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "- 본제 투여시 Allergy 등 과민반응(쇼크)이 일어날 수 있는 동물에는 투여하     지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 간손상이 있는 동물에는 투여하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 구토, 설사 및 식욕 감소 등의 발생이 가능합니다. 부작용 발생시 수의사의     지시에 따라 처치하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 개의 모질과 털 색상에 영향을 미칠 수 있습니다"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 제산제, cimetidine, cisapride, methylprednisolone, 항경련제, 심장관련      치료제, cyclosporine, theophylline, terfenadine, astemizole등의 다른 약    제들과 동시에 투여하지 마십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "임신, 수유축, 신생축, 어린 가축, 쇠약축 등에 대한 투여"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 임신한 경우에는 투여하지 마십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 장기간 연용하여 사용할 경우 간기능 이상 유무를 정기적으로 검사하면서 투    여해야 합니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 안전사고 방지를 위하여 어린이의 손이 닿지 않고 동물의 접근이 불가능한"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 안전성 및 유효성에 변화를 초래할 수 있으므로 정해진"
+    }
+  ]
 }

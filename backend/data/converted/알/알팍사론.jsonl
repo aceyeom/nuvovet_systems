@@ -1,0 +1,321 @@
+{
+  "id": "알팍사론",
+  "drug_identity": {
+    "name_ko": "알팍사론",
+    "name_en": "알팍사론",
+    "active_ingredient": "알팍사론",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Sedative",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Inj"
+    ],
+    "available_strengths": [
+      {
+        "value": 10.0,
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "알팍산 멀티도즈"
+    ],
+    "product_names_en": [
+      "Alfaxan Multidose"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": []
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": []
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Inj"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "가. 대상동물 : 개, 고양이\n나. 효능‧효과\n1) 가스 호흡 마취 전 마취 유도\n2) 검사 또는 외과 수술 시 단독 사용으로 마취 유도와 유지",
+    "indications": "가. 대상동물 : 개, 고양이\n나. 효능‧효과\n1) 가스 호흡 마취 전 마취 유도\n2) 검사 또는 외과 수술 시 단독 사용으로 마취 유도와 유지",
+    "client_info": ""
+  },
+  "brief_description": "가. 대상동물 : 개, 고양이\n나. 효능‧효과\n1) 가스 호흡 마취 전 마취 유도\n2) 검사 또는 외과 수술 시 단독 사용으로 마취 유도와 유지",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "본제의 유효성분 또는 부형제에 과민반응이 있는 동물에는 사용하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "개와 고양이에 사용 시, 마취 유도 후 30초 혹은 그 이상 호흡이 중단되는 무호흡증이 발생할 수 있습니다. 무호흡증이 지속되는 평균 시간은 다음과 같습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 개 : 100초, 고양이 : 60초"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "특히 본제를 고용량으로 사용하는 경우, 용량에 따른 호흡 억제가 발생될 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "본제는 개와 고양이에서 다음 종류의 전처치제 약물와 함께 사용하였을 때 안 전하다는 것이 입증되었습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "Phenothiazines"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "Acepromazine maleate"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "Anticholinergic agents"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "Atropine sulfate"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "Benzodiazepines"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "Diazepam, Midazolam hydrochloride"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "Alpha-2-adrenoceptor agonists"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "Xylazine hydrochloride, Medetomidine hydrochloride"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "Methadone, Morphine sulfate, Butorphanol tartrate, Buprenorphine hydrochloride"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "Carprofen, Meloxicam"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "다른 중추신경 억제제를 병용하는 경우, 본제의 억제 효과가 강화되므로, 마취 가 원하는 깊이에 도달하였을 때에는 본제의 추가 투여를 중단해야합니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "본제를 전처치제(단일 또는 복합)와 병용하는 경우, 본제의 투여량을 감소하여 사용할 수 있습니다. 자일라진(xylazine)과 메데토미딘(medetomidine)과 같은 알파-2-아드레날린 수용체 작용제(α-2-adrenoceptor agonist)를 전처치제로 사용한다면 용량 기준 마취 유지 시간을 현저히 증가시킬 수 있습니다. 회복 시간을 단축하기 위해서는 이러한 전처치제의 활성을 길항시키는 것이 바람직합니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "개와 고양이의 일부 개체에서 마취가 최적의 상태가 되지 않을 수 있으니 벤조 디아제핀(benzodiazepine)을 단독 전처치제로 사용하지 마십시오. 벤조디아제핀은 다른 전처치제와 본제를 병용하는 경우 안전하고 효과적으로 사용할 수 있습니다."
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.222111+00:00",
+    "reviewer": null
+  }
+}

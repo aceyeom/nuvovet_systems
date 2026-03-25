@@ -150,7 +150,10 @@ const ko = {
   drugInput: {
     addMedication: '처방 추가',
     addAllergy: '알레르기 추가',
-    searchPlaceholder: '약품명, 성분명, 약효군으로 검색...',
+    searchPlaceholder: '약품명, 성분명, 제품명으로 검색...',
+    productNames: '제품명',
+    moreProducts: '외 {count}개',
+    koreanWarnings: '한국 허가사항 주의',
     searchByCategory: '약효군별 조회',
     allDrugs: '전체',
     filterByRoute: '투여경로',

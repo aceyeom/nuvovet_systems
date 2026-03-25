@@ -1,0 +1,333 @@
+{
+  "id": "트릴로스탄",
+  "drug_identity": {
+    "name_ko": "트릴로스탄",
+    "name_en": "트릴로스탄",
+    "active_ingredient": "트릴로스탄",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Hormone",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Cap"
+    ],
+    "available_strengths": [
+      {
+        "value": 10.0,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      },
+      {
+        "value": 60.0,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "엑시트 캡슐(트릴로스탄)",
+      "베토릴 30mg 캡슐(트릴로스탄)",
+      "베토릴 120mg 캡슐",
+      "베토릴 5mg 캡슐(트릴로스탄)",
+      "베토릴 60mg 캡슐(트릴로스탄)",
+      "베토릴 10mg 캡슐(트릴로스탄)",
+      "쿠스탄 캡슐(트릴로스탄)"
+    ],
+    "product_names_en": [
+      "EXEET Capsule"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "linear",
+          "context": "개(반려동물에 한함)의 뇌하수체 의존 및 부신 의존성 부신피질기능항진증(쿠싱병 및 그 증후군)의 치료",
+          "value": "2",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "SID",
+          "max_dose_mg_kg": null,
+          "duration_note": "1일",
+          "evidence": "한국 수의약품 허가사항"
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "linear",
+          "context": "개(반려동물에 한함)의 뇌하수체 의존 및 부신 의존성 부신피질기능항진증(쿠싱병 및 그 증후군)의 치료",
+          "value": "2",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "SID",
+          "max_dose_mg_kg": null,
+          "duration_note": "1일",
+          "evidence": "한국 수의약품 허가사항"
+        }
+      ]
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Cap"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "개(반려동물에 한함)의 뇌하수체 의존 및 부신 의존성 부신피질기능항진증(쿠싱병 및 그 증후군)의 치료",
+    "indications": "개(반려동물에 한함)의 뇌하수체 의존 및 부신 의존성 부신피질기능항진증(쿠싱병 및 그 증후군)의 치료",
+    "client_info": ""
+  },
+  "brief_description": "개(반려동물에 한함)의 뇌하수체 의존 및 부신 의존성 부신피질기능항진증(쿠싱병 및 그 증후군)의 치료",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "Trilostane은 testosterone 합성을 방해하고 항 progesterone 특성을 가지고 있으므로 임신 혹은 임신 경향(예정)이 있는 여성은 본제 취급을 금해야 한다."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "사고로 인한 노출이나 사용한 후에 흐르는 물에 비누로 씻어야 한다."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "캅셀의 내용물은 피부와 눈에 대한 자극성이 있고 과민성이 있으므로 캅셀을 분해하거나 개봉하지 말아야 한다. 만약 실수로 캅셀을 깨어서 눈이나 피부에 과립이 묻었을 경우 즉시 충분한 물로 씻어낸다. 만약에 자극이 지속되면 의사에게 진찰을 받아야 한다."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "Trilostane 이나 그 부형제에 대한 과민성이 있는 사람은 본제를 취급하지 말아야 한다."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "실수로 먹었을 경우 의사에게 바로 보이고 사용설명서 등을 보여주어서 도움을 받는다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "코티코스테로이드 금단증상이나 코티코솔혈증은 혈액의 전해질 검사를 통해 부신피질기능저하증과 구별이 되어야 한다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "특히 검사가 잘 수행되지 않으면 쇠약, 혼수, 식욕부진, 구토 및 설사를 동반하는 의료성 부신피질기능저하증과 관련된 증상이 일어날 수가 있다. 증상은 대체적으로 치료를 중단한 후 일정 시간이 경과를 하면 원상으로 회복 될 수 있다. 급성 에디슨 위기증(허탈)이 나타날 수도 있다. 부신피질기능저하증이 없는 상황에서, 트릴로스탄을 투여 받은 개에 있어서 혼수, 구토, 설사 및 식욕부진이 나타날 수 있다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "부신피질기능저하증에 걸려 있는 개를 치료함에 있어서 부신 조직괴사가 보일 수도 있다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "준임상형 신장기능 부전증이 본제 사용으로 나타날 수가 있다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "본제를 사용하면 내분비성 코티코스테로이드 수치를 떨어뜨려서 관절염이 나타날 수 있다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "치료 중에 급사하는 경우가 가끔 있을 수 있다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "기타 가끔 일어나는 경미한 부작용으로 과도한 타액분비, 고창증, 근육경련, 피부변화 및 운동실조 등을 볼 수 있다."
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.163547+00:00",
+    "reviewer": null
+  }
+}

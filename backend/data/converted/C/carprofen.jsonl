@@ -63,6 +63,12 @@
         "form": "injectable",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "케어오펫 정"
+    ],
+    "product_names_en": [
+      "CARE-O-PET tablet"
     ]
   },
   "metabolism_and_clearance": {
@@ -753,5 +759,107 @@
     "설치류",
     "파충류."
   ],
-  "mechanism_short": "사이클로옥시게나제(COX), 포스포리파제 A2 억제 및 프로스타글란딘 합성 억제를 통한 진통, 항염증, 해열 작용. COX-1보다 COX-2에 상대적으로 선택적이나 종, 용량, 조직에 따라 선택성이 다름."
+  "mechanism_short": "사이클로옥시게나제(COX), 포스포리파제 A2 억제 및 프로스타글란딘 합성 억제를 통한 진통, 항염증, 해열 작용. COX-1보다 COX-2에 상대적으로 선택적이나 종, 용량, 조직에 따라 선택성이 다름.",
+  "cautionary_notices_ko": [
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 비스테로이드성 소염제(NSAID)는 식균작용과 세균"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "감염으로 인한 염증 치료를 억제할 수 있습니다"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 비스테로이드성 소염제(NSAID)의 공통적 부작용인"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "신장과 간에 드물게 독성이 나타날 수 있습니다"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 애완견에만 사용하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 고양이는 카프로펜을 포함한 NSAID 제품에 대해 개"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "에 비해 체내 제거 시간이 오래 걸리고 그 안전역"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "이 매우 좁으므로 적용을 피하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 이 약을 장기간 적용 시 수의사의 처방에 따라 사"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 용법 및 용량을 지켜 사용하십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 항생제와 같이 사용 시 항생제의 작용을 저해할 수"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 스테로이드성 소염제와 함께 사용하지 마십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 다른 종류의 NSAID와 병용하거나 24시간 내 다른"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "종류의 NSAID를 투여하지 마십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 신장 독성이 있는 약과 병용하지 마십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "임신, 수유축, 신생축, 어린가축, 쇠약축 등에 대"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 임신 동물에 적용 시 부작용에 대한 결과는 없으나"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "안전을 위해 임신 동물에 투여하지 마십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 6주 이하의 강아지나 추가 위험이 있는 노견은 사"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "용을 피하시고 꼭 사용할 필요가 있을 시 주의해서"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 동물의 접근이 불가능하고 어린이의 손에 닿지 않"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "는 곳에 보관하십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 사용설명서를 잘 읽은 후 사용하십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 동물용의약품이므로 사람에게 절대 사용하지 마십"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 수의사의 지시에 따라 사용하십시오"
+    }
+  ]
 }

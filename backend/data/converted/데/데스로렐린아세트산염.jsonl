@@ -1,0 +1,293 @@
+{
+  "id": "데스로렐린아세트산염",
+  "drug_identity": {
+    "name_ko": "데스로렐린아세트산염",
+    "name_en": "데스로렐린아세트산염",
+    "active_ingredient": "데스로렐린아세트산염",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Hormone",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Unknown"
+    ],
+    "available_strengths": [
+      {
+        "value": 4.7,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "슈프레로린 이식제 4.7 mg(데스로렐린 아세트산염)"
+    ],
+    "product_names_en": [
+      "Suprelorin implant 4.7 mg"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": []
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": []
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Unknown"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "대상 동물\n   \n   효능효과 \n   \n  \n  \n   성적으로 성숙한 수컷 개\n   \n   일시적인 피임 (첫 투여 후 6주 ∼ 6개월)\n   \n  \n  \n   성적으로 미성숙한 12 ∼ 16주령 암컷 개\n   \n   첫 발정을 지연시켜 어린 연령에서의 임신을 방지 (투여 후 최소 5개월 이상 첫 발정 지연 유도)\n   \n  \n  \n   3개월령 이상 수컷 고양이\n   \n   일시적인 피임 (첫 투여 후 6주 ∼ 12개월), 소변 냄새 및 성적 행동 이상(소변 마킹, 울음, 공격성) 억제",
+    "indications": "대상 동물\n   \n   효능효과 \n   \n  \n  \n   성적으로 성숙한 수컷 개\n   \n   일시적인 피임 (첫 투여 후 6주 ∼ 6개월)\n   \n  \n  \n   성적으로 미성숙한 12 ∼ 16주령 암컷 개\n   \n   첫 발정을 지연시켜 어린 연령에서의 임신을 방지 (투여 후 최소 5개월 이상 첫 발정 지연 유도)\n   \n  \n  \n   3개월령 이상 수컷 고양이\n   \n   일시적인 피임 (첫 투여 후 6주 ∼ 12개월), 소변 냄새 및 성적 행동 이상(소변 마킹, 울음, 공격성) 억제",
+    "client_info": ""
+  },
+  "brief_description": "대상 동물\n   \n   효능효과 \n   \n  \n  \n   성적으로 성숙한 수컷 개\n   \n   일시적인 피임 (첫 투여 후 6주 ∼ 6개월)\n   \n  \n  \n   성적으로 미성숙한 12 ∼ 16주령 암컷 개\n   \n   첫 발정을 지연시켜 어린 연령에서의 임신을 방지 (투여 후 최소 5개월 이상 첫 발정 지연 유도)\n   \n  \n  \n   3개월령 이상 수컷 고양이\n   \n   일시적인 피임 (첫 투여 후 6주 ∼ 12개월), 소변 냄새 및 성적 행동 이상(소변 마킹, 울음, 공격성) 억제",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "adverse_effect",
+      "text_ko": "성적으로 미성숙한 시기의 본제에 의한 호르몬 억제 처치는 외과적 수단과 마찬가지로 임상증상 또는 병리적 변화를 동반하지 않는 긴 뼈의 성장판 폐쇄지연을 유발할 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "개에서 투여부위에서 중등도의 부종이 투여 후 14일까지 관찰될 수 있으며, 임상시험에서 국소피부반응이 투여 후 최대 6개월까지 지속된 사례가 보고되었습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "수캐에서 매우 드물게 (0.01 % 미만) 일시적인 성적 관심과 고환 크기의 증가 및 고환 통증이 나타날 수 있으나 치료 없이 사라집니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "개에서 처치 기간 동안 드물게 (0.01 % 이상 0.1% 미만) 모질 이상(탈모, 모질 변화), 요실금, 성호르몬 하향조절 관련 증상(고환 크기 감소, 활동성 감소)이 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "수캐에서 매우 드물게 (0.01 % 미만) 일시적인 행동변화 (공격성 발달) 및 고환상승증이 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "성호르몬 (테스토스테론 및 프로게스테론)은 발작 감수성을 조절합니다. 개에서 투여 후 평균 40일 (투여 당일 ∼ 36주 후)에 간질 발작이 매우 드문 사례로 발생할 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "수컷 고양이에서 투여 당일 투여 부위의 일시적인 홍반, 동통 또는 열감이 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "수컷 고양이의 임상 연구에서 투여 부위에 크기 5 ㎜ 미만의 부종이 투여 후 45일까지 일반적으로 관찰되었으며, 권장용량을 투여한 실험실적 연구에서는 크기 4 ㎝ 이상의 심한 부종이 18마리 중 1마리에서  7개월 이상 관찰되었습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "수컷 고양이에서 투여 후 첫 몇 주간 일시적인 성적 활동과 울음의 증가가 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "수컷 고양이에서 중성화 효과에 따른 식이 섭취 및 체중 증가가 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "임상시험에서 암캐에서의 발정 지연 효과는 투여 후 5 – 24개월 지속되었습니다. 본제 투여 후 1.8 % (56마리 중 1마리)는 5개월, 44.6 %는 6 – 12개월, 53.6 %는 12 – 24개월에 첫 발정을 보였습니다."
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.189707+00:00",
+    "reviewer": null
+  }
+}

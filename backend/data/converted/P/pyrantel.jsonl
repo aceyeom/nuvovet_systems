@@ -68,6 +68,16 @@
         "form": "injectable",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "드론탈 플러스-L 정",
+      "드론탈 플러스-S 정",
+      "하트제로"
+    ],
+    "product_names_en": [
+      "DRONTAL PLUS-L TABLET",
+      "DRONTAL PLUS-S TABLET",
+      "HEART ZERO"
     ]
   },
   "metabolism_and_clearance": {
@@ -535,5 +545,51 @@
     "대형 회충 구제. 기타 종(비라벨): 소",
     "토끼 등."
   ],
-  "mechanism_short": "피란텔은 콜린성 작용제로서 감수성 기생충의 니코틴성 수용체에 결합하여 탈분극을 유발하고 신경근 차단제로 작용하여 기생충을 마비시킴. 또한 콜린에스테라제를 억제함."
+  "mechanism_short": "피란텔은 콜린성 작용제로서 감수성 기생충의 니코틴성 수용체에 결합하여 탈분극을 유발하고 신경근 차단제로 작용하여 기생충을 마비시킴. 또한 콜린에스테라제를 억제함.",
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "본 약제에 대한 쇼크와 과민반응이 있었던 동물에는 사용하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "과량 투여하거나 과민반응으로 인해 구토 및 어지러운 증상이 나타날 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "본제는 피페라진 혼합물과 병용하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 드물게 투여후 24시간 내 구토와 설사를 보일 수"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 과다복용시 침울, 구토, 식욕부진, 설사, 동공산대"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "운동실조, 비틀거림, 경련, 유연과다를 보일 수 있"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 어린이의 손이 닿지 않고 동물의 접근이 불가능한"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 사용설명서를 충분히 읽어본 후 사용하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 수의사의 처방에 따라 사용하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 동물용의약품이므로 사람에게는 절대 사용하지 마"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 사람이 먹었을 경우 즉시 의사의 조치를 받으십시"
+    }
+  ]
 }

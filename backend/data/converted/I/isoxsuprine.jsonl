@@ -45,6 +45,12 @@
         "form": "oral",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "듀파스파스민"
+    ],
+    "product_names_en": [
+      "DUPHASPASMIN"
     ]
   },
   "metabolism_and_clearance": {
@@ -343,5 +349,6 @@
     "월경통",
     "조기 진통 — 효능 미입증."
   ],
-  "mechanism_short": "직접적인 혈관 평활근 이완(주로 골격근 혈관). 베타-아드레날린 수용체 자극도 하지만 혈관 확장에 필수적이지 않음. 자궁 평활근 이완, 고용량에서 혈소판 응집 억제 및 혈액 점도 감소."
+  "mechanism_short": "직접적인 혈관 평활근 이완(주로 골격근 혈관). 베타-아드레날린 수용체 자극도 하지만 혈관 확장에 필수적이지 않음. 자궁 평활근 이완, 고용량에서 혈소판 응집 억제 및 혈액 점도 감소.",
+  "cautionary_notices_ko": []
 }

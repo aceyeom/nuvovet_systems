@@ -1,0 +1,289 @@
+{
+  "id": "멘부톤",
+  "drug_identity": {
+    "name_ko": "멘부톤",
+    "name_en": "멘부톤",
+    "active_ingredient": "멘부톤",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Unknown",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Inj"
+    ],
+    "available_strengths": [
+      {
+        "value": 100.0,
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "리버빌 주사 (멘부톤)",
+      "유니 멘부톤 주"
+    ],
+    "product_names_en": [
+      "Liverbil Injection"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "linear",
+          "context": "아래 가축의 식이성 소화기 질병 및 간장 질병의 예방, 치료\n가. 소 (젖소, 비육우, 송아지)\n- 사료의 급변, 과식, 임신중독, 질병, 난산 및 수송 등과 관련하여 발생되는 변",
+          "value": "0.1",
+          "unit": "ml/kg",
+          "route": "IM",
+          "frequency": "SID",
+          "max_dose_mg_kg": null,
+          "duration_note": null,
+          "evidence": "한국 수의약품 허가사항"
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "linear",
+          "context": "아래 가축의 식이성 소화기 질병 및 간장 질병의 예방, 치료\n가. 소 (젖소, 비육우, 송아지)\n- 사료의 급변, 과식, 임신중독, 질병, 난산 및 수송 등과 관련하여 발생되는 변",
+          "value": "0.1",
+          "unit": "ml/kg",
+          "route": "SC",
+          "frequency": "SID",
+          "max_dose_mg_kg": null,
+          "duration_note": null,
+          "evidence": "한국 수의약품 허가사항"
+        },
+        {
+          "logic_type": "linear",
+          "context": "아래 가축의 식이성 소화기 질병 및 간장 질병의 예방, 치료\n가. 소 (젖소, 비육우, 송아지)\n- 사료의 급변, 과식, 임신중독, 질병, 난산 및 수송 등과 관련하여 발생되는 변",
+          "value": "0.1",
+          "unit": "ml/kg",
+          "route": "SC",
+          "frequency": "SID",
+          "max_dose_mg_kg": null,
+          "duration_note": null,
+          "evidence": "한국 수의약품 허가사항"
+        }
+      ]
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Inj"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "아래 가축의 식이성 소화기 질병 및 간장 질병의 예방, 치료\n가. 소 (젖소, 비육우, 송아지)\n- 사료의 급변, 과식, 임신중독, 질병, 난산 및 수송 등과 관련하여 발생되는 변비,식욕감퇴, 만성소화불량, 고창증, 제1위 마비, 식체, 제4위 확장, 위장관염, 설사등의 소화기 장애\n- 유행열, 지방간, 간염 등의 간장의 이상 영양, 중독이나 기생충 감염에 따른 간장손상의 간장 질병의 보조적 치료\n- 유열, 케토시스, 허약, 유 생산 감소, 병후 또는 수술 후 회복기의 식욕 증진 효과\n나. 돼지 (모돈, 자돈)\n- 식욕부진, 변비, 과식 또는 사료 변경에 따른 소화기 장애, 부종병, 간장 질병,병후 또는 수술 후 회복기의 식욕 증진\n다. 말\n- 식이성 변비, 과식이나 사료 변경에 따른 소화기 장애, 간장 질병, 병후 또는 수술 후 회복기의 위장관 기능의 회복\n라. 양\n- 초기 임신 중독증, 중독에 따른 간장 손상의 보조적 치료\n마. 개\n- 변비, 간염, 간장 또는 췌장의 기능 손상 및 부적절한 식이로 인한 소화기 장애,병후 또는 수술 후 회복기의 식욕 증진",
+    "indications": "아래 가축의 식이성 소화기 질병 및 간장 질병의 예방, 치료\n가. 소 (젖소, 비육우, 송아지)\n- 사료의 급변, 과식, 임신중독, 질병, 난산 및 수송 등과 관련하여 발생되는 변비,식욕감퇴, 만성소화불량, 고창증, 제1위 마비, 식체, 제4위 확장, 위장관염, 설사등의 소화기 장애\n- 유행열, 지방간, 간염 등의 간장의 이상 영양, 중독이나 기생충 감염에 따른 간장손상의 간장 질병의 보조적 치료\n- 유열, 케토시스, 허약, 유 생산 감소, 병후 또는 수술 후 회복기의 식욕 증진 효과\n나. 돼지 (모돈, 자돈)\n- 식욕부진, 변비, 과식 또는 사료 변경에 따른 소화기 장애, 부종병, 간장 질병,병후 또는 수술 후 회복기의 식욕 증진\n다. 말\n- 식이성 변비, 과식이나 사료 변경에 따른 소화기 장애, 간장 질병, 병후 또는 수술 후 회복기의 위장관 기능의 회복\n라. 양\n- 초기 임신 중독증, 중독에 따른 간장 손상의 보조적 치료\n마. 개\n- 변비, 간염, 간장 또는 췌장의 기능 손상 및 부적절한 식이로 인한 소화기 장애,병후 또는 수술 후 회복기의 식욕 증진",
+    "client_info": ""
+  },
+  "brief_description": "아래 가축의 식이성 소화기 질병 및 간장 질병의 예방, 치료\n가. 소 (젖소, 비육우, 송아지)\n- 사료의 급변, 과식, 임신중독, 질병, 난산 및 수송 등과 관련하여 발생되는 변비,식욕감퇴, 만성소화불량, 고창증, 제1위 마비, 식체, 제4위 확장, 위장관염, 설사등의 소화기 장애\n- 유행열, 지방간, 간염 등의 간장의 이상 영양, 중독이나 기생충 감염에 따른 간장손상의 간장 질병의 보조적 치료\n- 유열, 케토시스, 허약, 유 생산 감소, 병후 또는 수술 후 회복기의 식욕 증진 효과\n나. 돼지 (모돈, 자돈)\n- 식욕부진, 변비, 과식 또는 사료 변경에 따른 소화기 장애, 부종병, 간장 질병,병후 또는 수술 후 회복기의 식욕 증진\n다. 말\n- 식이성 변비, 과식이나 사료 변경에 따른 소화기 장애, 간장 질병, 병후 또는 수술 후 회복기의 위장관 기능의 회복\n라. 양\n- 초기 임신 중독증, 중독에 따른 간장 손상의 보조적 치료\n마. 개\n- 변비, 간염, 간장 또는 췌장의 기능 손상 및 부적절한 식이로 인한 소화기 장애,병후 또는 수술 후 회복기의 식욕 증진",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "adverse_effect",
+      "text_ko": "정맥주사 시 급하게 주사하면 쇼크증상이 일어날 수 있으니 반드시 서서히 동물의 상태를 관찰하여 주사하십시오."
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.255373+00:00",
+    "reviewer": null
+  }
+}

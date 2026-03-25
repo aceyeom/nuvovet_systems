@@ -1,0 +1,296 @@
+{
+  "id": "penicillin_g_benzathine_hydrate",
+  "drug_identity": {
+    "name_ko": "페니실린G벤자틴수화물",
+    "name_en": "Penicillin G Benzathine Hydrate",
+    "active_ingredient": "Penicillin G Benzathine Hydrate",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Unknown",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Inj"
+    ],
+    "available_strengths": [
+      {
+        "value": 100000.0,
+        "unit": "IU",
+        "form": "injectable",
+        "is_splittable": null
+      },
+      {
+        "value": 150000.0,
+        "unit": "IU",
+        "form": "injectable",
+        "is_splittable": null
+      },
+      {
+        "value": 200.0,
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "대성 지속성 PPS주사",
+      "페니콜리",
+      "이글 롱 펜 엔 스트렙 주"
+    ],
+    "product_names_en": [
+      "PENICOLI",
+      "Eagle Long Pen & Strep Injection"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": []
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": []
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Inj"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "디히드로스트렙토마이신 및 페니실린에 감수성이 있는 세균성 질병의 치료\n1) 송아지 \n   - 유효균종 : E. coli, Salmonella dublin, Mannheimia, haemolytica,\n                Staphylococcus aureus, Streptococcus uberis, \n                Streptococcus agalactiae\n   - 적응증 : 설사, 폐렴, 패혈증, 렙토스피라증, 유방염, 자궁염\n2) 자돈\n   - 유효균종 : E. coli, Salmonella dublin, Salmonella typhimurium,                        Actinobacillus pleuropneumoniae, Pasteurella multocida,                    Haemophilus parasuis, Erysipelothrix rhusiopathiae,                        Streptococcus suis\n   - 적응증 : 설사, 폐렴, 패혈증, 유방염, 자궁염, 돈단독\n3) 말\n   - 유효균종 : Streptococcus equi\n   - 적응증 : 폐렴\n4) 개, 고양이\n   - 유효균종 : Bordetella bronchiseptica, E. coli\n   - 적응증 : 폐렴, 렙토스피라증, 설사",
+    "indications": "디히드로스트렙토마이신 및 페니실린에 감수성이 있는 세균성 질병의 치료\n1) 송아지 \n   - 유효균종 : E. coli, Salmonella dublin, Mannheimia, haemolytica,\n                Staphylococcus aureus, Streptococcus uberis, \n                Streptococcus agalactiae\n   - 적응증 : 설사, 폐렴, 패혈증, 렙토스피라증, 유방염, 자궁염\n2) 자돈\n   - 유효균종 : E. coli, Salmonella dublin, Salmonella typhimurium,                        Actinobacillus pleuropneumoniae, Pasteurella multocida,                    Haemophilus parasuis, Erysipelothrix rhusiopathiae,                        Streptococcus suis\n   - 적응증 : 설사, 폐렴, 패혈증, 유방염, 자궁염, 돈단독\n3) 말\n   - 유효균종 : Streptococcus equi\n   - 적응증 : 폐렴\n4) 개, 고양이\n   - 유효균종 : Bordetella bronchiseptica, E. coli\n   - 적응증 : 폐렴, 렙토스피라증, 설사",
+    "client_info": ""
+  },
+  "brief_description": "디히드로스트렙토마이신 및 페니실린에 감수성이 있는 세균성 질병의 치료\n1) 송아지 \n   - 유효균종 : E. coli, Salmonella dublin, Mannheimia, haemolytica,\n                Staphylococcus aureus, Streptococcus uberis, \n                Streptococcus agalactiae\n   - 적응증 : 설사, 폐렴, 패혈증, 렙토스피라증, 유방염, 자궁염\n2) 자돈\n   - 유효균종 : E. coli, Salmonella dublin, Salmonella typhimurium,                        Actinobacillus pleuropneumoniae, Pasteurella multocida,                    Haemophilus parasuis, Erysipelothrix rhusiopathiae,                        Streptococcus suis\n   - 적응증 : 설사, 폐렴, 패혈증, 유방염, 자궁염, 돈단독\n3) 말\n   - 유효균종 : Streptococcus equi\n   - 적응증 : 폐렴\n4) 개, 고양이\n   - 유효균종 : Bordetella bronchiseptica, E. coli\n   - 적응증 : 폐렴, 렙토스피라증, 설사",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "본제 및 아미노글리코시드계, 페니실린계 항생물질에 대한 쇼크와 과민반응이 있었던 동물에는 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "6개월령 이상의 송아지에는 투여하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "아미노글리코시드계는 신독성, 이독성 등이 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "페니실린계 항생물질을 과량 투여 시 경련이나 발작 등의 신경계 이상이나 간독성을 유발할 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "페니실린에 과민한 동물에는 드물게 페니실린 쇼크(안검부종, 복부충혈, 식욕부진, 구토, 허탈, 피부발진, 가려움증, 호흡곤란, 사지마비 등)가 일어나는 경우가   있으므로, 주사 후 30분 정도는 주의 깊게 관찰하여야 합니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "본제 주사 후 충분히 관찰하지 않아 과민반응(쇼크)의 발견이 늦거나 응급처치가 늦어지면 폐사하는 경우도 발생할 수 있으므로 유의하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "사용 축종 중 신부전 등 신장 장애가 의심되는 경우에는 페니실린 및 스트렙토마이신/디히드로스트렙토마이신 배출이 지연되어 잔류가 길어질 수 있으므로 수의사의 지시에 따라 용법·용량을 조절하여 사용하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "본제는 Beta-lactam antibiotics, cephalosporins, loop, osmotic, nephrotoxic drugs 등과 병용하지 마십시오."
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.244393+00:00",
+    "reviewer": null
+  }
+}

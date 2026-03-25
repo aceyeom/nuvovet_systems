@@ -1,0 +1,326 @@
+{
+  "id": "마보플록사신",
+  "drug_identity": {
+    "name_ko": "마보플록사신",
+    "name_en": "마보플록사신",
+    "active_ingredient": "마보플록사신",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Antibiotic",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Tab"
+    ],
+    "available_strengths": [
+      {
+        "value": 5.0,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "마보실 P 5mg",
+      "마보실 P 20mg",
+      "마보실 FD 1%",
+      "말라손 점이제",
+      "아나포유 마보 정(마보플록사신)",
+      "마보클린 정(마보플록사신)"
+    ],
+    "product_names_en": [
+      "Marbocyl P 5mg"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": []
+    },
+    "cat": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "linear",
+          "context": "1) 대상동물: 개, 고양이\n2) 효능ㆍ효과\n - 개 : 표재성 농피증 및 심재성 농피증의 치료\n - 고양이 : 피부염 혹은 피하감염의 치료(상처, 농양, 봉와직염)",
+          "value": "2",
+          "unit": "mg/kg",
+          "route": "SC",
+          "frequency": "SID",
+          "max_dose_mg_kg": null,
+          "duration_note": null,
+          "evidence": "한국 수의약품 허가사항"
+        }
+      ]
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Tab"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "1) 대상동물: 개, 고양이\n2) 효능ㆍ효과\n - 개 : 표재성 농피증 및 심재성 농피증의 치료\n - 고양이 : 피부염 혹은 피하감염의 치료(상처, 농양, 봉와직염)",
+    "indications": "1) 대상동물: 개, 고양이\n2) 효능ㆍ효과\n - 개 : 표재성 농피증 및 심재성 농피증의 치료\n - 고양이 : 피부염 혹은 피하감염의 치료(상처, 농양, 봉와직염)",
+    "client_info": ""
+  },
+  "brief_description": "1) 대상동물: 개, 고양이\n2) 효능ㆍ효과\n - 개 : 표재성 농피증 및 심재성 농피증의 치료\n - 고양이 : 피부염 혹은 피하감염의 치료(상처, 농양, 봉와직염)",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "- 생후 1년 이하의 대형 견종에게는 사용하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본제 치료 중, 구토, 연변, 갈증 감각의 변화, 일시적 과잉행동 등의 경증      부작용이 나타날 수 있으나, 이런 증상들은 자연스럽게 소멸되므로 치료 중     지가 요구되지는 않습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 양이온(알루미늄, 칼슘, 철, 마그네슘)의 경구투여 시, 마보플록사신의 생체    이용률이 감소될 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 본제와 병용할 경우, theophylline 용량의 감량이 권장됩니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "임신 및 수유축에 대한 투여"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 임신 및 수유 중인 개체에 대한 안전성이 확립되어 있지 않았으므로 반드시"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "수의사에 의한 유익성 및 위해성 평가에 따라 사용하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 평균 체구의 성장견에서의 내약성은 4mg/kg/일의 용량으로 13주 간 투여했을"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "시에도 우수하였습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 어린이의 손이 닿지 않고 동물의 접근이 불가능한 장소에 보관하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 유효기간 경과 시 혹은 사용 후에는 안전하게 폐기처리 하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 사용설명서를 충분히 읽어본 후 사용하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 수의사의 지시에 따라 사용하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 동물용의약품이므로 사람에게는 절대 사용하지 마십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 기타 제품에 대하여 문의하실 사항이 있으신 경우 수입판매회사로 연락해 주    시기 바랍니다."
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.195336+00:00",
+    "reviewer": null
+  }
+}

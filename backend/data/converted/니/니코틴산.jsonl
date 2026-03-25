@@ -1,0 +1,246 @@
+{
+  "id": "니코틴산",
+  "drug_identity": {
+    "name_ko": "니코틴산",
+    "name_en": "니코틴산",
+    "active_ingredient": "니코틴산",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Unknown",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Unknown"
+    ],
+    "available_strengths": [
+      {
+        "value": 5.0,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "제일토노콤프(주)"
+    ],
+    "product_names_en": []
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": []
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": []
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Unknown"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "1) 전신대사장애 치료를 목적으로한 자양 강장\n : 기력상실 및 피로의 상태, 즉 경련시, 난산후,\n   신생 유축의 기력상실, 어린 가축의 발육 및 영양\n   장애등으로 오는 일련의 피포 및 기력 상실을 회복\n   또한 번식장애, 봄철 또는 영양실조에서 오는 결핍\n   증 등의 치료를 보존해준다.\n2) 골 결함증\n : 구루병 또는 골연화증을 예방 및 치료, 골절후\n   가골 형성 촉진 (VITAMIN D제제와 병용투여)\n3) 경직 및 마비증세\n : 칼슘, 마그네슘 및 인의 대사장애로 오는 경직 및\n   마비증세 치료 (칼슘 및 마그네슘 제제와 동시\n   투여)",
+    "indications": "1) 전신대사장애 치료를 목적으로한 자양 강장\n : 기력상실 및 피로의 상태, 즉 경련시, 난산후,\n   신생 유축의 기력상실, 어린 가축의 발육 및 영양\n   장애등으로 오는 일련의 피포 및 기력 상실을 회복\n   또한 번식장애, 봄철 또는 영양실조에서 오는 결핍\n   증 등의 치료를 보존해준다.\n2) 골 결함증\n : 구루병 또는 골연화증을 예방 및 치료, 골절후\n   가골 형성 촉진 (VITAMIN D제제와 병용투여)\n3) 경직 및 마비증세\n : 칼슘, 마그네슘 및 인의 대사장애로 오는 경직 및\n   마비증세 치료 (칼슘 및 마그네슘 제제와 동시\n   투여)",
+    "client_info": ""
+  },
+  "brief_description": "1) 전신대사장애 치료를 목적으로한 자양 강장\n : 기력상실 및 피로의 상태, 즉 경련시, 난산후,\n   신생 유축의 기력상실, 어린 가축의 발육 및 영양\n   장애등으로 오는 일련의 피포 및 기력 상실을 회복\n   또한 번식장애, 봄철 또는 영양실조에서 오는 결핍\n   증 등의 치료를 보존해준다.\n2) 골 결함증\n : 구루병 또는 골연화증을 예방 및 치료, 골절후\n   가골 형성 촉진 (VITAMIN D제제와 병용투여)\n3) 경직 및 마비증세\n : 칼슘, 마그네슘 및 인의 대사장애로 오는 경직 및\n   마비증세 치료 (칼슘 및 마그네슘 제제와 동시\n   투여)",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.256593+00:00",
+    "reviewer": null
+  }
+}

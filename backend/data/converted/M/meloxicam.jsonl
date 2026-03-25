@@ -79,6 +79,14 @@
         "form": "oral",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "페트캄 현탁액",
+      "메타캄 현탁액",
+      "메타캄 주사액"
+    ],
+    "product_names_en": [
+      "Metacam injection"
     ]
   },
   "metabolism_and_clearance": {
@@ -884,5 +892,103 @@
     "소형 포유류",
     "파충류에서 extra-label 사용."
   ],
-  "mechanism_short": "사이클로옥시게나제(COX) 억제 및 프로스타글란딘 합성 억제를 통한 진통, 항염증, 해열 작용. COX-2 선택적(COX-2 preferential)이나 고용량에서는 COX-2 특이성이 감소함."
+  "mechanism_short": "사이클로옥시게나제(COX) 억제 및 프로스타글란딘 합성 억제를 통한 진통, 항염증, 해열 작용. COX-2 선택적(COX-2 preferential)이나 고용량에서는 COX-2 특이성이 감소함.",
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "24시간의 휴약기간을 가진 후 사용할 것"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 정확한 용량을 사용할 것 - 동물에만 사용할 것"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 사용 전 잘 흔들어 사용할 것"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 본제는 눈에 자극을 유발할 수 있으므로, 만약 약액이 눈과 접촉할 경우"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "즉시 다량의 물로 씻어낸다."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 사람이 복용 시 즉시 사용설명서를 들고 의사를 찾는다."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 어린이의 손이 닿지 않는 곳에 보관한다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 비스테로이드제의 전형적인 부작용인 식욕 상실, 구토, 설사,"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "혈변, 무기력의 증상이 나타날 수 있다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 매우 드물게 출혈성 설사, 토혈증, 위장관 궤양, 간 효소 증가 등의 증상이"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 부작용은 일반적으로 치료 첫 주에 나타나고, 일시적이며 치료 말기에는"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 과량사용 시 나타나는 부작용에 대해서는 대증치료가 선행되어야 한다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 부작용 발생 시 치료를 중단하고 수의사의 조언을 구한다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 탈수, 저혈압 개체에 신장 독성을 유발할 가능성이 있으므로 사용금지"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 위장관계, 간, 심장, 신장의 이상을 가지고 있는 개체에 사용금지"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 다른 비스테로이드성 소염제, 이뇨제, 항응고제, 부신피질호르몬제,"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "아미노글리코사이드계 약물과의 병용 시 독성 유발 가능성이 있으므로"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 임신 또는 비유 중 사용금지"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 6주령 이하의 개체에 사용금지"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본 제품에 과민반응을 보이는 개체에 사용금지"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 비스테로이드성 소염제에 민감한 개체에 사용을 피할 것"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 임상증상은 3~4일 이내에 호전되며 치료 후 10일까지 증상의 호전이"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "보이지 않는 경우 사용을 중지해야 함."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 수의사의 지시에 따라 사용할 것"
+    }
+  ]
 }

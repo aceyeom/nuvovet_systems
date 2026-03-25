@@ -1,0 +1,301 @@
+{
+  "id": "carprofen_25mg",
+  "drug_identity": {
+    "name_ko": "Carprofen concentrate",
+    "name_en": "; Carprofen으로 25Mg",
+    "active_ingredient": "; Carprofen으로 25Mg",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Unknown",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Tab"
+    ],
+    "available_strengths": [
+      {
+        "value": 83.333,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "리마딜 츄어블 정"
+    ],
+    "product_names_en": [
+      "RIMADYL CHEWABLE TABLETS"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": []
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": []
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Tab"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "개의 통증과 염증을 완화시키며 특히 관절염에 효과적이다.",
+    "indications": "개의 통증과 염증을 완화시키며 특히 관절염에 효과적이다.",
+    "client_info": ""
+  },
+  "brief_description": "개의 통증과 염증을 완화시키며 특히 관절염에 효과적이다.",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "본제 및 Carprofen에 대한 과민반응이 있었던 개에는 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "본제는 개 전용이므로 고양이에는 사용하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "본제는 Cyclooxygenase inhibitory NSAIDs 계열로 위장관계와 신장의 독성을 유발할 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "Cycloxygenase 억제에 의한 항-Prostaglandin 효과는 내재된 질환 혹은 과거 병력이 있는 환축에서 건강한 개체에서 보다 더 심각한 부작용을 야기할 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "NSAID 치료는 임상증상이 없어 진단되지 않았던 잠재된 질병을 발병시킬 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "NSAIDs 치료 시 위장관 부작용은 가장 흔하게 발생하며, 이외에 신장, 혈액, 신경, 피부, 간 기능 부작용도 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "신장, 심혈관, 간 기능 장애를 갖고 있거나, 이뇨제 치료를 병행하고 있는 탈수된 환축이 신독성 위험에 가장 많이 노출되어 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "출혈성 질환(예, Von Willebrand’s disease)이 있는 개에서 안전성이 입증되어 있지 않으므로 본제의 사용을 권장하지 않습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "본제의 부작용으로 식욕 저하, 구토, 설사, 혈변, 다갈, 다뇨, 빈혈에 의한 창백한 잇몸, 황달에 의한 잇몸, 피부 또는 눈의 황색소침착, 무기력증, 운동 실조, 경련 및 행동 변화의 증상이 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "본제를 과량 투여 시 심각한 부작용을 초래할 수 있으니 만약 과량을 섭취했을 경우 즉시 수의사에게 알리십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "신독성의 가능성이 있는 약물과 동시에 사용할 경우 주의하여 사용하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "대부분의 NSAIDs는 위장관 궤양을 유발할 수 있기 때문에 본제를 사용 시 다른 NSAID약물 또는 Corticosteroid와 같은 항 염증 약물 사용을 피하거나 매우 신중하게 사용하십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "단백질 결합성 제제 또는 유사하게 대사과정을 거치는 제제(심혈관계 제제, 항경련제, 행동 교정제 등)와 병용 시 본제와의 동시투여에 대한 시험은 진행되지 않았으므로 신중하게 사용하십시오."
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.179921+00:00",
+    "reviewer": null
+  }
+}

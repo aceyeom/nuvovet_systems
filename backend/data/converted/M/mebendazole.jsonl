@@ -1,0 +1,350 @@
+{
+  "id": "mebendazole",
+  "drug_identity": {
+    "name_ko": "Mebendazole",
+    "name_en": "Mebendazole",
+    "active_ingredient": "Mebendazole",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Antiparasitic",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Tab"
+    ],
+    "available_strengths": [
+      {
+        "value": 100.0,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      },
+      {
+        "value": 25.0,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "메벤텔 정",
+      "대성 안텔민 킹 정",
+      "파라캅-라지 정",
+      "굿 크리너 정",
+      "멘탈-정"
+    ],
+    "product_names_en": [
+      "Mebentel - tablet",
+      "Para Cop-Large Tablet",
+      "Gut Cleaner Tablet",
+      "MENTAL-TABLET"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": []
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": []
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Tab"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "개, 고양이의 회충, 촌충, 십이지장충, 편충등 내부기\n생충의 유.성충 및 충란의 구제",
+    "indications": "개, 고양이의 회충, 촌충, 십이지장충, 편충등 내부기\n생충의 유.성충 및 충란의 구제",
+    "client_info": ""
+  },
+  "brief_description": "개, 고양이의 회충, 촌충, 십이지장충, 편충등 내부기\n생충의 유.성충 및 충란의 구제",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "- 본 약제에 대해 과민반응이 있었던 동물에는 사용"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 생후 1주령 미만, 임신 초기 또는 질병 등에 의한"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "쇠약 동물에는 투여하지 마십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 투여 후 개체에 따라 간혹 식욕부진, 구토, 허탈,"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "피부발진등과 같은 과민반응이 나타날 수 있으며"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "이런 경우 투여를 중지하고 수의사와 상담하여 적"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "절한 처치를 하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 대량의 기생충을 가지고 있느 동물의 경우에는 이"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "러한 과민반응이 심하게 나타날 수 있으므로 동물"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "의 상태를 잘 관찰한 후 권장용량의 절반만 투여하"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "고 2-3일 후에 나머지 절반을 투여하는 등 신중하"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 지정된 축종 이외에는 안전성 및 유효성이 확립되"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "지 않았으므로 사용하지 마십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 정해진 용법 용량을 준수하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본제를 투여하면서 동시에 동일성분의 약품을 중복"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 개가 본제를 완전히 삼키도록 주의 깊게 경구투여"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 안전사고 방지를 위하여 어린이의 손이 닿지 않고"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "동물의 접근이 불가능한 곳에 보관하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 유효성 및 안정성에 변화를 초래할 수 있으므로 정"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "(2) 오남용에 의한 약화사고 등을 초래할 수 있으므로 정해진 용법 및 용량을 준수할 것"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "(1) 투여 후 개체에 따라 간혹 식욕부진, 구토, 허탈, 피부발진 등과 같은 과민반응이 나타날 수 있으며, 이런 경우 투여를 중지하고 수의사와 상담하여 적절한 처치를 할 것"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "(2) 다량의 기생충에 감염된 동물의 경우에는 과민반응이 심하게 나타날 수 있으므로, 동물의 상태를 잘 관찰한 후 권장용량의 절반만 투여하고 2∼3일 후에 나머지 절반을 투여하는 등 신중하게 투여할 것"
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.239892+00:00",
+    "reviewer": null
+  }
+}

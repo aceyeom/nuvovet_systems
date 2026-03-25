@@ -85,6 +85,12 @@
         "form": "injectable",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "암피피드"
+    ],
+    "product_names_en": [
+      "Ampifeed"
     ]
   },
   "metabolism_and_clearance": {
@@ -621,5 +627,63 @@
     "소화기 감염",
     "피부 및 연조직 감염. 패혈증 경험적 치료(그람음성균 커버리지 약물과 병용). 렙토스피라증(독시사이클린 투여 불가 시 대체). Streptococcus canis에 의한 심내막염. 장구균 감염(아미노글리코사이드와 병용 시 상승 효과). 수술 전 예방적 항생제(베타-락타마제 생성 균주에 대한 효능 제한적)."
   ],
-  "mechanism_short": "세포벽 합성 억제를 통한 시간 의존성 살균 작용. 페니실린 결합 단백질(PBP)에 결합하여 펩티도글리칸 교차결합을 방해한다. 베타-락타마제 생성 균주에 의해 불활성화될 수 있다."
+  "mechanism_short": "세포벽 합성 억제를 통한 시간 의존성 살균 작용. 페니실린 결합 단백질(PBP)에 결합하여 펩티도글리칸 교차결합을 방해한다. 베타-락타마제 생성 균주에 의해 불활성화될 수 있다.",
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "본제 및 페니실린계 항생물질에 대한 쇼크와 과민반응이"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "있었던 동물에는 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "닭: 3일, 알: 3일"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "(단, 산란계의 경우 약물 투약기간과 휴약기간 중 수거된 알은"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "페니실린계 항생물질은 장내 정상세균총을 억제하여"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "설사를 유발할 수 있으며, 위장염이나 대장염에 의한 복통,"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "식욕부진, 수양성 설사 또는 혈변, 오심 및 구토 등의 소화기계"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "이상을 유발할 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "페니실린계 항생물질을 과량투여 시 경련이나 발작 등의"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "신경계 이상이나 간독성을 유발할 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "마크로라이드계(에리트로마이신), 아미노글리코시드계,"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "클로람페니콜계 및 테트라사이클린계 항생물질과 병용하지"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "겐타마이신과 브로멜라인 및 프로베네시드는 본제의"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "약효를 상승시킬 수 있습니다."
+    }
+  ]
 }

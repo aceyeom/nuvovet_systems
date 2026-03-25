@@ -1,0 +1,317 @@
+{
+  "id": "초산_오사테론",
+  "drug_identity": {
+    "name_ko": "초산 오사테론",
+    "name_en": "초산 오사테론",
+    "active_ingredient": "초산 오사테론",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Hormone",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Tab"
+    ],
+    "available_strengths": [
+      {
+        "value": 2.5,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "유로에이스 정"
+    ],
+    "product_names_en": [
+      "UROACE TABLETS"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": []
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": []
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Tab"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "1) 대상동물 : 개\n2) 전립선 비대증 치료",
+    "indications": "1) 대상동물 : 개\n2) 전립선 비대증 치료",
+    "client_info": ""
+  },
+  "brief_description": "1) 대상동물 : 개\n2) 전립선 비대증 치료",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "adverse_effect",
+      "text_ko": ": 본제 투여후 간기능 검사치가 이상으로 나타나는"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": ": 본제 투여후 정액량 감소 및 정자 기형율 증가"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "등의 정액성상악화를 보일수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": ": 본제투여후 혈중 코티졸치의 저하를 타나내는"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본제는 전립선 비대증을 근본적으로 치료하는 것이"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "아니므로, 본제 투여로 기대하는 효과를 얻지 못하"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "는 경우에는 수술요법등 다른 적절한 처치를 하여"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "야 합니다. 또한, 전립선 종양 및 전립선 농양등의"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "전립성과형성 이외의 질환에는 본제 효과가 확인"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본제 투여에 의한 이상이 나타나는 경우에는"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "투여를 중지하는 등 적절한 처치를 수행하시기"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본제는 PTP씨트(정제 들어있는 씨트)에서 꺼내"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "복용하도록 하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본제를 분할(나누어) 투여하는 경우에 분할한"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "제제는 가능하면 빨리 사용하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 어린이의 손이 닿지 않는 곳에 보관하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 직사광선, 고온 및 습도를 피하여 보관하십시오."
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.196574+00:00",
+    "reviewer": null
+  }
+}

@@ -1,0 +1,559 @@
+{
+  "id": "토세라닙_인산염",
+  "drug_identity": {
+    "name_ko": "토세라닙 인산염",
+    "name_en": "토세라닙 인산염",
+    "active_ingredient": "토세라닙 인산염",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Unknown",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Tab"
+    ],
+    "available_strengths": [
+      {
+        "value": 12.469,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      },
+      {
+        "value": 18.704,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      },
+      {
+        "value": 62.344,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "팔라디아 정(토세라닙 인산염)"
+    ],
+    "product_names_en": [
+      "Palladia Tablet"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "linear",
+          "context": "가. 대상동물 : 개 (2년령 이상, 체중 3kg이상의 개)\n나. 피부 비만세포 종양의 치료 : 외과적 절제가 불가능한 Patnaik 등급 II(Intermediate grade)",
+          "value": "3.25",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "SID",
+          "max_dose_mg_kg": null,
+          "duration_note": "2일",
+          "evidence": "한국 수의약품 허가사항"
+        },
+        {
+          "logic_type": "linear",
+          "context": "가. 대상동물 : 개 (2년령 이상, 체중 3kg이상의 개)\n나. 피부 비만세포 종양의 치료 : 외과적 절제가 불가능한 Patnaik 등급 II(Intermediate grade)",
+          "value": "3.25",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "SID",
+          "max_dose_mg_kg": null,
+          "duration_note": "2일",
+          "evidence": "한국 수의약품 허가사항"
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "linear",
+          "context": "가. 대상동물 : 개 (2년령 이상, 체중 3kg이상의 개)\n나. 피부 비만세포 종양의 치료 : 외과적 절제가 불가능한 Patnaik 등급 II(Intermediate grade)",
+          "value": "3.25",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "SID",
+          "max_dose_mg_kg": null,
+          "duration_note": "2일",
+          "evidence": "한국 수의약품 허가사항"
+        },
+        {
+          "logic_type": "linear",
+          "context": "가. 대상동물 : 개 (2년령 이상, 체중 3kg이상의 개)\n나. 피부 비만세포 종양의 치료 : 외과적 절제가 불가능한 Patnaik 등급 II(Intermediate grade)",
+          "value": "3.25",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "SID",
+          "max_dose_mg_kg": null,
+          "duration_note": "2일",
+          "evidence": "한국 수의약품 허가사항"
+        }
+      ]
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Tab"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "가. 대상동물 : 개 (2년령 이상, 체중 3kg이상의 개)\n나. 피부 비만세포 종양의 치료 : 외과적 절제가 불가능한 Patnaik 등급 II(Intermediate grade) 또는 III(High grade)의 재발성 종양",
+    "indications": "가. 대상동물 : 개 (2년령 이상, 체중 3kg이상의 개)\n나. 피부 비만세포 종양의 치료 : 외과적 절제가 불가능한 Patnaik 등급 II(Intermediate grade) 또는 III(High grade)의 재발성 종양",
+    "client_info": ""
+  },
+  "brief_description": "가. 대상동물 : 개 (2년령 이상, 체중 3kg이상의 개)\n나. 피부 비만세포 종양의 치료 : 외과적 절제가 불가능한 Patnaik 등급 II(Intermediate grade) 또는 III(High grade)의 재발성 종양",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "임신 중이거나 수유 중인 암컷 또는 번식 예정인 개체에는 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "유효성분이나 부형제에 과민반응이 있는 개체에는 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "2년 미만 또는 체중 3kg 미만인 개체에는 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "위장관 출혈이 있는 개체에는 사용하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "(10마리 중 1마리 이상)"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "경미~ 중등도(Mild~Moderate):"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "설사, 구토, 혈변, 출혈성 설사, 소화관 출혈"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "식욕부진, 탈수, 무기력, 체중감소"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "파행, 근골격계 장해"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "적혈구용적률 감소, 저알부민혈증, ALT상승, 호중구감소증, 혈소판감소증"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "(100마리 중 1~10마리)"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "심각(Severe):"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "식욕부진, 탈수, 발열, 체중감소, 패혈증, 무기력"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "설사, 구토, 혈변, 출혈성 설사, 소화관 출혈, 십이지장궤양, 오심"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "적혈구용적률 감소, 저알부민혈증, ALT상승, 호중구감소증, 혈소판감소증"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "경미~ 중등도(Mild~Moderate):"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "국소통증, 전신통증, 다음증, 발열"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "코평면(Nasal plane) 탈색, 털 변색, 탈모"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "총 빌리루빈 상승, 크레아티닌 상승"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "(1000마리 중 1~10마리)"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "심각(Severe):"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "파행, 근골격계 장해"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "본제는 혈관 기능 이상을 일으킬 수 있으며, 이는 부종과 혈전색전증, 폐혈전색전증 등으로 이어질 수 있습니다. 이러한 경우, 임상증상과 병리 소견이 정상화될 때까지 투약을 중단하십시오. 외과적 수술이 예정된 경우 혈관 항상성을 보장하기 위해 수술 전 최소 3일 동안 투약을 중단하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "전신성 비만세포증이 있는 경우, 본제 투약을 시작하기 전에 표준적인 선제적 치료(예: H-1 및 H-2 차단제)를 적용하여 임상적으로 중요한 비만세포 탈과립화와 그에 따른 심각한 전신적 부작용을 피하거나 최소화해야 합니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "설사 또는 위장관 출혈 시 신속한 치료가 필요합니다. 임상증상의 심각도에 따라 투약 중단 및 용량 감소가 필요할 수 있습니다. 드물게 본제 투여 개체에서 위장관 천공을 포함한 심각한 위장관계 합병증이 발생하였습니다. 본제 또는 비만세포종양 탈과립화로 인한 것인지 여부와 관계없이 위장관 궤양(ulceration)이 의심되는 경우 본제의 투약을 즉시 중단하고 적절한 치료를 진행해주십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "토세라닙은 간에서 대사되며, 신장 또는 간 기능 부전 시 미치는 영향에 대한 연구가 없으므로, 간 질환이 있는 개체에는 주의하여 사용하여야 합니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "개에게 다음과 같은 변화가 있는 경우 즉시 본제 투약을 중단하고 수의사에게 연락하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 음식 거부, 구토 또는 설사(24시간 동안 2회 이상인 경우), 검은색 타르 변, 구토물이나 변에 선홍색 혈액, 원인을 알 수 없는 멍이나 출혈 및 이전과는 다른 변화가 있는 경우"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "표에 설명된 대로 적절한 치료 및 용량 조정에도 불구하고 심각한 부작용이 재발하거나 지속되는 경우 본제 사용을 영구적으로 중단해야 합니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "임상적 증상 및 병리 소견에 따른 용량 조절"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "임상 증상 / 병리 소견"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "2일 이상 음식섭취량 50% 이하 감소"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "투약을 중단하고, 식이요법을 변경하며 필요에 따라 대증요법을 실시한다. 음식섭취가 개선되면 용량을 0.5mg/kg씩 줄인다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "2일 미만 4회 이하의 설사 또는 연변"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "용량을 유지하고 대증요법을 실시한다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "2일 이상 4회 이상의 설사"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "변이 정상이 될 때까지 투약을 중단하고 대증요법을 실시하며, 이후 용량을 0.5mg/kg씩 줄인다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "2일 이상 변에 선혈이나 검은 타르성 변, 뚜렷한 출혈 또는 혈괴가 관찰"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "혈변 증상이 사라질 때까지 투약을 중단하고 대증요법을 실시하며 이후 용량을 0.5mg/kg씩 줄인다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "저알부민혈증(albumin)"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "알부민 <1.5 g/dl"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "임상증상이 정상이 되고 1.5 g/dl 이상이 될 때까지 투약을 중단하고, 이후 용량을 0.5mg/kg씩 줄인다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "호중구감소증 (neutrophil count)"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "≤1000/㎕ 또는 호중구 감소증 발열 또는 감염"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "1000/㎕ 이상이 되고 임상증상이 정상이 될 때까지 투약을 중단하고, 이후 용량을 0.5 mg/kg씩 줄인다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "빈혈 (hematocrit)"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "26% 이상이 될 때까지 투약을 중단하고, 이후 용량을 0.5 mg/kg씩 줄인다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "간 독성 (ALT, AST)"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "정상 수치(상한치)의 1~3배 증가"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "용량을 유지하고, 간 독성 약물을 투약 중인 경우 이를 중단한다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "정상 수치(상한치)보다 3배 이상 증가"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "정상 수치 상한치의 3배 이하가 될 때까지 투약을 중단하고, 간 독성 약물을 투약 중인 경우, 이 역시 중단한다. 이후 용량을 0.5mg/kg씩 줄인다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "신장 독성 (creatinine)"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "정상 수치(상한치)의 1.25배 미만 증가"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "정상 수치(상한치)의 1.25배 이상 증가"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "정상 수치(상한치)의 1.25배 이하가 될 때까지 투약을 중단하며, 이후 용량을 0.5mg/kg씩 줄인다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "빈혈, 질소혈증, 저알부민혈증 및 고인산혈증 동시 발생"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "수치가 정상이 되고 알부민 수치가 2.5g/dl 이상이 될 때까지 약 1~2주간 투약을 중단하며, 이후 용량을 0.5mg/kg씩 줄인다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "* 0.5mg/kg 용량 감소는 3.25mg/kg에서 2.75mg/kg 또는 2.75mg/kg에서 2.25mg/kg으로 감소하는 것입니다. 용량은 2.2mg/kg이하여서는 안됩니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "토세라닙에 대한 상호작용 연구는 수행되지 않았습니다. 다른 세포독성제 제품과의 잠재적 교차 내성과 관련된 정보는 없습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "토세라닙은 간에서 대사를 통해 대부분 제거될 가능성이 있으므로 간 효소를 유도하거나 억제할 수 있는 다른 약물과 함께 사용할 때는 주의해서 사용해야 합니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "토세라닙이 다른 약물의 배설에 어느 정도 영향을 미칠 수 있는지는 알려지지 않았습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "위장관 궤양이나 천공 위험이 증가할 수 있으므로 본제와 함께 비스테로이드성 항염증제를 사용할 때는 주의해서 사용해야 합니다."
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.236706+00:00",
+    "reviewer": null
+  }
+}

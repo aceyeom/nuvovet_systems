@@ -37,6 +37,12 @@
         "form": "injectable",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "캐치-원"
+    ],
+    "product_names_en": [
+      "Catch-One"
     ]
   },
   "metabolism_and_clearance": {
@@ -645,5 +651,19 @@
     "귀 진드기 치료 및 구제",
     "구충(Ancylostoma tubaeforme) 및 회충(Toxocara cati) 치료 및 구제. 【허가 외 사용】 노토에드릭 옴(Notoedres cati)"
   ],
-  "mechanism_short": "아버멕틴 계열 반합성 화합물로, 기생충의 GABA 매개 염화물 채널을 활성화하거나 GABA 방출을 촉진하여 기생충의 마비 및 사멸을 유도함. 간흡충 및 촌충은 GABA를 말초 신경 전달물질로 사용하지 않으므로 효과 없음."
+  "mechanism_short": "아버멕틴 계열 반합성 화합물로, 기생충의 GABA 매개 염화물 채널을 활성화하거나 GABA 방출을 촉진하여 기생충의 마비 및 사멸을 유도함. 간흡충 및 촌충은 GABA를 말초 신경 전달물질로 사용하지 않으므로 효과 없음.",
+  "cautionary_notices_ko": [
+    {
+      "type": "adverse_effect",
+      "text_ko": "본제 사용 후 일시적으로 도포부위의 탈모, 염증이 고양이에서 드물게 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "매우 드물게 구토, 혈변 또는 설사, 무기력, 식욕부진, 침흘림, 빈호흡, 근육 떨림이 일어날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "또한, 소양감, 두드러기, 홍반, 운동실조, 발열, 발작이 매우 드물게 나타날 수 있습니다."
+    }
+  ]
 }

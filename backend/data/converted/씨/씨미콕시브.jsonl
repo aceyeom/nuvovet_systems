@@ -1,0 +1,405 @@
+{
+  "id": "씨미콕시브",
+  "drug_identity": {
+    "name_ko": "씨미콕시브",
+    "name_en": "씨미콕시브",
+    "active_ingredient": "씨미콕시브",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Unknown",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Tab"
+    ],
+    "available_strengths": [
+      {
+        "value": 8.0,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      },
+      {
+        "value": 30.0,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      },
+      {
+        "value": 80.0,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "씨말젝스"
+    ],
+    "product_names_en": [
+      "Cimalgex"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": []
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": []
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Tab"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "===================================================\n대상동물ㅣ 효능/효과 ㅣ 적응증\n---------------------------------------------------\n \n  \n   대상동물\n   \n   효능ㆍ효과\n   \n   적응증\n   \n  \n  \n   개\n   \n   진통 및 소염 작용\n   \n   골관절염과 관련된 통증 및 염증의 치료, 정형외과적 혹은 연부 조직 수술 전후의 통증 관리\n   \n  \n\n====================================================",
+    "indications": "===================================================\n대상동물ㅣ 효능/효과 ㅣ 적응증\n---------------------------------------------------\n \n  \n   대상동물\n   \n   효능ㆍ효과\n   \n   적응증\n   \n  \n  \n   개\n   \n   진통 및 소염 작용\n   \n   골관절염과 관련된 통증 및 염증의 치료, 정형외과적 혹은 연부 조직 수술 전후의 통증 관리\n   \n  \n\n====================================================",
+    "client_info": ""
+  },
+  "brief_description": "===================================================\n대상동물ㅣ 효능/효과 ㅣ 적응증\n---------------------------------------------------\n \n  \n   대상동물\n   \n   효능ㆍ효과\n   \n   적응증\n   \n  \n  \n   개\n   \n   진통 및 소염 작용\n   \n   골관절염과 관련된 통증 및 염증의 치료, 정형외과적 혹은 연부 조직 수술 전후의 통증 관리\n   \n  \n\n====================================================",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "- 탈수 상태, 저혈량증 혹은 저혈압의 개에서는 신장 독성의 위험이 증가할 수"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "있으므로 본제의 사용을 피할것"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "다음환축에게는 신중히 투여할 것"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 본 제제의 어린 동물에 대한 안전성이 확립되어 있지 않으므로 6개월령 미만    의 자견 치료 시, 신중한 모니터링이 필요."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 심장 또는 간 기능 손상이 있는 개에 사용  시 부가적인 위험이 따를 수"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "있으므로, 본제 투여가 필수적인 경우 수의사애 의한 모니터링이 필요"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 위장관궤양의 위험 또는 이전에 비스테로이드성 소염제의 치료가 어려웠던"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "개체에 사용 시 수의사에 의한 면밀한 모니터링이 필요."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 경증의 일시적인 위장장애(구토 및 /또는 설사)가 일반적으로 보고되어짐."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 드물게 출혈 및 궤양형성 등의 중증의 위장장애가 보고되었으며, 식욕 감퇴"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "혹은 무기력 등의 기타 부작용 또한 드물게 관찰될 수 있음."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 매우 드물게 신장 생화확적 수치의 증가가 관찰될 수 있으며, 비스테로이드   성소염제의 장기간 치료 시 신장 기능이 모니터링 되어야 함"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 지속적인 구토, 반복된 설사, 분변 내 잠혈, 갑작스러운 체중감소, 식욕감퇴    , 무기력 혹은 신장이나 간 생화학적 수치의 악화가 있을 경우, 본제의 사용    을 중지하고 적절한 모니터링 및 혹은 치료가 실시되어져야 함."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 권장용량의 3배(5.8~11.8mg/Kg) 및 5배 (9.7~19.5mg/Kg)를 개에게 6개월"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "간 투여시, 용량의존성 위장 장애가 최고용량 그룹의 모든 개에서"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 용량 의존성 혈액학적 및 백혈구수치, 또한 신장상태의 변화 또한 보고"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 비스테로이드성 소염제(NSAIDs)와 병용하여 본제의 과량투여 시 민감하거나"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "면역력이 저하된 개에서 위장관, 신장 혹은 간 독성이 야기될 수 있음"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 치료를 중단한 후에도 관찰된 부작용들이 지속될 경우, 수의사의 진료가"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 씨미콕시브(Cimicoxib)는 피부 감각을 유발할 수 있으므로 사용 후 손을"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본제의 우발적인 섭취의 경우, 즉시 사용설명서를 지참하여 전문의의"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 씨미콕시브(Cimicoxib)에 과민반응이 있었던 사람은 본제와의 접촉을"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- Corticosteroid 제제 또는 타 비스테로이드성 소염제(NSAIDs)와 병용하지"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 타 소염제의 전치료는 부가적 혹은 증가된 부작용을 야기할 수 있으므로"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "본 제제의 치료 개시 전 타 소염제에 대한 비치료 기간이 관찰되어져야 하"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "며, 이 때 이전에 사용되었던 제제의 약동학적 특성이 고려되어져야 함"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "임신 및 수유축에 대한 투여"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 종견, 임신 및 수유 중인 개에게 투여하지 마십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 본제에 대한 특정한 해독제는 없으며, 위장보호제 투여 및 등장성 식염수"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "주입으로 구성된 대증 및 보조치료가 권장됨"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 어린이의 손이 닿지 않고 동물의 접근이 불가능한 장소에 보관하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 유효기간 경과 시 혹은 사용 후에는 안전하게 폐기처리 하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 사용설명서를 충분히 읽어본 후 사용하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 수의사의 지시에 따라 사용하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 동물용의약품이므로 사람에게는 절대 사용하지 마십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 기타 제품에 대하여 문의하실 사항이 있으신 경우 수입판매회사로 연락해"
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.200204+00:00",
+    "reviewer": null
+  }
+}
