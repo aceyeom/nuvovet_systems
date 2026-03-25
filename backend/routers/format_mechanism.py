@@ -24,30 +24,24 @@ _ANTHROPIC_API_KEY: Optional[str] = os.environ.get("ANTHROPIC_API_KEY")
 
 # ── Formatting prompt — strictly data-rephrasing only ─────────────────────
 
-_FORMAT_SYSTEM_PROMPT = """You are a veterinary clinical text formatter. Your ONLY job is to reformat the provided drug interaction data into clear, readable clinical text.
+_FORMAT_SYSTEM_PROMPT = """당신은 수의 임상 텍스트 포매터입니다. 제공된 약물 상호작용 데이터를 간결하고 명확한 한국어 임상 텍스트로 재구성하는 것이 유일한 역할입니다.
 
-STRICT RULES:
-1. You may ONLY rephrase information explicitly provided in the input data fields.
-2. You must NEVER add new clinical claims, drug facts, dosing recommendations, or mechanism details not present in the input.
-3. You must NEVER hallucinate, infer, or extrapolate beyond the provided data.
-4. Use bullet points (•), bold headers, and clear section structure.
-5. Keep medical terminology accurate — do not simplify beyond recognition.
-6. If a data field is empty or null, omit that section entirely. Do NOT fill gaps.
-7. Translate any Korean text to English for the formatted output, but preserve the Korean original in parentheses where clinically relevant.
-8. Output format: plain text with bullet points using • character. Use ALL CAPS for section headers.
+엄격한 규칙:
+1. 입력 데이터 필드에 명시적으로 제공된 정보만 사용하십시오.
+2. 입력에 없는 새로운 임상 주장, 약물 사실, 용량 권고사항, 또는 기전 세부사항을 절대 추가하지 마십시오.
+3. 추측, 추론, 또는 제공된 데이터 이상의 외삽을 절대 하지 마십시오.
+4. 각 섹션을 엄격히 분리하십시오 — 기전(MECHANISM) 섹션에는 기전만, 권장 조치(RECOMMENDED ACTION) 섹션에는 권장사항만 포함하십시오.
+5. 간결하게 작성하십시오. 각 섹션은 1-3개의 불릿 포인트로 제한하십시오.
+6. 데이터 필드가 비어있거나 null이면 해당 섹션을 완전히 생략하십시오.
+7. 전체 출력은 반드시 한국어로 작성하십시오. 약물명은 원문 그대로 유지하십시오.
+8. 출력 형식: • 문자를 사용한 불릿 포인트가 있는 일반 텍스트. 섹션 헤더는 대문자로 작성하십시오.
 
-Format structure:
+형식 구조:
 MECHANISM
-• [mechanism bullet points from data]
-
-CLINICAL SIGNIFICANCE
-• [why this matters, from data only]
+• [데이터의 기전 불릿 포인트만 — 권장사항 없음]
 
 RECOMMENDED ACTION
-• [action items from data]
-
-EVIDENCE SOURCE
-• [citations from data fields]"""
+• [데이터의 권장 조치만 — 기전 설명 없음]"""
 
 
 class FormatMechanismRequest(BaseModel):
@@ -147,8 +141,9 @@ async def format_mechanism(req: FormatMechanismRequest):
         sources_used.append("literature / drug_references")
 
     user_message = (
-        "Format the following verified drug interaction data into readable clinical text. "
-        "Use ONLY the data provided below. Do NOT add any new claims.\n\n"
+        "아래 제공된 검증된 약물 상호작용 데이터를 한국어로 형식화하십시오. "
+        "MECHANISM 섹션에는 기전 정보만, RECOMMENDED ACTION 섹션에는 권장 조치만 포함하십시오. "
+        "제공된 데이터만 사용하고 새로운 정보를 추가하지 마십시오.\n\n"
         + "\n".join(data_sections)
     )
 
@@ -176,17 +171,10 @@ async def format_mechanism(req: FormatMechanismRequest):
     rec_lines = []
     for line in lines:
         upper = line.strip().upper()
-        if "MECHANISM" in upper and not "PHARMACOLOGICAL" in upper:
+        if "MECHANISM" in upper:
             current_section = "mechanism"
             continue
-        elif "RECOMMENDED" in upper or "ACTION" in upper:
-            current_section = "recommendation"
-            continue
-        elif "CLINICAL SIGNIFICANCE" in upper:
-            current_section = "mechanism"  # append to mechanism
-            mech_lines.append("")  # blank line separator
-            continue
-        elif "EVIDENCE" in upper or "SOURCE" in upper or "ALTERNATIVE" in upper:
+        elif "RECOMMENDED ACTION" in upper or "RECOMMENDED" in upper:
             current_section = "recommendation"
             continue
 
