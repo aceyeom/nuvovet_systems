@@ -1,0 +1,305 @@
+{
+  "id": "플로르페니콜",
+  "drug_identity": {
+    "name_ko": "플로르페니콜",
+    "name_en": "플로르페니콜",
+    "active_ingredient": "플로르페니콜",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Antibiotic",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Drop"
+    ],
+    "available_strengths": [
+      {
+        "value": 16.6,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      },
+      {
+        "value": 16.6,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      },
+      {
+        "value": 2.2,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "넵트라 점이제"
+    ],
+    "product_names_en": [
+      "Neptra Otic Solution"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": []
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": []
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Drop"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "대상\n 동물\n   \n   효능․효과 및 적응증\n   \n  \n  \n   개\n   \n     플로르페니콜 및 테르비나핀 염산염에 감수성 있는 세균(Staphylococcus pseudintermedius) 및 진균(Malassezia pachydermatis) 감염에 의한 외이염의 치료",
+    "indications": "대상\n 동물\n   \n   효능․효과 및 적응증\n   \n  \n  \n   개\n   \n     플로르페니콜 및 테르비나핀 염산염에 감수성 있는 세균(Staphylococcus pseudintermedius) 및 진균(Malassezia pachydermatis) 감염에 의한 외이염의 치료",
+    "client_info": ""
+  },
+  "brief_description": "대상\n 동물\n   \n   효능․효과 및 적응증\n   \n  \n  \n   개\n   \n     플로르페니콜 및 테르비나핀 염산염에 감수성 있는 세균(Staphylococcus pseudintermedius) 및 진균(Malassezia pachydermatis) 감염에 의한 외이염의 치료",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "(1) 고막이 천공되었을 경우, 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "(2) 본제의 주성분이나 코르티코스테로이드, 부형제에 과민반응을 보이는 경우, 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "(3) 3개월 이상의 동물에게 사용하십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "(4) 모낭충증에 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "(5) 번식견에 사용하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "(1) 국소 도포용 스테로이드의 장기 사용은 부신 피질의 억제와 의인성 과부신피질호르몬 증후군을 일으킬 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "(2) 주로 노령견에서 난청과 청각 손상이 매우 드물게(0.01% 미만) 보고되었습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "(3) 본제의 투여 직후, 짖음, 머리 흔듦, 적용 부위의 통증이 매우 드물게(0.01% 미만) 보고되었습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "(4) 운동실조, 내이장애, 안구진탕, 구토, 적용 부위 발적, 흥분, 식욕부진, 발적부위 염증, 눈 이상(눈 자극, 눈꺼풀연축, 결막염, 각막 궤양, 건성각막결막염) 및 안면마비가 매우 드물게(0.01% 미만) 보고되었습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "(1) 다른 동물용의약품과의 상호작용은 평가되지 않았으므로, 혼합하여 사용하지 마십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "(2) 생리식염수를 제외한 다른 귀 세정제의 상호작용은 평가되지 않았습니다."
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.211364+00:00",
+    "reviewer": null
+  }
+}

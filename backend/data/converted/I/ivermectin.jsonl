@@ -93,6 +93,47 @@
         "form": "oral",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "캐니가드 정",
+      "하트 키오프 츄어블정 소형견용",
+      "하트 키오프 츄어블정 중형견용",
+      "하트 키오프 츄어블정 대형견용",
+      "스트롱하트 츄어블정(소형견용)",
+      "스트롱하트 츄어블정(중형견용)",
+      "스트롱하트 츄어블정(대형견용)",
+      "하트웜 쉴드 정-초소형견용",
+      "하트웜 쉴드 정-소형견용",
+      "하트웜 쉴드 정 -중형견용",
+      "하트웜 쉴드 정-대형견용",
+      "애니 하트정",
+      "하트커버 츄어블",
+      "하트커버(SS,S,M,L)정",
+      "대성 엔젤하트 정",
+      "프리벤하트 정",
+      "하트프리 정",
+      "하트웰츄정",
+      "딩크 카디오 츄어블 정"
+    ],
+    "product_names_en": [
+      "Caniguard tablet",
+      "KIWOF HART Chewable Tablet for Small dogs",
+      "KIWOF HART Chewable Tablet for Medium size dogs",
+      "KIWOF HART Chewable Tablet for Large size dogs",
+      "STRONG HEART PLUS Chewable Tablet for Small size dogs",
+      "STRONG HEART PLUS Chewable Tablet for medium size dogs",
+      "STRONG HEART PLUS Chewable Tablet for large size dogs",
+      "Heartworm Shield-SS",
+      "Heartworm Shield-S",
+      "Heartworm Shield-M",
+      "Heartworm Shield- L",
+      "Any Heart-tablet",
+      "Heart Cover Chewable",
+      "HEARTCOVER tab.",
+      "ANGELHEART",
+      "HeartFree Tablet",
+      "Heartwell chew Tab",
+      "DINK CARDIO CHEWABLE TABLET"
     ]
   },
   "metabolism_and_clearance": {
@@ -946,5 +987,299 @@
     "귀 진드기증(extra-label)",
     "비강 진드기(extra-label). 고양이: 심사상충 예방 및 구충 제거(FDA 승인). 말: 대형 및 소형 원충"
   ],
-  "mechanism_short": "이버멕틴은 무척추동물의 신경 및 근육 세포 내 글루타메이트 개폐 염화물 이온 채널에 결합하여 염화물 이온에 대한 세포 투과성을 증가시킨다. 결과적인 세포 과분극은 기생충의 마비 및 사멸을 유발한다. 포유류는 글루타메이트 개폐 염화물 이온 채널이 없으며, 이버멕틴은 다른 염화물 이온 채널에 대한 친화성이 낮다. GABA 개폐 염화물 채널에도 활성을 가질 수 있다."
+  "mechanism_short": "이버멕틴은 무척추동물의 신경 및 근육 세포 내 글루타메이트 개폐 염화물 이온 채널에 결합하여 염화물 이온에 대한 세포 투과성을 증가시킨다. 결과적인 세포 과분극은 기생충의 마비 및 사멸을 유발한다. 포유류는 글루타메이트 개폐 염화물 이온 채널이 없으며, 이버멕틴은 다른 염화물 이온 채널에 대한 친화성이 낮다. GABA 개폐 염화물 채널에도 활성을 가질 수 있다.",
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "- 콜리(Coli)견종에서는 독성이 나타나는 경우가 있으니 사용하지"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 본제를 사용하기 전에 동물병원에서 심장사상충 감염 여부를 검사하"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "여야 하며 감염된 개는 심장사상충(성충)을 구충한 후에 본제를 투여"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 개가 본제를 완전히 삼키도록 주의 깊게 경구 투여하십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 투여 후 2-5분 동안 본제 또는 본제의 일부를 뱉어내거나 흘리는지 관"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "찰하시고 투여량의 대부분이 손실된 경우에는 재투여 하십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 개의 먹이 또는 통조림 등에 넣거나 또는 개가 좋아하는 음식에 싸서 투"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 안전사고 방지를 위하여 어린이의 손이 닿지 않고 동물의 접근이 불가능"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "한 곳에 보관하십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 유효성 및 안전성에 변화를 초래할 수 있으므로 정하여진"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 과량 복용 또는 본제에 민감한 동물에 투여시 간혹 의기소침, 혼수,"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "구토, 식욕부진, 설사, 동공확대, 보행실조, 비틀거림, 경련 및 침"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "흘림 등이 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "임신, 수유축, 신생축, 어린가축, 쇠약축 등에 대한투여"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 콜리(Coli)견종에서는 독성이 나타나는 경우가 있으니 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 본제를 사용하기 전에 동물병원에서 심장사상충 감염 여부를 검사하여야 하     며 감염된 개는 심장사상충(성충)을 구충한 후에 본제를 투여하십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 투여 후 2-5분 동안 본제 또는 본제의 일부를 뱉어내거나 흘리는지 관찰하시    고 투여량의 대부분이 손실된 경우에는 재투여 하십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 개의 먹이 또는 통조림 등에 넣거나 또는 개가 좋아하는 음식에 싸서 투여할"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 안전사고 방지를 위하여 어린이의 손이 닿지 않고 동물의 접근이 불가능한      곳에 보관하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 과량 복용 또는 본제에 민감한 동물에 투여시 간혹 의기소침, 혼수, 구토,      식욕부진, 설사, 동공확대, 보행실조, 비틀거림, 경련 및 침흘림 등이 나타     날 수 있습니다."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 개의 먹이 또는 통조림 등에 넣거나 또는 개가 좋아하는 음식에 싸서 투여할    수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 과량 복용 또는 본제에 민감한 동물에 투여시 간혹 의기소침, 혼수, 구토,      식욕 부진, 설사, 동공확대, 보행실조, 비틀거림, 경련 및 침흘림 등이 나타    날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "임신, 수유축, 신생축, 어린가축, 쇠약축 등에 대한 투여"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 콜리(Coli)견종에서는 독성이 나타나는 경우가 있으"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "니 사용하지 마십시오"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 사용 전 사용설명서를 충분히 읽어본 후 사용하십시"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 정해진 용법, 용량을 준수하십시오"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 본 약제에 대한 쇼크나 과민반응이 있었던 동물에는"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 본제를 사용하기 전에 동물병원에서 심장사상충 감염"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "여부를 검사하여야 하며 감염된 개는 심장사상충)을"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "구제한 후에 본제를 투여하십시오"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 사람이 먹었을 경우 즉시 의사의 진료를 받으십시오"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 46kg 이상의 개에는 체중에 맞게 상기의 제품들을 적"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "절히 조합하여 투약하십시오"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 개가 본제를 완전히 삼키도록 주의깊게 경구투여 하"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 투약 후 2-5분동안 본제 또는 본제의 일부를 뱉어내"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "거나 흘리는지를 관찰하시고 투여량의 대부분이 손실"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "된 경우에는 재투여 하십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 1개월 간격으로 맞추어서 투여하십시오"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 수의사의 처방이나 지시에 따라 지정된 축종에만 사"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 어린이의 손이 닿지 않고 동물의 접근이 불가능한 곳"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "에 보관하고, 정해진 보관방법을 준수하십시오"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 유효기간이 경과한 제품과 다 쓴 포장지는 안전하게"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본제 투여 후 간혹 의기소침, 혼수, 구토, 식욕부진,"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "설사, 동공확대, 보행실조, 비틀거림, 경련 및 침흘"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "림 등이 나타날 수 있습니다"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "임신, 수유축, 신생축, 어린가축, 쇠약축 등에 대한"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "본제 투여 후 간혹 의기소침, 혼수, 구토, 식욕부진, 설사, 동공확대, 보행실조, 비틀거림, 경련 및 침 흘림 등이 나타날 수 있습니다."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 콜리(coli)견종에서는 독성이 나타나는 경우가 있으니 사용하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본제 투여 후 간혹 의기소침, 혼수, 구토, 식욕부진, 설사, 동공확대, 보행"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "실조, 비틀거림, 경련 및 침흘림 등이 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "임신, 수유축, 신생축, 어린가축, 쇠약푹 등에 대한 투여"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 6주령 미만의 개에는 사용하지 마세요."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본제를 사용하기 전에 동물병원에서 심장사상충 감염 여부를 검사하여야"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "하며, 심장사상충(성충)에 감염된 개는 심장사상충(성충)을 구충한 후에"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "본제를 투여하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 개가 본제를 완전히 삼키도록 주의 깊게 경구 투여하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 투여 후 2-5분 동안 본제 또는 본제의 일부를 뱉어내거나 흘리는지 관찰"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "하시고 투여량의 대부분이 손실된 경우에는 재투여 하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 개의 먹이 또는 통조림 등에 넣거나 또는 개가 좋아하는 음식에 싸서 투"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 안전사고 방지를 위해 어린이의 손이 닿지 않고 동물의 접근이 불가능한"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 유효성 및 안정성 변화를 초래할 수 있으므로 정하여진"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "여부를 검사하여야 하며 감염된 개는 심장사상충(성"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "충)을 구충한 후에 본제를 투여하십시오"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 개가 본제를 완전히 삼키도록 주의 깊게 경구 투여하"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 투여 후 2-5분 동안 본제 또는 본제의 일부를 뱉어내"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "거나 흘리는지 관찰하시고 투여량의 대부분이 손실된"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "경우에는 재투여 하십시오"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 개의 먹이 또는 통조림 등에 넣거나 또는 개가 좋아"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "하는 음식에 싸서 투여할 수 있습니다."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 안전사고 방지를 위하여 어린이의 손이 닿지 않고 동"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "물의 접근이 불가능한 곳에 보관하십시오"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 유효성 및 안전성에 변화를 초래할 수 있으므로 정하"
+    }
+  ]
 }

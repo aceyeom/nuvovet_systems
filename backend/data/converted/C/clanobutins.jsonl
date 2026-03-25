@@ -1,0 +1,248 @@
+{
+  "id": "clanobutins",
+  "drug_identity": {
+    "name_ko": "클라노부틴",
+    "name_en": "Clanobutins",
+    "active_ingredient": "Clanobutins",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Unknown",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Inj"
+    ],
+    "available_strengths": [
+      {
+        "value": 100.0,
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "비카헤파 주사액"
+    ],
+    "product_names_en": [
+      "BYKAHEPAR INJ."
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": []
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": []
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Inj"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "─────────────────────────\n  품  종            효능  및 효과\n─────────────────────────\n소,면양, 산양   1) 원발성 소화불량\n                   과식, 식체, 고창증, 탄수화물\n                   과잉 섭취에 의한 제1위 과산증,\n                   오염 및 부패사료 섭취에 의한\n                   제1위 부패, 사료급변시 소화기능\n                   향상\n                2) 속발성 소화불량증\n                   수술후, 아세톤 혈증 및 면양의\n                   임신중독에 의한 독혈증 등의\n                   대사성 질환시 소화기능회복, 간\n                   기능 회복, 간기능촉진(담즙분비\n                   촉진)\n--------------------------------------------------\n돼 지           식욕부진, 변비, 식중독, 간기능 저\n                하시 소화기능 향상\n-------------------------------------------------\n말              과식에 의한 소화장애, 변비, 장이완\n                가스성산통, 식중독, 간염 발생시\n                소화기능 향상\n-------------------------------------------------\n개              식욕부진, 모든 소화장애, 변비, 장\n                이완, 췌장기능장애, 간기능  장애시\n                소화기능 향상\n─────────────────────────",
+    "indications": "─────────────────────────\n  품  종            효능  및 효과\n─────────────────────────\n소,면양, 산양   1) 원발성 소화불량\n                   과식, 식체, 고창증, 탄수화물\n                   과잉 섭취에 의한 제1위 과산증,\n                   오염 및 부패사료 섭취에 의한\n                   제1위 부패, 사료급변시 소화기능\n                   향상\n                2) 속발성 소화불량증\n                   수술후, 아세톤 혈증 및 면양의\n                   임신중독에 의한 독혈증 등의\n                   대사성 질환시 소화기능회복, 간\n                   기능 회복, 간기능촉진(담즙분비\n                   촉진)\n--------------------------------------------------\n돼 지           식욕부진, 변비, 식중독, 간기능 저\n                하시 소화기능 향상\n-------------------------------------------------\n말              과식에 의한 소화장애, 변비, 장이완\n                가스성산통, 식중독, 간염 발생시\n                소화기능 향상\n-------------------------------------------------\n개              식욕부진, 모든 소화장애, 변비, 장\n                이완, 췌장기능장애, 간기능  장애시\n                소화기능 향상\n─────────────────────────",
+    "client_info": ""
+  },
+  "brief_description": "─────────────────────────\n  품  종            효능  및 효과\n─────────────────────────\n소,면양, 산양   1) 원발성 소화불량\n                   과식, 식체, 고창증, 탄수화물\n                   과잉 섭취에 의한 제1위 과산증,\n                   오염 및 부패사료 섭취에 의한\n                   제1위 부패, 사료급변시 소화기능\n                   향상\n                2) 속발성 소화불량증\n                   수술후, 아세톤 혈증 및 면양의\n                   임신중독에 의한 독혈증 등의\n                   대사성 질환시 소화기능회복, 간\n                   기능 회복, 간기능촉진(담즙분비\n                   촉진)\n--------------------------------------------------\n돼 지           식욕부진, 변비, 식중독, 간기능 저\n                하시 소화기능 향상\n-------------------------------------------------\n말              과식에 의한 소화장애, 변비, 장이완\n                가스성산통, 식중독, 간염 발생시\n                소화기능 향상\n-------------------------------------------------\n개              식욕부진, 모든 소화장애, 변비, 장\n                이완, 췌장기능장애, 간기능  장애시\n                소화기능 향상\n─────────────────────────",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.154293+00:00",
+    "reviewer": null
+  }
+}

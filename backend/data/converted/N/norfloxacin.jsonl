@@ -1,0 +1,249 @@
+{
+  "id": "norfloxacin",
+  "drug_identity": {
+    "name_ko": "Norfloxacin",
+    "name_en": "Norfloxacin",
+    "active_ingredient": "Norfloxacin",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Unknown",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Unknown"
+    ],
+    "available_strengths": [
+      {
+        "value": 50.0,
+        "unit": "g",
+        "form": "oral",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "쎄이비어 프리믹스",
+      "노록신200 경구용 현탁액"
+    ],
+    "product_names_en": [
+      "SAVIOR PREMIX"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": []
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": []
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Unknown"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "포도상구균속, 연쇄상구균속, 장구균, 폐염구균,\n대장균, 시트로박터속, 살모넬라속, 시겔라속, 크렙시\n엘라속, 엔테로박터속, 세라티아속, 프로테우스속,\n비브리오균속, 녹농균, 인플루엔자균 및 캠필로박터\n속 중 본제 감수성균에 의한 다음 감염증의 예방 및\n치료\n1) 소, 개\n : 유방염, 폐염, 기관지염, 살모넬라균증, 세균성\n   설사, 기타 장염, 자궁내막염, 비뇨기질병\n2) 돼지\n : 살모넬라감염증, 세균성설사, 유행성폐염, 기관지\n   염, 자궁내막믐, 모돈의 무유증증후군\n3) 닭\n : 살모넬라감염증, 대장균증, CRD, CCRD,\n   포도상구균증",
+    "indications": "포도상구균속, 연쇄상구균속, 장구균, 폐염구균,\n대장균, 시트로박터속, 살모넬라속, 시겔라속, 크렙시\n엘라속, 엔테로박터속, 세라티아속, 프로테우스속,\n비브리오균속, 녹농균, 인플루엔자균 및 캠필로박터\n속 중 본제 감수성균에 의한 다음 감염증의 예방 및\n치료\n1) 소, 개\n : 유방염, 폐염, 기관지염, 살모넬라균증, 세균성\n   설사, 기타 장염, 자궁내막염, 비뇨기질병\n2) 돼지\n : 살모넬라감염증, 세균성설사, 유행성폐염, 기관지\n   염, 자궁내막믐, 모돈의 무유증증후군\n3) 닭\n : 살모넬라감염증, 대장균증, CRD, CCRD,\n   포도상구균증",
+    "client_info": ""
+  },
+  "brief_description": "포도상구균속, 연쇄상구균속, 장구균, 폐염구균,\n대장균, 시트로박터속, 살모넬라속, 시겔라속, 크렙시\n엘라속, 엔테로박터속, 세라티아속, 프로테우스속,\n비브리오균속, 녹농균, 인플루엔자균 및 캠필로박터\n속 중 본제 감수성균에 의한 다음 감염증의 예방 및\n치료\n1) 소, 개\n : 유방염, 폐염, 기관지염, 살모넬라균증, 세균성\n   설사, 기타 장염, 자궁내막염, 비뇨기질병\n2) 돼지\n : 살모넬라감염증, 세균성설사, 유행성폐염, 기관지\n   염, 자궁내막믐, 모돈의 무유증증후군\n3) 닭\n : 살모넬라감염증, 대장균증, CRD, CCRD,\n   포도상구균증",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.151274+00:00",
+    "reviewer": null
+  }
+}

@@ -31,6 +31,12 @@
         "form": "oral",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "브로가드 독 액"
+    ],
+    "product_names_en": [
+      "Broguard Dog"
     ]
   },
   "metabolism_and_clearance": {
@@ -400,5 +406,75 @@
     "진드기",
     "모기에는 적응증 없음."
   ],
-  "mechanism_short": "시냅스 후막의 니코틴성 아세틸콜린 수용체에 작용하여 곤충의 CNS 기능 장애 및 사망을 유발. 척추동물 수용체보다 곤충 수용체에 대한 친화성이 훨씬 높음. 유기인산염, 피레트린, 카바메이트, 곤충 성장 조절제 등과 다른 작용 기전."
+  "mechanism_short": "시냅스 후막의 니코틴성 아세틸콜린 수용체에 작용하여 곤충의 CNS 기능 장애 및 사망을 유발. 척추동물 수용체보다 곤충 수용체에 대한 친화성이 훨씬 높음. 유기인산염, 피레트린, 카바메이트, 곤충 성장 조절제 등과 다른 작용 기전.",
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "7주령 미만의 강아지에는 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "본 제품은 포함된 원료약품에 과민반응을 보인 경우에는 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "알레르기나 피부 자극이 있을 수 있습니다."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "4등급의 심장사상충증이 있는 개에서 본제의 안전성은 평가되지 않았으므로"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "고양이와 페렛에는 브로가드 독을 사용하지 마시고 브로가드 캣을 사용하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "본제를 사용한 동물에게 일시적인 가려움증과 피모의 거침, 부종, 구토증상이 있을 수 있으나 대체로 별도의 치료 없이 사라집니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "드물게 국소 과민성 반응을 유발할 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "개가 도포 부위에 핥으면 매우 드물게 일시적인 신경 증상이 발생할 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "본제는 쓴맛이 납니다. 동물이 투약 직후 도포 부위를 핥는 경우 간혹 유연(침흘림)이 발생할 수 있습니다. 이는 중독의 증상이 아니며, 대부분 별도의 치료없이 몇 분 이내에 사라집니다. 올바른 도포로 도포 부위를 핥는 것을 최소화"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "개에서 매우 드물게 무기력, 흥분, 식욕부진이 관찰될 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "심장사상충이 감염된 개에서 수의사의 치료가 필요한 심각한 호흡기 증상(기침,빈호흡 및 호흡 곤란)이 발생할 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "어린 강아지에 과량투여 시 일시적인 동공산대, 유연, 구토, 빠른 호흡이 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "우발적인 경구섭취 또는 과량투여의 경우 매우 드물게 보행장애, 떨림, 안구"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "증상(동공산대, 동공반사저하, 안구진탕증) 같은 일시적인 신경증상과 비정상적"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "인 호흡, 유연, 구토 등이 일어날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "우발적인 경구섭취 후의 증상은 치료해야 합니다. 특정 치료법은 없으나"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "활성탄의 사용이 도움이 될 수 있습니다."
+    }
+  ]
 }

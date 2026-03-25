@@ -43,6 +43,12 @@
         "form": "injectable",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "오토맥스"
+    ],
+    "product_names_en": [
+      "OTOMAX"
     ]
   },
   "metabolism_and_clearance": {
@@ -395,5 +401,47 @@
     "말 말기 녹내장에서 모양체 화학적 절제(유리체 내 고용량 주사)",
     "말 재발성 포도막염(ERU) 관리(유리체 내 저용량 주사)에도 사용됩니다."
   ],
-  "mechanism_short": "아미노글리코사이드계 항생제로, 세균 세포 내로 능동 수송된 후 30S 리보솜 소단위의 특정 수용체 단백질에 결합합니다. mRNA와 30S 소단위 간의 개시 복합체 형성을 방해하여 mRNA 오독을 유도함으로써 단백질 합성을 억제합니다. 살균 작용을 나타냅니다."
+  "mechanism_short": "아미노글리코사이드계 항생제로, 세균 세포 내로 능동 수송된 후 30S 리보솜 소단위의 특정 수용체 단백질에 결합합니다. mRNA와 30S 소단위 간의 개시 복합체 형성을 방해하여 mRNA 오독을 유도함으로써 단백질 합성을 억제합니다. 살균 작용을 나타냅니다.",
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "본제 및 다른 아미노글리코시드계 항생물질에 대한 쇼크와"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "과민반응이 있었던 동물에는 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "고막에 천공이 있는 개에는 사용하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "아미노글리코시드계는 신독성, 이독성등이 나타날 수"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "본제를 장기간 사용하거나 권장용량을 초과하여 사용하면"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "면역 억제 효과가 발생할 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "치료하는 동안 동물의 청력이나 전정기능에 장애가 발견되면"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "즉시 도포를 중지하고 비신경독성 용액으로 깨끗이"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "본제는 Beta-lactam antibiotics, cephalosporins, loop,"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "osmotic, nephrotoxic drugs 등과 병용하지 마십시오."
+    }
+  ]
 }

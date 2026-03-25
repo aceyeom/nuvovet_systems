@@ -69,6 +69,12 @@
         "form": "oral",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "테라세이버 츄어블(옥시테트라사이클린염산염)"
+    ],
+    "product_names_en": [
+      "TerraSaver Chewable"
     ]
   },
   "metabolism_and_clearance": {
@@ -606,5 +612,43 @@
     "자궁염 등 다양한 세균 감염(FDA 승인). WHO 고중요 항균제",
     "OIE 수의학적 매우 중요 항균제로 지정됨."
   ],
-  "mechanism_short": "30S 리보솜 소단위에 가역적으로 결합하여 아미노아실-tRNA의 리보솜 결합을 억제함으로써 단백질 합성을 저해하는 시간 의존성 정균 항생제. 고농도에서는 세포질막 투과성도 변화시킴."
+  "mechanism_short": "30S 리보솜 소단위에 가역적으로 결합하여 아미노아실-tRNA의 리보솜 결합을 억제함으로써 단백질 합성을 저해하는 시간 의존성 정균 항생제. 고농도에서는 세포질막 투과성도 변화시킴.",
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "본제 및 테트라사이클린계 항생제에 대한 쇼크와 과민반응이 있었던"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "본제 투여 시 광과민성 피부반응이 나타날 수 있음."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "본제를 고용량 또는 장기간 투여 시 구토, 식욕감퇴, 설사 등의 위장관"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "장애가 나타날 수 있음."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "테트라사이클린계 약물을 고용량 또는 장기간 투여 시 골격성장장애를 유발할 수 있음."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "테트라사이클린계 약물을 어린 동물에 투여 시 치아와 뼈의 변색을 유발할수 있음."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "테트라사이클린계 약물을 장기간 투여 시 비감수성 세균 및 진균의 과잉성장을 초래할 수 있음."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "세팔로스포린계, 페니실린계 및 다른 테트라사이클린계 항생제와 병용하지말 것."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "제산제, 카올린, 철, 마그네슘, 알루미늄, 칼슘이온이 함유된 제제와 혼합투여시 옥시테트라사이클린의 흡수가 감소될 수 있음."
+    }
+  ]
 }

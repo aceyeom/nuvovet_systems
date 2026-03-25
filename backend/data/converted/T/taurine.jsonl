@@ -46,6 +46,19 @@
         "form": "oral",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "액틴올 산",
+      "카프스타 액",
+      "아이지스타파워 액",
+      "아이지 맥스",
+      "아이지드링크 파워"
+    ],
+    "product_names_en": [
+      "Actin-all p.",
+      "Calf Star Solution",
+      "Ig-Star Power Solution",
+      "Ig-Drink Power"
     ]
   },
   "metabolism_and_clearance": {
@@ -421,5 +434,6 @@
   "primary_indications": [
     "【승인 적응증】 없음 (영양 보충제로 분류). 【오프라벨 적응증】 ① 개·고양이 타우린 결핍성 확장성 심근병증(DCM) 예방 및 보조 치료 ② 고양이 망막 변성 예방 ③ 개·고양이 항경련 보조 치료 ④ 고양이 간질환(간지방증 등) 보조 치료 (일화적 근거만 존재)"
   ],
-  "mechanism_short": "타우린은 담즙산 포합, 칼슘 플럭스 조절, 혈소판 응집 억제, 신경막 안정화, 심장 기능 조절(양성 변력 효과, 이온 전류 조절)에 관여하는 필수 아미노산이다. GABA 유사 효과를 통해 CNS에도 작용한다."
+  "mechanism_short": "타우린은 담즙산 포합, 칼슘 플럭스 조절, 혈소판 응집 억제, 신경막 안정화, 심장 기능 조절(양성 변력 효과, 이온 전류 조절)에 관여하는 필수 아미노산이다. GABA 유사 효과를 통해 CNS에도 작용한다.",
+  "cautionary_notices_ko": []
 }

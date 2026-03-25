@@ -35,6 +35,12 @@
         "form": "ophthalmic",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "코미 덱사주사"
+    ],
+    "product_names_en": [
+      "KOMI DEXA Inj."
     ]
   },
   "metabolism_and_clearance": {
@@ -526,5 +532,59 @@
     "폴리믹신 B",
     "토브라마이신)와의 복합 제형도 사용 가능."
   ],
-  "mechanism_short": "글루코코르티코이드 수용체를 통한 유전자 발현 직접 조절 및 세포막·수용체에 대한 비유전체적 효과를 통해 광범위한 면역조절 및 항염증 작용을 나타냄. 염증성 프로스타글란딘 및 류코트리엔 생성 억제, B세포 및 T세포 수와 기능 감소, 세포매개 면역 및 체액성 면역 억제."
+  "mechanism_short": "글루코코르티코이드 수용체를 통한 유전자 발현 직접 조절 및 세포막·수용체에 대한 비유전체적 효과를 통해 광범위한 면역조절 및 항염증 작용을 나타냄. 염증성 프로스타글란딘 및 류코트리엔 생성 억제, B세포 및 T세포 수와 기능 감소, 세포매개 면역 및 체액성 면역 억제.",
+  "cautionary_notices_ko": [
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 오남용시 대사이상 등의 장애가 있을 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "사용방법상의 주의사항"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 사용설명(주의사항)을 충분히 읽어본 후 사용하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 오, 남용에 의한 약화사고 및 경제적 손실을 초래할 수 있으므로 정해진 용법, 용량을 준수하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 남용에 의한 약화사고와 경제적 손실을 초래할 수 있으므로 본제를 투여하면서 동시에 동일성분의약품을 중복투여하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본 약제에 대한 쇼크나 과민반응이 있었던 동물에게는 사용하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 멸균된 주사기와 주사바늘을 사용하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 사용 전에 충분히 흔들어서 사용하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 주사바늘은 1두1침을 원칙으로 사용하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본 제품은 동물용의약품이므로 사람에게 절대 사용하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 수의사의 지시에 따라 사용하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 안전사고 방지를 위하여 어린이의 손이 닿지 않고 동물의 접근이 불가능한 곳에 보관하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 안전성 및 유효성에 변화를 초래할 수 있으므로 정하여진"
+    }
+  ]
 }

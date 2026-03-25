@@ -1,0 +1,284 @@
+{
+  "id": "라미프릴",
+  "drug_identity": {
+    "name_ko": "라미프릴",
+    "name_en": "라미프릴",
+    "active_ingredient": "라미프릴",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Unknown",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Unknown"
+    ],
+    "available_strengths": [
+      {
+        "value": 1.25,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      },
+      {
+        "value": 2.5,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      },
+      {
+        "value": 5.0,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "바소탑 피1.25/2.5/5"
+    ],
+    "product_names_en": [
+      "Vasotop P 1.25/2.5/5"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "linear",
+          "context": "1) 대상동물 : 개\n2) 만성퇴행성 판막 심장병(심내막염) 또는 심근병에 의해 발생되는 울혈성 심부전증 치료.\n* 이뇨제 혹은 심장 글리코사이드 digoxin 또는 methydi",
+          "value": "0.25",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "SID",
+          "max_dose_mg_kg": null,
+          "duration_note": null,
+          "evidence": "한국 수의약품 허가사항"
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "linear",
+          "context": "1) 대상동물 : 개\n2) 만성퇴행성 판막 심장병(심내막염) 또는 심근병에 의해 발생되는 울혈성 심부전증 치료.\n* 이뇨제 혹은 심장 글리코사이드 digoxin 또는 methydi",
+          "value": "0.25",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "SID",
+          "max_dose_mg_kg": null,
+          "duration_note": null,
+          "evidence": "한국 수의약품 허가사항"
+        }
+      ]
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Unknown"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "1) 대상동물 : 개\n2) 만성퇴행성 판막 심장병(심내막염) 또는 심근병에 의해 발생되는 울혈성 심부전증 치료.\n* 이뇨제 혹은 심장 글리코사이드 digoxin 또는 methydigoxin과 병용 혹은 단독 적용\n \n  \n   등급\n   \n   임상증상\n   \n  \n  \n   Ⅱ\n   \n   심한 운동을 했을 때 노력성 천표성 호흡과 기침 발생. 복수가 나타나기도 한다.\n   \n  \n  \n   Ⅲ\n   \n   휴식시에는 평온하지만 운동 능력은 최소.\n   \n  \n  \n   Ⅳ\n   \n   운동 능력 없음. 휴식 시에는 무력 증상.",
+    "indications": "1) 대상동물 : 개\n2) 만성퇴행성 판막 심장병(심내막염) 또는 심근병에 의해 발생되는 울혈성 심부전증 치료.\n* 이뇨제 혹은 심장 글리코사이드 digoxin 또는 methydigoxin과 병용 혹은 단독 적용\n \n  \n   등급\n   \n   임상증상\n   \n  \n  \n   Ⅱ\n   \n   심한 운동을 했을 때 노력성 천표성 호흡과 기침 발생. 복수가 나타나기도 한다.\n   \n  \n  \n   Ⅲ\n   \n   휴식시에는 평온하지만 운동 능력은 최소.\n   \n  \n  \n   Ⅳ\n   \n   운동 능력 없음. 휴식 시에는 무력 증상.",
+    "client_info": ""
+  },
+  "brief_description": "1) 대상동물 : 개\n2) 만성퇴행성 판막 심장병(심내막염) 또는 심근병에 의해 발생되는 울혈성 심부전증 치료.\n* 이뇨제 혹은 심장 글리코사이드 digoxin 또는 methydigoxin과 병용 혹은 단독 적용\n \n  \n   등급\n   \n   임상증상\n   \n  \n  \n   Ⅱ\n   \n   심한 운동을 했을 때 노력성 천표성 호흡과 기침 발생. 복수가 나타나기도 한다.\n   \n  \n  \n   Ⅲ\n   \n   휴식시에는 평온하지만 운동 능력은 최소.\n   \n  \n  \n   Ⅳ\n   \n   운동 능력 없음. 휴식 시에는 무력 증상.",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.207624+00:00",
+    "reviewer": null
+  }
+}

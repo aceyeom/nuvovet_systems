@@ -1,0 +1,330 @@
+{
+  "id": "레티놀팔미테이트",
+  "drug_identity": {
+    "name_ko": "레티놀팔미테이트",
+    "name_en": "레티놀팔미테이트",
+    "active_ingredient": "레티놀팔미테이트",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Unknown",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Inj"
+    ],
+    "available_strengths": [
+      {
+        "value": 200000.0,
+        "unit": "IU",
+        "form": "injectable",
+        "is_splittable": null
+      },
+      {
+        "value": 100000.0,
+        "unit": "IU",
+        "form": "injectable",
+        "is_splittable": null
+      },
+      {
+        "value": 300.0,
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "비고톨-하이 주",
+      "노바솔 주사액"
+    ],
+    "product_names_en": [
+      "Vigotol-high inj."
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": []
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": []
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Inj"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "1) 비타민 A, D3, E 결핍증 치료 예방\n2) 구루병, 골연화증 예방치료, 번식장애, 야맹증, 운동기능 실조, \n   어린가축의 발육 촉진",
+    "indications": "1) 비타민 A, D3, E 결핍증 치료 예방\n2) 구루병, 골연화증 예방치료, 번식장애, 야맹증, 운동기능 실조, \n   어린가축의 발육 촉진",
+    "client_info": ""
+  },
+  "brief_description": "1) 비타민 A, D3, E 결핍증 치료 예방\n2) 구루병, 골연화증 예방치료, 번식장애, 야맹증, 운동기능 실조, \n   어린가축의 발육 촉진",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "- 본 약제에 대한 쇼크나 과민반응이 있었던 동물에게는 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 사용할 때마다 충분히 흔들어서 사용하십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 사용 전에 주사액 전체가 25.. 전후가 되도록 유지한 후 사용하십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 다른 약제와 혼합하여 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 멸균된 주사기와 주사바늘을 사용하며 1두 1침의 원칙으로 사용하십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 주사방법이 잘못되면 동통, 경결 및 화농이 생길 수 있습니다."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 환경이 불량하거나 주사부위가 오염된 경우에는"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "주사부위에 염증 및 화농이 생길 수 있으므로"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "주사부위를 70% 알코올 등으로 깨끗이 소독한 후 사용하십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 주사용량이 10mL가 넘는 경우에는 좌우에 나누어 주사하는 것이 좋습니다."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 주사 시 주사 통증에 의해 접종자가 동물의 공격을 받을 수 있으므로"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "안전사고에 주의하십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 주사부위에 가끔 종창이 발생할 수 있으나"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "시간이 경과하면 자연히 없어집니다."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 안전사고 방지를 위하여 어린이의 손이 닿지 않고"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "동물의 접근이 불가능한 곳에 보관하십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 유효성 및 안전성에 변화를 초래할 수 있으므로"
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.151827+00:00",
+    "reviewer": null
+  }
+}

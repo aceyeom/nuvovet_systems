@@ -1,0 +1,307 @@
+{
+  "id": "푸로세미드",
+  "drug_identity": {
+    "name_ko": "푸로세미드",
+    "name_en": "푸로세미드",
+    "active_ingredient": "푸로세미드",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Unknown",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Tab"
+    ],
+    "available_strengths": [
+      {
+        "value": 6.0,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      },
+      {
+        "value": 1.5,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      },
+      {
+        "value": 12.0,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      },
+      {
+        "value": 3.0,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      },
+      {
+        "value": 6.0,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      },
+      {
+        "value": 24.0,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "에나프로 정"
+    ],
+    "product_names_en": [
+      "EnaFuro"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": []
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": []
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Tab"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "가. 대상동물 : 개\n나. 효능 및 효과 : 울혈성 심부전증의 치료",
+    "indications": "가. 대상동물 : 개\n나. 효능 및 효과 : 울혈성 심부전증의 치료",
+    "client_info": ""
+  },
+  "brief_description": "가. 대상동물 : 개\n나. 효능 및 효과 : 울혈성 심부전증의 치료",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "본제 성분에 대한 과민 반응이 있었던 동물에는 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "협착(대동맥 협착, 이첨판 협착)이 있는 환축에는 투여하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "신장 또는 간장에 이상이 있는 동물에는 사용하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "투약 후 드물게 구토가 있을 수 있으며, 이러한 경우 투여 용량을 줄임으로써구토 증상을 없앨 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "부작용으로 투여 개시 또는 증량 후 혈압이 낮아지고 피로, 기면, 운동실조등이나타나면 환축의 상태가 정상으로 회복할 때까지 투약을 중지하고 원래 투여량의50%에서 다시 시작하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "테르페나딘, 클로랄하이드레이트 및 혈청칼륨을 증가시키는 약물(칼륨보급제또는 칼륨보존성 이뇨제)과는 병용하지 마십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "세파계, 아미노글라이코사이드계 항생물질과 병용시 이독성 및 신독성이증가할 수 있습니다."
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.266783+00:00",
+    "reviewer": null
+  }
+}

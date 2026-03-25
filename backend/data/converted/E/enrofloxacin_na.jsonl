@@ -1,0 +1,309 @@
+{
+  "id": "enrofloxacin_na",
+  "drug_identity": {
+    "name_ko": "엔로플록사신 나트륨",
+    "name_en": "Enrofloxacin-Na",
+    "active_ingredient": "Enrofloxacin-Na",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Antibiotic",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Inj"
+    ],
+    "available_strengths": [
+      {
+        "value": 56.39,
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "엔로박"
+    ],
+    "product_names_en": [
+      "ENROBAC"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": []
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": []
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Inj"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "엔로플로사신에 감수성이 있는 세균성 질병의 치료\n1) 소\n - 대장균증(설사, 패혈증, E.coli)\n - 마이코플라즈마증(Mycoplasma bovis)\n - 살모넬라증(Salmonellosis typhimurium)\n - 수송열(Shipping fever, Pasteurella spp., Mycoplasma spp.)\n - 파스튜렐라 폐렴(Pasteurella multocida, Pasteurella haemolytica)\n2) 돼지\n - 대장균증(설사증, 장독혈증, E.coli)\n - 마이코플라즈마증(Mycoplasma hyponeumoniae)\n - 산욕성무유증증후군(Metritis-Mastitis-Agalactia(MMA) syndrome)\n - 살모넬라증(Salmonella typhimurium, Salmonella derby)\n - 파스튜렐라 폐렴(Pasteurella multocida)\n - 흉막폐렴(Actinobacillus pleuropneumoniae)\n3) 개, 고양이\n - 비뇨생식기 감염증(E.coli)\n - 창상감염증",
+    "indications": "엔로플로사신에 감수성이 있는 세균성 질병의 치료\n1) 소\n - 대장균증(설사, 패혈증, E.coli)\n - 마이코플라즈마증(Mycoplasma bovis)\n - 살모넬라증(Salmonellosis typhimurium)\n - 수송열(Shipping fever, Pasteurella spp., Mycoplasma spp.)\n - 파스튜렐라 폐렴(Pasteurella multocida, Pasteurella haemolytica)\n2) 돼지\n - 대장균증(설사증, 장독혈증, E.coli)\n - 마이코플라즈마증(Mycoplasma hyponeumoniae)\n - 산욕성무유증증후군(Metritis-Mastitis-Agalactia(MMA) syndrome)\n - 살모넬라증(Salmonella typhimurium, Salmonella derby)\n - 파스튜렐라 폐렴(Pasteurella multocida)\n - 흉막폐렴(Actinobacillus pleuropneumoniae)\n3) 개, 고양이\n - 비뇨생식기 감염증(E.coli)\n - 창상감염증",
+    "client_info": ""
+  },
+  "brief_description": "엔로플로사신에 감수성이 있는 세균성 질병의 치료\n1) 소\n - 대장균증(설사, 패혈증, E.coli)\n - 마이코플라즈마증(Mycoplasma bovis)\n - 살모넬라증(Salmonellosis typhimurium)\n - 수송열(Shipping fever, Pasteurella spp., Mycoplasma spp.)\n - 파스튜렐라 폐렴(Pasteurella multocida, Pasteurella haemolytica)\n2) 돼지\n - 대장균증(설사증, 장독혈증, E.coli)\n - 마이코플라즈마증(Mycoplasma hyponeumoniae)\n - 산욕성무유증증후군(Metritis-Mastitis-Agalactia(MMA) syndrome)\n - 살모넬라증(Salmonella typhimurium, Salmonella derby)\n - 파스튜렐라 폐렴(Pasteurella multocida)\n - 흉막폐렴(Actinobacillus pleuropneumoniae)\n3) 개, 고양이\n - 비뇨생식기 감염증(E.coli)\n - 창상감염증",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "본제에 대한 쇼크와 과민반응이 있었던 동물에는 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "간장애 및 신장애가 있는 동물에게는 투여하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "어린연령의 개(중형견 8개월 이하, 대형견 12개월이하, 초대형견 18개월이하)에서 연골기형을 유발할 수 있으므로 사용하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "성장기의 동물에 투여시 관절이상 (파행, 동통, 연골부전)등이 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "위장관 장애(구토, 식욕감퇴, 설사, 복통 등)가 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "중추신경계 장애(현기증, 불안, 두통, 침울, 운동실조, 발작 등)가 나타날 수 있으며 중추신경장애(발작 등)가 있는 동물에는 사용시 증상이 악화될 수 있으므로 사용하지 마시기 바랍니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "과민반응, 결정뇨가 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "본제의 부형제 성분 중 부탄올은 중등도의 피부자극성 물질이므로 피부나 눈에 접촉되지 않도록 주의하며 접촉시 즉시 물로 깨끗이 씻어낸 후 이상증상이 발견되는 즉시 의사의 진료를 받으십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "마크로라이드계, 테트라싸이클린계 항생제와 병용하지 마십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "마그네슘, 알루미늄, 칼슘이온이 함유된 제제와 혼합투여시 생체내 흡수율이"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "감소될 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "Theopylline, Caffeine과 함께 투여시 Theopylline, Caffeine의 혈중농도를 높 일 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "Ptobenecid는 본제의 세뇨관 배출을 막아 혈중내 농도를 높일 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "Cyclosporine와 병용시 Cyclosporine의 신장독성을 악화시킬 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "비스테로이계 소염제와 병용시 드물게 경련이 발현될 수 있습니다."
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.264846+00:00",
+    "reviewer": null
+  }
+}

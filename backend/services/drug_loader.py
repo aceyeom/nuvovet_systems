@@ -159,12 +159,16 @@ def _build_search_index(db: Dict[str, Any]) -> List[Dict[str, Any]]:
         name_ko = (identity.get("name_ko") or "").lower()
         active = (identity.get("active_ingredient") or "").lower()
         brands = [b.lower() for b in (identity.get("brand_names") or [])]
+        products_ko = [p.lower() for p in (identity.get("product_names_ko") or [])]
+        products_en = [p.lower() for p in (identity.get("product_names_en") or [])]
         index.append({
             "id": drug_id,
             "name_en": name_en,
             "name_ko": name_ko,
             "active": active,
             "brands": brands,
+            "products_ko": products_ko,
+            "products_en": products_en,
             "class": identity.get("class", ""),
         })
     return index

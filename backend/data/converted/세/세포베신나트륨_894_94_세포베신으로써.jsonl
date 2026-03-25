@@ -1,0 +1,331 @@
+{
+  "id": "세포베신나트륨_894_94_세포베신으로써",
+  "drug_identity": {
+    "name_ko": "세포베신나트륨 894.94(세포베신으로써",
+    "name_en": "세포베신나트륨 894.94(세포베신으로써",
+    "active_ingredient": "세포베신나트륨 894.94(세포베신으로써",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Unknown",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Inj"
+    ],
+    "available_strengths": [
+      {
+        "value": 852.0,
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
+      },
+      {
+        "value": 340.0,
+        "unit": "mg/mL",
+        "form": "injectable",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "컨베니아"
+    ],
+    "product_names_en": [
+      "Convenia"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": []
+    },
+    "cat": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "linear",
+          "context": "- 개 : Staphylococcus intermedius, Streptococcus Canis, Escherichia coli 에 의한 피부감염증(속발 표재성 농피증, 농양 및 ",
+          "value": "8",
+          "unit": "mg/kg",
+          "route": "SC",
+          "frequency": "SID",
+          "max_dose_mg_kg": null,
+          "duration_note": null,
+          "evidence": "한국 수의약품 허가사항"
+        }
+      ]
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Inj"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "- 개 : Staphylococcus intermedius, Streptococcus Canis, Escherichia coli 에 의한 피부감염증(속발 표재성 농피증, 농양 및 상처에 의한 감염)의 치료 및 Escherichia coli, Proteus Spp. 에 의한 요로감염증(방광염)의 치료\n- 고양이 : Pasteurella Multocida 에 의한 피부감염증(상처감염, 농양)의 치료 및 Escherichia coli 에 의한 요로감염증의 치료",
+    "indications": "- 개 : Staphylococcus intermedius, Streptococcus Canis, Escherichia coli 에 의한 피부감염증(속발 표재성 농피증, 농양 및 상처에 의한 감염)의 치료 및 Escherichia coli, Proteus Spp. 에 의한 요로감염증(방광염)의 치료\n- 고양이 : Pasteurella Multocida 에 의한 피부감염증(상처감염, 농양)의 치료 및 Escherichia coli 에 의한 요로감염증의 치료",
+    "client_info": ""
+  },
+  "brief_description": "- 개 : Staphylococcus intermedius, Streptococcus Canis, Escherichia coli 에 의한 피부감염증(속발 표재성 농피증, 농양 및 상처에 의한 감염)의 치료 및 Escherichia coli, Proteus Spp. 에 의한 요로감염증(방광염)의 치료\n- 고양이 : Pasteurella Multocida 에 의한 피부감염증(상처감염, 농양)의 치료 및 Escherichia coli 에 의한 요로감염증의 치료",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "adverse_effect",
+      "text_ko": "주사 후 접종 부위에 일시적인 부종이 관찰될 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "드물지만, Anaphylactic 반응이 나타날 수 있으며, 부작용 발생 시"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "코티코스테로이드, 항히스타민제 및 증상에 따른 적절한 치료가 필요합니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "Cefovecin과 단백질 결합에 경쟁관계에 있는 약물(예: Carprofen, Furosemide, Doxycycline,Ketoconazole 등)과 같이 사용하게 되면, 이들에 의해 부작용이 발생될 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "[적용상의 주의사항]"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "대상동물에만 사용하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "본 제품의 유효성분인 cefovecin은 투여동물에서 소실기가 약 65일로"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "장기간이므로 이 기간 동안 투여동물에 대한 지속적인 관찰이 요구됩니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "농피증 치료에 사용 시에는 1차 원인체를 확인하여 기저질환에 대한 치료가"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "심한 신장기능 이상이 있는 개체에서 본 제품의 사용에 대한 안전성이 확인되지 않았습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "[일반적인 주의사항]"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "희석된 제품은 냉장보관하며, 28일 이내에 사용하기를 권장합니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "피부나 눈에 묻었을 경우 즉시 깨끗한 물로 씻어 내십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "사용설명서를 준수할 것이며 수의사의 지시에 따라 사용하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "어린이의 손이 닿지 않는 곳에 보관하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "※ 식품으로 공여되는 동물에는 사용을 금지함."
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.178025+00:00",
+    "reviewer": null
+  }
+}

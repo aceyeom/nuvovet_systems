@@ -64,6 +64,12 @@
         "form": "injectable",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "클린벳"
+    ],
+    "product_names_en": [
+      "CLINVET"
     ]
   },
   "metabolism_and_clearance": {
@@ -719,5 +725,15 @@
     "농양)",
     "치과 감염"
   ],
-  "mechanism_short": "50S 리보솜 소단위에 결합하여 펩타이드 결합 형성 및 세균 단백질 합성을 억제하는 린코사마이드계 항생제. 약물 농도 및 균주 감수성에 따라 정균 또는 살균 작용을 나타냄."
+  "mechanism_short": "50S 리보솜 소단위에 결합하여 펩타이드 결합 형성 및 세균 단백질 합성을 억제하는 린코사마이드계 항생제. 약물 농도 및 균주 감수성에 따라 정균 또는 살균 작용을 나타냄.",
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "본제 및 린코마이신계 항생물질에 대한 쇼크와 과민반응이 있었던 동물에는"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "적용동물 이외에 사용 시 위장관 장애를 일으킬 수 있습니다."
+    }
+  ]
 }

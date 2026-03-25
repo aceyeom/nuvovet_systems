@@ -1,0 +1,301 @@
+{
+  "id": "베나제프릴염산염",
+  "drug_identity": {
+    "name_ko": "베나제프릴염산염",
+    "name_en": "베나제프릴염산염",
+    "active_ingredient": "베나제프릴염산염",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Unknown",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Tab"
+    ],
+    "available_strengths": [
+      {
+        "value": 2.5,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      },
+      {
+        "value": 5.0,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      },
+      {
+        "value": 10.0,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "베나프릴정(베나제프릴염산염)"
+    ],
+    "product_names_en": [
+      "BenaPril"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": []
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": []
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Tab"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "가. 대상동물 : 개, 고양이\n나. 적응증\n- 개 : 울혈성 심부전증의 치료\n- 고양이 : 만성 신부전(CKD)에서 단백뇨 감소",
+    "indications": "가. 대상동물 : 개, 고양이\n나. 적응증\n- 개 : 울혈성 심부전증의 치료\n- 고양이 : 만성 신부전(CKD)에서 단백뇨 감소",
+    "client_info": ""
+  },
+  "brief_description": "가. 대상동물 : 개, 고양이\n나. 적응증\n- 개 : 울혈성 심부전증의 치료\n- 고양이 : 만성 신부전(CKD)에서 단백뇨 감소",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "베나제프릴 염산염에 과민반응이 있는 개체에서는 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "저혈압, 저혈액증, 저나트륨혈증 또는 급성 신부전인 개체에서는 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "대동맥 또는 폐동맥 협착증으로 인한 심박출부전 개체에서는 사용하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "일부 반려견에서 일시적인 구토, 운동실조, 피로의 증상을 보일 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "만성 신부전증을 앓고 있는 고양이와 개에서 치료 초기에 혈중 크레아틴 농도가 증가될 수 있으나 이는 약물에 의한 사구체 고혈압의 감소에 따른 것으로, 별도 증상이 없는 한 치료를 중단할 필요는 없습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "고양이에서 음식물 섭취 증가 및 체중 증가를 유발할 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "고양이에서 구토, 식욕감퇴, 탈수, 무기력, 설사가 아주 드물게 나타날 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "울혈성 심부전을 가진 반려견에서 본제와 함께 디곡신(digoxin), 이뇨제, 피모벤단,  항부정맥 제제들의 병용시 부작용이 나타나지 않습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "본제를 고혈압 길항제(칼슘채널 차단제, β수용체 차단제, 이뇨제), 마취제, 진정제와 함께 사용 시에는 저혈압을 유도할 수 있으므로 항염증약(NSAID)과 저혈압 효과를  가지는 약물들과 본제에 대한 병용 투여는 신중히 고려되어야 합니다. 따라서 투약 중 신장 기능과 저혈압 증상(무기력, 쇠약 등) 유무를 관찰하시고 상황에 따라 처치 유무를 판단하십시오."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "본제를 칼륨 보존성 이뇨제(스피로락톤, 트리암테렌, 아밀로라이드)와 함께 사용시에는 칼륨 혈장 농도를 모니터링 하시기 바랍니다."
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.233366+00:00",
+    "reviewer": null
+  }
+}

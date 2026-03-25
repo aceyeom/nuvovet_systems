@@ -1,0 +1,441 @@
+{
+  "id": "보데텔라_브론키셉티카_톡소이드",
+  "drug_identity": {
+    "name_ko": "보데텔라 브론키셉티카 톡소이드",
+    "name_en": "보데텔라 브론키셉티카 톡소이드",
+    "active_ingredient": "보데텔라 브론키셉티카 톡소이드",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Unknown",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Unknown"
+    ],
+    "available_strengths": [
+      {
+        "value": 200.0,
+        "unit": "mcg",
+        "form": "oral",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "프로백 코프톡시"
+    ],
+    "product_names_en": [
+      "PRO-VAC Cough Toxi"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": []
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": []
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Unknown"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "Bordetella bronchiseptica감염으로 인한 개호흡기질\n병을 예방할 목적으로 개에 사용한다.",
+    "indications": "Bordetella bronchiseptica감염으로 인한 개호흡기질\n병을 예방할 목적으로 개에 사용한다.",
+    "client_info": ""
+  },
+  "brief_description": "Bordetella bronchiseptica감염으로 인한 개호흡기질\n병을 예방할 목적으로 개에 사용한다.",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "adverse_effect",
+      "text_ko": ": 투여 후 개체에 따라 식욕부진, 구토, 피부발진,"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "허탈, 경련등의 과민반응이 일어날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "이런 경우 충분한 맛사지, 에피네프린투여가 권장"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "되므로 수의사와 승담하여 적절한 처치를 하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": ": 다음 개에는 투여하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 열이 있거나 영양장애가 심한 개"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 전염성 질병 및 기생충감염, 스트레스를 받은 개"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 곰팡이 및 세균의 독소 등(아플라톡신, 대장균 및"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "살모넬라 독소)에 의해 면역 기능이 저하된 개"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 이전에 본 백신에 과민반응이나 쇼크를 일으킨 일"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "사용방법상의 주의사항"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 사용설명(주의사항)을 충분히 읽어본 후 사용하십"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 오,남용에 의한 약화사고 및 경제적 손실을 초래할"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "수 있으므로 정해진 용법, 용량을 준수하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 남용에 의한 약화사고와 경제적 손실을 초래할 수"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "있으므로 본제를 투여하면서 동시에 동일성분의"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "약품을 중복 투여하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본 약제에 대한 쇼크나 과민반응이 있었던 동물에"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "게는 사용하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 백신을 접종하기전에 백신의 온도가 상온(15-25도)"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "이 될 때까지 놓아두었다가 사용하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 접종 전에는 반드시 백신의 성상을 관찰한 후 이상"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "이 있으면 사용하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 얼었다 녹은 제품은 효력이 없으므로 사용하지 마"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 다른 백신 또는 약제와 혼합하는 겨웅 상호간섭현"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "상, 침전, 이물형성 등이 나타날 수 있으므로 절대"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "혼합하여 사용하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 사용 후 남은 백신과 빈 용기는 소독 또는 소각하"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "는 등 안전하게 폐기하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 백신 접종 후 최소한 3-5일간 동물이 안정을 취하"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 백신 점종 후 몸을 깨끗이 씻고 접종기구는 소독"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 투여경로를 달리하는 경우 주사부위의 통증, 종창,"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "경결 및 쇼크 등이 나타날 수 있으므로 반드시 권"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "장된 투여경로에 따라 주사하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 사용할 때마다 충분히 흔들어서 사용하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 멸균된 주사기와 주사바늘을 사용하고 주사기구나"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "백신병을 알코올 등의 소독약품으로 소독하지 마십"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 주사바늘은 1두1침을 원칙으로 사용하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 불량한 환경 및 주사부위가 오염된 경우에는 주사"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "부위에 염증이 생길 수 있으므로 주사부위를 70%"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "알코올 등으로 소독 수 접종하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본 제품은 동물용의약품이므로 사람에게 절대 사용"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 수의사의 지시에 따라 사용하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 지정된 축종 이외에는 안전성 및 유효성이 확립되"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "어 있지 않으므로 사용하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 안전사고 방지를 위하여 어린이의 손이 닿지 않고"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "동물의 접근이 불가능한 곳에 보관하십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 안전성 및 유효성에 변화를 초래할 수 있으므로"
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.259575+00:00",
+    "reviewer": null
+  }
+}

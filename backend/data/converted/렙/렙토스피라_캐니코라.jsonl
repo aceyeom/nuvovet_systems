@@ -1,0 +1,395 @@
+{
+  "id": "렙토스피라_캐니코라",
+  "drug_identity": {
+    "name_ko": "렙토스피라 캐니코라",
+    "name_en": "렙토스피라 캐니코라",
+    "active_ingredient": "렙토스피라 캐니코라",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Unknown",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Unknown"
+    ],
+    "available_strengths": [
+      {
+        "value": 0.5,
+        "unit": "mL",
+        "form": "oral",
+        "is_splittable": null
+      },
+      {
+        "value": 0.5,
+        "unit": "mL",
+        "form": "oral",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "노비박 디에이취피피엘"
+    ],
+    "product_names_en": [
+      "Nobivac DHPPi+L"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": []
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": []
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Unknown"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "개 디스템퍼, 전염성 간염(개 아데노 바이러스 2형), \n파보 바이러스, 파라 인플루엔자 및 렙토스피라 감염\n증의 예방",
+    "indications": "개 디스템퍼, 전염성 간염(개 아데노 바이러스 2형), \n파보 바이러스, 파라 인플루엔자 및 렙토스피라 감염\n증의 예방",
+    "client_info": ""
+  },
+  "brief_description": "개 디스템퍼, 전염성 간염(개 아데노 바이러스 2형), \n파보 바이러스, 파라 인플루엔자 및 렙토스피라 감염\n증의 예방",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "- 본제에 대한 쇼크나 과민반응이 있었던 동물에는"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 열이 있거나 영양장애가 심한 동물, 전염성 질병"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "및 기생충 감염, 스트레스를 받은 동물, 곰팡이 및"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "세균의 독소 등에 의해 면역기능이 저하된 동물에"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "는 사용하지 마십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 개체에 따라 간혹 백신접종 후에 식욕부진, 허탈,"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "피부발진, 구토, 경련 등의 과민반응이 일어날 수"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "있으므로 주사 후 과민반응의 발현여부를 잘 관찰"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "하시고 과민반응 시에는 수의사와 상담하여 적절"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 아나필락시 쇼크 발생시에는 에피네프린을 투여한"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "후 보조요법을 병행하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 본 백신은 백신 접종 후 7일에서 28일까지 분변으"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "로 백신 바이러스가 검출될 수 있습니다"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 모견의 백신접종여부, 접종횟수, 감염여부에 따라"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "자견의 면역형성이 달라질 수 있으므로 이를 고려"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "임신, 수유축, 신생축, 어린가축, 쇠약축 등에 대"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 임신중인 개에 사용하지 마십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 사용할 때마다 충분히 흔들어서 사용하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 사용 전에 백신을 실온 또는 상온이 되도록 유지한"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 멸균된 주사기와 주사바늘을 사용하며 1두 1침을"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "원칙으로 사용하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 주사방법이 잘못되면 동통, 경결 및 화농이 생길"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 환경이 불량하거나 주사부위가 오염된 경우에는 주"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "사부위에 염증 및 화농이 생길 수 있으므로 주사부"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "위를 70%알코올 등으로 깨끗이 소독한 후 사용하십"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 주사시 주사통증에 의해 접종자가 동물의 공격을"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "받을 수 있으므로 안전사고에 주의하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 각종 스트레스 요인(환경변화, 사료변경, 수송 등)"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "이 발생하였을 때는 접종을 피하는 것이 좋습니다"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "최소한 접종 전 후 1주일간은 모든 스트레스 요인"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "으로부터 보호하여야 합니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 동결되었던 백신은 효력이 없으니 사용하지 마십시"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 안전사고 방지를 위하여 어린이의 손이 닿지 않고"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "동물의 접근이 불가능한 곳에 보관하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 유효성 및 안전성에 변화를 초래할 수 있으므로 정"
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.206681+00:00",
+    "reviewer": null
+  }
+}

@@ -59,7 +59,14 @@
         "form": "ophthalmic",
         "is_splittable": null
       }
-    ]
+    ],
+    "product_names_ko": [
+      "밀베마이신 A정 1.25",
+      "밀베마이신 A정 2.5",
+      "밀베마이신 A정 5",
+      "밀베마이신 A정 10"
+    ],
+    "product_names_en": []
   },
   "metabolism_and_clearance": {
     "primary_metabolic_organ": "Unknown",
@@ -613,5 +620,31 @@
     "옴(Sarcoptes scabiei var. canis)",
     "Angiostrongylus vasorum 예방. 【비표시 적응증 - 고양이】 폐충 감염 치료."
   ],
-  "mechanism_short": "선충류 신경계의 글루타메이트 개폐 염소 이온 채널에 결합하여 세포막의 염소 이온 투과성을 증가시키고, 선충류 신경세포 및 절지동물 근육세포의 전기적 활성을 억제하여 마비 및 사멸을 유발. 또한 시냅스 전 뉴런에서 GABA 방출을 촉진하여 억제성 신경전달을 강화함."
+  "mechanism_short": "선충류 신경계의 글루타메이트 개폐 염소 이온 채널에 결합하여 세포막의 염소 이온 투과성을 증가시키고, 선충류 신경세포 및 절지동물 근육세포의 전기적 활성을 억제하여 마비 및 사멸을 유발. 또한 시냅스 전 뉴런에서 GABA 방출을 촉진하여 억제성 신경전달을 강화함.",
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "본제에 대한 쇼크와 과민반응이 있었던 동물에는 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": ". 개 심장사상충 감염견에 투여하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "적용동물 이외에 사용 시 위장관 장애를 일으킬 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "개 심장사상충 감염견에 투여 할 경우 원기소실, 식욕부진, 구토 등의 증상이 나타날 수 있습니다."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "개 심장사상충감염견에투여하지마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "개 심장사상충 감염견에 투여하지 마십시오."
+    }
+  ]
 }

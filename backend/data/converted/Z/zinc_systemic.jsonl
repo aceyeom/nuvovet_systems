@@ -70,6 +70,12 @@
         "form": "injectable",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "펫비탈-덤켑"
+    ],
+    "product_names_en": [
+      "PETVITAL Derm-caps"
     ]
   },
   "metabolism_and_clearance": {
@@ -497,5 +503,6 @@
     "superficial necrolytic dermatitis",
     "and zinc-responsive dermatosis."
   ],
-  "mechanism_short": "Required by over 200 metalloenzymes. Necessary to maintain the structural integrity of cell membranes and nucleic acids. In dogs with hepatitis, it induces the intestinal copper-binding protein metallothionein, resulting in antifibrotic and hepatoprotective properties."
+  "mechanism_short": "Required by over 200 metalloenzymes. Necessary to maintain the structural integrity of cell membranes and nucleic acids. In dogs with hepatitis, it induces the intestinal copper-binding protein metallothionein, resulting in antifibrotic and hepatoprotective properties.",
+  "cautionary_notices_ko": []
 }

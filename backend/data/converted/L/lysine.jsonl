@@ -55,6 +55,16 @@
         "form": "oral",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "아미-라이트 주",
+      "아미라이트-C 주",
+      "피그뮨 산제"
+    ],
+    "product_names_en": [
+      "AMI-LYTE INJECTION",
+      "AMILYTE-C INJECTION",
+      "(PIGMUNE Powder)"
     ]
   },
   "metabolism_and_clearance": {
@@ -397,5 +407,87 @@
   "primary_indications": [
     "고양이 FHV-1 감염에서 바이러스 배출 억제 및 결막염을 포함한 임상 증상 중증도 감소 (모두 extra-label 사용). FDA 승인 동물용 의약품 목록에 등재된 제품 없음. 미국에서는 영양소로 분류되어 FDA 의약품 승인 요건 면제."
   ],
-  "mechanism_short": "라이신은 헤르페스바이러스 복제에 필요한 아르기닌과 경쟁적으로 바이러스 내로 통합되어 바이러스의 감염력을 감소시키는 것으로 추정됨. 단, 고양이에서 이 기전의 생리학적 근거는 의문시됨."
+  "mechanism_short": "라이신은 헤르페스바이러스 복제에 필요한 아르기닌과 경쟁적으로 바이러스 내로 통합되어 바이러스의 감염력을 감소시키는 것으로 추정됨. 단, 고양이에서 이 기전의 생리학적 근거는 의문시됨.",
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "- 본 약제에 대한 쇼크나 과민반응이 있었던 동물에게"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "는 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 사용할 때마다 충분히 흔들어서 사용하십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 사용 전에 주사액 전체가 25℃ 전후가 되도록 유지한"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 다른 약제와 혼합하여 사용하지 마십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 멸균된 주사기와 주사바늘을 사용하며 1두 1침의 원"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "칙으로 사용하십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 주사방법이 잘못되면 동통, 경결 및 화농이 생길 수"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 환경이 불량하거나 주사부위가 오염된 경우에는 주사"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "부위에 염증 및 화농이 생길 수 있으므로 주사부위를"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "70% 알코올 등으로 깨끗이 소독한 후 사용하십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 주사용량이 10ml가 넘는 경우에는 좌우에 나누어서"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "주사하는 것이 좋습니다."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 주사 시 주사 통증에 의해 접종자가 동물의 공격을"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "받을 수 있으므로 안전사고에 주의하십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 주사부위에 가끔 종창이 발생할 수 있으니 시간이 경"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "과하면 자연히 없어집니다."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 안전사고 방지를 위하여 어린이의 손이나 동물의 접"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "근이 불가능한 곳에 보관하십시오."
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 유효성 및 안전성에 변화를 초래할 수 있으므로 정하"
+    }
+  ]
 }

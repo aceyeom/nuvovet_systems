@@ -1,0 +1,331 @@
+{
+  "id": "오클라시티니브_말레산염_oclacitinib_maleate_별규1_oclacitinib_역가",
+  "drug_identity": {
+    "name_ko": "오클라시티니브 말레산염 (Oclacitinib maleate, 별규1; (Oclacitinib 역가",
+    "name_en": "오클라시티니브 말레산염 (Oclacitinib maleate, 별규1; (Oclacitinib 역가",
+    "active_ingredient": "오클라시티니브 말레산염 (Oclacitinib maleate, 별규1; (Oclacitinib 역가",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Unknown",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Tab",
+      "Chewable"
+    ],
+    "available_strengths": [
+      {
+        "value": 3.6,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "아포퀠 츄어블 정(오클라시티니브 말레산염)"
+    ],
+    "product_names_en": [
+      "Apoquel chewable tablets"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": false,
+      "dosage_list": []
+    },
+    "cat": {
+      "is_approved": false,
+      "dosage_list": []
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Tab",
+      "Chewable"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "가. 대상동물: 개 (1년 이상, 체중 3 kg 이상의 개)\n나. 개의 알러지성 피부염을 동반한 소양성 피부염의 치료\n    개의 아토피성 피부염의 임상적 증상의 치료",
+    "indications": "가. 대상동물: 개 (1년 이상, 체중 3 kg 이상의 개)\n나. 개의 알러지성 피부염을 동반한 소양성 피부염의 치료\n    개의 아토피성 피부염의 임상적 증상의 치료",
+    "client_info": ""
+  },
+  "brief_description": "가. 대상동물: 개 (1년 이상, 체중 3 kg 이상의 개)\n나. 개의 알러지성 피부염을 동반한 소양성 피부염의 치료\n    개의 아토피성 피부염의 임상적 증상의 치료",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "adverse_effect",
+      "text_ko": "투약 16일까지 설사, 구토, 식욕부진, 피부 또는 피하 혹, 무기력, 조갈증과같은증상이 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "======================================================================"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "아토피성 피부염 연구에서 투약   소양성 피부염 연구에서 투약"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "16일까지 관찰된 이상 반응       7일까지 관찰된 이상반응"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "----------------------------------------------------------------------"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "Apoquel        대조군          Apoquel         대조군"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "(n=152)        (n=147)         (n=216)         (n=220)"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "설사         4.6%          3.4%             2.3%           0.9%"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "구토         3.9%          4.1%             2.3%           1.8%"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "식욕부진        2.6%           0%              1.4%            0%"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "피부 또는       2.6%          2.7%             1.0%            0%"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "무기력         2.0%          1.4%             1.8%           1.4%"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "조갈증         0.7%          1.4%             1.4%            0%"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "======================================================================"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "투약 16일 이후 농피증, 비특이적 피부 혹, 이염, 조직구종, 방광염, 효모 피부감염, 제위위염, 지방종, 림프절병, 오심, 식욕 증가 및 공격성과 같은 비정상적임상 증상이 1% 이상에서 발견되었습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "투약과 관련된 임상 병리학적 변화는 평균 혈중콜레스테롤 농도의 증가와평균백혈구수 감소로 나타났으나, 임상적으로 유의적인 수치는 아니었습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "실험실 연구에서 다수의 개체에서 유두종이 발견되었습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "빈혈과 림프종이 자발적인 보고에서 매우 드물게(10,000마리 중 1마리 미만) 보고되었습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "내부구충제, 외부구충제, 항생제 또는 항염증제와 함께 사용했을 때 상호작용은관찰되지 않았습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "본제를 3배의 용량으로 과용량 투여했을 때, 개 파보바이러스 생백신 (CPV), 개디스템퍼 바이러스 백신 (CDV), 개 파라인플루엔자(CPI) 약독화 생백신, 불활화광견병 백신(RV)과 함께 투여하면, CDV와 CPV 백신 접종에 대한 면역 반응이적절하게 형성되었고, CPI, RV 백신 접종에 대한 혈청학적 반응이 대조군대비낮게 나타났으나, 임상적인 연관성은 밝혀지지 않았습니다."
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.186301+00:00",
+    "reviewer": null
+  }
+}

@@ -47,6 +47,14 @@
         "form": "injectable",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "제스톤주",
+      "제스롱(주)"
+    ],
+    "product_names_en": [
+      "-",
+      "GESLONG INJ"
     ]
   },
   "metabolism_and_clearance": {
@@ -866,5 +874,27 @@
     "단두종 기도 수술 전후 역류 예방",
     "이차성 무유증 시 비유 유도 등에 오프라벨로 사용됨."
   ],
-  "mechanism_short": "상부 위장관 평활근에 대한 아세틸콜린 감수성 증가를 통해 위장관 운동을 촉진하며, 중추 및 말초 도파민(D2) 수용체 길항 작용으로 항구토 효과를 나타냄. 또한 세로토닌 5-HT3 수용체 약한 억제제 및 5-HT4 수용체 작용제로 작용."
+  "mechanism_short": "상부 위장관 평활근에 대한 아세틸콜린 감수성 증가를 통해 위장관 운동을 촉진하며, 중추 및 말초 도파민(D2) 수용체 길항 작용으로 항구토 효과를 나타냄. 또한 세로토닌 5-HT3 수용체 약한 억제제 및 5-HT4 수용체 작용제로 작용.",
+  "cautionary_notices_ko": [
+    {
+      "type": "adverse_effect",
+      "text_ko": "본제 투여 후 일시적인 불안, 졸음, 피로 등이 발생할 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "일부 환축에서 설사나 변비가 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "(1) 본제 투여 후 일시적인 불안, 피로, 졸음 등이 발생할 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "(2) 일부 동물에서 설사나 변비가 나타날 수 있습니다."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "(3) 본제는 중추에도 작용하므로 어린동물(허약한 송아지나 강아지)에는 신중히투여하십시오."
+    }
+  ]
 }

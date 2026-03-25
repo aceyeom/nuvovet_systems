@@ -63,6 +63,12 @@
         "form": "oral",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "펜벤다졸 40"
+    ],
+    "product_names_en": [
+      "FENBENDAZOLE 40"
     ]
   },
   "metabolism_and_clearance": {
@@ -683,5 +689,19 @@
     "Filaroides spp",
     "Eucoleus spp"
   ],
-  "mechanism_short": "벤즈이미다졸계 항기생충제로, 감수성 기생충의 세포 내 미세소관 수송 시스템을 교란한다. 튜불린에 결합하여 튜불린 중합을 방해하고 미세소관 형성을 억제한다. 고농도에서는 말레이트 탈수소효소 및 푸마레이트 환원효소를 포함한 대사 효소를 억제하여 기생충의 대사 경로를 교란한다. 시간 의존적 항기생충 효과를 나타낸다."
+  "mechanism_short": "벤즈이미다졸계 항기생충제로, 감수성 기생충의 세포 내 미세소관 수송 시스템을 교란한다. 튜불린에 결합하여 튜불린 중합을 방해하고 미세소관 형성을 억제한다. 고농도에서는 말레이트 탈수소효소 및 푸마레이트 환원효소를 포함한 대사 효소를 억제하여 기생충의 대사 경로를 교란한다. 시간 의존적 항기생충 효과를 나타낸다.",
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "본 약제에 대한 쇼크나 과민반응이 있었던 동물에는 사용하지 마십시오."
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "과량투여 하거나 과민반응으로 인해 구토 및 어지러운 증상이 나타날 수 있습니다."
+    },
+    {
+      "type": "interaction",
+      "text_ko": "Bromasalane(Dibromsalane, Tribromsalane 등) 제제와 동시에 투여하지 마십시오."
+    }
+  ]
 }

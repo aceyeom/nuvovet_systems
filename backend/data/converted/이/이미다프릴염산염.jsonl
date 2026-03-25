@@ -1,0 +1,434 @@
+{
+  "id": "이미다프릴염산염",
+  "drug_identity": {
+    "name_ko": "이미다프릴염산염",
+    "name_en": "이미다프릴염산염",
+    "active_ingredient": "이미다프릴염산염",
+    "brand_names": [],
+    "allergy_class": null,
+    "class": "Unknown",
+    "source": "kr_vet",
+    "formulary_status": "active",
+    "has_reversal": false,
+    "reversal_agent": null,
+    "reversal_evidence": null,
+    "off_label_note": null,
+    "dosage_form": [
+      "Susp"
+    ],
+    "available_strengths": [
+      {
+        "value": 75.0,
+        "unit": "mg",
+        "form": "oral",
+        "is_splittable": null
+      }
+    ],
+    "product_names_ko": [
+      "프릴리움 75",
+      "미다프릴 75 산(이미다프릴염산염)"
+    ],
+    "product_names_en": [
+      "Prilium 75"
+    ]
+  },
+  "metabolism_and_clearance": {
+    "primary_metabolic_organ": "Unknown",
+    "clearance_organ": "Unknown",
+    "renal_elimination_fraction": null,
+    "cyp_profile": {
+      "substrates": [],
+      "inhibitors": [],
+      "inducers": [],
+      "pathway_evidence": null
+    },
+    "extra_information": null
+  },
+  "organ_burden_logic": {
+    "note": "한국 허가자료 기반 — 장기 부담 데이터 미제공",
+    "dog": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    },
+    "cat": {
+      "brain": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "blood": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "kidney": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "liver": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      },
+      "heart": {
+        "calculated_score": 0,
+        "triggered_keywords": [],
+        "index": -1,
+        "evidence": "한국 허가자료에서 직접적인 장기 부담 데이터 없음"
+      }
+    }
+  },
+  "timing_profile": {
+    "onset_min": null,
+    "t_max_hr": null,
+    "half_life_hr": {
+      "min": null,
+      "max": null,
+      "mean": null,
+      "species": "unknown"
+    },
+    "f_percent": null,
+    "protein_binding_percent": null,
+    "evidence": null
+  },
+  "_ddi_note": null,
+  "drug_interactions": [],
+  "additive_risks": {
+    "nephrotoxic": false,
+    "hepatotoxic": false,
+    "gi_ulcer": false,
+    "bleeding": false,
+    "sedation": false,
+    "qt_prolongation": false
+  },
+  "risk_flags": {
+    "nephrotoxic": "none",
+    "hepatotoxic": "none",
+    "gi_ulcer": "none",
+    "bleeding": "none",
+    "qt_prolongation": "none"
+  },
+  "species_flags": {
+    "species_contraindicated": [],
+    "mdr1_sensitive": false,
+    "serotonin_syndrome_risk": false,
+    "electrolyte_effect": null,
+    "narrow_therapeutic_index": false,
+    "washout_period_days": null
+  },
+  "dosage_and_kinetics": {
+    "dog": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "linear",
+          "context": "1) 대상동물 \n - 개\n2) 적응증\n - 승모판 역류 또는 확장성 심근병증으로 인한 중등\n   도 및 중증의 심부전의 치료",
+          "value": "0.25",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "SID",
+          "max_dose_mg_kg": null,
+          "duration_note": null,
+          "evidence": "한국 수의약품 허가사항"
+        }
+      ]
+    },
+    "cat": {
+      "is_approved": true,
+      "dosage_list": [
+        {
+          "logic_type": "linear",
+          "context": "1) 대상동물 \n - 개\n2) 적응증\n - 승모판 역류 또는 확장성 심근병증으로 인한 중등\n   도 및 중증의 심부전의 치료",
+          "value": "0.25",
+          "unit": "mg/kg",
+          "route": "PO",
+          "frequency": "SID",
+          "max_dose_mg_kg": null,
+          "duration_note": null,
+          "evidence": "한국 수의약품 허가사항"
+        }
+      ]
+    }
+  },
+  "renal_dose_adjustment": {
+    "creatinine_threshold_dog_mg_dL": null,
+    "creatinine_threshold_cat_mg_dL": null,
+    "adjustment_type": "unknown",
+    "adjustment_factor": null,
+    "note": null
+  },
+  "hepatic_dose_adjustment": {
+    "applies": false,
+    "alt_threshold_multiplier": null,
+    "adjustment_type": "unknown",
+    "note": null
+  },
+  "contraindications": [],
+  "genetic_sensitivity": {
+    "has_genetic_risk": false,
+    "affected_breeds": [],
+    "gene": null,
+    "evidence": null
+  },
+  "effects_and_mechanisms": {
+    "common_mechanism": null,
+    "common_extra_effects": [],
+    "dog_mechanism": null,
+    "dog_extra_effects": [],
+    "cat_mechanism": null,
+    "cat_extra_effects": []
+  },
+  "species_notes": {
+    "dog": "",
+    "cat": ""
+  },
+  "precautions": {
+    "dog": {
+      "status": 0,
+      "evidence": ""
+    },
+    "cat": {
+      "status": 0,
+      "evidence": ""
+    }
+  },
+  "storage_and_forms": {
+    "storage": null,
+    "forms": [
+      "Susp"
+    ]
+  },
+  "section_1_2_10": {
+    "highlights": "1) 대상동물 \n - 개\n2) 적응증\n - 승모판 역류 또는 확장성 심근병증으로 인한 중등\n   도 및 중증의 심부전의 치료",
+    "indications": "1) 대상동물 \n - 개\n2) 적응증\n - 승모판 역류 또는 확장성 심근병증으로 인한 중등\n   도 및 중증의 심부전의 치료",
+    "client_info": ""
+  },
+  "brief_description": "1) 대상동물 \n - 개\n2) 적응증\n - 승모판 역류 또는 확장성 심근병증으로 인한 중등\n   도 및 중증의 심부전의 치료",
+  "primary_indications": [],
+  "mechanism_short": null,
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "- 급성 신부전 환축"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 선천성 심장병 환축"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 안진오텐신전환효소(Angiotensin-Converting"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "enzyme:ACE)저해제에 과민증 병력이 있는 환축"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 혈액동력학적으로 관련된 협착증 환축(대동맥 협"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "착증, 승모판 협착증, 폐동맥판 협착증)"
+    },
+    {
+      "type": "contraindication",
+      "text_ko": "- 폐쇄성 비대성 심근질환 환축"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 드물게 설사, 저혈압 및 피곤, 어지러움 또는 식욕"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "부진과 관련된 증상이 나타날 수 있습니다"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 매우 드물게 구토 증상을 보일 수 있습니다"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 부작용이 나타날 경우 환축이 정상상태가 될 때까"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "지 투여를 중지하십시오"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "- 저혈량/탈수 상태의 개에게 ACE저해제를 투여하면"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "급격한 혈압저하를 일으킬 수 있습니다. 이 경우"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "신속하게 수액과 전해질 균형을 맞춰주고 안정될"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "때까지 본제의 투여를 중지해야 합니다. 초회 투여"
+    },
+    {
+      "type": "adverse_effect",
+      "text_ko": "부텨 정기적으로 신장기능 모니터링이 필요합니다"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 본제는 furosemide또는 digoxin과의 병용 투여가"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 치료기간 동안 고농도의 이뇨제 및 저염도식이의"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "투여는 권태, 운동실조, 실신 및 신부전의 임상 증"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "상을 보이는 저혈압 상태를 피하기 위해 권장되지"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "않습니다. 칼륨보존이뇨제와 병용할 경우에는 고칼"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "륨혈증의 위험이 있으므로 칼륨 농도를 반드시 모"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "임신, 수유축, 신생축, 어린가축, 쇠약축 등에 대"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 임신 및 수유축에 대한 안전성은 확립되어 있지 않"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "으므로 임신, 수유축 및 종축에는 투여하지 마십"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 과량투여시 무기력증 및 운동실조를 동반한 저혈압"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "이 발생할 수 있으니, 증상에 따른 적절한 조치를"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 어린이의 손이 닿지 않고 동물의 접근이 불가능한"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 사용후 용기를 잘 밀페하여 보관하십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 유효기간 경과 시 안전하게 폐기처리 하십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 사용설명서를 충분히 읽어본 후 사용하십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 수의사의 지시에 따라 사용하십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 동물용의약품이므로 사람에게는 절대 사용하지 마"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 제품 취급 시 실수로 섭취한 경우, 즉시 사용설명"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "서를 지참하여 의사의 진료를 받으십시오. 제품 취"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "급 후에는 손을 깨끗이 씻으시고, 눈에 들어갔을"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "경우 충분한 물로 헹궈내십시오"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "- 기타 제품에 대하여 문의하실 사항이 있으신 경우"
+    },
+    {
+      "type": "interaction",
+      "text_ko": "수입판매회사로 연락해 주시기 바랍니다."
+    }
+  ],
+  "_data_quality": {
+    "overall_confidence": 25,
+    "renal_adjustment_confidence": "none",
+    "hepatic_adjustment_confidence": "none",
+    "organ_burden_confidence": "none",
+    "ddi_source": "unknown",
+    "plumbs_sections_found": [],
+    "missing_sections": [
+      "Pharmacology",
+      "Pharmacokinetics",
+      "Contraindications",
+      "Drug Interactions",
+      "Doses",
+      "Adverse Effects"
+    ],
+    "requires_pmc_rag": true,
+    "pmc_rag_fields": [
+      "timing_profile",
+      "drug_interactions",
+      "organ_burden_logic",
+      "cyp_profile"
+    ]
+  },
+  "_extraction_metadata": {
+    "model_used": "regex_parser_v1",
+    "extraction_pass": 1,
+    "source_file": "AZ트/dog_drugs_cleaned.jsonl",
+    "extracted_at": "2026-03-25T07:42:44.199315+00:00",
+    "reviewer": null
+  }
+}

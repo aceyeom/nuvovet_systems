@@ -44,6 +44,12 @@
         "form": "injectable",
         "is_splittable": null
       }
+    ],
+    "product_names_ko": [
+      "프레드니소론(주)"
+    ],
+    "product_names_en": [
+      "PREDNISOLONE"
     ]
   },
   "metabolism_and_clearance": {
@@ -554,5 +560,11 @@
     "각막염(keratitis)",
     "전방 포도막염(anterior uveitis) 등 안구 표면 및 전방 안구 내 염증 치료. 백내장 수술 후 염증 관리. 모든 적응증이 extra-label 사용임 (수의과 허가 제품 없음)."
   ],
-  "mechanism_short": "코르티코스테로이드는 유전자 발현에 대한 직접적 효과 및 세포막과 수용체에 대한 비유전체적 효과를 통해 광범위한 면역조절 및 항염증 작용을 나타냄. 궁극적으로 염증 유발 유전자 전사, 프로스타글란딘 및 류코트리엔 생성, B세포 및 T세포 수와 기능, 세포 매개 면역 및 체액성 면역을 감소시킴."
+  "mechanism_short": "코르티코스테로이드는 유전자 발현에 대한 직접적 효과 및 세포막과 수용체에 대한 비유전체적 효과를 통해 광범위한 면역조절 및 항염증 작용을 나타냄. 궁극적으로 염증 유발 유전자 전사, 프로스타글란딘 및 류코트리엔 생성, B세포 및 T세포 수와 기능, 세포 매개 면역 및 체액성 면역을 감소시킴.",
+  "cautionary_notices_ko": [
+    {
+      "type": "contraindication",
+      "text_ko": "- 수의사의 진료용으로만 사용할 것."
+    }
+  ]
 }
