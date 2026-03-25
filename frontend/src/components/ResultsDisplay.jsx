@@ -22,8 +22,7 @@ import { formatMechanismApi } from '../lib/api';
 function FormattedMechanismText({ text, className = '' }) {
   if (!text) return null;
 
-  // Check if text contains bullet point markers (from AI formatting or templates)
-  const hasBullets = text.includes('•') || text.includes('MECHANISM') || text.includes('RECOMMENDED');
+  const hasBullets = text.includes('•');
 
   if (hasBullets) {
     const lines = text.split('\n');
@@ -32,15 +31,6 @@ function FormattedMechanismText({ text, className = '' }) {
         {lines.map((line, i) => {
           const trimmed = line.trim();
           if (!trimmed) return null;
-          // Section headers (ALL CAPS)
-          if (/^[A-Z\s]{4,}$/.test(trimmed) && !trimmed.startsWith('•')) {
-            return (
-              <p key={i} className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mt-2 first:mt-0">
-                {trimmed}
-              </p>
-            );
-          }
-          // Bullet points
           if (trimmed.startsWith('•')) {
             return (
               <p key={i} className="text-[12px] text-slate-700 leading-relaxed pl-3">
@@ -48,14 +38,12 @@ function FormattedMechanismText({ text, className = '' }) {
               </p>
             );
           }
-          // Regular text
           return <p key={i} className="text-[12px] text-slate-700 leading-relaxed">{trimmed}</p>;
         })}
       </div>
     );
   }
 
-  // Plain text — render as-is
   return <p className={`text-[12px] text-slate-700 leading-relaxed ${className}`}>{text}</p>;
 }
 
@@ -1044,11 +1032,8 @@ function UnifiedAlertCard({ alert, index, acknowledged, noted, onAcknowledge, on
                   <div className="flex items-center gap-1.5 text-[10px] text-blue-500 font-medium mb-1.5">
                     <FlaskConical size={10} />
                     <span>AI-formatted from verified data</span>
-                    {preformatted.data_sources?.length > 0 && (
-                      <span className="text-slate-400 ml-1">(sources: {preformatted.data_sources.join(', ')})</span>
-                    )}
                   </div>
-                  <FormattedMechanismText text={preformatted.formatted_full} />
+                  <FormattedMechanismText text={preformatted.formatted_mechanism} />
                 </>
               ) : (
                 <p className="text-[12px] text-slate-700 leading-relaxed">{mechanism}</p>
@@ -1067,7 +1052,11 @@ function UnifiedAlertCard({ alert, index, acknowledged, noted, onAcknowledge, on
                 <h4 className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
                   권장 조치 / Recommended Action
                 </h4>
-                <p className="typo-rec text-slate-800 leading-relaxed text-[12px]">{preformatted?.formatted_recommendation || recommendation}</p>
+                {preformatted?.formatted_recommendation ? (
+                  <FormattedMechanismText text={preformatted.formatted_recommendation} />
+                ) : (
+                  <p className="typo-rec text-slate-800 leading-relaxed text-[12px]">{recommendation}</p>
+                )}
               </div>
             </div>
           )}
