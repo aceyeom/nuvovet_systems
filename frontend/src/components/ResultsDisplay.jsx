@@ -14,6 +14,7 @@ import { OrganLoadIndicator } from './OrganLoadIndicator';
 import { ConfidenceProvenance } from './ConfidenceProvenance';
 import { ScanExportButton } from './ScanExportPDF';
 import { OwnerHandoutModal } from './OwnerHandoutModal';
+import { OwnerDischargeButton } from './OwnerDischargeNote';
 import { useI18n } from '../i18n';
 import { formatMechanismApi, translateKoreanApi } from '../lib/api';
 
@@ -807,14 +808,15 @@ function ResultsActionBar({ results, patientInfo, drugs, species, lang, t, onOpe
           {' · '}{interactions.length} {t.results.interactionsFound}
         </span>
       </div>
-      <div className="flex flex-col sm:flex-row gap-2">
-        <button
-          onClick={handleEmailPrint}
-          className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-white text-slate-700 text-[13px] font-medium rounded-lg border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition-all"
-        >
-          <Printer size={14} />
-          {t.results.exportSummary}
-        </button>
+      {/* Owner discharge note + clinical PDF row */}
+      <div className="flex flex-col sm:flex-row gap-2 mb-2">
+        <div className="flex-1 flex">
+          <OwnerDischargeButton
+            results={results}
+            patientInfo={patientInfo}
+            drugs={drugs}
+          />
+        </div>
         <div className="flex-1 flex">
           <ScanExportButton
             results={results}
@@ -823,6 +825,15 @@ function ResultsActionBar({ results, patientInfo, drugs, species, lang, t, onOpe
             species={species}
           />
         </div>
+      </div>
+      <div className="flex flex-col sm:flex-row gap-2">
+        <button
+          onClick={handleEmailPrint}
+          className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-white text-slate-700 text-[13px] font-medium rounded-lg border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition-all"
+        >
+          <Printer size={14} />
+          {t.results.exportSummary}
+        </button>
         <button
           onClick={onOpenHandout}
           className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-600 text-white text-[13px] font-medium rounded-lg hover:bg-emerald-700 transition-all"
@@ -1660,6 +1671,11 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
                   <Printer size={13} />
                   {t.results.exportSummary}
                 </button>
+                <OwnerDischargeButton
+                  results={results}
+                  patientInfo={patientInfo}
+                  drugs={drugs}
+                />
                 <ScanExportButton
                   results={results}
                   patientInfo={patientInfo}
