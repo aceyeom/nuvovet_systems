@@ -195,6 +195,280 @@ async def format_mechanism(req: FormatMechanismRequest):
     )
 
 
+# ── Korean Translation Endpoint ──────────────────────────────────────────
+# Translates English clinical text to concise Korean for the results page.
+
+_TRANSLATE_SYSTEM_PROMPT = """당신은 수의 임상 번역가입니다. 영어 수의 임상 텍스트를 한국어로 번역합니다.
+
+규칙:
+1. 약물명(예: Meloxicam, Prednisolone)은 영어 그대로 유지하십시오.
+2. 임상 약어(CYP3A4, GI, PO, BID, SID, TID, IV, mg/kg 등)는 그대로 유지하십시오.
+3. 문장을 간결하게 번역하되, 임상적으로 중요한 정보를 빠뜨리지 마십시오.
+4. 전문 수의사가 이해할 수 있는 수준의 한국어로 작성하십시오.
+5. 입력에 없는 정보를 추가하지 마십시오.
+6. JSON 형식으로만 응답하십시오."""
+
+
+class TranslateKoreanRequest(BaseModel):
+    """Batch translate clinical text fields to Korean."""
+    texts: list[dict]  # [{id: str, mechanism: str, recommendation: str, alternative: str, literatureSummary: str}]
+
+
+class TranslatedItem(BaseModel):
+    id: str
+    mechanism: str = ""
+    recommendation: str = ""
+    alternative: str = ""
+    literatureSummary: str = ""
+
+
+class TranslateKoreanResponse(BaseModel):
+    translations: list[TranslatedItem]
+
+
+@router.post("/translate-korean", response_model=TranslateKoreanResponse)
+async def translate_korean(req: TranslateKoreanRequest):
+    """Translate clinical text to Korean for results page display."""
+    api_key = _ANTHROPIC_API_KEY or os.environ.get("ANTHROPIC_API_KEY")
+    if not api_key:
+        raise HTTPException(status_code=503, detail="ANTHROPIC_API_KEY not set.")
+
+    if not req.texts:
+        return TranslateKoreanResponse(translations=[])
+
+    # Build a batch translation request
+    items_for_llm = []
+    for item in req.texts:
+        entry = {"id": item.get("id", "")}
+        for field in ["mechanism", "recommendation", "alternative", "literatureSummary"]:
+            val = item.get(field, "")
+            if val:
+                entry[field] = val
+        items_for_llm.append(entry)
+
+    user_message = (
+        "아래 JSON 배열의 각 항목에 있는 영어 임상 텍스트를 한국어로 번역하십시오. "
+        "약물명과 임상 약어는 그대로 유지하십시오. "
+        "반드시 동일한 구조의 JSON 배열로만 응답하십시오.\n\n"
+        + json.dumps(items_for_llm, ensure_ascii=False, indent=None)
+    )
+
+    try:
+        import anthropic
+        client = anthropic.Anthropic(api_key=api_key)
+        response = client.messages.create(
+            model="claude-haiku-4-5-20251001",
+            max_tokens=4096,
+            system=_TRANSLATE_SYSTEM_PROMPT,
+            messages=[{"role": "user", "content": user_message}],
+        )
+        raw_text = response.content[0].text.strip()
+        # Extract JSON from response
+        if raw_text.startswith("```"):
+            raw_text = raw_text.split("```")[1]
+            if raw_text.startswith("json"):
+                raw_text = raw_text[4:]
+        parsed = json.loads(raw_text)
+        translations = [TranslatedItem(**item) for item in parsed]
+        return TranslateKoreanResponse(translations=translations)
+    except Exception as e:
+        logger.error(f"Korean translation error: {e}")
+        # Fallback: return originals unchanged
+        fallback = [
+            TranslatedItem(
+                id=item.get("id", ""),
+                mechanism=item.get("mechanism", ""),
+                recommendation=item.get("recommendation", ""),
+                alternative=item.get("alternative", ""),
+                literatureSummary=item.get("literatureSummary", ""),
+            )
+            for item in req.texts
+        ]
+        return TranslateKoreanResponse(translations=fallback)
+
+
+# ── Owner Handout Generation Endpoint ────────────────────────────────────
+# Generates a Korean pet owner discharge instruction from prescription data.
+
+_HANDOUT_SYSTEM_PROMPT = """당신은 수의사를 위한 보호자 안내문 작성 도우미입니다. 처방 데이터를 기반으로 반려동물 보호자가 이해할 수 있는 간결한 한국어 퇴원 안내문을 작성합니다.
+
+규칙:
+1. 의학 전문 용어를 사용하지 말고, 보호자가 이해할 수 있는 쉬운 한국어로 작성하십시오.
+2. 약물명은 한글명과 영문명을 병기하십시오 (예: 멜록시캄(Meloxicam)).
+3. 각 약물에 대해 다음 정보를 포함하십시오:
+   - 투여 방법 (경구/주사 등)
+   - 투여량과 횟수
+   - 식이 주의사항 (공복 투여, 음식과 함께 등)
+   - 주의해야 할 부작용 (1-2가지, 쉬운 말로)
+4. 위험한 약물 조합이 있다면, 보호자가 알아야 할 증상을 간단히 설명하십시오.
+5. 입력 데이터에 없는 정보는 추가하지 마십시오.
+6. 한 페이지 분량으로 간결하게 작성하십시오.
+7. 반드시 JSON 형식으로만 응답하십시오."""
+
+
+class HandoutDrugItem(BaseModel):
+    name: str
+    nameKr: str = ""
+    dose: str = ""
+    unit: str = ""
+    frequency: str = ""
+    route: str = ""
+    duration: str = ""
+    drugClass: str = ""
+    speciesNote: str = ""
+    foodInteraction: str = ""
+    contraindications: list[str] = []
+    sideEffects: str = ""
+
+
+class HandoutPatientInfo(BaseModel):
+    name: str = ""
+    species: str = ""
+    breed: str = ""
+    weight: str = ""
+
+
+class HandoutInteraction(BaseModel):
+    drugA: str = ""
+    drugB: str = ""
+    severity: str = ""
+    rule: str = ""
+    recommendation: str = ""
+
+
+class OwnerHandoutRequest(BaseModel):
+    patient: HandoutPatientInfo
+    drugs: list[HandoutDrugItem]
+    interactions: list[HandoutInteraction] = []
+    clinicName: str = ""
+
+
+class HandoutDrugOutput(BaseModel):
+    name: str = ""
+    howToGive: str = ""
+    doseAndFrequency: str = ""
+    foodNote: str = ""
+    sideEffectsToWatch: str = ""
+
+
+class HandoutWarning(BaseModel):
+    title: str = ""
+    description: str = ""
+
+
+class OwnerHandoutResponse(BaseModel):
+    drugs: list[HandoutDrugOutput]
+    warnings: list[HandoutWarning] = []
+    generalNotes: str = ""
+
+
+@router.post("/owner-handout", response_model=OwnerHandoutResponse)
+async def generate_owner_handout(req: OwnerHandoutRequest):
+    """Generate a Korean pet owner discharge handout from prescription data."""
+    api_key = _ANTHROPIC_API_KEY or os.environ.get("ANTHROPIC_API_KEY")
+    if not api_key:
+        raise HTTPException(status_code=503, detail="ANTHROPIC_API_KEY not set.")
+
+    # Build input data for the LLM
+    drug_data = []
+    for d in req.drugs:
+        entry = {
+            "약물명": f"{d.nameKr or d.name}({d.name})" if d.nameKr else d.name,
+            "용량": d.dose,
+            "단위": d.unit,
+            "횟수": d.frequency,
+            "투여경로": d.route,
+            "투여기간": d.duration,
+            "약효군": d.drugClass,
+        }
+        if d.speciesNote:
+            entry["종별참고"] = d.speciesNote
+        if d.foodInteraction:
+            entry["식이상호작용"] = d.foodInteraction
+        if d.contraindications:
+            entry["금기사항"] = d.contraindications
+        if d.sideEffects:
+            entry["부작용"] = d.sideEffects
+        drug_data.append(entry)
+
+    interaction_data = []
+    for ix in req.interactions:
+        if ix.severity in ("Critical", "Moderate"):
+            interaction_data.append({
+                "약물A": ix.drugA,
+                "약물B": ix.drugB,
+                "심각도": ix.severity,
+                "규칙": ix.rule,
+                "권고": ix.recommendation,
+            })
+
+    input_payload = {
+        "환자": {
+            "이름": req.patient.name,
+            "종": "개" if req.patient.species == "dog" else "고양이" if req.patient.species == "cat" else req.patient.species,
+            "품종": req.patient.breed,
+            "체중": req.patient.weight,
+        },
+        "처방약물": drug_data,
+    }
+    if interaction_data:
+        input_payload["주의해야할_약물조합"] = interaction_data
+
+    user_message = (
+        "아래 처방 데이터를 기반으로 보호자 퇴원 안내문 내용을 JSON으로 작성하십시오.\n\n"
+        "응답 형식:\n"
+        '{"drugs": [{"name": "약물명", "howToGive": "투여 방법", "doseAndFrequency": "용량/횟수", '
+        '"foodNote": "식이 주의", "sideEffectsToWatch": "관찰할 부작용"}], '
+        '"warnings": [{"title": "경고 제목", "description": "설명"}], '
+        '"generalNotes": "일반 주의사항"}\n\n'
+        + json.dumps(input_payload, ensure_ascii=False, indent=2)
+    )
+
+    try:
+        import anthropic
+        client = anthropic.Anthropic(api_key=api_key)
+        response = client.messages.create(
+            model="claude-haiku-4-5-20251001",
+            max_tokens=2048,
+            system=_HANDOUT_SYSTEM_PROMPT,
+            messages=[{"role": "user", "content": user_message}],
+        )
+        raw_text = response.content[0].text.strip()
+        if raw_text.startswith("```"):
+            raw_text = raw_text.split("```")[1]
+            if raw_text.startswith("json"):
+                raw_text = raw_text[4:]
+        parsed = json.loads(raw_text)
+        return OwnerHandoutResponse(**parsed)
+    except Exception as e:
+        logger.error(f"Owner handout generation error: {e}")
+        # Fallback: basic handout from raw data
+        fallback_drugs = []
+        for d in req.drugs:
+            display_name = f"{d.nameKr}({d.name})" if d.nameKr else d.name
+            route_kr = {"PO": "경구 투여 (입으로)", "IV": "정맥 주사", "SC": "피하 주사", "IM": "근육 주사", "Topical": "외용 (바르는 약)"}.get(d.route, d.route)
+            freq_kr = {"SID": "1일 1회", "BID": "1일 2회", "TID": "1일 3회", "QID": "1일 4회", "EOD": "격일", "PRN": "필요 시"}.get(d.frequency, d.frequency)
+            fallback_drugs.append(HandoutDrugOutput(
+                name=display_name,
+                howToGive=route_kr,
+                doseAndFrequency=f"{d.dose} {d.unit} {freq_kr}" if d.dose else freq_kr,
+                foodNote=d.foodInteraction or "",
+                sideEffectsToWatch=d.sideEffects or "",
+            ))
+        fallback_warnings = []
+        for ix in req.interactions:
+            if ix.severity == "Critical":
+                fallback_warnings.append(HandoutWarning(
+                    title=f"{ix.drugA} + {ix.drugB} 주의",
+                    description=ix.recommendation[:200] if ix.recommendation else "",
+                ))
+        return OwnerHandoutResponse(
+            drugs=fallback_drugs,
+            warnings=fallback_warnings,
+            generalNotes="처방 약물은 수의사의 지시에 따라 정확히 투여해 주세요. 이상 증상이 나타나면 즉시 내원해 주세요.",
+        )
+
+
 def _fallback_format(req: FormatMechanismRequest) -> str:
     """Basic structured format when Claude API is unavailable."""
     lines = []

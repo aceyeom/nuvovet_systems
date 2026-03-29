@@ -917,11 +917,14 @@ export function runFullDURAnalysis(drugs, species, weightKg, patient = {}) {
       });
     }
 
-    // MDR1 breed-specific check (enhanced — fires when breed is confirmed in affected list)
+    // MDR1 breed-specific check — only fires when breed is confirmed MDR1-affected
+    // or when breed is unknown (so the vet is warned to check).
+    // Does NOT fire for known non-MDR1 breeds (e.g., Poodle, Labrador).
     if (drug.mdr1Sensitive && species === 'dog') {
       const breed = patient.breed || '';
       const affectedBreeds = drug.geneticSensitivity?.affectedBreeds || [];
       const breedConfirmed = breed && affectedBreeds.some(b => breedMatch(b, breed));
+      const breedIsUnknown = !breed;
 
       if (breedConfirmed) {
         flag.flags.push({
@@ -931,15 +934,16 @@ export function runFullDURAnalysis(drugs, species, weightKg, patient = {}) {
           severity: 'critical',
         });
         flag.hasSpeciesWarning = true;
-      } else {
+      } else if (breedIsUnknown) {
+        // Breed not specified — warn vet to check MDR1 status
         flag.flags.push({
           type: 'mdr1',
           label: 'MDR1 Sensitivity',
-          description: `CRITICAL in MDR1-mutant breeds (Collies, Shelties, Australian Shepherds, Border Collies). Test before prescribing or use alternative. Affected breeds: ${affectedBreeds.join(', ') || 'see breed list'}.`,
-          severity: 'critical',
+          description: `This drug is MDR1/P-gp sensitive. Breed not specified — check if the patient is an MDR1-affected breed before prescribing. Affected breeds: ${affectedBreeds.join(', ') || 'see breed list'}.`,
+          severity: 'warning',
         });
-        flag.hasSpeciesWarning = true;
       }
+      // If breed is known but NOT in the affected list → no MDR1 flag (safe)
     }
 
     results.drugFlags.push(flag);
