@@ -13,8 +13,9 @@ import { NuvovetLogo } from './NuvovetLogo';
 import { OrganLoadIndicator } from './OrganLoadIndicator';
 import { ConfidenceProvenance } from './ConfidenceProvenance';
 import { ScanExportButton } from './ScanExportPDF';
+import { OwnerHandoutModal } from './OwnerHandoutModal';
 import { useI18n } from '../i18n';
-import { formatMechanismApi } from '../lib/api';
+import { formatMechanismApi, translateKoreanApi } from '../lib/api';
 
 // ── Formatted Mechanism Display ─────────────────────────────────
 // Renders mechanism text with structure: either AI-formatted (bullet points)
@@ -91,10 +92,10 @@ function AIFormatButton({ interaction, onFormatted }) {
       <div className="mt-2 space-y-2">
         <div className="flex items-center gap-1.5 text-[10px] text-blue-500 font-medium">
           <FlaskConical size={10} />
-          <span>AI-formatted from verified data</span>
+          <span>AI 기반 정리 완료</span>
           {formatted.data_sources?.length > 0 && (
             <span className="text-slate-400 ml-1">
-              (sources: {formatted.data_sources.join(', ')})
+              (출처: {formatted.data_sources.join(', ')})
             </span>
           )}
         </div>
@@ -110,7 +111,7 @@ function AIFormatButton({ interaction, onFormatted }) {
       className="flex items-center gap-1.5 text-[10px] font-medium text-blue-500 hover:text-blue-700 transition-colors mt-1.5 disabled:opacity-50"
     >
       <FlaskConical size={10} />
-      {loading ? 'Formatting...' : 'Format with AI'}
+      {loading ? '정리 중...' : 'AI로 정리'}
     </button>
   );
 }
@@ -135,7 +136,7 @@ function DemoUpgradeBanner({ lang }) {
           onClick={() => navigate('/pricing')}
           className="shrink-0 inline-flex items-center gap-2 px-6 py-3 bg-white text-slate-900 text-sm font-bold rounded-xl hover:bg-slate-100 transition-colors"
         >
-          {lang === 'ko' ? '플랜 보기 / View Plans' : 'View Plans'}
+          {lang === 'ko' ? '플랜 보기' : 'View Plans'}
           <ArrowRight size={14} />
         </button>
       </div>
@@ -285,7 +286,7 @@ function PatientRiskProfile({ patientAlerts = [], lang }) {
       <div className="flex items-center gap-1.5 mt-2 pt-2 border-t border-slate-100">
         <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
         <span className="text-[11px] text-emerald-600 font-medium">
-          환자 특이 위험 요소 없음 / No patient-specific risk factors
+          {lang === 'ko' ? '환자 특이 위험 요소 없음' : 'No patient-specific risk factors'}
         </span>
       </div>
     );
@@ -294,7 +295,7 @@ function PatientRiskProfile({ patientAlerts = [], lang }) {
   return (
     <div className="mt-3 pt-3 border-t border-slate-100">
       <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">
-        환자 위험 프로필 / Risk Profile
+        {lang === 'ko' ? '환자 위험 프로필' : 'Risk Profile'}
       </p>
       <div className="space-y-1.5">
         {activeFields.map(([field, alerts]) => {
@@ -468,7 +469,7 @@ function WhyDangerousPanel({ interaction, t }) {
             {t.results.mechanismSection}
           </p>
           <p className="text-[12px] text-slate-700 leading-relaxed">
-            {interaction.mechanism || <span className="text-slate-400 italic">기전 상세 정보를 현재 데이터베이스에서 확인할 수 없습니다. / Mechanism detail not available in current database.</span>}
+            {interaction.mechanism || <span className="text-slate-400 italic">기전 상세 정보를 현재 데이터베이스에서 확인할 수 없습니다.</span>}
           </p>
         </div>
         <div className="flex items-start gap-2 bg-red-100 border border-red-300 rounded-lg px-3 py-2.5">
@@ -507,7 +508,7 @@ function WhyDangerousPanel({ interaction, t }) {
               {t.results.mechanismSection}
             </p>
             <p className="text-[12px] text-slate-700 leading-relaxed">
-              {interaction.mechanism || <span className="text-slate-400 italic">기전 상세 정보를 현재 데이터베이스에서 확인할 수 없습니다. / Mechanism detail not available in current database.</span>}
+              {interaction.mechanism || <span className="text-slate-400 italic">기전 상세 정보를 현재 데이터베이스에서 확인할 수 없습니다.</span>}
             </p>
           </div>
           {interaction.literatureSummary && (
@@ -656,7 +657,7 @@ function InteractionCard({ interaction, index, acknowledged, noted, onAcknowledg
                 {/* Interaction-level literature references */}
                 {(interaction.literature || []).length > 0 && (
                   <div>
-                    <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Rule References</p>
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">규칙 참고문헌</p>
                     {interaction.literature.map((ref, i) => (
                       <div key={`rule-${i}`} className="text-[11px] text-slate-500 px-2.5 py-1.5 bg-slate-50 rounded mb-1">
                         <p className="font-medium text-slate-600">{ref.title}</p>
@@ -681,7 +682,7 @@ function InteractionCard({ interaction, index, acknowledged, noted, onAcknowledg
                   if (uniqueRefs.length === 0) return null;
                   return (
                     <div>
-                      <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">PMC Literature</p>
+                      <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">PMC 문헌</p>
                       {uniqueRefs.map((ref, i) => (
                         <div key={`pmc-${i}`} className="text-[11px] text-slate-500 px-2.5 py-1.5 bg-blue-50/50 rounded mb-1 border border-blue-100/50">
                           <p className="font-medium text-slate-600">{ref.title}</p>
@@ -785,7 +786,7 @@ function DrugFlagCard({ drugFlag, species }) {
 }
 
 // ── Action Bar (always visible at bottom of results) ────────────
-function ResultsActionBar({ results, patientInfo, drugs, species, lang, t }) {
+function ResultsActionBar({ results, patientInfo, drugs, species, lang, t, onOpenHandout }) {
   const { drugFlags, interactions } = results;
 
   const handleEmailPrint = () => {
@@ -822,6 +823,13 @@ function ResultsActionBar({ results, patientInfo, drugs, species, lang, t }) {
             species={species}
           />
         </div>
+        <button
+          onClick={onOpenHandout}
+          className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-600 text-white text-[13px] font-medium rounded-lg hover:bg-emerald-700 transition-all"
+        >
+          <FileText size={14} />
+          {lang === 'ko' ? '보호자 안내문' : 'Owner Handout'}
+        </button>
         <button
           onClick={() => {
             const subject = encodeURIComponent(
@@ -972,7 +980,7 @@ function UnifiedAlertCard({ alert, index, acknowledged, noted, onAcknowledge, on
   const subtitle = alert._src === 'interaction'
     ? alert.rule
     : alert._src === 'patientAlert'
-    ? (alert.drug ? `약물: ${alert.drug}` : '')
+    ? (alert.drug ? (lang === 'ko' ? `약물: ${alert.drug}` : `Drug: ${alert.drug}`) : '')
     : alert._src === 'drugFlag'
     ? (alert.flags || []).map(f => f.label).join(', ')
     : '';
@@ -1001,7 +1009,7 @@ function UnifiedAlertCard({ alert, index, acknowledged, noted, onAcknowledge, on
               )}
               {wasRefined && alert._src === 'interaction' && (
                 <span className="text-[9px] font-medium text-purple-600 bg-purple-50 border border-purple-100 px-1.5 py-0.5 rounded-full">
-                  ✦ Refined
+                  ✦ {lang === 'ko' ? '정밀분석' : 'Refined'}
                 </span>
               )}
             </div>
@@ -1025,13 +1033,13 @@ function UnifiedAlertCard({ alert, index, acknowledged, noted, onAcknowledge, on
           {mechanism && (
             <div className="px-4 py-3 bg-white border-t border-slate-100/50">
               <h4 className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
-                기전 / Mechanism
+                {lang === 'ko' ? '기전' : 'Mechanism'}
               </h4>
               {preformatted ? (
                 <>
                   <div className="flex items-center gap-1.5 text-[10px] text-blue-500 font-medium mb-1.5">
                     <FlaskConical size={10} />
-                    <span>AI-formatted from verified data</span>
+                    <span>AI 기반 정리 완료</span>
                   </div>
                   <FormattedMechanismText text={preformatted.formatted_mechanism} />
                 </>
@@ -1050,7 +1058,7 @@ function UnifiedAlertCard({ alert, index, acknowledged, noted, onAcknowledge, on
                 'bg-blue-50 border-blue-100'
               }`}>
                 <h4 className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
-                  권장 조치 / Recommended Action
+                  {lang === 'ko' ? '권장 조치' : 'Recommended Action'}
                 </h4>
                 {preformatted?.formatted_recommendation ? (
                   <FormattedMechanismText text={preformatted.formatted_recommendation} />
@@ -1068,7 +1076,7 @@ function UnifiedAlertCard({ alert, index, acknowledged, noted, onAcknowledge, on
                 <Lightbulb size={13} className="text-emerald-600 shrink-0 mt-0.5" />
                 <div>
                   <p className="text-[11px] font-semibold text-emerald-700 uppercase tracking-wider mb-0.5">
-                    대안 제안 / Alternative
+                    {lang === 'ko' ? '대안 제안' : 'Alternative'}
                   </p>
                   <p className="text-[12px] text-emerald-800 font-medium leading-relaxed">{alert.alternativeSuggestion}</p>
                 </div>
@@ -1084,16 +1092,16 @@ function UnifiedAlertCard({ alert, index, acknowledged, noted, onAcknowledge, on
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-medium transition-all ${acknowledged ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-white text-slate-500 border border-slate-200 hover:border-slate-300'}`}
               >
                 <Check size={12} className={acknowledged ? 'text-emerald-600' : 'text-slate-400'} />
-                확인됨 / Reviewed
+                {lang === 'ko' ? '확인됨' : 'Reviewed'}
               </button>
               <button
                 onClick={(e) => { e.stopPropagation(); onNote?.(); }}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-medium transition-all ${noted ? 'bg-slate-100 text-slate-600 border border-slate-300' : 'bg-white text-slate-400 border border-slate-200 hover:border-slate-300'}`}
               >
                 <Flag size={10} />
-                메모됨 / Noted
+                {lang === 'ko' ? '메모됨' : 'Noted'}
               </button>
-              <span className="text-[10px] text-slate-400 ml-auto italic">임상 판단이 우선합니다</span>
+              <span className="text-[10px] text-slate-400 ml-auto italic">{lang === 'ko' ? '임상 판단이 우선합니다' : 'Clinical judgment takes priority'}</span>
             </div>
           )}
         </div>
@@ -1107,6 +1115,7 @@ function AlertPriorityStack({
   interactions, patientAlerts, drugFlags, speciesNotes, flaggedDrugs,
   acknowledged, noted, setAcknowledged, setNoted,
   isFullSystem, wasRefined, species, lang, t, preformattedData,
+  koTranslations = {}, koTranslating = false,
 }) {
   // Build unified alert list with deduplication
   const allAlerts = useMemo(() => {
@@ -1182,12 +1191,28 @@ function AlertPriorityStack({
     return alerts;
   }, [interactions, patientAlerts, flaggedDrugs, speciesNotes]);
 
-  // Tier the alerts
-  const tier1 = allAlerts.filter(a => a.severity?.label === 'Critical');
-  const tier2 = allAlerts.filter(a => a.severity?.label === 'Moderate');
-  const tier3 = allAlerts.filter(a => a.severity?.label !== 'Critical' && a.severity?.label !== 'Moderate');
+  // Apply Korean translations to alerts when available
+  const translatedAlerts = useMemo(() => {
+    if (lang !== 'ko' || Object.keys(koTranslations).length === 0) return allAlerts;
+    return allAlerts.map(alert => {
+      const tr = koTranslations[alert._uid];
+      if (!tr) return alert;
+      return {
+        ...alert,
+        mechanism: tr.mechanism || alert.mechanism,
+        recommendation: tr.recommendation || alert.recommendation,
+        alternativeSuggestion: tr.alternative || alert.alternativeSuggestion,
+        literatureSummary: tr.literatureSummary || alert.literatureSummary,
+      };
+    });
+  }, [allAlerts, koTranslations, lang]);
 
-  const totalAlerts = allAlerts.length;
+  // Tier the alerts
+  const tier1 = translatedAlerts.filter(a => a.severity?.label === 'Critical');
+  const tier2 = translatedAlerts.filter(a => a.severity?.label === 'Moderate');
+  const tier3 = translatedAlerts.filter(a => a.severity?.label !== 'Critical' && a.severity?.label !== 'Moderate');
+
+  const totalAlerts = translatedAlerts.length;
   if (totalAlerts === 0) {
     return (
       <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-6 text-center">
@@ -1242,20 +1267,26 @@ function AlertPriorityStack({
 
   return (
     <div className="space-y-5">
+      {koTranslating && lang === 'ko' && (
+        <div className="flex items-center gap-2 px-3 py-2 bg-blue-50 border border-blue-200 rounded-lg text-[12px] text-blue-700">
+          <div className="w-3 h-3 border-2 border-blue-400 border-t-transparent rounded-full animate-spin" />
+          한국어 번역 중...
+        </div>
+      )}
       <TierSection
-        title="즉시 확인 필요 / Requires Immediate Review"
+        title={lang === 'ko' ? '즉시 확인 필요' : 'Requires Immediate Review'}
         alerts={tier1}
         color="red"
         icon={AlertTriangle}
       />
       <TierSection
-        title="모니터링 필요 / Monitor Closely"
+        title={lang === 'ko' ? '모니터링 필요' : 'Monitor Closely'}
         alerts={tier2}
         color="amber"
         icon={AlertCircle}
       />
       <TierSection
-        title="참고 사항 / Notes"
+        title={lang === 'ko' ? '참고 사항' : 'Notes'}
         alerts={tier3}
         color="slate"
         icon={Info}
@@ -1306,7 +1337,7 @@ function InteractionMatrix({ drugs, interactions, lang }) {
   return (
     <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
       <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-3">
-        상호작용 매트릭스 / Interaction Matrix
+        {lang === 'ko' ? '상호작용 매트릭스' : 'Interaction Matrix'}
       </p>
       <div className="overflow-x-auto">
         <table className="w-full border-collapse">
@@ -1383,6 +1414,57 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
   const [isDiagnosisToastFading, setIsDiagnosisToastFading] = useState(false);
   const diagnosisToastFadeRef = useRef(null);
   const diagnosisToastHideRef = useRef(null);
+  const [showHandoutModal, setShowHandoutModal] = useState(false);
+
+  // ── Korean translation of clinical text ──────────────────────────
+  const [koTranslations, setKoTranslations] = useState({});
+  const [koTranslating, setKoTranslating] = useState(false);
+
+  useEffect(() => {
+    if (lang !== 'ko') return;
+    if (koTranslating || Object.keys(koTranslations).length > 0) return;
+
+    // Collect all English clinical texts that need translation
+    const textsToTranslate = [];
+
+    interactions.forEach((ix, i) => {
+      if (ix.mechanism || ix.recommendation || ix.alternativeSuggestion || ix.literatureSummary) {
+        textsToTranslate.push({
+          id: `ix-${i}`,
+          mechanism: ix.mechanism || '',
+          recommendation: ix.recommendation || '',
+          alternative: ix.alternativeSuggestion || '',
+          literatureSummary: ix.literatureSummary || '',
+        });
+      }
+    });
+
+    patientAlerts.forEach((pa, i) => {
+      if (pa.mechanism || pa.recommendation) {
+        textsToTranslate.push({
+          id: `pa-${i}`,
+          mechanism: pa.mechanism || '',
+          recommendation: pa.recommendation || '',
+          alternative: '',
+          literatureSummary: '',
+        });
+      }
+    });
+
+    if (textsToTranslate.length === 0) return;
+
+    setKoTranslating(true);
+    translateKoreanApi(textsToTranslate)
+      .then(result => {
+        if (result?.translations) {
+          const map = {};
+          result.translations.forEach(t => { map[t.id] = t; });
+          setKoTranslations(map);
+        }
+      })
+      .catch(() => {})
+      .finally(() => setKoTranslating(false));
+  }, [lang, interactions, patientAlerts]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (allReviewed) {
@@ -1447,10 +1529,10 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
                   ? 'text-white bg-slate-900 border-slate-900 hover:bg-slate-800'
                   : 'text-slate-400 bg-slate-100 border-slate-200 cursor-not-allowed'
               }`}
-              title="Complete and record diagnosis"
+              title={lang === 'ko' ? '완료 및 진료 기록' : 'Complete and record diagnosis'}
             >
               <CheckCircle size={14} />
-              Complete and record diagnosis
+              {lang === 'ko' ? '완료 및 진료 기록' : 'Complete and record diagnosis'}
             </button>
           </div>
           )}
@@ -1500,6 +1582,8 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
               lang={lang}
               t={t}
               preformattedData={results.preformattedData}
+              koTranslations={koTranslations}
+              koTranslating={koTranslating}
             />
 
             {/* Interaction Severity Matrix — 3+ drugs AND at least 1 interaction */}
@@ -1520,6 +1604,7 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
                 species={species}
                 lang={lang}
                 t={t}
+                onOpenHandout={() => setShowHandoutModal(true)}
               />
             )}
 
@@ -1555,7 +1640,7 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
             isDiagnosisToastFading ? 'opacity-0' : 'opacity-100'
           }`}
         >
-          <p className="text-[12px] font-semibold text-emerald-700">Diagnosis was recorded.</p>
+          <p className="text-[12px] font-semibold text-emerald-700">{lang === 'ko' ? '진료 기록이 저장되었습니다.' : 'Diagnosis was recorded.'}</p>
         </div>
       )}
 
@@ -1586,6 +1671,16 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
           </div>
         </div>
       )}
+
+      {/* Owner Handout Modal */}
+      <OwnerHandoutModal
+        open={showHandoutModal}
+        onClose={() => setShowHandoutModal(false)}
+        drugs={drugs}
+        interactions={interactions}
+        patientInfo={patientInfo}
+        species={species}
+      />
     </>
   );
 }

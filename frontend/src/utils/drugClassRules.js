@@ -174,8 +174,8 @@ const DRUG_DISEASE_RULES = [
  * @returns {Array<{type, severity, message, matchedCondition}>}
  */
 export function checkDrugDiseaseRules(drug, conditions, species) {
-  if (!conditions || conditions.length === 0) return [];
   const alerts = [];
+  const safeConditions = conditions || [];
 
   for (const rule of DRUG_DISEASE_RULES) {
     // Species filter
@@ -183,7 +183,8 @@ export function checkDrugDiseaseRules(drug, conditions, species) {
 
     if (!nameOrClassMatches(drug, rule.drugTerms)) continue;
 
-    // Special case: cisplatin in cats triggers regardless of condition
+    // Special case: species-level contraindication triggers regardless of condition
+    // (e.g., cisplatin in cats is always contraindicated)
     if (rule.conditionTerms.includes('any') && rule.species === species) {
       alerts.push({
         type: 'drug-disease',
@@ -194,7 +195,10 @@ export function checkDrugDiseaseRules(drug, conditions, species) {
       continue;
     }
 
-    for (const cond of conditions) {
+    // Condition-based rules require conditions to be present
+    if (safeConditions.length === 0) continue;
+
+    for (const cond of safeConditions) {
       if (rule.conditionTerms.some(t => cond.toLowerCase().includes(t.toLowerCase()))) {
         alerts.push({
           type: 'drug-disease',

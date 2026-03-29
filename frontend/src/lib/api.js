@@ -280,3 +280,27 @@ export async function formatMechanismApi(data) {
     body: JSON.stringify(data),
   });
 }
+
+/**
+ * Translate clinical text fields to Korean.
+ * @param {Array<{id, mechanism, recommendation, alternative, literatureSummary}>} texts
+ * @returns {Promise<{translations: Array}|null>}
+ */
+export async function translateKoreanApi(texts) {
+  return apiFetch('/api/format/translate-korean', {
+    method: 'POST',
+    body: JSON.stringify({ texts }),
+  }, 30000);
+}
+
+/**
+ * Generate a Korean pet owner discharge handout.
+ * @param {object} data - { patient, drugs, interactions, clinicName }
+ * @returns {Promise<{drugs, warnings, generalNotes}|null>}
+ */
+export async function generateOwnerHandoutApi(data) {
+  return apiFetch('/api/format/owner-handout', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  }, 30000);
+}
