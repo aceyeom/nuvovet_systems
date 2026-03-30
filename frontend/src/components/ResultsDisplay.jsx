@@ -3,8 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   AlertTriangle, AlertCircle, Info, CheckCircle, ChevronDown, ChevronUp,
   BookOpen, FlaskConical, Globe, HelpCircle, Dna, ArrowLeft,
-  Check, Lightbulb, FileText, Clock, Pill, Flag, Printer, Download,
-  Mail, Send, ArrowRight
+  Check, Lightbulb, FileText, Clock, Pill, Flag, ArrowRight
 } from 'lucide-react';
 import { SeverityBadge } from './SeverityBadge';
 import { DRUG_SOURCE } from '../data/drugDatabase';
@@ -12,8 +11,7 @@ import { DRUG_SOURCE } from '../data/drugDatabase';
 import { NuvovetLogo } from './NuvovetLogo';
 import { OrganLoadIndicator } from './OrganLoadIndicator';
 import { ConfidenceProvenance } from './ConfidenceProvenance';
-import { ScanExportButton } from './ScanExportPDF';
-import { OwnerHandoutModal } from './OwnerHandoutModal';
+import { OwnerDischargeButton } from './OwnerDischargeNote';
 import { useI18n } from '../i18n';
 import { formatMechanismApi, translateKoreanApi } from '../lib/api';
 
@@ -346,6 +344,24 @@ function PatientSummaryPanel({ results, patientInfo, drugs = [], species = 'dog'
   const { t, lang } = useI18n();
   const { interactions, drugFlags, confidenceScore } = results;
   const patientAlerts = results.patientAlerts || [];
+  const summaryStats = [
+    { label: lang === 'ko' ? '처방 약물' : 'Drugs', value: drugFlags.length },
+    { label: lang === 'ko' ? '상호작용' : 'Interactions', value: interactions.length },
+    { label: lang === 'ko' ? '환자 주의' : 'Patient alerts', value: patientAlerts.length },
+  ];
+
+  const prescriptionRows = drugs.slice(0, 5).map((drug) => {
+    const regimen = [drug.freq, drug.route, drug.prescriptionDays ? `${drug.prescriptionDays}d` : null]
+      .filter(Boolean)
+      .join(' · ');
+
+    return {
+      id: drug.id,
+      name: drug.nameKr || drug.name,
+      subtitle: drug.nameKr && drug.name ? drug.name : regimen,
+      regimen: drug.nameKr && regimen ? regimen : '',
+    };
+  });
 
   return (
     <div className="space-y-3">
@@ -362,31 +378,31 @@ function PatientSummaryPanel({ results, patientInfo, drugs = [], species = 'dog'
               />
             </div>
           )}
-          <h3 className="typo-section-header mb-3">{t.results.patient}</h3>
-          <div className="space-y-1.5">
-            <div className="flex justify-between items-baseline gap-2">
-              <span className="typo-label shrink-0">{t.results.patient}</span>
-              <span className="typo-drug-name text-[13px] text-right truncate">{patientInfo.name}</span>
+          <div className="flex items-start justify-between gap-3 mb-3">
+            <div className="min-w-0">
+              <h3 className="typo-section-header">{patientInfo.name}</h3>
+              <p className="text-[12px] text-slate-500 mt-1">
+                {[
+                  patientInfo.species ? (patientInfo.species === 'dog' ? t.species.dog : t.species.cat) : null,
+                  patientInfo.breed || null,
+                  patientInfo.weight ? `${patientInfo.weight} kg` : null,
+                ].filter(Boolean).join(' · ')}
+              </p>
             </div>
-            {patientInfo.species && (
-              <div className="flex justify-between items-baseline gap-2">
-                <span className="typo-label shrink-0">{t.results.species}</span>
-                <span className="text-[13px] font-medium text-slate-700 text-right">{patientInfo.species === 'dog' ? t.species.dog : t.species.cat}</span>
-              </div>
-            )}
-            {patientInfo.breed && (
-              <div className="flex justify-between items-baseline gap-2">
-                <span className="typo-label shrink-0">{t.results.breed}</span>
-                <span className="text-[13px] font-medium text-slate-700 text-right truncate">{patientInfo.breed}</span>
-              </div>
-            )}
-            {patientInfo.weight && (
-              <div className="flex justify-between items-baseline gap-2">
-                <span className="typo-label shrink-0">{t.results.weight}</span>
-                <span className="text-[13px] font-medium text-slate-700">{patientInfo.weight} kg</span>
-              </div>
-            )}
+            <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-2 py-1 rounded-full shrink-0">
+              {lang === 'ko' ? '환자 요약' : 'Patient Summary'}
+            </span>
           </div>
+
+          <div className="grid grid-cols-3 gap-2">
+            {summaryStats.map((stat) => (
+              <div key={stat.label} className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5">
+                <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">{stat.label}</p>
+                <p className="mt-1 text-[18px] font-semibold text-slate-900">{stat.value}</p>
+              </div>
+            ))}
+          </div>
+
           {patientInfo.conditions && patientInfo.conditions.length > 0 && (
             <div className="mt-3 pt-3 border-t border-slate-100">
               <span className="typo-label block mb-1.5">{t.results.conditions}</span>
@@ -410,25 +426,34 @@ function PatientSummaryPanel({ results, patientInfo, drugs = [], species = 'dog'
             </div>
           )}
 
+          {prescriptionRows.length > 0 && (
+            <div className="mt-3 pt-3 border-t border-slate-100">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="typo-label">{lang === 'ko' ? '처방 요약' : 'Prescription Snapshot'}</span>
+                {drugs.length > 5 && (
+                  <span className="text-[10px] text-slate-400">+{drugs.length - 5}</span>
+                )}
+              </div>
+              <div className="space-y-2">
+                {prescriptionRows.map((drug) => (
+                  <div key={drug.id} className="rounded-lg border border-slate-100 bg-slate-50 px-3 py-2">
+                    <p className="text-[12px] font-semibold text-slate-800 truncate">{drug.name}</p>
+                    {drug.subtitle && (
+                      <p className="text-[10px] text-slate-400 truncate mt-0.5">{drug.subtitle}</p>
+                    )}
+                    {drug.regimen && (
+                      <p className="text-[10px] text-slate-500 mt-1">{drug.regimen}</p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Patient Risk Profile — only shows fields that triggered alerts */}
           <PatientRiskProfile patientAlerts={patientAlerts} lang={lang} />
         </div>
       )}
-
-      {/* Scan summary — drug count + interaction count only (severity breakdown is in the banner above) */}
-      <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
-        <h3 className="typo-section-header mb-3">{t.results.scanSummary}</h3>
-        <div className="space-y-2">
-          <div className="flex justify-between items-center">
-            <span className="typo-label">{t.results.drugsScreened}</span>
-            <span className="typo-score font-semibold text-slate-900">{drugFlags.length}</span>
-          </div>
-          <div className="flex justify-between items-center">
-            <span className="typo-label">{t.results.interactions}</span>
-            <span className="typo-score font-semibold text-slate-900">{interactions.length}</span>
-          </div>
-        </div>
-      </div>
 
       {/* Cumulative Organ Load — prominent, always expanded (core differentiator) */}
       <OrganLoadIndicator drugs={drugs} patientInfo={patientInfo} species={species} />
@@ -786,13 +811,8 @@ function DrugFlagCard({ drugFlag, species }) {
 }
 
 // ── Action Bar (always visible at bottom of results) ────────────
-function ResultsActionBar({ results, patientInfo, drugs, species, lang, t, onOpenHandout }) {
+function ResultsActionBar({ results, patientInfo, drugs, lang, t }) {
   const { drugFlags, interactions } = results;
-
-  const handleEmailPrint = () => {
-    // Open print dialog — doctor can print-to-PDF and email
-    window.print();
-  };
 
   return (
     <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm no-print">
@@ -807,48 +827,12 @@ function ResultsActionBar({ results, patientInfo, drugs, species, lang, t, onOpe
           {' · '}{interactions.length} {t.results.interactionsFound}
         </span>
       </div>
-      <div className="flex flex-col sm:flex-row gap-2">
-        <button
-          onClick={handleEmailPrint}
-          className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-white text-slate-700 text-[13px] font-medium rounded-lg border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition-all"
-        >
-          <Printer size={14} />
-          {t.results.exportSummary}
-        </button>
-        <div className="flex-1 flex">
-          <ScanExportButton
-            results={results}
-            patientInfo={patientInfo}
-            drugs={drugs}
-            species={species}
-          />
-        </div>
-        <button
-          onClick={onOpenHandout}
-          className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-600 text-white text-[13px] font-medium rounded-lg hover:bg-emerald-700 transition-all"
-        >
-          <FileText size={14} />
-          {lang === 'ko' ? '보호자 안내문' : 'Owner Handout'}
-        </button>
-        <button
-          onClick={() => {
-            const subject = encodeURIComponent(
-              lang === 'ko'
-                ? `NUVOVET DUR 보고서 — ${patientInfo?.name || '환자'}`
-                : `NUVOVET DUR Report — ${patientInfo?.name || 'Patient'}`
-            );
-            const body = encodeURIComponent(
-              lang === 'ko'
-                ? `DUR 분석 보고서\n\n환자: ${patientInfo?.name || '—'}\n날짜: ${new Date().toLocaleDateString('ko-KR')}\n검사 약물 수: ${drugFlags.length}\n발견된 상호작용: ${interactions.length}\n\n상세 내용은 전체 보고서를 출력하여 확인해 주세요.`
-                : `DUR Analysis Report\n\nPatient: ${patientInfo?.name || '—'}\nDate: ${new Date().toLocaleDateString()}\nDrugs screened: ${drugFlags.length}\nInteractions found: ${interactions.length}\n\nPlease print the full report for details.`
-            );
-            window.location.href = `mailto:?subject=${subject}&body=${body}`;
-          }}
-          className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-900 text-white text-[13px] font-medium rounded-lg hover:bg-slate-800 transition-all"
-        >
-          <Mail size={14} />
-          {t.results.sendViaEmail}
-        </button>
+      <div className="flex">
+        <OwnerDischargeButton
+          results={results}
+          patientInfo={patientInfo}
+          drugs={drugs}
+        />
       </div>
     </div>
   );
@@ -1414,7 +1398,6 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
   const [isDiagnosisToastFading, setIsDiagnosisToastFading] = useState(false);
   const diagnosisToastFadeRef = useRef(null);
   const diagnosisToastHideRef = useRef(null);
-  const [showHandoutModal, setShowHandoutModal] = useState(false);
 
   // ── Korean translation of clinical text ──────────────────────────
   const [koTranslations, setKoTranslations] = useState({});
@@ -1601,10 +1584,8 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
                 results={results}
                 patientInfo={patientInfo}
                 drugs={drugs}
-                species={species}
                 lang={lang}
                 t={t}
-                onOpenHandout={() => setShowHandoutModal(true)}
               />
             )}
 
@@ -1648,39 +1629,17 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
       {showScanBar && !demoMode && (
         <div className="fixed bottom-0 left-0 right-0 z-30 no-print animate-slide-up-bar">
           <div className="bg-white border-t border-slate-200 shadow-lg px-4 sm:px-6 py-3">
-            <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
+            <div className="max-w-6xl mx-auto flex items-center gap-4">
               <div className="flex items-center gap-2 min-w-0">
                 <CheckCircle size={16} className="text-emerald-500 shrink-0" />
                 <span className="text-[13px] font-medium text-slate-700 truncate">
                   {t.results.allReviewed} · {drugFlags.length} {t.results.drugCountLabel} · {interactions.length} {t.results.interactionsFound}
                 </span>
               </div>
-              <div className="flex items-center gap-2 shrink-0">
-                <button onClick={() => window.print()} className="flex items-center gap-1.5 px-3 py-2 bg-white text-slate-700 text-[12px] font-medium rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors">
-                  <Printer size={13} />
-                  {t.results.exportSummary}
-                </button>
-                <ScanExportButton
-                  results={results}
-                  patientInfo={patientInfo}
-                  drugs={drugs}
-                  species={species}
-                />
-              </div>
             </div>
           </div>
         </div>
       )}
-
-      {/* Owner Handout Modal */}
-      <OwnerHandoutModal
-        open={showHandoutModal}
-        onClose={() => setShowHandoutModal(false)}
-        drugs={drugs}
-        interactions={interactions}
-        patientInfo={patientInfo}
-        species={species}
-      />
     </>
   );
 }

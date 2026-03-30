@@ -4,6 +4,22 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import * as THREE from 'three';
 import { useI18n } from '../../i18n';
 
+function clamp01(value) {
+  return Math.max(0, Math.min(1, value));
+}
+
+function mix(start, end, progress) {
+  return start + (end - start) * progress;
+}
+
+function mixColor(from, to, progress) {
+  const amount = clamp01(progress);
+  const red = Math.round(mix(from[0], to[0], amount));
+  const green = Math.round(mix(from[1], to[1], amount));
+  const blue = Math.round(mix(from[2], to[2], amount));
+  return `rgb(${red}, ${green}, ${blue})`;
+}
+
 /* ─── Three.js Shader (exact reference animation) ────────────────── */
 
 const vertexShader = `
@@ -115,45 +131,42 @@ function ShaderCanvas() {
 
 /* ─── Navigation ──────────────────────────────────────────────────── */
 
-function Nav() {
+function Nav({ progress }) {
   const navigate = useNavigate();
   const { t, lang } = useI18n();
-  const [scrolled, setScrolled] = useState(false);
   const l = lang || 'ko';
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  const navProgress = clamp01(progress * 1.2);
+  const logoColor = mixColor([255, 255, 255], [15, 23, 42], navProgress);
+  const navStyle = {
+    backgroundColor: `rgba(255, 255, 255, ${mix(0, 0.92, navProgress)})`,
+    borderBottomColor: `rgba(226, 232, 240, ${mix(0, 0.9, navProgress)})`,
+    boxShadow: `0 10px 30px rgba(15, 23, 42, ${mix(0, 0.08, navProgress)})`,
+    backdropFilter: `blur(${mix(0, 18, navProgress)}px)`,
+  };
+  const primaryStyle = navProgress > 0.55
+    ? 'bg-slate-900 text-white hover:bg-slate-800'
+    : 'bg-white text-[#050510] hover:bg-white/90';
 
   return (
     <motion.nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? 'bg-white/90 backdrop-blur-xl border-b border-slate-200/70 shadow-sm'
-          : 'bg-transparent'
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 border-b transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300"
+      style={navStyle}
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.2 }}
     >
       <div className="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+        {/* nuvovet text logo */}
         <span
-          className={`text-[24px] font-black tracking-[-0.045em] leading-none select-none transition-colors duration-500 ${
-            scrolled ? 'text-slate-900' : 'text-white'
-          }`}
+          className="text-[24px] font-black tracking-[-0.045em] leading-none select-none transition-colors duration-300"
+          style={{ color: logoColor }}
         >
           nuvovet
         </span>
 
         <button
           onClick={() => navigate('/register')}
-          className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-500 ${
-            scrolled
-              ? 'bg-slate-900 text-white hover:bg-slate-800'
-              : 'bg-white text-[#050510] hover:bg-white/90'
-          }`}
+          className={`px-5 py-2 rounded-full text-sm font-semibold transition-all ${primaryStyle}`}
         >
           {t.landing?.ctaPrimary || (l === 'ko' ? '무료로 시작' : 'Start Free')}
         </button>
@@ -185,108 +198,211 @@ export default function ShaderHero() {
   const navigate = useNavigate();
   const { t, lang } = useI18n();
   const l = lang || 'ko';
-
   const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ['start start', 'end start'],
-  });
+  const [transitionProgress, setTransitionProgress] = useState(0);
 
-  // Scroll-driven crossfade: white overlay opacity from 0 → 1
-  const whiteOverlayOpacity = useTransform(scrollYProgress, [0.5, 1.0], [0, 1]);
+  useEffect(() => {
+    const updateProgress = () => {
+      const hero = heroRef.current;
+      if (!hero) return;
+
+      const rect = hero.getBoundingClientRect();
+      const total = hero.offsetHeight - window.innerHeight;
+      if (total <= 0) {
+        setTransitionProgress(0);
+        return;
+      }
+
+      const travelled = Math.min(Math.max(-rect.top, 0), total);
+      setTransitionProgress(clamp01(travelled / total));
+    };
+
+    updateProgress();
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+    return () => {
+      window.removeEventListener('scroll', updateProgress);
+      window.removeEventListener('resize', updateProgress);
+    };
+  }, []);
+
+  const textProgress = clamp01(transitionProgress * 1.1);
+  const badgeTextColor = mixColor([255, 255, 255], [51, 65, 85], textProgress);
+  const bodyColor = mixColor([255, 255, 255], [15, 23, 42], textProgress);
+  const subColor = mixColor([255, 255, 255], [71, 85, 105], clamp01(textProgress * 0.92));
+  const accentColor = mixColor([255, 255, 255], [15, 23, 42], clamp01(textProgress * 0.85));
+  const statPanelOpacity = mix(0.08, 0.96, clamp01(transitionProgress * 1.15));
+  const statBorderOpacity = mix(0.14, 0.85, clamp01(transitionProgress * 1.05));
+  const statDividerColor = `rgba(148, 163, 184, ${mix(0.12, 0.3, textProgress)})`;
+  const shaderOpacity = mix(1, 0.08, transitionProgress);
+  const whiteOverlayOpacity = mix(0, 1, transitionProgress);
+  const heroSubtitle = t.landing?.heroDesc || (
+    l === 'ko'
+      ? '처방 입력 즉시 상호작용, 용량, 장기 부담을 한 화면에서 정리합니다.'
+      : 'See interactions, dosing, and organ burden the moment a prescription is entered.'
+  );
+  const stats = [
+    { value: '862', label: t.landing?.statsProducts || (l === 'ko' ? '등록 의약품' : 'Registered Drugs') },
+    { value: '9,746', label: t.landing?.statsRules || (l === 'ko' ? '상호작용 규칙' : 'Interaction Rules') },
+    { value: '5', label: t.landing?.statsEngines || (l === 'ko' ? 'DUR 규칙 엔진' : 'DUR Rule Engines') },
+    { value: '2', label: t.landing?.statsSpecies || (l === 'ko' ? '대상 종 (개·고양이)' : 'Species (Dog & Cat)') },
+  ];
 
   return (
-    <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
-      {/* Shader background */}
-      <ShaderCanvas />
+    <section ref={heroRef} className="relative h-[180vh] bg-white">
+      <div className="sticky top-0 h-screen overflow-hidden">
+        <div className="absolute inset-0" style={{ opacity: shaderOpacity }}>
+          <ShaderCanvas />
+        </div>
+        <div className="absolute inset-0 bg-white" style={{ opacity: whiteOverlayOpacity }} />
+        <div
+          className="absolute inset-0"
+          style={{
+            opacity: clamp01((transitionProgress - 0.18) / 0.82),
+            background: 'radial-gradient(circle at 50% 18%, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.72) 28%, rgba(255,255,255,0.12) 64%, rgba(255,255,255,0) 100%)',
+          }}
+        />
 
-      {/* Scroll-driven white crossfade overlay */}
-      <motion.div
-        className="absolute inset-0 bg-white pointer-events-none z-[1]"
-        style={{ opacity: whiteOverlayOpacity }}
-      />
+        <Nav progress={transitionProgress} />
 
-      {/* Navigation */}
-      <Nav />
-
-      {/* Hero content */}
-      <motion.div
-        className="relative z-10 max-w-4xl mx-auto px-5 sm:px-8 text-center pt-20"
-        variants={stagger}
-        initial="hidden"
-        animate="visible"
-      >
-        {/* Badge */}
-        <motion.div variants={fadeUp} className="mb-6">
-          <span className="inline-block px-4 py-1.5 rounded-full text-[11px] font-medium tracking-wide uppercase border border-white/10 text-white/50 bg-white/[0.04]">
-            {t.landing?.heroBadge || (l === 'ko' ? 'AI 기반 수의약품 처방점검' : 'AI-Powered Veterinary DUR')}
-          </span>
-        </motion.div>
-
-        {/* Headline */}
-        <motion.h1
-          variants={fadeUp}
-          className={`text-4xl sm:text-5xl lg:text-[64px] font-extrabold text-white tracking-tight ${
-            l === 'ko' ? 'leading-[1.25]' : 'leading-[1.1]'
-          }`}
-        >
-          {l === 'ko' ? (
-            <>
-              수의 약학의 미래,
-              <br />
-              <span className="bg-gradient-to-r from-white/60 via-white to-white/60 bg-clip-text text-transparent">
-                지금 여기에
-              </span>
-            </>
-          ) : (
-            <>
-              The Future of Veterinary
-              <br />
-              <span className="bg-gradient-to-r from-white/60 via-white to-white/60 bg-clip-text text-transparent">
-                Pharmacology Is Here
-              </span>
-            </>
-          )}
-        </motion.h1>
-
-        {/* Stats row */}
         <motion.div
-          variants={fadeUp}
-          className="mt-10 grid grid-cols-4 gap-3 sm:gap-6 max-w-xl mx-auto"
+          className="relative z-10 flex min-h-screen items-center"
+          variants={stagger}
+          initial="hidden"
+          animate="visible"
         >
-          {stats.map((stat, i) => (
-            <div key={i} className="text-center">
-              <div className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-none">
-                {stat.value}
-              </div>
-              <div className="mt-1.5 text-[10px] sm:text-[11px] text-white/35 font-medium uppercase tracking-wider">
-                {stat.label[l]}
-              </div>
+          <div className="mx-auto flex w-full max-w-6xl flex-col px-5 pt-24 sm:px-8">
+            <div className="mx-auto max-w-4xl text-center">
+              <motion.div variants={fadeUp} className="mb-6">
+                <span
+                  className="inline-block rounded-full border px-4 py-1.5 text-[11px] font-medium tracking-wide uppercase transition-colors duration-300"
+                  style={{
+                    color: badgeTextColor,
+                    borderColor: `rgba(148, 163, 184, ${mix(0.12, 0.38, textProgress)})`,
+                    backgroundColor: `rgba(255, 255, 255, ${mix(0.04, 0.74, clamp01(transitionProgress * 1.1))})`,
+                  }}
+                >
+                  {t.landing?.heroBadge || (l === 'ko' ? 'AI 기반 수의약품 처방점검' : 'AI-Powered Veterinary DUR')}
+                </span>
+              </motion.div>
+
+              <motion.h1
+                variants={fadeUp}
+                className={`text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-[64px] ${
+                  l === 'ko' ? 'leading-[1.25]' : 'leading-[1.1]'
+                }`}
+                style={{ color: bodyColor }}
+              >
+                {l === 'ko' ? (
+                  <>
+                    수의 약학의 미래,
+                    <br />
+                    <span
+                      className="bg-clip-text text-transparent"
+                      style={{
+                        backgroundImage: `linear-gradient(90deg, ${mixColor([255, 255, 255], [51, 65, 85], clamp01(textProgress * 0.65))} 0%, ${accentColor} 50%, ${mixColor([255, 255, 255], [100, 116, 139], clamp01(textProgress * 0.8))} 100%)`,
+                      }}
+                    >
+                      지금 여기에
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    The Future of Veterinary
+                    <br />
+                    <span
+                      className="bg-clip-text text-transparent"
+                      style={{
+                        backgroundImage: `linear-gradient(90deg, ${mixColor([255, 255, 255], [51, 65, 85], clamp01(textProgress * 0.65))} 0%, ${accentColor} 50%, ${mixColor([255, 255, 255], [100, 116, 139], clamp01(textProgress * 0.8))} 100%)`,
+                      }}
+                    >
+                      Pharmacology Is Here
+                    </span>
+                  </>
+                )}
+              </motion.h1>
+
+              <motion.p
+                variants={fadeUp}
+                className={`mx-auto mt-6 max-w-2xl text-base sm:text-lg ${
+                  l === 'ko' ? 'leading-[1.8] break-keep' : 'leading-relaxed'
+                }`}
+                style={{ color: subColor }}
+              >
+                {heroSubtitle}
+              </motion.p>
+
+              <motion.div variants={fadeUp} className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+                <button
+                  onClick={() => navigate('/register')}
+                  className={`rounded-full px-8 py-3.5 text-[15px] font-semibold transition-all ${
+                    transitionProgress > 0.48
+                      ? 'bg-slate-900 text-white hover:bg-slate-800 hover:shadow-lg hover:shadow-slate-900/10'
+                      : 'bg-white text-[#050510] hover:bg-white/90 hover:shadow-lg hover:shadow-white/10'
+                  }`}
+                >
+                  {t.landing?.ctaPrimary || (l === 'ko' ? '무료로 시작' : 'Start Free')}
+                </button>
+                <button
+                  onClick={() => navigate('/demo')}
+                  className="rounded-full border px-8 py-3.5 text-[15px] font-semibold transition-all"
+                  style={{
+                    color: mixColor([255, 255, 255], [15, 23, 42], clamp01(textProgress * 0.95)),
+                    borderColor: `rgba(${Math.round(mix(255, 148, textProgress))}, ${Math.round(mix(255, 163, textProgress))}, ${Math.round(mix(255, 184, textProgress))}, ${mix(0.15, 0.42, textProgress)})`,
+                    backgroundColor: `rgba(255, 255, 255, ${mix(0.03, 0.7, clamp01(transitionProgress * 0.95))})`,
+                  }}
+                >
+                  {t.landing?.ctaSecondary || (l === 'ko' ? '데모 보기' : 'View Demo')}
+                </button>
+              </motion.div>
             </div>
-          ))}
-        </motion.div>
 
-        {/* CTAs */}
-        <motion.div variants={fadeUp} className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button
-            onClick={() => navigate('/register')}
-            className="px-8 py-3.5 rounded-full text-[15px] font-semibold bg-white text-[#050510] hover:bg-white/90 transition-all hover:shadow-lg hover:shadow-white/10"
-          >
-            {t.landing?.ctaPrimary || (l === 'ko' ? '무료로 시작' : 'Start Free')}
-          </button>
-          <button
-            onClick={() => navigate('/demo')}
-            className="px-8 py-3.5 rounded-full text-[15px] font-semibold border border-white/15 text-white/70 hover:text-white hover:border-white/30 transition-all bg-white/[0.03]"
-          >
-            {t.landing?.ctaSecondary || (l === 'ko' ? '데모 보기' : 'View Demo')}
-          </button>
-        </motion.div>
+            <motion.div variants={fadeUp} className="mt-14 w-full sm:mt-16">
+              <div
+                className="grid overflow-hidden rounded-[30px] border sm:grid-cols-2 lg:grid-cols-4"
+                style={{
+                  backgroundColor: `rgba(255, 255, 255, ${statPanelOpacity})`,
+                  borderColor: `rgba(148, 163, 184, ${statBorderOpacity})`,
+                  boxShadow: `0 24px 80px rgba(15, 23, 42, ${mix(0.08, 0.12, clamp01(transitionProgress * 0.6))})`,
+                  backdropFilter: `blur(${mix(12, 18, clamp01(transitionProgress * 0.75))}px)`,
+                }}
+              >
+                {stats.map((stat, index) => (
+                  <div
+                    key={stat.label}
+                    className={`px-6 py-7 sm:px-7 sm:py-8 ${
+                      index < stats.length - 1 ? 'border-b' : ''
+                    } ${
+                      index < 2 ? 'sm:border-b' : 'sm:border-b-0'
+                    } ${
+                      index % 2 === 0 ? 'sm:border-r' : 'sm:border-r-0'
+                    } ${
+                      index < stats.length - 1 ? 'lg:border-r' : 'lg:border-r-0'
+                    } lg:border-b-0`}
+                    style={{ borderColor: statDividerColor }}
+                  >
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em]" style={{ color: subColor }}>
+                      {stat.label}
+                    </p>
+                    <p className="mt-3 text-3xl font-black tracking-[-0.04em] sm:text-4xl" style={{ color: bodyColor }}>
+                      {stat.value}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
 
-        {/* Scroll hint */}
-        <motion.div variants={fadeUp} className="mt-14 sm:mt-16">
-          <div className="w-[1px] h-10 bg-gradient-to-b from-white/20 to-transparent mx-auto" />
+            <motion.div variants={fadeUp} className="mt-12 sm:mt-14">
+              <div
+                className="mx-auto h-14 w-px"
+                style={{
+                  background: `linear-gradient(to bottom, rgba(148, 163, 184, ${mix(0.22, 0.45, textProgress)}) 0%, rgba(148, 163, 184, 0) 100%)`,
+                }}
+              />
+            </motion.div>
+          </div>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 }

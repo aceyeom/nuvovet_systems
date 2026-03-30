@@ -1,11 +1,116 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { CheckCircle, Loader2, Database, Beaker, BookOpen, Dna, Globe, ShieldCheck } from 'lucide-react';
-import { NuvovetLogo } from './NuvovetLogo';
-import { MolecularBackground } from './MolecularBackground';
 import { useI18n } from '../i18n';
 import { formatMechanismApi } from '../lib/api';
 
-// Build a format request payload from a DUR interaction object
+const CRYSTALLINE_GLOBAL_SPEED = 0.5;
+
+function clampOpacity(opacity) {
+  return Math.max(0, Math.min(1, opacity));
+}
+
+function monochromeFill(opacity) {
+  return `rgba(15, 23, 42, ${clampOpacity(opacity)})`;
+}
+
+function easeInOutCubic(t) {
+  return t < 0.5
+    ? 4 * t * t * t
+    : 1 - Math.pow(-2 * t + 2, 3) / 2;
+}
+
+// ── Crystalline Refraction Canvas Animation ─────────────────────
+function CrystallineRefractionCanvas({ size = 192 }) {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = size * dpr;
+    canvas.height = size * dpr;
+    canvas.style.width = `${size}px`;
+    canvas.style.height = `${size}px`;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    let animId;
+    let time = 0;
+    let lastTime = 0;
+
+    const W = size;
+    const H = size;
+    const cx = W / 2;
+    const cy = H / 2;
+    const gridSize = 15;
+    const spacing = W / (gridSize - 1);
+    const dots = Array.from({ length: gridSize * gridSize }, (_, index) => ({
+      x: (index % gridSize) * spacing,
+      y: Math.floor(index / gridSize) * spacing,
+    }));
+
+    function draw(timestamp) {
+      if (!lastTime) lastTime = timestamp;
+      const deltaTime = timestamp - lastTime;
+      lastTime = timestamp;
+      time += deltaTime * 0.16 * CRYSTALLINE_GLOBAL_SPEED;
+
+      ctx.clearRect(0, 0, W, H);
+
+      const waveRadius = time % (W * 1.2);
+      const waveWidth = (W / 180) * 60;
+
+      dots.forEach(dot => {
+        const distance = Math.hypot(dot.x - cx, dot.y - cy);
+        const distanceToWave = Math.abs(distance - waveRadius);
+        let displacement = 0;
+
+        if (distanceToWave < waveWidth / 2) {
+          const wavePhase = (distanceToWave / (waveWidth / 2)) * Math.PI;
+          displacement = easeInOutCubic(Math.sin(wavePhase)) * (W / 180) * 10;
+        }
+
+        const angleToCenter = Math.atan2(dot.y - cy, dot.x - cx);
+        const dx = Math.cos(angleToCenter) * displacement;
+        const dy = Math.sin(angleToCenter) * displacement;
+
+        ctx.beginPath();
+        ctx.arc(
+          dot.x + dx,
+          dot.y + dy,
+          (W / 180) * (1.2 + (Math.abs(displacement) / ((W / 180) * 10 || 1)) * 2),
+          0,
+          Math.PI * 2
+        );
+        ctx.fillStyle = monochromeFill(
+          0.2 + (Math.abs(displacement) / ((W / 180) * 10 || 1)) * 0.8
+        );
+        ctx.fill();
+      });
+    }
+
+    function animate(timestamp) {
+      draw(timestamp);
+      animId = requestAnimationFrame(animate);
+    }
+
+    animId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animId);
+  }, [size]);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{ width: size, height: size, display: 'block' }}
+    />
+  );
+}
+
+// ── Build a format request payload from a DUR interaction object ─
 function buildFormatPayload(ix) {
   return {
     drug_a_name: ix.drugA || '',
@@ -119,17 +224,13 @@ export function AnalysisScreen({ onComplete, drugCount, species, durResults }) {
     : (lang === 'ko' ? '고양이' : 'feline');
 
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center">
-      <MolecularBackground />
+    <div className="relative min-h-screen flex flex-col items-center justify-center bg-white">
 
       <div className="relative z-10 max-w-sm w-full px-6 py-12">
-        {/* Logo */}
+        {/* Crystalline Refraction animation */}
         <div className="flex items-center justify-center mb-8">
-          <div className="relative">
-            <NuvovetLogo size={96} className="" />
-            <div className="absolute inset-0 animate-ping opacity-20">
-              <NuvovetLogo size={96} className="" />
-            </div>
+          <div className="flex h-[220px] w-[220px] items-center justify-center rounded-[32px] border border-slate-200/80 bg-white shadow-[0_18px_40px_rgba(15,23,42,0.06)]">
+            <CrystallineRefractionCanvas size={180} />
           </div>
         </div>
 
@@ -180,14 +281,6 @@ export function AnalysisScreen({ onComplete, drugCount, species, durResults }) {
               </div>
             );
           })}
-        </div>
-
-        {/* Progress bar */}
-        <div className="mt-4 w-full h-1 bg-slate-200/50 rounded-full overflow-hidden">
-          <div
-            className="h-full bg-slate-900/60 rounded-full transition-all duration-500 ease-out"
-            style={{ width: `${((completedSteps.length) / STEPS.length) * 100}%` }}
-          />
         </div>
       </div>
     </div>

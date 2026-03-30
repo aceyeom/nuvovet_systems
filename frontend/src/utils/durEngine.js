@@ -756,6 +756,110 @@ function generatePerDrugPatientAlerts(drug, species, weightKg, patient) {
     }
   }
 
+  // ── Case 26: Feline UGT/Glucuronidation Deficiency — Extended Half-Life ──
+  // Cats lack functional UGT1A6 (pseudogene) AND UGT2B31 (nonsense mutation).
+  // Drugs primarily cleared by glucuronidation have dramatically extended
+  // half-lives and accumulation risk in cats.  (Court & Greenblatt 2000,
+  // PMID: 10862526; Kondo et al. 2017, PMID: 28453659; van Beusekom et al.
+  // 2014, PMID: 23888985)
+  if (species === 'cat') {
+    const idLower = (drug.id || '').toLowerCase();
+    const nameLower = (drug.name || '').toLowerCase();
+
+    // Drugs with significant glucuronidation-dependent clearance
+    const UGT_AFFECTED_DRUGS = {
+      morphine:         { halfLifeMultiple: '3–6×', mechanism: 'Morphine-3-glucuronide formation is near-zero in cats (UGT2B7-homologue absent). Morphine clearance depends heavily on glucuronidation; in cats, the half-life is extended 3–6 fold, leading to prolonged sedation, dysphoria, and paradoxical excitation at standard canine doses.', rec: 'Use buprenorphine 0.01–0.02 mg/kg SL (preferred feline opioid) or methadone 0.1–0.3 mg/kg IM. If morphine is necessary, reduce dose by 50–75% and extend dosing interval to q8–12h. Monitor for mydriasis, hyperthermia, and excitatory behavior.' },
+      chloramphenicol:  { halfLifeMultiple: '3–4×', mechanism: 'Chloramphenicol clearance in cats is markedly reduced due to deficient glucuronidation (UGT1A6 pseudogene). The feline half-life is approximately 5 hours vs 1.5 hours in dogs. Accumulation causes dose-dependent reversible bone marrow suppression (aplastic anemia, thrombocytopenia) and potentially fatal idiosyncratic aplastic anemia at a higher rate than in dogs.', rec: 'Reduce dose to 12.5 mg/kg PO BID (not the canine dose of 25–50 mg/kg). Monitor CBC weekly. Limit treatment duration to ≤14 days when possible. Consider florfenicol or doxycycline as safer alternatives in cats.' },
+      piroxicam:        { halfLifeMultiple: '2–3×', mechanism: 'Piroxicam is a substrate for glucuronidation-mediated clearance. Cats have a significantly extended half-life compared to dogs due to UGT deficiency, increasing the risk of GI ulceration, renal injury, and GI perforation. Piroxicam is used in cats primarily for transitional cell carcinoma — low-dose protocols are required.', rec: 'Use the lowest effective dose (0.3 mg/kg PO every 48–72h). Co-administer a GI protectant (sucralfate or omeprazole). Monitor renal values and fecal occult blood. Do NOT use at canine doses or frequencies.' },
+    };
+
+    for (const [drugKey, info] of Object.entries(UGT_AFFECTED_DRUGS)) {
+      if (idLower.includes(drugKey) || nameLower.includes(drugKey)) {
+        alerts.push({
+          type: 'species-metabolism',
+          severity: SEVERITY.MODERATE,
+          drug: drug.name,
+          rule: `Feline UGT Deficiency — ${drug.name} Extended Half-Life (${info.halfLifeMultiple})`,
+          mechanism: `Cats lack functional UGT1A6 (pseudogene with 5 deleterious mutations) and have a nonsense mutation in UGT2B31, resulting in approximately 15% of canine hepatic glucuronidation capacity (Court & Greenblatt, Pharmacogenetics 2000; Kondo et al., Toxicol Sci 2017). ${info.mechanism}`,
+          recommendation: info.rec,
+          literature: [
+            { title: 'Court MH, Greenblatt DJ. Molecular genetic basis for deficient acetaminophen glucuronidation by cats: UGT1A6 is a pseudogene.', source: 'Pharmacogenetics 2000;10(4):355-369', pmid: '10862526' },
+            { title: 'Kondo T et al. UGT2B subfamily interspecies differences in carnivores.', source: 'Toxicol Sci 2017;158(1):90-100', pmid: '28453659' },
+          ],
+        });
+        break;
+      }
+    }
+  }
+
+  // ── Case 27: Diazepam Oral Hepatotoxicity in Cats ────────────────────────
+  // Idiosyncratic fulminant hepatic necrosis with repeated oral diazepam in
+  // cats.  10/11 cats died within 15 days.  (Center et al. JAVMA 1996,
+  // PMID: 8755982)
+  if (
+    species === 'cat' &&
+    ((drug.id || '').toLowerCase().includes('diazepam') || (drug.name || '').toLowerCase().includes('diazepam'))
+  ) {
+    alerts.push({
+      type: 'species-contraindication',
+      severity: SEVERITY.CRITICAL,
+      drug: drug.name,
+      rule: 'Diazepam: Oral Administration Hepatotoxicity Risk in Cats',
+      mechanism: `Repeated oral administration of diazepam in cats is associated with idiosyncratic fulminant hepatic necrosis. In a landmark Cornell University case series (Center et al., JAVMA 1996), 10 of 11 cats treated with oral diazepam (1.25–2 mg PO q12–24h for behavioral modification) developed acute hepatic failure within 5–11 days. Histopathology showed florid centrilobular hepatic necrosis, biliary ductule proliferation, and suppurative intraductal inflammation. The reaction is idiosyncratic (not dose-dependent), unpredictable, and carries a near-100% fatality rate once clinical signs appear. IV diazepam for acute seizure control is considered lower risk due to first-pass bypass and single-dose use.`,
+      recommendation: `DO NOT prescribe oral diazepam for chronic use in cats. For behavior modification, use: Gabapentin 5–10 mg/kg PO BID (anxiolytic), Fluoxetine 0.5 mg/kg PO SID (urine marking/anxiety), or Trazodone 2–3 mg/kg PO (event-based). For seizure control, use Phenobarbital 1–2 mg/kg PO BID or Levetiracetam 20 mg/kg PO TID. If oral diazepam MUST be started (no alternatives), monitor ALT at baseline and every 48 hours for the first 14 days; discontinue immediately if ALT rises >2× baseline.`,
+      literature: [
+        { title: 'Center SA et al. Fulminant hepatic failure associated with oral administration of diazepam in 11 cats.', source: 'J Am Vet Med Assoc 1996;209(3):618-625', pmid: '8755982' },
+      ],
+    });
+  }
+
+  // ── Case 28: Propylene Glycol Excipient Warning in Cats ───────────────────
+  // Propylene glycol causes dose-dependent Heinz body formation and hemolytic
+  // anemia in cats.  FDA prohibited it as a cat food additive.
+  // (Christopher et al. JAVMA 1989, PMID: 2708106)
+  if (species === 'cat') {
+    const forms = (drug.storageAndForms?.forms || []).join(' ').toLowerCase();
+    const excipients = (drug.storageAndForms?.excipients || []).join(' ').toLowerCase();
+    const rawText = `${forms} ${excipients} ${(drug.offLabelNote || '')}`.toLowerCase();
+    if (rawText.includes('propylene glycol') || rawText.includes('프로필렌 글리콜')) {
+      alerts.push({
+        type: 'excipient-toxicity',
+        severity: SEVERITY.CRITICAL,
+        drug: drug.name,
+        rule: 'Propylene Glycol Excipient — Feline Heinz Body Hemolytic Anemia',
+        mechanism: `This formulation of ${drug.name} contains propylene glycol (PG). Cats are uniquely susceptible to PG-induced oxidative damage to hemoglobin, producing Heinz bodies and accelerated erythrocyte destruction. Even at concentrations found in commercial diets (1.6 g/kg body weight), Heinz body percentages reached 28% and erythrocyte half-life decreased by 19%. At higher doses, PCV dropped from 33.5% to 26.3% with marked hemolytic anemia. The FDA has prohibited propylene glycol as an additive in cat foods due to this toxicity.`,
+        recommendation: `Do NOT use propylene glycol-containing formulations in cats. Request a PG-free formulation from the compounding pharmacy. If using a multi-dose injectable, verify the vehicle used. Common PG-free alternatives: saline-based injectables, methylcellulose suspensions, or capsule formulations.`,
+        literature: [
+          { title: 'Christopher MM et al. Contribution of propylene glycol-induced Heinz body formation to anemia in cats.', source: 'J Am Vet Med Assoc 1989;194(8):1045-1056', pmid: '2708106' },
+        ],
+      });
+    }
+  }
+
+  // ── Case 29: Benzodiazepine (Oxazepam/Lorazepam) Extended Clearance in Cats
+  // Cats have near-zero UGT2B activity and cannot form the glucuronide
+  // conjugates of oxazepam and lorazepam that are the primary elimination
+  // pathway in dogs and humans.  (Kondo et al. 2017, PMID: 28453659)
+  if (species === 'cat') {
+    const idLow = (drug.id || '').toLowerCase();
+    const nameLow = (drug.name || '').toLowerCase();
+    const UGT2B_BENZOS = ['oxazepam', 'lorazepam', 'temazepam'];
+    const matchedBenzo = UGT2B_BENZOS.find(b => idLow.includes(b) || nameLow.includes(b));
+    if (matchedBenzo) {
+      alerts.push({
+        type: 'species-metabolism',
+        severity: SEVERITY.MODERATE,
+        drug: drug.name,
+        rule: `Feline UGT2B Deficiency — ${drug.name} Impaired Glucuronidation`,
+        mechanism: `${drug.name} is primarily eliminated via direct UGT2B-mediated glucuronidation (without prior CYP oxidation). Cats have a nonsense mutation in UGT2B31 (the only Felidae UGT2B gene), rendering it a pseudogene. In vitro studies show cats have very low to undetectable glucuronidation activity toward ${matchedBenzo}, lorazepam, and oxazepam compared to dogs (Kondo et al., Toxicol Sci 2017). This results in a markedly extended half-life and unpredictable sedation duration.`,
+        recommendation: `Avoid ${matchedBenzo} in cats when possible. For anxiolysis, use midazolam (CYP3A4-metabolized, unaffected by UGT deficiency) at 0.1–0.25 mg/kg IM/IV. For chronic anxiety, use gabapentin 5–10 mg/kg PO BID. If ${matchedBenzo} must be used, reduce dose by ≥50% and extend dosing interval. Monitor for prolonged sedation (>6h post-dose).`,
+        literature: [
+          { title: 'Kondo T et al. UGT2B subfamily interspecies differences in carnivores.', source: 'Toxicol Sci 2017;158(1):90-100', pmid: '28453659' },
+        ],
+      });
+    }
+  }
+
   return alerts;
 }
 
