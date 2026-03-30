@@ -1020,7 +1020,7 @@ export default function Demo() {
   };
 
   const handleAddDrug = (drug) => {
-    setDrugs((prev) => [...prev, drug]);
+    setDrugs((prev) => [drug, ...prev]);
     setGuideStep('strength');
     setTimeout(() => setGuideStep('run'), 2500);
   };

@@ -1034,7 +1034,7 @@ export default function FullSystem() {
   }, [doctorInCharge, user?.username]);
 
   // ── Drug callbacks ─────────────────────────────────────────────
-  const handleAddDrug = useCallback((drug) => setDrugs((prev) => [...prev, drug]), []);
+  const handleAddDrug = useCallback((drug) => setDrugs((prev) => [drug, ...prev]), []);
   const handleRemoveDrug = useCallback((drugId) => setDrugs((prev) => prev.filter((d) => d.id !== drugId)), []);
   const handleUpdateDrug = useCallback(
     (drugId, patch) => setDrugs((prev) => prev.map((d) => d.id === drugId ? { ...d, ...patch } : d)), []

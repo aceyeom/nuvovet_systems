@@ -3,8 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   AlertTriangle, AlertCircle, Info, CheckCircle, ChevronDown, ChevronUp,
   BookOpen, FlaskConical, Globe, HelpCircle, Dna, ArrowLeft,
-  Check, Lightbulb, FileText, Clock, Pill, Flag, Printer, Download,
-  Mail, Send, ArrowRight
+  Check, Lightbulb, FileText, Clock, Pill, Flag, ArrowRight
 } from 'lucide-react';
 import { SeverityBadge } from './SeverityBadge';
 import { DRUG_SOURCE } from '../data/drugDatabase';
@@ -12,8 +11,6 @@ import { DRUG_SOURCE } from '../data/drugDatabase';
 import { NuvovetLogo } from './NuvovetLogo';
 import { OrganLoadIndicator } from './OrganLoadIndicator';
 import { ConfidenceProvenance } from './ConfidenceProvenance';
-import { ScanExportButton } from './ScanExportPDF';
-import { OwnerHandoutModal } from './OwnerHandoutModal';
 import { OwnerDischargeButton } from './OwnerDischargeNote';
 import { useI18n } from '../i18n';
 import { formatMechanismApi, translateKoreanApi } from '../lib/api';
@@ -787,13 +784,8 @@ function DrugFlagCard({ drugFlag, species }) {
 }
 
 // ── Action Bar (always visible at bottom of results) ────────────
-function ResultsActionBar({ results, patientInfo, drugs, species, lang, t, onOpenHandout }) {
+function ResultsActionBar({ results, patientInfo, drugs, lang, t }) {
   const { drugFlags, interactions } = results;
-
-  const handleEmailPrint = () => {
-    // Open print dialog — doctor can print-to-PDF and email
-    window.print();
-  };
 
   return (
     <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm no-print">
@@ -808,58 +800,12 @@ function ResultsActionBar({ results, patientInfo, drugs, species, lang, t, onOpe
           {' · '}{interactions.length} {t.results.interactionsFound}
         </span>
       </div>
-      {/* Owner discharge note + clinical PDF row */}
-      <div className="flex flex-col sm:flex-row gap-2 mb-2">
-        <div className="flex-1 flex">
-          <OwnerDischargeButton
-            results={results}
-            patientInfo={patientInfo}
-            drugs={drugs}
-          />
-        </div>
-        <div className="flex-1 flex">
-          <ScanExportButton
-            results={results}
-            patientInfo={patientInfo}
-            drugs={drugs}
-            species={species}
-          />
-        </div>
-      </div>
-      <div className="flex flex-col sm:flex-row gap-2">
-        <button
-          onClick={handleEmailPrint}
-          className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-white text-slate-700 text-[13px] font-medium rounded-lg border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition-all"
-        >
-          <Printer size={14} />
-          {t.results.exportSummary}
-        </button>
-        <button
-          onClick={onOpenHandout}
-          className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-600 text-white text-[13px] font-medium rounded-lg hover:bg-emerald-700 transition-all"
-        >
-          <FileText size={14} />
-          {lang === 'ko' ? '보호자 안내문' : 'Owner Handout'}
-        </button>
-        <button
-          onClick={() => {
-            const subject = encodeURIComponent(
-              lang === 'ko'
-                ? `NUVOVET DUR 보고서 — ${patientInfo?.name || '환자'}`
-                : `NUVOVET DUR Report — ${patientInfo?.name || 'Patient'}`
-            );
-            const body = encodeURIComponent(
-              lang === 'ko'
-                ? `DUR 분석 보고서\n\n환자: ${patientInfo?.name || '—'}\n날짜: ${new Date().toLocaleDateString('ko-KR')}\n검사 약물 수: ${drugFlags.length}\n발견된 상호작용: ${interactions.length}\n\n상세 내용은 전체 보고서를 출력하여 확인해 주세요.`
-                : `DUR Analysis Report\n\nPatient: ${patientInfo?.name || '—'}\nDate: ${new Date().toLocaleDateString()}\nDrugs screened: ${drugFlags.length}\nInteractions found: ${interactions.length}\n\nPlease print the full report for details.`
-            );
-            window.location.href = `mailto:?subject=${subject}&body=${body}`;
-          }}
-          className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-900 text-white text-[13px] font-medium rounded-lg hover:bg-slate-800 transition-all"
-        >
-          <Mail size={14} />
-          {t.results.sendViaEmail}
-        </button>
+      <div className="flex">
+        <OwnerDischargeButton
+          results={results}
+          patientInfo={patientInfo}
+          drugs={drugs}
+        />
       </div>
     </div>
   );
@@ -1425,7 +1371,6 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
   const [isDiagnosisToastFading, setIsDiagnosisToastFading] = useState(false);
   const diagnosisToastFadeRef = useRef(null);
   const diagnosisToastHideRef = useRef(null);
-  const [showHandoutModal, setShowHandoutModal] = useState(false);
 
   // ── Korean translation of clinical text ──────────────────────────
   const [koTranslations, setKoTranslations] = useState({});
@@ -1612,10 +1557,8 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
                 results={results}
                 patientInfo={patientInfo}
                 drugs={drugs}
-                species={species}
                 lang={lang}
                 t={t}
-                onOpenHandout={() => setShowHandoutModal(true)}
               />
             )}
 
@@ -1659,44 +1602,17 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
       {showScanBar && !demoMode && (
         <div className="fixed bottom-0 left-0 right-0 z-30 no-print animate-slide-up-bar">
           <div className="bg-white border-t border-slate-200 shadow-lg px-4 sm:px-6 py-3">
-            <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
+            <div className="max-w-6xl mx-auto flex items-center gap-4">
               <div className="flex items-center gap-2 min-w-0">
                 <CheckCircle size={16} className="text-emerald-500 shrink-0" />
                 <span className="text-[13px] font-medium text-slate-700 truncate">
                   {t.results.allReviewed} · {drugFlags.length} {t.results.drugCountLabel} · {interactions.length} {t.results.interactionsFound}
                 </span>
               </div>
-              <div className="flex items-center gap-2 shrink-0">
-                <button onClick={() => window.print()} className="flex items-center gap-1.5 px-3 py-2 bg-white text-slate-700 text-[12px] font-medium rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors">
-                  <Printer size={13} />
-                  {t.results.exportSummary}
-                </button>
-                <OwnerDischargeButton
-                  results={results}
-                  patientInfo={patientInfo}
-                  drugs={drugs}
-                />
-                <ScanExportButton
-                  results={results}
-                  patientInfo={patientInfo}
-                  drugs={drugs}
-                  species={species}
-                />
-              </div>
             </div>
           </div>
         </div>
       )}
-
-      {/* Owner Handout Modal */}
-      <OwnerHandoutModal
-        open={showHandoutModal}
-        onClose={() => setShowHandoutModal(false)}
-        drugs={drugs}
-        interactions={interactions}
-        patientInfo={patientInfo}
-        species={species}
-      />
     </>
   );
 }

@@ -3,6 +3,22 @@ import { CheckCircle, Loader2, Database, Beaker, BookOpen, Dna, Globe, ShieldChe
 import { useI18n } from '../i18n';
 import { formatMechanismApi } from '../lib/api';
 
+const CRYSTALLINE_GLOBAL_SPEED = 0.5;
+
+function clampOpacity(opacity) {
+  return Math.max(0, Math.min(1, opacity));
+}
+
+function monochromeFill(opacity) {
+  return `rgba(255, 255, 255, ${clampOpacity(opacity)})`;
+}
+
+function easeInOutCubic(t) {
+  return t < 0.5
+    ? 4 * t * t * t
+    : 1 - Math.pow(-2 * t + 2, 3) / 2;
+}
+
 // ── Crystalline Refraction Canvas Animation ─────────────────────
 function CrystallineRefractionCanvas({ size = 192 }) {
   const canvasRef = useRef(null);
@@ -18,158 +34,71 @@ function CrystallineRefractionCanvas({ size = 192 }) {
     canvas.style.height = `${size}px`;
 
     const ctx = canvas.getContext('2d');
-    ctx.scale(dpr, dpr);
+    if (!ctx) return;
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
     let animId;
-    let t = 0;
+    let time = 0;
+    let lastTime = 0;
 
     const W = size;
     const H = size;
     const cx = W / 2;
     const cy = H / 2;
+    const gridSize = 15;
+    const spacing = W / (gridSize - 1);
+    const dots = Array.from({ length: gridSize * gridSize }, (_, index) => ({
+      x: (index % gridSize) * spacing,
+      y: Math.floor(index / gridSize) * spacing,
+    }));
 
-    function draw() {
+    function draw(timestamp) {
+      if (!lastTime) lastTime = timestamp;
+      const deltaTime = timestamp - lastTime;
+      lastTime = timestamp;
+      time += deltaTime * 0.16 * CRYSTALLINE_GLOBAL_SPEED;
+
       ctx.clearRect(0, 0, W, H);
 
-      const R = Math.min(W, H) * 0.36;
-      const rotation = t * 0.18;
-      const SIDES = 6;
+      const waveRadius = time % (W * 1.2);
+      const waveWidth = (W / 180) * 60;
 
-      // ── Outer hexagon vertices ──
-      const outer = Array.from({ length: SIDES }, (_, i) => {
-        const a = (i / SIDES) * Math.PI * 2 + rotation;
-        return { x: cx + Math.cos(a) * R, y: cy + Math.sin(a) * R };
-      });
+      dots.forEach(dot => {
+        const distance = Math.hypot(dot.x - cx, dot.y - cy);
+        const distanceToWave = Math.abs(distance - waveRadius);
+        let displacement = 0;
 
-      // ── Inner ring vertices (offset by half-step, smaller) ──
-      const inner = Array.from({ length: SIDES }, (_, i) => {
-        const a = ((i + 0.5) / SIDES) * Math.PI * 2 + rotation;
-        return { x: cx + Math.cos(a) * R * 0.40, y: cy + Math.sin(a) * R * 0.40 };
-      });
+        if (distanceToWave < waveWidth / 2) {
+          const wavePhase = (distanceToWave / (waveWidth / 2)) * Math.PI;
+          displacement = easeInOutCubic(Math.sin(wavePhase)) * (W / 180) * 10;
+        }
 
-      // ── Facets (triangles: outer[i]→outer[n]→inner[i] and outer[n]→inner[i]→inner[n]) ──
-      for (let i = 0; i < SIDES; i++) {
-        const n = (i + 1) % SIDES;
-        const hue = ((i / SIDES) * 200 + t * 14 + 195) % 360;
+        const angleToCenter = Math.atan2(dot.y - cy, dot.x - cx);
+        const dx = Math.cos(angleToCenter) * displacement;
+        const dy = Math.sin(angleToCenter) * displacement;
 
         ctx.beginPath();
-        ctx.moveTo(outer[i].x, outer[i].y);
-        ctx.lineTo(outer[n].x, outer[n].y);
-        ctx.lineTo(inner[i].x, inner[i].y);
-        ctx.closePath();
-        ctx.fillStyle = `hsla(${hue}, 60%, 72%, ${0.10 + 0.06 * Math.sin(t * 1.4 + i)})`;
+        ctx.arc(
+          dot.x + dx,
+          dot.y + dy,
+          (W / 180) * (1.2 + (Math.abs(displacement) / ((W / 180) * 10 || 1)) * 2),
+          0,
+          Math.PI * 2
+        );
+        ctx.fillStyle = monochromeFill(
+          0.2 + (Math.abs(displacement) / ((W / 180) * 10 || 1)) * 0.8
+        );
         ctx.fill();
-        ctx.strokeStyle = `hsla(${hue}, 50%, 62%, 0.30)`;
-        ctx.lineWidth = 0.8;
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.moveTo(outer[n].x, outer[n].y);
-        ctx.lineTo(inner[i].x, inner[i].y);
-        ctx.lineTo(inner[n].x, inner[n].y);
-        ctx.closePath();
-        ctx.fillStyle = `hsla(${(hue + 35) % 360}, 55%, 76%, ${0.09 + 0.05 * Math.sin(t * 1.1 + i + 1)})`;
-        ctx.fill();
-        ctx.strokeStyle = `hsla(${(hue + 35) % 360}, 48%, 66%, 0.25)`;
-        ctx.lineWidth = 0.6;
-        ctx.stroke();
-      }
-
-      // ── Outer outline ──
-      ctx.beginPath();
-      outer.forEach(({ x, y }, i) => (i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y)));
-      ctx.closePath();
-      ctx.strokeStyle = `hsla(220, 45%, 62%, 0.50)`;
-      ctx.lineWidth = 1.2;
-      ctx.stroke();
-
-      // ── Inner outline ──
-      ctx.beginPath();
-      inner.forEach(({ x, y }, i) => (i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y)));
-      ctx.closePath();
-      ctx.strokeStyle = `hsla(220, 40%, 68%, 0.35)`;
-      ctx.lineWidth = 0.7;
-      ctx.stroke();
-
-      // ── Spokes: center → outer vertices ──
-      outer.forEach(({ x, y }, i) => {
-        const sHue = ((i / SIDES) * 200 + t * 18 + 195) % 360;
-        const g = ctx.createLinearGradient(cx, cy, x, y);
-        g.addColorStop(0, `hsla(${sHue}, 65%, 72%, 0.45)`);
-        g.addColorStop(1, `hsla(${sHue}, 65%, 72%, 0)`);
-        ctx.beginPath();
-        ctx.moveTo(cx, cy);
-        ctx.lineTo(x, y);
-        ctx.strokeStyle = g;
-        ctx.lineWidth = 0.7;
-        ctx.stroke();
       });
-
-      // ── Light entry beam (white, from top, gently oscillates) ──
-      const entryDir = -Math.PI / 2 + Math.sin(t * 0.38) * 0.22;
-      const eX = cx + Math.cos(entryDir) * R * 1.55;
-      const eY = cy + Math.sin(entryDir) * R * 1.55;
-      const eGrad = ctx.createLinearGradient(eX, eY, cx, cy);
-      eGrad.addColorStop(0, `hsla(220, 25%, 88%, 0)`);
-      eGrad.addColorStop(0.55, `hsla(220, 25%, 88%, 0.40)`);
-      eGrad.addColorStop(1, `hsla(220, 25%, 88%, 0.65)`);
-      ctx.beginPath();
-      ctx.moveTo(eX, eY);
-      ctx.lineTo(cx, cy);
-      ctx.strokeStyle = eGrad;
-      ctx.lineWidth = 2.4;
-      ctx.stroke();
-
-      // ── Refracted exit rays (spectrum dispersion) ──
-      const NUM_RAYS = 7;
-      for (let r = 0; r < NUM_RAYS; r++) {
-        const spread = (r - (NUM_RAYS - 1) / 2) / (NUM_RAYS - 1); // -0.5 … +0.5
-        const rayHue = ((spread * 270 + 360) % 360); // red→violet
-        const exitAngle = entryDir + Math.PI + spread * 0.58;
-        const xX = cx + Math.cos(exitAngle) * R * 1.62;
-        const xY = cy + Math.sin(exitAngle) * R * 1.62;
-
-        const xGrad = ctx.createLinearGradient(cx, cy, xX, xY);
-        xGrad.addColorStop(0, `hsla(${rayHue}, 80%, 62%, 0.68)`);
-        xGrad.addColorStop(0.55, `hsla(${rayHue}, 75%, 65%, 0.30)`);
-        xGrad.addColorStop(1, `hsla(${rayHue}, 70%, 65%, 0)`);
-        ctx.beginPath();
-        ctx.moveTo(cx, cy);
-        ctx.lineTo(xX, xY);
-        ctx.strokeStyle = xGrad;
-        ctx.lineWidth = r === Math.floor(NUM_RAYS / 2) ? 2.0 : 1.1;
-        ctx.stroke();
-      }
-
-      // ── Core glow ──
-      const coreR = R * 0.16;
-      const coreG = ctx.createRadialGradient(cx, cy, 0, cx, cy, coreR * 2.2);
-      coreG.addColorStop(0, `hsla(220, 65%, 92%, ${0.58 + Math.sin(t * 1.9) * 0.14})`);
-      coreG.addColorStop(0.45, `hsla(220, 55%, 88%, 0.18)`);
-      coreG.addColorStop(1, `hsla(220, 55%, 88%, 0)`);
-      ctx.beginPath();
-      ctx.arc(cx, cy, coreR * 2.2, 0, Math.PI * 2);
-      ctx.fillStyle = coreG;
-      ctx.fill();
-
-      // ── Soft outer ambient halo ──
-      const haloG = ctx.createRadialGradient(cx, cy, R * 0.75, cx, cy, R * 1.35);
-      haloG.addColorStop(0, `hsla(220, 45%, 82%, 0)`);
-      haloG.addColorStop(0.5, `hsla(220, 50%, 86%, 0.035)`);
-      haloG.addColorStop(1, `hsla(220, 50%, 86%, 0)`);
-      ctx.beginPath();
-      ctx.arc(cx, cy, R * 1.35, 0, Math.PI * 2);
-      ctx.fillStyle = haloG;
-      ctx.fill();
     }
 
-    function animate() {
-      t += 0.012;
-      draw();
+    function animate(timestamp) {
+      draw(timestamp);
       animId = requestAnimationFrame(animate);
     }
 
-    animate();
+    animId = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animId);
   }, [size]);
 
@@ -300,7 +229,9 @@ export function AnalysisScreen({ onComplete, drugCount, species, durResults }) {
       <div className="relative z-10 max-w-sm w-full px-6 py-12">
         {/* Crystalline Refraction animation */}
         <div className="flex items-center justify-center mb-8">
-          <CrystallineRefractionCanvas size={192} />
+          <div className="flex h-[220px] w-[220px] items-center justify-center rounded-[32px] border border-slate-900/10 bg-slate-950 shadow-[0_24px_60px_rgba(15,23,42,0.18)]">
+            <CrystallineRefractionCanvas size={180} />
+          </div>
         </div>
 
         <h2 className="text-center typo-page-title mb-1">
