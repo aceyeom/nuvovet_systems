@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import * as THREE from 'three';
 import { useI18n } from '../../i18n';
 
@@ -179,13 +179,20 @@ function Nav({ progress }) {
 
 const stagger = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.15, delayChildren: 0.4 } },
+  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.4 } },
 };
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] } },
 };
+
+const stats = [
+  { value: '862', label: { ko: '의약품', en: 'Drugs' } },
+  { value: '9,746', label: { ko: '상호작용 규칙', en: 'Interaction Rules' } },
+  { value: '5', label: { ko: 'DUR 엔진', en: 'DUR Engines' } },
+  { value: '2', label: { ko: '대상 종', en: 'Species' } },
+];
 
 export default function ShaderHero() {
   const navigate = useNavigate();
