@@ -10,7 +10,7 @@ function clampOpacity(opacity) {
 }
 
 function monochromeFill(opacity) {
-  return `rgba(255, 255, 255, ${clampOpacity(opacity)})`;
+  return `rgba(15, 23, 42, ${clampOpacity(opacity)})`;
 }
 
 function easeInOutCubic(t) {
@@ -229,7 +229,7 @@ export function AnalysisScreen({ onComplete, drugCount, species, durResults }) {
       <div className="relative z-10 max-w-sm w-full px-6 py-12">
         {/* Crystalline Refraction animation */}
         <div className="flex items-center justify-center mb-8">
-          <div className="flex h-[220px] w-[220px] items-center justify-center rounded-[32px] border border-slate-900/10 bg-slate-950 shadow-[0_24px_60px_rgba(15,23,42,0.18)]">
+          <div className="flex h-[220px] w-[220px] items-center justify-center rounded-[32px] border border-slate-200/80 bg-white shadow-[0_18px_40px_rgba(15,23,42,0.06)]">
             <CrystallineRefractionCanvas size={180} />
           </div>
         </div>
@@ -281,14 +281,6 @@ export function AnalysisScreen({ onComplete, drugCount, species, durResults }) {
               </div>
             );
           })}
-        </div>
-
-        {/* Progress bar */}
-        <div className="mt-4 w-full h-1 bg-slate-200/50 rounded-full overflow-hidden">
-          <div
-            className="h-full bg-slate-900/60 rounded-full transition-all duration-500 ease-out"
-            style={{ width: `${((completedSteps.length) / STEPS.length) * 100}%` }}
-          />
         </div>
       </div>
     </div>

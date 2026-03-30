@@ -1,6 +1,7 @@
 import React from 'react';
 import { Heart } from 'lucide-react';
 import { useI18n } from '../i18n';
+import { checkDrugFoodRules } from '../utils/drugClassRules';
 
 /**
  * Owner Discharge Note — 보호자 퇴원 안내문
@@ -133,9 +134,105 @@ function getOwnerWatchPoints(interaction) {
   return [...points].slice(0, 3);
 }
 
+function getRouteLabel(route) {
+  const labels = {
+    PO: '먹는 약',
+    IV: '주사 약',
+    IM: '근육주사',
+    SC: '피하주사',
+    Topical: '바르는 약',
+    Ophthalmic: '눈에 넣는 약',
+    Otic: '귀에 넣는 약',
+    Inhalation: '흡입 약',
+  };
+
+  return labels[route] || route || '약';
+}
+
+function getFrequencyLabel(freq) {
+  const labels = {
+    SID: '하루 1번',
+    BID: '하루 2번',
+    TID: '하루 3번',
+    QID: '하루 4번',
+    q8h: '8시간마다',
+    q12h: '12시간마다',
+    PRN: '필요할 때만',
+  };
+
+  return labels[freq] || freq || '';
+}
+
+function getDurationLabel(drug) {
+  return drug.prescriptionDays ? `${drug.prescriptionDays}일 동안` : '병원에서 안내한 기간 동안';
+}
+
+function getHowToGiveLabel(drug) {
+  const route = drug.route || 'PO';
+  const freq = getFrequencyLabel(drug.freq);
+  const duration = getDurationLabel(drug);
+
+  if (route === 'PO') {
+    return `${freq || '정해진 횟수대로'} 입으로 주세요. 가능하면 매일 비슷한 시간에 ${duration} 주세요.`;
+  }
+  if (route === 'Ophthalmic') {
+    return `${freq || '정해진 횟수대로'} 눈에 넣어 주세요. 점안 후 눈 주변을 부드럽게 닦아 주세요.`;
+  }
+  if (route === 'Otic') {
+    return `${freq || '정해진 횟수대로'} 귀에 넣어 주세요. 투약 후 귀 밑을 가볍게 마사지해 주세요.`;
+  }
+  if (route === 'Topical') {
+    return `${freq || '정해진 횟수대로'} 얇게 발라 주세요. 핥지 않도록 잠시 지켜봐 주세요.`;
+  }
+  if (route === 'Inhalation') {
+    return `${freq || '정해진 횟수대로'} 흡입하게 해 주세요. 사용법은 병원 안내를 우선해 주세요.`;
+  }
+
+  return `${getRouteLabel(route)}으로 ${freq || '정해진 횟수대로'} 투약합니다. 집에서 직접 투약하는 경우 병원 안내를 그대로 따라 주세요.`;
+}
+
+function getFoodNote(drug) {
+  const foodRules = checkDrugFoodRules(drug);
+  const text = foodRules.map((rule) => rule.message.toLowerCase()).join(' ');
+
+  if (text.includes('empty stomach') || text.includes('before meals')) {
+    return '가능하면 공복에 주세요. 식사 1시간 전이나 식후 2시간 뒤로 띄우면 좋습니다.';
+  }
+  if (text.includes('with food') || text.includes('high-fat') || text.includes('better tolerated when given with food')) {
+    return '음식과 함께 또는 식후에 주면 속이 덜 불편할 수 있습니다.';
+  }
+  if (text.includes('dairy') || text.includes('calcium') || text.includes('magnesium') || text.includes('antacid')) {
+    return '유제품, 칼슘/마그네슘 보충제, 제산제와는 2시간 이상 간격을 두세요.';
+  }
+  if ((drug.route || 'PO') === 'PO') {
+    return '특별한 제한이 없다면 정해진 시간에 맞춰 주세요. 속이 예민하면 식후 투약이 도움이 될 수 있습니다.';
+  }
+
+  return '식사와의 특별한 제한은 없지만, 병원에서 별도 안내받은 경우 그 지시를 우선해 주세요.';
+}
+
+function getDrugWatchouts(drug) {
+  const drugText = `${drug.name || ''} ${drug.nameKr || ''} ${drug.class || ''}`.toLowerCase();
+
+  if (drugText.includes('nsaid') || drugText.includes('carprofen') || drugText.includes('meloxicam') || drugText.includes('firocoxib') || drugText.includes('pred') || drugText.includes('steroid')) {
+    return '구토, 설사, 검은 변, 식욕 저하가 보이면 바로 병원에 연락하세요.';
+  }
+  if (drugText.includes('metronidazole') || drugText.includes('antibiotic') || drugText.includes('amoxicillin') || drugText.includes('doxycycline') || drugText.includes('fluoroquinolone')) {
+    return '구토, 설사, 침울함이 심해지거나 식사를 거의 못 하면 연락하세요.';
+  }
+  if (drugText.includes('gabapentin') || drugText.includes('tramadol') || drugText.includes('opioid') || drugText.includes('phenobarbital') || drugText.includes('levetiracetam')) {
+    return '심하게 처지거나 비틀거림이 심하면 바로 병원에 알려 주세요.';
+  }
+  if (drugText.includes('furosemide') || drugText.includes('diuretic') || drugText.includes('heart') || drugText.includes('cardiac')) {
+    return '물을 너무 못 마시거나 소변량이 갑자기 줄면 바로 연락하세요.';
+  }
+
+  return '평소와 다른 구토, 설사, 기력 저하, 식욕 저하가 지속되면 병원에 연락하세요.';
+}
+
 // ── HTML builder ─────────────────────────────────────────────────
 function buildOwnerHTML({ results, patientInfo, drugs }) {
-  const { interactions, drugFlags } = results;
+  const { interactions } = results;
   const dateStr = new Date().toLocaleDateString('ko-KR', {
     year: 'numeric',
     month: 'long',
@@ -155,17 +252,30 @@ function buildOwnerHTML({ results, patientInfo, drugs }) {
   const drugRows = drugs.map((drug) => {
     const name = drug.nameKr || drug.name || drug.id;
     const parts = [
-      drug.freq || null,
-      drug.route || null,
+      getFrequencyLabel(drug.freq),
+      getRouteLabel(drug.route),
       drug.prescriptionDays ? `${drug.prescriptionDays}일간` : null,
     ].filter(Boolean);
     const regimen = parts.join(' · ');
+    const howToGive = getHowToGiveLabel(drug);
+    const foodNote = getFoodNote(drug);
+    const watchout = getDrugWatchouts(drug);
+
     return `
       <div class="drug-item">
-        <span class="drug-pill">💊</span>
         <div class="drug-body">
-          <div class="drug-name">${name}</div>
-          ${regimen ? `<div class="drug-regimen">${regimen}</div>` : ''}
+          <div class="drug-topline">
+            <span class="drug-pill">💊</span>
+            <div>
+              <div class="drug-name">${name}</div>
+              ${regimen ? `<div class="drug-regimen">${regimen}</div>` : ''}
+            </div>
+          </div>
+          <div class="drug-guide-list">
+            <div class="guide-row"><span class="guide-label">투약</span><span class="guide-copy">${howToGive}</span></div>
+            <div class="guide-row"><span class="guide-label">식사</span><span class="guide-copy">${foodNote}</span></div>
+            <div class="guide-row"><span class="guide-label">주의</span><span class="guide-copy">${watchout}</span></div>
+          </div>
         </div>
       </div>`;
   }).join('');
@@ -259,6 +369,13 @@ function buildOwnerHTML({ results, patientInfo, drugs }) {
     '눈 · 피부가 노래지는 황달',
   ];
 
+  const routineTips = [
+    '약은 가능하면 매일 비슷한 시간에 주세요.',
+    '한 번 빼먹었다고 다음 투약 때 두 배로 주지 마세요.',
+    '먹는 약 후 구토가 반복되면 다시 먹이기 전에 병원에 문의하세요.',
+    '복용 중에는 물을 충분히 마실 수 있게 해 주세요.',
+  ];
+
   return `<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -314,9 +431,14 @@ function buildOwnerHTML({ results, patientInfo, drugs }) {
       padding:11px 14px;background:#f7fbff;
       border-radius:14px;margin-bottom:8px;border:1px solid #e2ecf6;
     }
+    .drug-topline{display:flex;align-items:flex-start;gap:12px;}
     .drug-pill{font-size:22px;line-height:1;padding-top:1px;}
     .drug-name{font-size:14px;font-weight:600;color:#1a202c;}
     .drug-regimen{font-size:12px;color:#718096;margin-top:2px;}
+    .drug-guide-list{margin-top:10px;display:grid;gap:6px;}
+    .guide-row{display:grid;grid-template-columns:44px 1fr;gap:8px;align-items:start;}
+    .guide-label{font-size:11px;font-weight:700;color:#0f766e;letter-spacing:-0.01em;}
+    .guide-copy{font-size:12px;color:#475569;line-height:1.55;}
 
     /* ── Warning cards ── */
     .warn-card{border-radius:14px;padding:14px 16px;margin-bottom:10px;}
@@ -428,6 +550,16 @@ function buildOwnerHTML({ results, patientInfo, drugs }) {
       <span class="sec-title">처방 약물 (${drugs.length}종)</span>
     </div>
     ${drugRows || '<p style="color:#a0aec0;font-size:13px">처방된 약물이 없습니다</p>'}
+  </div>
+
+  <div class="section">
+    <div class="sec-header">
+      <span class="sec-icon">🕒</span>
+      <span class="sec-title">집에서 약 줄 때 기억할 점</span>
+    </div>
+    <ul class="bullet-list">
+      ${routineTips.map((tip) => `<li>${tip}</li>`).join('')}
+    </ul>
   </div>
 
   <!-- Interaction warnings -->

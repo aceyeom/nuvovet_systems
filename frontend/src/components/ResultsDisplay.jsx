@@ -344,6 +344,24 @@ function PatientSummaryPanel({ results, patientInfo, drugs = [], species = 'dog'
   const { t, lang } = useI18n();
   const { interactions, drugFlags, confidenceScore } = results;
   const patientAlerts = results.patientAlerts || [];
+  const summaryStats = [
+    { label: lang === 'ko' ? '처방 약물' : 'Drugs', value: drugFlags.length },
+    { label: lang === 'ko' ? '상호작용' : 'Interactions', value: interactions.length },
+    { label: lang === 'ko' ? '환자 주의' : 'Patient alerts', value: patientAlerts.length },
+  ];
+
+  const prescriptionRows = drugs.slice(0, 5).map((drug) => {
+    const regimen = [drug.freq, drug.route, drug.prescriptionDays ? `${drug.prescriptionDays}d` : null]
+      .filter(Boolean)
+      .join(' · ');
+
+    return {
+      id: drug.id,
+      name: drug.nameKr || drug.name,
+      subtitle: drug.nameKr && drug.name ? drug.name : regimen,
+      regimen: drug.nameKr && regimen ? regimen : '',
+    };
+  });
 
   return (
     <div className="space-y-3">
@@ -360,31 +378,31 @@ function PatientSummaryPanel({ results, patientInfo, drugs = [], species = 'dog'
               />
             </div>
           )}
-          <h3 className="typo-section-header mb-3">{t.results.patient}</h3>
-          <div className="space-y-1.5">
-            <div className="flex justify-between items-baseline gap-2">
-              <span className="typo-label shrink-0">{t.results.patient}</span>
-              <span className="typo-drug-name text-[13px] text-right truncate">{patientInfo.name}</span>
+          <div className="flex items-start justify-between gap-3 mb-3">
+            <div className="min-w-0">
+              <h3 className="typo-section-header">{patientInfo.name}</h3>
+              <p className="text-[12px] text-slate-500 mt-1">
+                {[
+                  patientInfo.species ? (patientInfo.species === 'dog' ? t.species.dog : t.species.cat) : null,
+                  patientInfo.breed || null,
+                  patientInfo.weight ? `${patientInfo.weight} kg` : null,
+                ].filter(Boolean).join(' · ')}
+              </p>
             </div>
-            {patientInfo.species && (
-              <div className="flex justify-between items-baseline gap-2">
-                <span className="typo-label shrink-0">{t.results.species}</span>
-                <span className="text-[13px] font-medium text-slate-700 text-right">{patientInfo.species === 'dog' ? t.species.dog : t.species.cat}</span>
-              </div>
-            )}
-            {patientInfo.breed && (
-              <div className="flex justify-between items-baseline gap-2">
-                <span className="typo-label shrink-0">{t.results.breed}</span>
-                <span className="text-[13px] font-medium text-slate-700 text-right truncate">{patientInfo.breed}</span>
-              </div>
-            )}
-            {patientInfo.weight && (
-              <div className="flex justify-between items-baseline gap-2">
-                <span className="typo-label shrink-0">{t.results.weight}</span>
-                <span className="text-[13px] font-medium text-slate-700">{patientInfo.weight} kg</span>
-              </div>
-            )}
+            <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-2 py-1 rounded-full shrink-0">
+              {lang === 'ko' ? '환자 요약' : 'Patient Summary'}
+            </span>
           </div>
+
+          <div className="grid grid-cols-3 gap-2">
+            {summaryStats.map((stat) => (
+              <div key={stat.label} className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5">
+                <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">{stat.label}</p>
+                <p className="mt-1 text-[18px] font-semibold text-slate-900">{stat.value}</p>
+              </div>
+            ))}
+          </div>
+
           {patientInfo.conditions && patientInfo.conditions.length > 0 && (
             <div className="mt-3 pt-3 border-t border-slate-100">
               <span className="typo-label block mb-1.5">{t.results.conditions}</span>
@@ -408,25 +426,34 @@ function PatientSummaryPanel({ results, patientInfo, drugs = [], species = 'dog'
             </div>
           )}
 
+          {prescriptionRows.length > 0 && (
+            <div className="mt-3 pt-3 border-t border-slate-100">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="typo-label">{lang === 'ko' ? '처방 요약' : 'Prescription Snapshot'}</span>
+                {drugs.length > 5 && (
+                  <span className="text-[10px] text-slate-400">+{drugs.length - 5}</span>
+                )}
+              </div>
+              <div className="space-y-2">
+                {prescriptionRows.map((drug) => (
+                  <div key={drug.id} className="rounded-lg border border-slate-100 bg-slate-50 px-3 py-2">
+                    <p className="text-[12px] font-semibold text-slate-800 truncate">{drug.name}</p>
+                    {drug.subtitle && (
+                      <p className="text-[10px] text-slate-400 truncate mt-0.5">{drug.subtitle}</p>
+                    )}
+                    {drug.regimen && (
+                      <p className="text-[10px] text-slate-500 mt-1">{drug.regimen}</p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Patient Risk Profile — only shows fields that triggered alerts */}
           <PatientRiskProfile patientAlerts={patientAlerts} lang={lang} />
         </div>
       )}
-
-      {/* Scan summary — drug count + interaction count only (severity breakdown is in the banner above) */}
-      <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
-        <h3 className="typo-section-header mb-3">{t.results.scanSummary}</h3>
-        <div className="space-y-2">
-          <div className="flex justify-between items-center">
-            <span className="typo-label">{t.results.drugsScreened}</span>
-            <span className="typo-score font-semibold text-slate-900">{drugFlags.length}</span>
-          </div>
-          <div className="flex justify-between items-center">
-            <span className="typo-label">{t.results.interactions}</span>
-            <span className="typo-score font-semibold text-slate-900">{interactions.length}</span>
-          </div>
-        </div>
-      </div>
 
       {/* Cumulative Organ Load — prominent, always expanded (core differentiator) */}
       <OrganLoadIndicator drugs={drugs} patientInfo={patientInfo} species={species} />
