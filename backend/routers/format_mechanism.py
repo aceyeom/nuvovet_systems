@@ -35,6 +35,8 @@ _FORMAT_SYSTEM_PROMPT = """당신은 수의 임상 텍스트 포매터입니다.
 6. 데이터 필드가 비어있거나 null이면 해당 섹션을 완전히 생략하십시오.
 7. 전체 출력은 반드시 한국어로 작성하십시오. 약물명은 원문 그대로 유지하십시오.
 8. 출력 형식: • 문자를 사용한 불릿 포인트가 있는 일반 텍스트. 섹션 헤더는 대문자로 작성하십시오.
+9. RAW EVIDENCE, KEYWORDS, CONTRAINDICATION, PHARMACOLOGICAL MECHANISM 같은 데이터베이스 필드가 있으면 이를 durEngine 요약보다 우선하십시오.
+10. 입력 필드 사이에 충돌이 있거나 근거가 불충분하면 더 강한 주장으로 확장하지 말고, 더 보수적이고 직접적인 표현만 사용하십시오.
 
 형식 구조:
 MECHANISM
@@ -153,6 +155,7 @@ async def format_mechanism(req: FormatMechanismRequest):
         response = client.messages.create(
             model="claude-haiku-4-5-20251001",
             max_tokens=1024,
+            temperature=0,
             system=_FORMAT_SYSTEM_PROMPT,
             messages=[{"role": "user", "content": user_message}],
         )
@@ -198,15 +201,18 @@ async def format_mechanism(req: FormatMechanismRequest):
 # ── Korean Translation Endpoint ──────────────────────────────────────────
 # Translates English clinical text to concise Korean for the results page.
 
-_TRANSLATE_SYSTEM_PROMPT = """당신은 수의 임상 번역가입니다. 영어 수의 임상 텍스트를 한국어로 번역합니다.
+_TRANSLATE_SYSTEM_PROMPT = """당신은 수의 임상 번역 및 정리 도우미입니다. 입력 텍스트를 사실 그대로 한국어로 번역하거나, 이미 한국어인 경우 의미를 유지한 채 최소한으로만 다듬습니다.
 
 규칙:
 1. 약물명(예: Meloxicam, Prednisolone)은 영어 그대로 유지하십시오.
 2. 임상 약어(CYP3A4, GI, PO, BID, SID, TID, IV, mg/kg 등)는 그대로 유지하십시오.
 3. 문장을 간결하게 번역하되, 임상적으로 중요한 정보를 빠뜨리지 마십시오.
 4. 전문 수의사가 이해할 수 있는 수준의 한국어로 작성하십시오.
-5. 입력에 없는 정보를 추가하지 마십시오.
-6. JSON 형식으로만 응답하십시오."""
+5. 입력 필드에 없는 사실, 수치, 권고, 기전, 문헌 내용을 추가하지 마십시오.
+6. 필드 간 정보를 섞지 마십시오. 각 필드는 해당 필드 텍스트만 번역하십시오.
+7. 입력이 비어 있으면 빈 문자열로 반환하십시오.
+8. title 과 subtitle 은 짧고 자연스러운 한국어로 번역하십시오.
+9. 반드시 JSON 형식으로만 응답하십시오."""
 
 
 class TranslateKoreanRequest(BaseModel):
@@ -216,6 +222,8 @@ class TranslateKoreanRequest(BaseModel):
 
 class TranslatedItem(BaseModel):
     id: str
+    title: str = ""
+    subtitle: str = ""
     mechanism: str = ""
     recommendation: str = ""
     alternative: str = ""
@@ -240,7 +248,7 @@ async def translate_korean(req: TranslateKoreanRequest):
     items_for_llm = []
     for item in req.texts:
         entry = {"id": item.get("id", "")}
-        for field in ["mechanism", "recommendation", "alternative", "literatureSummary"]:
+        for field in ["title", "subtitle", "mechanism", "recommendation", "alternative", "literatureSummary"]:
             val = item.get(field, "")
             if val:
                 entry[field] = val
@@ -259,6 +267,7 @@ async def translate_korean(req: TranslateKoreanRequest):
         response = client.messages.create(
             model="claude-haiku-4-5-20251001",
             max_tokens=4096,
+            temperature=0,
             system=_TRANSLATE_SYSTEM_PROMPT,
             messages=[{"role": "user", "content": user_message}],
         )
@@ -277,6 +286,8 @@ async def translate_korean(req: TranslateKoreanRequest):
         fallback = [
             TranslatedItem(
                 id=item.get("id", ""),
+                title=item.get("title", ""),
+                subtitle=item.get("subtitle", ""),
                 mechanism=item.get("mechanism", ""),
                 recommendation=item.get("recommendation", ""),
                 alternative=item.get("alternative", ""),
@@ -476,18 +487,18 @@ def _fallback_format(req: FormatMechanismRequest) -> str:
     if req.mechanism_text:
         lines.append(f"• {req.mechanism_text}")
     if req.effects_mechanism:
-        lines.append(f"• Pharmacology: {req.effects_mechanism}")
+        lines.append(f"• 약리 기전: {req.effects_mechanism}")
     if req.raw_interaction_evidence:
-        lines.append(f"• Evidence: {req.raw_interaction_evidence}")
+        lines.append(f"• 데이터베이스 근거: {req.raw_interaction_evidence}")
     if req.raw_interaction_keywords:
-        lines.append(f"• Keywords: {', '.join(req.raw_interaction_keywords)}")
+        lines.append(f"• 키워드: {', '.join(req.raw_interaction_keywords)}")
 
     lines.append("")
     lines.append("RECOMMENDED ACTION")
     if req.recommendation_text:
         lines.append(f"• {req.recommendation_text}")
     if req.alternative_suggestion:
-        lines.append(f"• Alternative: {req.alternative_suggestion}")
+        lines.append(f"• 대안: {req.alternative_suggestion}")
 
     if req.literature_refs:
         lines.append("")

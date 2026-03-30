@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { CheckCircle, Loader2, Database, Beaker, BookOpen, Dna, Globe, ShieldCheck } from 'lucide-react';
 import { useI18n } from '../i18n';
 import { formatMechanismApi } from '../lib/api';
+import { buildGroundedFormatPayload } from '../lib/interactionText';
 
 const CRYSTALLINE_GLOBAL_SPEED = 0.5;
 
@@ -110,27 +111,6 @@ function CrystallineRefractionCanvas({ size = 192 }) {
   );
 }
 
-// ── Build a format request payload from a DUR interaction object ─
-function buildFormatPayload(ix) {
-  return {
-    drug_a_name: ix.drugA || '',
-    drug_b_name: ix.drugB || '',
-    interaction_type: 'drug-drug',
-    severity: ix.severity?.label || 'Unknown',
-    rule_name: ix.rule || '',
-    mechanism_text: ix.mechanism || '',
-    recommendation_text: ix.recommendation || '',
-    alternative_suggestion: ix.alternativeSuggestion || '',
-    literature_summary: ix.literatureSummary || '',
-    raw_interaction_keywords: [],
-    drug_a_class: ix.drugAClass || '',
-    drug_b_class: ix.drugBClass || '',
-    literature_refs: (ix.literature || []).map(r => ({
-      title: r.title, source: r.source, confidence: r.confidence,
-    })),
-  };
-}
-
 // Props:
 //   onComplete(preformattedMap)  — called when done; map is { 'ix-N': formatResult }
 //   drugCount, species           — display only
@@ -170,7 +150,7 @@ export function AnalysisScreen({ onComplete, drugCount, species, durResults }) {
       ? Promise.all(
           toFormat.map((ix, localIdx) => {
             const globalIdx = interactions.indexOf(ix);
-            return formatMechanismApi(buildFormatPayload(ix))
+            return formatMechanismApi(buildGroundedFormatPayload(ix))
               .then(result => result ? { uid: `ix-${globalIdx}`, result } : null)
               .catch(() => null);
           })

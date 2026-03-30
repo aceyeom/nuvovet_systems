@@ -14,6 +14,7 @@ import { ConfidenceProvenance } from './ConfidenceProvenance';
 import { OwnerDischargeButton } from './OwnerDischargeNote';
 import { useI18n } from '../i18n';
 import { formatMechanismApi, translateKoreanApi } from '../lib/api';
+import { buildAlertTranslationPayloads, buildGroundedFormatPayload } from '../lib/interactionText';
 
 // ── Formatted Mechanism Display ─────────────────────────────────
 // Renders mechanism text with structure: either AI-formatted (bullet points)
@@ -58,23 +59,7 @@ function AIFormatButton({ interaction, onFormatted }) {
     if (formatted || loading) return;
     setLoading(true);
     try {
-      const result = await formatMechanismApi({
-        drug_a_name: interaction.drugA || '',
-        drug_b_name: interaction.drugB || '',
-        interaction_type: interaction.rule?.includes('Disease') ? 'drug-disease' : 'drug-drug',
-        severity: interaction.severity?.label || 'Unknown',
-        rule_name: interaction.rule || '',
-        mechanism_text: interaction.mechanism || '',
-        recommendation_text: interaction.recommendation || '',
-        alternative_suggestion: interaction.alternativeSuggestion || '',
-        literature_summary: interaction.literatureSummary || '',
-        raw_interaction_keywords: [],
-        drug_a_class: interaction.drugAClass || '',
-        drug_b_class: interaction.drugBClass || '',
-        literature_refs: (interaction.literature || []).map(r => ({
-          title: r.title, source: r.source, confidence: r.confidence,
-        })),
-      });
+      const result = await formatMechanismApi(buildGroundedFormatPayload(interaction));
       if (result) {
         setFormatted(result);
         if (onFormatted) onFormatted(result);
@@ -969,6 +954,9 @@ function UnifiedAlertCard({ alert, index, acknowledged, noted, onAcknowledge, on
     ? (alert.flags || []).map(f => f.label).join(', ')
     : '';
 
+  const translatedTitle = alert._translatedTitle || title;
+  const translatedSubtitle = alert._translatedSubtitle || subtitle;
+
   const mechanism = alert.mechanism || alert.note || alert.message || '';
   const recommendation = alert.recommendation || '';
 
@@ -997,8 +985,8 @@ function UnifiedAlertCard({ alert, index, acknowledged, noted, onAcknowledge, on
                 </span>
               )}
             </div>
-            <p className="typo-drug-name text-[13px] break-words leading-snug">{title}</p>
-            {subtitle && <p className="text-[11px] text-slate-500 mt-0.5">{subtitle}</p>}
+            <p className="typo-drug-name text-[13px] break-words leading-snug">{translatedTitle}</p>
+            {translatedSubtitle && <p className="text-[11px] text-slate-500 mt-0.5">{translatedSubtitle}</p>}
             {/* Inline mechanism preview for collapsed minor alerts */}
             {!expanded && mechanism && (
               <p className="text-[11px] text-slate-500 mt-1 leading-relaxed">{truncateMechanism(mechanism)}</p>
@@ -1183,6 +1171,8 @@ function AlertPriorityStack({
       if (!tr) return alert;
       return {
         ...alert,
+        _translatedTitle: tr.title || alert._translatedTitle,
+        _translatedSubtitle: tr.subtitle || alert._translatedSubtitle,
         mechanism: tr.mechanism || alert.mechanism,
         recommendation: tr.recommendation || alert.recommendation,
         alternativeSuggestion: tr.alternative || alert.alternativeSuggestion,
@@ -1402,52 +1392,54 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
   // ── Korean translation of clinical text ──────────────────────────
   const [koTranslations, setKoTranslations] = useState({});
   const [koTranslating, setKoTranslating] = useState(false);
+  const translationPayloads = useMemo(
+    () => buildAlertTranslationPayloads({
+      interactions,
+      patientAlerts,
+      flaggedDrugs,
+      speciesNotes,
+      lang,
+    }),
+    [interactions, patientAlerts, flaggedDrugs, speciesNotes, lang]
+  );
 
   useEffect(() => {
-    if (lang !== 'ko') return;
-    if (koTranslating || Object.keys(koTranslations).length > 0) return;
+    let cancelled = false;
 
-    // Collect all English clinical texts that need translation
-    const textsToTranslate = [];
+    setKoTranslations({});
 
-    interactions.forEach((ix, i) => {
-      if (ix.mechanism || ix.recommendation || ix.alternativeSuggestion || ix.literatureSummary) {
-        textsToTranslate.push({
-          id: `ix-${i}`,
-          mechanism: ix.mechanism || '',
-          recommendation: ix.recommendation || '',
-          alternative: ix.alternativeSuggestion || '',
-          literatureSummary: ix.literatureSummary || '',
-        });
-      }
-    });
+    if (lang !== 'ko') {
+      setKoTranslating(false);
+      return () => {
+        cancelled = true;
+      };
+    }
 
-    patientAlerts.forEach((pa, i) => {
-      if (pa.mechanism || pa.recommendation) {
-        textsToTranslate.push({
-          id: `pa-${i}`,
-          mechanism: pa.mechanism || '',
-          recommendation: pa.recommendation || '',
-          alternative: '',
-          literatureSummary: '',
-        });
-      }
-    });
-
-    if (textsToTranslate.length === 0) return;
+    if (translationPayloads.length === 0) {
+      setKoTranslating(false);
+      return () => {
+        cancelled = true;
+      };
+    }
 
     setKoTranslating(true);
-    translateKoreanApi(textsToTranslate)
+    translateKoreanApi(translationPayloads)
       .then(result => {
-        if (result?.translations) {
+        if (!cancelled && result?.translations) {
           const map = {};
           result.translations.forEach(t => { map[t.id] = t; });
           setKoTranslations(map);
         }
       })
       .catch(() => {})
-      .finally(() => setKoTranslating(false));
-  }, [lang, interactions, patientAlerts]); // eslint-disable-line react-hooks/exhaustive-deps
+      .finally(() => {
+        if (!cancelled) setKoTranslating(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [lang, translationPayloads]);
 
   useEffect(() => {
     if (allReviewed) {
