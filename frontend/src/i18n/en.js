@@ -40,7 +40,7 @@ const en = {
     heroBadge: 'AI-Powered Veterinary DUR',
     heroTitle: 'The Future of Veterinary',
     heroTitleAccent: 'Pharmacology Is Here',
-    heroDesc: '862 drugs · 9,746 interaction rules · 5 DUR engines analyze every prescription in real time.',
+    heroDesc: 'See interactions, dosing, and organ burden the moment a prescription is entered.',
     ctaPrimary: 'Start Free',
     ctaSecondary: 'View Demo',
     // Feature sections

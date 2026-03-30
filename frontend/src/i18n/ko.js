@@ -41,7 +41,7 @@ const ko = {
     heroBadge: 'AI 기반 수의약품 처방점검',
     heroTitle: '수의 약학의 미래,',
     heroTitleAccent: '지금 여기에',
-    heroDesc: '862종 의약품 데이터베이스 · 9,746개 상호작용 규칙 · 5개 DUR 엔진이 모든 처방을 실시간으로 분석합니다.',
+    heroDesc: '처방 입력 즉시 상호작용, 용량, 장기 부담을 한 화면에서 정리합니다.',
     ctaPrimary: '무료로 시작',
     ctaSecondary: '데모 보기',
     // Feature sections
