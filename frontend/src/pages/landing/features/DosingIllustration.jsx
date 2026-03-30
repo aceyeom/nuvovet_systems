@@ -2,170 +2,120 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useI18n } from '../../../i18n';
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
-
-const stagger = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
-
+const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.08 } } };
+const fadeUp = { hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: 0.45 } } };
 const scaleIn = {
-  hidden: { opacity: 0, scaleY: 0 },
-  visible: { opacity: 1, scaleY: 1, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } },
-};
-
-const slideRight = {
-  hidden: { opacity: 0, width: 0 },
-  visible: (w) => ({
-    opacity: 1,
-    width: w,
-    transition: { duration: 0.7, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] },
-  }),
-};
-
-const dosePop = {
-  hidden: { opacity: 0, scale: 0 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.4, delay: 0.9, ease: [0.34, 1.56, 0.64, 1] },
-  },
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: (d) => ({ opacity: 1, scale: 1, transition: { duration: 0.4, delay: d || 0 } }),
 };
 
 export default function DosingIllustration() {
   const { lang } = useI18n();
   const l = lang || 'ko';
 
-  const zones = [
-    { label: { ko: '독성', en: 'Toxic' }, color: '#ef4444', width: '15%', opacity: 0.12 },
-    { label: { ko: '치료 범위', en: 'Therapeutic' }, color: '#10b981', width: '35%', opacity: 0.12 },
-    { label: { ko: '치료 미만', en: 'Sub-therapeutic' }, color: '#64748b', width: '50%', opacity: 0.06 },
-  ];
-
   return (
     <motion.div
-      className="relative min-h-[280px] sm:min-h-[320px]"
+      className="min-h-[320px] sm:min-h-[360px]"
       variants={stagger}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
     >
       {/* Header */}
-      <motion.div variants={fadeUp} className="flex items-center gap-2 mb-6">
-        <div className="w-1.5 h-1.5 rounded-full bg-emerald-400/60" />
-        <span className="text-[10px] font-semibold text-white/25 uppercase tracking-widest">
-          {l === 'ko' ? '용량 계산 결과' : 'Dose Calculation Result'}
+      <motion.div variants={fadeUp} className="flex items-center justify-between mb-4">
+        <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">
+          {l === 'ko' ? '용량 계산' : 'Dose Calculation'}
+        </span>
+        <span className="text-[9px] font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
+          {l === 'ko' ? '자동 조정 적용됨' : 'Auto-Adjusted'}
         </span>
       </motion.div>
 
-      {/* Patient info bar */}
+      {/* Drug name */}
+      <motion.div variants={fadeUp} className="mb-4">
+        <div className="text-[15px] font-bold text-slate-800">
+          {l === 'ko' ? '멜록시캄' : 'Meloxicam'}
+          <span className="ml-2 text-[11px] font-normal text-slate-400">NSAID</span>
+        </div>
+      </motion.div>
+
+      {/* Patient parameters grid */}
+      <motion.div variants={fadeUp} className="grid grid-cols-3 gap-2 mb-4">
+        {[
+          { label: l === 'ko' ? '체중' : 'Weight', value: '12.5 kg', icon: '⚖' },
+          { label: l === 'ko' ? '종' : 'Species', value: l === 'ko' ? '개' : 'Canine', icon: '🐕' },
+          { label: l === 'ko' ? '투여 경로' : 'Route', value: 'PO', icon: '💊' },
+        ].map((param, i) => (
+          <div key={i} className="bg-slate-50 border border-slate-100 rounded-lg px-2.5 py-2 text-center">
+            <div className="text-[9px] text-slate-400 font-medium uppercase mb-0.5">{param.label}</div>
+            <div className="text-[12px] font-semibold text-slate-700">{param.value}</div>
+          </div>
+        ))}
+      </motion.div>
+
+      {/* Lab values (triggers) */}
+      <motion.div variants={fadeUp} className="mb-4">
+        <div className="text-[9px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+          {l === 'ko' ? '이상 검사값' : 'Flagged Labs'}
+        </div>
+        <div className="flex gap-2">
+          <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-amber-50 border border-amber-200">
+            <div className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+            <span className="text-[11px] font-medium text-amber-700">Cr 2.1 mg/dL</span>
+            <span className="text-[9px] text-amber-500">↑</span>
+          </div>
+          <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-slate-50 border border-slate-100">
+            <div className="w-1.5 h-1.5 rounded-full bg-slate-400" />
+            <span className="text-[11px] font-medium text-slate-500">ALT 45 U/L</span>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Dose calculation result */}
       <motion.div
-        variants={fadeUp}
-        className="flex items-center gap-4 mb-6 px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/[0.05]"
+        custom={0.4}
+        variants={scaleIn}
+        className="rounded-xl border-2 border-slate-200 bg-white p-4 mb-3"
       >
-        <div className="text-[11px] text-white/30">
-          <span className="text-white/60 font-medium">{l === 'ko' ? '체중' : 'Weight'}</span>{' '}
-          12.5 kg
-        </div>
-        <div className="w-[1px] h-3 bg-white/10" />
-        <div className="text-[11px] text-white/30">
-          <span className="text-white/60 font-medium">{l === 'ko' ? '종' : 'Species'}</span>{' '}
-          {l === 'ko' ? '개 (Canine)' : 'Canine'}
-        </div>
-        <div className="w-[1px] h-3 bg-white/10" />
-        <div className="text-[11px] text-white/30">
-          <span className="text-white/60 font-medium">Cr</span>{' '}
-          <span className="text-amber-400/80">2.1 mg/dL ↑</span>
-        </div>
-      </motion.div>
-
-      {/* Therapeutic window scale */}
-      <motion.div variants={fadeUp} className="mb-6">
-        <div className="text-[10px] text-white/20 uppercase tracking-wider mb-2 font-medium">
-          {l === 'ko' ? '치료 범위 스케일' : 'Therapeutic Window'}
-        </div>
-
-        {/* Scale bar */}
-        <div className="relative h-10 rounded-lg overflow-hidden bg-white/[0.02] border border-white/[0.05]">
-          {/* Zone backgrounds - rendered right to left (toxic at top/right) */}
-          <div className="absolute inset-0 flex flex-row-reverse">
-            {zones.map((zone, i) => (
-              <motion.div
-                key={i}
-                className="h-full origin-bottom"
-                style={{
-                  width: zone.width,
-                  backgroundColor: zone.color,
-                  opacity: zone.opacity,
-                }}
-                variants={scaleIn}
-              />
-            ))}
-          </div>
-
-          {/* Zone labels */}
-          <div className="absolute inset-0 flex flex-row-reverse items-center">
-            <div className="w-[15%] text-center text-[9px] text-red-400/50 font-medium">
-              {zones[0].label[l]}
-            </div>
-            <div className="w-[35%] text-center text-[9px] text-emerald-400/50 font-medium">
-              {zones[1].label[l]}
-            </div>
-            <div className="w-[50%] text-center text-[9px] text-white/20 font-medium">
-              {zones[2].label[l]}
-            </div>
-          </div>
-
-          {/* Dose marker - positioned in therapeutic zone */}
-          <motion.div
-            className="absolute top-0 bottom-0 flex items-center"
-            style={{ left: '58%' }}
-            variants={dosePop}
-          >
-            <div className="relative">
-              <div className="w-3 h-3 rounded-full bg-emerald-400 shadow-lg shadow-emerald-400/30" />
-              <div className="absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap px-2 py-0.5 rounded-md bg-emerald-400/15 border border-emerald-400/20">
-                <span className="text-[10px] font-semibold text-emerald-300">0.1 mg/kg</span>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </motion.div>
-
-      {/* Dose details */}
-      <motion.div variants={fadeUp} className="space-y-2.5">
-        {/* Standard dose */}
-        <div className="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white/[0.02] border border-white/[0.04]">
-          <span className="text-[12px] text-white/40">
-            {l === 'ko' ? '표준 용량' : 'Standard Dose'}
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+            {l === 'ko' ? '계산 결과' : 'Calculation Result'}
           </span>
-          <span className="text-[12px] text-white/30 line-through">0.2 mg/kg</span>
         </div>
 
-        {/* Adjusted dose */}
-        <div className="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-emerald-500/[0.06] border border-emerald-500/[0.12]">
-          <div className="flex items-center gap-2">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M6 2v8M2 6h8" stroke="#10b981" strokeWidth="1.5" strokeLinecap="round" />
+        {/* Standard dose → adjusted */}
+        <div className="space-y-2.5">
+          <div className="flex items-center justify-between">
+            <span className="text-[12px] text-slate-500">
+              {l === 'ko' ? '표준 용량' : 'Standard Dose'}
+            </span>
+            <span className="text-[13px] text-slate-400 line-through">0.2 mg/kg</span>
+          </div>
+
+          <div className="flex items-center gap-2 justify-center">
+            <svg width="12" height="16" viewBox="0 0 12 16" fill="none">
+              <path d="M6 2v10M2 9l4 4 4-4" stroke="#d97706" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <span className="text-[12px] text-emerald-300/80 font-medium">
-              {l === 'ko' ? '신장 조정 용량' : 'Renal-Adjusted Dose'}
+            <span className="text-[10px] text-amber-600 font-medium">
+              {l === 'ko' ? 'Cr 상승 → 신장 조정 ×0.5' : 'Cr elevated → Renal adj. ×0.5'}
             </span>
           </div>
-          <span className="text-[13px] text-emerald-300 font-bold">0.1 mg/kg</span>
-        </div>
 
-        {/* Adjustment reason */}
-        <div className="px-3.5 py-2 rounded-lg bg-amber-500/[0.04] border border-amber-500/[0.08]">
-          <span className="text-[10px] text-amber-300/50">
-            {l === 'ko'
-              ? 'Cr 2.1 mg/dL 상승 → 신장 용량 조정 계수 0.5× 적용'
-              : 'Cr 2.1 mg/dL elevated → Renal adjustment factor 0.5× applied'}
-          </span>
+          <div className="flex items-center justify-between bg-emerald-50 border border-emerald-200 rounded-lg px-3 py-2.5">
+            <span className="text-[12px] font-semibold text-emerald-700">
+              {l === 'ko' ? '조정 용량' : 'Adjusted Dose'}
+            </span>
+            <span className="text-[18px] font-black text-emerald-600">0.1 mg/kg</span>
+          </div>
         </div>
+      </motion.div>
+
+      {/* Total daily dose */}
+      <motion.div custom={0.6} variants={scaleIn} className="flex items-center justify-between px-3 py-2 rounded-lg bg-slate-50 border border-slate-100">
+        <span className="text-[10px] text-slate-400">
+          {l === 'ko' ? '1일 총 투여량 (12.5 kg)' : 'Daily Total (12.5 kg)'}
+        </span>
+        <span className="text-[13px] font-bold text-slate-700">1.25 mg</span>
       </motion.div>
     </motion.div>
   );

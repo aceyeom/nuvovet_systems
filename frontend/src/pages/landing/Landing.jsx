@@ -9,7 +9,6 @@ import CTASection from './CTASection';
 import Footer from './Footer';
 import { useI18n } from '../../i18n';
 
-// Resolve nested key like 'landing.feat1Label' from translations object
 function resolve(obj, path) {
   return path.split('.').reduce((acc, k) => acc?.[k], obj);
 }
@@ -21,7 +20,7 @@ const features = [
     titleKey: 'landing.feat1Title',
     descKey: 'landing.feat1Desc',
     illustration: DDIIllustration,
-    accentColor: '#ef4444',
+    accentColor: '#6366f1',
     fallback: {
       label: { ko: '약물 상호작용 검사', en: 'Drug Interaction Screening' },
       title: {
@@ -98,11 +97,11 @@ export default function Landing() {
   const l = lang || 'ko';
 
   return (
-    <div className="bg-[#050510] min-h-screen text-white overflow-x-hidden">
-      {/* Hero with shader */}
+    <div className="min-h-screen overflow-x-hidden">
+      {/* Dark shader hero → gradient → white */}
       <ShaderHero />
 
-      {/* Feature sections */}
+      {/* Feature sections (white/light bg) */}
       {features.map((feat, i) => {
         const Illustration = feat.illustration;
         const label = resolve(t, feat.labelKey) || feat.fallback.label[l];
@@ -123,10 +122,10 @@ export default function Landing() {
         );
       })}
 
-      {/* Final CTA */}
+      {/* Dark CTA */}
       <CTASection />
 
-      {/* Footer */}
+      {/* Light footer */}
       <Footer />
     </div>
   );
