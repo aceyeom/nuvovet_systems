@@ -130,7 +130,9 @@ function DemoUpgradeBanner({ lang }) {
 // ── Overall Severity Banner ─────────────────────────────────────
 function SeverityBanner({ results, drugs = [] }) {
   const { t, lang } = useI18n();
-  const { interactions, drugFlags, confidenceScore, overallSeverity } = results;
+  const interactions = results.interactions || [];
+  const drugFlags = results.drugFlags || [];
+  const { confidenceScore, overallSeverity } = results;
   const patientAlerts = results.patientAlerts || [];
   const criticalCount = interactions.filter(i => i.severity.label === 'Critical').length
     + patientAlerts.filter(a => a.severity?.label === 'Critical').length;
@@ -327,7 +329,9 @@ function PatientRiskProfile({ patientAlerts = [], lang }) {
 // shows patient info, drug count, interaction count, organ load, and confidence.
 function PatientSummaryPanel({ results, patientInfo, drugs = [], species = 'dog' }) {
   const { t, lang } = useI18n();
-  const { interactions, drugFlags, confidenceScore } = results;
+  const interactions = results.interactions || [];
+  const drugFlags = results.drugFlags || [];
+  const { confidenceScore } = results;
   const patientAlerts = results.patientAlerts || [];
   const summaryStats = [
     { label: lang === 'ko' ? '처방 약물' : 'Drugs', value: drugFlags.length },
@@ -752,7 +756,7 @@ function InteractionCard({ interaction, index, acknowledged, noted, onAcknowledg
 // ── Drug Flag Card ──────────────────────────────────────────────
 function DrugFlagCard({ drugFlag, species }) {
   const [expanded, setExpanded] = useState(false);
-  if (drugFlag.flags.length === 0 && !drugFlag.speciesNote) return null;
+  if (!drugFlag.flags?.length && !drugFlag.speciesNote) return null;
 
   const sourceIcon = () => {
     if (drugFlag.source === DRUG_SOURCE.HUMAN_OFFLABEL) return <FlaskConical size={13} className="text-amber-500" />;
@@ -797,7 +801,8 @@ function DrugFlagCard({ drugFlag, species }) {
 
 // ── Action Bar (always visible at bottom of results) ────────────
 function ResultsActionBar({ results, patientInfo, drugs, lang, t }) {
-  const { drugFlags, interactions } = results;
+  const drugFlags = results.drugFlags || [];
+  const interactions = results.interactions || [];
 
   return (
     <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm no-print">
@@ -1122,14 +1127,14 @@ function AlertPriorityStack({
     // 3. Drug flags — only if not already covered by interactions/patient alerts
     (flaggedDrugs || []).forEach((df, i) => {
       // Skip if no meaningful flags
-      if (df.flags.length === 0 && !df.speciesNote) return;
+      if (!df.flags?.length && !df.speciesNote) return;
       // Skip if this drug's issues are already covered
       const drugCovered = coveredDrugs.has(df.drugName?.toLowerCase());
       // Include if has flags not represented elsewhere (off-label, foreign, etc)
-      const hasUniqueFlags = df.flags.some(f => f.type === 'off-label' || f.type === 'foreign' || f.type === 'unknown');
+      const hasUniqueFlags = (df.flags || []).some(f => f.type === 'off-label' || f.type === 'foreign' || f.type === 'unknown');
       if (drugCovered && !hasUniqueFlags) return;
 
-      const worstFlag = df.flags.reduce((w, f) => {
+      const worstFlag = (df.flags || []).reduce((w, f) => {
         if (f.severity === 'critical') return 'Critical';
         if (f.severity === 'warning' && w !== 'Critical') return 'Moderate';
         return w;
@@ -1140,7 +1145,7 @@ function AlertPriorityStack({
         _src: 'drugFlag',
         _uid: `df-${i}`,
         severity: { label: worstFlag, score: worstFlag === 'Critical' ? 100 : worstFlag === 'Moderate' ? 50 : 20, color: worstFlag === 'Critical' ? 'red' : worstFlag === 'Moderate' ? 'orange' : 'yellow' },
-        mechanism: df.flags.map(f => f.description).filter(Boolean).join(' '),
+        mechanism: (df.flags || []).map(f => f.description).filter(Boolean).join(' '),
         recommendation: df.speciesNote || '',
       });
       coveredDrugs.add(df.drugName?.toLowerCase());
@@ -1373,10 +1378,12 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
   const { t, lang } = useI18n();
   if (!results) return null;
 
-  const { interactions, drugFlags, speciesNotes } = results;
+  const interactions = results.interactions || [];
+  const drugFlags = results.drugFlags || [];
+  const speciesNotes = results.speciesNotes || [];
   const patientAlerts = results.patientAlerts || [];
   const hasInteractions = interactions.length > 0;
-  const flaggedDrugs = drugFlags.filter(f => f.flags.length > 0 || f.speciesNote);
+  const flaggedDrugs = drugFlags.filter(f => f.flags?.length > 0 || f.speciesNote);
 
   const [acknowledged, setAcknowledged] = useState({});
   const [noted, setNoted] = useState({});

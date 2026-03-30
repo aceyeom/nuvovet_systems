@@ -597,7 +597,7 @@ function PatientEditPanel({ patient, drugs, results, onUpdate, conditionSuggesti
 
 // ── Dosage Summary Panel (right col on results) ───────────────────
 function DosageSummaryPanel({ results, drugs, species, patientInfo, onUpdateDrug }) {
-  const { drugFlags } = results;
+  const drugFlags = results?.drugFlags || [];
   const { lang } = useI18n();
 
   return (
