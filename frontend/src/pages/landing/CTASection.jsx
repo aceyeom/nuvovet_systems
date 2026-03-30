@@ -19,10 +19,10 @@ export default function CTASection() {
   const l = lang || 'ko';
 
   return (
-    <section className="relative py-24 sm:py-32 overflow-hidden bg-[#050510]">
-      {/* Radial glow */}
+    <section className="relative py-20 sm:py-28 bg-slate-900 overflow-hidden">
+      {/* Subtle radial glow */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-[600px] h-[400px] rounded-full bg-white/[0.02] blur-[100px]" />
+        <div className="w-[500px] h-[300px] rounded-full bg-indigo-500/5 blur-[80px]" />
       </div>
 
       <motion.div
@@ -55,7 +55,7 @@ export default function CTASection() {
 
         <motion.p
           variants={fadeUp}
-          className={`mt-5 text-[15px] text-white/30 max-w-lg mx-auto ${
+          className={`mt-5 text-[15px] text-white/40 max-w-lg mx-auto ${
             l === 'ko' ? 'leading-[1.8] break-keep' : 'leading-relaxed'
           }`}
         >
@@ -67,7 +67,7 @@ export default function CTASection() {
         <motion.div variants={fadeUp} className="mt-10">
           <button
             onClick={() => navigate('/register')}
-            className="px-10 py-4 rounded-full text-base font-semibold bg-white text-[#050510] hover:bg-white/90 transition-all hover:shadow-lg hover:shadow-white/10"
+            className="px-10 py-4 rounded-full text-base font-semibold bg-white text-slate-900 hover:bg-white/90 transition-all hover:shadow-lg hover:shadow-white/10"
           >
             {l === 'ko' ? '무료로 시작하기' : 'Start for Free'}
           </button>
