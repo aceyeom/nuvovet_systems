@@ -1383,7 +1383,10 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
   const speciesNotes = results.speciesNotes || [];
   const patientAlerts = results.patientAlerts || [];
   const hasInteractions = interactions.length > 0;
-  const flaggedDrugs = drugFlags.filter(f => f.flags?.length > 0 || f.speciesNote);
+  const flaggedDrugs = useMemo(
+    () => drugFlags.filter(f => (f.flags?.length ?? 0) > 0 || f.speciesNote),
+    [drugFlags]
+  );
 
   const [acknowledged, setAcknowledged] = useState({});
   const [noted, setNoted] = useState({});
@@ -1399,6 +1402,7 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
   // ── Korean translation of clinical text ──────────────────────────
   const [koTranslations, setKoTranslations] = useState({});
   const [koTranslating, setKoTranslating] = useState(false);
+  const lastTranslationKeyRef = useRef('');
   const translationPayloads = useMemo(
     () => buildAlertTranslationPayloads({
       interactions,
@@ -1409,20 +1413,34 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
     }),
     [interactions, patientAlerts, flaggedDrugs, speciesNotes, lang]
   );
+  const translationRequestKey = useMemo(() => {
+    if (lang !== 'ko' || translationPayloads.length === 0) return '';
+    return JSON.stringify(translationPayloads);
+  }, [lang, translationPayloads]);
 
   useEffect(() => {
     let cancelled = false;
 
-    setKoTranslations({});
-
     if (lang !== 'ko') {
+      lastTranslationKeyRef.current = '';
+      setKoTranslations({});
       setKoTranslating(false);
       return () => {
         cancelled = true;
       };
     }
 
-    if (translationPayloads.length === 0) {
+    if (!translationRequestKey) {
+      lastTranslationKeyRef.current = '';
+      setKoTranslations({});
+      setKoTranslating(false);
+      return () => {
+        cancelled = true;
+      };
+    }
+
+    // Skip duplicate translation requests for unchanged clinical payloads.
+    if (lastTranslationKeyRef.current === translationRequestKey) {
       setKoTranslating(false);
       return () => {
         cancelled = true;
@@ -1436,6 +1454,7 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
           const map = {};
           result.translations.forEach(t => { map[t.id] = t; });
           setKoTranslations(map);
+          lastTranslationKeyRef.current = translationRequestKey;
         }
       })
       .catch(() => {})
@@ -1446,7 +1465,7 @@ export function ResultsDisplay({ results, onBack, onNewAnalysis, patientInfo, is
     return () => {
       cancelled = true;
     };
-  }, [lang, translationPayloads]);
+  }, [lang, translationPayloads, translationRequestKey]);
 
   useEffect(() => {
     if (allReviewed) {
