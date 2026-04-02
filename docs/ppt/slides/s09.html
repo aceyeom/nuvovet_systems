@@ -1,0 +1,59 @@
+<section class="slide col h-full p-24">
+  <span class="slide-tag">DATA PIPELINE</span>
+  <div>
+    <span class="label label-indigo">09 — 데이터베이스 구축</span>
+    <h2 class="mt-12">이중 검증 파이프라인</h2>
+  </div>
+
+  <!-- Pipeline -->
+  <div class="row items-center gap-8 mt-24" style="flex-wrap:nowrap;overflow-x:auto;">
+    <div class="pipe-node glass-sm p-16 col center" style="flex:1;min-width:140px;">
+      <strong class="text-t1">PMC 논문 수집</strong>
+      <span class="caption mt-12">수의약학 관련 국제 논문 대규모 수집</span>
+    </div>
+    <span class="pipe-arrow" style="flex-shrink:0;font-size:20px;color:var(--t3);">→</span>
+    <div class="pipe-node glass-sm p-16 col center" style="flex:1;min-width:140px;">
+      <strong class="text-t1">규칙기반 자동검증</strong>
+      <span class="caption mt-12">1단계: 정형 규칙으로 데이터 정제</span>
+    </div>
+    <span class="pipe-arrow" style="flex-shrink:0;font-size:20px;color:var(--t3);">→</span>
+    <div class="pipe-node glass-sm p-16 col center" style="flex:1;min-width:140px;">
+      <strong class="text-t1">AI 의미유사도 분석</strong>
+      <span class="caption mt-12">2단계: LLM 기반 이중 검증</span>
+    </div>
+    <span class="pipe-arrow" style="flex-shrink:0;font-size:20px;color:var(--t3);">→</span>
+    <div class="pipe-node glass-sm p-16 col center" style="flex:1;min-width:140px;">
+      <strong class="text-t1">Plumb's 교차확인</strong>
+      <span class="caption mt-12">세계적 수의학 전문서로 최종 확인</span>
+    </div>
+    <span class="pipe-arrow" style="flex-shrink:0;font-size:20px;color:var(--t3);">→</span>
+    <div class="pipe-node glass-sm p-16 col center" style="flex:1;min-width:140px;">
+      <strong class="text-t1">검역본부 데이터 결합</strong>
+      <span class="caption mt-12">국내 유통 한국어 제품명 연결</span>
+    </div>
+  </div>
+
+  <!-- Callout -->
+  <div class="callout co-amber bl-amber p-20 mt-32">
+    <h4>한국어 제품명 ↔ 성분명 자동 연결</h4>
+    <span class="body-sm">농림축산검역본부의 동물용의약품 데이터를 결합해, 국내에서 실제 유통되는 한국어 제품명을 성분명(INN)과 자동으로 연결하는 체계를 구축했습니다. 이 한국어 제품명 연결 레이어는 영문 중심으로 설계된 해외 도구들이 국내에서 사용할 수 없는 근본적 이유이며, 누보벳만의 고유한 데이터 자산입니다.</span>
+  </div>
+
+  <!-- Bottom Stats -->
+  <div class="row gap-40 center mt-auto">
+    <div class="col center">
+      <span class="stat-md">725+</span>
+      <span class="caption">구조화된 약물</span>
+    </div>
+    <div class="col center">
+      <span class="stat-md">9,746</span>
+      <span class="caption">검증 규칙</span>
+    </div>
+    <div class="col center">
+      <span class="stat-md">이중검증</span>
+      <span class="caption">PMC + Plumb's</span>
+    </div>
+  </div>
+
+  <span class="slide-num">09/18</span>
+</section>
