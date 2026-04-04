@@ -1,0 +1,14 @@
+{
+  "name": "nuvovet_systems",
+  "forwardPorts": [8765, 8000],
+  "portsAttributes": {
+    "8765": {
+      "label": "PPT Preview",
+      "onAutoForward": "openBrowser"
+    },
+    "8000": {
+      "label": "Backend API",
+      "onAutoForward": "notify"
+    }
+  }
+}

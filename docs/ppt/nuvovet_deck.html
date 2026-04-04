@@ -10,6 +10,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"/>
+<!-- Icons -->
+<script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+<!-- Three.js for 3D visualizations (local copy for file:// compatibility) -->
+<script src="assets/three/three.min.js"></script>
 
 <style>
 /* ═══════════════════════════════════════════════════════════════
@@ -25,9 +29,9 @@
   --s2:       #1a1a2e;
   --s3:       #242438;
   /* Borders */
-  --border:   rgba(255,255,255,0.06);
-  --border2:  rgba(255,255,255,0.10);
-  --card-bg:  rgba(255,255,255,0.03);
+  --border:   rgba(255,255,255,0.16);
+  --border2:  rgba(255,255,255,0.24);
+  --card-bg:  rgba(255,255,255,0.10);
   /* Text */
   --t1:       #e8e8e6;
   --t2:       #94a3b8;
@@ -148,21 +152,30 @@ h4{font-family:'DM Sans',sans-serif;font-size:16px;font-weight:600;color:var(--t
    GLASS CARDS
    ═══════════════════════════════════════════ */
 .glass{
-  background:var(--card-bg);
-  border:1px solid var(--border);
+  background:linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.08) 100%);
+  border:1px solid var(--border2);
   border-radius:16px;
   backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,0.03);
+  box-shadow:0 14px 34px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.16);
 }
 .glass-sm{
-  background:var(--card-bg);
-  border:1px solid var(--border);
+  background:linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 100%);
+  border:1px solid var(--border2);
   border-radius:10px;
 }
 .glass-solid{
   background:var(--s1);
   border:1px solid var(--border);
   border-radius:14px;
+}
+
+/* Fallback for browsers without backdrop-filter support */
+@supports not ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+  .glass,
+  .glass-sm {
+    background:rgba(26,26,46,0.96);
+    border:1px solid rgba(255,255,255,0.22);
+  }
 }
 
 /* ═══════════════════════════════════════════
@@ -458,6 +471,50 @@ h4{font-family:'DM Sans',sans-serif;font-size:16px;font-weight:600;color:var(--t
 </head>
 <body>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const viewport = document.getElementById('presentation-viewport');
+    const hasInjectedSlides = Boolean(viewport && viewport.querySelector('.slide'));
+    const isShellRoute = window.location.pathname === '/' || window.location.pathname.endsWith('/index.html');
+
+    if (!hasInjectedSlides && isShellRoute) {
+      const basePath = window.location.pathname.replace(/index\.html$/, '');
+      window.location.replace(basePath + 'nuvovet_deck.html');
+    }
+
+    // Auto-refresh preview when the built deck file timestamp changes.
+    if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
+      const targetUrl = window.location.href.split('#')[0];
+      let lastVersion = null;
+
+      const pollForUpdates = async () => {
+        try {
+          const url = new URL(targetUrl);
+          url.searchParams.set('_deck_ts', String(Date.now()));
+          const response = await fetch(url.toString(), { method: 'HEAD', cache: 'no-store' });
+          if (!response.ok) return;
+
+          const version = response.headers.get('etag') || response.headers.get('last-modified');
+          if (!version) return;
+
+          if (lastVersion === null) {
+            lastVersion = version;
+            return;
+          }
+
+          if (version !== lastVersion) {
+            window.location.reload();
+          }
+        } catch (_) {
+          // Ignore temporary network/server errors during live preview.
+        }
+      };
+
+      setInterval(pollForUpdates, 1200);
+    }
+  });
+</script>
+
 <!-- ═══════════════════════════════════════════
      PRESENTATION VIEWPORT
      All 18 slides are injected here.
@@ -465,62 +522,490 @@ h4{font-family:'DM Sans',sans-serif;font-size:16px;font-weight:600;color:var(--t
      ═══════════════════════════════════════════ -->
 <div id="presentation-viewport">
 
-  <section class="slide dot-grid" id="s1">
-  <!-- Gradient orbs -->
-  <div class="orb orb-indigo" style="width:500px;height:500px;top:-80px;right:-80px;"></div>
-  <div class="orb orb-blue" style="width:400px;height:400px;bottom:-60px;left:-60px;"></div>
+  <section class="slide overflow-hidden" id="s1">
 
-  <!-- Center-bottom hero layout -->
-  <div style="position:absolute;bottom:180px;left:0;right:0;display:flex;flex-direction:column;align-items:center;">
-    <span class="badge badge-indigo">AI-Powered Veterinary DUR</span>
-    <h1 class="dm mt-16" style="font-size:64px;font-weight:700;letter-spacing:-0.045em;color:var(--t1);margin:0;">nuvovet</h1>
-    <p class="mt-12" style="font-size:20px;color:var(--t2);margin-bottom:0;">AI 기반 수의 전문 DUR 솔루션</p>
-  </div>
+  <!-- ═══ BACKGROUND ══════════════════════════════════════════════════ -->
+  <div class="absolute" style="inset:0;background:#030408;"></div>
+  <div class="absolute" style="inset:0;background:radial-gradient(ellipse 900px 620px at 8% 16%,rgba(99,102,241,0.32) 0%,transparent 68%),radial-gradient(ellipse 600px 500px at 92% 82%,rgba(56,130,246,0.18) 0%,transparent 65%);"></div>
+  <div class="absolute" style="inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.042) 1px,transparent 1px);background-size:32px 32px;"></div>
+  <div class="absolute" style="inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(255,255,255,0.009) 3px,rgba(255,255,255,0.009) 4px);pointer-events:none;"></div>
+  <div class="absolute" style="inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 48%,rgba(1,2,7,0.72) 100%);pointer-events:none;"></div>
+  <div class="absolute" style="inset:20px;border:1px solid rgba(255,255,255,0.052);border-radius:20px;pointer-events:none;"></div>
 
-  <!-- Bottom metadata row -->
-  <div class="mono" style="position:absolute;bottom:72px;left:72px;display:flex;gap:40px;font-size:10px;color:var(--t3);">
-    <div><span style="opacity:0.5;">대회</span>&ensp;군 창업 경진대회 2026</div>
-    <div><span style="opacity:0.5;">팀</span>&ensp;염인 · 김동현 · 김명학</div>
-    <div><span style="opacity:0.5;">분류</span>&ensp;AI 의료 소프트웨어</div>
-  </div>
+  <!-- ═══ SLIDE LABELS ═════════════════════════════════════════════════ -->
+  <div class="slide-tag">서비스 개요</div>
+  <div class="slide-num">01/18</div>
+
+  <!-- ═══ MAIN LAYOUT: 620px left | 1fr right, full height ════════════ -->
+  <div style="position:relative;z-index:2;display:grid;grid-template-columns:620px 1fr;height:100%;gap:36px;align-items:stretch;">
+
+    <!-- ──────────────────── LEFT COLUMN ──────────────────────────── -->
+    <div style="display:flex;flex-direction:column;justify-content:center;height:100%;padding:0 24px 0 52px;">
+
+      <!-- Eyebrow label -->
+      <div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;">
+        <div style="width:28px;height:2px;background:linear-gradient(90deg,#6366f1,transparent);border-radius:2px;"></div>
+        <span style="font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(165,180,252,0.65);font-family:'JetBrains Mono',monospace;">AI 수의 임상 소프트웨어</span>
+      </div>
+
+      <!-- Wordmark -->
+      <div class="dm" style="font-size:108px;line-height:0.86;letter-spacing:-0.085em;font-weight:700;color:#eaeaf6;">nuvovet</div>
+
+      <!-- Subtitle -->
+      <h2 style="margin-top:16px;font-size:38px;font-weight:700;line-height:1.22;letter-spacing:-0.038em;color:#d8e4f2;">처방에서 안전 확인까지<br>— 1초 이내</h2>
+
+      <!-- Feature rows — minimal left-border style -->
+      <div style="margin-top:24px;display:flex;flex-direction:column;gap:0;border-left:2px solid rgba(147,197,253,0.35);padding-left:18px;">
+        <div style="padding:8px 0;border-bottom:1px solid rgba(147,197,253,0.10);display:flex;align-items:baseline;justify-content:space-between;">
+          <span style="font-size:17px;font-weight:800;letter-spacing:-0.01em;background:linear-gradient(90deg,#60a5fa,#93c5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">EMR 스크린샷 OCR</span>
+          <span style="font-size:12px;font-weight:600;background:linear-gradient(90deg,#93c5fd,#bfdbfe);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">AI가 차트 이미지에서 환자 정보 자동 추출</span>
+        </div>
+        <div style="padding:8px 0;border-bottom:1px solid rgba(147,197,253,0.10);display:flex;align-items:baseline;justify-content:space-between;">
+          <span style="font-size:17px;font-weight:800;letter-spacing:-0.01em;background:linear-gradient(90deg,#60a5fa,#93c5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">음성 SOAP</span>
+          <span style="font-size:12px;font-weight:600;background:linear-gradient(90deg,#93c5fd,#bfdbfe);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">진찰 음성 → 구조화 SOAP 노트 즉시 작성</span>
+        </div>
+        <div style="padding:8px 0;border-bottom:1px solid rgba(147,197,253,0.10);display:flex;align-items:baseline;justify-content:space-between;">
+          <span style="font-size:17px;font-weight:800;letter-spacing:-0.01em;background:linear-gradient(90deg,#60a5fa,#93c5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">실시간 DUR 안전성 검사</span>
+          <span style="font-size:12px;font-weight:600;background:linear-gradient(90deg,#93c5fd,#bfdbfe);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">DDI · 품종 유전 감수성 · 질환 금기 동시 분석</span>
+        </div>
+        <div style="padding:8px 0;border-bottom:1px solid rgba(147,197,253,0.10);display:flex;align-items:baseline;justify-content:space-between;">
+          <span style="font-size:17px;font-weight:800;letter-spacing:-0.01em;background:linear-gradient(90deg,#60a5fa,#93c5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">용량 계산기</span>
+          <span style="font-size:12px;font-weight:600;background:linear-gradient(90deg,#93c5fd,#bfdbfe);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">체중 · 신기능(Cr) · 간기능(ALT) 보정 자동 산출</span>
+        </div>
+        <div style="padding:8px 0;display:flex;align-items:baseline;justify-content:space-between;">
+          <span style="font-size:17px;font-weight:800;letter-spacing:-0.01em;background:linear-gradient(90deg,#60a5fa,#93c5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">보호자 퇴원 안내문</span>
+          <span style="font-size:12px;font-weight:600;background:linear-gradient(90deg,#93c5fd,#bfdbfe);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">환자별 주의 증상 · 복약 지도 한글 자동 생성</span>
+        </div>
+      </div>
+
+      <!-- Stat bar — compact single row -->
+      <div style="margin-top:24px;display:flex;gap:0;max-width:540px;border:1px solid rgba(147,197,253,0.18);border-radius:14px;overflow:hidden;">
+        <div style="flex:1;padding:13px 16px;border-right:1px solid rgba(147,197,253,0.12);">
+          <div class="dm" style="font-size:30px;font-weight:700;letter-spacing:-0.05em;color:#93c5fd;line-height:1;">862</div>
+          <div style="margin-top:4px;font-size:11px;color:rgba(147,197,253,0.50);letter-spacing:0.04em;">약물 DB</div>
+        </div>
+        <div style="flex:1;padding:13px 16px;border-right:1px solid rgba(147,197,253,0.12);">
+          <div class="dm" style="font-size:30px;font-weight:700;letter-spacing:-0.05em;color:#93c5fd;line-height:1;">9,746</div>
+          <div style="margin-top:4px;font-size:11px;color:rgba(147,197,253,0.50);letter-spacing:0.04em;">검증 규칙</div>
+        </div>
+        <div style="flex:1;padding:13px 16px;border-right:1px solid rgba(147,197,253,0.12);">
+          <div class="dm" style="font-size:30px;font-weight:700;letter-spacing:-0.05em;color:#bfdbfe;line-height:1;">&lt;1s</div>
+          <div style="margin-top:4px;font-size:11px;color:rgba(147,197,253,0.50);letter-spacing:0.04em;">실시간 DUR</div>
+        </div>
+        <div style="flex:1;padding:13px 16px;">
+          <div class="dm" style="font-size:30px;font-weight:700;letter-spacing:-0.05em;color:#bfdbfe;line-height:1;">2종</div>
+          <div style="margin-top:4px;font-size:11px;color:rgba(147,197,253,0.50);letter-spacing:0.04em;">개·고양이</div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div style="margin-top:auto;padding-top:24px;display:flex;gap:24px;flex-wrap:wrap;">
+        <span style="font-size:16px;letter-spacing:0.07em;color:rgba(170,192,220,0.52);font-family:'JetBrains Mono',monospace;">군 창업 경진대회 2026</span>
+        <span style="font-size:16px;letter-spacing:0.07em;color:rgba(170,192,220,0.52);font-family:'JetBrains Mono',monospace;">염인 · 김동현 · 김명학</span>
+      </div>
+
+    </div><!-- /left -->
+
+    <!-- ──────────────────── RIGHT COLUMN ─────────────────────────── -->
+    <!-- This column fills all remaining width (~1056px) and full slide height -->
+    <div style="position:relative;height:100%;perspective:1050px;overflow:visible;">
+
+      <!-- ── Ambient glow centered behind the device ── -->
+      <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:820px;height:440px;border-radius:50%;background:radial-gradient(ellipse,rgba(99,102,241,0.20) 0%,rgba(59,130,246,0.10) 42%,transparent 70%);filter:blur(42px);pointer-events:none;z-index:1;"></div>
+
+      <!-- ── Reflection line below browser — futuristic floor reflect ── -->
+      <div style="position:absolute;left:50px;bottom:44px;width:860px;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(99,102,241,0.35) 20%,rgba(165,180,252,0.55) 50%,rgba(99,102,241,0.35) 80%,transparent 100%);z-index:2;transform:rotateY(-15deg) rotateX(6deg);filter:blur(0.5px);"></div>
+      <div style="position:absolute;left:60px;bottom:28px;width:840px;height:8px;background:linear-gradient(180deg,rgba(99,102,241,0.14),transparent);z-index:2;transform:rotateY(-15deg) rotateX(6deg);filter:blur(4px);"></div>
+
+      <!-- ── Single clean drop-shadow ── -->
+      <div style="position:absolute;left:80px;top:86px;width:880px;height:700px;border-radius:18px;
+           background:rgba(0,1,8,0.60);
+           box-shadow:0 90px 180px rgba(0,0,12,0.80),0 32px 72px rgba(0,0,12,0.50),0 0 140px rgba(99,102,241,0.22),0 0 0 1px rgba(255,255,255,0.04);
+           transform:rotateY(-15deg) rotateX(6deg) translateY(44px);
+           z-index:3;"></div>
+
+      <!-- ── Glass highlight edge ── -->
+      <div style="position:absolute;left:62px;top:62px;width:880px;height:700px;border-radius:16px;
+           background:linear-gradient(148deg,rgba(255,255,255,0.13) 0%,rgba(255,255,255,0.00) 38%);
+           border:1px solid rgba(255,255,255,0.16);
+           transform:rotateY(-15deg) rotateX(6deg) translateZ(6px);
+           pointer-events:none;z-index:10;"></div>
+
+      <!-- ═══ BROWSER WINDOW ═══════════════════════════════════════ -->
+      <div style="position:absolute;left:62px;top:62px;width:880px;height:700px;
+           border-radius:14px;overflow:hidden;
+           background:#11121d;
+           border:1px solid rgba(99,102,241,0.42);
+           box-shadow:0 0 56px rgba(99,102,241,0.18),0 0 130px rgba(59,130,246,0.10),inset 0 1px 0 rgba(255,255,255,0.07);
+           transform:rotateY(-15deg) rotateX(6deg);
+           z-index:6;">
+
+        <!-- macOS Title bar -->
+        <div style="height:44px;display:flex;align-items:center;padding:0 16px;gap:8px;flex-shrink:0;
+             background:linear-gradient(180deg,#1d1e30 0%,#181929 100%);
+             border-bottom:1px solid rgba(255,255,255,0.068);">
+          <div style="display:flex;align-items:center;gap:7px;flex-shrink:0;">
+            <div style="width:13px;height:13px;border-radius:50%;background:radial-gradient(circle at 38% 32%,#ff7568,#ff5f57);box-shadow:0 0 8px rgba(255,95,87,0.60);"></div>
+            <div style="width:13px;height:13px;border-radius:50%;background:radial-gradient(circle at 38% 32%,#ffcf4e,#febc2e);box-shadow:0 0 8px rgba(254,188,46,0.50);"></div>
+            <div style="width:13px;height:13px;border-radius:50%;background:radial-gradient(circle at 38% 32%,#52d869,#28c840);box-shadow:0 0 8px rgba(40,200,64,0.50);"></div>
+          </div>
+          <div style="flex:1;display:flex;justify-content:center;">
+            <div style="width:320px;height:27px;background:rgba(255,255,255,0.050);border:1px solid rgba(255,255,255,0.085);border-radius:7px;display:flex;align-items:center;padding:0 12px;gap:7px;">
+              <div style="width:7px;height:7px;border-radius:50%;background:rgba(40,200,64,0.80);flex-shrink:0;"></div>
+              <span style="font-size:11px;color:rgba(255,255,255,0.34);font-family:'JetBrains Mono',monospace;">app.nuvovet.ai/diagnosis</span>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:7px;">
+            <div style="width:25px;height:25px;border-radius:6px;background:rgba(255,255,255,0.04);display:flex;align-items:center;justify-content:center;font-size:12px;color:rgba(255,255,255,0.18);">⚙</div>
+            <div style="width:25px;height:25px;border-radius:50%;background:rgba(99,102,241,0.30);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#a5b4fc;">AY</div>
+          </div>
+        </div>
+
+        <!-- Summary page screenshot fills the rest -->
+        <div style="position:relative;flex:1;overflow:hidden;height:calc(700px - 44px);">
+          <img src="assets/summary_page.png" alt="NuvoVet Summary"
+               style="width:100%;height:100%;object-fit:cover;object-position:top left;display:block;" />
+          <div style="position:absolute;bottom:0;left:0;right:0;height:56px;background:linear-gradient(transparent,rgba(17,18,29,0.92));pointer-events:none;"></div>
+        </div>
+
+      </div><!-- /browser window -->
+
+      <!-- ═══ POPUP 1 — Organ Load (top-right, overlaps browser TR corner) ══ -->
+      <div style="position:absolute;right:80px;top:200px;width:278px;
+           padding:15px 15px 14px;border-radius:22px;
+           background:linear-gradient(158deg,rgba(255,255,255,0.97) 0%,rgba(236,246,255,0.93) 100%);
+           border:1px solid rgba(147,197,253,0.50);
+           box-shadow:inset 0 1px 0 rgba(255,255,255,0.85),0 20px 56px rgba(4,10,34,0.28),0 0 0 0.5px rgba(147,197,253,0.26);
+           transform:rotateY(-16deg) rotateX(6deg) rotateZ(1deg) translateZ(50px);
+           z-index:15;overflow:visible;">
+        <div style="position:absolute;top:-28px;left:-16px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,0.09) 0%,transparent 62%);pointer-events:none;"></div>
+        <div style="position:relative;z-index:1;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+            <span style="font-size:8px;font-weight:800;letter-spacing:0.17em;text-transform:uppercase;color:#64748b;">장기 관여도 분석</span>
+            <span style="font-size:8px;font-weight:600;color:#1d4ed8;background:#eff6ff;padding:2px 7px;border-radius:5px;border:1px solid #bfdbfe;">Canine</span>
+          </div>
+
+          <!-- Anatomy SVG — mirrors OrganIllustration.jsx exactly -->
+          <div style="border-radius:12px;overflow:hidden;background:rgba(248,250,252,0.45);border:1px solid rgba(226,232,240,0.50);margin-bottom:8px;position:relative;">
+            <div style="position:absolute;top:4px;left:4px;width:10px;height:10px;border-top:1.5px solid rgba(59,130,246,0.35);border-left:1.5px solid rgba(59,130,246,0.35);z-index:2;pointer-events:none;"></div>
+            <div style="position:absolute;top:4px;right:4px;width:10px;height:10px;border-top:1.5px solid rgba(59,130,246,0.35);border-right:1.5px solid rgba(59,130,246,0.35);z-index:2;pointer-events:none;"></div>
+            <div style="position:absolute;bottom:4px;left:4px;width:10px;height:10px;border-bottom:1.5px solid rgba(59,130,246,0.35);border-left:1.5px solid rgba(59,130,246,0.35);z-index:2;pointer-events:none;"></div>
+            <div style="position:absolute;bottom:4px;right:4px;width:10px;height:10px;border-bottom:1.5px solid rgba(59,130,246,0.35);border-right:1.5px solid rgba(59,130,246,0.35);z-index:2;pointer-events:none;"></div>
+            <svg viewBox="0 0 485 385" style="width:100%;height:auto;display:block;padding:8px;">
+              <image href="assets/dog-traced.svg" x="0" y="0" width="485" height="385" opacity="0.35"/>
+              <!-- brain 15%→none rgba(148,163,184,0.22) -->
+              <path d="M 82 84 C 86 74, 96 70, 106 73 C 114 76, 118 84, 116 93 C 114 100, 107 105, 99 106 C 93 106, 88 103, 85 98 C 81 96, 79 91, 82 84 Z" fill="rgba(148,163,184,0.22)" stroke="#94a3b8" stroke-width="1.5"/>
+              <!-- heart 30%→low rgba(147,197,253,0.32) -->
+              <path d="M 140 170 C 146 161, 158 160, 164 168 C 168 173, 168 179, 165 185 C 161 192, 155 196, 148 196 C 142 196, 136 192, 133 185 C 131 179, 133 173, 140 170 Z" fill="rgba(147,197,253,0.32)" stroke="#93c5fd" stroke-width="1.5"/>
+              <!-- liver 72%→high rgba(29,78,216,0.54) -->
+              <path d="M 190 178 C 206 168, 232 167, 248 175 C 255 179, 257 188, 253 196 C 248 205, 236 210, 222 211 C 209 212, 197 207, 190 200 C 184 194, 183 185, 190 178 Z" fill="rgba(29,78,216,0.54)" stroke="#1d4ed8" stroke-width="1.5"/>
+              <!-- kidney 86%→critical rgba(30,58,95,0.62) -->
+              <path d="M 271 175 C 278 169, 288 168, 296 172 C 303 175, 308 182, 308 190 C 308 198, 303 204, 296 208 C 288 212, 278 211, 271 207 C 264 202, 261 195, 262 188 C 263 182, 266 178, 271 175 Z" fill="rgba(30,58,95,0.62)" stroke="#1e3a5f" stroke-width="1.5"/>
+              <!-- blood 55%→moderate stroke rgba(59,130,246,0.70) -->
+              <path d="M 101 92 C 115 95, 126 104, 134 118 C 151 143, 184 152, 224 154 C 265 156, 307 154, 347 157 C 369 160, 388 167, 403 177" fill="none" stroke="rgba(59,130,246,0.70)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Leader lines + score dots (labelAnchors from anatomyConstants.js) -->
+              <line x1="98" y1="88" x2="50" y2="52" stroke="#94a3b8" stroke-width="0.6" stroke-dasharray="3 2" opacity="0.5"/>
+              <circle cx="50" cy="52" r="4" fill="#94a3b8"/>
+              <line x1="148" y1="180" x2="105" y2="230" stroke="#94a3b8" stroke-width="0.6" stroke-dasharray="3 2" opacity="0.5"/>
+              <circle cx="105" cy="230" r="4" fill="#93c5fd"/>
+              <line x1="222" y1="192" x2="280" y2="230" stroke="#94a3b8" stroke-width="0.6" stroke-dasharray="3 2" opacity="0.5"/>
+              <circle cx="280" cy="230" r="4" fill="#1d4ed8"/>
+              <line x1="286" y1="190" x2="340" y2="160" stroke="#94a3b8" stroke-width="0.6" stroke-dasharray="3 2" opacity="0.5"/>
+              <circle cx="340" cy="160" r="4" fill="#1e3a5f"/>
+              <line x1="380" y1="172" x2="430" y2="265" stroke="#94a3b8" stroke-width="0.6" stroke-dasharray="3 2" opacity="0.5"/>
+              <circle cx="430" cy="265" r="4" fill="#3b82f6"/>
+            </svg>
+          </div>
+
+          <!-- 5 organ score tiles — like OrganIllustration.jsx bottom row -->
+          <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:3px;margin-bottom:9px;">
+            <div style="text-align:center;border-radius:7px;background:rgba(241,245,249,0.45);padding:5px 2px;">
+              <div style="font-size:10px;font-weight:700;color:#94a3b8;">15%</div>
+              <div style="font-size:7.5px;color:#94a3b8;margin-top:1px;">뇌</div>
+            </div>
+            <div style="text-align:center;border-radius:7px;background:rgba(239,246,255,0.45);padding:5px 2px;border:1px solid rgba(191,219,254,0.50);">
+              <div style="font-size:10px;font-weight:700;color:#93c5fd;">30%</div>
+              <div style="font-size:7.5px;color:#64748b;margin-top:1px;">심장</div>
+            </div>
+            <div style="text-align:center;border-radius:7px;background:rgba(219,234,254,0.45);padding:5px 2px;border:1px solid rgba(147,197,253,0.50);">
+              <div style="font-size:10px;font-weight:700;color:#3b82f6;">55%</div>
+              <div style="font-size:7.5px;color:#64748b;margin-top:1px;">혈액</div>
+            </div>
+            <div style="text-align:center;border-radius:7px;background:rgba(219,234,254,0.50);padding:5px 2px;border:1px solid rgba(147,197,253,0.50);">
+              <div style="font-size:10px;font-weight:700;color:#1d4ed8;">72%</div>
+              <div style="font-size:7.5px;color:#64748b;margin-top:1px;">간</div>
+            </div>
+            <div style="text-align:center;border-radius:7px;background:rgba(30,58,138,0.65);padding:5px 2px;">
+              <div style="font-size:10px;font-weight:700;color:#93c5fd;">86%</div>
+              <div style="font-size:7.5px;color:#bfdbfe;margin-top:1px;">신장</div>
+            </div>
+          </div>
+
+          <!-- Renal + Hepatic elimination bars -->
+          <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:8px;">
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:2px;">
+                <span style="font-size:10px;font-weight:600;color:#475569;">신장 / Renal</span>
+                <span style="font-size:10px;font-weight:700;font-family:'JetBrains Mono',monospace;color:#1e3a8a;">86%</span>
+              </div>
+              <div style="height:6px;border-radius:999px;background:rgba(226,232,240,0.50);overflow:hidden;">
+                <div style="width:86%;height:100%;background:linear-gradient(90deg,#1d4ed8,#1e3a5f);border-radius:999px;"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:2px;">
+                <span style="font-size:10px;font-weight:600;color:#475569;">간 / Hepatic</span>
+                <span style="font-size:10px;font-weight:700;font-family:'JetBrains Mono',monospace;color:#1d4ed8;">72%</span>
+              </div>
+              <div style="height:6px;border-radius:999px;background:#e2e8f0;overflow:hidden;">
+                <div style="width:72%;height:100%;background:linear-gradient(90deg,#3b82f6,#1d4ed8);border-radius:999px;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Per-drug contribution -->
+          <div style="padding-top:8px;border-top:1px solid rgba(234,239,248,0.45);">
+            <div style="font-size:7.5px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.13em;margin-bottom:4px;">약물별 기여도</div>
+            <div style="display:flex;flex-direction:column;gap:2px;">
+              <div style="display:flex;justify-content:space-between;font-size:9px;color:rgba(51,65,85,0.90);"><span>멜록시캄</span><span style="font-family:'JetBrains Mono',monospace;color:#1d4ed8;font-weight:700;">신 55%  간 36%</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:9px;color:rgba(51,65,85,0.90);"><span>프레드니솔론</span><span style="font-family:'JetBrains Mono',monospace;color:#3b82f6;font-weight:700;">신 31%  간 36%</span></div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /organ popup -->
+
+      <!-- ═══ POPUP 2 — Dose Calculator (bottom-left, overlaps BL corner) ══ -->
+      <div style="position:absolute;left:60px;bottom:90px;width:236px;
+           padding:15px 15px 14px;border-radius:22px;
+           background:linear-gradient(158deg,rgba(255,255,255,0.97) 0%,rgba(236,246,255,0.93) 100%);
+           border:1px solid rgba(147,197,253,0.50);
+           box-shadow:inset 0 1px 0 rgba(255,255,255,0.85),0 20px 56px rgba(4,10,34,0.28),0 0 0 0.5px rgba(147,197,253,0.26);
+           transform:rotateY(-14deg) rotateX(5deg) translateZ(40px);
+           z-index:15;overflow:visible;">
+        <div style="position:absolute;bottom:-26px;right:-14px;width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,0.08) 0%,transparent 62%);pointer-events:none;"></div>
+        <div style="position:relative;z-index:1;">
+
+          <!-- Label row -->
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+            <span style="font-size:7.5px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#64748b;">용량 계산</span>
+            <div style="display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:999px;background:#eff6ff;border:1px solid #bfdbfe;">
+              <div style="width:4px;height:4px;border-radius:50%;background:#3b82f6;"></div>
+              <span style="font-size:7px;font-weight:700;color:#1d4ed8;letter-spacing:0.06em;">자동 조정</span>
+            </div>
+          </div>
+
+          <!-- Drug name -->
+          <div style="margin-bottom:10px;">
+            <div style="font-size:17px;font-weight:700;color:#0f172a;letter-spacing:-0.03em;line-height:1;font-family:'DM Sans',sans-serif;">멜록시캄</div>
+            <div style="font-size:9px;color:#94a3b8;margin-top:3px;letter-spacing:0.06em;">NSAID · 개 · 4.8 kg · PO</div>
+          </div>
+
+          <!-- Lab warning -->
+          <div style="display:flex;align-items:center;gap:6px;padding:5px 8px;border-radius:8px;background:#fff7ed;border:1px solid #fed7aa;margin-bottom:14px;">
+            <svg width="9" height="9" viewBox="0 0 10 10" fill="none" style="flex-shrink:0;"><path d="M5 1L9 9H1L5 1Z" stroke="#f97316" stroke-width="1.2" stroke-linejoin="round"/><line x1="5" y1="4" x2="5" y2="6.5" stroke="#f97316" stroke-width="1.1" stroke-linecap="round"/><circle cx="5" cy="7.8" r="0.5" fill="#f97316"/></svg>
+            <span style="font-size:8px;font-weight:600;color:#c2410c;">Cr 1.9 mg/dL ↑ — 신장 조정 ×0.5</span>
+          </div>
+
+          <!-- Dose track -->
+          <div style="margin-bottom:14px;">
+            <div style="position:relative;height:6px;border-radius:999px;overflow:visible;margin-bottom:6px;">
+              <div style="position:absolute;inset:0;border-radius:999px;overflow:hidden;">
+                <div style="position:absolute;left:0;top:0;width:16%;height:100%;background:rgba(251,191,36,0.40);"></div>
+                <div style="position:absolute;left:16%;top:0;width:51%;height:100%;background:rgba(59,130,246,0.42);"></div>
+                <div style="position:absolute;left:67%;top:0;width:33%;height:100%;background:rgba(251,191,36,0.28);"></div>
+              </div>
+              <div style="position:absolute;left:calc(33% - 4px);top:-2px;width:10px;height:10px;border-radius:50%;background:#3b82f6;border:2px solid #fff;box-shadow:0 0 0 2px rgba(59,130,246,0.38);"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:0 1px;">
+              <span style="font-size:7px;font-family:'JetBrains Mono',monospace;color:#94a3b8;">0</span>
+              <span style="font-size:7px;font-family:'JetBrains Mono',monospace;color:#3b82f6;font-weight:700;">0.1</span>
+              <span style="font-size:7px;font-family:'JetBrains Mono',monospace;color:#64748b;">0.2</span>
+            </div>
+          </div>
+
+          <!-- Result box -->
+          <div style="border-radius:12px;background:#eff6ff;border:1px solid #bfdbfe;padding:11px 12px;margin-bottom:8px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;">
+              <span style="font-size:9px;color:#94a3b8;text-decoration:line-through;font-family:'JetBrains Mono',monospace;">0.2 mg/kg</span>
+              <span style="font-size:7.5px;color:#c2410c;font-weight:600;">×0.5 신장 조정</span>
+            </div>
+            <div style="display:flex;align-items:baseline;justify-content:space-between;">
+              <span style="font-size:10px;font-weight:600;color:#1d4ed8;">조정 용량</span>
+              <span style="font-size:27px;font-weight:800;color:#1d4ed8;letter-spacing:-0.05em;line-height:1;font-family:'DM Sans',sans-serif;">0.1<span style="font-size:12px;font-weight:600;margin-left:2px;color:#3b82f6;">mg/kg</span></span>
+            </div>
+          </div>
+
+          <!-- Daily total -->
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:5px 2px;">
+            <span style="font-size:8.5px;color:#64748b;">1일 총량</span>
+            <span style="font-size:13px;font-weight:700;color:#0f172a;font-family:'JetBrains Mono',monospace;">0.48 mg</span>
+          </div>
+        </div>
+      </div><!-- /dose popup -->
+
+    </div><!-- /right column -->
+  </div><!-- /grid -->
 </section>
 
+<section class="slide overflow-hidden" id="s2">
 
-<section class="slide" id="s2">
-  <div class="slide-tag">PROBLEM</div>
+  <!-- ═══ BACKGROUND ══════════════════════════════════════════════════ -->
+  <div class="absolute" style="inset:0;background:#030408;"></div>
+  <div class="absolute" style="inset:0;background:
+    radial-gradient(ellipse 900px 700px at 6% 20%,rgba(239,68,68,0.28) 0%,transparent 64%),
+    radial-gradient(ellipse 700px 600px at 94% 85%,rgba(99,102,241,0.20) 0%,transparent 64%);"></div>
+  <div class="absolute" style="inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.042) 1px,transparent 1px);background-size:32px 32px;"></div>
+  <div class="absolute" style="inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(255,255,255,0.009) 3px,rgba(255,255,255,0.009) 4px);pointer-events:none;"></div>
+  <div class="absolute" style="inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 48%,rgba(1,2,7,0.72) 100%);pointer-events:none;"></div>
+  <div class="absolute" style="inset:20px;border:1px solid rgba(255,255,255,0.052);border-radius:20px;pointer-events:none;"></div>
+
+  <!-- ═══ SLIDE LABELS ═════════════════════════════════════════════════ -->
+  <div class="slide-tag">문제 인식</div>
   <div class="slide-num">02/18</div>
 
-  <div class="row" style="gap:48px;align-items:stretch;height:100%;">
-    <!-- Left side (55%) -->
-    <div style="flex:0 0 55%;display:flex;flex-direction:column;justify-content:center;">
-      <span class="label label-red">02 — 문제 인식</span>
-      <h2 class="mt-16">동물을 위한 DUR 시스템은<br>존재하지 않습니다</h2>
-      <p class="body mt-16">국내 동물병원 처방의 70%가 인체용 의약품(오프라벨)으로 이루어지는 환경임에도, 동물용 EMR에는 이를 실시간으로 검증할 표준 시스템이 부재합니다. 인체 의료에는 퍼스트디스 등 전문 DUR이 의무화되어 있으나, 스스로 증상을 말하지 못하는 동물에게는 어떠한 처방 안전망도 없습니다.</p>
-    </div>
+  <!-- ═══ MAIN LAYOUT: 600px left | 1fr right ══════════════════════ -->
+  <div style="position:relative;z-index:2;display:grid;grid-template-columns:600px 1fr;height:100%;gap:40px;align-items:stretch;">
 
-    <!-- Right side (45%) — 3 stat cards -->
-    <div style="flex:0 0 45%;display:flex;flex-direction:column;justify-content:center;gap:20px;">
-      <!-- Card 1 -->
-      <div class="glass p-24">
-        <div class="stat-lg text-blue">5,600+</div>
-        <div class="body mt-8">동물병원</div>
-        <div class="caption mt-8">전국 등록 동물병원 수</div>
+    <!-- ──────────────────── LEFT ──────────────────────────────────── -->
+    <div style="display:flex;flex-direction:column;justify-content:center;padding:0 20px 0 52px;">
+
+      <!-- Eyebrow — s1 pattern -->
+      <div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:20px;">
+        <div style="width:28px;height:2px;background:linear-gradient(90deg,#f87171,transparent);border-radius:2px;"></div>
+        <span style="font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(252,165,165,0.65);font-family:'JetBrains Mono',monospace;">문제 인식</span>
       </div>
-      <!-- Card 2 -->
-      <div class="glass p-24">
-        <div class="stat-lg text-amber">70%</div>
-        <div class="body mt-8">오프라벨 처방</div>
-        <div class="caption mt-8">인체용 의약품 사용 비율</div>
+
+      <!-- Title — 60px matches s1 scale -->
+      <h2 style="margin:0 0 22px;font-size:60px;font-weight:700;line-height:1.06;letter-spacing:-0.045em;color:#eaeaf6;">
+        DUR 시스템,<br>그리고<br>
+        <span style="background:linear-gradient(90deg,#f87171,#fca5a5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">동물 의료의 공백</span>
+      </h2>
+
+      <!-- DUR definition — 18px body -->
+      <p style="margin:0 0 32px;font-size:18px;line-height:1.70;color:rgba(216,228,242,0.62);padding-left:16px;border-left:2px solid rgba(248,113,113,0.35);">
+        처방 시 <span style="color:rgba(216,228,242,0.92);font-weight:600;">약물 상호작용 · 알레르기 ·<br>기저질환 금기 · 용량 오류</span>를 실시간 검증하는<br>처방 안전 시스템
+      </p>
+
+      <!-- Hero stat row -->
+      <div style="display:flex;align-items:flex-end;gap:20px;margin-bottom:16px;">
+        <span class="dm" style="font-size:128px;font-weight:700;letter-spacing:-0.06em;line-height:0.86;background:linear-gradient(160deg,#f87171 30%,#fca5a5 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">70%</span>
+        <div style="padding-bottom:10px;">
+          <div style="font-size:20px;font-weight:700;color:#eaeaf6;line-height:1.3;">인체용 의약품<br><span style="color:rgba(252,165,165,0.75);font-weight:500;font-size:17px;">오프라벨 처방</span></div>
+        </div>
       </div>
-      <!-- Card 3 -->
-      <div class="glass p-24 relative">
-        <div class="orb orb-red" style="width:200px;height:200px;top:50%;left:50%;transform:translate(-50%,-50%);"></div>
-        <div class="stat-xl text-red" style="position:relative;z-index:1;">0</div>
-        <div class="body mt-8" style="position:relative;z-index:1;">DUR 시스템</div>
-        <div class="caption mt-8" style="position:relative;z-index:1;">동물용 처방 검증 시스템</div>
+      <p style="margin:0 0 32px;font-size:18px;line-height:1.65;color:rgba(216,228,242,0.72);">
+        국내 동물병원 전체 처방 중 —<br>
+        <span style="color:#fca5a5;font-weight:700;">이를 검증할 표준 시스템이 존재하지 않습니다.</span>
+      </p>
+
+      <!-- Stat bar — 3 cells, red accent -->
+      <div style="display:flex;gap:0;border:1px solid rgba(248,113,113,0.18);border-radius:14px;overflow:hidden;backdrop-filter:blur(8px);background:rgba(248,113,113,0.04);">
+        <div style="flex:1;padding:14px 18px;border-right:1px solid rgba(248,113,113,0.12);">
+          <div class="dm" style="font-size:30px;font-weight:700;letter-spacing:-0.05em;color:#f87171;line-height:1;">5,600+</div>
+          <div style="margin-top:5px;font-size:12px;color:rgba(252,165,165,0.50);letter-spacing:0.04em;">국내 동물병원</div>
+        </div>
+        <div style="flex:1;padding:14px 18px;border-right:1px solid rgba(248,113,113,0.12);">
+          <div class="dm" style="font-size:30px;font-weight:700;letter-spacing:-0.05em;color:#f87171;line-height:1;">0</div>
+          <div style="margin-top:5px;font-size:12px;color:rgba(252,165,165,0.50);letter-spacing:0.04em;">수의 DUR 시스템</div>
+        </div>
+        <div style="flex:1;padding:14px 18px;">
+          <div class="dm" style="font-size:22px;font-weight:700;color:#fca5a5;line-height:1;padding-top:5px;">법적 의무<br>없음</div>
+        </div>
       </div>
-    </div>
-  </div>
+
+    </div><!-- /left -->
+
+    <!-- ──────────────────── RIGHT ─────────────────────────────────── -->
+    <div style="display:flex;flex-direction:column;justify-content:center;padding:0 52px 0 8px;gap:20px;">
+
+      <!-- Section label -->
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(148,163,184,0.38);font-family:'JetBrains Mono',monospace;margin-bottom:4px;">현황 비교</div>
+
+      <!-- ── HUMAN: Glassmorphism card — FILLED ────────────────────── -->
+      <div style="border:1px solid rgba(16,185,129,0.28);border-radius:20px;padding:28px 32px;
+           background:rgba(16,185,129,0.07);
+           backdrop-filter:blur(14px);
+           box-shadow:0 0 40px rgba(16,185,129,0.08),inset 0 1px 0 rgba(255,255,255,0.07);">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+          <div>
+            <div style="font-size:10px;font-weight:700;letter-spacing:0.20em;text-transform:uppercase;color:rgba(52,211,153,0.45);font-family:'JetBrains Mono',monospace;margin-bottom:8px;">HUMAN MEDICINE</div>
+            <div class="dm" style="font-size:30px;font-weight:700;color:#eaeaf6;letter-spacing:-0.02em;">인체 의료</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:8px 16px;border-radius:10px;
+               background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.25);
+               backdrop-filter:blur(8px);">
+            <i data-lucide="shield-check" style="width:16px;height:16px;color:#34d399;"></i>
+            <span style="font-size:12px;font-weight:700;color:#34d399;font-family:'JetBrains Mono',monospace;">FirstDIS 운영 중</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <i data-lucide="check-circle-2" style="width:18px;height:18px;color:#34d399;flex-shrink:0;"></i>
+            <span style="font-size:17px;color:rgba(216,228,242,0.85);">처방 시 실시간 DUR 검증 <strong style="color:#eaeaf6;">의무화</strong></span>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;">
+            <i data-lucide="check-circle-2" style="width:18px;height:18px;color:#34d399;flex-shrink:0;"></i>
+            <span style="font-size:17px;color:rgba(216,228,242,0.85);">전국 <strong style="color:#eaeaf6;">5.5만 의료기관</strong> 안전망 완비</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── THE GAP — void visualization ─────────────────────────── -->
+      <div style="position:relative;border-radius:20px;padding:28px 32px;
+           border:1.5px dashed rgba(239,68,68,0.30);
+           background:rgba(239,68,68,0.02);
+           overflow:hidden;">
+
+        <!-- Void noise texture overlay -->
+        <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(239,68,68,0.06) 1px,transparent 1px);background-size:24px 24px;pointer-events:none;"></div>
+        <!-- Red center glow -->
+        <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:260px;height:100px;background:radial-gradient(ellipse,rgba(239,68,68,0.12) 0%,transparent 70%);pointer-events:none;filter:blur(16px);"></div>
+
+        <div style="position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;">
+          <div>
+            <div style="font-size:10px;font-weight:700;letter-spacing:0.20em;text-transform:uppercase;color:rgba(252,165,165,0.40);font-family:'JetBrains Mono',monospace;margin-bottom:8px;">VETERINARY MEDICINE</div>
+            <div class="dm" style="font-size:30px;font-weight:700;color:rgba(234,234,246,0.45);letter-spacing:-0.02em;">동물 의료</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:8px 16px;border-radius:10px;
+               background:rgba(239,68,68,0.08);border:1px dashed rgba(239,68,68,0.28);">
+            <i data-lucide="shield-off" style="width:16px;height:16px;color:#f87171;"></i>
+            <span style="font-size:12px;font-weight:700;color:#f87171;font-family:'JetBrains Mono',monospace;">DUR 전무</span>
+          </div>
+        </div>
+
+        <!-- Void content — greyed out, crossed out feel -->
+        <div style="position:relative;z-index:1;margin-top:18px;display:flex;flex-direction:column;gap:14px;">
+          <div style="display:flex;align-items:center;gap:14px;opacity:0.38;">
+            <i data-lucide="x-circle" style="width:18px;height:18px;color:#f87171;flex-shrink:0;"></i>
+            <span style="font-size:17px;color:rgba(216,228,242,0.60);text-decoration:line-through;text-decoration-color:rgba(248,113,113,0.40);">처방 검증 시스템</span>
+            <span style="font-size:13px;color:#f87171;font-family:'JetBrains Mono',monospace;margin-left:4px;font-weight:700;">존재하지 않음</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;opacity:0.38;">
+            <i data-lucide="x-circle" style="width:18px;height:18px;color:#f87171;flex-shrink:0;"></i>
+            <span style="font-size:17px;color:rgba(216,228,242,0.60);text-decoration:line-through;text-decoration-color:rgba(248,113,113,0.40);">5,600+ 동물병원 안전망</span>
+          </div>
+        </div>
+
+        <!-- Gap label centered bottom -->
+        <div style="position:relative;z-index:1;margin-top:18px;display:flex;align-items:center;gap:10px;">
+          <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(239,68,68,0.25));"></div>
+          <span style="font-size:11px;font-weight:700;letter-spacing:0.20em;text-transform:uppercase;color:rgba(248,113,113,0.45);font-family:'JetBrains Mono',monospace;">공백 / GAP</span>
+          <div style="flex:1;height:1px;background:linear-gradient(90deg,rgba(239,68,68,0.25),transparent);"></div>
+        </div>
+
+      </div><!-- /gap card -->
+
+      <!-- nuvovet fills the gap -->
+      <div style="border:1px solid rgba(99,102,241,0.25);border-radius:14px;padding:18px 26px;
+           background:rgba(99,102,241,0.07);backdrop-filter:blur(10px);
+           box-shadow:0 0 30px rgba(99,102,241,0.08),inset 0 1px 0 rgba(255,255,255,0.06);
+           display:flex;align-items:center;gap:16px;">
+        <i data-lucide="zap" style="width:22px;height:22px;color:#818cf8;flex-shrink:0;"></i>
+        <span style="font-size:17px;color:#c7d2fe;line-height:1.5;"><strong style="color:#a5b4fc;font-size:19px;">nuvovet</strong>이 이 공백을 채웁니다 — 동물 전용 실시간 DUR</span>
+      </div>
+
+    </div><!-- /right -->
+  </div><!-- /grid -->
 </section>
 
 
@@ -634,78 +1119,343 @@ h4{font-family:'DM Sans',sans-serif;font-size:16px;font-weight:600;color:var(--t
 </section>
 
 
-<section class="slide dot-grid" id="s5">
-  <div class="slide-tag">SOLUTION</div>
+<section class="slide overflow-hidden" id="s5">
+
+  <!-- ═══ BACKGROUND (identical to s01) ══════════════════════════════ -->
+  <div class="absolute" style="inset:0;background:#030408;"></div>
+  <div class="absolute" style="inset:0;background:radial-gradient(ellipse 900px 620px at 8% 16%,rgba(99,102,241,0.28) 0%,transparent 68%),radial-gradient(ellipse 700px 500px at 90% 80%,rgba(56,130,246,0.16) 0%,transparent 62%);"></div>
+  <div class="absolute" style="inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.042) 1px,transparent 1px);background-size:32px 32px;"></div>
+  <div class="absolute" style="inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(255,255,255,0.009) 3px,rgba(255,255,255,0.009) 4px);pointer-events:none;"></div>
+  <div class="absolute" style="inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 48%,rgba(1,2,7,0.72) 100%);pointer-events:none;"></div>
+  <div class="absolute" style="inset:20px;border:1px solid rgba(255,255,255,0.052);border-radius:20px;pointer-events:none;"></div>
+
+  <!-- ═══ SLIDE LABELS ═════════════════════════════════════════════════ -->
+  <div class="slide-tag">안전 검증 엔진</div>
   <div class="slide-num">05/18</div>
 
-  <!-- Indigo gradient orb -->
-  <div class="orb orb-indigo absolute" style="width:400px;height:400px;opacity:0.3;top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+  <!-- ═══ MAIN LAYOUT: 520px left | 1fr right, full height ════════════ -->
+  <div style="position:relative;z-index:2;display:grid;grid-template-columns:520px 1fr;height:100%;align-items:stretch;">
 
-  <div class="relative" style="display:flex;flex-direction:column;justify-content:center;height:100%;">
-    <span class="label label-indigo">05 — 아이템 개요</span>
+    <!-- ──────────────────── LEFT COLUMN ──────────────────────────── -->
+    <div style="display:flex;flex-direction:column;justify-content:center;height:100%;padding:0 20px 0 52px;">
 
-    <!-- Hero -->
-    <h2 class="mt-16" style="text-shadow:0 0 40px rgba(99,102,241,0.4);">다차원 안전성 검증 엔진</h2>
-    <p class="body mt-12">환자의 품종, 체중, 기저질환, 검사값을 종합 교차 분석하여 처방의 안전성을 1초 만에 전수 조사합니다</p>
-
-    <!-- 2x2 feature grid -->
-    <div class="mt-32" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
-      <!-- Card 1 -->
-      <div class="glass bt-indigo p-24">
-        <div style="display:flex;align-items:center;gap:12px;">
-          <div class="icon-box ib-indigo" style="width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
-          </div>
-          <h4>약물 상호작용 검증</h4>
-        </div>
-        <p class="body-sm mt-12">약물 간 CYP 효소 충돌, QT 연장, 출혈 위험, 세로토닌 증후군, 중복 처방을 실시간 교차 검증</p>
+      <!-- Eyebrow -->
+      <div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:16px;">
+        <div style="width:28px;height:2px;background:linear-gradient(90deg,#6366f1,transparent);border-radius:2px;"></div>
+        <span style="font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(165,180,252,0.65);font-family:'JetBrains Mono',monospace;">DUR 안전 검증 시스템</span>
       </div>
 
-      <!-- Card 2 -->
-      <div class="glass bt-emerald p-24">
-        <div style="display:flex;align-items:center;gap:12px;">
-          <div class="icon-box ib-emerald" style="width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+      <!-- Title -->
+      <h2 style="margin:0;font-size:54px;font-weight:700;line-height:1.10;letter-spacing:-0.04em;color:#eaeaf6;">단순 약물 검증을<br>넘어선</h2>
+      <div style="margin-top:8px;font-size:46px;font-weight:700;letter-spacing:-0.045em;line-height:1.05;background:linear-gradient(90deg,#6366f1,#93c5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">5대 안전 검증 엔진</div>
+
+      <!-- Engine list — left-border style like s01 features -->
+      <div style="margin-top:26px;display:flex;flex-direction:column;gap:0;border-left:2px solid rgba(99,102,241,0.40);padding-left:18px;">
+
+        <div style="padding:9px 0;border-bottom:1px solid rgba(99,102,241,0.10);display:flex;align-items:center;gap:12px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:#6366f1;box-shadow:0 0 8px rgba(99,102,241,0.8);flex-shrink:0;"></div>
+          <div>
+            <div style="font-size:16px;font-weight:800;color:#c7d2fe;letter-spacing:-0.01em;">다제 상호작용 검사</div>
+            <div style="font-size:12px;color:rgba(165,180,252,0.60);margin-top:2px;">CYP 효소 · QT연장 · 출혈위험 · 세로토닌 증후군</div>
           </div>
-          <h4>용량 자동 계산</h4>
         </div>
-        <p class="body-sm mt-12">환자의 체중, 종, 약물 상호작용을 고려한 투여량 역산 및 주사제 배합 금기 데이터 제공</p>
+
+        <div style="padding:9px 0;border-bottom:1px solid rgba(59,130,246,0.10);display:flex;align-items:center;gap:12px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:#3b82f6;box-shadow:0 0 8px rgba(59,130,246,0.8);flex-shrink:0;"></div>
+          <div>
+            <div style="font-size:16px;font-weight:800;color:#93c5fd;letter-spacing:-0.01em;">체중 기반 용량 계산</div>
+            <div style="font-size:12px;color:rgba(147,197,253,0.60);margin-top:2px;">Cr·ALT 이상 시 신장·간 조정 계수 자동 적용</div>
+          </div>
+        </div>
+
+        <div style="padding:9px 0;border-bottom:1px solid rgba(6,182,212,0.10);display:flex;align-items:center;gap:12px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:#06b6d4;box-shadow:0 0 8px rgba(6,182,212,0.8);flex-shrink:0;"></div>
+          <div>
+            <div style="font-size:16px;font-weight:800;color:#67e8f9;letter-spacing:-0.01em;">장기 관여도 다이어그램</div>
+            <div style="font-size:12px;color:rgba(103,232,249,0.60);margin-top:2px;">간·신장·심장·뇌·혈액 소실 경로 시각화</div>
+          </div>
+        </div>
+
+        <div style="padding:9px 0;border-bottom:1px solid rgba(239,68,68,0.10);display:flex;align-items:center;gap:12px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:#ef4444;box-shadow:0 0 8px rgba(239,68,68,0.8);flex-shrink:0;"></div>
+          <div>
+            <div style="font-size:16px;font-weight:800;color:#fca5a5;letter-spacing:-0.01em;">환자 안전 지능 시스템</div>
+            <div style="font-size:12px;color:rgba(252,165,165,0.60);margin-top:2px;">50개 품종 · 16개 MDR1 · 73개 알레르기 DB</div>
+          </div>
+        </div>
+
+        <div style="padding:9px 0;display:flex;align-items:center;gap:12px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:#8b5cf6;box-shadow:0 0 8px rgba(139,92,246,0.8);flex-shrink:0;"></div>
+          <div>
+            <div style="font-size:16px;font-weight:800;color:#c4b5fd;letter-spacing:-0.01em;">불확실성 인지 AI</div>
+            <div style="font-size:12px;color:rgba(196,181,253,0.60);margin-top:2px;">판단 근거 + 신뢰도 점수 · '판단 보류' 메시지</div>
+          </div>
+        </div>
+
       </div>
 
-      <!-- Card 3 -->
-      <div class="glass bt-blue p-24">
-        <div style="display:flex;align-items:center;gap:12px;">
-          <div class="icon-box ib-blue" style="width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          </div>
-          <h4>장기부담도 시각화</h4>
+      <!-- Stat bar -->
+      <div style="margin-top:22px;display:flex;gap:0;border:1px solid rgba(99,102,241,0.20);border-radius:14px;overflow:hidden;">
+        <div style="flex:1;padding:11px 14px;border-right:1px solid rgba(99,102,241,0.12);">
+          <div class="dm" style="font-size:28px;font-weight:700;letter-spacing:-0.05em;color:#93c5fd;line-height:1;">862</div>
+          <div style="margin-top:3px;font-size:11px;color:rgba(147,197,253,0.50);">등록 약물</div>
         </div>
-        <p class="body-sm mt-12">약동학 정보 기반 개별 환자의 신장·간 부담도와 장기별 관여도를 시각화하여 위험 포인트를 한눈에 파악</p>
+        <div style="flex:1;padding:11px 14px;border-right:1px solid rgba(99,102,241,0.12);">
+          <div class="dm" style="font-size:28px;font-weight:700;letter-spacing:-0.05em;color:#93c5fd;line-height:1;">9,746</div>
+          <div style="margin-top:3px;font-size:11px;color:rgba(147,197,253,0.50);">검증 규칙</div>
+        </div>
+        <div style="flex:1;padding:11px 14px;border-right:1px solid rgba(99,102,241,0.12);">
+          <div class="dm" style="font-size:28px;font-weight:700;letter-spacing:-0.05em;color:#a5b4fc;line-height:1;">5</div>
+          <div style="margin-top:3px;font-size:11px;color:rgba(147,197,253,0.50);">검증 엔진</div>
+        </div>
+        <div style="flex:1;padding:11px 14px;">
+          <div class="dm" style="font-size:28px;font-weight:700;letter-spacing:-0.05em;color:#a5b4fc;line-height:1;">&lt;1s</div>
+          <div style="margin-top:3px;font-size:11px;color:rgba(147,197,253,0.50);">DUR 응답</div>
+        </div>
       </div>
 
-      <!-- Card 4 -->
-      <div class="glass bt-amber p-24">
-        <div style="display:flex;align-items:center;gap:12px;">
-          <div class="icon-box ib-amber" style="width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M12 5v13"/></svg>
-          </div>
-          <h4>불확실성 인지 AI</h4>
-        </div>
-        <p class="body-sm mt-12">판단 근거와 신뢰도 점수를 함께 제공, 데이터 부족 시 '판단 보류'로 억측 방지</p>
-      </div>
+    </div><!-- /left -->
+
+    <!-- ──────────────────── RIGHT COLUMN: Three.js 3D Network ──────── -->
+    <div style="position:relative;height:100%;overflow:hidden;">
+      <canvas id="s5-three-canvas" style="width:100%;height:100%;display:block;"></canvas>
     </div>
 
-    <!-- Bottom stat bar -->
-    <div class="mt-auto" style="display:flex;align-items:center;justify-content:center;gap:40px;font-family:var(--mono);font-size:13px;color:var(--t2);padding-top:32px;">
-      <span>862 약물</span>
-      <span>·</span>
-      <span>9,746 규칙</span>
-      <span>·</span>
-      <span>5 검증 엔진</span>
-      <span>·</span>
-      <span>2종 (개·고양이)</span>
-    </div>
-  </div>
+  </div><!-- /grid -->
+
+  <!-- ═══ THREE.JS 3D NETWORK ══════════════════════════════════════════ -->
+  <script>
+  (function() {
+    function initS5Three() {
+      if (typeof THREE === 'undefined') return;
+      var canvas = document.getElementById('s5-three-canvas');
+      if (!canvas || canvas._s5Init) return;
+      canvas._s5Init = true;
+
+      var W = canvas.parentElement.offsetWidth || 1400;
+      var H = canvas.parentElement.offsetHeight || 1080;
+
+      var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+      renderer.setSize(W, H);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setClearColor(0x000000, 0);
+
+      var scene = new THREE.Scene();
+      var camera = new THREE.PerspectiveCamera(46, W / H, 0.1, 2000);
+      camera.position.set(0, 0, 420);
+
+      /* ── Glow sprite texture ── */
+      function makeGlowCanvas(hexColor) {
+        var c = document.createElement('canvas');
+        c.width = c.height = 256;
+        var ctx = c.getContext('2d');
+        var r = parseInt(hexColor.slice(1, 3), 16);
+        var g = parseInt(hexColor.slice(3, 5), 16);
+        var b = parseInt(hexColor.slice(5, 7), 16);
+        var grad = ctx.createRadialGradient(128, 128, 0, 128, 128, 128);
+        grad.addColorStop(0,    'rgba(' + r + ',' + g + ',' + b + ',1.0)');
+        grad.addColorStop(0.15, 'rgba(' + r + ',' + g + ',' + b + ',0.6)');
+        grad.addColorStop(0.4,  'rgba(' + r + ',' + g + ',' + b + ',0.2)');
+        grad.addColorStop(1,    'rgba(' + r + ',' + g + ',' + b + ',0.0)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 256, 256);
+        return new THREE.CanvasTexture(c);
+      }
+
+      /* ── Node data: center + 5 satellites ── */
+      var R = 188; // orbital radius
+      var nodeData = [
+        // [x, y, z, hexColor, coreSize, glowScale, labelKo]
+        [   0,    0,   0,  '#6366f1', 28, 4.2, 'NUVOVET\n5 DUR' ],
+        [   0,  -R,  50,  '#6366f1', 14, 3.2, '다제\n상호작용' ],
+        [ R*0.95, -R*0.31, -40, '#3b82f6', 14, 3.2, '체중 기반\n용량 계산' ],
+        [ R*0.59,  R*0.81,  30, '#06b6d4', 14, 3.2, '장기\n관여도' ],
+        [-R*0.59,  R*0.81, -50, '#ef4444', 14, 3.2, '환자 안전\n지능' ],
+        [-R*0.95, -R*0.31,  40, '#8b5cf6', 14, 3.2, '불확실성\n인지 AI' ],
+      ];
+
+      var pivot = new THREE.Group();
+      scene.add(pivot);
+      var nodeObjs = [];
+
+      nodeData.forEach(function(d, i) {
+        var hex = parseInt(d[3].replace('#', ''), 16);
+        var pos = new THREE.Vector3(d[0], d[1], d[2]);
+
+        /* Core sphere */
+        var coreMat = new THREE.MeshStandardMaterial({
+          color: hex,
+          emissive: hex,
+          emissiveIntensity: 0.55,
+          roughness: 0.2,
+          metalness: 0.7,
+        });
+        var coreGeo = new THREE.SphereGeometry(d[4], 32, 32);
+        var coreMesh = new THREE.Mesh(coreGeo, coreMat);
+        coreMesh.position.copy(pos);
+        pivot.add(coreMesh);
+
+        /* Inner emissive shell */
+        var shellGeo = new THREE.SphereGeometry(d[4] * 1.35, 24, 24);
+        var shellMat = new THREE.MeshStandardMaterial({
+          color: hex,
+          emissive: hex,
+          emissiveIntensity: 0.25,
+          transparent: true,
+          opacity: 0.18,
+          roughness: 1,
+          metalness: 0,
+        });
+        var shell = new THREE.Mesh(shellGeo, shellMat);
+        shell.position.copy(pos);
+        pivot.add(shell);
+
+        /* Glow sprite */
+        var glowTex = makeGlowCanvas(d[3]);
+        var spriteMat = new THREE.SpriteMaterial({
+          map: glowTex,
+          transparent: true,
+          blending: THREE.AdditiveBlending,
+          opacity: 0.9,
+          depthWrite: false,
+        });
+        var sprite = new THREE.Sprite(spriteMat);
+        sprite.scale.setScalar(d[4] * d[5]);
+        sprite.position.copy(pos);
+        pivot.add(sprite);
+
+        /* Point light */
+        var light = new THREE.PointLight(hex, 1.4, 260);
+        light.position.copy(pos);
+        pivot.add(light);
+
+        /* Edge to center (skip for center itself) */
+        if (i > 0) {
+          var points = [new THREE.Vector3(0,0,0), pos];
+          var lineGeo = new THREE.BufferGeometry().setFromPoints(points);
+          var lineMat = new THREE.LineBasicMaterial({
+            color: hex,
+            transparent: true,
+            opacity: 0.40,
+            blending: THREE.AdditiveBlending,
+            linewidth: 1,
+          });
+          pivot.add(new THREE.Line(lineGeo, lineMat));
+
+          /* Tube (thick glowing pipe) */
+          var curve = new THREE.LineCurve3(new THREE.Vector3(0,0,0), pos);
+          var tubeGeo = new THREE.TubeGeometry(curve, 1, 1.8, 6, false);
+          var tubeMat = new THREE.MeshBasicMaterial({
+            color: hex,
+            transparent: true,
+            opacity: 0.22,
+            blending: THREE.AdditiveBlending,
+          });
+          pivot.add(new THREE.Mesh(tubeGeo, tubeMat));
+        }
+
+        nodeObjs.push({ core: coreMesh, sprite: sprite, shell: shell, baseScale: d[4] * d[5] });
+      });
+
+      /* ── Ambient + hemisphere lights ── */
+      scene.add(new THREE.AmbientLight(0x1a1a2e, 2));
+      scene.add(new THREE.HemisphereLight(0x6366f1, 0x030408, 0.7));
+
+      /* ── Floating particles ── */
+      var pCount = 320;
+      var pPos = new Float32Array(pCount * 3);
+      for (var i = 0; i < pCount * 3; i++) {
+        pPos[i] = (Math.random() - 0.5) * 900;
+      }
+      var pGeo = new THREE.BufferGeometry();
+      pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+      var pMat = new THREE.PointsMaterial({
+        color: 0x6366f1,
+        size: 2.0,
+        transparent: true,
+        opacity: 0.35,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+      });
+      scene.add(new THREE.Points(pGeo, pMat));
+
+      /* ── Ring around center ── */
+      var ringGeo = new THREE.RingGeometry(40, 42, 64);
+      var ringMat = new THREE.MeshBasicMaterial({
+        color: 0x6366f1,
+        transparent: true,
+        opacity: 0.30,
+        side: THREE.DoubleSide,
+        blending: THREE.AdditiveBlending,
+      });
+      var ring = new THREE.Mesh(ringGeo, ringMat);
+      ring.rotation.x = Math.PI / 2;
+      pivot.add(ring);
+
+      var ring2Geo = new THREE.RingGeometry(60, 62, 64);
+      var ring2 = new THREE.Mesh(ring2Geo, new THREE.MeshBasicMaterial({
+        color: 0x6366f1, transparent: true, opacity: 0.12,
+        side: THREE.DoubleSide, blending: THREE.AdditiveBlending,
+      }));
+      ring2.rotation.x = Math.PI / 2;
+      pivot.add(ring2);
+
+      /* ── Orbit ring path ── */
+      var orbitGeo = new THREE.TorusGeometry(R, 0.8, 8, 120);
+      var orbitMat = new THREE.MeshBasicMaterial({
+        color: 0x6366f1,
+        transparent: true,
+        opacity: 0.08,
+        blending: THREE.AdditiveBlending,
+      });
+      var orbit = new THREE.Mesh(orbitGeo, orbitMat);
+      // tilt orbit to match node Z spread
+      orbit.rotation.x = 0.18;
+      pivot.add(orbit);
+
+      /* ── Animation ── */
+      var t = 0;
+      var raf;
+      function animate() {
+        raf = requestAnimationFrame(animate);
+        t += 0.006;
+        pivot.rotation.y = t * 0.4;
+        pivot.rotation.x = Math.sin(t * 0.12) * 0.10;
+
+        // Pulsing glow on each satellite
+        nodeObjs.forEach(function(n, i) {
+          var pulse = 1 + 0.12 * Math.sin(t * 1.8 + i * 1.26);
+          n.sprite.scale.setScalar(n.baseScale * pulse);
+        });
+
+        // Slow ring spin
+        ring.rotation.z += 0.008;
+        ring2.rotation.z -= 0.004;
+
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      /* ── Handle resize ── */
+      window.addEventListener('resize', function() {
+        var W2 = canvas.parentElement.offsetWidth || 1400;
+        var H2 = canvas.parentElement.offsetHeight || 1080;
+        camera.aspect = W2 / H2;
+        camera.updateProjectionMatrix();
+        renderer.setSize(W2, H2);
+      });
+    }
+
+    /* Init on DOMContentLoaded or immediately */
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initS5Three);
+    } else {
+      // Slight delay to ensure THREE.js is loaded
+      setTimeout(initS5Three, 50);
+    }
+  })();
+  </script>
+
 </section>
 
 
@@ -1195,70 +1945,198 @@ h4{font-family:'DM Sans',sans-serif;font-size:16px;font-weight:600;color:var(--t
   <span class="slide-num">12/18</span>
 </section>
 
-<section class="slide" id="s13">
-  <div class="slide-tag">GLOBAL ANALYSIS</div>
+<section class="slide overflow-hidden" id="s13">
 
-  <span class="label label-dim">13 — 글로벌 경쟁 분석</span>
-  <h2>해외 기업이 한국에 진입할 수 없는 이유</h2>
+  <!-- ═══ BACKGROUND ══════════════════════════════════════════════════ -->
+  <div class="absolute" style="inset:0;background:#030408;"></div>
+  <div class="absolute" style="inset:0;background:radial-gradient(ellipse 900px 620px at 8% 16%,rgba(99,102,241,0.32) 0%,transparent 68%),radial-gradient(ellipse 600px 500px at 92% 82%,rgba(56,130,246,0.18) 0%,transparent 65%);"></div>
+  <div class="absolute" style="inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.042) 1px,transparent 1px);background-size:32px 32px;"></div>
+  <div class="absolute" style="inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(255,255,255,0.009) 3px,rgba(255,255,255,0.009) 4px);pointer-events:none;"></div>
+  <div class="absolute" style="inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 48%,rgba(1,2,7,0.72) 100%);pointer-events:none;"></div>
+  <div class="absolute" style="inset:20px;border:1px solid rgba(255,255,255,0.052);border-radius:20px;pointer-events:none;"></div>
 
-  <div class="mt-16">
-    <table class="tbl" style="font-size:12px;">
-      <thead><tr>
-        <th style="width:180px">글로벌 기업</th>
-        <th>SOAP 차팅</th>
-        <th>약물 DB</th>
-        <th>DUR 안전검증</th>
-        <th>한국 시장 적용성</th>
-      </tr></thead>
-      <tbody>
-        <tr>
-          <td><span class="co">Instinct + Plumb's</span><br><span class="caption">ScribbleVet 인수 (2026.01)</span></td>
-          <td><span class="dot dot-g"></span>ScribbleVet SOAP. PIMS 연동.</td>
-          <td><span class="dot dot-g"></span>Plumb's 800+ 약물. 용량 계산기 내장.</td>
-          <td><span class="dot dot-g"></span>처방 안전 경고. 용량 알림.</td>
-          <td><span class="dot dot-r"></span>영문 전용. 미국 FDA 약물 DB. 한국어 제품명 해석 불가.</td>
-        </tr>
-        <tr>
-          <td><span class="co">VetGeni</span><br><span class="caption">Graph RAG 기반</span></td>
-          <td><span class="dot dot-g"></span>SOAP + DDx + 퇴원안내. 739 약물 노드.</td>
-          <td><span class="dot dot-g"></span>Wiley 라이선스. 종별 상호작용.</td>
-          <td><span class="dot dot-a"></span>상호작용 안내. 환자별 장기 조정 없음.</td>
-          <td><span class="dot dot-r"></span>영문 전용. QIAH/검역본부 DB 없음. 한국 EMR 연동 없음.</td>
-        </tr>
-        <tr>
-          <td><span class="co">VetRec / CoVet</span><br><span class="caption">AI 차팅 전문</span></td>
-          <td><span class="dot dot-g"></span>최고 수준 AI 차팅. DVM당 2시간+ 절약.</td>
-          <td><span class="dot dot-r"></span>약물 DB 없음. 순수 문서화 솔루션.</td>
-          <td><span class="dot dot-r"></span>없음.</td>
-          <td><span class="dot dot-r"></span>CoVet 한국어 감지 가능하나 한국 수의 워크플로우 통합 없음.</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h4 class="mt-28">구조적 진입장벽 3가지</h4>
-
-  <div class="row gap-20 mt-12">
-    <div class="glass p-24 grow">
-      <span class="badge-red">장벽 01</span>
-      <h4>한국어 약물명 해석 불가</h4>
-      <p class="body-sm">한국 수의사는 '카프로펜정'을 입력합니다 — 'carprofen'이 아닙니다. 한국어 브랜드명을 INN 성분명으로 변환하려면 QIAH 오픈데이터 연동이 필요하며, 미국 기업에게는 5,000개 클리닉 시장을 위해 이를 구축할 재무적 유인이 없습니다.</p>
-    </div>
-    <div class="glass p-24 grow">
-      <span class="badge-red">장벽 02</span>
-      <h4>한국 EMR 연동 부재</h4>
-      <p class="body-sm">인투벳GE에 18년간 축적된 2,000+ 클리닉 생태계가 있습니다. 임상 도구가 실제로 사용되려면 이 EMR 안에 내장되어야 합니다. 해외 기업은 한국 EMR 업체와의 파트너십이 전무합니다.</p>
-    </div>
-    <div class="glass p-24 grow">
-      <span class="badge-red">장벽 03</span>
-      <h4>SOAP 차팅 이미 선점</h4>
-      <p class="body-sm">에이아이포펫이 인투씨엔에스와 사업 협약을 맺고 70+ 클리닉에 배포 완료. SOAP 레이어는 이미 점유되었습니다. 누보벳이 경쟁하는 곳은 그 다음 — 임상 인텔리전스 레이어입니다.</p>
-    </div>
-  </div>
-
+  <!-- ═══ SLIDE LABELS ═════════════════════════════════════════════════ -->
+  <div class="slide-tag">데이터 해자</div>
   <div class="slide-num">13/18</div>
-</section>
 
+  <!-- ═══ MAIN LAYOUT: full-height flex column ═════════════════════════ -->
+  <div style="position:relative;z-index:2;height:100%;display:flex;flex-direction:column;padding:58px 52px 68px;">
+
+    <!-- ── HEADER ──────────────────────────────────────────────── -->
+    <div style="margin-bottom:22px;">
+      <div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <div style="width:28px;height:2px;background:linear-gradient(90deg,#6366f1,transparent);border-radius:2px;"></div>
+        <span style="font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(165,180,252,0.65);font-family:'JetBrains Mono',monospace;">DATA MOAT · 데이터 해자</span>
+      </div>
+      <h1 style="margin:0;font-size:46px;font-weight:700;letter-spacing:-0.04em;line-height:1.08;color:#eaeaf6;">누보벳만의 데이터 해자 — <span style="background:linear-gradient(90deg,#6366f1,#93c5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">복제 불가능한 이유</span></h1>
+    </div>
+
+    <!-- ── PIPELINE: 5 steps ───────────────────────────────────── -->
+    <div style="display:flex;align-items:stretch;gap:0;margin-bottom:18px;">
+
+      <!-- Step 1 -->
+      <div style="flex:1;padding:14px 16px;border-radius:14px;background:rgba(99,102,241,0.09);border:1px solid rgba(99,102,241,0.24);backdrop-filter:blur(14px);">
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px;">
+          <div style="width:24px;height:24px;border-radius:50%;flex-shrink:0;background:rgba(99,102,241,0.28);border:1px solid rgba(99,102,241,0.48);display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:11px;font-weight:700;color:#a5b4fc;font-family:'JetBrains Mono',monospace;">1</span>
+          </div>
+          <span style="font-size:14px;font-weight:700;color:#c7d2fe;letter-spacing:-0.01em;">PMC 논문 수집</span>
+        </div>
+        <p style="margin:0;font-size:12px;line-height:1.5;color:rgba(165,180,252,0.60);">국제 의학 논문 플랫폼<br/>대규모 크롤링</p>
+      </div>
+
+      <!-- Arrow -->
+      <div style="flex-shrink:0;width:34px;display:flex;align-items:center;justify-content:center;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(99,102,241,0.45)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+
+      <!-- Step 2 -->
+      <div style="flex:1;padding:14px 16px;border-radius:14px;background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.30);backdrop-filter:blur(14px);">
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px;">
+          <div style="width:24px;height:24px;border-radius:50%;flex-shrink:0;background:rgba(99,102,241,0.35);border:1px solid rgba(99,102,241,0.55);display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:11px;font-weight:700;color:#a5b4fc;font-family:'JetBrains Mono',monospace;">2</span>
+          </div>
+          <span style="font-size:14px;font-weight:700;color:#c7d2fe;letter-spacing:-0.01em;">규칙 기반 검증</span>
+        </div>
+        <p style="margin:0;font-size:12px;line-height:1.5;color:rgba(165,180,252,0.60);">오류·중복 데이터<br/>1차 필터링</p>
+      </div>
+
+      <!-- Arrow -->
+      <div style="flex-shrink:0;width:34px;display:flex;align-items:center;justify-content:center;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(99,102,241,0.45)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+
+      <!-- Step 3 -->
+      <div style="flex:1;padding:14px 16px;border-radius:14px;background:rgba(59,130,246,0.14);border:1px solid rgba(59,130,246,0.28);backdrop-filter:blur(14px);">
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px;">
+          <div style="width:24px;height:24px;border-radius:50%;flex-shrink:0;background:rgba(59,130,246,0.32);border:1px solid rgba(59,130,246,0.52);display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:11px;font-weight:700;color:#93c5fd;font-family:'JetBrains Mono',monospace;">3</span>
+          </div>
+          <span style="font-size:14px;font-weight:700;color:#93c5fd;letter-spacing:-0.01em;">AI 의미 유사도</span>
+        </div>
+        <p style="margin:0;font-size:12px;line-height:1.5;color:rgba(147,197,253,0.60);">언어 모델 기반<br/>2차 이중 검증</p>
+      </div>
+
+      <!-- Arrow -->
+      <div style="flex-shrink:0;width:34px;display:flex;align-items:center;justify-content:center;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(59,130,246,0.45)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+
+      <!-- Step 4 -->
+      <div style="flex:1;padding:14px 16px;border-radius:14px;background:rgba(59,130,246,0.20);border:1px solid rgba(59,130,246,0.36);backdrop-filter:blur(14px);">
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px;">
+          <div style="width:24px;height:24px;border-radius:50%;flex-shrink:0;background:rgba(59,130,246,0.40);border:1px solid rgba(59,130,246,0.60);display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:11px;font-weight:700;color:#93c5fd;font-family:'JetBrains Mono',monospace;">4</span>
+          </div>
+          <span style="font-size:14px;font-weight:700;color:#93c5fd;letter-spacing:-0.01em;">PLUMBS 교차 검증</span>
+        </div>
+        <p style="margin:0;font-size:12px;line-height:1.5;color:rgba(147,197,253,0.60);">글로벌 수의학 논문<br/>레퍼런스 매칭</p>
+      </div>
+
+      <!-- Arrow (amber) -->
+      <div style="flex-shrink:0;width:34px;display:flex;align-items:center;justify-content:center;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(245,158,11,0.60)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+
+      <!-- Step 5 — Final output, amber -->
+      <div style="flex:1;padding:14px 16px;border-radius:14px;background:rgba(245,158,11,0.09);border:2px solid rgba(245,158,11,0.42);backdrop-filter:blur(14px);box-shadow:0 0 36px rgba(245,158,11,0.10),inset 0 1px 0 rgba(255,255,255,0.07);">
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px;">
+          <div style="width:24px;height:24px;border-radius:50%;flex-shrink:0;background:rgba(245,158,11,0.28);border:1px solid rgba(245,158,11,0.58);display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:11px;font-weight:700;color:#fbbf24;font-family:'JetBrains Mono',monospace;">5</span>
+          </div>
+          <span style="font-size:14px;font-weight:700;color:#fbbf24;letter-spacing:-0.01em;">구조화 약물 DB</span>
+        </div>
+        <div class="dm" style="font-size:22px;font-weight:700;color:#fbbf24;letter-spacing:-0.04em;line-height:1;">862<span style="font-size:13px;font-weight:600;color:rgba(251,191,36,0.65);margin-left:2px;">종</span></div>
+        <div style="font-size:11px;color:rgba(251,191,36,0.60);margin-top:2px;">9,746개 상호작용 규칙</div>
+      </div>
+
+    </div><!-- /pipeline -->
+
+    <!-- ── KOREAN LAYER CALLOUT ──────────────────────────────────── -->
+    <div style="margin-bottom:18px;padding:16px 22px;border-radius:14px;background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.28);backdrop-filter:blur(14px);display:flex;align-items:center;gap:28px;">
+      <div style="flex-shrink:0;min-width:340px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <span style="font-size:18px;">🇰🇷</span>
+          <span style="font-size:16px;font-weight:700;color:#fbbf24;">한국 전용 레이어 — 누보벳 독점 자산</span>
+        </div>
+        <p style="margin:0;font-size:13px;line-height:1.55;color:rgba(255,255,255,0.70);">농림축산검역본부 동물용의약품 데이터 결합<br/>→ 국내 유통 한국어 제품명 ↔ 성분명 자동 연결</p>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <span style="padding:6px 14px;border-radius:8px;background:rgba(99,102,241,0.18);border:1px solid rgba(99,102,241,0.35);font-size:13px;font-weight:700;color:#c7d2fe;">국내 복제약 실시간 검증</span>
+          <span style="padding:6px 14px;border-radius:8px;background:rgba(99,102,241,0.18);border:1px solid rgba(99,102,241,0.35);font-size:13px;font-weight:700;color:#c7d2fe;">한국어 처방명 즉시 조회</span>
+          <span style="padding:6px 14px;border-radius:8px;background:rgba(99,102,241,0.18);border:1px solid rgba(99,102,241,0.35);font-size:13px;font-weight:700;color:#c7d2fe;">오프라벨 처방 근거 자동 제시</span>
+        </div>
+        <p style="margin:0;font-size:12px;font-style:italic;color:rgba(147,197,253,0.50);">"영문 중심으로 설계된 해외 도구들이 국내 처방 환경에서 그대로 사용될 수 없는 근본적 이유"</p>
+      </div>
+    </div>
+
+    <!-- ── COMPARISON TABLE ──────────────────────────────────────── -->
+    <div style="flex:1;display:flex;flex-direction:column;min-height:0;">
+
+      <!-- Section heading -->
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <div style="width:3px;height:16px;background:linear-gradient(180deg,#6366f1,#3b82f6);border-radius:2px;flex-shrink:0;"></div>
+        <span style="font-size:15px;font-weight:700;color:#eaeaf6;">경쟁사 대비 누보벳 핵심 역량 비교</span>
+      </div>
+
+      <!-- Table container -->
+      <div style="flex:1;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.07);">
+        <table style="width:100%;border-collapse:collapse;font-size:14px;">
+          <thead>
+            <tr style="background:rgba(255,255,255,0.045);border-bottom:1px solid rgba(255,255,255,0.09);">
+              <th style="padding:11px 18px;text-align:left;color:rgba(147,197,253,0.55);font-size:11px;font-weight:600;letter-spacing:0.07em;font-family:'JetBrains Mono',monospace;width:44%;">항목</th>
+              <th style="padding:11px;text-align:center;color:rgba(148,163,184,0.65);font-size:13px;font-weight:600;width:18%;">PLUMBS</th>
+              <th style="padding:11px;text-align:center;color:rgba(148,163,184,0.65);font-size:13px;font-weight:600;width:18%;">국내 EMR 3사</th>
+              <th style="padding:11px;text-align:center;background:rgba(99,102,241,0.16);border-left:1px solid rgba(99,102,241,0.22);color:#a5b4fc;font-size:13px;font-weight:700;width:20%;">NUVOVET</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.055);">
+              <td style="padding:10px 18px;font-size:14px;color:#d8e4f2;">수의 DUR 실시간 검증</td>
+              <td style="padding:10px;text-align:center;font-size:20px;color:#10b981;">✓</td>
+              <td style="padding:10px;text-align:center;font-size:20px;color:#ef4444;">✗</td>
+              <td style="padding:10px;text-align:center;background:rgba(99,102,241,0.09);border-left:1px solid rgba(99,102,241,0.16);font-size:20px;color:#10b981;">✓</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.055);background:rgba(255,255,255,0.016);">
+              <td style="padding:10px 18px;font-size:14px;color:#d8e4f2;">국내 복제약·한국어 제품명 연결</td>
+              <td style="padding:10px;text-align:center;font-size:20px;color:#ef4444;">✗</td>
+              <td style="padding:10px;text-align:center;font-size:20px;color:#10b981;">✓</td>
+              <td style="padding:10px;text-align:center;background:rgba(99,102,241,0.09);border-left:1px solid rgba(99,102,241,0.16);font-size:20px;color:#10b981;">✓</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.055);">
+              <td style="padding:10px 18px;font-size:14px;color:#d8e4f2;">국내 EMR 실시간 API 연동</td>
+              <td style="padding:10px;text-align:center;font-size:20px;color:#ef4444;">✗</td>
+              <td style="padding:10px;text-align:center;font-size:20px;color:#10b981;">✓</td>
+              <td style="padding:10px;text-align:center;background:rgba(99,102,241,0.09);border-left:1px solid rgba(99,102,241,0.16);font-size:20px;color:#10b981;">✓</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.055);background:rgba(255,255,255,0.016);">
+              <td style="padding:10px 18px;font-size:14px;color:#d8e4f2;">오프라벨 처방 근거 자동 제시</td>
+              <td style="padding:10px;text-align:center;font-size:20px;color:#ef4444;">✗</td>
+              <td style="padding:10px;text-align:center;font-size:20px;color:#ef4444;">✗</td>
+              <td style="padding:10px;text-align:center;background:rgba(99,102,241,0.09);border-left:1px solid rgba(99,102,241,0.16);font-size:20px;color:#10b981;">✓</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 18px;font-size:14px;color:#d8e4f2;">50개 품종·MDR1·알레르기 교차 검증</td>
+              <td style="padding:10px;text-align:center;font-size:20px;color:#ef4444;">✗</td>
+              <td style="padding:10px;text-align:center;font-size:20px;color:#ef4444;">✗</td>
+              <td style="padding:10px;text-align:center;background:rgba(99,102,241,0.09);border-left:1px solid rgba(99,102,241,0.16);font-size:20px;color:#10b981;">✓</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- /flex column -->
+
+  <!-- ── BOTTOM BAR ──────────────────────────────────────────────── -->
+  <div style="position:absolute;bottom:0;left:0;right:0;height:58px;background:rgba(3,4,8,0.92);border-top:1px solid rgba(99,102,241,0.15);display:flex;align-items:center;justify-content:center;padding:0 52px;z-index:10;">
+    <p style="margin:0;font-size:13.5px;font-weight:600;color:rgba(216,228,242,0.72);text-align:center;font-family:'JetBrains Mono',monospace;">
+      <span style="color:#93c5fd;font-weight:700;">862종 약물</span> + <span style="color:#93c5fd;font-weight:700;">9,746개 규칙</span> + 한국어 레이어 — 이 세 가지의 조합은 누보벳이 지금 이 순간에도 쌓고 있는 <span style="color:#fbbf24;font-weight:700;">시간의 해자</span>입니다.
+    </p>
+  </div>
+
+</section>
 
 <section class="slide" id="s14">
   <div class="slide-tag">COMPETITIVE MOAT</div>
@@ -1656,7 +2534,11 @@ h4{font-family:'DM Sans',sans-serif;font-size:16px;font-weight:600;color:var(--t
 
   // Init: wait for slides to be present, then show first
   function init(){
-    if(slides().length > 0){ scaleViewport(); show(0); }
+    if(slides().length > 0){
+      scaleViewport();
+      show(0);
+      if(window.lucide) window.lucide.createIcons();
+    }
     else { setTimeout(init, 100); }
   }
   init();

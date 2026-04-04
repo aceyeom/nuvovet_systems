@@ -1,15 +1,69 @@
 #!/usr/bin/env python3
 """
 Build script: injects slide fragments into the shell HTML.
-Usage: python3 build.py → produces nuvovet_deck.html
+Usage:
+    python3 build.py          -> build once
+    python3 build.py --watch  -> rebuild when deck-related files change
 """
-import os
+import argparse
+import subprocess
+import sys
+import time
 from pathlib import Path
 
 DIR = Path(__file__).parent
 SHELL = DIR / "index.html"
 SLIDES_DIR = DIR / "slides"
 OUTPUT = DIR / "nuvovet_deck.html"
+MANIFEST = DIR / "manifest.md"
+
+
+WATCH_ROOT_GLOBS = (
+    "*.py",
+    "*.mjs",
+    "*.css",
+    "*.md",
+    "slides/*.html",
+)
+
+
+def iter_inputs():
+    yielded = set()
+
+    def emit(path: Path):
+        if not path.exists() or path == OUTPUT:
+            return
+        resolved = path.resolve()
+        if resolved in yielded:
+            return
+        yielded.add(resolved)
+        yield path
+
+    for fixed in (SHELL, MANIFEST):
+        yield from emit(fixed)
+
+    for pattern in WATCH_ROOT_GLOBS:
+        for path in sorted(DIR.glob(pattern)):
+            yield from emit(path)
+
+
+def snapshot_inputs():
+    return {
+        path: path.stat().st_mtime_ns
+        for path in iter_inputs()
+        if path.exists()
+    }
+
+
+def run_build_once():
+    # Use a new Python process so edits to build.py apply immediately during watch mode.
+    result = subprocess.run(
+        [sys.executable, str(__file__), "--once"],
+        cwd=DIR,
+        check=False,
+    )
+    if result.returncode != 0:
+        print(f"Build failed with exit code {result.returncode}")
 
 def build():
     shell = SHELL.read_text(encoding="utf-8")
@@ -45,5 +99,31 @@ def build():
     if missing:
         print(f"  Missing (placeholder): {', '.join(missing)}")
 
+
+def watch(interval: float = 0.5):
+    print("Watching for deck-related file changes...")
+    previous_snapshot = snapshot_inputs()
+    run_build_once()
+
+    try:
+        while True:
+            time.sleep(interval)
+            current_snapshot = snapshot_inputs()
+            if current_snapshot != previous_snapshot:
+                run_build_once()
+                previous_snapshot = current_snapshot
+    except KeyboardInterrupt:
+        print("\nStopped watching.")
+
 if __name__ == "__main__":
-    build()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--watch", action="store_true", help="Rebuild when slide files change")
+    parser.add_argument("--once", action="store_true", help=argparse.SUPPRESS)
+    args = parser.parse_args()
+
+    if args.watch:
+        watch()
+    elif args.once:
+        build()
+    else:
+        build()

@@ -10,6 +10,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"/>
+<!-- Icons -->
+<script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+<!-- Three.js for 3D visualizations (local copy for file:// compatibility) -->
+<script src="assets/three/three.min.js"></script>
 
 <style>
 /* ═══════════════════════════════════════════════════════════════
@@ -25,9 +29,9 @@
   --s2:       #1a1a2e;
   --s3:       #242438;
   /* Borders */
-  --border:   rgba(255,255,255,0.06);
-  --border2:  rgba(255,255,255,0.10);
-  --card-bg:  rgba(255,255,255,0.03);
+  --border:   rgba(255,255,255,0.16);
+  --border2:  rgba(255,255,255,0.24);
+  --card-bg:  rgba(255,255,255,0.10);
   /* Text */
   --t1:       #e8e8e6;
   --t2:       #94a3b8;
@@ -148,21 +152,30 @@ h4{font-family:'DM Sans',sans-serif;font-size:16px;font-weight:600;color:var(--t
    GLASS CARDS
    ═══════════════════════════════════════════ */
 .glass{
-  background:var(--card-bg);
-  border:1px solid var(--border);
+  background:linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.08) 100%);
+  border:1px solid var(--border2);
   border-radius:16px;
   backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,0.03);
+  box-shadow:0 14px 34px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.16);
 }
 .glass-sm{
-  background:var(--card-bg);
-  border:1px solid var(--border);
+  background:linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 100%);
+  border:1px solid var(--border2);
   border-radius:10px;
 }
 .glass-solid{
   background:var(--s1);
   border:1px solid var(--border);
   border-radius:14px;
+}
+
+/* Fallback for browsers without backdrop-filter support */
+@supports not ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+  .glass,
+  .glass-sm {
+    background:rgba(26,26,46,0.96);
+    border:1px solid rgba(255,255,255,0.22);
+  }
 }
 
 /* ═══════════════════════════════════════════
@@ -458,6 +471,50 @@ h4{font-family:'DM Sans',sans-serif;font-size:16px;font-weight:600;color:var(--t
 </head>
 <body>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const viewport = document.getElementById('presentation-viewport');
+    const hasInjectedSlides = Boolean(viewport && viewport.querySelector('.slide'));
+    const isShellRoute = window.location.pathname === '/' || window.location.pathname.endsWith('/index.html');
+
+    if (!hasInjectedSlides && isShellRoute) {
+      const basePath = window.location.pathname.replace(/index\.html$/, '');
+      window.location.replace(basePath + 'nuvovet_deck.html');
+    }
+
+    // Auto-refresh preview when the built deck file timestamp changes.
+    if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
+      const targetUrl = window.location.href.split('#')[0];
+      let lastVersion = null;
+
+      const pollForUpdates = async () => {
+        try {
+          const url = new URL(targetUrl);
+          url.searchParams.set('_deck_ts', String(Date.now()));
+          const response = await fetch(url.toString(), { method: 'HEAD', cache: 'no-store' });
+          if (!response.ok) return;
+
+          const version = response.headers.get('etag') || response.headers.get('last-modified');
+          if (!version) return;
+
+          if (lastVersion === null) {
+            lastVersion = version;
+            return;
+          }
+
+          if (version !== lastVersion) {
+            window.location.reload();
+          }
+        } catch (_) {
+          // Ignore temporary network/server errors during live preview.
+        }
+      };
+
+      setInterval(pollForUpdates, 1200);
+    }
+  });
+</script>
+
 <!-- ═══════════════════════════════════════════
      PRESENTATION VIEWPORT
      All 18 slides are injected here.
@@ -554,7 +611,11 @@ h4{font-family:'DM Sans',sans-serif;font-size:16px;font-weight:600;color:var(--t
 
   // Init: wait for slides to be present, then show first
   function init(){
-    if(slides().length > 0){ scaleViewport(); show(0); }
+    if(slides().length > 0){
+      scaleViewport();
+      show(0);
+      if(window.lucide) window.lucide.createIcons();
+    }
     else { setTimeout(init, 100); }
   }
   init();
