@@ -1,0 +1,97 @@
+total_remaining: 93
+no_hits: 42
+- Albumin, Human
+- Amikacin, Systemic
+- Antivenom, Crotalidae
+- Antivenom, Latrodectus Mactans
+- Antivenom, North American
+- Betamethasone, Systemic
+- Calcium, Iv, -Borogluconate
+- Calcium, Oral, -Carbonate
+- Calcium Acetate
+- Ceftiofur Hcl
+- Cromolyn, Inhaled
+- Diphenoxylate Atropine
+- Dextrose 50, Injection
+- Euthanasia Agents With Pentobarbital
+- Filgrastim, Granulocyte Colony Stimulating Factor, Gcsf
+- Glycerin, Oral
+- Guaifenesin, Intravenous
+- Hydrocodone Combinations
+- Hydrogen Peroxide 3, Oral
+- Hydroxyethyl Starch, Hes, Colloids
+- Hypertonic Saline, 7, To 7 5
+- Insulin Aspart
+- Insulin Regular (Crystalline Zinc)
+- Imidacloprid, Systemic
+- Immune Globulin, Human, Intravenous
+- Interferon Omega, Feline Origin
+- Iodide, Potassium-, Sodium-
+- Ivermectin Clorsulon
+- Ketoconazole, Systemic
+- Lidocaine, Intravenous, Systemic
+- Lipid Emulsion, Intravenous, Ile
+- Lufenuron Lufenuron Combination Product
+- Magnesium, Iv
+- Moxidectin Moxidectin Combination Products
+- Mycobacterial Cell Wall Fraction Immunomodulator
+- Nitroglycerin, Transdermal
+- Prednisolone Prednisone Prednisolone Sodium Succinate
+- Polymyxin B, Systemic
+- Potassium, -Acetate, -Chloride
+- Propionibacterium Acnes Injection
+- Thyrotropin Alfa
+- Tobramycin, Systemic
+
+still_unresolved: 51
+- Bisacodyl
+- Buspirone
+- Charcoal, Activated
+- Ciclesonide
+- Clorazepate
+- Dacarbazine, Dtic
+- Dactinomycin
+- Decoquinate
+- Dichlorphenamide
+- Diclazuril
+- Dimenhydrinate
+- Dinoprost
+- Docusate
+- Edetate Calcium Disodium
+- Ergocalciferol
+- Etodolac
+- Fatty Acid Omega-3
+- Fentanyl, Transdermal Patch
+- Flumethasone
+- Fomepizole
+- Gamithromycin
+- Hemoglobin Glutamer-200, Bovine
+- Imidapril
+- Imipenem Cilastatin Sodium
+- Interferon Alfa, Human
+- Isoflupredone
+- Isoxsuprine
+- Kaolin Pectin
+- Leuprolide
+- Liothyronine
+- Molybdates
+- Montelukast
+- Nizatidine
+- Ocular Lubricants
+- Olsalazine
+- Pancrelipase
+- Parapox Ovis Virus
+- Pergolide
+- Pirlimycin
+- Praziquantel Praziquantel
+- Saline Cathartics
+- Spironolactone Benazepril
+- Sulfadimethoxine Ormetoprim
+- Silver Sulfadiazine, Ssd
+- Staphylococcus Aureus Phage Lysate
+- Trimeprazine Prednisolone
+- Tildipirosin
+- Tinidazole
+- Triamterene
+- Trientine
+- Tulathromycin

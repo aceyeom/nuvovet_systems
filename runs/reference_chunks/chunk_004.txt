@@ -1,0 +1,310 @@
+■ Drug Name: Dimercaprol, Bal
+  - Title: The prevention by sulphydryl compounds of the toxicity in the cat of 2,6-dimethoxyphenol and its morpholinopropionyl ester. [LLM_INVALID]
+    Score: 11
+    Match: drug_match(dimercaprol, bal), species:cat, dog, context_distance_penalty, relevance:toxicity, high_signal_title, llm_rejected
+------------------------------
+■ Drug Name: Dimethyl Sulfoxide
+  - Title: Pharmacokinetics and tolerability of the dual TORC1/2 inhibitor sapanisertib in combination with the MEK inhibitor trametinib in dogs. [LLM_INVALID]
+    Score: 15
+    Match: drug_match(dimethyl sulfoxide), species:canine, dogs, context_distance_penalty, relevance:absorption, dose, dosing, half-life, high_signal_title, llm_rejected
+------------------------------
+■ Drug Name: Diminazene
+  - Title: Failure of efficacy and adverse events associated with dose-intense diminazene diaceturate treatment of chronic Cytauxzoon felis infection in five cats.
+    Score: 18
+    Match: drug_match(diminazene), species:cats, context_distance_match, relevance:adverse, clearance, dose, efficacy, llm_validated_in_vivo
+  - Title: Use of a doxycycline-enrofloxacin-metronidazole combination with/without diminazene diaceturate to treat naturally occurring canine babesiosis caused by Babesia gibsoni.
+    Score: 14
+    Match: drug_match(diminazene), species:canine, context_distance_match, relevance:efficacy, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Dinoprost
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Diphenhydramine
+  - Title: Pulse-Administered Toceranib Phosphate Plus Lomustine for Treatment of Unresectable Mast Cell Tumors in Dogs. [LLM_INVALID]
+    Score: 18
+    Match: drug_match(diphenhydramine), species:canine, dogs, context_distance_match, relevance:adverse, dosage, dose, toxicity, llm_rejected
+  - Title: Antemortem diagnostic tests and treatment outcomes using ivermectin in 13 cases of presumptive feline neurocuterebriasis. [LLM_INVALID]
+    Score: 15
+    Match: drug_match(diphenhydramine), species:cats, feline, context_distance_match, relevance:adverse, treatment, llm_rejected
+------------------------------
+■ Drug Name: Dipyrone
+  - Title: Pharmacokinetic Profile of Two Active Dipyrone Metabolites, 4-Methylaminoantipyrine (MAA) and 4-Aminoantipyrine (AA), Following Intravenous Administration in Dogs: A Preliminary Study.
+    Score: 20
+    Match: drug_match(dipyrone), species:dogs, context_distance_match, relevance:adverse, dose, dosing, metabolism, high_signal_title, llm_validated_in_vivo
+  - Title: Analgesic efficacy of oral tramadol-dipyrone combination in cats undergoing ovariohysterectomy.
+    Score: 17
+    Match: drug_match(dipyrone), species:cats, feline, context_distance_match, relevance:adverse, dose, efficacy, safety, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Dobutamine
+  - Title: The cardiovascular pharmacology of 7-propyl-theo-phylline-dopamine (D4975); comparison with dopamine and dobutamine.
+    Score: 16
+    Match: drug_match(dobutamine), species:cats, context_distance_match, relevance:dose, pharmacology, treatment, llm_validated_in_vivo
+  - Title: Cardiovascular Effect of Epoprostenol and Intravenous Cardiac Drugs for Acute Heart Failure on Canine Pulmonary Hypertension.
+    Score: 15
+    Match: drug_match(dobutamine), species:canine, dogs, context_distance_match, relevance:dose, efficacy, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Docusate
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Dolasetron
+  - Title: Preliminary pharmacokinetics of intravenous and subcutaneous dolasetron and pharmacodynamics of subcutaneous dolasetron in healthy cats.
+    Score: 18
+    Match: drug_match(dolasetron), species:cats, feline, context_distance_match, relevance:dose, half-life, pharmacokinetics, high_signal_title, llm_validated_in_vivo
+  - Title: Hepatopathy following consumption of a commercially available blue-green algae dietary supplement in a dog. [LLM_INVALID]
+    Score: 16
+    Match: drug_match(dolasetron), species:dog, context_distance_match, relevance:adverse, efficacy, safety, llm_rejected
+------------------------------
+■ Drug Name: Domperidone
+  - Title: A blinded, randomized and controlled multicenter clinical trial to assess the efficacy and safety of Leisguard(®) as an immunotherapeutic treatment for healthy Leishmania infantum-seropositive dogs.
+    Score: 19
+    Match: drug_match(domperidone), species:dogs, context_distance_match, relevance:adverse, efficacy, safety, treatment, high_signal_title, llm_validated_in_vivo
+  - Title: Pilot Study on QTc Interval in Dogs Treated with Domperidone.
+    Score: 15
+    Match: drug_match(domperidone), species:dog, dogs, context_distance_match, relevance:metabolism, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Dopamine
+  - Title: Ophthalmic ropinirole is an equally effective emetic agent in healthy dogs compared to intravenous apomorphine. [LLM_INVALID]
+    Score: 17
+    Match: drug_match(dopamine), species:dogs, context_distance_match, relevance:adverse, approved, dosing, efficacy, llm_rejected
+  - Title: Metabolism of ropinirole is mediated by several canine CYP enzymes. [LLM_INVALID]
+    Score: 16
+    Match: drug_match(dopamine), species:canine, dog, dogs, context_distance_match, relevance:clearance, metabolism, pharmacokinetics, llm_rejected
+------------------------------
+■ Drug Name: Doramectin
+  - Title: In-vivo and in-vitro effectiveness of three insecticides types for eradication of the tick Rhipicephalus sanguineus in dogs.
+    Score: 14
+    Match: drug_match(doramectin), species:dog, dogs, context_distance_match, relevance:efficacy, llm_validated_in_vivo
+  - Title: First Sequencing of Caprine Mdr1 (Abcb1) mRNA Due to Suspected Neurological Adverse Drug Reaction in a Thuringian Goat Following Extra-Label Use of Doramectin. [LLM_INVALID]
+    Score: 17
+    Match: drug_match(doramectin), species:canine, dog, dogs, context_distance_match, relevance:adverse, label, toxicity, treatment, llm_rejected
+------------------------------
+■ Drug Name: Dorzolamide Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Doxapram
+  - Title: Comparison of methohexital and propofol as induction agents for evaluation of laryngeal function in healthy dogs.
+    Score: 14
+    Match: drug_match(doxapram), species:dogs, context_distance_match, relevance:adverse, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Doxepin
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Doxorubicin
+  - Title: Safety and toxicity of combined oclacitinib and carboplatin or doxorubicin in dogs with solid tumors: a pilot study.
+    Score: 20
+    Match: drug_match(doxorubicin), species:canine, dogs, context_distance_match, relevance:adverse, approved, dose, efficacy, high_signal_title, llm_validated_in_vivo
+  - Title: Safety and biologic activity of a canine anti-CD20 monoclonal antibody in dogs with diffuse large B-cell lymphoma.
+    Score: 19
+    Match: drug_match(doxorubicin), species:canine, dog, dogs, context_distance_match, relevance:dose, label, safety, treatment, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Doxycycline
+  - Title: Pharmacokinetics of doxycycline in dogs.
+    Score: 20
+    Match: drug_match(doxycycline), species:dog, dogs, context_distance_match, relevance:clearance, distribution, dosage, half-life, high_signal_title, llm_validated_in_vivo
+  - Title: Efficacy and side effects of doxycycline versus minocycline in the three-dose melarsomine canine adulticidal heartworm treatment protocol.
+    Score: 17
+    Match: drug_match(doxycycline), species:canine, dog, dogs, context_distance_match, relevance:dosage, dose, efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Euthanasia Agents With Pentobarbital
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Edetate Calcium Disodium
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Edetate Disodium Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Edrophonium
+  - Title: Effect of chemical modification of recombinant human acetylcholinesterase by polyethylene glycol on its circulatory longevity. [LLM_INVALID]
+    Score: 14
+    Match: drug_match(edrophonium), species:cat, context_distance_match, relevance:pharmacokinetic, llm_rejected
+  - Title: Congenital Myasthenic Syndrome in a Mixed Breed Dog. [LLM_INVALID]
+    Score: 10
+    Match: drug_match(edrophonium), species:dog, context_distance_penalty, relevance:dosage, treatment, llm_rejected
+------------------------------
+■ Drug Name: Emodepside Praziquantel
+  - Title: Multicenter randomized, and blinded European field study evaluating the efficacy and safety of Felpreva®, a novel spot-on formulation containing emodepside, praziquantel and tigolaner, in treating cats naturally infested with fleas and/or ticks.
+    Score: 15
+    Match: drug_match(emodepside praziquantel), species:cats, context_distance_penalty, relevance:adverse, dose, efficacy, safety, high_signal_title, llm_validated_in_vivo
+  - Title: Adverse Drug Reactions After Administration of Emodepside/Praziquantel (Profender®) in an MDR1-Mutant Australian Shepherd Dog: Case Report.
+    Score: 12
+    Match: drug_match(emodepside praziquantel), species:dog, dogs, context_distance_penalty, relevance:adverse, dosage, toxicity, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Enalapril
+  - Title: Comparative clinical evaluation of Boerhavia diffusa root extract with standard Enalapril treatment in Canine chronic renal failure.
+    Score: 15
+    Match: drug_match(enalapril), species:canine, dog, dogs, context_distance_match, relevance:efficacy, treatment, llm_validated_in_vivo
+  - Title: Effects of enalapril in cats with pressure overload-induced left ventricular hypertrophy.
+    Score: 14
+    Match: drug_match(enalapril), species:cats, feline, context_distance_match, relevance:clearance, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Enoxaparin
+  - Title: Life-Threatening Mediastinal Hematoma Formation After Removal of the Hemodialysis Catheter in a Boxer: A Case Report. [LLM_INVALID]
+    Score: 14
+    Match: drug_match(enoxaparin), species:dog, context_distance_match, relevance:dosage, llm_rejected
+------------------------------
+■ Drug Name: Enrofloxacin
+  - Title: Evaluation of a Tasteless Enrofloxacin Pharmaceutical Preparation for Cats. Naive Pooled-Sample Approach to Study Its Pharmacokinetics.
+    Score: 20
+    Match: drug_match(enrofloxacin), species:cat, cats, context_distance_match, relevance:adverse, bioavailability, dose, efficacy, high_signal_title, llm_validated_in_vivo
+  - Title: Population pharmacokinetic analysis of enrofloxacin and its active metabolite ciprofloxacin after intravenous injection to cats with reduced kidney function.
+    Score: 20
+    Match: drug_match(enrofloxacin), species:cats, context_distance_match, relevance:clearance, distribution, dosage, dose, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Ephedrine
+  - Title: Efficacy of preanesthetic intramuscular administration of ephedrine for prevention of anesthesia-induced hypotension in cats and dogs.
+    Score: 15
+    Match: drug_match(ephedrine), species:cats, dogs, context_distance_match, relevance:efficacy, treatment, llm_validated_in_vivo
+  - Title: Evaluation of Hemodynamic Changes in Normovolemic Hypotensive Dogs Treated With Fluids Alone or in Combination With Ephedrine or Dobutamine.
+    Score: 15
+    Match: drug_match(ephedrine), species:dogs, context_distance_match, relevance:dosage, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Epinastine Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Epinephrine
+  - Title: The impact of anaphylaxis on the absorption of intranasal epinephrine in anaesthetized non-naive beagle dogs.
+    Score: 17
+    Match: drug_match(epinephrine), species:dog, dogs, context_distance_match, relevance:absorption, dosing, efficacy, treatment, llm_validated_in_vivo
+  - Title: Synergistic interactions of physiologic increments of glucagon, epinephrine, and cortisol in the dog: a model for stress-induced hyperglycemia.
+    Score: 16
+    Match: drug_match(epinephrine), species:dog, dogs, context_distance_match, relevance:clearance, interaction, metabolism, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Epirubicin
+  - Title: Anthracycline-induced cardiomyopathy in a dog treated with epirubicin.
+    Score: 15
+    Match: drug_match(epirubicin), species:dog, context_distance_match, relevance:dose, toxicity, llm_validated_in_vivo
+  - Title: AKR1B10 induces cell resistance to daunorubicin and idarubicin by reducing C13 ketonic group. [LLM_INVALID]
+    Score: 15
+    Match: drug_match(epirubicin), species:cat, context_distance_match, relevance:metabolism, treatment, llm_rejected
+------------------------------
+■ Drug Name: Epoetin Alfa
+  - Title: Anemia of renal disease: what it is, what to do and what's new. [LLM_INVALID]
+    Score: 10
+    Match: drug_match(epoetin alfa), species:cats, feline, context_distance_penalty, relevance:half-life, treatment, llm_rejected
+------------------------------
+■ Drug Name: Eprinomectin
+  - Title: Pharmacokinetics of a novel endectoparasiticide topical formulation for cats, combining esafoxolaner, eprinomectin and praziquantel.
+    Score: 20
+    Match: drug_match(eprinomectin), species:cats, context_distance_match, relevance:absorption, bioavailability, distribution, dose, high_signal_title, llm_validated_in_vivo
+  - Title: Target animal safety evaluation of a novel topical combination of esafoxolaner, eprinomectin and praziquantel for cats.
+    Score: 19
+    Match: drug_match(eprinomectin), species:cat, cats, context_distance_match, relevance:dose, dosing, safety, treatment, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Eprinomectin Praziquantel
+  - Title: Efficacy of a topical combination of esafoxolaner, eprinomectin and praziquantel against Amblyomma maculatum infestations in cats.
+    Score: 12
+    Match: drug_match(eprinomectin praziquantel), species:canine, cats, dogs, context_distance_penalty, relevance:dose, efficacy, label, treatment, llm_validated_in_vivo
+  - Title: Efficacy of fipronil/(S)-methoprene/eprinomectin/praziquantel (Broadline(®)) against Thelazia callipaeda in naturally infected cats.
+    Score: 10
+    Match: drug_match(eprinomectin praziquantel), species:cats, feline, context_distance_penalty, relevance:efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Epsiprantel
+  - Title: Elimination of probable praziquantel-resistant Dipylidium caninum with nitroscanate in a mixed-breed dog: a case report. [LLM_INVALID]
+    Score: 11
+    Match: drug_match(epsiprantel), species:dog, dogs, context_distance_penalty, relevance:dose, efficacy, treatment, llm_rejected
+------------------------------
+■ Drug Name: Ergocalciferol
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Ertapenem
+  - Title: Design, synthesis, and evaluation of prodrugs of ertapenem.
+    Score: 11
+    Match: drug_match(ertapenem), species:dog, context_distance_penalty, relevance:absorption, dosing, pharmacokinetic, llm_validated_in_vivo
+  - Title: Ceftaroline versus isolates from animal bite wounds: comparative in vitro activities against 243 isolates, including 156 Pasteurella species isolates. [LLM_INVALID]
+    Score: 10
+    Match: drug_match(ertapenem), species:dogs, context_distance_penalty, relevance:approved, treatment, llm_rejected
+------------------------------
+■ Drug Name: Erythromycin
+  - Title: Ultrasonographic assessment of the effect of metoclopramide, erythromycin, and exenatide on solid-phase gastric emptying in healthy cats.
+    Score: 14
+    Match: drug_match(erythromycin), species:cat, cats, context_distance_match, relevance:dosage, llm_validated_in_vivo
+  - Title: Use of erythromycin and metoclopramide in hospitalized dogs: a multicenter historical cohort study. [LLM_INVALID]
+    Score: 14
+    Match: drug_match(erythromycin), species:dog, dogs, context_distance_match, relevance:safety, llm_rejected
+------------------------------
+■ Drug Name: Erythromycin Ophthalmic
+  - Title: Evaluation of the bacterial ocular surface microbiome in clinically normal cats before and after treatment with topical erythromycin.
+    Score: 14
+    Match: drug_match(erythromycin ophthalmic), species:cat, cats, feline, context_distance_match, relevance:treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Esmolol
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Esomeprazole
+  - Title: Pharmacokinetics and Acid Suppressant Efficacy of Esomeprazole after Intravenous, Oral, and Subcutaneous Administration to Healthy Beagle Dogs.
+    Score: 20
+    Match: drug_match(esomeprazole), species:dogs, context_distance_match, relevance:adverse, bioavailability, dosing, efficacy, high_signal_title, llm_validated_in_vivo
+  - Title: Pharmacokinetics and pharmacodynamics of intravenous esomeprazole at 2 different dosages in dogs.
+    Score: 20
+    Match: drug_match(esomeprazole), species:dogs, context_distance_match, relevance:dosage, dosing, efficacy, label, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Estradiol
+  - Title: Estradiol-17β Pharmacokinetics and Histological Assessment of the Ovaries and Uterine Horns following Intramuscular Administration of Estradiol Cypionate in Feral Cats.
+    Score: 18
+    Match: drug_match(estradiol), species:cat, cats, context_distance_match, relevance:dose, pharmacokinetics, toxicity, high_signal_title, llm_validated_in_vivo
+  - Title: Establishment of hormone-induced canine benign prostatic hyperplasia model: A prospective, controlled study.
+    Score: 16
+    Match: drug_match(estradiol), species:canine, dogs, context_distance_match, relevance:dosage, dose, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Estriol
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Ethambutol
+  - Title: Expanding metabolism for total biosynthesis of the nonnatural amino acid L-homoalanine. [LLM_INVALID]
+    Score: 9
+    Match: drug_match(ethambutol), species:cat, context_distance_penalty, relevance:metabolism, llm_rejected
+------------------------------
+■ Drug Name: Ethanol
+  - Title: The effect of ethanol on oral cocaine pharmacokinetics reveals an unrecognized class of ethanol-mediated drug interactions.
+    Score: 20
+    Match: drug_match(ethanol), species:dog, dogs, context_distance_match, relevance:bioavailability, clearance, interaction, metabolism, high_signal_title, llm_validated_in_vivo
+  - Title: 305 The battle of yeasts: Ethanol or brewer’s yeast? How yeast processing impacts feline food preferences and flavor enhancement. [LLM_INVALID]
+    Score: 14
+    Match: drug_match(ethanol), species:cat, cats, feline, context_distance_match, relevance:bioavailability, llm_rejected
+------------------------------
+■ Drug Name: Etodolac
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Etomidate
+  - Title: Metabolite identification, tissue distribution, excretion and preclinical pharmacokinetic studies of ET-26-HCl, a new analogue of etomidate.
+    Score: 20
+    Match: drug_match(etomidate), species:dogs, context_distance_match, relevance:clearance, distribution, excretion, pharmacokinetic, high_signal_title, llm_validated_in_vivo
+  - Title: Advancing novel anesthetics: pharmacodynamic and pharmacokinetic studies of cyclopropyl-methoxycarbonyl metomidate in dogs.
+    Score: 19
+    Match: drug_match(etomidate), species:dogs, context_distance_match, relevance:pharmacodynamic, pharmacokinetic, pharmacokinetics, pharmacology, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Exenatide
+  - Title: Ultra-sensitive bioanalysis of the therapeutic peptide exenatide for accurate pharmacokinetic analyses at effective plasma concentrations utilizing UPLC-MS/MS.
+    Score: 19
+    Match: drug_match(exenatide), species:dogs, context_distance_match, relevance:approved, pharmacokinetic, pharmacokinetics, treatment, high_signal_title, llm_validated_in_vivo
+  - Title: Safety, Tolerability, and Proof-Of-Concept Study of OKV-119, a Novel Exenatide Long-Term Drug Delivery System, in Healthy Cats.
+    Score: 17
+    Match: drug_match(exenatide), species:cats, feline, context_distance_match, relevance:safety, treatment, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Fatty Acid Omega-3
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Famciclovir
+  - Title: Non-linear pharmacokinetics of penciclovir in healthy cats after single and multiple oral administration of famciclovir.
+    Score: 20
+    Match: drug_match(famciclovir), species:cat, cats, feline, context_distance_match, relevance:absorption, bioavailability, dosage, dose, high_signal_title, llm_validated_in_vivo
+  - Title: Treatment of feline herpesvirus-1 associated disease in cats with famciclovir and related drugs.
+    Score: 15
+    Match: drug_match(famciclovir), species:cat, cats, feline, context_distance_match, relevance:dosing, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Famotidine
+  - Title: The frequency of oral famotidine administration influences its effect on gastric pH in cats over time.
+    Score: 16
+    Match: drug_match(famotidine), species:cats, dogs, context_distance_match, relevance:efficacy, interaction, treatment, llm_validated_in_vivo
+  - Title: Evaluation of the effect of a famotidine continuous rate infusion on intragastric pH in healthy dogs.
+    Score: 16
+    Match: drug_match(famotidine), species:dogs, context_distance_match, relevance:dose, efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Felbamate
+  - Title: Felbamate as an oral add-on therapy in six dogs with presumptive idiopathic epilepsy and generalized seizures resistant to drug therapy.
+    Score: 18
+    Match: drug_match(felbamate), species:canine, dog, dogs, context_distance_match, relevance:adverse, efficacy, pharmacokinetic, safety, llm_validated_in_vivo
+------------------------------
+
+📊 요약: 총 50개 중 37개 성공, 13개 실패

@@ -1,0 +1,7 @@
+■ Drug Name: Acarbose
+  - Title: Streptococcus agalactiae amylomaltase offers insight into the transglycosylation mechanism and the molecular basis of thermostability among amylomaltases. [LLM_INVALID]
+    Score: 9
+    Match: drug_match(acarbose), species:cat, context_distance_penalty, relevance:half-life, llm_rejected
+------------------------------
+
+📊 요약: 총 1개 중 1개 성공, 0개 실패

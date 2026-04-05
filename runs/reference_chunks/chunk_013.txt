@@ -1,0 +1,148 @@
+■ Drug Name: Valacyclovir
+  - Title: Drug Discovery of Nucleos(t)ide Antiviral Agents: Dedicated to Prof. Dr. Erik De Clercq on Occasion of His 80th Birthday. [LLM_INVALID]
+    Score: 15
+    Match: drug_match(valacyclovir), species:dogs, context_distance_match, relevance:approved, treatment, llm_rejected
+  - Title: Enhancing the intestinal absorption of molecules containing the polar guanidino functionality: a double-targeted prodrug approach. [LLM_INVALID]
+    Score: 9
+    Match: drug_match(valacyclovir), species:cat, context_distance_penalty, relevance:absorption, llm_rejected
+------------------------------
+■ Drug Name: Vancomycin
+  - Title: Parenterally administered vancomycin in 29 dogs and 7 cats (2003-2017).
+    Score: 16
+    Match: drug_match(vancomycin), species:cats, dogs, context_distance_match, relevance:adverse, dosing, treatment, llm_validated_in_vivo
+  - Title: Review on Usage of Vancomycin in Livestock and Humans: Maintaining Its Efficacy, Prevention of Resistance and Alternative Therapy. [LLM_INVALID]
+    Score: 19
+    Match: drug_match(vancomycin), species:cats, dogs, context_distance_match, relevance:adverse, efficacy, pharmacokinetics, treatment, high_signal_title, llm_rejected
+------------------------------
+■ Drug Name: Vancomycin Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Vasopressin
+  - Title: Vasopressin clearance and secretion during haemorrhage in normal dogs and in dogs with experimental diabetes insipidus.
+    Score: 15
+    Match: drug_match(vasopressin), species:dogs, context_distance_match, relevance:clearance, half-life, llm_validated_in_vivo
+  - Title: Mechanism of effect of prostaglandin E 1 on renal water excretion. [LLM_INVALID]
+    Score: 15
+    Match: drug_match(vasopressin), species:dog, dogs, context_distance_match, relevance:clearance, excretion, llm_rejected
+------------------------------
+■ Drug Name: Vecuronium
+  - Title: The DC-recorded dog electroretinogram in ketamine-medetomidine anaesthesia. [LLM_INVALID]
+    Score: 14
+    Match: drug_match(vecuronium), species:dog, dogs, context_distance_match, relevance:dosage, llm_rejected
+------------------------------
+■ Drug Name: Verapamil
+  - Title: Treatment of verapamil toxicity in intact dogs.
+    Score: 18
+    Match: drug_match(verapamil), species:dogs, context_distance_match, relevance:dose, toxicity, treatment, high_signal_title, llm_validated_in_vivo
+  - Title: Robust anti-arrhythmic efficacy of verapamil and flunarizine against dofetilide-induced TdP arrhythmias is based upon a shared and a different mode of action.
+    Score: 14
+    Match: drug_match(verapamil), species:canine, dogs, context_distance_match, relevance:efficacy, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Verdinexor
+  - Title: Pharmacokinetic evaluation and bioavailability of KPT-335 (Verdinexor) in cats.
+    Score: 20
+    Match: drug_match(verdinexor), species:cats, context_distance_match, relevance:absorption, bioavailability, dosage, dose, high_signal_title, llm_validated_in_vivo
+  - Title: Phase II study of the oral selective inhibitor of nuclear export (SINE) KPT-335 (verdinexor) in dogs with lymphoma.
+    Score: 18
+    Match: drug_match(verdinexor), species:canine, dogs, context_distance_match, relevance:adverse, dose, dosing, safety, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Vinblastine
+  - Title: Vinblastine pharmacokinetics in mouse, dog, and human in the context of a physiologically based model incorporating tissue-specific drug binding, transport, and metabolism.
+    Score: 20
+    Match: drug_match(vinblastine), species:dog, dogs, context_distance_match, relevance:dose, drug interaction, interaction, metabolism, high_signal_title, llm_validated_in_vivo
+  - Title: Use of Cyclophosphamide, Vincristine, Prednisolone and Vinblastine for the Treatment of Large Cell Lymphoma in Cats.
+    Score: 17
+    Match: drug_match(vinblastine), species:cats, context_distance_match, relevance:adverse, dose, efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Vincristine
+  - Title: Efficacy and toxicity of mustargen, vincristine, procarbazine and prednisone (MOPP) for the treatment of relapsed or resistant lymphoma in cats.
+    Score: 20
+    Match: drug_match(vincristine), species:cats, feline, context_distance_match, relevance:adverse, efficacy, safety, toxicity, high_signal_title, llm_validated_in_vivo
+  - Title: Safety and efficacy of a genetic vaccine targeting telomerase plus chemotherapy for the therapy of canine B-cell lymphoma.
+    Score: 20
+    Match: drug_match(vincristine), species:canine, dog, dogs, context_distance_match, relevance:adverse, efficacy, safety, toxicity, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Vinorelbine
+  - Title: Vinorelbine as First-Line Treatment in Stage IV Canine Primary Pulmonary Carcinoma.
+    Score: 16
+    Match: drug_match(vinorelbine), species:canine, dogs, context_distance_match, relevance:approved, toxicity, treatment, llm_validated_in_vivo
+  - Title: A Retrospective Evaluation of Chemotherapy Overdoses in Dogs and Cats.
+    Score: 15
+    Match: drug_match(vinorelbine), species:cat, cats, dogs, context_distance_match, relevance:adverse, dose, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Vitamin A
+  - Title: Pet Wellness and Vitamin A: A Narrative Overview. [LLM_INVALID]
+    Score: 16
+    Match: drug_match(vitamin a), species:cats, dogs, context_distance_match, relevance:absorption, bioavailability, metabolism, llm_rejected
+  - Title: Nutritional problems in cats: taurine deficiency and vitamin A excess. [LLM_INVALID]
+    Score: 15
+    Match: drug_match(vitamin a), species:cat, cats, feline, context_distance_match, relevance:metabolism, toxicity, llm_rejected
+------------------------------
+■ Drug Name: Voriconazole
+  - Title: The Pharmacokinetic Effect of Itraconazole and Voriconazole on Ripretinib in Beagle Dogs by UPLC-MS/MS Technique.
+    Score: 18
+    Match: drug_match(voriconazole), species:dog, dogs, context_distance_match, relevance:dose, metabolism, pharmacokinetic, high_signal_title, llm_validated_in_vivo
+  - Title: Invasive fungal infections and oomycoses in cats 2. Antifungal therapy. [LLM_INVALID]
+    Score: 12
+    Match: drug_match(voriconazole), species:cats, feline, context_distance_penalty, relevance:adverse, pharmacodynamic, pharmacokinetic, treatment, llm_rejected
+------------------------------
+■ Drug Name: Voriconazole Ophthalmic
+  - Title: Malassezia pachydermatis keratomycosis in a dog. [LLM_INVALID]
+    Score: 9
+    Match: drug_match(voriconazole ophthalmic), species:dog, context_distance_penalty, relevance:treatment, llm_rejected
+------------------------------
+■ Drug Name: Warfarin
+  - Title: Effect of tecarfarin, a novel vitamin K epoxide reductase inhibitor, on coagulation in beagle dogs. [LLM_INVALID]
+    Score: 17
+    Match: drug_match(warfarin), species:canine, dogs, context_distance_match, relevance:dose, efficacy, safety, treatment, llm_rejected
+------------------------------
+■ Drug Name: Xylazine
+  - Title: Effects of metoclopramide on emesis in cats sedated with xylazine hydrochloride.
+    Score: 16
+    Match: drug_match(xylazine), species:cats, context_distance_match, relevance:dosage, dose, treatment, llm_validated_in_vivo
+  - Title: Antagonistic effects of atipamezole, yohimbine, and prazosin on xylazine-induced diuresis in clinically normal cats.
+    Score: 15
+    Match: drug_match(xylazine), species:cats, context_distance_match, relevance:clearance, dose, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Yohimbine
+  - Title: Comparative pharmacokinetics of yohimbine in steers, horses and dogs.
+    Score: 20
+    Match: drug_match(yohimbine), species:dogs, context_distance_match, relevance:clearance, distribution, dose, half-life, high_signal_title, llm_validated_in_vivo
+  - Title: Antagonistic effects of atipamezole, yohimbine, and prazosin on xylazine-induced diuresis in clinically normal cats.
+    Score: 15
+    Match: drug_match(yohimbine), species:cats, context_distance_match, relevance:clearance, dose, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Zidovudine
+  - Title: Alpha interferon (2b) in combination with zidovudine for the treatment of presymptomatic feline leukemia virus-induced immunodeficiency syndrome.
+    Score: 18
+    Match: drug_match(zidovudine), species:cats, feline, context_distance_match, relevance:dosage, dose, efficacy, half-life, llm_validated_in_vivo
+  - Title: Evaluation of different antiretroviral drug protocols on naturally infected feline immunodeficiency virus (FIV) cats in the late phase of the asymptomatic stage of infection.
+    Score: 15
+    Match: drug_match(zidovudine), species:cats, feline, context_distance_match, relevance:efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Zinc
+  - Title: Crystal Structure of Feline Infectious Peritonitis Virus Main Protease in Complex with Synergetic Dual Inhibitors. [LLM_INVALID]
+    Score: 15
+    Match: drug_match(zinc), species:cats, feline, context_distance_match, relevance:approved, efficacy, llm_rejected
+  - Title: Hypospermia Improvement in Dogs Fed on a Nutraceutical Diet. [LLM_INVALID]
+    Score: 15
+    Match: drug_match(zinc), species:canine, dog, dogs, context_distance_match, relevance:adverse, efficacy, llm_rejected
+------------------------------
+■ Drug Name: Zoledronate
+  - Title: Evaluation of zoledronate for the treatment of canine stage III osteosarcoma: A phase II study.
+    Score: 17
+    Match: drug_match(zoledronate), species:canine, dogs, context_distance_match, relevance:adverse, efficacy, toxicity, treatment, llm_validated_in_vivo
+  - Title: Retrospective assessment of tolerability and efficacy of zoledronate in the palliative treatment of cancer-bearing dogs.
+    Score: 16
+    Match: drug_match(zoledronate), species:dogs, context_distance_match, relevance:adverse, efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Zonisamide
+  - Title: Pharmacokinetics of single-dose rectal zonisamide administration in normal dogs.
+    Score: 20
+    Match: drug_match(zonisamide), species:dogs, context_distance_match, relevance:adverse, bioavailability, dose, dosing, high_signal_title, llm_validated_in_vivo
+  - Title: Pharmacokinetics and toxicity of zonisamide in cats.
+    Score: 20
+    Match: drug_match(zonisamide), species:cats, context_distance_match, relevance:adverse, pharmacokinetic, pharmacokinetics, toxicity, high_signal_title, llm_validated_in_vivo
+------------------------------
+
+📊 요약: 총 20개 중 19개 성공, 1개 실패

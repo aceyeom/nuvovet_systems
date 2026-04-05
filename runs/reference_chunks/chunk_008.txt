@@ -1,0 +1,330 @@
+■ Drug Name: Medetomidine
+  - Title: Plasma Concentration Rise after the Intramuscular Administration of High Dose Medetomidine (0.13 mg/kg) for Semen Collection in Cats.
+    Score: 17
+    Match: drug_match(medetomidine), species:cats, context_distance_match, relevance:clearance, distribution, dose, pharmacokinetics, llm_validated_in_vivo
+  - Title: Comparative responses to propofol anaesthesia alone and with alpha 2-adrenergic medications in a canine model.
+    Score: 16
+    Match: drug_match(medetomidine), species:canine, dog, dogs, context_distance_match, relevance:dosage, dose, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Medroxyprogesterone Acetate
+  - Title: Progestins to control feline reproduction: Historical abuse of high doses and potentially safe use of low doses.
+    Score: 18
+    Match: drug_match(medroxyprogesterone acetate), species:cat, cats, feline, context_distance_match, relevance:adverse, dosage, dose, dosing, llm_validated_in_vivo
+  - Title: Postnatal exposure to a progestin does not prevent uterine adenogenesis in domestic dogs.
+    Score: 15
+    Match: drug_match(medroxyprogesterone acetate), species:dogs, context_distance_match, relevance:safety, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Megestrol Acetate
+  - Title: The use of megestrol acetate in some feline dermatological problems.
+    Score: 15
+    Match: drug_match(megestrol acetate), species:cat, cats, feline, context_distance_match, relevance:dosage, treatment, llm_validated_in_vivo
+  - Title: [The use of megestrol acetate to stop urine spraying in castrated male cats (author's transl)].
+    Score: 15
+    Match: drug_match(megestrol acetate), species:cats, context_distance_match, relevance:dosage, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Meglumine Antimoniate
+  - Title: Treatment of Canine Leishmaniasis with Meglumine Antimoniate: A Clinical Study of Tolerability and Efficacy.
+    Score: 18
+    Match: drug_match(meglumine antimoniate), species:canine, dogs, context_distance_match, relevance:adverse, clearance, dose, efficacy, llm_validated_in_vivo
+  - Title: Reduced tissue parasitic load and infectivity to sand flies in dogs naturally infected by Leishmania (Leishmania) chagasi following treatment with a liposome formulation of meglumine antimoniate.
+    Score: 17
+    Match: drug_match(meglumine antimoniate), species:dogs, context_distance_match, relevance:adverse, dose, toxicity, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Melarsomine
+  - Title: Efficacy and side effects of doxycycline versus minocycline in the three-dose melarsomine canine adulticidal heartworm treatment protocol.
+    Score: 17
+    Match: drug_match(melarsomine), species:canine, dog, dogs, context_distance_match, relevance:dosage, dose, efficacy, treatment, llm_validated_in_vivo
+  - Title: Clinical benefits of incorporating doxycycline into a canine heartworm treatment protocol.
+    Score: 15
+    Match: drug_match(melarsomine), species:canine, dog, dogs, context_distance_match, relevance:approved, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Melatonin
+  - Title: Alternative methods for feline fertility control: Use of melatonin to suppress reproduction.
+    Score: 16
+    Match: drug_match(melatonin), species:cat, cats, feline, context_distance_match, relevance:bioavailability, efficacy, half-life, llm_validated_in_vivo
+  - Title: Changes in thyroid hormones, leptin, ghrelin and, galanin following oral melatonin administration in intact and castrated dogs: a preliminary study.
+    Score: 16
+    Match: drug_match(melatonin), species:dog, dogs, context_distance_match, relevance:adverse, metabolism, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Meloxicam
+  - Title: Long-term safety, efficacy and palatability of oral meloxicam at 0.01-0.03 mg/kg for treatment of osteoarthritic pain in cats.
+    Score: 20
+    Match: drug_match(meloxicam), species:cats, dogs, context_distance_match, relevance:adverse, dose, efficacy, safety, high_signal_title, llm_validated_in_vivo
+  - Title: Efficacy and safety of 3 versus 5 days of meloxicam as an analgesic for feline onychectomy and sterilization.
+    Score: 18
+    Match: drug_match(meloxicam), species:cat, cats, feline, context_distance_match, relevance:efficacy, safety, treatment, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Meperidine
+  - Title: Pain management in cats--past, present and future. Part 2. Treatment of pain--clinical pharmacology.
+    Score: 11
+    Match: drug_match(meperidine), species:cats, feline, context_distance_penalty, relevance:dosing, pharmacology, treatment, llm_validated_in_vivo
+  - Title: Comparison of the efficacy of three premedicants administered to cats.
+    Score: 11
+    Match: drug_match(meperidine), species:cats, context_distance_penalty, relevance:dose, efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Mepivacaine
+  - Title: An evaluation of the analgesic effects of meloxicam in addition to epidural morphine/mepivacaine in dogs undergoing cranial cruciate ligament repair.
+    Score: 16
+    Match: drug_match(mepivacaine), species:dogs, context_distance_match, relevance:efficacy, interaction, treatment, llm_validated_in_vivo
+  - Title: A preliminary animal study on the prediction of nerve block success using ultrasonographic parameters. [LLM_INVALID]
+    Score: 13
+    Match: drug_match(mepivacaine), species:dogs, context_distance_match, llm_rejected
+------------------------------
+■ Drug Name: Meropenem
+  - Title: Pharmacokinetics of meropenem after intravenous, intramuscular and subcutaneous administration to cats.
+    Score: 20
+    Match: drug_match(meropenem), species:cats, context_distance_match, relevance:bioavailability, dosage, dose, efficacy, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Metergoline
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Metformin
+  - Title: Multimodal Blockade of the Renin-Angiotensin System in the Treatment of Cancer in Dogs Has Mild Adverse Effects in Some Dogs.
+    Score: 17
+    Match: drug_match(metformin), species:canine, cats, dog, context_distance_match, relevance:adverse, efficacy, safety, treatment, llm_validated_in_vivo
+  - Title: Multimodal Blockade of the Renin-Angiotensin System Is Safe and Is a Potential Cancer Treatment for Cats.
+    Score: 17
+    Match: drug_match(metformin), species:cat, cats, context_distance_match, relevance:adverse, efficacy, safety, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Methadone
+  - Title: Effect of intramuscular methadone on pharmacokinetic data and thermal and mechanical nociceptive thresholds in the cat.
+    Score: 19
+    Match: drug_match(methadone), species:cat, cats, feline, context_distance_match, relevance:clearance, dosing, pharmacokinetic, pharmacokinetics, high_signal_title, llm_validated_in_vivo
+  - Title: Characterizing QT interval prolongation in early clinical development: a case study with methadone.
+    Score: 18
+    Match: drug_match(methadone), species:dogs, context_distance_match, relevance:metabolism, pharmacodynamic, pharmacokinetic, pharmacology, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Methazolamide
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Methenamine
+  - Title: Pneumocystis jirovecii pneumonia in a human caused by long-term use of veterinary drug oclacitinib: A case report. [LLM_INVALID]
+    Score: 10
+    Match: drug_match(methenamine), species:dogs, context_distance_penalty, relevance:approved, treatment, llm_rejected
+------------------------------
+■ Drug Name: Methimazole
+  - Title: Clinical efficacy and safety of transdermal methimazole in the treatment of feline hyperthyroidism.
+    Score: 20
+    Match: drug_match(methimazole), species:cat, cats, feline, context_distance_match, relevance:adverse, dose, efficacy, safety, high_signal_title, llm_validated_in_vivo
+  - Title: Transdermal application of methimazole in hyperthyroid cats: a long-term follow-up study.
+    Score: 17
+    Match: drug_match(methimazole), species:cat, cats, feline, context_distance_match, relevance:dose, efficacy, safety, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Methionine
+  - Title: PLASMA SUBSTITUTES : HUMAN AND ANIMAL GLOBIN RELATED TO THE PRODUCTION OF HEMOGLOBIN AND PLASMA PROTEIN DOG HEMOGLOBIN UTILIZATION IMPROVED BY METHIONINE BUT NOT BY ISOLEUCINE.
+    Score: 15
+    Match: drug_match(methionine), species:dog, dogs, context_distance_match, relevance:metabolism, toxicity, llm_validated_in_vivo
+  - Title: Acute Hepatic Failure in a Dog after Xylitol Ingestion. [LLM_INVALID]
+    Score: 17
+    Match: drug_match(methionine), species:dog, dogs, context_distance_match, relevance:adverse, dose, toxicity, treatment, llm_rejected
+------------------------------
+■ Drug Name: Methocarbamol
+  - Title: Feline permethrin toxicity: retrospective study of 42 cases. [LLM_INVALID]
+    Score: 18
+    Match: drug_match(methocarbamol), species:canine, cat, cats, context_distance_match, relevance:label, toxicity, treatment, high_signal_title, llm_rejected
+  - Title: Intravenous lipid emulsion for treating permethrin toxicosis in a cat. [LLM_INVALID]
+    Score: 16
+    Match: drug_match(methocarbamol), species:cat, context_distance_match, relevance:absorption, toxicity, treatment, llm_rejected
+------------------------------
+■ Drug Name: Methotrexate
+  - Title: Ocular absorption and toxicity of methotrexate in the dog.
+    Score: 19
+    Match: drug_match(methotrexate), species:dog, dogs, context_distance_match, relevance:absorption, pharmacokinetics, toxicity, treatment, high_signal_title, llm_validated_in_vivo
+  - Title: Lomustine, methotrexate and cytarabine chemotherapy as a rescue treatment for feline lymphoma.
+    Score: 15
+    Match: drug_match(methotrexate), species:cat, cats, feline, context_distance_match, relevance:efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Methylene Blue
+  - Title: Novel ultrasound-guided lateral approach for femoral nerve block in cats: a pilot study. [LLM_INVALID]
+    Score: 14
+    Match: drug_match(methylene blue), species:cat, cats, feline, context_distance_match, relevance:safety, llm_rejected
+  - Title: Assessment of an Ultrasound-Guided Longitudinal Approach to the Thoracic Erector Spinae Plane Block in Cat Cadavers: Description of Dye and Contrast Medium Distribution. [LLM_INVALID]
+    Score: 14
+    Match: drug_match(methylene blue), species:cat, cats, dogs, context_distance_match, relevance:distribution, llm_rejected
+------------------------------
+■ Drug Name: Methylphenidate
+  - Title: The effect of ethanol on oral cocaine pharmacokinetics reveals an unrecognized class of ethanol-mediated drug interactions. [LLM_INVALID]
+    Score: 20
+    Match: drug_match(methylphenidate), species:dog, dogs, context_distance_match, relevance:bioavailability, clearance, interaction, metabolism, high_signal_title, llm_rejected
+  - Title: Heritable Differences in Catecholamine Signaling Modulate Susceptibility to Trauma and Response to Methylphenidate Treatment: Relevance for PTSD. [LLM_INVALID]
+    Score: 15
+    Match: drug_match(methylphenidate), species:cat, context_distance_match, relevance:efficacy, treatment, llm_rejected
+------------------------------
+■ Drug Name: Methylprednisolone
+  - Title: In Vivo Toxicity of Local Anesthetics and Corticosteroids on Supraspinatus Tenocyte Cell Viability and Metabolism.
+    Score: 18
+    Match: drug_match(methylprednisolone), species:canine, dogs, context_distance_match, relevance:metabolism, toxicity, treatment, high_signal_title, llm_validated_in_vivo
+  - Title: Pradofloxacin for Treatment of Bartonella henselae in Experimentally Inoculated Cats. [LLM_INVALID]
+    Score: 17
+    Match: drug_match(methylprednisolone), species:cats, feline, context_distance_match, relevance:dose, efficacy, safety, treatment, llm_rejected
+------------------------------
+■ Drug Name: Metoclopramide
+  - Title: The pharmacokinetics of metoclopramide in man with observations in the dog.
+    Score: 20
+    Match: drug_match(metoclopramide), species:dog, context_distance_match, relevance:bioavailability, dose, dosing, half-life, high_signal_title, llm_validated_in_vivo
+  - Title: Anti-nausea effects and pharmacokinetics of ondansetron, maropitant and metoclopramide in a low-dose cisplatin model of nausea and vomiting in the dog: a blinded crossover study.
+    Score: 19
+    Match: drug_match(metoclopramide), species:dog, dogs, context_distance_match, relevance:dose, efficacy, pharmacokinetics, treatment, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Metoprolol
+  - Title: Rapid and sensitive LC-MS/MS method for the determination of metoprolol in Beagle dog plasma with a simple protein precipitation treatment and its pharmacokinetic applications.
+    Score: 18
+    Match: drug_match(metoprolol), species:dog, dogs, context_distance_match, relevance:pharmacokinetic, pharmacokinetics, treatment, high_signal_title, llm_validated_in_vivo
+  - Title: Evaluation of oxprenolol and metoprolol Oros systems in the dog: comparison of in vivo and in vitro drug release, and of drug absorption from duodenal and colonic infusion sites.
+    Score: 16
+    Match: drug_match(metoprolol), species:dog, context_distance_match, relevance:absorption, dosage, metabolism, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Metronidazole
+  - Title: Single-dose pharmacokinetics and genotoxicity of metronidazole in cats.
+    Score: 20
+    Match: drug_match(metronidazole), species:cats, feline, context_distance_match, relevance:absorption, clearance, distribution, dose, high_signal_title, llm_validated_in_vivo
+  - Title: Treatment of giardiasis in dogs: field clinical study to confirm the efficacy, safety, and acceptance of a metronidazole-based flavored oral suspension.
+    Score: 19
+    Match: drug_match(metronidazole), species:dogs, context_distance_match, relevance:adverse, efficacy, safety, treatment, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Metyrapone
+  - Title: Role of cytochrome P-450 in alveolar hypoxic pulmonary vasoconstriction in dogs.
+    Score: 15
+    Match: drug_match(metyrapone), species:dogs, context_distance_match, relevance:distribution, metabolism, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Mexiletine
+  - Title: The Electro-Mechanical window: a risk marker for Torsade de Pointes in a canine model of drug induced arrhythmias.
+    Score: 16
+    Match: drug_match(mexiletine), species:canine, dogs, context_distance_match, relevance:pharmacology, safety, treatment, llm_validated_in_vivo
+  - Title: Atenolol, but not mexiletine, protects against stimulus-induced ventricular tachycardia in a chronic canine model.
+    Score: 15
+    Match: drug_match(mexiletine), species:canine, dogs, context_distance_match, relevance:efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Miconazole Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Midazolam
+  - Title: Tolerability and pharmacokinetics of intravenous allopregnanolone with and without midazolam pretreatment in two healthy dogs.
+    Score: 20
+    Match: drug_match(midazolam), species:dog, dogs, context_distance_match, relevance:dose, dosing, pharmacokinetics, safety, high_signal_title, llm_validated_in_vivo
+  - Title: Safety aspects of midazolam.
+    Score: 17
+    Match: drug_match(midazolam), species:dog, dogs, context_distance_match, relevance:safety, toxicity, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Milbemycin Oxime
+  - Title: Pharmacokinetics of Milbemycin Oxime in Pekingese Dogs after Single Oral and Intravenous Administration.
+    Score: 20
+    Match: drug_match(milbemycin oxime), species:dog, dogs, context_distance_match, relevance:bioavailability, clearance, distribution, dose, high_signal_title, llm_validated_in_vivo
+  - Title: Safety of oral afoxolaner formulated with or without milbemycin oxime in homozygous MDR1-deficient collie dogs.
+    Score: 19
+    Match: drug_match(milbemycin oxime), species:dog, dogs, context_distance_match, relevance:adverse, dosage, safety, treatment, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Miltefosine
+  - Title: Comparison of Two Dosing Regimens of Miltefosine, Both in Combination With Allopurinol, on Clinical and Parasitological Findings of Dogs With Leishmaniosis: A Pilot Study.
+    Score: 18
+    Match: drug_match(miltefosine), species:canine, dogs, context_distance_match, relevance:adverse, dosage, dose, dosing, llm_validated_in_vivo
+  - Title: Oleylphosphocholine versus Miltefosine for Canine Leishmaniasis.
+    Score: 17
+    Match: drug_match(miltefosine), species:canine, dogs, context_distance_match, relevance:approved, dosage, efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Mineral Oil
+  - Title: Efficacy of a novel topical combination of esafoxolaner, eprinomectin and praziquantel in cats against Toxocara cati and Dipylidium caninum. [LLM_INVALID]
+    Score: 18
+    Match: drug_match(mineral oil), species:cats, feline, context_distance_match, relevance:adverse, dosage, efficacy, label, llm_rejected
+  - Title: Efficacy of a novel topical combination of esafoxolaner, eprinomectin and praziquantel against Notoedres cati mange in cats. [LLM_INVALID]
+    Score: 17
+    Match: drug_match(mineral oil), species:cats, context_distance_match, relevance:dosage, efficacy, label, treatment, llm_rejected
+------------------------------
+■ Drug Name: Minocycline
+  - Title: Pharmacokinetics of minocycline in domestic cats.
+    Score: 20
+    Match: drug_match(minocycline), species:cat, cats, context_distance_match, relevance:bioavailability, clearance, distribution, dosage, high_signal_title, llm_validated_in_vivo
+  - Title: Efficacy and side effects of doxycycline versus minocycline in the three-dose melarsomine canine adulticidal heartworm treatment protocol.
+    Score: 17
+    Match: drug_match(minocycline), species:canine, dog, dogs, context_distance_match, relevance:dosage, dose, efficacy, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Mirtazapine
+  - Title: Mirtazapine toxicity in cats: retrospective study of 84 cases (2006-2011).
+    Score: 18
+    Match: drug_match(mirtazapine), species:cat, cats, context_distance_match, relevance:adverse, dose, toxicity, high_signal_title, llm_validated_in_vivo
+  - Title: Appetite Stimulant and Anti-Emetic Effect of Mirtazapine Transdermal Ointment in Cats Affected by Lymphoma Following Chemotherapy Administration: A Multi-Centre Retrospective Study.
+    Score: 16
+    Match: drug_match(mirtazapine), species:cat, cats, feline, context_distance_match, relevance:adverse, toxicity, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Misoprostol
+  - Title: Effect of oral misoprostol, alone or in combination with aglepristone, on mid-term pregnancy termination in cats.
+    Score: 16
+    Match: drug_match(misoprostol), species:cat, cats, context_distance_match, relevance:efficacy, safety, treatment, llm_validated_in_vivo
+  - Title: Attenuation of ischemic liver injury by prostaglandin E1 analogue, misoprostol, and prostaglandin I2 analogue, OP-41483.
+    Score: 16
+    Match: drug_match(misoprostol), species:dogs, context_distance_match, relevance:adverse, dose, half-life, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Mitomycin Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Mitotane
+  - Title: Long-term survival of dogs with adrenal-dependent hyperadrenocorticism: a comparison between mitotane and twice daily trilostane treatment.
+    Score: 15
+    Match: drug_match(mitotane), species:dogs, context_distance_match, relevance:adverse, treatment, llm_validated_in_vivo
+  - Title: Mitotane (o,p'-DDD) treatment in a cat with hyperadrenocorticism.
+    Score: 15
+    Match: drug_match(mitotane), species:cat, context_distance_match, relevance:adverse, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Mitoxantrone
+  - Title: Comparison of efficacy and toxicity of doxorubicin and mitoxantrone in combination chemotherapy for canine lymphoma.
+    Score: 18
+    Match: drug_match(mitoxantrone), species:canine, dogs, context_distance_match, relevance:efficacy, toxicity, treatment, high_signal_title, llm_validated_in_vivo
+  - Title: Adjuvant chemotherapy with mitoxantrone for cats with mammary carcinomas treated with radical mastectomy.
+    Score: 16
+    Match: drug_match(mitoxantrone), species:cat, cats, feline, context_distance_match, relevance:adverse, dose, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Molybdates
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Montelukast
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Morantel
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Morphine
+  - Title: Pharmacokinetics of oral morphine sulfate in dogs: a comparison of sustained release and conventional formulations.
+    Score: 20
+    Match: drug_match(morphine), species:dogs, context_distance_match, relevance:absorption, bioavailability, distribution, dose, high_signal_title, llm_validated_in_vivo
+  - Title: Pain management in cats--past, present and future. Part 2. Treatment of pain--clinical pharmacology.
+    Score: 16
+    Match: drug_match(morphine), species:cats, feline, context_distance_match, relevance:dosing, pharmacology, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Morphine Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Moxidectin Moxidectin Combination Products
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Moxifloxacin Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Mycobacterial Cell Wall Fraction Immunomodulator
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Mycophenolate
+  - Title: Pharmacokinetics of Mycophenolic Acid after Intravenous Administration of Mycophenolate Mofetil to Healthy Cats.
+    Score: 20
+    Match: drug_match(mycophenolate), species:cats, feline, context_distance_match, relevance:dosing, efficacy, pharmacokinetic, pharmacokinetics, high_signal_title, llm_validated_in_vivo
+  - Title: Pharmacokinetics of mycophenolic acid and its effect on CD4(+) and CD8(+) T cells after oral administration of mycophenolate mofetil to healthy cats.
+    Score: 20
+    Match: drug_match(mycophenolate), species:cats, context_distance_match, relevance:adverse, dosage, dose, efficacy, high_signal_title, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Nalbuphine
+  - Title: Sedative effects of acepromazine in combination with nalbuphine or butorphanol, intramuscularly or intravenously, in healthy cats: a randomized, blinded clinical trial.
+    Score: 16
+    Match: drug_match(nalbuphine), species:cats, context_distance_match, relevance:adverse, dose, treatment, llm_validated_in_vivo
+------------------------------
+■ Drug Name: Nalbuphine Ophthalmic
+  -> 적합한 논문 없음
+------------------------------
+■ Drug Name: Naloxone
+  - Title: Rapid Absorption of Naloxone from Eye Drops.
+    Score: 18
+    Match: drug_match(naloxone), species:dogs, context_distance_match, relevance:absorption, bioavailability, dosing, pharmacokinetics, llm_validated_in_vivo
+  - Title: Is Fentanyl Rebound an Intrinsic Feature of Naloxone Reversal?
+    Score: 18
+    Match: drug_match(naloxone), species:dog, dogs, context_distance_match, relevance:distribution, dose, half-life, pharmacokinetic, llm_validated_in_vivo
+------------------------------
+
+📊 요약: 총 50개 중 38개 성공, 12개 실패
