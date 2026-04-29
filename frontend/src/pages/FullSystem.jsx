@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect, useMemo, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  ArrowLeft, Lock, Eye, EyeOff, Zap, RotateCcw,
+  Zap, RotateCcw,
   ChevronDown, ChevronUp, Plus, X, Camera, Users, Save,
   CheckCircle, AlertCircle, Search, UserPlus,
   Filter, SortAsc, ChevronRight,
@@ -150,98 +150,6 @@ function BreedInput({ value, onChange, species }) {
           ))}
         </div>
       )}
-    </div>
-  );
-}
-
-// ── Login / Signup Gate ───────────────────────────────────────────
-function AuthGate({ onAuthenticated }) {
-  const { login } = useAuth();
-  const navigate = useNavigate();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState('');
-  const [submitting, setSubmitting] = useState(false);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
-    if (!username.trim() || !password) { setError('Please fill in all fields'); return; }
-    setSubmitting(true);
-    const result = await login(username.trim(), password);
-    setSubmitting(false);
-    if (result.ok) { navigate('/dashboard', { replace: true }); }
-    else { setError(result.error || 'Authentication failed'); }
-  };
-
-  return (
-    <div className="min-h-screen bg-white flex flex-col">
-      <header className="bg-white border-b border-slate-200 shadow-[0_1px_3px_rgba(15,23,42,0.07)]">
-        <div className="max-w-5xl mx-auto px-6 h-[62px] flex items-center gap-3">
-          <button onClick={() => navigate('/')} className="p-2 -ml-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-50 transition-colors">
-            <ArrowLeft size={18} />
-          </button>
-          <NuvovetWordmark />
-        </div>
-      </header>
-      <main className="flex-1 flex items-center justify-center px-6 pb-16">
-        <div className="max-w-sm w-full">
-          <div className="mx-auto w-14 h-14 bg-slate-100 rounded-2xl flex items-center justify-center mb-6">
-            <Lock size={24} className="text-slate-500" />
-          </div>
-          <h2 className="text-xl font-semibold text-slate-900 mb-1 text-center">
-            Sign in to Full System
-          </h2>
-          <p className="text-sm text-slate-500 mb-6 text-center">
-            Access the complete veterinary DUR system with the admin account.
-          </p>
-
-          <form onSubmit={handleSubmit} className="space-y-3">
-            <div>
-              <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1">Email or Username</label>
-              <input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="example@clinic.com or username"
-                autoFocus
-                autoComplete="username"
-                className="w-full px-4 py-3 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 transition-all"
-              />
-            </div>
-            <div>
-              <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1">Password</label>
-              <div className="relative">
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter password"
-                  autoComplete="current-password"
-                  className="w-full px-4 py-3 pr-10 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 transition-all"
-                />
-                <button type="button" onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
-                  {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-                </button>
-              </div>
-            </div>
-            {error && <p className="text-xs text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">{error}</p>}
-            <p className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-500">
-              Sign in with your email or username. Demo: <strong>admin</strong> / <strong>admin</strong>
-            </p>
-            <button type="submit" disabled={submitting}
-              className="w-full px-4 py-3 bg-slate-900 text-white text-sm font-medium rounded-lg hover:bg-slate-800 disabled:opacity-60 transition-all">
-              {submitting ? 'Please wait...' : 'Sign In'}
-            </button>
-          </form>
-
-          <button onClick={() => navigate('/demo')} className="mt-4 w-full text-xs text-slate-400 hover:text-slate-600 transition-colors text-center block">
-            Try Demo instead →
-          </button>
-        </div>
-      </main>
     </div>
   );
 }
@@ -793,7 +701,7 @@ function ExistingPatientPanel({ onSelect }) {
 export default function FullSystem() {
   const navigate = useNavigate();
   const { t, lang } = useI18n();
-  const { isAuthenticated, user } = useAuth();
+  const { user } = useAuth();
 
   // ── Patient state ──────────────────────────────────────────────
   const [patientId, setPatientId] = useState(null);
@@ -1039,11 +947,6 @@ export default function FullSystem() {
   const handleUpdateDrug = useCallback(
     (drugId, patch) => setDrugs((prev) => prev.map((d) => d.id === drugId ? { ...d, ...patch } : d)), []
   );
-
-  // ── Show auth gate if not authenticated ────────────────────────
-  if (!isAuthenticated) {
-    return <AuthGate onAuthenticated={() => {}} />;
-  }
 
   // ── Helpers ────────────────────────────────────────────────────
   const getWeightKg = () => {

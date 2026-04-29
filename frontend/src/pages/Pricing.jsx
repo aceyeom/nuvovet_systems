@@ -162,7 +162,7 @@ export default function Pricing() {
         { text: lang === 'ko' ? '1개월 무료 이용' : 'One month free', included: true },
         { text: lang === 'ko' ? '핵심 DUR 검사' : 'Core DUR check', included: true },
         { text: lang === 'ko' ? '환자 저장 제한' : 'Limited patient saves', included: true },
-        { text: lang === 'ko' ? '계정 로그인 필요' : 'Requires account login', included: true },
+        { text: lang === 'ko' ? '로그인 없이 바로 사용' : 'Use instantly without login', included: true },
         { text: lang === 'ko' ? '전체 DUR 엔진 제외' : 'Full DUR engine', included: false },
         { text: lang === 'ko' ? 'EMR 스크린샷 불포함' : 'EMR screenshot import', included: false },
       ],
@@ -170,8 +170,8 @@ export default function Pricing() {
         ? (lang === 'ko' ? '무료 체험 시작 / Start Trial' : 'Start Trial')
         : isTrialActive
         ? (lang === 'ko' ? '체험 진행 중 / Trial Active' : 'Trial Active')
-        : (lang === 'ko' ? '계정 만들기 / Create Account' : 'Create Account'),
-      ctaType: isTrialNotStarted ? 'start_trial' : isTrialActive ? 'active_trial' : 'register',
+        : (lang === 'ko' ? '무료로 사용하기 / Use for Free' : 'Use for Free'),
+      ctaType: isTrialNotStarted ? 'start_trial' : isTrialActive ? 'active_trial' : 'system',
       muted: false,
     },
     {
@@ -229,11 +229,6 @@ export default function Pricing() {
 
   const handleCTA = (plan) => {
     setTrialError('');
-    if (!isAuthenticated) {
-      navigate(`/register?redirect=${encodeURIComponent('/pricing')}`);
-      return;
-    }
-
     if (plan.ctaType === 'start_trial') {
       startTrial().then((result) => {
         if (!result.ok) {
@@ -242,10 +237,9 @@ export default function Pricing() {
       });
     } else if (plan.ctaType === 'active_trial') {
       return;
+    } else if (plan.ctaType === 'system') {
+      navigate('/system');
     } else if (plan.ctaType === 'payment') setModal('payment');
-    else if (plan.ctaType === 'register') {
-      navigate(`/register?redirect=${encodeURIComponent('/pricing')}`);
-    }
     else if (plan.ctaType === 'contact') {
       window.location.href = 'mailto:contact@nuvovet.com';
     }

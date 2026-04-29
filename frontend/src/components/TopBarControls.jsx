@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { CreditCard, History, LogOut, Settings, UserCircle } from 'lucide-react';
+import { CreditCard, History, Settings, UserCircle } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useI18n } from '../i18n';
 import { useAuth } from '../context/AuthContext';
@@ -8,7 +8,7 @@ export function TopBarControls({ className = '' }) {
   const navigate = useNavigate();
   const location = useLocation();
   const { lang, setLang } = useI18n();
-  const { isAuthenticated, user, logout } = useAuth();
+  const { user } = useAuth();
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const settingsRef = useRef(null);
@@ -93,121 +93,88 @@ export function TopBarControls({ className = '' }) {
         )}
       </div>
 
-      {!isAuthenticated ? (
-        <>
+      <>
+        <button
+          type="button"
+          onClick={() => navigate('/system')}
+          className={`rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors ${
+            location.pathname === '/system'
+              ? 'bg-slate-200 text-slate-700'
+              : 'bg-slate-900 text-white hover:bg-slate-800'
+          }`}
+        >
+          {lang === 'ko' ? '진단 시작' : 'Start Diagnosis'}
+        </button>
+
+        <div className="relative" ref={profileRef}>
           <button
             type="button"
-            onClick={() => navigate(`/login?redirect=${encodeURIComponent(location.pathname)}`)}
-            className="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-50 hover:text-slate-900"
-          >
-            {lang === 'ko' ? '로그인' : 'Log in'}
-          </button>
-          <button
-            type="button"
-            onClick={() => navigate(`/register?redirect=${encodeURIComponent(location.pathname)}`)}
-            className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
-          >
-            {lang === 'ko' ? '회원가입' : 'Sign up'}
-          </button>
-        </>
-      ) : (
-        <>
-          <button
-            type="button"
-            onClick={() => navigate('/system')}
-            className={`rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors ${
-              location.pathname === '/system'
-                ? 'bg-slate-200 text-slate-700'
-                : 'bg-slate-900 text-white hover:bg-slate-800'
+            onClick={() => {
+              setProfileOpen((value) => !value);
+              setSettingsOpen(false);
+            }}
+            className={`inline-flex h-10 w-10 items-center justify-center rounded-xl border transition-colors ${
+              profileOpen || location.pathname === '/dashboard'
+                ? 'border-slate-300 bg-slate-100 text-slate-900'
+                : 'border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:text-slate-700'
             }`}
+            aria-label={lang === 'ko' ? '프로필' : 'Profile'}
+            aria-expanded={profileOpen}
           >
-            {lang === 'ko' ? '진단 시작' : 'Start Diagnosis'}
+            <UserCircle size={18} />
           </button>
 
-          <div className="relative" ref={profileRef}>
-            <button
-              type="button"
-              onClick={() => {
-                setProfileOpen((value) => !value);
-                setSettingsOpen(false);
-              }}
-              className={`inline-flex h-10 w-10 items-center justify-center rounded-xl border transition-colors ${
-                profileOpen || location.pathname === '/dashboard'
-                  ? 'border-slate-300 bg-slate-100 text-slate-900'
-                  : 'border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:text-slate-700'
-              }`}
-              aria-label={lang === 'ko' ? '프로필' : 'Profile'}
-              aria-expanded={profileOpen}
-            >
-              <UserCircle size={18} />
-            </button>
-
-            {profileOpen && (
-              <div className="absolute right-0 top-full z-[70] mt-2 w-64 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl animate-scale-in">
-                <div className="border-b border-slate-100 bg-slate-50 px-4 py-3">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 text-white">
-                      <UserCircle size={18} />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="truncate text-sm font-semibold text-slate-900">{user?.username || 'User'}</p>
-                    </div>
+          {profileOpen && (
+            <div className="absolute right-0 top-full z-[70] mt-2 w-64 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl animate-scale-in">
+              <div className="border-b border-slate-100 bg-slate-50 px-4 py-3">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 text-white">
+                    <UserCircle size={18} />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="truncate text-sm font-semibold text-slate-900">{user?.username || 'Guest'}</p>
                   </div>
                 </div>
-                <div className="space-y-1 p-2">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setProfileOpen(false);
-                      navigate('/dashboard');
-                    }}
-                    className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-slate-700 transition-colors hover:bg-slate-50"
-                  >
-                    <Settings size={15} className="text-slate-400" />
-                    <span>{lang === 'ko' ? '대시보드' : 'Dashboard'}</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setProfileOpen(false);
-                      navigate('/pricing');
-                    }}
-                    className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-slate-700 transition-colors hover:bg-slate-50"
-                  >
-                    <CreditCard size={15} className="text-slate-400" />
-                    <span>{lang === 'ko' ? '결제' : 'Billing'}</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setProfileOpen(false);
-                      navigate('/patients');
-                    }}
-                    className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-slate-700 transition-colors hover:bg-slate-50"
-                  >
-                    <History size={15} className="text-slate-400" />
-                    <span>{lang === 'ko' ? '환자 기록' : 'Patient History'}</span>
-                  </button>
-                </div>
-                <div className="border-t border-slate-100 p-2">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setProfileOpen(false);
-                      logout();
-                      navigate('/');
-                    }}
-                    className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-red-600 transition-colors hover:bg-red-50"
-                  >
-                    <LogOut size={15} className="text-red-400" />
-                    <span>{lang === 'ko' ? '로그아웃' : 'Logout'}</span>
-                  </button>
-                </div>
               </div>
-            )}
-          </div>
-        </>
-      )}
+              <div className="space-y-1 p-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setProfileOpen(false);
+                    navigate('/dashboard');
+                  }}
+                  className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-slate-700 transition-colors hover:bg-slate-50"
+                >
+                  <Settings size={15} className="text-slate-400" />
+                  <span>{lang === 'ko' ? '대시보드' : 'Dashboard'}</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setProfileOpen(false);
+                    navigate('/pricing');
+                  }}
+                  className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-slate-700 transition-colors hover:bg-slate-50"
+                >
+                  <CreditCard size={15} className="text-slate-400" />
+                  <span>{lang === 'ko' ? '결제' : 'Billing'}</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setProfileOpen(false);
+                    navigate('/patients');
+                  }}
+                  className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-slate-700 transition-colors hover:bg-slate-50"
+                >
+                  <History size={15} className="text-slate-400" />
+                  <span>{lang === 'ko' ? '환자 기록' : 'Patient History'}</span>
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      </>
     </div>
   );
 }

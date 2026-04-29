@@ -66,7 +66,7 @@ export default function CTASection() {
 
         <motion.div variants={fadeUp} className="mt-10">
           <button
-            onClick={() => navigate('/register')}
+            onClick={() => navigate('/system')}
             className="px-10 py-4 rounded-full text-base font-semibold bg-white text-slate-900 hover:bg-white/90 transition-all hover:shadow-lg hover:shadow-white/10"
           >
             {l === 'ko' ? '무료로 시작하기' : 'Start for Free'}
