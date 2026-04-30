@@ -165,7 +165,7 @@ function Nav({ progress }) {
         </span>
 
         <button
-          onClick={() => navigate('/system')}
+          onClick={() => navigate('/start')}
           className={`px-5 py-2 rounded-full text-sm font-semibold transition-all ${primaryStyle}`}
         >
           {t.landing?.ctaPrimary || (l === 'ko' ? '무료로 시작' : 'Start Free')}
@@ -334,7 +334,7 @@ export default function ShaderHero() {
 
               <motion.div variants={fadeUp} className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
                 <button
-                  onClick={() => navigate('/system')}
+                  onClick={() => navigate('/start')}
                   className={`rounded-full px-8 py-3.5 text-[15px] font-semibold transition-all ${
                     transitionProgress > 0.48
                       ? 'bg-slate-900 text-white hover:bg-slate-800 hover:shadow-lg hover:shadow-slate-900/10'

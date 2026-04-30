@@ -1,0 +1,597 @@
+/* NuvoVet Insurance dashboard — scoped under .nuvo-insurance to keep
+   custom class names (.card, .btn, etc.) from leaking into the rest
+   of the Tailwind-based app. */
+
+.nuvo-insurance {
+  --bg-canvas: #FAFAFA;
+  --bg-card: #FFFFFF;
+  --bg-hover: #FAFAFA;
+  --bg-warning-soft: #FEF3C7;
+  --bg-critical-soft: #FEE2E2;
+  --bg-ok-soft: #D1FAE5;
+  --bg-info-soft: #DBEAFE;
+
+  --text-primary: #0A0A0A;
+  --text-body: #1A1A1A;
+  --text-secondary: #666666;
+  --text-muted: #999999;
+  --text-faint: #BFBFBF;
+
+  --border: #E5E5E5;
+  --border-strong: #D4D4D4;
+
+  --accent: #0F766E;
+  --accent-hover: #0D5F58;
+  --critical: #B91C1C;
+  --warning: #B45309;
+  --info: #1E40AF;
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+  --shadow-lg: 0 12px 32px rgba(0,0,0,0.08);
+
+  font-family: 'Inter', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-canvas);
+  color: var(--text-body);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'cv11', 'ss01', 'ss03';
+  height: 100vh;
+  width: 100vw;
+}
+
+.nuvo-insurance * { box-sizing: border-box; }
+.nuvo-insurance button { font-family: inherit; cursor: pointer; border: none; background: none; padding: 0; color: inherit; }
+.nuvo-insurance input,
+.nuvo-insurance select,
+.nuvo-insurance textarea { font-family: inherit; }
+
+.nuvo-insurance .mono { font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace; font-feature-settings: 'tnum'; }
+.nuvo-insurance .tnum { font-variant-numeric: tabular-nums; }
+
+/* Korean line-height */
+.nuvo-insurance, .nuvo-insurance .ko { line-height: 1.5; }
+
+/* ---- Shell layout ---- */
+.nuvo-insurance .app {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: 56px 1fr;
+  grid-template-areas: "logo topbar" "sidebar main";
+  height: 100vh;
+  width: 100vw;
+}
+
+.nuvo-insurance .shell-logo {
+  grid-area: logo;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  background: var(--bg-card);
+}
+
+.nuvo-insurance .shell-topbar {
+  grid-area: topbar;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  background: var(--bg-card);
+  gap: 24px;
+}
+
+.nuvo-insurance .shell-search {
+  flex: 1;
+  max-width: 480px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding: 0 12px;
+  background: var(--bg-canvas);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-muted);
+  font-size: 13px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.nuvo-insurance .shell-search:hover { border-color: var(--border-strong); }
+.nuvo-insurance .shell-search .kbd {
+  margin-left: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 6px;
+}
+
+.nuvo-insurance .shell-topbar-right { display: flex; align-items: center; gap: 16px; }
+
+.nuvo-insurance .icon-btn {
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 6px;
+  color: var(--text-secondary);
+  position: relative;
+  transition: background 0.15s;
+}
+.nuvo-insurance .icon-btn:hover { background: var(--bg-canvas); }
+.nuvo-insurance .icon-btn .notif-dot {
+  position: absolute; top: 7px; right: 7px;
+  width: 7px; height: 7px;
+  background: var(--critical);
+  border: 2px solid var(--bg-card);
+  border-radius: 50%;
+}
+
+.nuvo-insurance .user-chip {
+  display: flex; align-items: center; gap: 8px;
+  padding: 4px 10px 4px 4px;
+  border-radius: 20px;
+  transition: background 0.15s;
+}
+.nuvo-insurance .user-chip:hover { background: var(--bg-canvas); }
+.nuvo-insurance .user-chip .avatar {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: linear-gradient(135deg, #0F766E, #134E4A);
+  color: white;
+  font-size: 11px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+}
+.nuvo-insurance .user-chip .name { font-size: 13px; font-weight: 500; color: var(--text-body); }
+
+/* ---- Sidebar ---- */
+.nuvo-insurance .shell-sidebar {
+  grid-area: sidebar;
+  border-right: 1px solid var(--border);
+  background: var(--bg-card);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.nuvo-insurance .sidebar-section { padding: 16px 12px; }
+.nuvo-insurance .sidebar-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  padding: 0 12px 8px;
+}
+
+.nuvo-insurance .nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 12px;
+  border-radius: 6px;
+  color: var(--text-body);
+  font-size: 13px;
+  font-weight: 500;
+  width: 100%;
+  text-align: left;
+  transition: background 0.12s, color 0.12s;
+  position: relative;
+  white-space: nowrap;
+  word-break: keep-all;
+}
+.nuvo-insurance .nav-item:hover { background: var(--bg-canvas); }
+.nuvo-insurance .nav-item.active {
+  background: var(--bg-canvas);
+  color: var(--text-primary);
+}
+.nuvo-insurance .nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: -12px; top: 6px; bottom: 6px;
+  width: 2px;
+  background: var(--accent);
+  border-radius: 0 2px 2px 0;
+}
+.nuvo-insurance .nav-item .nav-icon { color: var(--text-secondary); display: flex; }
+.nuvo-insurance .nav-item.active .nav-icon { color: var(--accent); }
+
+.nuvo-insurance .sidebar-spacer { flex: 1; }
+
+.nuvo-insurance .sidebar-footer {
+  border-top: 1px solid var(--border);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nuvo-insurance .org-switcher {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  width: 100%;
+  text-align: left;
+  background: var(--bg-card);
+  transition: border-color 0.15s;
+}
+.nuvo-insurance .org-switcher:hover { border-color: var(--border-strong); }
+.nuvo-insurance .org-switcher .org-mark {
+  width: 28px; height: 28px;
+  border-radius: 6px;
+  background: #FFCC00;
+  color: #1A1A1A;
+  font-weight: 800; font-size: 11px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.nuvo-insurance .org-switcher .org-info { flex: 1; min-width: 0; }
+.nuvo-insurance .org-switcher .org-name { font-size: 12px; font-weight: 600; color: var(--text-primary); }
+.nuvo-insurance .org-switcher .org-team { font-size: 11px; color: var(--text-muted); }
+
+.nuvo-insurance .sidebar-user {
+  display: flex; align-items: center; gap: 10px;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+.nuvo-insurance .sidebar-user .avatar {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: linear-gradient(135deg, #1E3A8A, #0F172A);
+  color: white;
+  font-size: 12px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+}
+.nuvo-insurance .sidebar-user .info { flex: 1; min-width: 0; }
+.nuvo-insurance .sidebar-user .name { font-size: 12px; font-weight: 600; color: var(--text-body); }
+.nuvo-insurance .sidebar-user .role { font-size: 11px; color: var(--text-muted); }
+
+/* ---- Main canvas ---- */
+.nuvo-insurance .shell-main {
+  grid-area: main;
+  overflow-y: auto;
+  background: var(--bg-canvas);
+}
+.nuvo-insurance .page {
+  padding: 32px 40px 64px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.nuvo-insurance .page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+.nuvo-insurance .page-title { font-size: 28px; font-weight: 800; color: var(--text-primary); letter-spacing: -0.02em; margin: 0 0 4px; }
+.nuvo-insurance .page-subtitle { font-size: 13px; color: var(--text-secondary); margin: 0; word-break: keep-all; }
+.nuvo-insurance .btn { word-break: keep-all; }
+.nuvo-insurance .badge { white-space: nowrap; word-break: keep-all; }
+.nuvo-insurance .page-header-actions { display: flex; align-items: center; gap: 8px; }
+
+/* ---- Buttons ---- */
+.nuvo-insurance .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  transition: all 0.12s;
+  white-space: nowrap;
+}
+.nuvo-insurance .btn-primary { background: var(--accent); color: white; border-color: var(--accent); }
+.nuvo-insurance .btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+.nuvo-insurance .btn-secondary { background: var(--bg-card); color: var(--text-body); border-color: var(--border); }
+.nuvo-insurance .btn-secondary:hover { background: var(--bg-canvas); border-color: var(--border-strong); }
+.nuvo-insurance .btn-ghost { background: transparent; color: var(--text-body); }
+.nuvo-insurance .btn-ghost:hover { background: var(--bg-canvas); }
+.nuvo-insurance .btn-sm { height: 28px; font-size: 12px; padding: 0 10px; }
+
+.nuvo-insurance .text-link { color: var(--info); font-size: 13px; font-weight: 500; cursor: pointer; }
+.nuvo-insurance .text-link:hover { text-decoration: underline; }
+
+/* ---- Cards ---- */
+.nuvo-insurance .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; }
+.nuvo-insurance .card-pad-sm { padding: 16px; }
+.nuvo-insurance .card-pad { padding: 20px; }
+.nuvo-insurance .card-pad-lg { padding: 24px; }
+
+/* ---- Stat cards ---- */
+.nuvo-insurance .stat-grid { display: grid; gap: 12px; }
+.nuvo-insurance .stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+}
+.nuvo-insurance .stat-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+.nuvo-insurance .stat-value {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+.nuvo-insurance .stat-delta {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  word-break: keep-all;
+}
+.nuvo-insurance .stat-delta.positive { color: var(--accent); }
+.nuvo-insurance .stat-delta.negative { color: var(--critical); }
+.nuvo-insurance .stat-delta.warning { color: var(--warning); }
+.nuvo-insurance .stat-delta .vs { color: var(--text-muted); }
+.nuvo-insurance .stat-spark { margin-top: 8px; height: 28px; }
+
+/* ---- Section headings ---- */
+.nuvo-insurance .section-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 4px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.nuvo-insurance .section-title-en { font-size: 12px; color: var(--text-muted); font-weight: 400; }
+.nuvo-insurance .section-sub { font-size: 12px; color: var(--text-muted); margin: 0; }
+
+/* ---- Badges & chips ---- */
+.nuvo-insurance .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--bg-canvas);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+.nuvo-insurance .badge-critical { background: var(--bg-critical-soft); color: var(--critical); border-color: transparent; }
+.nuvo-insurance .badge-warning { background: var(--bg-warning-soft); color: var(--warning); border-color: transparent; }
+.nuvo-insurance .badge-info { background: var(--bg-info-soft); color: var(--info); border-color: transparent; }
+.nuvo-insurance .badge-ok { background: var(--bg-ok-soft); color: var(--accent); border-color: transparent; }
+
+.nuvo-insurance .dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
+.nuvo-insurance .dot-critical { background: var(--critical); }
+.nuvo-insurance .dot-warning { background: var(--warning); }
+.nuvo-insurance .dot-info { background: var(--info); }
+.nuvo-insurance .dot-ok { background: var(--accent); }
+.nuvo-insurance .dot-muted { background: var(--text-muted); }
+
+.nuvo-insurance .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-body);
+  transition: border-color 0.12s, background 0.12s;
+  white-space: nowrap;
+  word-break: keep-all;
+}
+.nuvo-insurance .chip:hover { border-color: var(--border-strong); background: var(--bg-canvas); }
+.nuvo-insurance .chip .chip-label { color: var(--text-muted); }
+
+/* ---- Tables ---- */
+.nuvo-insurance .table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+.nuvo-insurance .table thead th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-card);
+  white-space: nowrap;
+}
+.nuvo-insurance .table tbody td {
+  padding: 12px 16px;
+  font-size: 13px;
+  color: var(--text-body);
+  border-bottom: 1px solid var(--border);
+}
+.nuvo-insurance .table tbody tr:last-child td { border-bottom: none; }
+.nuvo-insurance .table tbody tr { transition: background 0.1s; }
+.nuvo-insurance .table tbody tr:hover { background: var(--bg-canvas); cursor: pointer; }
+.nuvo-insurance .table tbody tr.selected { background: var(--bg-canvas); position: relative; }
+.nuvo-insurance .table tbody tr.selected td:first-child { box-shadow: inset 2px 0 0 var(--accent); }
+.nuvo-insurance .table .num { text-align: right; }
+.nuvo-insurance .table .right { text-align: right; }
+
+/* ---- Sparkline & charts ---- */
+.nuvo-insurance .spark { width: 100%; height: 100%; }
+
+/* ---- Misc utilities ---- */
+.nuvo-insurance .row { display: flex; align-items: center; }
+.nuvo-insurance .gap-4 { gap: 4px; }
+.nuvo-insurance .gap-8 { gap: 8px; }
+.nuvo-insurance .gap-12 { gap: 12px; }
+.nuvo-insurance .gap-16 { gap: 16px; }
+.nuvo-insurance .gap-24 { gap: 24px; }
+.nuvo-insurance .col { display: flex; flex-direction: column; }
+
+.nuvo-insurance .divider { height: 1px; background: var(--border); margin: 24px 0; }
+
+.nuvo-insurance .search-input {
+  display: flex; align-items: center; gap: 8px;
+  height: 32px;
+  padding: 0 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  width: 280px;
+  transition: border-color 0.12s;
+}
+.nuvo-insurance .search-input:focus-within { border-color: var(--accent); }
+.nuvo-insurance .search-input input {
+  border: none; outline: none; flex: 1; font-size: 13px;
+  background: transparent; color: var(--text-body);
+}
+.nuvo-insurance .search-input input::placeholder { color: var(--text-muted); }
+
+/* ---- Pagination ---- */
+.nuvo-insurance .pagination {
+  display: flex; align-items: center; gap: 4px;
+  padding: 12px 16px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.nuvo-insurance .pagination button {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.nuvo-insurance .pagination button:hover { background: var(--bg-canvas); }
+.nuvo-insurance .pagination button.active { color: var(--text-primary); font-weight: 600; background: var(--bg-canvas); }
+
+/* ---- Range bars (price position) ---- */
+.nuvo-insurance .range-bar {
+  position: relative;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  width: 100%;
+}
+
+/* ---- Mini progress ---- */
+.nuvo-insurance .mini-progress {
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+.nuvo-insurance .mini-progress > div { height: 100%; border-radius: 2px; transition: width 0.3s; }
+
+/* ---- Slide-in panel ---- */
+.nuvo-insurance .panel-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.2);
+  z-index: 90;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+.nuvo-insurance .panel-overlay.open { opacity: 1; pointer-events: auto; }
+
+.nuvo-insurance .slide-panel {
+  position: fixed;
+  top: 0; bottom: 0; right: 0;
+  width: 640px;
+  max-width: 90vw;
+  background: var(--bg-card);
+  border-left: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  transform: translateX(100%);
+  transition: transform 0.25s cubic-bezier(0.32, 0.72, 0, 1);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+.nuvo-insurance .slide-panel.open { transform: translateX(0); }
+.nuvo-insurance .slide-panel-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+.nuvo-insurance .slide-panel-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+/* ---- Tabs ---- */
+.nuvo-insurance .tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+.nuvo-insurance .tab {
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color 0.12s, border-color 0.12s;
+}
+.nuvo-insurance .tab:hover { color: var(--text-body); }
+.nuvo-insurance .tab.active {
+  color: var(--text-primary);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+.nuvo-insurance .tab .count { color: var(--text-muted); margin-left: 6px; font-weight: 400; }
+.nuvo-insurance .tab.active .count { color: var(--accent); }
+
+/* ---- Filter bar ---- */
+.nuvo-insurance .filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 0;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.nuvo-insurance .filter-bar .spacer { flex: 1; }
+
+/* ---- Layout helpers ---- */
+.nuvo-insurance .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.nuvo-insurance .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.nuvo-insurance .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.nuvo-insurance .grid-6040 { display: grid; grid-template-columns: 60% 1fr; gap: 16px; }
+.nuvo-insurance .grid-3070 { display: grid; grid-template-columns: 30% 1fr; gap: 24px; }
+.nuvo-insurance .grid-4060 { display: grid; grid-template-columns: 40% 1fr; gap: 16px; }
+
+@media (max-width: 1280px) {
+  .nuvo-insurance .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
