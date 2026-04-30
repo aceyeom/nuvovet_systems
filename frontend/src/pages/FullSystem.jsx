@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect, useMemo, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import {
   Zap, RotateCcw,
@@ -1187,7 +1188,12 @@ export default function FullSystem() {
 
   // ── Render ─────────────────────────────────────────────────────
   return (
-    <div className="h-screen flex flex-col bg-white overflow-hidden">
+    <motion.div
+      className="h-screen flex flex-col bg-white overflow-hidden"
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.38, ease: [0.25, 0.1, 0.25, 1] }}
+    >
 
       <NavigationBar />
 
@@ -1610,6 +1616,6 @@ export default function FullSystem() {
         )}
 
       </div>
-    </div>
+    </motion.div>
   );
 }

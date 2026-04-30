@@ -1,272 +1,397 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useI18n } from '../i18n';
 import { NuvovetWordmark } from '../components/NuvovetLogo';
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } },
+const BG = '#F7F6F3';
+const BORDER = '#e3e1db';
+
+const PRODUCTS = {
+  ko: [
+    {
+      key: 'insurance',
+      num: '01',
+      accent: '#1B4FBF',
+      accentLight: '#EEF2FC',
+      nameSuffix: '보험',
+      forWhom: '보험사 · 손해사정사 대상',
+      description: '청구 서류를 자동으로 검토하고 이상을 감지합니다.\n심사 시간을 줄이고 리포트를 즉시 생성하세요.',
+      cta: '대시보드 열기',
+      path: '/insurance',
+    },
+    {
+      key: 'emr',
+      num: '02',
+      accent: '#0E7F6A',
+      accentLight: '#EAF6F2',
+      nameSuffix: '진료',
+      forWhom: '동물병원 · 수의사 대상',
+      description: '처방·환자 기록을 한곳에서 관리합니다.\n실시간 약물 상호작용 검토와 처방 템플릿으로 진료를 빠르게 이어가세요.',
+      cta: '시스템 시작',
+      path: '/system',
+    },
+    {
+      key: 'edu',
+      num: '03',
+      accent: '#C46B0A',
+      accentLight: '#FDF3E7',
+      nameSuffix: '아카데미',
+      forWhom: '수의대생 · 예비 수의사 대상',
+      description: '수의 약학 지식을 체계적으로 학습합니다.\n출시 알림을 신청하면 가장 먼저 안내드립니다.',
+      cta: '출시 알림 신청',
+      disabled: true,
+      badge: '준비 중',
+    },
+  ],
+  en: [
+    {
+      key: 'insurance',
+      num: '01',
+      accent: '#1B4FBF',
+      accentLight: '#EEF2FC',
+      nameSuffix: 'Insurance',
+      forWhom: 'For insurance carriers & adjusters',
+      description: 'Automatically review claims and detect anomalies.\nReduce review time and generate reports instantly.',
+      cta: 'Open dashboard',
+      path: '/insurance',
+    },
+    {
+      key: 'emr',
+      num: '02',
+      accent: '#0E7F6A',
+      accentLight: '#EAF6F2',
+      nameSuffix: 'EMR',
+      forWhom: 'For veterinary clinics & vets',
+      description: 'Manage prescriptions and patient records in one place.\nReal-time drug interaction checks and prescription templates.',
+      cta: 'Launch system',
+      path: '/system',
+    },
+    {
+      key: 'edu',
+      num: '03',
+      accent: '#C46B0A',
+      accentLight: '#FDF3E7',
+      nameSuffix: 'Academy',
+      forWhom: 'For vet students & residents',
+      description: 'Learn veterinary pharmacology systematically.\nSign up to be notified when we launch.',
+      cta: 'Notify me',
+      disabled: true,
+      badge: 'Soon',
+    },
+  ],
 };
 
 const stagger = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
+  visible: { transition: { staggerChildren: 0.09, delayChildren: 0.06 } },
 };
 
-function TopNav() {
-  const navigate = useNavigate();
-  return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200">
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
-        <button
-          onClick={() => navigate('/')}
-          className="select-none"
-          aria-label="홈으로"
-        >
-          <NuvovetWordmark />
-        </button>
-        <button
-          onClick={() => navigate('/')}
-          className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
-        >
-          ← 홈으로
-        </button>
-      </div>
-    </nav>
-  );
-}
+const fadeUp = {
+  hidden: { opacity: 0, y: 22 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.48, ease: [0.25, 0.1, 0.25, 1] } },
+};
 
-function ProductCard({ index, accent, brandName, brandSuffix, tagline, taglineEn, bullets, ctaLabel, onClick, disabled, badge }) {
+function ProductCard({ product, onNavigate, isExiting }) {
+  const [hovered, setHovered] = useState(false);
+  const { accent, accentLight, num, nameSuffix, forWhom, description, cta, disabled, badge, path } = product;
+
   return (
-    <motion.button
-      type="button"
+    <motion.div
       variants={fadeUp}
-      onClick={disabled ? undefined : onClick}
-      disabled={disabled}
-      className={`group relative text-left w-full bg-white border rounded-xl p-7 sm:p-8 transition-all
-        ${disabled
-          ? 'border-slate-200 cursor-not-allowed opacity-70'
-          : 'border-slate-200 hover:border-slate-900 hover:shadow-[0_12px_32px_rgba(0,0,0,0.06)] cursor-pointer'}
-      `}
+      onMouseEnter={() => !disabled && setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onClick={() => !disabled && onNavigate(path)}
+      style={{
+        background: '#ffffff',
+        border: `1px solid ${BORDER}`,
+        borderRadius: 12,
+        padding: '32px 28px 28px',
+        display: 'flex',
+        flexDirection: 'column',
+        position: 'relative',
+        overflow: 'hidden',
+        cursor: disabled ? 'default' : 'pointer',
+        boxShadow: hovered ? '0 8px 32px rgba(0,0,0,0.08)' : 'none',
+        transform: hovered ? 'translateY(-2px)' : 'translateY(0)',
+        transition: 'box-shadow 0.22s ease, transform 0.22s ease',
+        opacity: disabled ? 0.72 : 1,
+      }}
     >
-      <div className="flex items-start justify-between mb-6">
-        <div
-          className="font-mono text-[11px] font-semibold tracking-[0.18em] uppercase"
-          style={{ color: accent }}
-        >
-          0{index} / Track
+      {/* Coming soon badge */}
+      {badge && (
+        <div style={{
+          position: 'absolute',
+          top: 20,
+          right: 20,
+          fontSize: 10,
+          letterSpacing: '0.1em',
+          textTransform: 'uppercase',
+          padding: '3px 8px',
+          borderRadius: 4,
+          background: '#F0EEE8',
+          color: '#999',
+          fontWeight: 500,
+        }}>
+          {badge}
         </div>
-        {badge && (
-          <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold tracking-[0.06em] uppercase px-2 py-1 rounded bg-slate-100 text-slate-500 border border-slate-200">
-            {badge}
-          </span>
-        )}
+      )}
+
+      {/* Track number */}
+      <div style={{
+        fontSize: 10,
+        letterSpacing: '0.16em',
+        textTransform: 'uppercase',
+        color: '#888',
+        marginBottom: 20,
+        fontWeight: 500,
+      }}>
+        {num}
       </div>
 
-      <div className="mb-4">
-        <div className="flex items-baseline gap-1 mb-2">
-          <span className="text-[28px] font-extrabold tracking-[-0.03em] text-slate-900 leading-none">
-            nuvovet
-          </span>
-          <span
-            className="text-[28px] font-extrabold tracking-[-0.03em] leading-none"
-            style={{ color: accent }}
-          >
-            {brandSuffix}
-          </span>
-        </div>
-        <div className="text-[15px] font-semibold text-slate-900 break-keep">{tagline}</div>
-        <div className="text-[12px] text-slate-500 mt-0.5">{taglineEn}</div>
+      {/* Product name */}
+      <div style={{
+        fontSize: 22,
+        lineHeight: 1,
+        marginBottom: 6,
+        letterSpacing: '-0.01em',
+      }}>
+        <span style={{ fontWeight: 300, color: '#999' }}>nuvovet </span>
+        <strong style={{ fontWeight: 700, color: accent }}>{nameSuffix}</strong>
       </div>
 
-      <ul className="space-y-2.5 mb-8">
-        {bullets.map((b, i) => (
-          <li key={i} className="flex items-start gap-2.5 text-[13px] text-slate-700 leading-[1.6] break-keep">
-            <span
-              className="mt-[7px] w-1 h-1 rounded-full flex-shrink-0"
-              style={{ background: accent }}
-            />
-            <span>{b}</span>
-          </li>
-        ))}
-      </ul>
-
-      <div
-        className={`inline-flex items-center gap-1.5 text-[13px] font-semibold transition-all ${
-          disabled ? 'text-slate-400' : 'text-slate-900 group-hover:gap-2.5'
-        }`}
-      >
-        {ctaLabel}
-        {!disabled && <span aria-hidden>→</span>}
+      {/* For-whom pill */}
+      <div style={{
+        display: 'inline-block',
+        fontSize: 11,
+        fontWeight: 500,
+        letterSpacing: '0.04em',
+        padding: '4px 10px',
+        borderRadius: 100,
+        marginTop: 14,
+        marginBottom: 20,
+        alignSelf: 'flex-start',
+        background: accentLight,
+        color: accent,
+      }}>
+        {forWhom}
       </div>
-    </motion.button>
+
+      {/* Divider */}
+      <div style={{ borderTop: `1px solid ${BORDER}`, marginBottom: 20 }} />
+
+      {/* Description */}
+      <p style={{
+        fontSize: 14,
+        lineHeight: 1.7,
+        color: '#555',
+        fontWeight: 400,
+        flex: 1,
+        whiteSpace: 'pre-line',
+        marginBottom: 0,
+      }}>
+        {description}
+      </p>
+
+      {/* CTA */}
+      <div style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: hovered && !disabled ? 10 : 6,
+        marginTop: 24,
+        fontSize: 13,
+        fontWeight: 500,
+        letterSpacing: '0.02em',
+        color: disabled ? '#aaa' : accent,
+        transition: 'gap 0.2s ease',
+      }}>
+        {cta} {!disabled && '→'}
+      </div>
+
+      {/* Bottom accent bar */}
+      <div style={{
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: 3,
+        borderRadius: '0 0 12px 12px',
+        background: accent,
+        opacity: hovered && !disabled ? 1 : 0,
+        transition: 'opacity 0.22s ease',
+      }} />
+    </motion.div>
   );
 }
 
 export default function Start() {
   const navigate = useNavigate();
   const { lang } = useI18n();
-  const l = lang || 'ko';
+  const l = (lang === 'en') ? 'en' : 'ko';
+  const products = PRODUCTS[l];
 
-  const products = [
-    {
-      key: 'insurance',
-      accent: '#0F766E',
-      brandSuffix: ' insurance',
-      tagline: l === 'ko' ? '청구 인텔리전스 대시보드' : 'Claim Intelligence Dashboard',
-      taglineEn: 'For insurance carriers · 보험사 대상',
-      bullets: l === 'ko' ? [
-        '청구 OCR · 정규화 · 임상 가이드라인 검증',
-        '4,287개 병원 벤치마크 및 위험 등급',
-        'P25–P95 가격 분포 및 이상치 탐지',
-        '분기 인텔리전스 리포트 자동 생성',
-      ] : [
-        'OCR, normalization, and guideline-based claim validation',
-        'Benchmarks across 4,287 hospitals with risk tiers',
-        'P25–P95 price distributions and anomaly detection',
-        'Auto-generated quarterly intelligence reports',
-      ],
-      ctaLabel: l === 'ko' ? '대시보드 열기' : 'Open dashboard',
-      onClick: () => navigate('/insurance'),
-    },
-    {
-      key: 'emr',
-      accent: '#1E40AF',
-      brandSuffix: ' EMR',
-      tagline: l === 'ko' ? '수의 처방 점검 · 환자 기록' : 'Prescription Safety & Patient Records',
-      taglineEn: 'For veterinary clinics · 동물병원 대상',
-      bullets: l === 'ko' ? [
-        '실시간 약물 상호작용 · CYP 효소 분석',
-        '체중·신장·간 기반 자동 용량 조정',
-        '5개 DUR 엔진 · 9,746개 상호작용 규칙',
-        '50개 품종 프로필 · 73개 알레르기 클래스',
-      ] : [
-        'Real-time drug-drug interaction & CYP analysis',
-        'Auto-dosing by weight, renal, hepatic adjustment',
-        '5 DUR engines · 9,746 interaction rules',
-        '50 breed profiles · 73 allergy classes',
-      ],
-      ctaLabel: l === 'ko' ? '시스템 시작' : 'Launch system',
-      onClick: () => navigate('/system'),
-    },
-    {
-      key: 'edu',
-      accent: '#7C2D12',
-      brandSuffix: ' edu',
-      tagline: l === 'ko' ? '수의 약학 교육 플랫폼' : 'Veterinary Pharmacology Education',
-      taglineEn: 'For students & residents · 학생·전공의 대상',
-      bullets: l === 'ko' ? [
-        '준비 중인 모듈입니다.',
-      ] : [
-        'Module under development.',
-      ],
-      ctaLabel: l === 'ko' ? '준비 중' : 'Coming soon',
-      onClick: () => {},
-      disabled: true,
-      badge: l === 'ko' ? '준비 중' : 'Soon',
-    },
-  ];
+  const [exitDest, setExitDest] = useState(null);
+
+  const handleNavigate = (path) => {
+    if (!path) return;
+    setExitDest(path);
+  };
+
+  useEffect(() => {
+    if (!exitDest) return;
+    const timer = setTimeout(() => navigate(exitDest), 340);
+    return () => clearTimeout(timer);
+  }, [exitDest, navigate]);
+
+  const isExiting = !!exitDest;
 
   return (
-    <div
-      className="min-h-screen bg-[#FAFAFA] text-slate-900"
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={isExiting ? { opacity: 0, y: -14 } : { opacity: 1, y: 0 }}
+      transition={isExiting
+        ? { duration: 0.32, ease: [0.4, 0, 1, 1] }
+        : { duration: 0.38, ease: [0.25, 0.1, 0.25, 1] }
+      }
       style={{
+        minHeight: '100vh',
+        background: BG,
+        display: 'flex',
+        flexDirection: 'column',
         fontFamily: "'Inter', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif",
         WebkitFontSmoothing: 'antialiased',
       }}
     >
-      <TopNav />
+      {/* Nav */}
+      <nav style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: '22px 48px',
+        background: BG,
+      }}>
+        <button
+          onClick={() => navigate('/')}
+          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+          aria-label="홈으로"
+        >
+          <NuvovetWordmark />
+        </button>
+        <button
+          onClick={() => navigate('/')}
+          style={{
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+            fontSize: 13,
+            color: '#888',
+            letterSpacing: '0.02em',
+            fontFamily: 'inherit',
+          }}
+        >
+          → {l === 'ko' ? '로그인' : 'Login'}
+        </button>
+      </nav>
 
-      <main className="pt-32 pb-24 px-5 sm:px-8">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            animate="visible"
-            className="mb-14 sm:mb-20"
-          >
-            <motion.div variants={fadeUp} className="mb-5">
-              <span className="inline-block font-mono text-[11px] font-semibold tracking-[0.18em] uppercase text-slate-500 border border-slate-200 rounded-full px-3 py-1 bg-white">
-                NuvoVet · 무엇으로 시작할까요?
-              </span>
-            </motion.div>
-            <motion.h1
-              variants={fadeUp}
-              className={`text-[36px] sm:text-[44px] lg:text-[52px] font-extrabold tracking-[-0.03em] text-slate-900 ${
-                l === 'ko' ? 'leading-[1.25] break-keep' : 'leading-[1.1]'
-              }`}
-            >
-              {l === 'ko' ? (
-                <>
-                  세 가지 트랙.
-                  <br />
-                  <span className="text-slate-500">하나의 NuvoVet.</span>
-                </>
-              ) : (
-                <>
-                  Three tracks.
-                  <br />
-                  <span className="text-slate-500">One NuvoVet.</span>
-                </>
-              )}
-            </motion.h1>
-            <motion.p
-              variants={fadeUp}
-              className={`mt-5 max-w-2xl text-[15px] text-slate-600 ${
-                l === 'ko' ? 'leading-[1.8] break-keep' : 'leading-relaxed'
-              }`}
-            >
-              {l === 'ko'
-                ? '동물병원부터 보험사, 학습 환경까지. 사용하실 제품을 선택해주세요.'
-                : 'From clinics to insurers to classrooms — pick the surface you want to start with.'}
-            </motion.p>
-          </motion.div>
-
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            animate="visible"
-            className="grid gap-5 sm:gap-6 lg:grid-cols-3"
-          >
-            {products.map((p, i) => (
-              <ProductCard
-                key={p.key}
-                index={i + 1}
-                accent={p.accent}
-                brandSuffix={p.brandSuffix}
-                tagline={p.tagline}
-                taglineEn={p.taglineEn}
-                bullets={p.bullets}
-                ctaLabel={p.ctaLabel}
-                onClick={p.onClick}
-                disabled={p.disabled}
-                badge={p.badge}
-              />
-            ))}
-          </motion.div>
-
-          <motion.div
+      {/* Main content */}
+      <main style={{
+        flex: 1,
+        maxWidth: 1100,
+        margin: '0 auto',
+        width: '100%',
+        padding: '0 48px 80px',
+      }}>
+        {/* Hero */}
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          animate="visible"
+          style={{ marginTop: 48, marginBottom: 52 }}
+        >
+          <motion.h1
             variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.5 }}
-            className="mt-14 pt-8 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-[12px] text-slate-500"
+            style={{
+              fontSize: 'clamp(36px, 5vw, 56px)',
+              fontWeight: 900,
+              lineHeight: 1.15,
+              letterSpacing: '-0.03em',
+              color: '#1a1a1a',
+              marginBottom: 16,
+            }}
           >
-            <span>
-              {l === 'ko'
-                ? '확정 전이라면 데모를 먼저 둘러보세요.'
-                : 'Not sure yet? Browse the demo first.'}
-            </span>
-            <button
-              onClick={() => navigate('/demo')}
-              className="self-start sm:self-auto font-semibold text-slate-900 hover:text-slate-700 transition-colors"
-            >
-              {l === 'ko' ? '데모 보기 →' : 'View demo →'}
-            </button>
-          </motion.div>
-        </div>
+            {l === 'ko' ? (
+              <>국내 최대<br /><em style={{ fontStyle: 'normal', color: '#1B4FBF' }}>수의 약학 데이터베이스.</em></>
+            ) : (
+              <>Korea's largest<br /><em style={{ fontStyle: 'normal', color: '#1B4FBF' }}>veterinary pharmacology database.</em></>
+            )}
+          </motion.h1>
+          <motion.p
+            variants={fadeUp}
+            style={{
+              fontSize: 14,
+              color: '#666',
+              fontWeight: 400,
+              lineHeight: 1.6,
+              maxWidth: 380,
+            }}
+          >
+            {l === 'ko'
+              ? '보험사부터 동물병원, 학생까지—\n나에게 맞는 제품을 선택하세요.'
+              : 'From insurers to clinics to students —\nchoose the product that fits you.'}
+          </motion.p>
+        </motion.div>
+
+        {/* Cards */}
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          animate="visible"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: 20,
+          }}
+        >
+          {products.map((p) => (
+            <ProductCard
+              key={p.key}
+              product={p}
+              onNavigate={handleNavigate}
+              isExiting={isExiting}
+            />
+          ))}
+        </motion.div>
       </main>
-    </div>
+
+      {/* Footer */}
+      <footer style={{
+        borderTop: `1px solid ${BORDER}`,
+        padding: '18px 48px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        fontSize: 12,
+        color: '#888',
+        background: BG,
+      }}>
+        <span>
+          {l === 'ko' ? '직접 보려면 데모를 먼저 둘러보세요.' : 'Not sure yet? Browse the demo first.'}
+        </span>
+        <button
+          onClick={() => navigate('/demo')}
+          style={{
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+            fontSize: 12,
+            fontWeight: 500,
+            color: '#1a1a1a',
+            fontFamily: 'inherit',
+          }}
+        >
+          {l === 'ko' ? '데모 보기 →' : 'View demo →'}
+        </button>
+      </footer>
+    </motion.div>
   );
 }

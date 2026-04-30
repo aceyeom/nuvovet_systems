@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import './insurance/insurance.css';
 import Shell from './insurance/Shell';
 import Overview from './insurance/screens/Overview';
@@ -31,10 +32,15 @@ export default function Insurance() {
   };
 
   return (
-    <div className="nuvo-insurance">
+    <motion.div
+      className="nuvo-insurance"
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.38, ease: [0.25, 0.1, 0.25, 1] }}
+    >
       <Shell route={route} setRoute={setRoute}>
         <div data-screen-label={route}><Page /></div>
       </Shell>
-    </div>
+    </motion.div>
   );
 }
