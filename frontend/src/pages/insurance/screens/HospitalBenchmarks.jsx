@@ -1,10 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { I } from '../icons';
 import { TrendCompare, PriceRange } from '../charts';
 import { hospitals, claimList, fmtKRW, fmtKRWShort } from '../data';
 
 export default function HospitalBenchmarks() {
   const [selected, setSelected] = useState(null);
+  const [query, setQuery] = useState('');
+  const [toast, setToast] = useState('');
+
+  useEffect(() => {
+    if (!toast) return;
+    const t = setTimeout(() => setToast(''), 2500);
+    return () => clearTimeout(t);
+  }, [toast]);
+
+  const filtered = hospitals.filter(h => {
+    if (!query.trim()) return true;
+    const q = query.toLowerCase();
+    return h.name.toLowerCase().includes(q) || h.region?.toLowerCase().includes(q) || h.emr?.toLowerCase().includes(q);
+  });
+
+  const handleExport = () => setToast('CSV 파일이 다운로드되었습니다.');
 
   const RiskScore = ({ score }) => {
     const color = score >= 60 ? 'var(--critical)' : score >= 40 ? 'var(--warning)' : 'var(--accent)';
@@ -31,13 +47,24 @@ export default function HospitalBenchmarks() {
 
   return (
     <div className="page">
+      {toast && (
+        <div style={{
+          position: 'fixed', bottom: 24, right: 24, zIndex: 9999,
+          background: '#0A0A0A', color: '#fff', borderRadius: 8,
+          padding: '10px 18px', fontSize: 13, fontWeight: 500,
+          boxShadow: '0 4px 20px rgba(0,0,0,0.18)', display: 'flex', alignItems: 'center', gap: 8,
+        }}>
+          <I.Download size={14} />{toast}
+        </div>
+      )}
+
       <div className="page-header">
         <div>
           <h1 className="page-title">병원 벤치마크</h1>
-          <p className="page-subtitle">4,287개 병원 분석 · 90일 누적 데이터 기준</p>
+          <p className="page-subtitle">{filtered.length.toLocaleString()}개 병원 분석 · 90일 누적 데이터 기준</p>
         </div>
         <div className="page-header-actions">
-          <button className="btn btn-secondary"><I.Download size={14} />CSV 내보내기</button>
+          <button className="btn btn-secondary" onClick={handleExport}><I.Download size={14} />CSV 내보내기</button>
         </div>
       </div>
 
@@ -62,7 +89,11 @@ export default function HospitalBenchmarks() {
       <div className="filter-bar">
         <div className="search-input">
           <I.Search size={14} style={{ color: 'var(--text-muted)' }} />
-          <input placeholder="병원명, 지역, EMR 검색…" />
+          <input
+            placeholder="병원명, 지역, EMR 검색…"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
         </div>
         <button className="chip"><span className="chip-label">지역:</span><span>모두</span><I.ChevronDown size={12} /></button>
         <button className="chip"><span className="chip-label">규모:</span><span>모두</span><I.ChevronDown size={12} /></button>
@@ -89,7 +120,10 @@ export default function HospitalBenchmarks() {
             </tr>
           </thead>
           <tbody>
-            {hospitals.map(h => (
+            {filtered.length === 0 && (
+              <tr><td colSpan={10} style={{ textAlign: 'center', padding: '32px 16px', color: 'var(--text-muted)', fontSize: 13 }}>검색 결과가 없습니다.</td></tr>
+            )}
+            {filtered.map(h => (
               <tr key={h.id} onClick={() => setSelected(h.id)} className={selected === h.id ? 'selected' : ''}>
                 <td>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>

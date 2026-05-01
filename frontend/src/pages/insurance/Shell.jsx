@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { I } from './icons';
-import { NuvovetBrand } from '../../components/NuvovetLogo';
 
 const NAV_ITEMS = [
   { id: 'overview', ko: '개요', en: 'Overview', icon: 'Home' },
@@ -22,7 +21,7 @@ export default function Shell({ route, setRoute, children }) {
       style={{ cursor: 'pointer' }}
       title="홈으로"
     >
-      <NuvovetBrand size={24} />
+      <span style={{ fontSize: 21, fontWeight: 900, letterSpacing: '-0.045em', color: '#0A0A0A', lineHeight: 1, userSelect: 'none', fontFamily: 'inherit' }}>nuvovet</span>
     </div>
   );
 

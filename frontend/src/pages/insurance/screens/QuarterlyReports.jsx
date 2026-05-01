@@ -1,20 +1,89 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { I } from '../icons';
 import { reports } from '../data';
 
 export default function QuarterlyReports() {
   const featured = reports[0];
   const archive = reports.slice(1);
+  const [selectedReport, setSelectedReport] = useState(null);
+  const [newReportOpen, setNewReportOpen] = useState(false);
+  const [toast, setToast] = useState('');
+  const [newReportTitle, setNewReportTitle] = useState('');
+
+  useEffect(() => {
+    if (!toast) return;
+    const t = setTimeout(() => setToast(''), 2500);
+    return () => clearTimeout(t);
+  }, [toast]);
+
+  const sel = selectedReport ? reports.find(r => r.q === selectedReport) : null;
+
+  const handleCreateReport = () => {
+    setNewReportOpen(false);
+    setNewReportTitle('');
+    setToast('새 보고서 생성이 시작되었습니다.');
+  };
 
   return (
     <div className="page">
+      {toast && (
+        <div style={{
+          position: 'fixed', bottom: 24, right: 24, zIndex: 9999,
+          background: '#0A0A0A', color: '#fff', borderRadius: 8,
+          padding: '10px 18px', fontSize: 13, fontWeight: 500,
+          boxShadow: '0 4px 20px rgba(0,0,0,0.18)',
+        }}>
+          {toast}
+        </div>
+      )}
+
+      {newReportOpen && (
+        <div style={{
+          position: 'fixed', inset: 0, zIndex: 500, background: 'rgba(0,0,0,0.32)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }} onClick={() => setNewReportOpen(false)}>
+          <div style={{
+            background: 'var(--bg-card)', borderRadius: 12, padding: 32,
+            width: 480, boxShadow: '0 8px 40px rgba(0,0,0,0.18)',
+            border: '1px solid var(--border)',
+          }} onClick={(e) => e.stopPropagation()}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
+              <h2 style={{ margin: 0, fontSize: 18, fontWeight: 700, color: 'var(--text-primary)' }}>새 보고서 생성</h2>
+              <button className="icon-btn" onClick={() => setNewReportOpen(false)}><I.X size={16} /></button>
+            </div>
+            <div style={{ marginBottom: 16 }}>
+              <div style={{ fontSize: 11, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 6 }}>보고서 제목</div>
+              <input
+                value={newReportTitle}
+                onChange={(e) => setNewReportTitle(e.target.value)}
+                placeholder="예: Q2 2026 인텔리전스 리포트"
+                autoFocus
+                style={{ width: '100%', border: '1px solid var(--border)', borderRadius: 8, padding: '9px 12px', fontSize: 14, fontFamily: 'inherit', outline: 'none', boxSizing: 'border-box' }}
+              />
+            </div>
+            <div style={{ marginBottom: 20 }}>
+              <div style={{ fontSize: 11, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 6 }}>보고서 유형</div>
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                {['정기 분기', '특별 분석', '임원 브리핑'].map((t, i) => (
+                  <button key={i} className="chip" style={{ fontWeight: i === 0 ? 600 : 400, color: i === 0 ? 'var(--accent)' : 'var(--text-body)' }}>{t}</button>
+                ))}
+              </div>
+            </div>
+            <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
+              <button className="btn btn-secondary" onClick={() => setNewReportOpen(false)}>취소</button>
+              <button className="btn btn-primary" onClick={handleCreateReport}><I.Plus size={14} />생성 시작</button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="page-header">
         <div>
           <h1 className="page-title">분기 보고서</h1>
           <p className="page-subtitle">정기 인텔리전스 리포트 · KB손해보험 펫보험팀</p>
         </div>
         <div className="page-header-actions">
-          <button className="btn btn-primary"><I.Plus size={14} />새 보고서 생성</button>
+          <button className="btn btn-primary" onClick={() => setNewReportOpen(true)}><I.Plus size={14} />새 보고서 생성</button>
         </div>
       </div>
 
@@ -65,9 +134,9 @@ export default function QuarterlyReports() {
               </div>
 
               <div style={{ display: 'flex', gap: 8 }}>
-                <button className="btn btn-primary"><I.FileText size={14} />전체 보고서 보기</button>
-                <button className="btn btn-secondary"><I.Download size={14} />PDF 다운로드</button>
-                <button className="btn btn-secondary">임원 브리핑 자료</button>
+                <button className="btn btn-primary" onClick={() => setToast(`${featured.q} ${featured.title} — 보고서를 불러오는 중...`)}><I.FileText size={14} />전체 보고서 보기</button>
+                <button className="btn btn-secondary" onClick={() => setToast(`${featured.q} PDF 다운로드 중...`)}><I.Download size={14} />PDF 다운로드</button>
+                <button className="btn btn-secondary" onClick={() => setToast('임원 브리핑 자료를 준비 중입니다.')}>임원 브리핑 자료</button>
               </div>
             </div>
           </div>
@@ -80,6 +149,7 @@ export default function QuarterlyReports() {
           <div className="grid-3" style={{ gap: 16 }}>
             {archive.map((r, i) => (
               <div key={i} className="card" style={{ padding: 20, transition: 'border-color 0.12s, box-shadow 0.12s', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: 12, height: 240 }}
+                onClick={() => setSelectedReport(r.q)}
                 onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--border-strong)'; e.currentTarget.style.boxShadow = 'var(--shadow-sm)'; }}
                 onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.boxShadow = 'none'; }}>
                 <div>
@@ -95,14 +165,59 @@ export default function QuarterlyReports() {
                   {r.tags.map((t, j) => <span key={j} className="badge" style={{ fontSize: 10 }}>{t}</span>)}
                 </div>
                 <div style={{ display: 'flex', gap: 4, justifyContent: 'flex-end', borderTop: '1px solid var(--border)', paddingTop: 8, marginTop: 4 }}>
-                  <button className="icon-btn" style={{ width: 28, height: 28 }}><I.Eye size={14} /></button>
-                  <button className="icon-btn" style={{ width: 28, height: 28 }}><I.Download size={14} /></button>
-                  <button className="icon-btn" style={{ width: 28, height: 28 }}><I.Share size={14} /></button>
+                  <button className="icon-btn" style={{ width: 28, height: 28 }} onClick={(e) => { e.stopPropagation(); setToast(`${r.q} 보고서를 불러오는 중...`); }}><I.Eye size={14} /></button>
+                  <button className="icon-btn" style={{ width: 28, height: 28 }} onClick={(e) => { e.stopPropagation(); setToast(`${r.q} PDF 다운로드 중...`); }}><I.Download size={14} /></button>
+                  <button className="icon-btn" style={{ width: 28, height: 28 }} onClick={(e) => { e.stopPropagation(); setToast(`${r.q} 공유 링크가 복사되었습니다.`); }}><I.Share size={14} /></button>
                 </div>
               </div>
             ))}
           </div>
         </div>
+      </div>
+
+      <div className={'panel-overlay' + (sel ? ' open' : '')} onClick={() => setSelectedReport(null)} />
+      <div className={'slide-panel' + (sel ? ' open' : '')}>
+        {sel && (
+          <>
+            <div className="slide-panel-header">
+              <div>
+                <div style={{ fontSize: 11, color: 'var(--text-muted)', marginBottom: 4 }}>
+                  <span className="mono">{sel.date}</span> · {sel.pages}페이지
+                </div>
+                <h2 style={{ margin: 0, fontSize: 20, fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '-0.01em' }}>{sel.q} {sel.title}</h2>
+                <div style={{ display: 'flex', gap: 4, marginTop: 8, flexWrap: 'wrap' }}>
+                  {sel.tags.map((t, i) => <span key={i} className="badge" style={{ fontSize: 10 }}>{t}</span>)}
+                </div>
+              </div>
+              <button className="icon-btn" onClick={() => setSelectedReport(null)}><I.X size={16} /></button>
+            </div>
+            <div className="slide-panel-body">
+              <div style={{ display: 'flex', gap: 8, marginBottom: 24 }}>
+                <button className="btn btn-primary btn-sm" onClick={() => setToast(`${sel.q} 보고서를 불러오는 중...`)}><I.FileText size={12} />전체 보기</button>
+                <button className="btn btn-secondary btn-sm" onClick={() => setToast(`${sel.q} PDF 다운로드 중...`)}><I.Download size={12} />PDF 다운로드</button>
+                <button className="btn btn-secondary btn-sm" onClick={() => setToast(`${sel.q} 공유 링크가 복사되었습니다.`)}><I.Share size={12} />공유</button>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12, marginBottom: 24 }}>
+                {[
+                  ['분석 청구 건수', sel.claims ? sel.claims.toLocaleString() + '건' : '—'],
+                  ['보고서 분량', sel.pages + '페이지'],
+                  ['생성일', sel.date],
+                  ['분기', sel.q],
+                ].map(([k, v], i) => (
+                  <div key={i} style={{ padding: 12, background: 'var(--bg-canvas)', borderRadius: 6 }}>
+                    <div style={{ fontSize: 10, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 4 }}>{k}</div>
+                    <div className="mono tnum" style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-primary)' }}>{v}</div>
+                  </div>
+                ))}
+              </div>
+
+              <div style={{ padding: '32px 16px', background: 'var(--bg-canvas)', borderRadius: 8, textAlign: 'center', color: 'var(--text-muted)', fontSize: 13 }}>
+                보고서 미리보기는 전체 보기 버튼을 클릭하세요.
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
