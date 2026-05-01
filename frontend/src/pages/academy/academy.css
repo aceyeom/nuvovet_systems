@@ -1,0 +1,812 @@
+/* NuvoVet Academy — scoped under .nuvo-academy */
+
+.nuvo-academy {
+  --bg-canvas:       #FAFAFA;
+  --bg-card:         #FFFFFF;
+  --bg-hover:        #F5F4F1;
+  --bg-accent-soft:  #FDF3E7;
+  --bg-success-soft: #D1FAE5;
+  --bg-warning-soft: #FEF3C7;
+  --bg-critical-soft:#FEE2E2;
+  --bg-info-soft:    #DBEAFE;
+  --bg-muted-soft:   #F1F0ED;
+
+  --text-primary:   #0A0A0A;
+  --text-body:      #1A1A1A;
+  --text-secondary: #666666;
+  --text-muted:     #999999;
+  --text-faint:     #BFBFBF;
+
+  --border:         #E5E5E5;
+  --border-strong:  #D4D4D4;
+
+  --accent:         #C46B0A;
+  --accent-hover:   #A85A08;
+  --accent-light:   #FDF3E7;
+  --accent-mid:     #F59E0B;
+
+  --success:        #059669;
+  --critical:       #B91C1C;
+  --warning:        #B45309;
+  --info:           #1E40AF;
+
+  --stage1:         #C46B0A;
+  --stage2:         #4F46E5;
+  --stage3:         #A85A08;
+
+  --shadow-sm:  0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md:  0 4px 12px rgba(0,0,0,0.06);
+  --shadow-lg:  0 12px 32px rgba(0,0,0,0.08);
+
+  font-family: 'Pretendard', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-canvas);
+  color: var(--text-body);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'cv11', 'ss01', 'ss03';
+  height: 100vh;
+  width: 100vw;
+}
+
+.nuvo-academy * { box-sizing: border-box; }
+.nuvo-academy button { font-family: inherit; cursor: pointer; border: none; background: none; padding: 0; color: inherit; }
+.nuvo-academy input,
+.nuvo-academy select,
+.nuvo-academy textarea { font-family: inherit; }
+.nuvo-academy a { color: inherit; text-decoration: none; }
+
+.nuvo-academy .mono { font-family: 'JetBrains Mono', 'DM Mono', 'SF Mono', Menlo, monospace; font-feature-settings: 'tnum'; }
+.nuvo-academy .tnum { font-variant-numeric: tabular-nums; }
+
+/* Korean line-height */
+.nuvo-academy, .nuvo-academy .ko { line-height: 1.85; word-break: keep-all; }
+
+/* ---- Shell grid layout ---- */
+.nuvo-academy .app {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: 56px 1fr;
+  grid-template-areas: "logo topbar" "sidebar main";
+  height: 100vh;
+  width: 100vw;
+}
+
+.nuvo-academy .shell-logo {
+  grid-area: logo;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  background: var(--bg-card);
+  gap: 8px;
+  cursor: pointer;
+}
+.nuvo-academy .shell-logo:hover { background: var(--bg-hover); }
+
+.nuvo-academy .shell-topbar {
+  grid-area: topbar;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  background: var(--bg-card);
+  gap: 24px;
+}
+
+.nuvo-academy .shell-search {
+  flex: 1;
+  max-width: 400px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding: 0 12px;
+  background: var(--bg-canvas);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-muted);
+  font-size: 13px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.nuvo-academy .shell-search:hover { border-color: var(--border-strong); }
+.nuvo-academy .shell-search .kbd {
+  margin-left: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 6px;
+}
+
+.nuvo-academy .shell-topbar-right { display: flex; align-items: center; gap: 16px; }
+.nuvo-academy .track-badge {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: var(--bg-accent-soft);
+  color: var(--accent);
+  border: 1px solid rgba(196,107,10,0.2);
+}
+
+.nuvo-academy .icon-btn {
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 6px;
+  color: var(--text-secondary);
+  position: relative;
+  transition: background 0.15s;
+}
+.nuvo-academy .icon-btn:hover { background: var(--bg-canvas); }
+.nuvo-academy .icon-btn .notif-dot {
+  position: absolute; top: 7px; right: 7px;
+  width: 7px; height: 7px;
+  background: var(--accent);
+  border: 2px solid var(--bg-card);
+  border-radius: 50%;
+}
+
+.nuvo-academy .user-chip {
+  display: flex; align-items: center; gap: 8px;
+  padding: 4px 10px 4px 4px;
+  border-radius: 20px;
+  transition: background 0.15s;
+}
+.nuvo-academy .user-chip:hover { background: var(--bg-canvas); }
+.nuvo-academy .user-chip .avatar {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: linear-gradient(135deg, #C46B0A, #92400E);
+  color: white;
+  font-size: 11px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+}
+.nuvo-academy .user-chip .name { font-size: 13px; font-weight: 500; color: var(--text-body); }
+
+/* ---- Sidebar ---- */
+.nuvo-academy .shell-sidebar {
+  grid-area: sidebar;
+  border-right: 1px solid var(--border);
+  background: var(--bg-card);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.nuvo-academy .sidebar-section { padding: 16px 12px; }
+.nuvo-academy .sidebar-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  padding: 0 12px 8px;
+}
+
+.nuvo-academy .nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 12px;
+  border-radius: 8px;
+  color: var(--text-body);
+  font-size: 13px;
+  font-weight: 500;
+  width: 100%;
+  text-align: left;
+  transition: background 0.12s, color 0.12s;
+  position: relative;
+  white-space: nowrap;
+  word-break: keep-all;
+}
+.nuvo-academy .nav-item:hover { background: var(--bg-hover); }
+.nuvo-academy .nav-item.active {
+  background: var(--bg-accent-soft);
+  color: var(--accent);
+}
+.nuvo-academy .nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: -12px; top: 6px; bottom: 6px;
+  width: 2px;
+  background: var(--accent);
+  border-radius: 0 2px 2px 0;
+}
+.nuvo-academy .nav-item .nav-icon { color: var(--text-secondary); display: flex; }
+.nuvo-academy .nav-item.active .nav-icon { color: var(--accent); }
+.nuvo-academy .nav-item .nav-badge {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 700;
+  min-width: 18px; height: 18px;
+  border-radius: 9px;
+  background: var(--accent);
+  color: white;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 5px;
+}
+
+.nuvo-academy .sidebar-spacer { flex: 1; }
+
+.nuvo-academy .sidebar-footer {
+  border-top: 1px solid var(--border);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nuvo-academy .semester-card {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+}
+.nuvo-academy .semester-card .sem-mark {
+  width: 28px; height: 28px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #C46B0A, #92400E);
+  color: white;
+  font-weight: 800; font-size: 11px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.nuvo-academy .semester-card .sem-info { flex: 1; min-width: 0; }
+.nuvo-academy .semester-card .sem-name { font-size: 12px; font-weight: 600; color: var(--text-primary); }
+.nuvo-academy .semester-card .sem-sub { font-size: 11px; color: var(--text-muted); }
+
+.nuvo-academy .sidebar-user {
+  display: flex; align-items: center; gap: 10px;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+.nuvo-academy .sidebar-user .avatar {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: linear-gradient(135deg, #C46B0A, #92400E);
+  color: white;
+  font-size: 12px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+}
+.nuvo-academy .sidebar-user .info { flex: 1; min-width: 0; }
+.nuvo-academy .sidebar-user .name { font-size: 12px; font-weight: 600; color: var(--text-body); }
+.nuvo-academy .sidebar-user .role { font-size: 11px; color: var(--text-muted); }
+
+/* ---- Main canvas ---- */
+.nuvo-academy .shell-main {
+  grid-area: main;
+  overflow-y: auto;
+  background: var(--bg-canvas);
+}
+.nuvo-academy .page {
+  padding: 32px 40px 64px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.nuvo-academy .page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+.nuvo-academy .page-title {
+  font-size: 26px; font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin: 0 0 4px;
+  line-height: 1.2;
+}
+.nuvo-academy .page-title-en {
+  font-size: 12px; font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0 0 2px;
+}
+.nuvo-academy .page-subtitle { font-size: 13px; color: var(--text-secondary); margin: 0; word-break: keep-all; }
+.nuvo-academy .page-header-actions { display: flex; align-items: center; gap: 8px; }
+
+/* ---- Buttons ---- */
+.nuvo-academy .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  transition: all 0.12s;
+  white-space: nowrap;
+  word-break: keep-all;
+}
+.nuvo-academy .btn-primary { background: var(--accent); color: white; border-color: var(--accent); }
+.nuvo-academy .btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+.nuvo-academy .btn-secondary { background: var(--bg-card); color: var(--text-body); border-color: var(--border); }
+.nuvo-academy .btn-secondary:hover { background: var(--bg-hover); border-color: var(--border-strong); }
+.nuvo-academy .btn-ghost { background: transparent; color: var(--text-body); }
+.nuvo-academy .btn-ghost:hover { background: var(--bg-hover); }
+.nuvo-academy .btn-sm { height: 28px; font-size: 12px; padding: 0 10px; border-radius: 6px; }
+.nuvo-academy .btn-lg { height: 40px; font-size: 14px; padding: 0 20px; border-radius: 10px; }
+
+/* Stage-specific button colors */
+.nuvo-academy .btn-stage1 { background: var(--stage1); color: white; border-color: var(--stage1); }
+.nuvo-academy .btn-stage1:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+.nuvo-academy .btn-stage2 { background: var(--stage2); color: white; border-color: var(--stage2); }
+.nuvo-academy .btn-stage2:hover { background: #4338CA; border-color: #4338CA; }
+
+/* ---- Cards ---- */
+.nuvo-academy .card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.nuvo-academy .card-pad-sm { padding: 16px; }
+.nuvo-academy .card-pad { padding: 20px; }
+.nuvo-academy .card-pad-lg { padding: 24px; }
+.nuvo-academy .card:hover { border-color: var(--border-strong); }
+
+/* ---- Stat cards ---- */
+.nuvo-academy .stat-grid { display: grid; gap: 12px; }
+.nuvo-academy .stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.nuvo-academy .stat-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+.nuvo-academy .stat-value {
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+.nuvo-academy .stat-delta {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-secondary);
+}
+.nuvo-academy .stat-delta.positive { color: var(--success); }
+.nuvo-academy .stat-delta.negative { color: var(--critical); }
+.nuvo-academy .stat-delta.accent { color: var(--accent); }
+
+/* ---- Section headings ---- */
+.nuvo-academy .section-title {
+  font-size: 13px; font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 4px;
+  display: flex; align-items: baseline; gap: 8px;
+}
+.nuvo-academy .section-title-en { font-size: 11px; color: var(--text-muted); font-weight: 400; letter-spacing: 0.04em; text-transform: uppercase; }
+.nuvo-academy .section-sub { font-size: 12px; color: var(--text-muted); margin: 0; }
+
+/* ---- Badges ---- */
+.nuvo-academy .badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; font-weight: 600;
+  padding: 2px 8px; border-radius: 4px;
+  text-transform: uppercase; letter-spacing: 0.04em;
+  background: var(--bg-muted-soft); color: var(--text-secondary);
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+.nuvo-academy .badge-accent  { background: var(--bg-accent-soft); color: var(--accent); border-color: transparent; }
+.nuvo-academy .badge-success { background: var(--bg-success-soft); color: var(--success); border-color: transparent; }
+.nuvo-academy .badge-warning { background: var(--bg-warning-soft); color: var(--warning); border-color: transparent; }
+.nuvo-academy .badge-critical{ background: var(--bg-critical-soft); color: var(--critical); border-color: transparent; }
+.nuvo-academy .badge-info    { background: var(--bg-info-soft); color: var(--info); border-color: transparent; }
+.nuvo-academy .badge-indigo  { background: #EEF2FF; color: #4F46E5; border-color: transparent; }
+
+/* Difficulty dots */
+.nuvo-academy .diff-dots { display: flex; gap: 3px; align-items: center; }
+.nuvo-academy .diff-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--border-strong);
+}
+.nuvo-academy .diff-dot.filled { background: var(--accent); }
+.nuvo-academy .diff-dot.filled-warn { background: var(--warning); }
+.nuvo-academy .diff-dot.filled-hard { background: var(--critical); }
+
+/* ---- Tabs ---- */
+.nuvo-academy .tabs {
+  display: flex; gap: 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+.nuvo-academy .tab {
+  padding: 10px 16px;
+  font-size: 13px; font-weight: 500;
+  color: var(--text-secondary);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color 0.12s, border-color 0.12s;
+  white-space: nowrap;
+}
+.nuvo-academy .tab:hover { color: var(--text-body); }
+.nuvo-academy .tab.active {
+  color: var(--accent);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+.nuvo-academy .tab .count { color: var(--text-muted); margin-left: 6px; font-weight: 400; }
+.nuvo-academy .tab.active .count { color: var(--accent); }
+
+/* ---- Competency bar (7-skill tracker) ---- */
+.nuvo-academy .comp-bar-wrap {
+  display: flex; flex-direction: column; gap: 14px;
+}
+.nuvo-academy .comp-row {
+  display: flex; align-items: center; gap: 12px;
+}
+.nuvo-academy .comp-label {
+  width: 80px; font-size: 12px; font-weight: 500;
+  color: var(--text-secondary); flex-shrink: 0;
+  text-align: right; word-break: keep-all;
+}
+.nuvo-academy .comp-track {
+  flex: 1; height: 8px; background: var(--border);
+  border-radius: 4px; overflow: hidden;
+}
+.nuvo-academy .comp-fill {
+  height: 100%; border-radius: 4px;
+  transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1);
+}
+.nuvo-academy .comp-fill-accent { background: var(--accent); }
+.nuvo-academy .comp-fill-warn   { background: var(--warning); }
+.nuvo-academy .comp-fill-low    { background: var(--critical); }
+.nuvo-academy .comp-score {
+  width: 36px; text-align: right;
+  font-size: 13px; font-weight: 700;
+  color: var(--text-primary); flex-shrink: 0; font-variant-numeric: tabular-nums;
+}
+.nuvo-academy .comp-delta {
+  width: 56px; font-size: 11px; flex-shrink: 0;
+  display: flex; align-items: center; gap: 2px;
+}
+.nuvo-academy .comp-delta.up { color: var(--success); }
+.nuvo-academy .comp-delta.down { color: var(--critical); }
+.nuvo-academy .comp-delta.flat { color: var(--text-muted); }
+
+/* ---- Stage progress bar ---- */
+.nuvo-academy .stage-bar {
+  display: flex; align-items: center; gap: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 20px;
+  margin-bottom: 28px;
+  gap: 8px;
+}
+.nuvo-academy .stage-step {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 500;
+  color: var(--text-muted);
+  padding: 4px 12px;
+  border-radius: 6px;
+}
+.nuvo-academy .stage-step.active {
+  background: var(--bg-accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+}
+.nuvo-academy .stage-step.done {
+  color: var(--success);
+}
+.nuvo-academy .stage-step.indigo-active {
+  background: #EEF2FF;
+  color: #4F46E5;
+  font-weight: 600;
+}
+.nuvo-academy .stage-dot {
+  width: 20px; height: 20px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700;
+  background: var(--border); color: var(--text-muted); flex-shrink: 0;
+}
+.nuvo-academy .stage-dot.active { background: var(--accent); color: white; }
+.nuvo-academy .stage-dot.done { background: var(--success); color: white; }
+.nuvo-academy .stage-dot.indigo { background: #4F46E5; color: white; }
+.nuvo-academy .stage-connector {
+  flex: 1; height: 1px; background: var(--border); min-width: 16px;
+}
+.nuvo-academy .stage-connector.done-line { background: var(--success); }
+
+/* ---- Case cards ---- */
+.nuvo-academy .case-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.nuvo-academy .case-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 16px rgba(196,107,10,0.1);
+  transform: translateY(-1px);
+}
+.nuvo-academy .case-card.locked {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.nuvo-academy .case-card.completed {
+  border-color: rgba(5,150,105,0.3);
+}
+.nuvo-academy .case-card .case-accent-bar {
+  position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+}
+
+.nuvo-academy .case-meta {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.nuvo-academy .case-title {
+  font-size: 14px; font-weight: 600; color: var(--text-primary);
+  line-height: 1.4;
+}
+.nuvo-academy .case-desc {
+  font-size: 13px; color: var(--text-secondary); line-height: 1.6;
+}
+
+/* ---- Expert thinking card ---- */
+.nuvo-academy .expert-card {
+  background: #F5F3FF;
+  border: 1px solid #DDD6FE;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+.nuvo-academy .expert-name {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.06em; color: #6D28D9; margin-bottom: 8px;
+}
+.nuvo-academy .expert-text {
+  font-size: 13px; color: #1A1A1A; line-height: 1.7;
+}
+
+/* ---- Reasoning textarea ---- */
+.nuvo-academy .reasoning-area {
+  width: 100%;
+  min-height: 120px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-body);
+  background: var(--bg-card);
+  resize: vertical;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  outline: none;
+}
+.nuvo-academy .reasoning-area:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(196,107,10,0.1);
+}
+.nuvo-academy .reasoning-area:disabled {
+  background: var(--bg-hover);
+  color: var(--text-secondary);
+}
+
+/* ---- Answer options ---- */
+.nuvo-academy .answer-option {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 14px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+  background: var(--bg-card);
+}
+.nuvo-academy .answer-option:hover { border-color: var(--accent); background: var(--bg-accent-soft); }
+.nuvo-academy .answer-option.selected { border-color: var(--accent); background: var(--bg-accent-soft); }
+.nuvo-academy .answer-option.correct  { border-color: var(--success); background: var(--bg-success-soft); }
+.nuvo-academy .answer-option.incorrect{ border-color: var(--critical); background: var(--bg-critical-soft); }
+.nuvo-academy .answer-option.disabled { cursor: not-allowed; opacity: 0.7; }
+
+.nuvo-academy .answer-key {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--border); color: var(--text-secondary);
+  font-size: 12px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 1px;
+}
+.nuvo-academy .answer-option.selected .answer-key  { background: var(--accent); color: white; }
+.nuvo-academy .answer-option.correct  .answer-key  { background: var(--success); color: white; }
+.nuvo-academy .answer-option.incorrect .answer-key { background: var(--critical); color: white; }
+
+/* ---- Confidence slider ---- */
+.nuvo-academy .confidence-row {
+  display: flex; gap: 8px; align-items: center;
+}
+.nuvo-academy .conf-btn {
+  flex: 1; padding: 8px 4px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 12px; font-weight: 600; text-align: center;
+  transition: all 0.12s;
+  background: var(--bg-card);
+  color: var(--text-secondary);
+}
+.nuvo-academy .conf-btn:hover { border-color: var(--accent); color: var(--accent); }
+.nuvo-academy .conf-btn.active { border-color: var(--accent); background: var(--bg-accent-soft); color: var(--accent); }
+
+/* ---- Peer review ---- */
+.nuvo-academy .review-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.nuvo-academy .review-card-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-hover);
+  display: flex; align-items: center; gap: 12px;
+}
+.nuvo-academy .review-card-body { padding: 20px; }
+.nuvo-academy .review-score-row {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;
+}
+.nuvo-academy .review-score-label {
+  width: 140px; font-size: 12px; font-weight: 500; color: var(--text-secondary); flex-shrink: 0;
+  word-break: keep-all;
+}
+.nuvo-academy .score-btn {
+  width: 32px; height: 32px; border-radius: 6px;
+  border: 1.5px solid var(--border);
+  font-size: 12px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.12s; background: var(--bg-card); color: var(--text-secondary);
+}
+.nuvo-academy .score-btn:hover { border-color: var(--accent); color: var(--accent); }
+.nuvo-academy .score-btn.active { background: var(--accent); border-color: var(--accent); color: white; }
+
+/* ---- Reference / drug cards ---- */
+.nuvo-academy .drug-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.nuvo-academy .drug-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-sm);
+}
+.nuvo-academy .drug-name { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+.nuvo-academy .drug-brand { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+.nuvo-academy .drug-class { font-size: 11px; font-weight: 500; color: var(--accent); }
+
+/* ---- Progress bars ---- */
+.nuvo-academy .mini-progress {
+  height: 4px; background: var(--border); border-radius: 2px; overflow: hidden;
+}
+.nuvo-academy .mini-progress > div { height: 100%; border-radius: 2px; transition: width 0.4s; }
+
+/* ---- Tables ---- */
+.nuvo-academy .table {
+  width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums;
+}
+.nuvo-academy .table thead th {
+  text-align: left; font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--text-muted); padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-card); white-space: nowrap;
+}
+.nuvo-academy .table tbody td {
+  padding: 12px 16px; font-size: 13px;
+  color: var(--text-body); border-bottom: 1px solid var(--border);
+}
+.nuvo-academy .table tbody tr:last-child td { border-bottom: none; }
+.nuvo-academy .table tbody tr { transition: background 0.1s; }
+.nuvo-academy .table tbody tr:hover { background: var(--bg-hover); cursor: pointer; }
+
+/* ---- Utilities ---- */
+.nuvo-academy .row { display: flex; align-items: center; }
+.nuvo-academy .col { display: flex; flex-direction: column; }
+.nuvo-academy .gap-4  { gap: 4px; }
+.nuvo-academy .gap-8  { gap: 8px; }
+.nuvo-academy .gap-12 { gap: 12px; }
+.nuvo-academy .gap-16 { gap: 16px; }
+.nuvo-academy .gap-20 { gap: 20px; }
+.nuvo-academy .gap-24 { gap: 24px; }
+.nuvo-academy .divider { height: 1px; background: var(--border); margin: 20px 0; }
+.nuvo-academy .text-link { color: var(--info); font-size: 13px; font-weight: 500; cursor: pointer; }
+.nuvo-academy .text-link:hover { text-decoration: underline; }
+
+/* ---- Grid helpers ---- */
+.nuvo-academy .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.nuvo-academy .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.nuvo-academy .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.nuvo-academy .grid-3070 { display: grid; grid-template-columns: 30% 1fr; gap: 24px; }
+.nuvo-academy .grid-4060 { display: grid; grid-template-columns: 40% 1fr; gap: 20px; }
+
+/* ---- Search input ---- */
+.nuvo-academy .search-input {
+  display: flex; align-items: center; gap: 8px;
+  height: 36px; padding: 0 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: border-color 0.12s;
+}
+.nuvo-academy .search-input:focus-within { border-color: var(--accent); }
+.nuvo-academy .search-input input {
+  border: none; outline: none; flex: 1; font-size: 13px;
+  background: transparent; color: var(--text-body);
+}
+.nuvo-academy .search-input input::placeholder { color: var(--text-muted); }
+
+/* ---- Filter bar ---- */
+.nuvo-academy .filter-bar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 0 16px; flex-wrap: wrap;
+}
+.nuvo-academy .filter-bar .spacer { flex: 1; }
+
+/* ---- Timeline dot ---- */
+.nuvo-academy .timeline { display: flex; flex-direction: column; gap: 0; }
+.nuvo-academy .timeline-item {
+  display: flex; gap: 12px; padding-bottom: 20px;
+  position: relative;
+}
+.nuvo-academy .timeline-item::before {
+  content: '';
+  position: absolute; left: 11px; top: 24px; bottom: 0;
+  width: 1px; background: var(--border);
+}
+.nuvo-academy .timeline-item:last-child::before { display: none; }
+.nuvo-academy .timeline-dot {
+  width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700;
+  background: var(--bg-accent-soft); color: var(--accent);
+  border: 2px solid var(--accent);
+  margin-top: 2px;
+}
+.nuvo-academy .timeline-dot.done { background: var(--success); color: white; border-color: var(--success); }
+.nuvo-academy .timeline-content { flex: 1; padding-top: 2px; }
+.nuvo-academy .timeline-label { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+.nuvo-academy .timeline-time { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+/* ---- Responsive ---- */
+@media (max-width: 1280px) {
+  .nuvo-academy .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .nuvo-academy .grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 960px) {
+  .nuvo-academy .page { padding: 20px 20px 40px; }
+  .nuvo-academy .grid-2, .nuvo-academy .grid-3, .nuvo-academy .grid-4060 { grid-template-columns: 1fr; }
+}
