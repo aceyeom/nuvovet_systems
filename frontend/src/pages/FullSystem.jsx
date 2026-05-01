@@ -137,7 +137,7 @@ function BreedInput({ value, onChange, species }) {
         onChange={(e) => { setInput(e.target.value); onChange(e.target.value); setShowSug(true); }}
         onFocus={() => setShowSug(true)}
         onBlur={() => setTimeout(() => setShowSug(false), 150)}
-        placeholder="Mixed/Unknown, or type breed..."
+        placeholder="혼합종/알 수 없음, 또는 품종 입력..."
         className="w-full px-3 py-2.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white placeholder:text-slate-300 transition-all"
       />
       {showSug && filtered.length > 0 && (
@@ -186,7 +186,7 @@ function LoadPatientModal({ onClose, onSelect }) {
   }, [query, sortBy, filterSpecies]);
 
   const speciesLabel = (sp) => {
-    const labels = { dog: 'Dog', cat: 'Cat', rabbit: 'Rabbit', hamster: 'Hamster', 'guinea pig': 'Guinea Pig', ferret: 'Ferret', bird: 'Bird', 'turtle/tortoise': 'Turtle', other: 'Other' };
+    const labels = { dog: '개', cat: '고양이', rabbit: '토끼', hamster: '햄스터', 'guinea pig': '기니피그', ferret: '족제비', bird: '조류', 'turtle/tortoise': '거북이', other: '기타' };
     return labels[sp] || sp;
   };
 
@@ -195,7 +195,7 @@ function LoadPatientModal({ onClose, onSelect }) {
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl">
         {/* Header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200">
-          <h2 className="text-base font-semibold text-slate-900">Load Existing Patient</h2>
+          <h2 className="text-base font-semibold text-slate-900">기존 환자 불러오기</h2>
           <button onClick={onClose} className="p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition-colors"><X size={18} /></button>
         </div>
 
@@ -207,7 +207,7 @@ function LoadPatientModal({ onClose, onSelect }) {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search by name, owner, species, ID..."
+              placeholder="이름, 보호자, 종, ID 검색..."
               autoFocus
               className="w-full pl-9 pr-4 py-2.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10"
             />
@@ -215,20 +215,20 @@ function LoadPatientModal({ onClose, onSelect }) {
           <div className="flex items-center gap-2 flex-wrap">
             <select value={filterSpecies} onChange={e => setFilterSpecies(e.target.value)}
               className="text-xs border border-slate-200 rounded-lg px-2.5 py-1.5 text-slate-600 focus:outline-none">
-              <option value="">All species</option>
+              <option value="">모든 종</option>
               {['dog','cat'].map(s => (
                 <option key={s} value={s}>{speciesLabel(s)}</option>
               ))}
             </select>
             <select value={sortBy} onChange={e => setSortBy(e.target.value)}
               className="text-xs border border-slate-200 rounded-lg px-2.5 py-1.5 text-slate-600 focus:outline-none">
-              <option value="last_visit">Recent visit</option>
-              <option value="name">Name A–Z</option>
-              <option value="species">Species</option>
+              <option value="last_visit">최근 방문</option>
+              <option value="name">이름 순</option>
+              <option value="species">종</option>
             </select>
             <div className="flex items-center gap-1.5 ml-auto">
-              <span className="text-[11px] text-slate-400">Columns:</span>
-              {[['breed','Breed'],['weight','Weight'],['lastVisit','Last visit']].map(([k,label]) => (
+              <span className="text-[11px] text-slate-400">열:</span>
+              {[['breed','품종'],['weight','체중'],['lastVisit','최근 방문']].map(([k,label]) => (
                 <button key={k} onClick={() => setVisibleColumns(v => ({...v, [k]: !v[k]}))}
                   className={`text-[11px] px-2 py-0.5 rounded border transition-colors ${visibleColumns[k] ? 'bg-slate-800 text-white border-slate-800' : 'text-slate-500 border-slate-200 hover:border-slate-300'}`}>
                   {label}
@@ -242,17 +242,17 @@ function LoadPatientModal({ onClose, onSelect }) {
         <div className="overflow-y-auto max-h-[400px]">
           {patients.length === 0 ? (
             <div className="px-5 py-10 text-center text-sm text-slate-400">
-              {query || filterSpecies ? 'No patients match your search' : 'No saved patients yet'}
+              {query || filterSpecies ? '검색 결과가 없습니다' : '저장된 환자 없음'}
             </div>
           ) : (
             <table className="w-full text-sm">
               <thead className="bg-slate-50 sticky top-0">
                 <tr>
-                  <th className="text-left px-5 py-2.5 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Patient</th>
-                  <th className="text-left px-3 py-2.5 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Species</th>
-                  {visibleColumns.breed && <th className="text-left px-3 py-2.5 text-[11px] font-bold text-slate-400 uppercase tracking-wider hidden sm:table-cell">Breed</th>}
-                  {visibleColumns.weight && <th className="text-left px-3 py-2.5 text-[11px] font-bold text-slate-400 uppercase tracking-wider hidden sm:table-cell">Weight</th>}
-                  {visibleColumns.lastVisit && <th className="text-left px-3 py-2.5 text-[11px] font-bold text-slate-400 uppercase tracking-wider hidden md:table-cell">Last Visit</th>}
+                  <th className="text-left px-5 py-2.5 text-[11px] font-bold text-slate-400 uppercase tracking-wider">환자</th>
+                  <th className="text-left px-3 py-2.5 text-[11px] font-bold text-slate-400 uppercase tracking-wider">종</th>
+                  {visibleColumns.breed && <th className="text-left px-3 py-2.5 text-[11px] font-bold text-slate-400 uppercase tracking-wider hidden sm:table-cell">품종</th>}
+                  {visibleColumns.weight && <th className="text-left px-3 py-2.5 text-[11px] font-bold text-slate-400 uppercase tracking-wider hidden sm:table-cell">체중</th>}
+                  {visibleColumns.lastVisit && <th className="text-left px-3 py-2.5 text-[11px] font-bold text-slate-400 uppercase tracking-wider hidden md:table-cell">최근 방문</th>}
                   <th className="w-10" />
                 </tr>
               </thead>
@@ -280,7 +280,7 @@ function LoadPatientModal({ onClose, onSelect }) {
         </div>
 
         <div className="px-5 py-3 border-t border-slate-100 flex justify-end">
-          <button onClick={onClose} className="px-4 py-2 text-sm text-slate-600 hover:text-slate-800 transition-colors">Cancel</button>
+          <button onClick={onClose} className="px-4 py-2 text-sm text-slate-600 hover:text-slate-800 transition-colors">취소</button>
         </div>
       </div>
     </div>
@@ -301,9 +301,9 @@ function AnalysisStepBar({
     {
       key: 'patient',
       index: '01',
-      title: 'Patient Information',
-      subtitle: 'Identity, signalment and clinical context',
-      status: patientReady ? 'Ready' : 'Needs input',
+      title: '환자 정보',
+      subtitle: '신원, 기초 특성 및 임상 정보',
+      status: patientReady ? '입력 완료' : '입력 필요',
       statusTone: patientReady
         ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
         : 'border-slate-200 bg-slate-100 text-slate-500',
@@ -312,9 +312,9 @@ function AnalysisStepBar({
     {
       key: 'prescription',
       index: '02',
-      title: 'Prescription',
-      subtitle: 'Drug selection, dose and regimen details',
-      status: prescriptionCount > 0 ? `${prescriptionCount} drug${prescriptionCount > 1 ? 's' : ''}` : 'No drugs added',
+      title: '처방',
+      subtitle: '약물 선택, 용량 및 처방 정보',
+      status: prescriptionCount > 0 ? `${prescriptionCount}종 약물` : '약물 미추가',
       statusTone: prescriptionCount > 0
         ? 'border-sky-200 bg-sky-50 text-sky-700'
         : 'border-slate-200 bg-slate-100 text-slate-500',
@@ -323,9 +323,9 @@ function AnalysisStepBar({
     {
       key: 'summary',
       index: '03',
-      title: 'Summary',
-      subtitle: 'Run or reopen the current DUR review',
-      status: summaryReady ? (summaryNeedsRefresh ? 'Needs refresh' : 'Up to date') : 'Not generated',
+      title: '검토 결과',
+      subtitle: 'DUR 검토 실행 또는 확인',
+      status: summaryReady ? (summaryNeedsRefresh ? '재실행 필요' : '최신 상태') : '미실행',
       statusTone: summaryReady
         ? summaryNeedsRefresh
           ? 'border-amber-200 bg-amber-50 text-amber-700'
@@ -398,7 +398,13 @@ function normalizeSexValue(value) {
 
 // ── Editable Patient Summary (left col on results) ────────────────
 function PatientEditPanel({ patient, drugs, results, onUpdate, conditionSuggestions = [], allergySuggestions = [] }) {
-  const RENAL_OPTIONS = ['Unknown','Normal','Mild impairment','Moderate impairment','Severe impairment'];
+  const RENAL_OPTIONS = [
+    { value: 'Unknown', label: '알 수 없음' },
+    { value: 'Normal', label: '정상' },
+    { value: 'Mild impairment', label: '경도 장애' },
+    { value: 'Moderate impairment', label: '중등도 장애' },
+    { value: 'Severe impairment', label: '중증 장애' },
+  ];
   const HEPATIC_OPTIONS = RENAL_OPTIONS;
   const [editing, setEditing] = useState(null); // field name being edited
 
@@ -415,7 +421,9 @@ function PatientEditPanel({ patient, drugs, results, onUpdate, conditionSuggesti
               onBlur={() => setEditing(null)}
               className="text-[12px] border border-slate-300 rounded px-1.5 py-0.5 text-slate-800 focus:outline-none"
             >
-              {options.map(o => <option key={o}>{o}</option>)}
+              {options.map(o => typeof o === 'object'
+                ? <option key={o.value} value={o.value}>{o.label}</option>
+                : <option key={o}>{o}</option>)}
             </select>
           ) : (
             <input
@@ -442,28 +450,28 @@ function PatientEditPanel({ patient, drugs, results, onUpdate, conditionSuggesti
   return (
     <div className="p-4 space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest">Patient</h3>
-        <span className="text-[10px] text-slate-300">click to edit</span>
+        <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest">환자</h3>
+        <span className="text-[10px] text-slate-300">클릭하여 수정</span>
       </div>
 
       <div className="bg-white border border-slate-200 rounded-xl p-3 shadow-sm space-y-0.5 divide-y divide-slate-100/80">
-        <Field label="Name" value={patient.name} fieldKey="name" />
-        <Field label="Species" value={patient.species} fieldKey="species"
+        <Field label="이름" value={patient.name} fieldKey="name" />
+        <Field label="종" value={patient.species} fieldKey="species"
           options={['dog','cat']} />
-        {patient.breed && <Field label="Breed" value={patient.breed} fieldKey="breed" />}
-        <Field label="Weight" value={patient.weight ? `${patient.weight} kg` : ''} fieldKey="weight" type="number" />
-        {patient.sex && <Field label="Sex" value={patient.sex} fieldKey="sex" options={['Male','Female','Unknown']} />}
-        {patient.age && <Field label="Age" value={patient.age} fieldKey="age" />}
+        {patient.breed && <Field label="품종" value={patient.breed} fieldKey="breed" />}
+        <Field label="체중" value={patient.weight ? `${patient.weight} kg` : ''} fieldKey="weight" type="number" />
+        {patient.sex && <Field label="성별" value={patient.sex} fieldKey="sex" options={['Male','Female','Unknown']} />}
+        {patient.age && <Field label="나이" value={patient.age} fieldKey="age" />}
       </div>
 
       {(patient.conditions?.length > 0 || true) && (
         <div className="bg-white border border-slate-200 rounded-xl p-3 shadow-sm">
-          <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">Conditions</p>
+          <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">질환</p>
           <TagInput
             items={patient.conditions || []}
             onAdd={(c) => onUpdate({ conditions: [...(patient.conditions||[]), c] })}
             onRemove={(c) => onUpdate({ conditions: (patient.conditions||[]).filter(x => x !== c) })}
-            placeholder="Add condition..."
+            placeholder="질환 추가..."
             chipClass="bg-red-50 text-red-700 border border-red-100"
             suggestions={conditionSuggestions}
           />
@@ -472,12 +480,12 @@ function PatientEditPanel({ patient, drugs, results, onUpdate, conditionSuggesti
 
       {(patient.allergies?.length > 0 || true) && (
         <div className="bg-white border border-slate-200 rounded-xl p-3 shadow-sm">
-          <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">Allergies</p>
+          <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">알레르기</p>
           <TagInput
             items={patient.allergies || []}
             onAdd={(a) => onUpdate({ allergies: [...(patient.allergies||[]), a] })}
             onRemove={(a) => onUpdate({ allergies: (patient.allergies||[]).filter(x => x !== a) })}
-            placeholder="Add allergy..."
+            placeholder="알레르기 추가..."
             chipClass="bg-amber-50 text-amber-700 border border-amber-100"
             suggestions={allergySuggestions}
           />
@@ -485,10 +493,10 @@ function PatientEditPanel({ patient, drugs, results, onUpdate, conditionSuggesti
       )}
 
       <div className="bg-white border border-slate-200 rounded-xl p-3 shadow-sm space-y-0.5 divide-y divide-slate-100/80">
-        <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1.5 pb-1.5">Organ Status</p>
-        <Field label="Renal" value={patient.renalStatus || 'Unknown'} fieldKey="renalStatus"
+        <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1.5 pb-1.5">장기 상태</p>
+        <Field label="신장" value={patient.renalStatus || 'Unknown'} fieldKey="renalStatus"
           options={RENAL_OPTIONS} />
-        <Field label="Hepatic" value={patient.hepaticStatus || 'Unknown'} fieldKey="hepaticStatus"
+        <Field label="간" value={patient.hepaticStatus || 'Unknown'} fieldKey="hepaticStatus"
           options={HEPATIC_OPTIONS} />
         {patient.flaggedLabs?.map((lab, i) => (
           <div key={i} className="flex items-center justify-between py-1.5">
@@ -567,7 +575,7 @@ function DosageSummaryPanel({ results, drugs, species, patientInfo, onUpdateDrug
           })}
         </div>
       ) : (
-        <p className="text-[12px] text-slate-400 text-center py-4">No drugs selected</p>
+        <p className="text-[12px] text-slate-400 text-center py-4">선택된 약물 없음</p>
       )}
 
       {/* Unified Organ Involvement Diagram + Elimination Pathways */}
@@ -588,10 +596,10 @@ function DosageSummaryPanel({ results, drugs, species, patientInfo, onUpdateDrug
       {/* Dose alerts in center-column context */}
       {drugs.some(d => d.doseStatus === 'above' || d.doseStatus === 'below') && (
         <div className="bg-amber-50 border border-amber-200 rounded-xl p-3">
-          <p className="text-[11px] font-bold text-amber-800 uppercase tracking-wider mb-1">Dosing Alerts</p>
+          <p className="text-[11px] font-bold text-amber-800 uppercase tracking-wider mb-1">용량 경고</p>
           {drugs.filter(d => d.doseStatus).map((d) => (
             <p key={d.id} className="text-[11px] text-amber-700">
-              {d.name}: dose {d.doseStatus === 'above' ? 'exceeds' : 'below'} recommended range
+              {d.name}: 용량이 권장 범위보다 {d.doseStatus === 'above' ? '높음' : '낮음'}
             </p>
           ))}
         </div>
@@ -631,8 +639,8 @@ function ExistingPatientPanel({ onSelect }) {
   return (
     <div className="space-y-4">
       <div>
-        <h2 className="text-sm font-semibold text-slate-900">Load Existing Patient</h2>
-        <p className="text-[12px] text-slate-400 mt-0.5">Select a patient to pre-fill the form</p>
+        <h2 className="text-sm font-semibold text-slate-900">기존 환자 불러오기</h2>
+        <p className="text-[12px] text-slate-400 mt-0.5">환자를 선택하여 양식을 자동 입력하세요</p>
       </div>
 
       <div className="relative">
@@ -641,7 +649,7 @@ function ExistingPatientPanel({ onSelect }) {
           type="text"
           value={query}
           onChange={e => setQuery(e.target.value)}
-          placeholder="Search by name, owner, ID..."
+          placeholder="이름, 보호자, ID 검색..."
           autoFocus
           className="w-full pl-9 pr-4 py-2.5 text-sm border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-900/10"
         />
@@ -650,25 +658,25 @@ function ExistingPatientPanel({ onSelect }) {
       <div className="flex items-center gap-2">
         <select value={filterSpecies} onChange={e => setFilterSpecies(e.target.value)}
           className="text-xs border border-slate-200 rounded-lg px-2.5 py-1.5 text-slate-600 focus:outline-none">
-          <option value="">All species</option>
-          <option value="dog">Dog</option>
-          <option value="cat">Cat</option>
+          <option value="">모든 종</option>
+          <option value="dog">개</option>
+          <option value="cat">고양이</option>
         </select>
         <select value={sortBy} onChange={e => setSortBy(e.target.value)}
           className="text-xs border border-slate-200 rounded-lg px-2.5 py-1.5 text-slate-600 focus:outline-none">
-          <option value="last_visit">Recent visit</option>
-          <option value="name">Name A–Z</option>
-          <option value="species">Species</option>
+          <option value="last_visit">최근 방문</option>
+          <option value="name">이름 순</option>
+          <option value="species">종</option>
         </select>
         <span className="text-[11px] text-slate-400 ml-auto">
-          {patients.length} patient{patients.length !== 1 ? 's' : ''}
+          환자 {patients.length}명
         </span>
       </div>
 
       <div className="space-y-2">
         {patients.length === 0 ? (
           <div className="py-12 text-center text-sm text-slate-400 bg-slate-50 rounded-xl border border-slate-100">
-            {query || filterSpecies ? 'No patients match your search' : 'No saved patients yet'}
+            {query || filterSpecies ? '검색 결과가 없습니다' : '저장된 환자 없음'}
           </div>
         ) : (
           patients.map((p) => {
@@ -972,7 +980,13 @@ export default function FullSystem() {
     { value: 'Female', label: '암컷 / Female' },
   ];
 
-  const RENAL_OPTIONS  = ['Unknown','Normal','Mild impairment','Moderate impairment','Severe impairment'];
+  const RENAL_OPTIONS  = [
+    { value: 'Unknown', label: '알 수 없음' },
+    { value: 'Normal', label: '정상' },
+    { value: 'Mild impairment', label: '경도 장애' },
+    { value: 'Moderate impairment', label: '중등도 장애' },
+    { value: 'Severe impairment', label: '중증 장애' },
+  ];
   const HEPATIC_OPTIONS = RENAL_OPTIONS;
   const FREQ_OPTIONS   = ['SID','BID','TID','QID','q8h','q12h','PRN','Other'];
 
@@ -1250,20 +1264,20 @@ export default function FullSystem() {
               <div className="shrink-0 border-b border-slate-200 bg-white px-5 py-3 sm:px-6">
                 <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
                   <div>
-                    <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-slate-400">Patient workspace</p>
-                    <h2 className="mt-1 text-base font-semibold text-slate-900">Patient information</h2>
-                    <p className="mt-1 text-[12px] leading-relaxed text-slate-500">Capture the core patient context once, then move directly into prescription review.</p>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-slate-400">환자 작업 공간</p>
+                    <h2 className="mt-1 text-base font-semibold text-slate-900">환자 정보</h2>
+                    <p className="mt-1 text-[12px] leading-relaxed text-slate-500">핵심 환자 정보를 한 번 입력하면 처방 검토로 바로 진행할 수 있습니다.</p>
                   </div>
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-medium text-slate-500">
-                      {species ? `${species}${weightKg > 0 ? ` · ${weightKg} kg` : ''}` : 'Signalment pending'}
+                      {species ? `${species}${weightKg > 0 ? ` · ${weightKg} kg` : ''}` : '기초 특성 미입력'}
                     </span>
                     <button
                       onClick={() => setShowEMRModal(true)}
                       className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-[12px] font-medium text-slate-500 transition-colors hover:border-slate-300 hover:text-slate-700"
                     >
                       <Camera size={13} />
-                      EMR Import
+                      EMR 가져오기
                     </button>
                   </div>
                 </div>
@@ -1278,7 +1292,7 @@ export default function FullSystem() {
                     }`}
                   >
                     <UserPlus size={13} />
-                    New Patient
+                    신규 환자
                   </button>
                   <button
                     onClick={() => setPatientTab('existing')}
@@ -1289,7 +1303,7 @@ export default function FullSystem() {
                     }`}
                   >
                     <Users size={13} />
-                    Existing Patient
+                    기존 환자
                   </button>
                 </div>
               </div>
@@ -1312,34 +1326,34 @@ export default function FullSystem() {
                     {/* ── IDENTIFICATION card ── */}
                     <div className="overflow-hidden rounded-xl border border-slate-200/90 bg-white">
                       <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50/70 px-4 py-2">
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Identification</span>
-                        <span className="text-[10px] text-slate-300">Core profile</span>
+                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">기본 정보</span>
+                        <span className="text-[10px] text-slate-300">기본 프로필</span>
                       </div>
                       <div className="grid gap-x-2.5 gap-y-2 px-4 py-3 bg-white md:grid-cols-2 xl:grid-cols-4">
                         <div className="space-y-1">
-                          <label className="block text-[11px] font-semibold text-slate-500">Patient Name</label>
+                          <label className="block text-[11px] font-semibold text-slate-500">환자 이름</label>
                           <input type="text" value={patientName} onChange={e => setPatientName(e.target.value)}
-                            placeholder="e.g. 뽀삐"
+                            placeholder="예: 뽀삐"
                             className={`w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white placeholder:text-slate-300 transition-all ${fieldHighlight('name')}`} />
                         </div>
                         <div className="space-y-1">
-                          <label className="block text-[11px] font-semibold text-slate-500">Doctor in Charge</label>
+                          <label className="block text-[11px] font-semibold text-slate-500">담당의</label>
                           <input
                             type="text"
                             value={doctorInCharge}
                             onChange={e => setDoctorInCharge(e.target.value)}
-                            placeholder="Doctor name"
+                            placeholder="의사 이름"
                             className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white placeholder:text-slate-300 transition-all text-slate-700"
                           />
                         </div>
                         <div className="space-y-1">
-                          <label className="block text-[11px] font-semibold text-slate-500">Owner Name</label>
+                          <label className="block text-[11px] font-semibold text-slate-500">보호자 이름</label>
                           <input type="text" value={ownerName} onChange={e => setOwnerName(e.target.value)}
-                            placeholder="Owner name"
+                            placeholder="보호자 이름"
                             className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white placeholder:text-slate-300 transition-all" />
                         </div>
                         <div className="space-y-1">
-                          <label className="block text-[11px] font-semibold text-slate-500">Owner Contact</label>
+                          <label className="block text-[11px] font-semibold text-slate-500">보호자 연락처</label>
                           <input type="text" value={ownerContact} onChange={e => setOwnerContact(e.target.value)}
                             placeholder="010-0000-0000"
                             className={`w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white placeholder:text-slate-300 transition-all ${fieldHighlight('phone')}`} />
@@ -1351,15 +1365,15 @@ export default function FullSystem() {
                     <div className="overflow-hidden rounded-2xl border border-slate-200 bg-[linear-gradient(180deg,rgba(255,255,255,1),rgba(248,250,252,0.92))] shadow-sm">
                       <div className="flex items-center justify-between border-b border-slate-200/80 px-4 py-3">
                         <div>
-                          <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Signalment</span>
-                          <p className="mt-1 text-[12px] text-slate-500">Required patient factors for dosage and interaction analysis.</p>
+                          <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">기초 특성</span>
+                          <p className="mt-1 text-[12px] text-slate-500">용량 및 상호작용 분석에 필요한 환자 정보입니다.</p>
                         </div>
-                        <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[10px] font-semibold text-slate-500">Required</span>
+                        <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[10px] font-semibold text-slate-500">필수</span>
                       </div>
                       <div className="px-4 py-4 space-y-3.5 bg-white">
 
                         <div className={`space-y-1.5 ${missingRequired.species ? shakeClass : ''}`}>
-                          <label className={`block text-[11px] font-semibold ${missingRequired.species ? 'text-red-600' : 'text-slate-600'}`}>Species</label>
+                          <label className={`block text-[11px] font-semibold ${missingRequired.species ? 'text-red-600' : 'text-slate-600'}`}>종</label>
                           <div className="grid grid-cols-2 gap-2">
                             {SPECIES_OPTIONS.map((sp) => (
                               <button key={sp.value} onClick={() => setSpecies(sp.value)}
@@ -1378,7 +1392,7 @@ export default function FullSystem() {
 
                         {species && (
                           <div className="space-y-1">
-                            <label className="block text-[11px] font-semibold text-slate-600">Breed</label>
+                            <label className="block text-[11px] font-semibold text-slate-600">품종</label>
                             <div className={fieldHighlight('breed') || ''}>
                               <BreedInput value={breed} onChange={setBreed} species={species} />
                             </div>
@@ -1386,7 +1400,7 @@ export default function FullSystem() {
                         )}
 
                         <div className="space-y-1.5">
-                          <label className="block text-[11px] font-semibold text-slate-600">Sex</label>
+                          <label className="block text-[11px] font-semibold text-slate-600">성별</label>
                           <div className="grid grid-cols-2 gap-2">
                             {SEX_OPTIONS.map((opt) => (
                               <button key={opt.value} onClick={() => setSex(sex === opt.value ? 'Unknown' : opt.value)}
@@ -1401,14 +1415,14 @@ export default function FullSystem() {
 
                         {isFemale && (
                           <div className="space-y-1">
-                            <label className="block text-[11px] font-semibold text-slate-600">Reproductive Status</label>
+                            <label className="block text-[11px] font-semibold text-slate-600">생식 상태</label>
                             <div className="grid grid-cols-3 gap-2">
-                              {['None','Pregnant','Lactating'].map(s => (
-                                <button key={s} onClick={() => setReproductiveStatus(s)}
+                              {[['None','해당 없음'],['Pregnant','임신 중'],['Lactating','수유 중']].map(([val, label]) => (
+                                <button key={val} onClick={() => setReproductiveStatus(val)}
                                   className={`py-2 px-2 text-[11px] rounded-lg border transition-all font-medium ${
-                                    reproductiveStatus === s ? 'bg-violet-800 text-white border-violet-800' : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
+                                    reproductiveStatus === val ? 'bg-violet-800 text-white border-violet-800' : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
                                   }`}>
-                                  {s}
+                                  {label}
                                 </button>
                               ))}
                             </div>
@@ -1417,7 +1431,7 @@ export default function FullSystem() {
 
                         <div className="grid grid-cols-2 gap-3">
                           <div className="space-y-1">
-                            <label className="block text-[11px] font-semibold text-slate-600">Age</label>
+                            <label className="block text-[11px] font-semibold text-slate-600">나이</label>
                             <div className="flex gap-1.5">
                               <DecimalInput value={ageNum} onChange={setAgeNum} placeholder="e.g. 3" min={0} max={30}
                                 className={`flex-1 min-w-0 px-3 py-2.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white placeholder:text-slate-300 ${fieldHighlight('age')}`} />
@@ -1440,7 +1454,7 @@ export default function FullSystem() {
                                 <option value="g">g</option>
                               </select>
                             </div>
-                            {missingRequired.weight && <p className="text-[11px] text-red-600">Enter a valid weight</p>}
+                            {missingRequired.weight && <p className="text-[11px] text-red-600">유효한 체중을 입력하세요</p>}
                           </div>
                         </div>
                       </div>
@@ -1449,22 +1463,22 @@ export default function FullSystem() {
                     {/* ── CLINICAL card ── */}
                     <div className="overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-sm">
                       <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50/80 px-4 py-3">
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Clinical</span>
-                        <span className="text-[10px] text-slate-300">Conditions, labs &amp; organ status</span>
+                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">임상</span>
+                        <span className="text-[10px] text-slate-300">질환, 검사값 및 장기 상태</span>
                       </div>
                       <div className="px-4 py-4 space-y-3 bg-white">
                         <div className="grid gap-3 xl:grid-cols-2">
                           <div className="space-y-1">
-                            <label className="block text-[11px] font-semibold text-slate-500">Known Conditions / Diseases</label>
+                            <label className="block text-[11px] font-semibold text-slate-500">현재 질환</label>
                             <TagInput items={conditions} onAdd={(c) => setConditions(p => [...p, c])} onRemove={(c) => setConditions(p => p.filter(x => x !== c))}
-                              placeholder="e.g. CKD, Diabetes..."
+                              placeholder="예: 만성신부전, 당뇨..."
                               chipClass="bg-red-50 text-red-700 border border-red-100"
                               suggestions={conditionSuggestions} />
                           </div>
                           <div className="space-y-1">
-                            <label className="block text-[11px] font-semibold text-slate-500">Known Allergies</label>
+                            <label className="block text-[11px] font-semibold text-slate-500">알레르기 이력</label>
                             <TagInput items={allergies} onAdd={(a) => setAllergies(p => [...p, a])} onRemove={(a) => setAllergies(p => p.filter(x => x !== a))}
-                              placeholder="e.g. Penicillin, NSAIDs..."
+                              placeholder="예: 페니실린, NSAIDs..."
                               chipClass="bg-amber-50 text-amber-700 border border-amber-100"
                               suggestions={allergySuggestions} />
                           </div>
@@ -1472,17 +1486,17 @@ export default function FullSystem() {
 
                         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
                           <div className="space-y-1">
-                            <label className="block text-[11px] font-semibold text-slate-500">Renal Status</label>
+                            <label className="block text-[11px] font-semibold text-slate-500">신장 기능</label>
                             <select value={renalStatus} onChange={e => setRenalStatus(e.target.value)}
                               className="w-full px-3 py-2.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white text-slate-700">
-                              {RENAL_OPTIONS.map(o => <option key={o}>{o}</option>)}
+                              {RENAL_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
                             </select>
                           </div>
                           <div className="space-y-1">
-                            <label className="block text-[11px] font-semibold text-slate-500">Hepatic Status</label>
+                            <label className="block text-[11px] font-semibold text-slate-500">간 기능</label>
                             <select value={hepaticStatus} onChange={e => setHeptaticStatus(e.target.value)}
                               className="w-full px-3 py-2.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900/10 bg-white text-slate-700">
-                              {HEPATIC_OPTIONS.map(o => <option key={o}>{o}</option>)}
+                              {HEPATIC_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
                             </select>
                           </div>
                           <div className="space-y-1">
@@ -1531,7 +1545,7 @@ export default function FullSystem() {
 
                 <div>
                   <h2 className="text-sm font-semibold text-slate-900">{t.fullSystem.sectionDrugs}</h2>
-                  <p className="text-[12px] text-slate-400 mt-0.5">Select drugs, configure dose</p>
+                  <p className="text-[12px] text-slate-400 mt-0.5">약물 선택 및 용량 설정</p>
                 </div>
 
                 <div className={`${missingRequired.drugs ? `rounded-xl border border-red-300 bg-red-50/30 p-1 ${shakeClass}` : ''}`}>
@@ -1546,7 +1560,7 @@ export default function FullSystem() {
                   />
                 </div>
                 {missingRequired.drugs && (
-                  <p className="-mt-3 text-[11px] text-red-600">Add at least one drug to run DUR</p>
+                  <p className="-mt-3 text-[11px] text-red-600">DUR 검사를 위해 최소 1개 약물을 추가하세요</p>
                 )}
 
                 <div className="border-t border-slate-200 pt-5 space-y-3">

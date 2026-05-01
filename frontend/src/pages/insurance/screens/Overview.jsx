@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { I } from '../icons';
 import { Sparkline, StackedBarChart, HorizontalBars } from '../charts';
 import { weeklyClaims, overviewSparks, alerts, topHospitals, activity } from '../data';
+
+const DATE_RANGE_OPTIONS = [
+  { value: '30', label: '최근 30일' },
+  { value: '90', label: '최근 90일' },
+  { value: '180', label: '최근 6개월' },
+  { value: '365', label: '최근 1년' },
+];
 
 const StatCard = ({ label, value, delta, deltaTone, vs, sparkData, sparkColor }) => (
   <div className="stat-card">
@@ -42,16 +49,86 @@ const AlertItem = ({ a }) => {
 };
 
 export default function Overview() {
+  const [dateRange, setDateRange] = useState('90');
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [toast, setToast] = useState('');
+  const dropdownRef = useRef(null);
+
+  const selectedLabel = DATE_RANGE_OPTIONS.find(o => o.value === dateRange)?.label || '최근 90일';
+
+  useEffect(() => {
+    if (!toast) return;
+    const t = setTimeout(() => setToast(''), 2500);
+    return () => clearTimeout(t);
+  }, [toast]);
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
+
+  const handleDownload = () => {
+    setToast('보고서를 다운로드하는 중...');
+  };
+
   return (
     <div className="page">
+      {toast && (
+        <div style={{
+          position: 'fixed', bottom: 24, right: 24, zIndex: 9999,
+          background: '#0A0A0A', color: '#fff', borderRadius: 8,
+          padding: '10px 18px', fontSize: 13, fontWeight: 500,
+          boxShadow: '0 4px 20px rgba(0,0,0,0.18)', display: 'flex', alignItems: 'center', gap: 8,
+        }}>
+          <I.Download size={14} />
+          {toast}
+        </div>
+      )}
+
       <div className="page-header">
         <div>
           <h1 className="page-title">개요</h1>
           <p className="page-subtitle">KB손해보험 펫보험팀 · 2026년 4월 29일</p>
         </div>
         <div className="page-header-actions">
-          <button className="btn btn-secondary"><I.Calendar size={14} />최근 90일<I.ChevronDown size={14} /></button>
-          <button className="btn btn-secondary"><I.Download size={14} />보고서 다운로드</button>
+          <div ref={dropdownRef} style={{ position: 'relative' }}>
+            <button className="btn btn-secondary" onClick={() => setDropdownOpen(o => !o)}>
+              <I.Calendar size={14} />{selectedLabel}<I.ChevronDown size={14} />
+            </button>
+            {dropdownOpen && (
+              <div style={{
+                position: 'absolute', top: 'calc(100% + 6px)', right: 0, zIndex: 200,
+                background: 'var(--bg-card)', border: '1px solid var(--border)',
+                borderRadius: 8, boxShadow: 'var(--shadow-md)', overflow: 'hidden', minWidth: 140,
+              }}>
+                {DATE_RANGE_OPTIONS.map(opt => (
+                  <button
+                    key={opt.value}
+                    onClick={() => { setDateRange(opt.value); setDropdownOpen(false); }}
+                    style={{
+                      display: 'block', width: '100%', textAlign: 'left',
+                      padding: '9px 14px', fontSize: 13, background: dateRange === opt.value ? 'var(--bg-canvas)' : 'transparent',
+                      color: dateRange === opt.value ? 'var(--accent)' : 'var(--text-body)',
+                      fontWeight: dateRange === opt.value ? 600 : 400, border: 'none', cursor: 'pointer',
+                      transition: 'background 0.1s',
+                    }}
+                    onMouseEnter={(e) => { if (dateRange !== opt.value) e.currentTarget.style.background = 'var(--bg-canvas)'; }}
+                    onMouseLeave={(e) => { if (dateRange !== opt.value) e.currentTarget.style.background = 'transparent'; }}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          <button className="btn btn-secondary" onClick={handleDownload}>
+            <I.Download size={14} />보고서 다운로드
+          </button>
         </div>
       </div>
 

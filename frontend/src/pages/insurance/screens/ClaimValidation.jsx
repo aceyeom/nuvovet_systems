@@ -1,14 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { I } from '../icons';
 import { claimList, claimDetail, fmtKRW, fmtKRWShort } from '../data';
 
-const FilterChip = ({ label, value, dropdown = true }) => (
-  <button className="chip">
-    <span className="chip-label">{label}:</span>
-    <span>{value}</span>
-    {dropdown && <I.ChevronDown size={12} />}
-  </button>
-);
+const PAGE_SIZE = 15;
 
 const StatusDot = ({ s }) => {
   if (s === 'flagged') return <><span className="dot dot-critical" /> 플래그됨</>;
@@ -22,72 +16,196 @@ const ScoreCell = ({ score }) => {
   return <span className="mono tnum" style={{ color, fontWeight: 600 }}>{score}</span>;
 };
 
+const STATUS_OPTIONS = [
+  { value: '', label: '모두' },
+  { value: 'flagged', label: '플래그됨' },
+  { value: 'review', label: '검토중' },
+  { value: 'normal', label: '정상' },
+];
+
+function FilterDropdown({ label, options, value, onChange }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+  const selected = options.find(o => o.value === value) || options[0];
+
+  useEffect(() => {
+    const handler = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
+
+  return (
+    <div ref={ref} style={{ position: 'relative' }}>
+      <button className="chip" onClick={() => setOpen(o => !o)}>
+        <span className="chip-label">{label}:</span>
+        <span>{selected.label}</span>
+        <I.ChevronDown size={12} />
+      </button>
+      {open && (
+        <div style={{
+          position: 'absolute', top: 'calc(100% + 4px)', left: 0, zIndex: 200,
+          background: 'var(--bg-card)', border: '1px solid var(--border)',
+          borderRadius: 8, boxShadow: 'var(--shadow-md)', overflow: 'hidden', minWidth: 120,
+        }}>
+          {options.map(opt => (
+            <button key={opt.value} onClick={() => { onChange(opt.value); setOpen(false); }}
+              style={{
+                display: 'block', width: '100%', textAlign: 'left',
+                padding: '8px 14px', fontSize: 13,
+                background: value === opt.value ? 'var(--bg-canvas)' : 'transparent',
+                color: value === opt.value ? 'var(--accent)' : 'var(--text-body)',
+                fontWeight: value === opt.value ? 600 : 400, border: 'none', cursor: 'pointer',
+              }}
+              onMouseEnter={(e) => { if (value !== opt.value) e.currentTarget.style.background = 'var(--bg-canvas)'; }}
+              onMouseLeave={(e) => { if (value !== opt.value) e.currentTarget.style.background = 'transparent'; }}
+            >
+              {opt.label}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function ClaimValidation() {
   const [selected, setSelected] = useState('CLM-2026-04-018472');
+  const [query, setQuery] = useState('');
+  const [statusFilter, setStatusFilter] = useState('');
+  const [page, setPage] = useState(1);
+  const [rerunLoading, setRerunLoading] = useState(false);
+  const [rerunDone, setRerunDone] = useState(false);
+  const [memoOpen, setMemoOpen] = useState(false);
+  const [memo, setMemo] = useState('');
+  const [toast, setToast] = useState('');
   const c = claimDetail;
+
+  useEffect(() => {
+    if (!toast) return;
+    const t = setTimeout(() => setToast(''), 2500);
+    return () => clearTimeout(t);
+  }, [toast]);
+
+  const filtered = claimList.filter(cl => {
+    const q = query.toLowerCase();
+    const matchQuery = !q || cl.id.toLowerCase().includes(q) || cl.hospital.toLowerCase().includes(q);
+    const matchStatus = !statusFilter || cl.status === statusFilter;
+    return matchQuery && matchStatus;
+  });
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
+  const handleSearch = (e) => { setQuery(e.target.value); setPage(1); };
+  const handleStatusChange = (v) => { setStatusFilter(v); setPage(1); };
+
+  const handleRerun = () => {
+    setRerunLoading(true);
+    setRerunDone(false);
+    setTimeout(() => { setRerunLoading(false); setRerunDone(true); }, 1800);
+  };
+
+  const handleExport = () => setToast('내보내기 완료 · CLM-2026-04-018472.xlsx');
+
+  const handleMemoSave = () => {
+    setMemoOpen(false);
+    setMemo('');
+    setToast('메모가 저장되었습니다.');
+  };
+
+  const pageNums = (() => {
+    const nums = [];
+    for (let i = 1; i <= Math.min(totalPages, 3); i++) nums.push(i);
+    return nums;
+  })();
 
   return (
     <div className="page">
+      {toast && (
+        <div style={{
+          position: 'fixed', bottom: 24, right: 24, zIndex: 9999,
+          background: '#0A0A0A', color: '#fff', borderRadius: 8,
+          padding: '10px 18px', fontSize: 13, fontWeight: 500,
+          boxShadow: '0 4px 20px rgba(0,0,0,0.18)',
+        }}>
+          {toast}
+        </div>
+      )}
+
       <div className="page-header">
         <div>
           <h1 className="page-title">청구 검증</h1>
-          <p className="page-subtitle">12,847건 처리됨 · 지난 90일</p>
+          <p className="page-subtitle">{filtered.length.toLocaleString()}건 처리됨 · 지난 90일</p>
         </div>
       </div>
 
       <div className="filter-bar">
         <div className="search-input">
           <I.Search size={14} style={{ color: 'var(--text-muted)' }} />
-          <input placeholder="청구 ID, 병원, 환자 ID 검색…" />
+          <input
+            placeholder="청구 ID, 병원, 환자 ID 검색…"
+            value={query}
+            onChange={handleSearch}
+          />
         </div>
-        <FilterChip label="상태" value="모두" />
-        <FilterChip label="플래그 등급" value="모두" />
-        <FilterChip label="병원" value="모두" />
-        <FilterChip label="금액" value="모두" />
-        <FilterChip label="날짜" value="최근 90일" />
+        <FilterDropdown label="상태" options={STATUS_OPTIONS} value={statusFilter} onChange={handleStatusChange} />
+        <button className="chip"><span className="chip-label">플래그 등급</span><span>모두</span><I.ChevronDown size={12} /></button>
+        <button className="chip"><span className="chip-label">병원</span><span>모두</span><I.ChevronDown size={12} /></button>
+        <button className="chip"><span className="chip-label">금액</span><span>모두</span><I.ChevronDown size={12} /></button>
+        <button className="chip"><span className="chip-label">날짜</span><span>최근 90일</span><I.ChevronDown size={12} /></button>
         <span className="spacer" />
-        <span className="text-link">필터 초기화</span>
+        <span className="text-link" onClick={() => { setQuery(''); setStatusFilter(''); setPage(1); }} style={{ cursor: 'pointer' }}>필터 초기화</span>
         <button className="btn btn-primary"><I.Plus size={14} />새 검증 실행</button>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '40% 1fr', gap: 16, alignItems: 'flex-start' }}>
         <div className="card" style={{ overflow: 'hidden' }}>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>청구 ID</th>
-                <th>일자</th>
-                <th>병원</th>
-                <th className="right">금액</th>
-                <th className="right">점수</th>
-                <th>상태</th>
-              </tr>
-            </thead>
-            <tbody>
-              {claimList.map(cl => (
-                <tr key={cl.id}
-                    className={selected === cl.id ? 'selected' : ''}
-                    onClick={() => setSelected(cl.id)}>
-                  <td><span className="mono" style={{ fontSize: 12 }}>{cl.id.replace('CLM-2026-', '…')}</span></td>
-                  <td style={{ color: 'var(--text-secondary)' }}>{cl.date}</td>
-                  <td style={{ fontSize: 12, color: 'var(--text-body)' }}>{cl.hospital.length > 14 ? cl.hospital.slice(0, 14) + '…' : cl.hospital}</td>
-                  <td className="right mono tnum">{fmtKRW(cl.amount)}</td>
-                  <td className="right"><ScoreCell score={cl.score} /></td>
-                  <td style={{ fontSize: 12 }}><StatusDot s={cl.status} /></td>
+          {paginated.length > 0 ? (
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>청구 ID</th>
+                  <th>일자</th>
+                  <th>병원</th>
+                  <th className="right">금액</th>
+                  <th className="right">점수</th>
+                  <th>상태</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {paginated.map(cl => (
+                  <tr key={cl.id}
+                      className={selected === cl.id ? 'selected' : ''}
+                      onClick={() => setSelected(cl.id)}>
+                    <td><span className="mono" style={{ fontSize: 12 }}>{cl.id.replace('CLM-2026-', '…')}</span></td>
+                    <td style={{ color: 'var(--text-secondary)' }}>{cl.date}</td>
+                    <td style={{ fontSize: 12, color: 'var(--text-body)' }}>{cl.hospital.length > 14 ? cl.hospital.slice(0, 14) + '…' : cl.hospital}</td>
+                    <td className="right mono tnum">{fmtKRW(cl.amount)}</td>
+                    <td className="right"><ScoreCell score={cl.score} /></td>
+                    <td style={{ fontSize: 12 }}><StatusDot s={cl.status} /></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <div style={{ padding: '48px 16px', textAlign: 'center', color: 'var(--text-muted)', fontSize: 13 }}>
+              검색 결과가 없습니다.
+            </div>
+          )}
           <div className="pagination" style={{ borderTop: '1px solid var(--border)', justifyContent: 'space-between' }}>
-            <span style={{ color: 'var(--text-muted)' }}>15 / 12,847건</span>
+            <span style={{ color: 'var(--text-muted)' }}>{paginated.length} / {filtered.length.toLocaleString()}건</span>
             <div style={{ display: 'flex', gap: 4 }}>
-              <button>&lt; 이전</button>
-              <button className="active">1</button>
-              <button>2</button>
-              <button>3</button>
-              <span style={{ color: 'var(--text-muted)', padding: '4px 4px' }}>…</span>
-              <button>857</button>
-              <button>다음 &gt;</button>
+              <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1}>&lt; 이전</button>
+              {pageNums.map(n => (
+                <button key={n} className={page === n ? 'active' : ''} onClick={() => setPage(n)}>{n}</button>
+              ))}
+              {totalPages > 3 && (
+                <>
+                  <span style={{ color: 'var(--text-muted)', padding: '4px 4px' }}>…</span>
+                  <button onClick={() => setPage(totalPages)}>{totalPages}</button>
+                </>
+              )}
+              <button onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={page === totalPages}>다음 &gt;</button>
             </div>
           </div>
         </div>
@@ -105,11 +223,29 @@ export default function ClaimValidation() {
                 </span>
               </div>
               <div style={{ display: 'flex', gap: 8 }}>
-                <button className="btn btn-secondary btn-sm">검증 재실행</button>
-                <button className="btn btn-secondary btn-sm">메모 추가</button>
-                <button className="btn btn-primary btn-sm"><I.Download size={12} />내보내기</button>
+                <button className="btn btn-secondary btn-sm" onClick={handleRerun} disabled={rerunLoading}>
+                  {rerunLoading ? '검증 중…' : rerunDone ? '✓ 완료' : '검증 재실행'}
+                </button>
+                <button className="btn btn-secondary btn-sm" onClick={() => setMemoOpen(o => !o)}>메모 추가</button>
+                <button className="btn btn-primary btn-sm" onClick={handleExport}><I.Download size={12} />내보내기</button>
               </div>
             </div>
+
+            {memoOpen && (
+              <div style={{ marginBottom: 16, padding: 12, background: 'var(--bg-canvas)', borderRadius: 8, border: '1px solid var(--border)' }}>
+                <textarea
+                  value={memo}
+                  onChange={(e) => setMemo(e.target.value)}
+                  placeholder="메모를 입력하세요…"
+                  style={{ width: '100%', minHeight: 72, border: '1px solid var(--border)', borderRadius: 6, padding: '8px 10px', fontSize: 13, resize: 'vertical', fontFamily: 'inherit', outline: 'none' }}
+                  autoFocus
+                />
+                <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
+                  <button className="btn btn-primary btn-sm" onClick={handleMemoSave}>저장</button>
+                  <button className="btn btn-ghost btn-sm" onClick={() => { setMemoOpen(false); setMemo(''); }}>취소</button>
+                </div>
+              </div>
+            )}
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px 24px', fontSize: 12 }}>
               {[
