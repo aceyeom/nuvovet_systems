@@ -24,3 +24,10 @@ __pycache__/
 *.pyc
 *.pyo
 .pytest_cache/
+
+# Licensed compendium material must never be committed (see docs/DATA_PROVENANCE.md)
+*.pdf
+plumb*/
+**/plumbs_output/
+backend/reports/
+**/dosage_false_positive_candidates.json
