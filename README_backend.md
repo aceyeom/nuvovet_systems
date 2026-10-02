@@ -32,7 +32,7 @@ The API will be available at `http://localhost:8000`.
 
 ```bash
 curl http://localhost:8000/api/health
-# → {"status":"ok","drug_count":641}
+# → {"status":"ok","drug_count":862}
 ```
 
 ## Key endpoints
@@ -72,7 +72,7 @@ If the sync fails, startup fails as well, which makes deploy issues visible imme
 
 ### Option 3: reload through the API
 
-1. log in as the seeded `admin` account or another account renamed to `admin`
+1. set `NUVOVET_ADMIN_PASSWORD` on the server (seeds an `admin` account on first start) and log in as `admin`
 2. call `POST /api/admin/drugs/reload` with the bearer token
 
 Example:
@@ -96,4 +96,8 @@ Expected response:
 
 ## CORS
 
-The server allows all origins in development (`allow_origins=["*"]`). Restrict this in production.
+Set `NUVOVET_CORS_ORIGINS` to a comma-separated list of allowed origins in production. When unset, any origin is allowed without credentials (local development).
+
+## Claims engine
+
+See the root `README.md` and `backend/claims/`. Run `python -m pytest -q tests` from `backend/`.
