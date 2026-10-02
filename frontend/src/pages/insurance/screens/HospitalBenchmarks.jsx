@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { loadDemo } from '../claimsApi';
-import { fmtKRW, fmtKRWShort, fmtPct } from '../format';
+import { fmtKRW, fmtKRWShort, fmtPct, claimHeadline } from '../format';
 import { DecisionBadge, Loading, SourceNote, useAsync } from '../ui';
 
 export default function HospitalBenchmarks({ onOpenClaim }) {
@@ -40,7 +40,7 @@ export default function HospitalBenchmarks({ onOpenClaim }) {
       <div className="card">
         <table className="table">
           <thead>
-            <tr><th>병원</th><th>지역</th><th style={{ textAlign: 'right' }}>청구</th><th style={{ textAlign: 'right' }}>청구액</th><th style={{ textAlign: 'right' }}>검토 비율</th><th>검토 대상 비중</th><th style={{ textAlign: 'right' }}>검토 대상 금액</th></tr>
+            <tr><th>병원</th><th>지역</th><th style={{ textAlign: 'right' }}>청구</th><th style={{ textAlign: 'right' }}>청구액</th><th style={{ textAlign: 'right' }}>검토 비율</th><th style={{ textAlign: 'right' }}>서류 요청</th><th style={{ textAlign: 'right' }}>SIU</th><th>검토 대상 비중</th><th style={{ textAlign: 'right' }}>검토 대상 금액</th></tr>
           </thead>
           <tbody>
             {clinics.map((c) => (
@@ -51,6 +51,8 @@ export default function HospitalBenchmarks({ onOpenClaim }) {
                   <td className="mono tnum" style={{ textAlign: 'right' }}>{c.claims}</td>
                   <td className="mono tnum" style={{ textAlign: 'right' }}>{fmtKRWShort(c.billed)}</td>
                   <td className="mono tnum" style={{ textAlign: 'right' }}>{fmtPct(c.rate, 0)}</td>
+                  <td className="mono tnum" style={{ textAlign: 'right', color: 'var(--text-secondary)' }}>{c.pended ?? 0}</td>
+                  <td className="mono tnum" style={{ textAlign: 'right', color: c.siu ? 'var(--critical)' : 'var(--text-faint)', fontWeight: c.siu ? 600 : 400 }}>{c.siu ?? 0}</td>
                   <td>
                     <div className="row gap-8" style={{ alignItems: 'center' }}>
                       <div style={{ width: 120, height: 6, background: 'var(--bg-canvas)', borderRadius: 3, overflow: 'hidden' }}>
@@ -63,13 +65,13 @@ export default function HospitalBenchmarks({ onOpenClaim }) {
                 </tr>
                 {open === c.clinic_id && (
                   <tr>
-                    <td colSpan={7} style={{ background: 'var(--bg-canvas)', padding: '8px 16px' }}>
+                    <td colSpan={9} style={{ background: 'var(--bg-canvas)', padding: '8px 16px' }}>
                       {data.claims.filter((x) => x.clinic === c.name && x.decision !== 'auto_approve').slice(0, 8).map((x) => (
                         <button key={x.claim_id} className="row gap-12" onClick={() => onOpenClaim(x.claim_id)}
                           style={{ width: '100%', padding: '6px 0', background: 'transparent', alignItems: 'center', textAlign: 'left' }}>
                           <span className="mono" style={{ fontSize: 11.5, width: 150 }}>{x.claim_id}</span>
                           <DecisionBadge decision={x.decision} />
-                          <span style={{ fontSize: 12.5, flex: 1 }}>{x.top_finding || x.diagnosis}</span>
+                          <span style={{ fontSize: 12.5, flex: 1 }}>{claimHeadline(x)}</span>
                           <span className="mono tnum" style={{ fontSize: 12 }}>{fmtKRW(x.billed)}</span>
                         </button>
                       ))}

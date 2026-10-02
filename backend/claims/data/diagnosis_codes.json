@@ -30,7 +30,73 @@
     "analgesic_adjunct"
    ]
   },
-  "version": "2026.10.0"
+  "version": "2026.10.1",
+  "body_systems": {
+   "skin": "피부",
+   "ear": "귀",
+   "eye": "눈",
+   "oral": "구강·치아",
+   "digestive": "소화기",
+   "hepatobiliary": "간·담도",
+   "musculoskeletal": "근골격계",
+   "nervous": "신경계",
+   "cardiovascular": "심혈관계",
+   "respiratory": "호흡기",
+   "urinary": "비뇨기 (신장 포함)",
+   "endocrine": "내분비",
+   "reproductive": "생식기",
+   "hemolymphatic": "혈액·면역",
+   "neoplasia": "종양",
+   "infectious": "전신 감염",
+   "behavioral": "행동",
+   "general": "전신·기타",
+   "none": "해당 없음 (예방)"
+  },
+  "condition_groups": {
+   "_note": "Groups for waiting periods (e.g. patella_hip: 365 days), riders (skin, patella_hip, dental) and exclusion riders (부담보). Which groups a product gates is product data, not codebook data. KB 금쪽같은 펫 excludes patellar luxation and hip disease for 1 year (docs/research); Samsung sells skin and knee-joint (슬관절) riders separately — whether a product's knee rider also covers cruciate disease is product-specific, so cruciate is its own group.",
+   "patella_hip": "슬개골·고관절 질환",
+   "cruciate": "십자인대",
+   "orthopedic": "기타 정형",
+   "spine": "척추·디스크",
+   "skin": "피부",
+   "ear": "귀",
+   "eye": "안과",
+   "dental": "구강·치과",
+   "perianal": "항문낭·회음부",
+   "gi": "소화기",
+   "chronic_gi": "만성 장질환",
+   "hepatobiliary": "간·담도",
+   "chronic_cardiac": "만성 심장질환",
+   "chronic_renal": "만성 신장질환",
+   "urinary": "비뇨기",
+   "urolithiasis": "요로결석",
+   "endocrine": "내분비",
+   "respiratory": "호흡기",
+   "chronic_neuro": "만성 신경질환",
+   "hematologic_immune": "혈액·면역",
+   "oncology": "종양",
+   "infectious": "감염성 질환",
+   "trauma": "외상",
+   "toxic": "중독",
+   "reproductive": "생식기",
+   "hernia": "탈장",
+   "behavior": "행동",
+   "preventive": "예방",
+   "general": "전신 증상"
+  },
+  "specificity": "'diagnosis' (a disease) or 'symptom' (a presenting sign such as 구토; the matcher prefers a disease term on near-ties, and a symptom-only claim is a candidate for a 진단서 request).",
+  "mafra_standard_ref_format": {
+   "_note": "null until the MAFRA '동물 진료의 권장 표준' disease table (3,511 coded, 2025-04 revision) is ingested. MAFRA codes look like 'DH10.56': species letter + KCD-like core + cause digits.",
+   "example": {
+    "species_prefix": "D",
+    "code": "DH10.56",
+    "version": "2025-04"
+   }
+  },
+  "changelog": [
+   "2026.10.1: body_system, condition_group, specificity, congenital on every code; +25 codes (19 diseases, 6 symptom-level); symptom words moved off NVD-GI-001 to NVD-SYM-002/003; mafra_standard_ref structured as {species_prefix, code, version}|null.",
+   "2026.10.1 (review 2026-10-02): removed over-broad synonyms (포도, 구충, 접종, 백신, 고관절, 고관절탈구); '간질' no longer matches inside '간질성'; heartworm test names are not the disease; +외이도염, +MPL; +NVD-INF-005 feline panleukopenia (cat '파보'/'범백' was coded as canine parvovirus)."
+  ]
  },
  "diagnoses": [
   {
@@ -69,7 +135,11 @@
    "chronic": true,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "skin",
+   "condition_group": "skin",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-DER-002",
@@ -102,7 +172,11 @@
    "chronic": false,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "skin",
+   "condition_group": "skin",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-DER-003",
@@ -132,7 +206,11 @@
    "chronic": false,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "skin",
+   "condition_group": "skin",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-DER-004",
@@ -144,7 +222,10 @@
     "otitis",
     "귀염증",
     "중이염",
-    "이염"
+    "이염",
+    "외이도염",
+    "이도염",
+    "otitisexterna"
    ],
    "expected_drug_classes": [
     "antibiotic",
@@ -167,7 +248,11 @@
    "chronic": false,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "ear",
+   "condition_group": "ear",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-DER-005",
@@ -199,7 +284,11 @@
    "chronic": false,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "skin",
+   "condition_group": "skin",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-GI-001",
@@ -211,10 +300,6 @@
     "장염",
     "gastroenteritis",
     "구토설사",
-    "구토",
-    "설사",
-    "vomiting",
-    "diarrhea",
     "급성장염"
    ],
    "expected_drug_classes": [
@@ -242,7 +327,11 @@
    "chronic": false,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "digestive",
+   "condition_group": "gi",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-GI-002",
@@ -276,7 +365,11 @@
    "chronic": false,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "digestive",
+   "condition_group": "gi",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-GI-003",
@@ -317,7 +410,11 @@
    "chronic": false,
    "accident": true,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "digestive",
+   "condition_group": "gi",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-GI-004",
@@ -353,7 +450,11 @@
    "chronic": true,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "digestive",
+   "condition_group": "chronic_gi",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-HEP-001",
@@ -367,7 +468,13 @@
     "간질환",
     "간수치상승",
     "hepatopathy",
-    "간염"
+    "간염",
+    "gallstone",
+    "담석",
+    "cholelith",
+    "hepatic",
+    "간부전",
+    "liverdisease"
    ],
    "expected_drug_classes": [
     "hepatoprotectant",
@@ -393,7 +500,11 @@
    "chronic": true,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "hepatobiliary",
+   "condition_group": "hepatobiliary",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-ORT-001",
@@ -404,7 +515,8 @@
     "슬개골",
     "patella",
     "patellar",
-    "슬탈"
+    "슬탈",
+    "mpl"
    ],
    "expected_drug_classes": [
     "nsaid",
@@ -435,7 +547,11 @@
    "chronic": true,
    "accident": false,
    "species": "dog",
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "musculoskeletal",
+   "condition_group": "patella_hip",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-ORT-002",
@@ -474,7 +590,11 @@
    "chronic": false,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "musculoskeletal",
+   "condition_group": "cruciate",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-ORT-003",
@@ -510,7 +630,11 @@
    "chronic": true,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "musculoskeletal",
+   "condition_group": "orthopedic",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-ORT-004",
@@ -547,7 +671,11 @@
    "chronic": false,
    "accident": true,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "musculoskeletal",
+   "condition_group": "trauma",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-NEU-001",
@@ -583,7 +711,11 @@
    "chronic": false,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "nervous",
+   "condition_group": "spine",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-NEU-002",
@@ -616,7 +748,14 @@
    "chronic": true,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "nervous",
+   "condition_group": "chronic_neuro",
+   "specificity": "diagnosis",
+   "congenital": false,
+   "exclude_contexts": [
+    "간질성"
+   ]
   },
   {
    "code": "NVD-CAR-001",
@@ -654,7 +793,11 @@
    "chronic": true,
    "accident": false,
    "species": "dog",
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "cardiovascular",
+   "condition_group": "chronic_cardiac",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-CAR-002",
@@ -687,7 +830,11 @@
    "chronic": true,
    "accident": false,
    "species": "cat",
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "cardiovascular",
+   "condition_group": "chronic_cardiac",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-REN-001",
@@ -728,7 +875,11 @@
    "chronic": true,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "urinary",
+   "condition_group": "chronic_renal",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-URO-001",
@@ -763,7 +914,11 @@
    "chronic": false,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "urinary",
+   "condition_group": "urinary",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-URO-002",
@@ -803,7 +958,11 @@
    "chronic": true,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "urinary",
+   "condition_group": "urolithiasis",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-URO-003",
@@ -843,7 +1002,11 @@
    "chronic": true,
    "accident": false,
    "species": "cat",
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "urinary",
+   "condition_group": "urinary",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-END-001",
@@ -877,7 +1040,11 @@
    "chronic": true,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "endocrine",
+   "condition_group": "endocrine",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-END-002",
@@ -906,7 +1073,11 @@
    "chronic": true,
    "accident": false,
    "species": "dog",
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "endocrine",
+   "condition_group": "endocrine",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-END-003",
@@ -933,7 +1104,11 @@
    "chronic": true,
    "accident": false,
    "species": "dog",
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "endocrine",
+   "condition_group": "endocrine",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-END-004",
@@ -962,7 +1137,11 @@
    "chronic": true,
    "accident": false,
    "species": "cat",
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "endocrine",
+   "condition_group": "endocrine",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-RES-001",
@@ -995,7 +1174,11 @@
    "chronic": true,
    "accident": false,
    "species": "dog",
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "respiratory",
+   "condition_group": "respiratory",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-RES-002",
@@ -1034,7 +1217,11 @@
    "chronic": false,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "respiratory",
+   "condition_group": "respiratory",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-RES-003",
@@ -1065,7 +1252,11 @@
    "chronic": false,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "respiratory",
+   "condition_group": "respiratory",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-OPH-001",
@@ -1098,7 +1289,11 @@
    "chronic": false,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "eye",
+   "condition_group": "eye",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-OPH-002",
@@ -1132,7 +1327,11 @@
    "chronic": false,
    "accident": true,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "eye",
+   "condition_group": "eye",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-OPH-003",
@@ -1161,7 +1360,11 @@
    "chronic": true,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "eye",
+   "condition_group": "eye",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-OPH-004",
@@ -1192,7 +1395,11 @@
    "chronic": true,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "eye",
+   "condition_group": "eye",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-DEN-001",
@@ -1230,7 +1437,11 @@
    "chronic": true,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "oral",
+   "condition_group": "dental",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-DEN-002",
@@ -1267,7 +1478,11 @@
    "chronic": false,
    "accident": true,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "oral",
+   "condition_group": "dental",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-ONC-001",
@@ -1309,7 +1524,11 @@
    "chronic": true,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "neoplasia",
+   "condition_group": "oncology",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-INF-001",
@@ -1318,7 +1537,10 @@
    "name_en": "Canine parvovirus enteritis",
    "synonyms": [
     "파보",
-    "parvo"
+    "parvo",
+    "파보장염",
+    "파보바이러스",
+    "parvovirus"
    ],
    "expected_drug_classes": [
     "antiemetic",
@@ -1343,7 +1565,14 @@
    "chronic": false,
    "accident": false,
    "species": "dog",
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "infectious",
+   "condition_group": "infectious",
+   "specificity": "diagnosis",
+   "congenital": false,
+   "supersedes": [
+    "NVD-GI-001"
+   ]
   },
   {
    "code": "NVD-TRA-001",
@@ -1384,7 +1613,11 @@
    "chronic": false,
    "accident": true,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "skin",
+   "condition_group": "trauma",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-TOX-001",
@@ -1395,10 +1628,13 @@
     "중독",
     "초콜릿",
     "자일리톨",
-    "포도",
     "toxin",
     "poison",
-    "백합"
+    "백합",
+    "포도섭취",
+    "포도중독",
+    "포도독성",
+    "건포도"
    ],
    "expected_drug_classes": [
     "antiemetic",
@@ -1422,7 +1658,11 @@
    "chronic": false,
    "accident": true,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "general",
+   "condition_group": "toxic",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-PRE-001",
@@ -1431,9 +1671,13 @@
    "name_en": "Vaccination",
    "synonyms": [
     "예방접종",
-    "백신",
     "vaccination",
-    "접종"
+    "백신접종",
+    "종합백신",
+    "광견병백신",
+    "광견병접종",
+    "추가접종",
+    "예방주사"
    ],
    "expected_drug_classes": [
     "vaccine",
@@ -1450,7 +1694,11 @@
    "chronic": false,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "none",
+   "condition_group": "preventive",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-PRE-002",
@@ -1486,7 +1734,11 @@
    "chronic": false,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "reproductive",
+   "condition_group": "preventive",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-PRE-003",
@@ -1496,8 +1748,15 @@
    "synonyms": [
     "사상충예방",
     "기생충예방",
-    "구충",
-    "예방약"
+    "예방약",
+    "심장사상충예방",
+    "heartwormprevention",
+    "구충제",
+    "구충예방",
+    "벼룩예방",
+    "진드기예방",
+    "외부기생충예방",
+    "내부기생충예방"
    ],
    "expected_drug_classes": [
     "antiparasitic"
@@ -1514,7 +1773,11 @@
    "chronic": false,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "none",
+   "condition_group": "preventive",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-PRE-004",
@@ -1525,7 +1788,10 @@
     "건강검진",
     "종합검진",
     "wellness",
-    "healthcheck"
+    "healthcheck",
+    "checkup",
+    "routinecheckup",
+    "정기검진"
    ],
    "expected_drug_classes": [
     "supplement"
@@ -1543,7 +1809,11 @@
    "chronic": false,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "none",
+   "condition_group": "preventive",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-REP-001",
@@ -1580,7 +1850,11 @@
    "chronic": false,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "reproductive",
+   "condition_group": "reproductive",
+   "specificity": "diagnosis",
+   "congenital": false
   },
   {
    "code": "NVD-BEH-001",
@@ -1613,7 +1887,1116 @@
    "chronic": true,
    "accident": false,
    "species": null,
-   "mafra_standard_ref": null
+   "mafra_standard_ref": null,
+   "body_system": "behavioral",
+   "condition_group": "behavior",
+   "specificity": "diagnosis",
+   "congenital": false
+  },
+  {
+   "code": "NVD-ORT-005",
+   "system": "orthopedics",
+   "name_ko": "고관절 이형성증",
+   "name_en": "Hip dysplasia",
+   "synonyms": [
+    "고관절이형성",
+    "고관절이형성증",
+    "고관절형성부전",
+    "hipdysplasia",
+    "고관절질환"
+   ],
+   "expected_drug_classes": [
+    "nsaid",
+    "analgesic_adjunct",
+    "opioid",
+    "anesthetic_sedative",
+    "antibiotic",
+    "supplement",
+    "gi_protectant"
+   ],
+   "expected_procedure_categories": [
+    "consult",
+    "lab",
+    "imaging",
+    "treatment",
+    "hospitalization",
+    "pharmacy",
+    "anesthesia",
+    "surgery"
+   ],
+   "atypical_procedures": [
+    "IMG-003"
+   ],
+   "coverage_tags": [
+    "patella"
+   ],
+   "chronic": true,
+   "accident": false,
+   "species": "dog",
+   "mafra_standard_ref": null,
+   "body_system": "musculoskeletal",
+   "condition_group": "patella_hip",
+   "specificity": "diagnosis",
+   "congenital": true
+  },
+  {
+   "code": "NVD-ORT-006",
+   "system": "orthopedics",
+   "name_ko": "레그-칼베-페르테스병",
+   "name_en": "Legg-Calvé-Perthes disease",
+   "synonyms": [
+    "레그페르테스",
+    "레그칼베페르테스",
+    "페르테스",
+    "perthes",
+    "lcpd",
+    "대퇴골두괴사",
+    "대퇴골두무혈성괴사"
+   ],
+   "expected_drug_classes": [
+    "nsaid",
+    "analgesic_adjunct",
+    "opioid",
+    "anesthetic_sedative",
+    "antibiotic",
+    "supplement",
+    "gi_protectant"
+   ],
+   "expected_procedure_categories": [
+    "consult",
+    "lab",
+    "imaging",
+    "treatment",
+    "hospitalization",
+    "pharmacy",
+    "anesthesia",
+    "surgery"
+   ],
+   "atypical_procedures": [
+    "IMG-003"
+   ],
+   "coverage_tags": [
+    "patella"
+   ],
+   "chronic": false,
+   "accident": false,
+   "species": "dog",
+   "mafra_standard_ref": null,
+   "body_system": "musculoskeletal",
+   "condition_group": "patella_hip",
+   "specificity": "diagnosis",
+   "congenital": true
+  },
+  {
+   "code": "NVD-RES-004",
+   "system": "respiratory",
+   "name_ko": "단두종 기도 증후군 (BOAS)",
+   "name_en": "Brachycephalic obstructive airway syndrome",
+   "synonyms": [
+    "단두종",
+    "단두종증후군",
+    "단두종기도",
+    "boas",
+    "brachycephalic",
+    "연구개노장",
+    "연구개과장",
+    "비공협착"
+   ],
+   "expected_drug_classes": [
+    "corticosteroid",
+    "anesthetic_sedative",
+    "nsaid",
+    "opioid",
+    "antibiotic",
+    "gi_protectant",
+    "antiemetic"
+   ],
+   "expected_procedure_categories": [
+    "consult",
+    "lab",
+    "imaging",
+    "treatment",
+    "hospitalization",
+    "pharmacy",
+    "anesthesia",
+    "surgery"
+   ],
+   "atypical_procedures": [],
+   "coverage_tags": [],
+   "chronic": true,
+   "accident": false,
+   "species": "dog",
+   "mafra_standard_ref": null,
+   "body_system": "respiratory",
+   "condition_group": "respiratory",
+   "specificity": "diagnosis",
+   "congenital": true
+  },
+  {
+   "code": "NVD-HEM-001",
+   "system": "hematology",
+   "name_ko": "면역매개성 용혈성 빈혈 (IMHA)",
+   "name_en": "Immune-mediated hemolytic anemia",
+   "synonyms": [
+    "imha",
+    "면역매개성용혈성빈혈",
+    "면역매개용혈성빈혈",
+    "용혈성빈혈",
+    "자가면역성용혈"
+   ],
+   "expected_drug_classes": [
+    "corticosteroid",
+    "antipruritic_immunomodulator",
+    "anticoagulant_antiplatelet",
+    "gi_protectant",
+    "antibiotic"
+   ],
+   "expected_procedure_categories": [
+    "consult",
+    "lab",
+    "imaging",
+    "treatment",
+    "hospitalization",
+    "pharmacy"
+   ],
+   "atypical_procedures": [
+    "SUR-005"
+   ],
+   "coverage_tags": [],
+   "chronic": true,
+   "accident": false,
+   "species": null,
+   "mafra_standard_ref": null,
+   "body_system": "hemolymphatic",
+   "condition_group": "hematologic_immune",
+   "specificity": "diagnosis",
+   "congenital": false
+  },
+  {
+   "code": "NVD-ONC-002",
+   "system": "oncology",
+   "name_ko": "림프종",
+   "name_en": "Lymphoma",
+   "synonyms": [
+    "림프종",
+    "lymphoma",
+    "림프육종",
+    "lymphosarcoma"
+   ],
+   "expected_drug_classes": [
+    "antineoplastic",
+    "corticosteroid",
+    "antiemetic",
+    "gi_protectant",
+    "antibiotic",
+    "supplement"
+   ],
+   "expected_procedure_categories": [
+    "consult",
+    "lab",
+    "imaging",
+    "treatment",
+    "hospitalization",
+    "pharmacy",
+    "anesthesia",
+    "surgery"
+   ],
+   "atypical_procedures": [],
+   "coverage_tags": [],
+   "chronic": true,
+   "accident": false,
+   "species": null,
+   "mafra_standard_ref": null,
+   "body_system": "neoplasia",
+   "condition_group": "oncology",
+   "specificity": "diagnosis",
+   "congenital": false
+  },
+  {
+   "code": "NVD-OPH-005",
+   "system": "ophthalmology",
+   "name_ko": "녹내장",
+   "name_en": "Glaucoma",
+   "synonyms": [
+    "녹내장",
+    "glaucoma",
+    "안압상승"
+   ],
+   "expected_drug_classes": [
+    "ophthalmic",
+    "analgesic_adjunct",
+    "nsaid",
+    "diuretic"
+   ],
+   "expected_procedure_categories": [
+    "consult",
+    "treatment",
+    "pharmacy",
+    "surgery",
+    "anesthesia",
+    "imaging",
+    "lab"
+   ],
+   "atypical_procedures": [
+    "IMG-005",
+    "IMG-003"
+   ],
+   "coverage_tags": [],
+   "chronic": true,
+   "accident": false,
+   "species": null,
+   "mafra_standard_ref": null,
+   "body_system": "eye",
+   "condition_group": "eye",
+   "specificity": "diagnosis",
+   "congenital": false
+  },
+  {
+   "code": "NVD-END-005",
+   "system": "endocrinology",
+   "name_ko": "부신피질기능저하증 (애디슨)",
+   "name_en": "Hypoadrenocorticism (Addison's)",
+   "synonyms": [
+    "애디슨",
+    "addison",
+    "부신피질기능저하",
+    "부신기능저하",
+    "hypoadrenocorticism"
+   ],
+   "expected_drug_classes": [
+    "endocrine",
+    "corticosteroid",
+    "fluid_electrolyte"
+   ],
+   "expected_procedure_categories": [
+    "consult",
+    "lab",
+    "imaging",
+    "treatment",
+    "hospitalization",
+    "pharmacy"
+   ],
+   "atypical_procedures": [
+    "IMG-005"
+   ],
+   "coverage_tags": [],
+   "chronic": true,
+   "accident": false,
+   "species": "dog",
+   "mafra_standard_ref": null,
+   "body_system": "endocrine",
+   "condition_group": "endocrine",
+   "specificity": "diagnosis",
+   "congenital": false
+  },
+  {
+   "code": "NVD-INF-002",
+   "system": "infectious",
+   "name_ko": "심장사상충 감염증",
+   "name_en": "Heartworm disease",
+   "synonyms": [
+    "심장사상충",
+    "심장사상충감염",
+    "심장사상충증",
+    "사상충감염",
+    "heartwormdisease",
+    "dirofilaria",
+    "dirofilariasis"
+   ],
+   "expected_drug_classes": [
+    "antiparasitic",
+    "antibiotic",
+    "corticosteroid",
+    "cardiac",
+    "diuretic",
+    "analgesic_adjunct"
+   ],
+   "expected_procedure_categories": [
+    "consult",
+    "lab",
+    "imaging",
+    "treatment",
+    "hospitalization",
+    "pharmacy"
+   ],
+   "atypical_procedures": [],
+   "coverage_tags": [],
+   "chronic": false,
+   "accident": false,
+   "species": null,
+   "mafra_standard_ref": null,
+   "body_system": "cardiovascular",
+   "condition_group": "infectious",
+   "specificity": "diagnosis",
+   "congenital": false,
+   "screening_words": [
+    "검사",
+    "키트",
+    "test",
+    "snap"
+   ]
+  },
+  {
+   "code": "NVD-INF-003",
+   "system": "infectious",
+   "name_ko": "진드기 매개 질환 (바베시아·아나플라즈마 등)",
+   "name_en": "Tick-borne disease",
+   "synonyms": [
+    "진드기매개",
+    "바베시아",
+    "babesia",
+    "babesiosis",
+    "아나플라즈마",
+    "anaplasma",
+    "에를리키아",
+    "ehrlichia",
+    "라임병",
+    "lyme",
+    "sfts",
+    "중증열성혈소판감소증후군"
+   ],
+   "expected_drug_classes": [
+    "antibiotic",
+    "antiparasitic",
+    "corticosteroid",
+    "fluid_electrolyte",
+    "supplement"
+   ],
+   "expected_procedure_categories": [
+    "consult",
+    "lab",
+    "imaging",
+    "treatment",
+    "hospitalization",
+    "pharmacy"
+   ],
+   "atypical_procedures": [
+    "IMG-005"
+   ],
+   "coverage_tags": [],
+   "chronic": false,
+   "accident": false,
+   "species": null,
+   "mafra_standard_ref": null,
+   "body_system": "infectious",
+   "condition_group": "infectious",
+   "specificity": "diagnosis",
+   "congenital": false
+  },
+  {
+   "code": "NVD-DER-006",
+   "system": "dermatology",
+   "name_ko": "항문낭염",
+   "name_en": "Anal sacculitis / anal sac disease",
+   "synonyms": [
+    "항문낭염",
+    "항문낭농양",
+    "항문낭질환",
+    "항문낭파열",
+    "항문낭",
+    "analsacculitis",
+    "analsacabscess",
+    "analsacdisease"
+   ],
+   "expected_drug_classes": [
+    "antibiotic",
+    "nsaid",
+    "analgesic_adjunct",
+    "corticosteroid"
+   ],
+   "expected_procedure_categories": [
+    "consult",
+    "treatment",
+    "pharmacy",
+    "lab",
+    "anesthesia",
+    "surgery"
+   ],
+   "atypical_procedures": [
+    "IMG-004",
+    "IMG-005",
+    "IMG-003"
+   ],
+   "coverage_tags": [],
+   "chronic": false,
+   "accident": false,
+   "species": null,
+   "mafra_standard_ref": null,
+   "body_system": "skin",
+   "condition_group": "perianal",
+   "specificity": "diagnosis",
+   "congenital": false
+  },
+  {
+   "code": "NVD-REP-002",
+   "system": "reproductive",
+   "name_ko": "잠복고환",
+   "name_en": "Cryptorchidism",
+   "synonyms": [
+    "잠복고환",
+    "정류고환",
+    "복강고환",
+    "cryptorchid",
+    "cryptorchidism"
+   ],
+   "expected_drug_classes": [
+    "anesthetic_sedative",
+    "nsaid",
+    "opioid",
+    "antibiotic",
+    "analgesic_adjunct"
+   ],
+   "expected_procedure_categories": [
+    "consult",
+    "imaging",
+    "lab",
+    "anesthesia",
+    "surgery",
+    "hospitalization",
+    "pharmacy",
+    "treatment",
+    "preventive"
+   ],
+   "atypical_procedures": [],
+   "coverage_tags": [],
+   "chronic": false,
+   "accident": false,
+   "species": null,
+   "mafra_standard_ref": null,
+   "body_system": "reproductive",
+   "condition_group": "reproductive",
+   "specificity": "diagnosis",
+   "congenital": true
+  },
+  {
+   "code": "NVD-HRN-001",
+   "system": "gastroenterology",
+   "name_ko": "제대·서혜부 탈장",
+   "name_en": "Umbilical / inguinal hernia",
+   "synonyms": [
+    "제대탈장",
+    "배꼽탈장",
+    "서혜부탈장",
+    "서혜탈장",
+    "umbilicalhernia",
+    "inguinalhernia",
+    "탈장",
+    "hernia"
+   ],
+   "expected_drug_classes": [
+    "anesthetic_sedative",
+    "nsaid",
+    "opioid",
+    "antibiotic",
+    "analgesic_adjunct"
+   ],
+   "expected_procedure_categories": [
+    "consult",
+    "imaging",
+    "lab",
+    "anesthesia",
+    "surgery",
+    "hospitalization",
+    "pharmacy",
+    "treatment"
+   ],
+   "atypical_procedures": [
+    "IMG-005"
+   ],
+   "coverage_tags": [],
+   "chronic": false,
+   "accident": false,
+   "species": null,
+   "mafra_standard_ref": null,
+   "body_system": "digestive",
+   "condition_group": "hernia",
+   "specificity": "diagnosis",
+   "congenital": true
+  },
+  {
+   "code": "NVD-HRN-002",
+   "system": "gastroenterology",
+   "name_ko": "회음부 탈장",
+   "name_en": "Perineal hernia",
+   "synonyms": [
+    "회음부탈장",
+    "회음탈장",
+    "perinealhernia"
+   ],
+   "expected_drug_classes": [
+    "anesthetic_sedative",
+    "nsaid",
+    "opioid",
+    "antibiotic",
+    "analgesic_adjunct",
+    "gi_motility"
+   ],
+   "expected_procedure_categories": [
+    "consult",
+    "imaging",
+    "lab",
+    "anesthesia",
+    "surgery",
+    "hospitalization",
+    "pharmacy",
+    "treatment"
+   ],
+   "atypical_procedures": [
+    "IMG-005"
+   ],
+   "coverage_tags": [],
+   "chronic": false,
+   "accident": false,
+   "species": "dog",
+   "mafra_standard_ref": null,
+   "body_system": "digestive",
+   "condition_group": "hernia",
+   "specificity": "diagnosis",
+   "congenital": false
+  },
+  {
+   "code": "NVD-DEN-003",
+   "system": "dental",
+   "name_ko": "잔존유치",
+   "name_en": "Retained deciduous teeth",
+   "synonyms": [
+    "잔존유치",
+    "유치잔존",
+    "retaineddeciduous",
+    "persistentdeciduous"
+   ],
+   "expected_drug_classes": [
+    "antibiotic",
+    "nsaid",
+    "analgesic_adjunct",
+    "anesthetic_sedative"
+   ],
+   "expected_procedure_categories": [
+    "consult",
+    "dental",
+    "anesthesia",
+    "imaging",
+    "lab",
+    "pharmacy"
+   ],
+   "atypical_procedures": [
+    "IMG-005",
+    "IMG-003"
+   ],
+   "coverage_tags": [
+    "dental"
+   ],
+   "chronic": false,
+   "accident": false,
+   "species": null,
+   "mafra_standard_ref": null,
+   "body_system": "oral",
+   "condition_group": "dental",
+   "specificity": "diagnosis",
+   "congenital": true
+  },
+  {
+   "code": "NVD-DEN-004",
+   "system": "dental",
+   "name_ko": "구내염 (치은구내염)",
+   "name_en": "Chronic gingivostomatitis",
+   "synonyms": [
+    "구내염",
+    "치은구내염",
+    "구강염",
+    "fcgs",
+    "stomatitis",
+    "gingivostomatitis"
+   ],
+   "expected_drug_classes": [
+    "antibiotic",
+    "nsaid",
+    "analgesic_adjunct",
+    "corticosteroid",
+    "antipruritic_immunomodulator",
+    "anesthetic_sedative",
+    "opioid"
+   ],
+   "expected_procedure_categories": [
+    "consult",
+    "dental",
+    "anesthesia",
+    "imaging",
+    "lab",
+    "pharmacy",
+    "treatment"
+   ],
+   "atypical_procedures": [
+    "IMG-005",
+    "IMG-003"
+   ],
+   "coverage_tags": [
+    "dental"
+   ],
+   "chronic": true,
+   "accident": false,
+   "species": null,
+   "mafra_standard_ref": null,
+   "body_system": "oral",
+   "condition_group": "dental",
+   "specificity": "diagnosis",
+   "congenital": false
+  },
+  {
+   "code": "NVD-OPH-006",
+   "system": "ophthalmology",
+   "name_ko": "제3안검 탈출 (체리아이)",
+   "name_en": "Cherry eye (third-eyelid gland prolapse)",
+   "synonyms": [
+    "체리아이",
+    "cherryeye",
+    "제3안검탈출",
+    "제3안검샘탈출",
+    "순막탈출"
+   ],
+   "expected_drug_classes": [
+    "ophthalmic",
+    "nsaid",
+    "antibiotic",
+    "anesthetic_sedative",
+    "analgesic_adjunct"
+   ],
+   "expected_procedure_categories": [
+    "consult",
+    "treatment",
+    "pharmacy",
+    "surgery",
+    "anesthesia"
+   ],
+   "atypical_procedures": [
+    "IMG-004",
+    "IMG-005",
+    "IMG-003",
+    "IMG-002"
+   ],
+   "coverage_tags": [],
+   "chronic": false,
+   "accident": false,
+   "species": "dog",
+   "mafra_standard_ref": null,
+   "body_system": "eye",
+   "condition_group": "eye",
+   "specificity": "diagnosis",
+   "congenital": false
+  },
+  {
+   "code": "NVD-OPH-007",
+   "system": "ophthalmology",
+   "name_ko": "유루증",
+   "name_en": "Epiphora",
+   "synonyms": [
+    "유루증",
+    "눈물흘림",
+    "epiphora",
+    "눈물자국",
+    "비루관폐쇄",
+    "누관폐쇄"
+   ],
+   "expected_drug_classes": [
+    "ophthalmic",
+    "antibiotic"
+   ],
+   "expected_procedure_categories": [
+    "consult",
+    "treatment",
+    "pharmacy"
+   ],
+   "atypical_procedures": [
+    "IMG-004",
+    "IMG-005",
+    "IMG-003",
+    "IMG-002"
+   ],
+   "coverage_tags": [],
+   "chronic": false,
+   "accident": false,
+   "species": null,
+   "mafra_standard_ref": null,
+   "body_system": "eye",
+   "condition_group": "eye",
+   "specificity": "diagnosis",
+   "congenital": false
+  },
+  {
+   "code": "NVD-INF-004",
+   "system": "infectious",
+   "name_ko": "고양이 전염성 복막염 (FIP)",
+   "name_en": "Feline infectious peritonitis",
+   "synonyms": [
+    "fip",
+    "전염성복막염",
+    "고양이복막염",
+    "felineinfectiousperitonitis"
+   ],
+   "expected_drug_classes": [
+    "corticosteroid",
+    "antibiotic",
+    "antiemetic",
+    "gi_protectant",
+    "supplement",
+    "fluid_electrolyte"
+   ],
+   "expected_procedure_categories": [
+    "consult",
+    "lab",
+    "imaging",
+    "treatment",
+    "hospitalization",
+    "pharmacy"
+   ],
+   "atypical_procedures": [],
+   "coverage_tags": [],
+   "chronic": false,
+   "accident": false,
+   "species": "cat",
+   "mafra_standard_ref": null,
+   "body_system": "infectious",
+   "condition_group": "infectious",
+   "specificity": "diagnosis",
+   "congenital": false
+  },
+  {
+   "code": "NVD-INF-005",
+   "system": "infectious",
+   "name_ko": "고양이 범백혈구감소증",
+   "name_en": "Feline panleukopenia",
+   "synonyms": [
+    "범백",
+    "범백혈구감소증",
+    "범백혈구감소",
+    "고양이파보",
+    "고양이범백",
+    "panleukopenia",
+    "felineparvovirus",
+    "fpv"
+   ],
+   "expected_drug_classes": [
+    "antiemetic",
+    "antibiotic",
+    "gi_protectant",
+    "fluid_electrolyte",
+    "supplement"
+   ],
+   "expected_procedure_categories": [
+    "consult",
+    "lab",
+    "treatment",
+    "hospitalization",
+    "pharmacy"
+   ],
+   "atypical_procedures": [
+    "IMG-004",
+    "IMG-005",
+    "IMG-003"
+   ],
+   "coverage_tags": [],
+   "chronic": false,
+   "accident": false,
+   "species": "cat",
+   "mafra_standard_ref": null,
+   "body_system": "infectious",
+   "condition_group": "infectious",
+   "specificity": "diagnosis",
+   "congenital": false,
+   "supersedes": [
+    "NVD-INF-001",
+    "NVD-GI-001"
+   ]
+  },
+  {
+   "code": "NVD-DER-007",
+   "system": "dermatology",
+   "name_ko": "피부사상균증",
+   "name_en": "Dermatophytosis (ringworm)",
+   "synonyms": [
+    "피부사상균",
+    "사상균증",
+    "링웜",
+    "ringworm",
+    "dermatophytosis",
+    "dermatophyte",
+    "곰팡이성피부염",
+    "진균성피부염",
+    "피부진균"
+   ],
+   "expected_drug_classes": [
+    "antifungal",
+    "antipruritic_immunomodulator"
+   ],
+   "expected_procedure_categories": [
+    "consult",
+    "lab",
+    "treatment",
+    "pharmacy"
+   ],
+   "atypical_procedures": [
+    "IMG-004",
+    "IMG-005",
+    "IMG-003"
+   ],
+   "coverage_tags": [],
+   "chronic": false,
+   "accident": false,
+   "species": null,
+   "mafra_standard_ref": null,
+   "body_system": "skin",
+   "condition_group": "skin",
+   "specificity": "diagnosis",
+   "congenital": false
+  },
+  {
+   "code": "NVD-SYM-001",
+   "system": "symptom",
+   "name_ko": "식욕부진",
+   "name_en": "Anorexia / inappetence",
+   "synonyms": [
+    "식욕부진",
+    "식욕저하",
+    "식욕감소",
+    "식욕없음",
+    "식욕부진증",
+    "anorexia",
+    "inappetence",
+    "hyporexia"
+   ],
+   "expected_drug_classes": [
+    "antiemetic",
+    "gi_protectant",
+    "supplement",
+    "behavioral",
+    "fluid_electrolyte",
+    "antibiotic"
+   ],
+   "expected_procedure_categories": [
+    "consult",
+    "lab",
+    "imaging",
+    "treatment",
+    "hospitalization",
+    "pharmacy"
+   ],
+   "atypical_procedures": [
+    "IMG-005"
+   ],
+   "coverage_tags": [],
+   "chronic": false,
+   "accident": false,
+   "species": null,
+   "mafra_standard_ref": null,
+   "body_system": "general",
+   "condition_group": "general",
+   "specificity": "symptom",
+   "congenital": false
+  },
+  {
+   "code": "NVD-SYM-002",
+   "system": "symptom",
+   "name_ko": "구토",
+   "name_en": "Vomiting",
+   "synonyms": [
+    "구토",
+    "vomiting",
+    "emesis",
+    "토함"
+   ],
+   "expected_drug_classes": [
+    "antiemetic",
+    "gi_protectant",
+    "fluid_electrolyte",
+    "gi_motility",
+    "antibiotic"
+   ],
+   "expected_procedure_categories": [
+    "consult",
+    "lab",
+    "imaging",
+    "treatment",
+    "hospitalization",
+    "pharmacy"
+   ],
+   "atypical_procedures": [
+    "IMG-005"
+   ],
+   "coverage_tags": [],
+   "chronic": false,
+   "accident": false,
+   "species": null,
+   "mafra_standard_ref": null,
+   "body_system": "digestive",
+   "condition_group": "gi",
+   "specificity": "symptom",
+   "congenital": false
+  },
+  {
+   "code": "NVD-SYM-003",
+   "system": "symptom",
+   "name_ko": "설사",
+   "name_en": "Diarrhea",
+   "synonyms": [
+    "설사",
+    "diarrhea",
+    "diarrhoea",
+    "묽은변",
+    "연변",
+    "혈변"
+   ],
+   "expected_drug_classes": [
+    "antibiotic",
+    "gi_protectant",
+    "supplement",
+    "fluid_electrolyte",
+    "antiparasitic",
+    "antiemetic"
+   ],
+   "expected_procedure_categories": [
+    "consult",
+    "lab",
+    "imaging",
+    "treatment",
+    "hospitalization",
+    "pharmacy"
+   ],
+   "atypical_procedures": [
+    "IMG-005"
+   ],
+   "coverage_tags": [],
+   "chronic": false,
+   "accident": false,
+   "species": null,
+   "mafra_standard_ref": null,
+   "body_system": "digestive",
+   "condition_group": "gi",
+   "specificity": "symptom",
+   "congenital": false
+  },
+  {
+   "code": "NVD-SYM-004",
+   "system": "symptom",
+   "name_ko": "파행",
+   "name_en": "Lameness",
+   "synonyms": [
+    "파행",
+    "lameness",
+    "절뚝",
+    "절음"
+   ],
+   "expected_drug_classes": [
+    "nsaid",
+    "analgesic_adjunct",
+    "opioid",
+    "supplement",
+    "gi_protectant"
+   ],
+   "expected_procedure_categories": [
+    "consult",
+    "lab",
+    "imaging",
+    "treatment",
+    "hospitalization",
+    "pharmacy"
+   ],
+   "atypical_procedures": [
+    "IMG-003"
+   ],
+   "coverage_tags": [],
+   "chronic": false,
+   "accident": false,
+   "species": null,
+   "mafra_standard_ref": null,
+   "body_system": "musculoskeletal",
+   "condition_group": "orthopedic",
+   "specificity": "symptom",
+   "congenital": false
+  },
+  {
+   "code": "NVD-SYM-005",
+   "system": "symptom",
+   "name_ko": "소양감",
+   "name_en": "Pruritus",
+   "synonyms": [
+    "소양감",
+    "소양증",
+    "가려움",
+    "가려움증",
+    "pruritus",
+    "itching",
+    "itchy"
+   ],
+   "expected_drug_classes": [
+    "antipruritic_immunomodulator",
+    "corticosteroid",
+    "antihistamine",
+    "antiparasitic",
+    "antibiotic",
+    "antifungal"
+   ],
+   "expected_procedure_categories": [
+    "consult",
+    "lab",
+    "treatment",
+    "pharmacy"
+   ],
+   "atypical_procedures": [
+    "IMG-004",
+    "IMG-005",
+    "IMG-003"
+   ],
+   "coverage_tags": [],
+   "chronic": false,
+   "accident": false,
+   "species": null,
+   "mafra_standard_ref": null,
+   "body_system": "skin",
+   "condition_group": "skin",
+   "specificity": "symptom",
+   "congenital": false
+  },
+  {
+   "code": "NVD-SYM-006",
+   "system": "symptom",
+   "name_ko": "탈모",
+   "name_en": "Alopecia",
+   "synonyms": [
+    "탈모",
+    "탈모증",
+    "털빠짐",
+    "alopecia",
+    "hairloss"
+   ],
+   "expected_drug_classes": [
+    "antiparasitic",
+    "antifungal",
+    "antipruritic_immunomodulator",
+    "endocrine",
+    "supplement",
+    "antibiotic"
+   ],
+   "expected_procedure_categories": [
+    "consult",
+    "lab",
+    "treatment",
+    "pharmacy",
+    "imaging"
+   ],
+   "atypical_procedures": [
+    "IMG-004",
+    "IMG-005",
+    "IMG-003"
+   ],
+   "coverage_tags": [],
+   "chronic": false,
+   "accident": false,
+   "species": null,
+   "mafra_standard_ref": null,
+   "body_system": "skin",
+   "condition_group": "skin",
+   "specificity": "symptom",
+   "congenital": false
   }
  ]
 }

@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import * as THREE from 'three';
 import { useI18n } from '../../i18n';
+// Computed from the repo's data by backend/scripts/export_claims_demo.py; never hand-edit the figures.
+import landingStats from '../../data/landingStats.json';
 
 function clamp01(value) {
   return Math.max(0, Math.min(1, value));
@@ -231,14 +233,21 @@ export default function ShaderHero() {
   const whiteOverlayOpacity = mix(0, 1, transitionProgress);
   const heroSubtitle = t.landing?.heroDesc || (
     l === 'ko'
-      ? '처방 입력 즉시 상호작용, 용량, 장기 부담을 한 화면에서 정리합니다.'
-      : 'See interactions, dosing, and organ burden the moment a prescription is entered.'
+      ? '동물병원 영수증을 표준 코드로 정형화하고, 보장·임상·가격 규칙으로 심사합니다.'
+      : 'Standardize clinic invoices into coded claims and adjudicate them with coverage, clinical and pricing rules.'
   );
+  const { aliases, findings } = landingStats;
+  const explainedPct = Math.floor((100 * findings.with_rule_and_explanation) / Math.max(1, findings.total));
   const stats = [
     { value: '4', label: l === 'ko' ? '심사 규칙군 (보장·임상·가격·무결성)' : 'Rule families (coverage · clinical · pricing · integrity)' },
-    { value: '190', label: l === 'ko' ? '국내 상품명·성분 별칭' : 'Korean brand & ingredient aliases' },
+    {
+      value: aliases.total.toLocaleString(),
+      label: l === 'ko'
+        ? `국내 상품명·성분 별칭 (직접 정리 ${aliases.curated} · 동물용의약품 허가 ${aliases.qia})`
+        : `Korean brand & ingredient aliases (${aliases.curated} curated · ${aliases.qia} from QIA licences)`,
+    },
     { value: '0', label: l === 'ko' ? '자동 거절 (판정은 심사역이 확정)' : 'Auto-denials (adjusters decide)' },
-    { value: '100%', label: l === 'ko' ? '근거가 붙은 소견' : 'Findings with evidence' },
+    { value: `${explainedPct}%`, label: l === 'ko' ? '규칙 ID와 설명이 붙은 소견' : 'Findings with a rule ID and explanation' },
   ];
 
   return (
@@ -337,7 +346,7 @@ export default function ShaderHero() {
                   {t.landing?.ctaPrimary || (l === 'ko' ? '무료로 시작' : 'Start Free')}
                 </button>
                 <button
-                  onClick={() => navigate('/demo')}
+                  onClick={() => navigate('/insurance')}
                   className="rounded-full border px-8 py-3.5 text-[15px] font-semibold transition-all"
                   style={{
                     color: mixColor([255, 255, 255], [15, 23, 42], clamp01(textProgress * 0.95)),

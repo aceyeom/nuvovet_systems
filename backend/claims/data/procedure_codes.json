@@ -15,7 +15,7 @@
    "non_medical": "비의료",
    "admin": "행정"
   },
-  "benchmark_note": "Prices are KRW per unit. Except where a public source is cited, distributions are seed estimates for development and demos only and must be replaced with MAFRA survey data and partner claims history before any production decision.",
+  "benchmark_note": "Prices are KRW per unit. Except where a public source is cited, distributions are seed estimates for development and demos only and must be replaced with MAFRA survey data and partner claims history before any production decision. Codes with benchmark null have no public price source yet; the pricing rule must skip them (no invented prices).",
   "region_multipliers": {
    "서울": 1.12,
    "경기": 1.0,
@@ -28,9 +28,227 @@
    "세종": 0.97,
    "default": 0.92
   },
-  "version": "2026.10.0"
+  "version": "2026.10.1",
+  "coverage_categories": {
+   "medical": "진료 항목 (약관에 따라 보장)",
+   "preventive": "예방 목적 (백신·중성화·예방약·검진) — 통상 보장 제외",
+   "non_medical": "비의료 (미용·호텔·사료·용품·영양제·장례·미용성형) — 보장 제외",
+   "admin": "행정 (서류 발급·의료폐기물·부가세) — 보장 제외",
+   "discount": "할인·조정 — 음수 금액 허용 (allows_negative_price)",
+   "euthanasia": "안락사 — 상품별로 다름"
+  },
+  "emr_categories": {
+   "_note": "EMR line names follow '<category>-<item>(<modifier>)' (EMR_Field_Analysis.md). The prefix is a hint: codes in these categories win near-ties, prefix_synonyms only count under their prefix, and an unmatched item falls back to 'default'. 'aliases' also accepts printed receipt headings passed as category_raw.",
+   "진찰": {
+    "categories": [
+     "consult"
+    ],
+    "default": "CON-000",
+    "aliases": [
+     "진찰료",
+     "진료",
+     "진료비"
+    ]
+   },
+   "검사": {
+    "categories": [
+     "lab",
+     "imaging",
+     "treatment",
+     "consult"
+    ],
+    "default": null,
+    "aliases": [
+     "검사료",
+     "임상병리",
+     "임상병리검사"
+    ]
+   },
+   "영상": {
+    "categories": [
+     "imaging"
+    ],
+    "default": null,
+    "aliases": [
+     "영상진단",
+     "영상진단료",
+     "영상검사"
+    ]
+   },
+   "방사선": {
+    "categories": [
+     "imaging"
+    ],
+    "default": "IMG-001",
+    "aliases": [
+     "방사선료",
+     "방사선촬영료"
+    ]
+   },
+   "처치": {
+    "categories": [
+     "treatment",
+     "hospitalization",
+     "non_medical",
+     "anesthesia"
+    ],
+    "default": null,
+    "aliases": [
+     "처치료",
+     "처치및수술료",
+     "주사료"
+    ]
+   },
+   "수액/수혈": {
+    "categories": [
+     "treatment"
+    ],
+    "default": "TRT-001",
+    "aliases": [
+     "수액·수혈",
+     "수액",
+     "수혈",
+     "수액료"
+    ]
+   },
+   "마취": {
+    "categories": [
+     "anesthesia",
+     "lab"
+    ],
+    "default": "ANE-001",
+    "aliases": [
+     "마취료"
+    ]
+   },
+   "수술": {
+    "categories": [
+     "surgery",
+     "preventive",
+     "dental",
+     "non_medical"
+    ],
+    "default": null,
+    "aliases": [
+     "수술료"
+    ]
+   },
+   "입원": {
+    "categories": [
+     "hospitalization"
+    ],
+    "default": "HOS-001",
+    "aliases": [
+     "입원료",
+     "입원비"
+    ]
+   },
+   "예방": {
+    "categories": [
+     "preventive",
+     "lab"
+    ],
+    "default": null,
+    "aliases": [
+     "예방접종",
+     "예방접종료"
+    ]
+   },
+   "약제": {
+    "categories": [
+     "pharmacy",
+     "non_medical"
+    ],
+    "default": null,
+    "aliases": [
+     "약품비",
+     "약제비",
+     "투약료",
+     "조제료",
+     "약품"
+    ]
+   },
+   "처방": {
+    "categories": [
+     "pharmacy"
+    ],
+    "default": null,
+    "aliases": [
+     "처방료"
+    ]
+   },
+   "치과": {
+    "categories": [
+     "dental",
+     "imaging"
+    ],
+    "default": null,
+    "aliases": [
+     "치과진료",
+     "치과처치"
+    ]
+   },
+   "의료폐기물": {
+    "categories": [
+     "admin"
+    ],
+    "default": "ADM-002",
+    "aliases": []
+   },
+   "미용": {
+    "categories": [
+     "non_medical"
+    ],
+    "default": "NON-001",
+    "aliases": [
+     "미용료"
+    ]
+   },
+   "호텔": {
+    "categories": [
+     "non_medical"
+    ],
+    "default": "NON-002",
+    "aliases": [
+     "호텔료",
+     "위탁료"
+    ]
+   }
+  },
+  "generic_codes": [
+   "CON-000",
+   "LAB-024",
+   "TRT-003",
+   "RX-001",
+   "PRE-015"
+  ],
+  "matching": "Terms are compacted (lowercase, no spaces/punctuation). Latin terms of 4 characters or fewer match only whole Latin tokens of the line (a digit suffix is allowed: 'chem' matches 'Chem10'). Longest term wins; within 2 characters of the longest, codes agreeing with the EMR category hint win, then longer terms, then non-generic codes. A hit on a code listed in another hit's 'supersedes' yields to that code (ICU over general ward, pyometra surgery over spay).",
+  "changelog": [
+   "2026.10.1: +60 codes, +73 synonyms on existing codes (+2 prefix-gated) from the 2026-10-02 EMR-probe audit and held-out review (departures from the audit proposal in docs/DATA_PROVENANCE.md); coverage_category, prefix_synonyms, supersedes, emr_categories, generic_codes; new codes carry benchmark null."
+  ]
  },
  "codes": [
+  {
+   "code": "CON-000",
+   "category": "consult",
+   "coverage_category": "medical",
+   "name_ko": "진찰료 (초·재진 미표기)",
+   "name_en": "Consultation (unspecified)",
+   "synonyms": [
+    "기본진료비",
+    "기본진료",
+    "진료비",
+    "진찰료",
+    "examfee",
+    "officevisit"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "visit",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
   {
    "code": "CON-001",
    "category": "consult",
@@ -56,7 +274,10 @@
     "is_estimate": true,
     "replace_with": "MAFRA 동물병원 진료비 현황조사 (animalclinicfee.or.kr)",
     "source_url": "https://www.mafra.go.kr/bbs/home/792/592824/download.do"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "CON-002",
@@ -81,7 +302,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "MAFRA 동물병원 진료비 현황조사 (animalclinicfee.or.kr)"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "CON-003",
@@ -104,7 +328,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "MAFRA 동물병원 진료비 현황조사 (animalclinicfee.or.kr)"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "CON-004",
@@ -118,7 +345,14 @@
     "응급",
     "야간",
     "emergency",
-    "afterhours"
+    "afterhours",
+    "공휴일",
+    "휴일진료",
+    "휴일할증",
+    "공휴일할증",
+    "심야",
+    "심야할증",
+    "주말할증"
    ],
    "unit": "visit",
    "max_qty_per_visit": 1,
@@ -130,7 +364,71 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": [
+    "CON-001",
+    "CON-002"
+   ]
+  },
+  {
+   "code": "CON-005",
+   "category": "consult",
+   "coverage_category": "medical",
+   "name_ko": "왕진료",
+   "name_en": "House call",
+   "synonyms": [
+    "왕진",
+    "출장진료",
+    "housecall"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "visit",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "CON-006",
+   "category": "consult",
+   "coverage_category": "medical",
+   "name_ko": "전문·의뢰 진료",
+   "name_en": "Specialist / referral consultation",
+   "synonyms": [
+    "전문의진료",
+    "의뢰진료",
+    "2차진료",
+    "협진",
+    "referral"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "visit",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "CON-007",
+   "category": "consult",
+   "coverage_category": "medical",
+   "name_ko": "신경·정형 검사",
+   "name_en": "Neurologic / orthopedic exam",
+   "synonyms": [
+    "신경학적검사",
+    "신경검사",
+    "정형외과검사",
+    "파행검사",
+    "neuroexam"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "exam",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
   },
   {
    "code": "HOS-001",
@@ -155,7 +453,12 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "MAFRA 동물병원 진료비 현황조사 (animalclinicfee.or.kr)"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": [
+    "CON-004"
+   ]
   },
   {
    "code": "HOS-002",
@@ -167,7 +470,10 @@
     "icu",
     "산소방",
     "산소입원",
-    "중환자"
+    "중환자",
+    "산소처치",
+    "산소치료",
+    "산소공급"
    ],
    "unit": "day",
    "max_qty_per_visit": 30,
@@ -179,7 +485,33 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": [
+    "HOS-001",
+    "CON-004"
+   ]
+  },
+  {
+   "code": "HOS-003",
+   "category": "hospitalization",
+   "coverage_category": "medical",
+   "name_ko": "격리 입원 (1일)",
+   "name_en": "Isolation hospitalization",
+   "synonyms": [
+    "격리입원",
+    "격리실",
+    "isolation"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": [
+    "HOS-001"
+   ],
+   "unit": "day",
+   "max_qty_per_visit": 30,
+   "mafra_standard_ref": null,
+   "benchmark": null
   },
   {
    "code": "LAB-001",
@@ -203,7 +535,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "MAFRA 동물병원 진료비 현황조사 (animalclinicfee.or.kr)"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "LAB-002",
@@ -230,7 +565,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "MAFRA 동물병원 진료비 현황조사 (animalclinicfee.or.kr)"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "LAB-003",
@@ -240,7 +578,10 @@
    "synonyms": [
     "전해질",
     "electrolyte",
-    "na/k"
+    "na/k",
+    "lyte",
+    "lytes",
+    "na/k/cl"
    ],
    "unit": "test",
    "max_qty_per_visit": 2,
@@ -252,7 +593,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "LAB-004",
@@ -264,7 +608,12 @@
     "소변검사",
     "뇨검사",
     "urinalysis",
-    "ua"
+    "ua",
+    "요침사",
+    "요비중",
+    "요스틱",
+    "dipstick",
+    "usg"
    ],
    "unit": "test",
    "max_qty_per_visit": 2,
@@ -276,7 +625,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "LAB-005",
@@ -298,7 +650,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "LAB-006",
@@ -312,7 +667,14 @@
     "세포검사",
     "cytology",
     "skinscraping",
-    "테이프검사"
+    "테이프검사",
+    "피부스크래핑",
+    "스크래핑",
+    "우드램프",
+    "woodslamp",
+    "모낭검사",
+    "trichogram",
+    "털검사"
    ],
    "unit": "test",
    "max_qty_per_visit": 3,
@@ -324,7 +686,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "LAB-007",
@@ -347,7 +712,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "LAB-008",
@@ -369,7 +737,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "LAB-009",
@@ -396,7 +767,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "LAB-010",
@@ -407,7 +781,10 @@
     "t4",
     "갑상선",
     "갑상선호르몬",
-    "thyroid"
+    "thyroid",
+    "ft4",
+    "유리t4",
+    "freet4"
    ],
    "unit": "test",
    "max_qty_per_visit": 1,
@@ -419,7 +796,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "LAB-011",
@@ -442,7 +822,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "LAB-012",
@@ -466,7 +849,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "LAB-013",
@@ -494,7 +880,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "LAB-014",
@@ -516,7 +905,321 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
+  },
+  {
+   "code": "LAB-015",
+   "category": "lab",
+   "coverage_category": "medical",
+   "name_ko": "혈액가스 분석",
+   "name_en": "Blood gas analysis",
+   "synonyms": [
+    "혈액가스",
+    "bloodgas",
+    "가스분석",
+    "bga"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "test",
+   "max_qty_per_visit": 3,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "LAB-016",
+   "category": "lab",
+   "coverage_category": "medical",
+   "name_ko": "혈액응고 검사",
+   "name_en": "Coagulation panel",
+   "synonyms": [
+    "혈액응고",
+    "응고검사",
+    "pt/aptt",
+    "aptt",
+    "응고계"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "panel",
+   "max_qty_per_visit": 2,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "LAB-017",
+   "category": "lab",
+   "coverage_category": "medical",
+   "name_ko": "염증 마커 (CRP/SAA)",
+   "name_en": "Inflammatory marker (CRP/SAA)",
+   "synonyms": [
+    "crp",
+    "ccrp",
+    "saa",
+    "fsaa",
+    "염증수치",
+    "염증마커"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "test",
+   "max_qty_per_visit": 2,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "LAB-018",
+   "category": "lab",
+   "coverage_category": "medical",
+   "name_ko": "SDMA",
+   "name_en": "SDMA",
+   "synonyms": [
+    "sdma"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "test",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "LAB-019",
+   "category": "lab",
+   "coverage_category": "medical",
+   "name_ko": "혈당·프럭토사민",
+   "name_en": "Glucose / fructosamine",
+   "synonyms": [
+    "혈당",
+    "혈당측정",
+    "혈당곡선",
+    "프럭토사민",
+    "fructosamine",
+    "glucosecurve"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "test",
+   "max_qty_per_visit": 12,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "LAB-020",
+   "category": "lab",
+   "coverage_category": "medical",
+   "name_ko": "요단백/크레아티닌비 (UPC)",
+   "name_en": "Urine protein:creatinine ratio",
+   "synonyms": [
+    "upc",
+    "요단백",
+    "요단백크레아티닌"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "test",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "LAB-021",
+   "category": "lab",
+   "coverage_category": "medical",
+   "name_ko": "PCR 검사",
+   "name_en": "PCR panel",
+   "synonyms": [
+    "pcr",
+    "분변pcr",
+    "호흡기pcr",
+    "pcr패널"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": [
+    "LAB-005"
+   ],
+   "unit": "panel",
+   "max_qty_per_visit": 2,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "LAB-022",
+   "category": "lab",
+   "coverage_category": "medical",
+   "name_ko": "세침흡인 세포검사 (FNA)",
+   "name_en": "Fine-needle aspirate cytology",
+   "synonyms": [
+    "세침흡인",
+    "fna",
+    "세침",
+    "흡인세포"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": [
+    "LAB-006"
+   ],
+   "unit": "site",
+   "max_qty_per_visit": 3,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "LAB-023",
+   "category": "lab",
+   "coverage_category": "medical",
+   "name_ko": "조직병리 검사",
+   "name_en": "Histopathology",
+   "synonyms": [
+    "조직검사",
+    "조직병리",
+    "병리검사",
+    "biopsy",
+    "histopathology"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "specimen",
+   "max_qty_per_visit": 3,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "LAB-024",
+   "category": "lab",
+   "coverage_category": "medical",
+   "name_ko": "외부 위탁검사",
+   "name_en": "Reference-lab send-out",
+   "synonyms": [
+    "외부검사",
+    "외부위탁",
+    "위탁검사",
+    "외주검사",
+    "외부의뢰",
+    "idexx",
+    "sendout"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "test",
+   "max_qty_per_visit": 5,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "LAB-025",
+   "category": "lab",
+   "coverage_category": "medical",
+   "name_ko": "알레르기 검사",
+   "name_en": "Allergy testing",
+   "synonyms": [
+    "알러지검사",
+    "알레르기검사",
+    "알러지패널",
+    "ige"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "panel",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "LAB-026",
+   "category": "lab",
+   "coverage_category": "medical",
+   "name_ko": "덱사메타손 억제시험 (LDDS/HDDS)",
+   "name_en": "Dexamethasone suppression test",
+   "synonyms": [
+    "ldds",
+    "hdds",
+    "덱사메타손억제"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "test",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "LAB-027",
+   "category": "lab",
+   "coverage_category": "medical",
+   "name_ko": "담즙산 검사",
+   "name_en": "Bile acids",
+   "synonyms": [
+    "담즙산",
+    "bileacid",
+    "bileacids"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "test",
+   "max_qty_per_visit": 2,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "LAB-028",
+   "category": "lab",
+   "coverage_category": "medical",
+   "name_ko": "혈액형·교차적합 검사",
+   "name_en": "Blood typing / crossmatch",
+   "synonyms": [
+    "혈액형검사",
+    "혈액형",
+    "교차적합",
+    "crossmatch",
+    "크로스매칭"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "test",
+   "max_qty_per_visit": 3,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "LAB-029",
+   "category": "lab",
+   "coverage_category": "medical",
+   "name_ko": "백신 항체가 검사",
+   "name_en": "Vaccine titer test",
+   "synonyms": [
+    "항체가",
+    "항체검사",
+    "vaccicheck",
+    "titer"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "test",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "LAB-030",
+   "category": "lab",
+   "coverage_category": "medical",
+   "name_ko": "마취 전 검사 패키지",
+   "name_en": "Pre-anesthetic panel",
+   "synonyms": [
+    "마취전검사",
+    "수술전검사",
+    "preanesthetic"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "package",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
   },
   {
    "code": "IMG-001",
@@ -531,7 +1234,12 @@
     "방사선촬영",
     "흉부방사선",
     "복부방사선",
-    "radiograph"
+    "radiograph",
+    "조영촬영",
+    "바륨",
+    "투시촬영",
+    "c-arm",
+    "rad"
    ],
    "unit": "view",
    "max_qty_per_visit": 6,
@@ -543,7 +1251,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "MAFRA 동물병원 진료비 현황조사 (animalclinicfee.or.kr)"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "IMG-002",
@@ -555,7 +1266,8 @@
     "초음파",
     "abdominalus",
     "ultrasound",
-    "us검사"
+    "us검사",
+    "aus"
    ],
    "unit": "exam",
    "max_qty_per_visit": 1,
@@ -567,7 +1279,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "MAFRA 동물병원 진료비 현황조사 (animalclinicfee.or.kr)"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "IMG-003",
@@ -590,7 +1305,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "IMG-004",
@@ -612,7 +1330,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "MAFRA 동물병원 진료비 현황조사 (animalclinicfee.or.kr)"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "IMG-005",
@@ -633,7 +1354,29 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "MAFRA 동물병원 진료비 현황조사 (animalclinicfee.or.kr)"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
+  },
+  {
+   "code": "IMG-006",
+   "category": "imaging",
+   "coverage_category": "medical",
+   "name_ko": "내시경",
+   "name_en": "Endoscopy",
+   "synonyms": [
+    "내시경",
+    "endoscopy",
+    "위내시경",
+    "기관지내시경"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "exam",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
   },
   {
    "code": "TRT-001",
@@ -646,7 +1389,11 @@
     "수액처치",
     "iv수액",
     "ivfluid",
-    "링거"
+    "링거",
+    "ivf",
+    "lrs",
+    "하트만",
+    "생리식염수수액"
    ],
    "unit": "day",
    "max_qty_per_visit": 30,
@@ -658,7 +1405,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "TRT-002",
@@ -668,7 +1418,12 @@
    "synonyms": [
     "피하수액",
     "sc수액",
-    "subq"
+    "subq",
+    "sqfluids",
+    "sqfluid",
+    "sq수액",
+    "scfluids",
+    "scfluid"
    ],
    "unit": "session",
    "max_qty_per_visit": 3,
@@ -680,7 +1435,12 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": [
+    "TRT-001"
+   ]
   },
   {
    "code": "TRT-003",
@@ -705,7 +1465,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "TRT-004",
@@ -718,7 +1481,12 @@
     "상처처치",
     "붕대",
     "wound",
-    "처치료"
+    "처치료",
+    "발사",
+    "실밥제거",
+    "실밥",
+    "봉합사제거",
+    "sutureremoval"
    ],
    "unit": "session",
    "max_qty_per_visit": 3,
@@ -730,7 +1498,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "TRT-005",
@@ -741,7 +1512,9 @@
     "귀세척",
     "이도세척",
     "earflush",
-    "귀청소"
+    "귀청소",
+    "귀세정",
+    "이도세정"
    ],
    "unit": "session",
    "max_qty_per_visit": 2,
@@ -753,7 +1526,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "TRT-006",
@@ -775,7 +1551,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "TRT-007",
@@ -797,7 +1576,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "TRT-008",
@@ -820,7 +1602,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "TRT-009",
@@ -842,7 +1627,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "TRT-010",
@@ -864,7 +1652,276 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
+  },
+  {
+   "code": "TRT-011",
+   "category": "treatment",
+   "coverage_category": "medical",
+   "name_ko": "안과 기본검사 (슬릿램프·안저)",
+   "name_en": "Ophthalmic exam",
+   "synonyms": [
+    "안과검사",
+    "슬릿램프",
+    "안저",
+    "안저검사",
+    "slitlamp",
+    "fundus"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "exam",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "TRT-012",
+   "category": "treatment",
+   "coverage_category": "medical",
+   "name_ko": "이경 검사 (비디오오토스코프)",
+   "name_en": "Otoscopy / video otoscopy",
+   "synonyms": [
+    "이경",
+    "비디오이경",
+    "오토스코프",
+    "otoscopy"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "exam",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "TRT-013",
+   "category": "treatment",
+   "coverage_category": "medical",
+   "name_ko": "수혈",
+   "name_en": "Blood transfusion",
+   "synonyms": [
+    "수혈",
+    "농축적혈구",
+    "신선동결혈장",
+    "transfusion",
+    "prbc",
+    "ffp"
+   ],
+   "prefix_synonyms": {
+    "수액/수혈": [
+     "전혈",
+     "혈장"
+    ]
+   },
+   "supersedes": null,
+   "unit": "unit",
+   "max_qty_per_visit": 4,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "TRT-014",
+   "category": "treatment",
+   "coverage_category": "medical",
+   "name_ko": "혈관 카테터 장착",
+   "name_en": "IV catheter placement",
+   "synonyms": [
+    "카테터",
+    "혈관확보",
+    "ivcatheter",
+    "iv카테터",
+    "정맥카테터"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "procedure",
+   "max_qty_per_visit": 2,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "TRT-015",
+   "category": "treatment",
+   "coverage_category": "medical",
+   "name_ko": "열상 봉합",
+   "name_en": "Laceration repair",
+   "synonyms": [
+    "봉합",
+    "열상봉합",
+    "상처봉합",
+    "suture"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "site",
+   "max_qty_per_visit": 3,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "TRT-016",
+   "category": "treatment",
+   "coverage_category": "medical",
+   "name_ko": "항문낭 처치",
+   "name_en": "Anal sac expression / flush",
+   "synonyms": [
+    "항문낭",
+    "항문샘",
+    "analsac",
+    "analgland"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "session",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "TRT-017",
+   "category": "treatment",
+   "coverage_category": "medical",
+   "name_ko": "관장",
+   "name_en": "Enema",
+   "synonyms": [
+    "관장",
+    "enema"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "session",
+   "max_qty_per_visit": 2,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "TRT-018",
+   "category": "treatment",
+   "coverage_category": "medical",
+   "name_ko": "요도 카테터·도뇨",
+   "name_en": "Urinary catheterization",
+   "synonyms": [
+    "도뇨",
+    "요도카테터",
+    "urinarycatheter",
+    "방광카테터"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "procedure",
+   "max_qty_per_visit": 2,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "TRT-019",
+   "category": "treatment",
+   "coverage_category": "medical",
+   "name_ko": "천자 (방광·복수·흉수)",
+   "name_en": "Centesis",
+   "synonyms": [
+    "방광천자",
+    "복수천자",
+    "흉수천자",
+    "천자",
+    "cystocentesis",
+    "abdominocentesis",
+    "thoracocentesis"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": [
+    "IMG-002"
+   ],
+   "unit": "procedure",
+   "max_qty_per_visit": 3,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "TRT-020",
+   "category": "treatment",
+   "coverage_category": "medical",
+   "name_ko": "최토·위세척 (해독처치)",
+   "name_en": "Emesis induction / gastric lavage",
+   "synonyms": [
+    "구토유발",
+    "최토",
+    "위세척",
+    "emesisinduction",
+    "gastriclavage"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "procedure",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "TRT-021",
+   "category": "treatment",
+   "coverage_category": "medical",
+   "name_ko": "네뷸라이저",
+   "name_en": "Nebulization",
+   "synonyms": [
+    "네블라이저",
+    "네뷸라이저",
+    "nebulizer",
+    "nebulization",
+    "분무치료"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "session",
+   "max_qty_per_visit": 3,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "TRT-022",
+   "category": "treatment",
+   "coverage_category": "medical",
+   "name_ko": "재활·물리·레이저·침 치료",
+   "name_en": "Rehab / laser / acupuncture",
+   "synonyms": [
+    "레이저치료",
+    "레이저",
+    "물리치료",
+    "재활",
+    "침치료",
+    "수중런닝머신",
+    "런닝머신",
+    "acupuncture",
+    "laser"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "session",
+   "max_qty_per_visit": 2,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "TRT-023",
+   "category": "treatment",
+   "coverage_category": "medical",
+   "name_ko": "응급 소생술 (CPR)",
+   "name_en": "CPR / resuscitation",
+   "synonyms": [
+    "cpr",
+    "심폐소생",
+    "심폐소생술"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "procedure",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
   },
   {
    "code": "ANE-001",
@@ -889,7 +1946,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "ANE-002",
@@ -911,7 +1971,34 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
+  },
+  {
+   "code": "ANE-003",
+   "category": "anesthesia",
+   "coverage_category": "medical",
+   "name_ko": "국소·신경차단 마취",
+   "name_en": "Local / regional anesthesia",
+   "synonyms": [
+    "국소마취",
+    "신경차단",
+    "경막외",
+    "epidural",
+    "nerveblock"
+   ],
+   "prefix_synonyms": {
+    "마취": [
+     "국소"
+    ]
+   },
+   "supersedes": null,
+   "unit": "procedure",
+   "max_qty_per_visit": 3,
+   "mafra_standard_ref": null,
+   "benchmark": null
   },
   {
    "code": "SUR-001",
@@ -919,10 +2006,19 @@
    "name_ko": "슬개골 탈구 정복술",
    "name_en": "Patellar luxation repair",
    "synonyms": [
-    "슬개골",
-    "슬탈",
-    "patella",
-    "patellar"
+    "슬개골탈구정복",
+    "슬개골정복술",
+    "슬개골정복",
+    "슬개골수술",
+    "슬개골탈구수술",
+    "슬개골탈구교정",
+    "슬개골교정술",
+    "슬개골교정수술",
+    "슬탈수술",
+    "mpl교정",
+    "mpl수술",
+    "patellarluxationrepair",
+    "patellasurgery"
    ],
    "unit": "limb",
    "max_qty_per_visit": 2,
@@ -934,7 +2030,18 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": {
+    "수술": [
+     "슬개골",
+     "슬탈",
+     "patella",
+     "patellar",
+     "mpl"
+    ]
+   },
+   "supersedes": null
   },
   {
    "code": "SUR-002",
@@ -959,7 +2066,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "SUR-003",
@@ -984,7 +2094,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "SUR-004",
@@ -1006,7 +2119,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "SUR-005",
@@ -1031,7 +2147,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "SUR-006",
@@ -1055,7 +2174,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "SUR-007",
@@ -1079,7 +2201,192 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
+  },
+  {
+   "code": "SUR-008",
+   "category": "surgery",
+   "coverage_category": "medical",
+   "name_ko": "잠복고환 적출술",
+   "name_en": "Cryptorchidectomy",
+   "synonyms": [
+    "잠복고환",
+    "cryptorchid"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": [
+    "PRE-001"
+   ],
+   "unit": "procedure",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "SUR-009",
+   "category": "surgery",
+   "coverage_category": "medical",
+   "name_ko": "자궁축농증 수술",
+   "name_en": "Pyometra surgery",
+   "synonyms": [
+    "자궁축농증",
+    "pyometra",
+    "자궁축농"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": [
+    "PRE-002"
+   ],
+   "unit": "procedure",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "SUR-010",
+   "category": "surgery",
+   "coverage_category": "medical",
+   "name_ko": "비장 적출술",
+   "name_en": "Splenectomy",
+   "synonyms": [
+    "비장적출",
+    "비장절제",
+    "splenectomy"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "procedure",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "SUR-011",
+   "category": "surgery",
+   "coverage_category": "medical",
+   "name_ko": "담낭 절제술",
+   "name_en": "Cholecystectomy",
+   "synonyms": [
+    "담낭절제",
+    "담낭적출",
+    "cholecystectomy"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "procedure",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "SUR-012",
+   "category": "surgery",
+   "coverage_category": "medical",
+   "name_ko": "제3안검 탈출 교정 (체리아이)",
+   "name_en": "Cherry eye repair",
+   "synonyms": [
+    "체리아이",
+    "제3안검탈출",
+    "제3안검교정",
+    "cherryeye"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "eye",
+   "max_qty_per_visit": 2,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "SUR-013",
+   "category": "surgery",
+   "coverage_category": "medical",
+   "name_ko": "안과 수술 (백내장·각막 등)",
+   "name_en": "Ophthalmic surgery",
+   "synonyms": [
+    "백내장수술",
+    "초음파유화술",
+    "각막봉합",
+    "결막피판",
+    "제3안검플랩",
+    "phaco",
+    "phacoemulsification"
+   ],
+   "prefix_synonyms": {
+    "수술": [
+     "백내장"
+    ]
+   },
+   "supersedes": [
+    "IMG-002"
+   ],
+   "unit": "eye",
+   "max_qty_per_visit": 2,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "SUR-014",
+   "category": "surgery",
+   "coverage_category": "medical",
+   "name_ko": "탈장 정복술",
+   "name_en": "Hernia repair",
+   "synonyms": [
+    "탈장",
+    "회음부탈장",
+    "서혜부탈장",
+    "제대탈장",
+    "hernia"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "procedure",
+   "max_qty_per_visit": 2,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "SUR-015",
+   "category": "surgery",
+   "coverage_category": "medical",
+   "name_ko": "고관절 수술 (FHO 등)",
+   "name_en": "Hip surgery (FHO/THR)",
+   "synonyms": [
+    "대퇴골두",
+    "대퇴골두절제",
+    "fho",
+    "고관절수술",
+    "thr"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "limb",
+   "max_qty_per_visit": 2,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "SUR-016",
+   "category": "surgery",
+   "coverage_category": "medical",
+   "name_ko": "단두종 기도 수술",
+   "name_en": "Brachycephalic airway surgery",
+   "synonyms": [
+    "연구개",
+    "연구개성형",
+    "비공확장",
+    "비공성형",
+    "boas"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "procedure",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
   },
   {
    "code": "PRE-001",
@@ -1104,7 +2411,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "preventive",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "PRE-002",
@@ -1129,7 +2439,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "preventive",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "PRE-003",
@@ -1153,7 +2466,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "MAFRA 동물병원 진료비 현황조사 (animalclinicfee.or.kr)"
-   }
+   },
+   "coverage_category": "preventive",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "PRE-004",
@@ -1176,7 +2492,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "MAFRA 동물병원 진료비 현황조사 (animalclinicfee.or.kr)"
-   }
+   },
+   "coverage_category": "preventive",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "PRE-005",
@@ -1197,7 +2516,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "MAFRA 동물병원 진료비 현황조사 (animalclinicfee.or.kr)"
-   }
+   },
+   "coverage_category": "preventive",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "PRE-006",
@@ -1207,7 +2529,9 @@
    "synonyms": [
     "켄넬코프백신",
     "kc백신",
-    "bordetellavaccine"
+    "bordetellavaccine",
+    "켄넬코프예방",
+    "예방켄넬코프"
    ],
    "unit": "dose",
    "max_qty_per_visit": 1,
@@ -1219,7 +2543,15 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "MAFRA 동물병원 진료비 현황조사 (animalclinicfee.or.kr)"
-   }
+   },
+   "coverage_category": "preventive",
+   "prefix_synonyms": {
+    "예방": [
+     "켄넬코프",
+     "kennelcough"
+    ]
+   },
+   "supersedes": null
   },
   {
    "code": "PRE-007",
@@ -1232,7 +2564,12 @@
     "하트가드",
     "넥스가드스펙트라",
     "레볼루션",
-    "heartwormprevent"
+    "heartwormprevent",
+    "어드보킷",
+    "애드보킷",
+    "프로하트",
+    "심파리카트리오",
+    "브라벡토플러스"
    ],
    "unit": "dose",
    "max_qty_per_visit": 12,
@@ -1244,7 +2581,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "preventive",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "PRE-008",
@@ -1268,7 +2608,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "preventive",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "PRE-009",
@@ -1291,7 +2634,139 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "preventive",
+   "prefix_synonyms": null,
+   "supersedes": null
+  },
+  {
+   "code": "PRE-010",
+   "category": "preventive",
+   "coverage_category": "preventive",
+   "name_ko": "개 코로나장염 백신",
+   "name_en": "Canine coronavirus vaccine",
+   "synonyms": [
+    "코로나백신",
+    "코로나장염백신"
+   ],
+   "prefix_synonyms": {
+    "예방": [
+     "코로나장염",
+     "ccv"
+    ]
+   },
+   "supersedes": null,
+   "unit": "dose",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "PRE-011",
+   "category": "preventive",
+   "coverage_category": "preventive",
+   "name_ko": "개 인플루엔자 백신",
+   "name_en": "Canine influenza vaccine",
+   "synonyms": [
+    "인플루엔자백신",
+    "신종플루백신"
+   ],
+   "prefix_synonyms": {
+    "예방": [
+     "인플루엔자",
+     "civ"
+    ]
+   },
+   "supersedes": null,
+   "unit": "dose",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "PRE-012",
+   "category": "preventive",
+   "coverage_category": "preventive",
+   "name_ko": "고양이 백혈병 백신",
+   "name_en": "FeLV vaccine",
+   "synonyms": [
+    "felv백신",
+    "백혈병백신"
+   ],
+   "prefix_synonyms": {
+    "예방": [
+     "고양이백혈병"
+    ]
+   },
+   "supersedes": null,
+   "unit": "dose",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "PRE-013",
+   "category": "preventive",
+   "coverage_category": "preventive",
+   "name_ko": "외부기생충 예방약",
+   "name_en": "Ectoparasite preventive",
+   "synonyms": [
+    "넥스가드",
+    "브라벡토",
+    "심파리카",
+    "크레델리오",
+    "프론트라인",
+    "외부기생충"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "dose",
+   "max_qty_per_visit": 12,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "PRE-014",
+   "category": "preventive",
+   "coverage_category": "preventive",
+   "name_ko": "내부구충",
+   "name_en": "Deworming",
+   "synonyms": [
+    "구충",
+    "구충제",
+    "드론탈",
+    "deworm",
+    "deworming"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "dose",
+   "max_qty_per_visit": 12,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "PRE-015",
+   "category": "preventive",
+   "coverage_category": "preventive",
+   "name_ko": "예방접종 (백신 종류 미표기)",
+   "name_en": "Vaccination (vaccine not specified)",
+   "synonyms": [
+    "예방주사",
+    "예방접종",
+    "백신",
+    "백신접종",
+    "추가접종",
+    "접종료",
+    "vaccine",
+    "vaccination"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "dose",
+   "max_qty_per_visit": 3,
+   "mafra_standard_ref": null,
+   "benchmark": null
   },
   {
    "code": "DEN-001",
@@ -1302,7 +2777,14 @@
     "스케일링",
     "치석제거",
     "scaling",
-    "치석"
+    "치석",
+    "불소도포",
+    "불소",
+    "폴리싱",
+    "polishing",
+    "dentalcleaning",
+    "dentalprophylaxis",
+    "prophy"
    ],
    "unit": "procedure",
    "max_qty_per_visit": 1,
@@ -1314,7 +2796,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "DEN-002",
@@ -1336,7 +2821,67 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
+  },
+  {
+   "code": "DEN-003",
+   "category": "dental",
+   "coverage_category": "medical",
+   "name_ko": "잔존유치 발치",
+   "name_en": "Retained deciduous tooth extraction",
+   "synonyms": [
+    "잔존유치",
+    "유치발치"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": [
+    "DEN-002"
+   ],
+   "unit": "tooth",
+   "max_qty_per_visit": 12,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "DEN-004",
+   "category": "dental",
+   "coverage_category": "medical",
+   "name_ko": "치주 치료",
+   "name_en": "Periodontal therapy",
+   "synonyms": [
+    "치주치료",
+    "치근활택",
+    "루트플래닝",
+    "rootplaning"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "procedure",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "DEN-005",
+   "category": "dental",
+   "coverage_category": "medical",
+   "name_ko": "치과 방사선",
+   "name_en": "Dental radiography",
+   "synonyms": [
+    "치과방사선",
+    "치과x-ray",
+    "덴탈엑스레이",
+    "dentalxray"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "view",
+   "max_qty_per_visit": 12,
+   "mafra_standard_ref": null,
+   "benchmark": null
   },
   {
    "code": "RX-001",
@@ -1350,7 +2895,9 @@
     "처방약",
     "약값",
     "경구약",
-    "내복"
+    "내복",
+    "퇴원약",
+    "dc약"
    ],
    "unit": "day",
    "max_qty_per_visit": 90,
@@ -1362,7 +2909,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "RX-002",
@@ -1388,7 +2938,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "NON-001",
@@ -1400,7 +2953,12 @@
     "목욕",
     "grooming",
     "클리핑미용",
-    "위생미용"
+    "위생미용",
+    "발톱깎기",
+    "발톱정리",
+    "발톱손질",
+    "nailtrim",
+    "nailclip"
    ],
    "unit": "session",
    "max_qty_per_visit": 1,
@@ -1412,7 +2970,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "non_medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "NON-002",
@@ -1436,7 +2997,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "non_medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "NON-003",
@@ -1462,7 +3026,10 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "non_medical",
+   "prefix_synonyms": null,
+   "supersedes": null
   },
   {
    "code": "NON-004",
@@ -1478,7 +3045,8 @@
     "모래",
     "고양이모래",
     "배변패드",
-    "장난감"
+    "장난감",
+    "엘리자베스카라"
    ],
    "unit": "item",
    "max_qty_per_visit": 5,
@@ -1490,7 +3058,80 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "non_medical",
+   "prefix_synonyms": null,
+   "supersedes": null
+  },
+  {
+   "code": "NON-005",
+   "category": "non_medical",
+   "coverage_category": "non_medical",
+   "name_ko": "장례·사체처리",
+   "name_en": "Cremation / body care",
+   "synonyms": [
+    "장례",
+    "화장",
+    "사체처리",
+    "cremation",
+    "메모리얼",
+    "개별화장",
+    "합동화장"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "item",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "NON-006",
+   "category": "non_medical",
+   "coverage_category": "non_medical",
+   "name_ko": "선택적·미용 수술 (단미·성대 등)",
+   "name_en": "Elective cosmetic surgery",
+   "synonyms": [
+    "단미술",
+    "단미수술",
+    "꼬리자르기",
+    "단이수술",
+    "성대제거",
+    "성대수술",
+    "debarking",
+    "taildock"
+   ],
+   "prefix_synonyms": {
+    "수술": [
+     "단미",
+     "단이"
+    ]
+   },
+   "supersedes": null,
+   "unit": "procedure",
+   "max_qty_per_visit": 2,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "NON-007",
+   "category": "non_medical",
+   "coverage_category": "non_medical",
+   "name_ko": "영양제·보조제",
+   "name_en": "Supplements / nutraceuticals",
+   "synonyms": [
+    "영양제",
+    "보조제",
+    "유산균",
+    "supplement",
+    "관절영양제"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "item",
+   "max_qty_per_visit": 10,
+   "mafra_standard_ref": null,
+   "benchmark": null
   },
   {
    "code": "ADM-001",
@@ -1503,7 +3144,15 @@
     "증명서",
     "서류발급",
     "진료기록사본",
-    "진료부사본"
+    "진료부사본",
+    "세부내역서",
+    "진료비세부내역서",
+    "진료확인서",
+    "영수증재발급",
+    "진료비영수증",
+    "보험청구서류",
+    "접종증명서",
+    "예방접종증명서"
    ],
    "unit": "document",
    "max_qty_per_visit": 3,
@@ -1515,7 +3164,85 @@
     "source": "NuvoVet seed estimate",
     "is_estimate": true,
     "replace_with": "Partner insurer claims history"
-   }
+   },
+   "coverage_category": "admin",
+   "prefix_synonyms": null,
+   "supersedes": null
+  },
+  {
+   "code": "ADM-002",
+   "category": "admin",
+   "coverage_category": "admin",
+   "name_ko": "의료폐기물 처리비",
+   "name_en": "Medical waste fee",
+   "synonyms": [
+    "의료폐기물",
+    "폐기물",
+    "medicalwaste"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "item",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "ADM-003",
+   "category": "admin",
+   "coverage_category": "admin",
+   "name_ko": "부가가치세",
+   "name_en": "VAT line",
+   "synonyms": [
+    "부가세",
+    "부가가치세",
+    "vat"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "line",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
+  },
+  {
+   "code": "ADM-004",
+   "category": "admin",
+   "coverage_category": "discount",
+   "name_ko": "할인·조정",
+   "name_en": "Discount / adjustment",
+   "synonyms": [
+    "할인",
+    "discount",
+    "진료비할인",
+    "할인금액",
+    "금액조정",
+    "에누리"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "line",
+   "max_qty_per_visit": 5,
+   "mafra_standard_ref": null,
+   "benchmark": null,
+   "allows_negative_price": true
+  },
+  {
+   "code": "ADM-005",
+   "category": "admin",
+   "coverage_category": "euthanasia",
+   "name_ko": "안락사",
+   "name_en": "Euthanasia",
+   "synonyms": [
+    "안락사",
+    "euthanasia"
+   ],
+   "prefix_synonyms": null,
+   "supersedes": null,
+   "unit": "procedure",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": null
   }
  ]
 }

@@ -2,7 +2,7 @@
  "_meta": {
   "description": "Korean market brand names and Korean ingredient spellings → canonical drug id. Curated by NuvoVet from Korean product labelling (QIA 동물용의약품 허가 정보 / MFDS 의약품 정보). Brand→ingredient mappings are factual product identifiers.",
   "review_status": "spot-check against medi.qia.go.kr and nedrug.mfds.go.kr before production; extend from partner claims",
-  "version": "2026.10.0"
+  "version": "2026.10.1"
  },
  "aliases": {
   "meloxicam": [
@@ -76,12 +76,19 @@
    "프레드니솔론",
    "프레드니손",
    "소론도",
-   "소론도정"
+   "소론도정",
+   "prednisolone",
+   "prednisolone tab",
+   "prednisolone tablet",
+   "prednisone"
   ],
   "methylprednisolone": [
    "메틸프레드니솔론",
    "메드롤",
-   "솔루메드롤"
+   "솔루메드롤",
+   "medrol",
+   "depo-medrol",
+   "solu-medrol"
   ],
   "dexamethasone": [
    "덱사메타손",
@@ -100,7 +107,13 @@
    "아목시실린클라불란산",
    "클라바목스",
    "오구멘틴",
-   "아목시클라브"
+   "아목시클라브",
+   "amoxi-clav",
+   "amoxiclav",
+   "co-amoxiclav",
+   "amoxicillin-clav",
+   "amoxicillin clav",
+   "synulox"
   ],
   "amoxicillin": [
    "아목시실린"
@@ -334,6 +347,43 @@
   "frunevetmab": [
    "프루네베트맙",
    "솔렌시아"
+  ],
+  "selamectin_sarolaner": [
+   "레볼루션플러스",
+   "revolutionplus"
+  ],
+  "prednisolone_ophthalmic": [
+   "prednisolone",
+   "프레드니솔론 점안액",
+   "프레드니솔론 점안제",
+   "pred forte",
+   "pred mild"
+  ],
+  "trimeprazine_prednisolone": [
+   "트리메프라진/프레드니솔론",
+   "trimeprazine/prednisolone",
+   "trimeprazine tartrate, prednisolone",
+   "temaril-p"
+  ]
+ },
+ "combinations": {
+  "_note": "Brand → every active ingredient, for combination products that the QIA registry extract does not list under this brand, or whose curated alias above names only one component. Ingredient facts are from the products' published labels.",
+  "밀베맥스": [
+   "milbemycin_oxime",
+   "praziquantel"
+  ],
+  "심파리카트리오": [
+   "sarolaner",
+   "moxidectin",
+   "pyrantel"
+  ],
+  "브라벡토플러스": [
+   "fluralaner",
+   "moxidectin"
+  ],
+  "어드보킷": [
+   "imidacloprid_systemic",
+   "moxidectin"
   ]
  }
 }

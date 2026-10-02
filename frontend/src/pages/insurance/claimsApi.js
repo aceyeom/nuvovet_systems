@@ -34,8 +34,21 @@ async function postJSON(path, body) {
     throw new Error('엔진 API에 연결할 수 없습니다. 백엔드가 실행 중인지 확인하세요.');
   }
   const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(typeof data.detail === 'string' ? data.detail : `엔진 응답 오류 (HTTP ${res.status})`);
+  if (!res.ok) throw new Error(errorMessage(data.detail, res.status));
   return data;
+}
+
+// FastAPI returns validation errors (422) as a list of {loc, msg}; show where and what instead of a bare status.
+export function errorMessage(detail, status) {
+  if (typeof detail === 'string' && detail) return detail;
+  if (Array.isArray(detail) && detail.length) {
+    const parts = detail.map((d) => {
+      const where = (d.loc || []).filter((p) => p !== 'body').slice(-3).join('.');
+      return where ? `${where}: ${d.msg}` : d.msg;
+    });
+    return `입력값 오류 (HTTP ${status}) — ${parts.join(' / ')}`;
+  }
+  return `엔진 응답 오류 (HTTP ${status})`;
 }
 
 export async function loadDemo() {
@@ -67,6 +80,15 @@ export async function loadEvaluation() {
   }
 }
 
+export async function loadInsurers() {
+  try {
+    return { source: 'live', ...(await getJSON('/api/claims/insurers')) };
+  } catch {
+    const snap = await loadSnapshot();
+    return { source: 'snapshot', ...snap.insurers };
+  }
+}
+
 export async function loadProcedures() {
   const snap = await loadSnapshot();
   return { procedures: snap.procedures, regionMultipliers: snap.region_multipliers };
@@ -74,7 +96,8 @@ export async function loadProcedures() {
 
 // Live engine only: a new claim has no meaningful offline fallback.
 export const adjudicateClaim = (claim, policy) => postJSON('/api/claims/adjudicate', { claim, policy });
-export const precheckClaim = (claim) => postJSON('/api/claims/precheck', claim);
+export const precheckClaim = (claim, insurerId) =>
+  postJSON(`/api/claims/precheck${insurerId && insurerId !== 'default' ? `?insurer_id=${encodeURIComponent(insurerId)}` : ''}`, claim);
 
 export async function extractReceipt(file) {
   const form = new FormData();
@@ -86,6 +109,6 @@ export async function extractReceipt(file) {
     throw new Error('엔진 API에 연결할 수 없습니다.');
   }
   const body = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(body.detail || `HTTP ${res.status}`);
+  if (!res.ok) throw new Error(errorMessage(body.detail, res.status));
   return body.draft;
 }

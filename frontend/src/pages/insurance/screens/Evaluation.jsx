@@ -1,7 +1,7 @@
 import React from 'react';
 import { I } from '../icons';
 import { loadEvaluation } from '../claimsApi';
-import { ANOMALY_LABEL, fmtPct, ruleLabel } from '../format';
+import { ANOMALY_LABEL, PEND_LABEL, fmtPct, ruleLabel } from '../format';
 import { BarList, Loading, SourceNote, useAsync } from '../ui';
 
 export default function Evaluation() {
@@ -27,11 +27,15 @@ export default function Evaluation() {
         </span>
       </div>
 
-      <div className="stat-grid" style={{ gridTemplateColumns: 'repeat(4, minmax(0, 1fr))' }}>
+      <div className="stat-grid" style={{ gridTemplateColumns: 'repeat(5, minmax(0, 1fr))' }}>
         <div className="stat-card"><div className="stat-label">합성 청구</div><div className="stat-value tnum">{data.claims}</div></div>
         <div className="stat-card"><div className="stat-label">정상 청구</div><div className="stat-value tnum">{data.clean_claims}</div></div>
         <div className="stat-card"><div className="stat-label">정상 청구 오탐률</div><div className="stat-value tnum">{fmtPct(data.clean_false_alarm_rate)}</div></div>
         <div className="stat-card"><div className="stat-label">정상 청구 자동 승인율</div><div className="stat-value tnum">{fmtPct(data.clean_auto_approve_rate)}</div></div>
+        <div className="stat-card">
+          <div className="stat-label">서류 요청(대기)율</div><div className="stat-value tnum">{fmtPct(data.pend_rate ?? 0)}</div>
+          <div className="stat-delta"><span className="vs" style={{ marginLeft: 0 }}>정상 청구 {fmtPct(data.clean_pend_rate ?? 0)}</span></div>
+        </div>
       </div>
 
       <div className="grid-6040" style={{ marginTop: 16, alignItems: 'start' }}>
@@ -42,7 +46,10 @@ export default function Evaluation() {
             <tbody>
               {recall.map(([k, v]) => (
                 <tr key={k}>
-                  <td style={{ fontSize: 13 }}>{ANOMALY_LABEL[k] || k}</td>
+                  <td style={{ fontSize: 13 }}>
+                    {ANOMALY_LABEL[k] || k}
+                    {['total_only_receipt', 'missing_dx', 'above_threshold_no_cert', 'mixed_basket'].includes(k) && <span className="badge badge-info" style={{ marginLeft: 6, fontSize: 10, padding: '1px 6px' }}>대기</span>}
+                  </td>
                   <td className="mono tnum" style={{ textAlign: 'right' }}>{v.injected}</td>
                   <td className="mono tnum" style={{ textAlign: 'right' }}>{v.detected}</td>
                   <td>
@@ -61,6 +68,12 @@ export default function Evaluation() {
         <div className="card card-pad">
           <div className="section-title" style={{ marginBottom: 12 }}>규칙별 발동 횟수</div>
           <BarList rows={Object.entries(data.rule_hits).slice(0, 12).map(([r, n]) => ({ key: r, label: ruleLabel(r), value: n }))} />
+          {data.pend_reasons && Object.keys(data.pend_reasons).length > 0 && (
+            <>
+              <div className="section-title" style={{ margin: '20px 0 12px' }}>대기 사유 (서류 요청)</div>
+              <BarList color="var(--info)" rows={Object.entries(data.pend_reasons).map(([k, n]) => ({ key: k, label: PEND_LABEL[k] || k, value: n }))} />
+            </>
+          )}
         </div>
       </div>
     </div>

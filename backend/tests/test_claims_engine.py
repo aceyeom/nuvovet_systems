@@ -200,6 +200,8 @@ def test_synthetic_recall_and_false_alarm_gate(seed):
     ev = evaluate(generate(n=400, seed=seed))
     assert ev["clean_false_alarm_rate"] <= 0.02
     assert ev["clean_auto_approve_rate"] >= 0.85
+    # Pend (request information) is reported separately: complete clean claims must not pend.
+    assert ev["clean_pend_rate"] <= 0.02 and ev["pend_rate"] == round(ev["decisions"].get("pend", 0) / ev["claims"], 4)
     for label, stats in ev["recall_by_anomaly"].items():
         if stats["injected"] >= 5:
             assert stats["recall"] >= 0.8, (label, stats)

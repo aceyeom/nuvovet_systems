@@ -1,12 +1,13 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { I } from '../icons';
 import { adjudicateClaim, loadClaimDetail, loadDemo } from '../claimsApi';
-import { ANOMALY_LABEL, DECISION, fmtKRW } from '../format';
+import { ANOMALY_LABEL, DECISION, PEND_LABEL, SIU_LABEL, fmtKRW, claimHeadline } from '../format';
 import { AdjudicationView, DecisionBadge, Loading, SourceNote, useAsync } from '../ui';
 import { ClaimForm, PRESETS, toClaim, toPolicy, today } from '../claimForm';
 
 const FILTERS = [
-  { id: 'open', ko: '심사 대상' },
+  { id: 'open', ko: '처리 대상' },
+  { id: 'pend', ko: DECISION.pend.short },
   { id: 'review', ko: DECISION.review.ko },
   { id: 'deny_recommended', ko: DECISION.deny_recommended.ko },
   { id: 'auto_approve', ko: DECISION.auto_approve.ko },
@@ -37,7 +38,7 @@ function Composer({ onResult }) {
       <div className="row" style={{ justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
         <div>
           <div className="section-title">새 청구 심사 — 실시간 엔진</div>
-          <div className="section-sub">병원 영수증 원문 그대로 입력하면 표준 코드 매핑 → 보장·임상·가격·무결성 규칙을 실행합니다.</div>
+          <div className="section-sub">영수증 원문과 받은 서류를 입력하면 표준 코드 매핑 → 보장·임상·가격·무결성 규칙 → 보험사별 서류 요건을 실행합니다.</div>
         </div>
         <div className="row gap-4" style={{ flexWrap: 'wrap' }}>
           {PRESETS.map((p) => (
@@ -103,7 +104,7 @@ export default function ClaimValidation({ initialClaimId }) {
           {live && <AdjudicationView result={live.result} claim={live.claim} />}
         </div>
       ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(260px, 340px) minmax(0, 1fr)', gap: 16, alignItems: 'start' }}>
+        <div className="split-list">
           <div className="card" style={{ position: 'sticky', top: 0, maxHeight: 'calc(100vh - 140px)', display: 'flex', flexDirection: 'column' }}>
             <div className="tabs" style={{ padding: '8px 10px 0', flexWrap: 'wrap' }}>
               {FILTERS.map((f) => (
@@ -119,8 +120,14 @@ export default function ClaimValidation({ initialClaimId }) {
                     <span className="mono" style={{ fontSize: 11.5, color: 'var(--text-muted)' }}>{c.claim_id}</span>
                     <DecisionBadge decision={c.decision} />
                   </div>
-                  <div style={{ fontSize: 13, fontWeight: 600, marginTop: 3, color: 'var(--text-primary)' }}>{c.top_finding || c.diagnosis}</div>
+                  <div style={{ fontSize: 13, fontWeight: 600, marginTop: 3, color: 'var(--text-primary)' }}>{claimHeadline(c)}</div>
                   <div style={{ fontSize: 11.5, color: 'var(--text-secondary)', marginTop: 2 }}>{c.clinic} · {c.diagnosis} · <span className="mono tnum">{fmtKRW(c.billed)}</span></div>
+                  {(c.pend_codes?.length > 0 || c.siu?.length > 0) && (
+                    <div className="row gap-4" style={{ marginTop: 5, flexWrap: 'wrap' }}>
+                      {(c.pend_codes || []).map((p) => <span key={p} className="badge badge-info" style={{ fontSize: 10, padding: '1px 6px' }}>{PEND_LABEL[p] || p}</span>)}
+                      {(c.siu || []).map((s) => <span key={s} className="badge badge-critical" style={{ fontSize: 10, padding: '1px 6px' }}>SIU · {SIU_LABEL[s] || s}</span>)}
+                    </div>
+                  )}
                 </button>
               ))}
               {!rows.length && <div style={{ padding: 20, fontSize: 13, color: 'var(--text-muted)' }}>해당 청구가 없습니다.</div>}

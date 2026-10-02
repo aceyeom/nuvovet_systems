@@ -2,49 +2,56 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useI18n } from '../../../i18n';
 
-const drugs = [
-  { name: { ko: '멜록시캄', en: 'Meloxicam' }, class: 'NSAID' },
-  { name: { ko: '프레드니솔론', en: 'Prednisolone' }, class: 'Corticosteroid' },
-  { name: { ko: '엔로플록사신', en: 'Enrofloxacin' }, class: 'Fluoroquinolone' },
-  { name: { ko: '트라마돌', en: 'Tramadol' }, class: 'Opioid' },
+// "Explainable review": one sample claim as the claims engine actually codes and reviews it — receipt lines mapped
+// to standard codes, then findings with their rule ID, amount at risk and evidence. Values are the engine's output
+// for this input (backend/claims/engine.py); the price benchmark is the seed estimate and is labelled as such.
+// (File name kept from the retired DUR landing so Landing.jsx imports stay unchanged.)
+
+const lines = [
+  { text: '초진료', code: 'CON-001', name: { ko: '초진 진찰료', en: 'Initial consultation' }, amount: 15000 },
+  { text: '복부 초음파', code: 'IMG-002', name: { ko: '복부 초음파', en: 'Abdominal ultrasound' }, amount: 180000 },
+  { text: '수액처치', code: 'TRT-001', name: { ko: '정맥 수액처치', en: 'IV fluid therapy' }, amount: 60000 },
+  { text: '사료', code: 'NON-003', name: { ko: '사료·처방식 (지급 제외)', en: 'Food (not covered)' }, amount: 30000, excluded: true },
 ];
 
-const ruleEngines = [
-  { label: { ko: 'CYP 효소 분석', en: 'CYP Enzyme' }, color: '#6366f1' },
-  { label: { ko: 'QT 연장', en: 'QT Prolong.' }, color: '#8b5cf6' },
-  { label: { ko: '출혈 위험', en: 'Bleeding Risk' }, color: '#a855f7' },
-  { label: { ko: '세로토닌', en: 'Serotonin' }, color: '#c084fc' },
-  { label: { ko: '중복 처방', en: 'Duplication' }, color: '#7c3aed' },
-];
-
-const flaggedPairs = [
+const findings = [
   {
-    drugA: { ko: '멜록시캄', en: 'Meloxicam' },
-    drugB: { ko: '프레드니솔론', en: 'Prednisolone' },
-    rule: { ko: 'GI 출혈 위험', en: 'GI Bleeding Risk' },
-    severity: 'critical',
+    rule: 'pricing.regional_outlier',
+    severity: 'warning',
+    title: { ko: '지역 대비 고가: 복부 초음파 (P99)', en: 'Regional price outlier: abdominal ultrasound (P99)' },
+    amount: 68000,
+    evidence: { ko: '서울 중앙값 ₩67,200 · 벤치마크 추정치', en: 'Seoul median ₩67,200 · estimated benchmark' },
   },
   {
-    drugA: { ko: '엔로플록사신', en: 'Enrofloxacin' },
-    drugB: { ko: '트라마돌', en: 'Tramadol' },
-    rule: { ko: 'QT 연장 중첩', en: 'QT Prolongation' },
-    severity: 'moderate',
+    rule: 'pricing.above_posted_fee',
+    severity: 'warning',
+    title: { ko: '게시 진료비 초과: 초진 진찰료', en: 'Above the clinic’s posted fee: consultation' },
+    amount: 6000,
+    evidence: { ko: '게시가 ₩9,000 · 청구 단가 ₩15,000', en: 'Posted ₩9,000 · billed ₩15,000' },
+  },
+  {
+    rule: 'coverage.line_ineligible',
+    severity: 'info',
+    title: { ko: '지급 제외 항목: 사료', en: 'Not covered: food' },
+    amount: 30000,
+    evidence: { ko: '비의료 항목(사료·용품)', en: 'Non-medical item (food, supplies)' },
   },
 ];
 
-const sevConfig = {
-  critical: { bg: '#fef2f2', border: '#fecaca', text: '#dc2626', badge: '#dc2626', badgeText: '#fff', label: { ko: '위험', en: 'Critical' } },
-  moderate: { bg: '#fffbeb', border: '#fed7aa', text: '#d97706', badge: '#d97706', badgeText: '#fff', label: { ko: '주의', en: 'Moderate' } },
+const sev = {
+  warning: { bg: '#fffbeb', border: '#fde68a', text: '#b45309' },
+  info: { bg: '#f8fafc', border: '#e2e8f0', text: '#475569' },
 };
+
+const won = (n) => `₩${n.toLocaleString('ko-KR')}`;
 
 const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.06 } } };
 const fadeIn = { hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0, transition: { duration: 0.4 } } };
-const dropIn = { hidden: { opacity: 0, y: -16 }, visible: (i) => ({ opacity: 1, y: 0, transition: { duration: 0.4, delay: 0.5 + i * 0.08 } }) };
-const resultPop = { hidden: { opacity: 0, scale: 0.9 }, visible: (i) => ({ opacity: 1, scale: 1, transition: { duration: 0.4, delay: 1.2 + i * 0.2 } }) };
+const pop = { hidden: { opacity: 0, scale: 0.95 }, visible: (i) => ({ opacity: 1, scale: 1, transition: { duration: 0.4, delay: 0.6 + i * 0.15 } }) };
 
 export default function DDIIllustration() {
   const { lang } = useI18n();
-  const l = lang || 'ko';
+  const l = lang === 'en' ? 'en' : 'ko';
 
   return (
     <motion.div
@@ -54,102 +61,62 @@ export default function DDIIllustration() {
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
     >
-      {/* ── INPUT: Drug entries ── */}
-      <motion.div variants={fadeIn} className="mb-1">
+      <motion.div variants={fadeIn} className="flex items-center justify-between mb-3">
         <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">
-          {l === 'ko' ? '입력 약물' : 'Input Drugs'}
+          {l === 'ko' ? '예시 청구 · 엔진 출력' : 'Sample claim · engine output'}
+        </span>
+        <span className="text-[10px] font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200">
+          {l === 'ko' ? '심사 필요' : 'Review'}
         </span>
       </motion.div>
-      <motion.div className="flex flex-wrap gap-1.5 mb-4" variants={stagger}>
-        {drugs.map((drug, i) => (
-          <motion.div
-            key={i}
-            variants={fadeIn}
-            className="px-2.5 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-[11px] font-medium text-slate-700"
+
+      {/* Receipt lines → standard codes */}
+      <motion.div variants={fadeIn} className="rounded-xl border border-slate-200 bg-white mb-3 overflow-hidden">
+        {lines.map((ln, i) => (
+          <div
+            key={ln.code}
+            className={`grid grid-cols-[1fr_auto] gap-2 px-3 py-1.5 text-[11px] ${i < lines.length - 1 ? 'border-b border-slate-100' : ''}`}
           >
-            {drug.name[l]}
-            <span className="ml-1 text-slate-400 text-[9px]">{drug.class}</span>
-          </motion.div>
+            <div className="min-w-0 truncate">
+              <span className="text-slate-500">{ln.text}</span>
+              <span className="mx-1.5 text-slate-300">→</span>
+              <span className={`font-mono text-[10px] ${ln.excluded ? 'text-slate-400' : 'text-indigo-600'}`}>{ln.code}</span>
+              <span className={`ml-1.5 ${ln.excluded ? 'text-slate-400' : 'text-slate-700'}`}>{ln.name[l]}</span>
+            </div>
+            <span className={`tabular-nums ${ln.excluded ? 'text-slate-400 line-through' : 'text-slate-700'}`}>{won(ln.amount)}</span>
+          </div>
         ))}
       </motion.div>
 
-      {/* ── Arrow down ── */}
-      <motion.div variants={fadeIn} className="flex justify-center mb-3">
-        <svg width="16" height="24" viewBox="0 0 16 24" fill="none">
-          <path d="M8 2v18M3 16l5 5 5-5" stroke="#cbd5e1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </motion.div>
-
-      {/* ── PROCESSING: Rule engine layers ── */}
-      <motion.div variants={fadeIn} className="mb-1">
-        <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">
-          {l === 'ko' ? '검사 엔진 (9,746 규칙)' : 'Screening Engines (9,746 Rules)'}
-        </span>
-      </motion.div>
-      <div className="flex flex-wrap gap-1.5 mb-4">
-        {ruleEngines.map((rule, i) => (
-          <motion.div
-            key={i}
-            custom={i}
-            variants={dropIn}
-            className="px-2.5 py-1.5 rounded-lg text-[10px] font-semibold text-white"
-            style={{ backgroundColor: rule.color }}
-          >
-            {rule.label[l]}
-          </motion.div>
-        ))}
-      </div>
-
-      {/* ── Arrow down ── */}
-      <motion.div variants={fadeIn} className="flex justify-center mb-3">
-        <svg width="16" height="24" viewBox="0 0 16 24" fill="none">
-          <path d="M8 2v18M3 16l5 5 5-5" stroke="#cbd5e1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </motion.div>
-
-      {/* ── OUTPUT: Flagged pairs ── */}
-      <motion.div variants={fadeIn} className="mb-2">
-        <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">
-          {l === 'ko' ? '검출 결과' : 'Flagged Results'}
-        </span>
-      </motion.div>
+      {/* Findings: rule ID, amount at risk, evidence */}
       <div className="space-y-2">
-        {flaggedPairs.map((pair, i) => {
-          const sev = sevConfig[pair.severity];
+        {findings.map((f, i) => {
+          const s = sev[f.severity];
           return (
             <motion.div
-              key={i}
+              key={f.rule}
               custom={i}
-              variants={resultPop}
-              className="rounded-xl border px-3.5 py-3"
-              style={{ backgroundColor: sev.bg, borderColor: sev.border }}
+              variants={pop}
+              className="rounded-xl border px-3 py-2"
+              style={{ backgroundColor: s.bg, borderColor: s.border }}
             >
-              <div className="flex items-center justify-between mb-1.5">
-                <div className="flex items-center gap-2">
-                  <span className="text-[12px] font-semibold" style={{ color: sev.text }}>
-                    {pair.drugA[l]}
-                  </span>
-                  <svg width="16" height="8" viewBox="0 0 16 8" fill="none">
-                    <path d="M0 4h12M10 1l3 3-3 3" stroke={sev.text} strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  <span className="text-[12px] font-semibold" style={{ color: sev.text }}>
-                    {pair.drugB[l]}
-                  </span>
-                </div>
-                <span
-                  className="text-[9px] font-bold px-2 py-0.5 rounded-md text-white"
-                  style={{ backgroundColor: sev.badge }}
-                >
-                  {sev.label[l]}
-                </span>
+              <div className="flex items-start justify-between gap-2">
+                <span className="text-[11.5px] font-semibold leading-snug" style={{ color: s.text }}>{f.title[l]}</span>
+                <span className="shrink-0 text-[10.5px] font-semibold tabular-nums" style={{ color: s.text }}>{won(f.amount)}</span>
               </div>
-              <div className="text-[10px]" style={{ color: sev.text, opacity: 0.7 }}>
-                {pair.rule[l]}
+              <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[9.5px]">
+                <span className="font-mono text-slate-500">{f.rule}</span>
+                <span className="text-slate-300">·</span>
+                <span className="text-slate-500">{f.evidence[l]}</span>
               </div>
             </motion.div>
           );
         })}
       </div>
+
+      <motion.div variants={fadeIn} className="mt-3 text-[9.5px] text-slate-400">
+        {l === 'ko' ? '판정은 심사역이 확정합니다 · 자동 거절 없음' : 'An adjuster confirms every decision · no auto-denials'}
+      </motion.div>
     </motion.div>
   );
 }

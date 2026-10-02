@@ -28,8 +28,10 @@ export default function ProcedurePricing() {
     const m = data.regionMultipliers[region] ?? data.regionMultipliers.default;
     return data.procedures
       .filter((p) => cat === 'all' || p.category === cat)
-      .map((p) => ({ ...p, b: { p10: p.benchmark.p10 * m, p50: p.benchmark.p50 * m, p90: p.benchmark.p90 * m } }));
+      .map((p) => ({ ...p, b: p.benchmark ? { p10: p.benchmark.p10 * m, p50: p.benchmark.p50 * m, p90: p.benchmark.p90 * m } : null }))
+      .sort((a, b) => (a.b ? 0 : 1) - (b.b ? 0 : 1));
   }, [data, region, cat]);
+  const noBenchmark = rows.filter((p) => !p.b).length;
 
   if (loading || !data) return <Loading />;
 
@@ -53,6 +55,7 @@ export default function ProcedurePricing() {
       <div className="card card-pad-sm" style={{ marginBottom: 16, fontSize: 12.5, color: 'var(--text-secondary)' }}>
         현재 분포는 개발용 <b>추정치</b>이며, 공개 근거가 있는 항목만 출처를 표시합니다(예: 초진료 — 농식품부 2025 진료비 현황조사 전국 평균 ₩10,520).
         파일럿 단계에서 농식품부 진료비 현황조사(20개 항목) · 2026.12 병원별 진료비 공개 자료 · 파트너 보험사 청구 이력으로 교체합니다.
+        {noBenchmark > 0 && <> 공개 가격 근거가 없는 {noBenchmark}개 코드는 가격을 만들지 않고 비워 둡니다(가격 규칙에서 제외).</>}
       </div>
       <div className="card">
         <table className="table">
@@ -60,7 +63,7 @@ export default function ProcedurePricing() {
             <tr><th>코드</th><th>항목</th><th>분류</th><th style={{ textAlign: 'right' }}>P10</th><th style={{ textAlign: 'right' }}>중앙값</th><th style={{ textAlign: 'right' }}>P90</th><th>가격 확인</th><th>출처</th></tr>
           </thead>
           <tbody>
-            {rows.map((p) => (
+            {rows.map((p) => (p.b ? (
               <tr key={p.code}>
                 <td className="mono" style={{ fontSize: 11.5, fontWeight: 600 }}>{p.code}</td>
                 <td style={{ fontSize: 13 }}>{p.name_ko} <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>/{p.unit}</span></td>
@@ -80,7 +83,15 @@ export default function ProcedurePricing() {
                   {p.benchmark.source_url && <span title={p.benchmark.source} style={{ marginLeft: 4, color: 'var(--info)' }}>근거</span>}
                 </td>
               </tr>
-            ))}
+            ) : (
+              <tr key={p.code}>
+                <td className="mono" style={{ fontSize: 11.5, fontWeight: 600, color: 'var(--text-secondary)' }}>{p.code}</td>
+                <td style={{ fontSize: 13, color: 'var(--text-secondary)' }}>{p.name_ko} <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>/{p.unit}</span></td>
+                <td style={{ fontSize: 12 }}>{CATEGORY_KO[p.category]}</td>
+                <td colSpan={4} style={{ fontSize: 12, color: 'var(--text-muted)' }}>공개 가격 근거 없음 — 벤치마크 미생성</td>
+                <td style={{ fontSize: 11 }}><span className="badge">없음</span></td>
+              </tr>
+            )))}
           </tbody>
         </table>
       </div>

@@ -1,4 +1,8 @@
-"""Price percentiles against a log-normal fitted to each code's p10/p50/p90."""
+"""Price percentiles against a log-normal fitted to each code's p10/p50/p90.
+
+Codes without a public price source carry `benchmark: null` in the codebook; they have no
+percentile (the pricing rule skips them) — prices are never invented.
+"""
 
 from __future__ import annotations
 
@@ -25,14 +29,19 @@ class PricePosition:
     is_estimate: bool
 
 
+def has_benchmark(code: Optional[str]) -> bool:
+    bm = (procedures_by_code().get(code or "") or {}).get("benchmark")
+    return bool(bm) and all((bm.get(k) or 0) > 0 for k in ("p10", "p50", "p90"))
+
+
 def region_multiplier(region: Optional[str]) -> float:
     table = procedure_book()["_meta"]["region_multipliers"]
     return table.get(region or "", table["default"])
 
 
 def price_position(code: str, unit_price: int, region: Optional[str] = None) -> Optional[PricePosition]:
-    proc = procedures_by_code().get(code)
-    if not proc or unit_price <= 0:
+    proc = procedures_by_code().get(code or "")
+    if not proc or not has_benchmark(code) or unit_price <= 0:
         return None
     bm = proc["benchmark"]
     m = region_multiplier(region)

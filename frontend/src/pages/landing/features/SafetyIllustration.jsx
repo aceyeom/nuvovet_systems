@@ -2,92 +2,55 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useI18n } from '../../../i18n';
 
+// "Wrong animal, duplicate claims": one sample cat claim through the claims engine's integrity and coverage rules.
+// Hits, their rule IDs and the decision are the engine's output for this input, with a same-day claim C-8 for
+// the same patient in history (backend/claims/engine.py _integrity, coverage).
+// (File name kept from the retired DUR landing so Landing.jsx imports stay unchanged.)
+
 const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } } };
 const fadeUp = { hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: 0.45 } } };
 const checkReveal = {
   hidden: { opacity: 0, x: -16 },
-  visible: (i) => ({
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.4, delay: 0.3 + i * 0.15, ease: [0.25, 0.1, 0.25, 1] },
-  }),
+  visible: (i) => ({ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.3 + i * 0.15, ease: [0.25, 0.1, 0.25, 1] } }),
 };
 
-const checkItems = [
+const checks = [
   {
-    status: 'pass',
-    label: { ko: '종 적합성 확인', en: 'Species Compatibility' },
-    detail: { ko: '개 (Canine) — 해당 약물 모두 허가 확인됨', en: 'Canine — All drugs species-approved' },
-  },
-  {
-    status: 'pass',
-    label: { ko: '품종 안전성 확인', en: 'Breed Safety Verified' },
-    detail: { ko: '셔틀랜드 쉽독 — 품종 프로필 로드됨', en: 'Shetland Sheepdog — Breed profile loaded' },
+    status: 'critical',
+    rule: 'integrity.species_mismatch_item',
+    label: { ko: '종 불일치 항목: 개 종합백신 (DHPPL)', en: 'Species mismatch: dog vaccine (DHPPL)' },
+    detail: { ko: '개 전용 항목이 고양이 청구에 포함되어 있습니다', en: 'A dog-only item on a cat claim' },
   },
   {
     status: 'warning',
-    label: { ko: 'MDR1 감수성 감지', en: 'MDR1 Sensitivity Detected' },
-    detail: { ko: 'P-gp 결핍 → 이버멕틴 혈뇌장벽 투과 위험', en: 'P-gp deficiency → Ivermectin BBB risk' },
-    recommendation: { ko: '셀라멕틴 또는 밀베마이신으로 전환 권고', en: 'Switch to Selamectin or Milbemycin' },
-  },
-  {
-    status: 'pass',
-    label: { ko: '알레르기 교차반응 없음', en: 'No Allergy Cross-Reaction' },
-    detail: { ko: '73개 알레르기 클래스 대조 — 이상 없음', en: '73 allergy classes checked — Clear' },
+    rule: 'integrity.weight_implausible',
+    label: { ko: '체중 이상', en: 'Implausible weight' },
+    detail: { ko: '고양이 체중 14.5 kg은 통상 범위를 벗어납니다', en: 'A 14.5 kg cat is outside the normal range' },
   },
   {
     status: 'critical',
-    label: { ko: '아세트아미노펜 종 금기', en: 'Acetaminophen Species Block' },
-    detail: { ko: '고양이 종 절대 금기 — 치사 위험', en: 'Fatal in felines — Absolute contraindication' },
-    recommendation: { ko: 'DUR 스캔 이전 자동 차단됨', en: 'Auto-blocked before DUR scan' },
+    rule: 'integrity.duplicate_claim',
+    label: { ko: '중복 청구 의심', en: 'Possible duplicate claim' },
+    detail: { ko: '같은 날 기존 청구 C-8과 항목 100% 중복', en: 'Same visit date as claim C-8, 100% of items overlap' },
+  },
+  {
+    status: 'pass',
+    rule: 'coverage.before_policy_start',
+    label: { ko: '보험 개시 전 진료', en: 'Care before the policy started' },
+    detail: { ko: '해당 없음 — 보험 개시 2025-06-01', en: 'Not triggered — policy started 2025-06-01' },
   },
 ];
 
 const statusConfig = {
-  pass: {
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <circle cx="8" cy="8" r="7" stroke="#16a34a" strokeWidth="1.5" fill="#f0fdf4" />
-        <path d="M5 8l2 2 4-4" stroke="#16a34a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-    bg: '#f0fdf4',
-    border: '#bbf7d0',
-    labelColor: '#15803d',
-    detailColor: '#4ade80',
-  },
-  warning: {
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M8 2L14 13H2L8 2Z" stroke="#d97706" strokeWidth="1.5" fill="#fffbeb" strokeLinejoin="round" />
-        <path d="M8 7v2.5M8 11.5v.5" stroke="#d97706" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
-    ),
-    bg: '#fffbeb',
-    border: '#fde68a',
-    labelColor: '#b45309',
-    detailColor: '#d97706',
-  },
-  critical: {
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <circle cx="8" cy="8" r="7" stroke="#dc2626" strokeWidth="1.5" fill="#fef2f2" />
-        <path d="M6 6l4 4M10 6l-4 4" stroke="#dc2626" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
-    ),
-    bg: '#fef2f2',
-    border: '#fecaca',
-    labelColor: '#b91c1c',
-    detailColor: '#dc2626',
-  },
+  pass: { bg: '#f0fdf4', border: '#bbf7d0', label: '#15803d', detail: '#16a34a', mark: '✓' },
+  warning: { bg: '#fffbeb', border: '#fde68a', label: '#b45309', detail: '#d97706', mark: '!' },
+  critical: { bg: '#fef2f2', border: '#fecaca', label: '#b91c1c', detail: '#dc2626', mark: '×' },
 };
 
 export default function SafetyIllustration() {
   const { lang } = useI18n();
-  const l = lang || 'ko';
-
-  const passCount = checkItems.filter(c => c.status === 'pass').length;
-  const total = checkItems.length;
+  const l = lang === 'en' ? 'en' : 'ko';
+  const hits = checks.filter((c) => c.status !== 'pass').length;
 
   return (
     <motion.div
@@ -97,50 +60,46 @@ export default function SafetyIllustration() {
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
     >
-      {/* Header */}
-      <motion.div variants={fadeUp} className="flex items-center justify-between mb-4">
+      <motion.div variants={fadeUp} className="flex items-center justify-between mb-3">
         <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">
-          {l === 'ko' ? '환자 안전 점검' : 'Patient Safety Check'}
+          {l === 'ko' ? '무결성 규칙' : 'Integrity rules'}
         </span>
         <span className="text-[9px] font-medium text-slate-500 bg-slate-100 px-2 py-0.5 rounded-md border border-slate-200">
-          {passCount}/{total} {l === 'ko' ? '통과' : 'passed'}
+          {l === 'ko' ? `${checks.length}개 중 ${hits}개 해당` : `${hits} of ${checks.length} triggered`}
         </span>
       </motion.div>
 
-      {/* Patient context */}
-      <motion.div variants={fadeUp} className="flex items-center gap-3 mb-4 px-3 py-2 rounded-lg bg-slate-50 border border-slate-100">
+      <motion.div variants={fadeUp} className="flex items-center justify-between gap-3 mb-3 px-3 py-2 rounded-lg bg-slate-50 border border-slate-100">
         <span className="text-[11px] text-slate-500">
-          <span className="font-semibold text-slate-700">{l === 'ko' ? '셔틀랜드 쉽독' : 'Shetland Sheepdog'}</span>
-          {' · '}4{l === 'ko' ? '세' : 'y'} · 8.2 kg
+          <span className="font-semibold text-slate-700">{l === 'ko' ? '고양이 · 코리안 숏헤어' : 'Cat · Korean shorthair'}</span>
+          {' · '}14.5 kg · {l === 'ko' ? '방광염' : 'cystitis'}
         </span>
+        <span className="font-mono text-[10px] text-slate-400">C-9</span>
       </motion.div>
 
-      {/* Checklist */}
       <div className="space-y-2">
-        {checkItems.map((item, i) => {
-          const config = statusConfig[item.status];
+        {checks.map((c, i) => {
+          const cfg = statusConfig[c.status];
           return (
             <motion.div
-              key={i}
+              key={c.rule}
               custom={i}
               variants={checkReveal}
-              className="rounded-xl border px-3.5 py-2.5"
-              style={{ backgroundColor: config.bg, borderColor: config.border }}
+              className="rounded-xl border px-3.5 py-2"
+              style={{ backgroundColor: cfg.bg, borderColor: cfg.border }}
             >
               <div className="flex items-start gap-2.5">
-                <div className="mt-0.5 shrink-0">{config.icon}</div>
+                <span
+                  className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-[10px] font-bold text-white"
+                  style={{ backgroundColor: cfg.detail }}
+                  aria-hidden="true"
+                >
+                  {cfg.mark}
+                </span>
                 <div className="min-w-0 flex-1">
-                  <div className="text-[12px] font-semibold" style={{ color: config.labelColor }}>
-                    {item.label[l]}
-                  </div>
-                  <div className="text-[10px] mt-0.5" style={{ color: config.detailColor, opacity: 0.7 }}>
-                    {item.detail[l]}
-                  </div>
-                  {item.recommendation && (
-                    <div className="mt-1.5 text-[10px] font-medium px-2 py-1 rounded-md bg-white/60 border" style={{ borderColor: config.border, color: config.labelColor }}>
-                      → {item.recommendation[l]}
-                    </div>
-                  )}
+                  <div className="text-[12px] font-semibold" style={{ color: cfg.label }}>{c.label[l]}</div>
+                  <div className="mt-0.5 text-[10px]" style={{ color: cfg.detail }}>{c.detail[l]}</div>
+                  <div className="mt-0.5 font-mono text-[9px] text-slate-400">{c.rule}</div>
                 </div>
               </div>
             </motion.div>
@@ -148,19 +107,12 @@ export default function SafetyIllustration() {
         })}
       </div>
 
-      {/* Coverage footer */}
-      <motion.div variants={fadeUp} className="mt-3 flex items-center gap-4 px-3 py-2 rounded-lg bg-slate-50 border border-slate-100">
-        <span className="text-[9px] text-slate-400">
-          {l === 'ko' ? '50개 품종 프로필' : '50 breed profiles'}
-        </span>
-        <span className="text-[9px] text-slate-300">·</span>
-        <span className="text-[9px] text-slate-400">
-          {l === 'ko' ? '16개 MDR1 품종' : '16 MDR1 breeds'}
-        </span>
-        <span className="text-[9px] text-slate-300">·</span>
-        <span className="text-[9px] text-slate-400">
-          {l === 'ko' ? '73개 알레르기 클래스' : '73 allergy classes'}
-        </span>
+      <motion.div variants={fadeUp} className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 px-3 py-2 rounded-lg bg-slate-50 border border-slate-100 text-[9.5px]">
+        <span className="font-semibold text-red-700">{l === 'ko' ? '지급 거절 권고' : 'Deny recommended'}</span>
+        <span className="text-slate-300">·</span>
+        <span className="text-slate-500">{l === 'ko' ? 'SIU: 동물 동일성 불일치, 청구 간 중복' : 'SIU: identity mismatch, duplicate across claims'}</span>
+        <span className="text-slate-300">·</span>
+        <span className="text-slate-500">{l === 'ko' ? '심사역이 확정' : 'adjuster decides'}</span>
       </motion.div>
     </motion.div>
   );

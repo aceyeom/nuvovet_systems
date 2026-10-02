@@ -27,7 +27,7 @@ const PRODUCTS = {
       accentLight: '#EAF6F2',
       nameSuffix: '병원',
       forWhom: '동물병원 · 수의사 대상 (무료)',
-      description: '보호자에게 서류를 드리기 전에 보험 청구를 사전점검하고\n처방 안전성을 함께 확인하세요.',
+      description: '보호자에게 서류를 드리기 전에 보험 청구를 사전점검하세요.\n보험사가 문제 삼을 항목과 발급할 서류를 미리 알려 드립니다.',
       cta: '청구 사전점검',
       path: '/clinic/claim',
     },
@@ -51,7 +51,7 @@ const PRODUCTS = {
       accentLight: '#EAF6F2',
       nameSuffix: 'Clinic',
       forWhom: 'For veterinary clinics (free)',
-      description: 'Pre-check insurance claims before they reach the owner,\nand review prescription safety in the same place.',
+      description: 'Pre-check insurance claims before they reach the owner:\nsee what an insurer would query and which documents to issue.',
       cta: 'Pre-check a claim',
       path: '/clinic/claim',
     },
@@ -355,7 +355,7 @@ export default function Start() {
           {l === 'ko' ? '직접 보려면 데모를 먼저 둘러보세요.' : 'Not sure yet? Browse the demo first.'}
         </span>
         <button
-          onClick={() => navigate('/demo')}
+          onClick={() => navigate('/insurance')}
           style={{
             background: 'none',
             border: 'none',
