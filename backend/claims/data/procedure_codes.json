@@ -1,0 +1,1521 @@
+{
+ "_meta": {
+  "description": "NuvoVet procedure codebook (NVP). Internal codes designed to map 1:1 onto MAFRA '동물 진료의 권장 표준' procedure names (4,930 coded, 2025-04 revision) once the official code table is ingested; 'mafra_standard_ref' is reserved for that mapping.",
+  "categories": {
+   "consult": "진찰",
+   "hospitalization": "입원",
+   "lab": "검사",
+   "imaging": "영상",
+   "treatment": "처치",
+   "anesthesia": "마취",
+   "surgery": "수술",
+   "preventive": "예방",
+   "dental": "치과",
+   "pharmacy": "약제",
+   "non_medical": "비의료",
+   "admin": "행정"
+  },
+  "benchmark_note": "Prices are KRW per unit. Except where a public source is cited, distributions are seed estimates for development and demos only and must be replaced with MAFRA survey data and partner claims history before any production decision.",
+  "region_multipliers": {
+   "서울": 1.12,
+   "경기": 1.0,
+   "인천": 0.98,
+   "부산": 0.95,
+   "대구": 0.94,
+   "광주": 0.93,
+   "대전": 0.94,
+   "울산": 0.95,
+   "세종": 0.97,
+   "default": 0.92
+  },
+  "version": "2026.10.0"
+ },
+ "codes": [
+  {
+   "code": "CON-001",
+   "category": "consult",
+   "name_ko": "초진 진찰료",
+   "name_en": "Initial consultation",
+   "synonyms": [
+    "초진",
+    "초진료",
+    "초진진찰",
+    "진찰료초진",
+    "첫진료",
+    "initialconsult",
+    "신환진찰"
+   ],
+   "unit": "visit",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 5500,
+    "p50": 10000,
+    "p90": 16500,
+    "source": "MAFRA 2025 진료비 현황조사 (3,950 clinics): national mean ₩10,520, range ₩1,000–61,000; p10/p90 estimated",
+    "is_estimate": true,
+    "replace_with": "MAFRA 동물병원 진료비 현황조사 (animalclinicfee.or.kr)",
+    "source_url": "https://www.mafra.go.kr/bbs/home/792/592824/download.do"
+   }
+  },
+  {
+   "code": "CON-002",
+   "category": "consult",
+   "name_ko": "재진 진찰료",
+   "name_en": "Follow-up consultation",
+   "synonyms": [
+    "재진",
+    "재진료",
+    "재진진찰",
+    "진찰료재진",
+    "followup",
+    "recheck"
+   ],
+   "unit": "visit",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 4000,
+    "p50": 7000,
+    "p90": 11000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "MAFRA 동물병원 진료비 현황조사 (animalclinicfee.or.kr)"
+   }
+  },
+  {
+   "code": "CON-003",
+   "category": "consult",
+   "name_ko": "상담료",
+   "name_en": "Consultation fee",
+   "synonyms": [
+    "상담료",
+    "상담",
+    "진료상담",
+    "consultation"
+   ],
+   "unit": "visit",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 5000,
+    "p50": 10000,
+    "p90": 20000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "MAFRA 동물병원 진료비 현황조사 (animalclinicfee.or.kr)"
+   }
+  },
+  {
+   "code": "CON-004",
+   "category": "consult",
+   "name_ko": "야간·응급 진찰료",
+   "name_en": "After-hours / emergency consultation",
+   "synonyms": [
+    "야간진찰",
+    "응급진찰",
+    "야간할증",
+    "응급",
+    "야간",
+    "emergency",
+    "afterhours"
+   ],
+   "unit": "visit",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 15000,
+    "p50": 30000,
+    "p90": 60000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "HOS-001",
+   "category": "hospitalization",
+   "name_ko": "입원비 (일반, 1일)",
+   "name_en": "Hospitalization (general, per day)",
+   "synonyms": [
+    "입원비",
+    "입원료",
+    "일반입원",
+    "입원",
+    "hospitalization",
+    "inpatient"
+   ],
+   "unit": "day",
+   "max_qty_per_visit": 30,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 35000,
+    "p50": 60000,
+    "p90": 100000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "MAFRA 동물병원 진료비 현황조사 (animalclinicfee.or.kr)"
+   }
+  },
+  {
+   "code": "HOS-002",
+   "category": "hospitalization",
+   "name_ko": "입원비 (집중치료/산소, 1일)",
+   "name_en": "Hospitalization (ICU/oxygen, per day)",
+   "synonyms": [
+    "집중치료",
+    "icu",
+    "산소방",
+    "산소입원",
+    "중환자"
+   ],
+   "unit": "day",
+   "max_qty_per_visit": 30,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 70000,
+    "p50": 120000,
+    "p90": 200000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "LAB-001",
+   "category": "lab",
+   "name_ko": "일반혈액검사 (CBC)",
+   "name_en": "Complete blood count",
+   "synonyms": [
+    "cbc",
+    "일반혈액",
+    "전혈구",
+    "혈구검사",
+    "혈액검사cbc"
+   ],
+   "unit": "test",
+   "max_qty_per_visit": 2,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 25000,
+    "p50": 35000,
+    "p90": 50000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "MAFRA 동물병원 진료비 현황조사 (animalclinicfee.or.kr)"
+   }
+  },
+  {
+   "code": "LAB-002",
+   "category": "lab",
+   "name_ko": "혈청화학검사",
+   "name_en": "Serum biochemistry panel",
+   "synonyms": [
+    "혈청화학",
+    "생화학",
+    "혈액화학",
+    "chem",
+    "biochem",
+    "종합혈액화학",
+    "간수치",
+    "신장수치"
+   ],
+   "unit": "panel",
+   "max_qty_per_visit": 2,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 50000,
+    "p50": 80000,
+    "p90": 130000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "MAFRA 동물병원 진료비 현황조사 (animalclinicfee.or.kr)"
+   }
+  },
+  {
+   "code": "LAB-003",
+   "category": "lab",
+   "name_ko": "전해질 검사",
+   "name_en": "Electrolytes",
+   "synonyms": [
+    "전해질",
+    "electrolyte",
+    "na/k"
+   ],
+   "unit": "test",
+   "max_qty_per_visit": 2,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 12000,
+    "p50": 20000,
+    "p90": 35000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "LAB-004",
+   "category": "lab",
+   "name_ko": "요검사",
+   "name_en": "Urinalysis",
+   "synonyms": [
+    "요검사",
+    "소변검사",
+    "뇨검사",
+    "urinalysis",
+    "ua"
+   ],
+   "unit": "test",
+   "max_qty_per_visit": 2,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 12000,
+    "p50": 20000,
+    "p90": 35000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "LAB-005",
+   "category": "lab",
+   "name_ko": "분변검사",
+   "name_en": "Fecal examination",
+   "synonyms": [
+    "분변",
+    "변검사",
+    "fecal"
+   ],
+   "unit": "test",
+   "max_qty_per_visit": 2,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 7000,
+    "p50": 12000,
+    "p90": 20000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "LAB-006",
+   "category": "lab",
+   "name_ko": "피부 세포·소파검사",
+   "name_en": "Skin cytology / scraping",
+   "synonyms": [
+    "피부세포",
+    "피부소파",
+    "피부검사",
+    "세포검사",
+    "cytology",
+    "skinscraping",
+    "테이프검사"
+   ],
+   "unit": "test",
+   "max_qty_per_visit": 3,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 12000,
+    "p50": 20000,
+    "p90": 35000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "LAB-007",
+   "category": "lab",
+   "name_ko": "귀 도말검사",
+   "name_en": "Ear cytology",
+   "synonyms": [
+    "귀도말",
+    "이도도말",
+    "귀검사",
+    "earcytology"
+   ],
+   "unit": "test",
+   "max_qty_per_visit": 2,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 8000,
+    "p50": 15000,
+    "p90": 25000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "LAB-008",
+   "category": "lab",
+   "name_ko": "세균배양·감수성검사",
+   "name_en": "Culture & sensitivity",
+   "synonyms": [
+    "배양",
+    "감수성",
+    "culture"
+   ],
+   "unit": "test",
+   "max_qty_per_visit": 2,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 50000,
+    "p50": 70000,
+    "p90": 110000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "LAB-009",
+   "category": "lab",
+   "name_ko": "췌장특이리파아제 (cPL/fPL)",
+   "name_en": "Pancreatic lipase (cPL/fPL)",
+   "synonyms": [
+    "cpl",
+    "fpl",
+    "spec",
+    "췌장염키트",
+    "췌장키트",
+    "cpl키트",
+    "리파아제",
+    "snapcpl"
+   ],
+   "unit": "test",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 35000,
+    "p50": 50000,
+    "p90": 70000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "LAB-010",
+   "category": "lab",
+   "name_ko": "갑상선호르몬 (T4)",
+   "name_en": "Thyroxine (T4)",
+   "synonyms": [
+    "t4",
+    "갑상선",
+    "갑상선호르몬",
+    "thyroid"
+   ],
+   "unit": "test",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 28000,
+    "p50": 40000,
+    "p90": 60000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "LAB-011",
+   "category": "lab",
+   "name_ko": "ACTH 자극검사",
+   "name_en": "ACTH stimulation test",
+   "synonyms": [
+    "acth",
+    "코티솔",
+    "cortisol",
+    "부신"
+   ],
+   "unit": "test",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 80000,
+    "p50": 120000,
+    "p90": 180000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "LAB-012",
+   "category": "lab",
+   "name_ko": "심장사상충 검사",
+   "name_en": "Heartworm antigen test",
+   "synonyms": [
+    "심장사상충검사",
+    "사상충키트",
+    "heartwormtest",
+    "4dx",
+    "하트웜검사"
+   ],
+   "unit": "test",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 20000,
+    "p50": 30000,
+    "p90": 45000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "LAB-013",
+   "category": "lab",
+   "name_ko": "전염병 키트검사 (파보/디스템퍼 등)",
+   "name_en": "Infectious disease antigen kit",
+   "synonyms": [
+    "파보키트",
+    "디스템퍼키트",
+    "파보검사",
+    "홍역키트",
+    "코로나키트",
+    "felv",
+    "fiv",
+    "전염병키트",
+    "지알디아키트"
+   ],
+   "unit": "test",
+   "max_qty_per_visit": 3,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 20000,
+    "p50": 30000,
+    "p90": 45000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "LAB-014",
+   "category": "lab",
+   "name_ko": "NT-proBNP",
+   "name_en": "NT-proBNP",
+   "synonyms": [
+    "probnp",
+    "bnp",
+    "심장바이오마커"
+   ],
+   "unit": "test",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 50000,
+    "p50": 70000,
+    "p90": 100000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "IMG-001",
+   "category": "imaging",
+   "name_ko": "방사선 촬영",
+   "name_en": "Radiography",
+   "synonyms": [
+    "x-ray",
+    "xray",
+    "엑스레이",
+    "방사선",
+    "방사선촬영",
+    "흉부방사선",
+    "복부방사선",
+    "radiograph"
+   ],
+   "unit": "view",
+   "max_qty_per_visit": 6,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 20000,
+    "p50": 32000,
+    "p90": 50000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "MAFRA 동물병원 진료비 현황조사 (animalclinicfee.or.kr)"
+   }
+  },
+  {
+   "code": "IMG-002",
+   "category": "imaging",
+   "name_ko": "복부 초음파",
+   "name_en": "Abdominal ultrasound",
+   "synonyms": [
+    "복부초음파",
+    "초음파",
+    "abdominalus",
+    "ultrasound",
+    "us검사"
+   ],
+   "unit": "exam",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 35000,
+    "p50": 60000,
+    "p90": 100000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "MAFRA 동물병원 진료비 현황조사 (animalclinicfee.or.kr)"
+   }
+  },
+  {
+   "code": "IMG-003",
+   "category": "imaging",
+   "name_ko": "심장 초음파",
+   "name_en": "Echocardiography",
+   "synonyms": [
+    "심장초음파",
+    "심초음파",
+    "echo",
+    "echocardiography"
+   ],
+   "unit": "exam",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 60000,
+    "p50": 100000,
+    "p90": 150000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "IMG-004",
+   "category": "imaging",
+   "name_ko": "CT 촬영",
+   "name_en": "CT scan",
+   "synonyms": [
+    "ct",
+    "씨티",
+    "컴퓨터단층"
+   ],
+   "unit": "exam",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 300000,
+    "p50": 450000,
+    "p90": 700000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "MAFRA 동물병원 진료비 현황조사 (animalclinicfee.or.kr)"
+   }
+  },
+  {
+   "code": "IMG-005",
+   "category": "imaging",
+   "name_ko": "MRI 촬영",
+   "name_en": "MRI scan",
+   "synonyms": [
+    "mri",
+    "자기공명"
+   ],
+   "unit": "exam",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 550000,
+    "p50": 800000,
+    "p90": 1100000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "MAFRA 동물병원 진료비 현황조사 (animalclinicfee.or.kr)"
+   }
+  },
+  {
+   "code": "TRT-001",
+   "category": "treatment",
+   "name_ko": "정맥 수액처치",
+   "name_en": "IV fluid therapy",
+   "synonyms": [
+    "정맥수액",
+    "수액",
+    "수액처치",
+    "iv수액",
+    "ivfluid",
+    "링거"
+   ],
+   "unit": "day",
+   "max_qty_per_visit": 30,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 25000,
+    "p50": 40000,
+    "p90": 65000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "TRT-002",
+   "category": "treatment",
+   "name_ko": "피하 수액",
+   "name_en": "Subcutaneous fluids",
+   "synonyms": [
+    "피하수액",
+    "sc수액",
+    "subq"
+   ],
+   "unit": "session",
+   "max_qty_per_visit": 3,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 12000,
+    "p50": 20000,
+    "p90": 35000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "TRT-003",
+   "category": "treatment",
+   "name_ko": "주사 처치",
+   "name_en": "Injection",
+   "synonyms": [
+    "주사",
+    "주사료",
+    "피하주사",
+    "근육주사",
+    "정맥주사",
+    "injection"
+   ],
+   "unit": "injection",
+   "max_qty_per_visit": 6,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 8000,
+    "p50": 15000,
+    "p90": 25000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "TRT-004",
+   "category": "treatment",
+   "name_ko": "상처 처치·드레싱",
+   "name_en": "Wound care / dressing",
+   "synonyms": [
+    "드레싱",
+    "소독",
+    "상처처치",
+    "붕대",
+    "wound",
+    "처치료"
+   ],
+   "unit": "session",
+   "max_qty_per_visit": 3,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 10000,
+    "p50": 20000,
+    "p90": 40000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "TRT-005",
+   "category": "treatment",
+   "name_ko": "귀 세척",
+   "name_en": "Ear flush",
+   "synonyms": [
+    "귀세척",
+    "이도세척",
+    "earflush",
+    "귀청소"
+   ],
+   "unit": "session",
+   "max_qty_per_visit": 2,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 8000,
+    "p50": 15000,
+    "p90": 25000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "TRT-006",
+   "category": "treatment",
+   "name_ko": "안압 측정",
+   "name_en": "Tonometry",
+   "synonyms": [
+    "안압",
+    "tonometry",
+    "iop"
+   ],
+   "unit": "test",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 8000,
+    "p50": 15000,
+    "p90": 25000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "TRT-007",
+   "category": "treatment",
+   "name_ko": "형광 염색검사",
+   "name_en": "Fluorescein stain",
+   "synonyms": [
+    "형광염색",
+    "플루오레세인",
+    "fluorescein"
+   ],
+   "unit": "test",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 8000,
+    "p50": 15000,
+    "p90": 25000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "TRT-008",
+   "category": "treatment",
+   "name_ko": "눈물량 검사 (STT)",
+   "name_en": "Schirmer tear test",
+   "synonyms": [
+    "쉬르머",
+    "눈물량",
+    "stt",
+    "schirmer"
+   ],
+   "unit": "test",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 6000,
+    "p50": 12000,
+    "p90": 20000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "TRT-009",
+   "category": "treatment",
+   "name_ko": "혈압 측정",
+   "name_en": "Blood pressure measurement",
+   "synonyms": [
+    "혈압",
+    "bloodpressure",
+    "bp측정"
+   ],
+   "unit": "test",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 8000,
+    "p50": 15000,
+    "p90": 25000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "TRT-010",
+   "category": "treatment",
+   "name_ko": "심전도",
+   "name_en": "Electrocardiogram",
+   "synonyms": [
+    "심전도",
+    "ecg",
+    "ekg"
+   ],
+   "unit": "test",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 20000,
+    "p50": 30000,
+    "p90": 50000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "ANE-001",
+   "category": "anesthesia",
+   "name_ko": "호흡 마취",
+   "name_en": "Inhalation anesthesia",
+   "synonyms": [
+    "호흡마취",
+    "전신마취",
+    "마취료",
+    "isoflurane",
+    "흡입마취",
+    "마취"
+   ],
+   "unit": "procedure",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 90000,
+    "p50": 150000,
+    "p90": 250000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "ANE-002",
+   "category": "anesthesia",
+   "name_ko": "진정",
+   "name_en": "Sedation",
+   "synonyms": [
+    "진정",
+    "sedation",
+    "진정제처치"
+   ],
+   "unit": "procedure",
+   "max_qty_per_visit": 2,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 30000,
+    "p50": 50000,
+    "p90": 80000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "SUR-001",
+   "category": "surgery",
+   "name_ko": "슬개골 탈구 정복술",
+   "name_en": "Patellar luxation repair",
+   "synonyms": [
+    "슬개골",
+    "슬탈",
+    "patella",
+    "patellar"
+   ],
+   "unit": "limb",
+   "max_qty_per_visit": 2,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 900000,
+    "p50": 1300000,
+    "p90": 2000000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "SUR-002",
+   "category": "surgery",
+   "name_ko": "전십자인대 수술 (TPLO 등)",
+   "name_en": "Cruciate ligament surgery (TPLO etc.)",
+   "synonyms": [
+    "tplo",
+    "십자인대",
+    "전십자",
+    "ccl",
+    "cclr",
+    "tta"
+   ],
+   "unit": "limb",
+   "max_qty_per_visit": 2,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 2200000,
+    "p50": 3000000,
+    "p90": 4200000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "SUR-003",
+   "category": "surgery",
+   "name_ko": "위장관 이물 제거술",
+   "name_en": "GI foreign body removal",
+   "synonyms": [
+    "이물제거",
+    "이물질제거",
+    "장절개",
+    "위절개",
+    "foreignbody",
+    "개복술"
+   ],
+   "unit": "procedure",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 1000000,
+    "p50": 1500000,
+    "p90": 2500000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "SUR-004",
+   "category": "surgery",
+   "name_ko": "방광결석 제거술",
+   "name_en": "Cystotomy",
+   "synonyms": [
+    "방광결석",
+    "방광절개",
+    "cystotomy"
+   ],
+   "unit": "procedure",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 700000,
+    "p50": 1000000,
+    "p90": 1600000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "SUR-005",
+   "category": "surgery",
+   "name_ko": "종양 절제술",
+   "name_en": "Mass removal",
+   "synonyms": [
+    "종양절제",
+    "종괴절제",
+    "혹제거",
+    "mass",
+    "tumorremoval",
+    "종양제거"
+   ],
+   "unit": "procedure",
+   "max_qty_per_visit": 3,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 300000,
+    "p50": 600000,
+    "p90": 1200000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "SUR-006",
+   "category": "surgery",
+   "name_ko": "척추 수술 (디스크)",
+   "name_en": "Spinal decompression (IVDD)",
+   "synonyms": [
+    "척추수술",
+    "디스크수술",
+    "hemilaminectomy",
+    "편측추궁절제",
+    "ventralslot"
+   ],
+   "unit": "procedure",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 2500000,
+    "p50": 3500000,
+    "p90": 5000000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "SUR-007",
+   "category": "surgery",
+   "name_ko": "골절 정복술",
+   "name_en": "Fracture repair",
+   "synonyms": [
+    "골절수술",
+    "골절정복",
+    "플레이트",
+    "핀고정",
+    "fracture"
+   ],
+   "unit": "procedure",
+   "max_qty_per_visit": 2,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 1200000,
+    "p50": 1800000,
+    "p90": 3000000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "PRE-001",
+   "category": "preventive",
+   "name_ko": "중성화 수술 (수컷)",
+   "name_en": "Neuter (male)",
+   "synonyms": [
+    "중성화수컷",
+    "거세",
+    "castration",
+    "neuter",
+    "고환적출",
+    "수컷중성화"
+   ],
+   "unit": "procedure",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 150000,
+    "p50": 250000,
+    "p90": 400000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "PRE-002",
+   "category": "preventive",
+   "name_ko": "중성화 수술 (암컷)",
+   "name_en": "Spay (female)",
+   "synonyms": [
+    "중성화암컷",
+    "난소자궁적출",
+    "ovh",
+    "spay",
+    "암컷중성화",
+    "난소적출"
+   ],
+   "unit": "procedure",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 280000,
+    "p50": 450000,
+    "p90": 700000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "PRE-003",
+   "category": "preventive",
+   "name_ko": "개 종합백신 (DHPPL)",
+   "name_en": "Canine combination vaccine (DHPPL)",
+   "synonyms": [
+    "dhppl",
+    "개종합백신",
+    "종합백신",
+    "dhpp",
+    "5종백신"
+   ],
+   "unit": "dose",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 15000,
+    "p50": 25000,
+    "p90": 35000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "MAFRA 동물병원 진료비 현황조사 (animalclinicfee.or.kr)"
+   }
+  },
+  {
+   "code": "PRE-004",
+   "category": "preventive",
+   "name_ko": "고양이 종합백신",
+   "name_en": "Feline combination vaccine",
+   "synonyms": [
+    "고양이종합백신",
+    "fvrcp",
+    "3종백신",
+    "4종백신고양이"
+   ],
+   "unit": "dose",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 25000,
+    "p50": 35000,
+    "p90": 50000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "MAFRA 동물병원 진료비 현황조사 (animalclinicfee.or.kr)"
+   }
+  },
+  {
+   "code": "PRE-005",
+   "category": "preventive",
+   "name_ko": "광견병 백신",
+   "name_en": "Rabies vaccine",
+   "synonyms": [
+    "광견병",
+    "rabies"
+   ],
+   "unit": "dose",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 12000,
+    "p50": 20000,
+    "p90": 30000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "MAFRA 동물병원 진료비 현황조사 (animalclinicfee.or.kr)"
+   }
+  },
+  {
+   "code": "PRE-006",
+   "category": "preventive",
+   "name_ko": "켄넬코프 백신",
+   "name_en": "Kennel cough vaccine",
+   "synonyms": [
+    "켄넬코프백신",
+    "kc백신",
+    "bordetellavaccine"
+   ],
+   "unit": "dose",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 12000,
+    "p50": 20000,
+    "p90": 30000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "MAFRA 동물병원 진료비 현황조사 (animalclinicfee.or.kr)"
+   }
+  },
+  {
+   "code": "PRE-007",
+   "category": "preventive",
+   "name_ko": "심장사상충 예방약",
+   "name_en": "Heartworm preventive",
+   "synonyms": [
+    "심장사상충예방",
+    "사상충예방",
+    "하트가드",
+    "넥스가드스펙트라",
+    "레볼루션",
+    "heartwormprevent"
+   ],
+   "unit": "dose",
+   "max_qty_per_visit": 12,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 10000,
+    "p50": 15000,
+    "p90": 25000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "PRE-008",
+   "category": "preventive",
+   "name_ko": "건강검진 패키지",
+   "name_en": "Wellness / health check package",
+   "synonyms": [
+    "건강검진",
+    "종합검진",
+    "healthcheck",
+    "wellness",
+    "검진패키지"
+   ],
+   "unit": "package",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 150000,
+    "p50": 300000,
+    "p90": 600000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "PRE-009",
+   "category": "preventive",
+   "name_ko": "동물등록·마이크로칩",
+   "name_en": "Registration / microchip",
+   "synonyms": [
+    "동물등록",
+    "마이크로칩",
+    "내장칩",
+    "microchip"
+   ],
+   "unit": "procedure",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 10000,
+    "p50": 20000,
+    "p90": 40000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "DEN-001",
+   "category": "dental",
+   "name_ko": "스케일링",
+   "name_en": "Dental scaling",
+   "synonyms": [
+    "스케일링",
+    "치석제거",
+    "scaling",
+    "치석"
+   ],
+   "unit": "procedure",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 120000,
+    "p50": 200000,
+    "p90": 350000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "DEN-002",
+   "category": "dental",
+   "name_ko": "발치",
+   "name_en": "Tooth extraction",
+   "synonyms": [
+    "발치",
+    "extraction",
+    "이빨뽑기"
+   ],
+   "unit": "tooth",
+   "max_qty_per_visit": 20,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 25000,
+    "p50": 50000,
+    "p90": 100000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "RX-001",
+   "category": "pharmacy",
+   "name_ko": "내복약 조제 (1일분)",
+   "name_en": "Oral medication dispensing (per day)",
+   "synonyms": [
+    "내복약",
+    "조제료",
+    "약제비",
+    "처방약",
+    "약값",
+    "경구약",
+    "내복"
+   ],
+   "unit": "day",
+   "max_qty_per_visit": 90,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 3000,
+    "p50": 5000,
+    "p90": 10000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "RX-002",
+   "category": "pharmacy",
+   "name_ko": "외용제·점안제",
+   "name_en": "Topical / ophthalmic product",
+   "synonyms": [
+    "연고",
+    "점안액",
+    "안약",
+    "귀약",
+    "외용제",
+    "샴푸약",
+    "otic"
+   ],
+   "unit": "item",
+   "max_qty_per_visit": 4,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 8000,
+    "p50": 15000,
+    "p90": 30000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "NON-001",
+   "category": "non_medical",
+   "name_ko": "미용·목욕",
+   "name_en": "Grooming / bathing",
+   "synonyms": [
+    "미용",
+    "목욕",
+    "grooming",
+    "클리핑미용",
+    "위생미용"
+   ],
+   "unit": "session",
+   "max_qty_per_visit": 1,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 20000,
+    "p50": 40000,
+    "p90": 80000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "NON-002",
+   "category": "non_medical",
+   "name_ko": "호텔·위탁",
+   "name_en": "Boarding",
+   "synonyms": [
+    "호텔",
+    "위탁",
+    "boarding",
+    "펫호텔",
+    "데이케어"
+   ],
+   "unit": "day",
+   "max_qty_per_visit": 30,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 25000,
+    "p50": 40000,
+    "p90": 70000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "NON-003",
+   "category": "non_medical",
+   "name_ko": "사료·처방식·간식",
+   "name_en": "Food / prescription diet / treats",
+   "synonyms": [
+    "사료",
+    "처방식",
+    "간식",
+    "힐스",
+    "로얄캐닌",
+    "diet",
+    "캔"
+   ],
+   "unit": "item",
+   "max_qty_per_visit": 10,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 15000,
+    "p50": 40000,
+    "p90": 90000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "NON-004",
+   "category": "non_medical",
+   "name_ko": "용품",
+   "name_en": "Supplies / accessories",
+   "synonyms": [
+    "넥카라",
+    "용품",
+    "목줄",
+    "패드",
+    "캔넬",
+    "모래",
+    "고양이모래",
+    "배변패드",
+    "장난감"
+   ],
+   "unit": "item",
+   "max_qty_per_visit": 5,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 5000,
+    "p50": 15000,
+    "p90": 40000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  },
+  {
+   "code": "ADM-001",
+   "category": "admin",
+   "name_ko": "진단서·서류 발급",
+   "name_en": "Certificates / documents",
+   "synonyms": [
+    "진단서",
+    "소견서",
+    "증명서",
+    "서류발급",
+    "진료기록사본",
+    "진료부사본"
+   ],
+   "unit": "document",
+   "max_qty_per_visit": 3,
+   "mafra_standard_ref": null,
+   "benchmark": {
+    "p10": 5000,
+    "p50": 10000,
+    "p90": 20000,
+    "source": "NuvoVet seed estimate",
+    "is_estimate": true,
+    "replace_with": "Partner insurer claims history"
+   }
+  }
+ ]
+}

@@ -1,0 +1,222 @@
+{
+ "_meta": {
+  "description": "Curated clinical rules used by the claims engine. Every rule carries a public reference (peer-reviewed literature via PubMed or a regulatory label). Thresholds marked 'heuristic' are NuvoVet choices pending DVM advisory review.",
+  "review_status": "unreviewed — DVM clinical pharmacologist sign-off required before production use",
+  "version": "2026.10.0"
+ },
+ "species_rules": [
+  {
+   "id": "cat_acetaminophen",
+   "species": "cat",
+   "drugs": [
+    "acetaminophen"
+   ],
+   "severity": "critical",
+   "title": "고양이 아세트아미노펜 처방",
+   "detail": "Acetaminophen is a frequent cause of poisoning in cats, producing methemoglobinemia and hepatic failure. A claim billing acetaminophen for a cat is clinically implausible or a coding error.",
+   "refs": [
+    "Rumbeiha WK et al. Am J Vet Res 1995;56:1529-33. PMID 8585668"
+   ]
+  },
+  {
+   "id": "cat_permethrin",
+   "species": "cat",
+   "drugs": [
+    "permethrin"
+   ],
+   "severity": "critical",
+   "title": "고양이 퍼메트린 제제",
+   "detail": "Permethrin intoxication in cats typically follows application of canine spot-on products. Billing permethrin as treatment for a cat suggests a coding error or a toxicosis claim mislabelled as treatment.",
+   "refs": [
+    "Ceccherini G et al. Open Vet J 2015;5:113-21. PMID 26623376"
+   ]
+  },
+  {
+   "id": "cat_bromide",
+   "species": "cat",
+   "drugs": [
+    "bromides"
+   ],
+   "severity": "warning",
+   "title": "고양이 브롬화물 항경련제",
+   "detail": "Bromide was associated with adverse effects in 8 of 16 treated cats (coughing in 6), and routine use in cats is not recommended.",
+   "refs": [
+    "Boothe DM et al. J Am Vet Med Assoc 2002;221:1131-5. doi:10.2460/javma.2002.221.1131"
+   ]
+  },
+  {
+   "id": "cat_enrofloxacin_dose",
+   "species": "cat",
+   "drugs": [
+    "enrofloxacin"
+   ],
+   "severity": "critical",
+   "max_mg_per_kg_per_day": 5.0,
+   "title": "고양이 엔로플록사신 고용량",
+   "detail": "Fluoroquinolone-induced retinal degeneration in cats is dose-related; the approved feline dose of enrofloxacin is 5 mg/kg/day.",
+   "refs": [
+    "Wiebe V, Hamilton P. J Am Vet Med Assoc 2002;221:1568-71. doi:10.2460/javma.2002.221.1568",
+    "US FDA-approved Baytril (enrofloxacin) label — cats: 5 mg/kg/day"
+   ]
+  },
+  {
+   "id": "cat_meloxicam_repeat",
+   "species": "cat",
+   "drugs": [
+    "meloxicam"
+   ],
+   "severity": "warning",
+   "max_mg_per_kg_per_day_after_day1": 0.05,
+   "title": "고양이 멜록시캄 반복 투여 용량",
+   "detail": "For repeated oral use in cats the EU-authorised maintenance dose is 0.05 mg/kg once daily after a 0.1 mg/kg first day; the US label carries a boxed warning against repeated dosing because of acute renal failure.",
+   "refs": [
+    "EMA Metacam EPAR, product information — cats",
+    "US FDA Metacam injection label, boxed warning"
+   ]
+  },
+  {
+   "id": "dog_mdr1_ivermectin",
+   "species": "dog",
+   "drugs": [
+    "ivermectin"
+   ],
+   "severity": "critical",
+   "breeds": [
+    "collie",
+    "rough collie",
+    "smooth collie",
+    "border collie",
+    "australian shepherd",
+    "shetland sheepdog",
+    "sheltie",
+    "셸티",
+    "셰틀랜드",
+    "콜리",
+    "보더콜리",
+    "오스트레일리안 셰퍼드",
+    "old english sheepdog",
+    "german shepherd"
+   ],
+   "min_mg_per_kg": 0.05,
+   "title": "MDR1 위험 품종 이버멕틴 고용량",
+   "detail": "Herding breeds homozygous for the MDR1 (ABCB1-1Δ) deletion are highly sensitive to ivermectin neurotoxicity. Heartworm-preventive doses (~0.006 mg/kg) are tolerated; antiparasitic doses ≥0.05 mg/kg (heuristic threshold) require MDR1 genotyping.",
+   "refs": [
+    "Mealey KL et al. Pharmacogenetics 2001;11:727-33. doi:10.1097/00008571-200111000-00012"
+   ]
+  }
+ ],
+ "combination_rules": [
+  {
+   "id": "nsaid_plus_corticosteroid",
+   "classes": [
+    "nsaid",
+    "corticosteroid"
+   ],
+   "severity": "warning",
+   "title": "NSAID + 코르티코스테로이드 병용",
+   "detail": "Concurrent NSAID and corticosteroid administration was present in 59% of dogs with GI perforation on a COX-2 inhibitor; combined use without washout is a clinical-quality signal.",
+   "refs": [
+    "Lascelles BD et al. J Am Vet Med Assoc 2005;227:1112-7. doi:10.2460/javma.2005.227.1112"
+   ]
+  },
+  {
+   "id": "duplicate_nsaid",
+   "classes": [
+    "nsaid",
+    "nsaid"
+   ],
+   "severity": "warning",
+   "title": "NSAID 중복 처방",
+   "detail": "Two NSAIDs in the same visit is therapeutic duplication; the same pharmacovigilance series links concurrent NSAIDs to GI perforation.",
+   "refs": [
+    "Lascelles BD et al. J Am Vet Med Assoc 2005;227:1112-7. doi:10.2460/javma.2005.227.1112"
+   ]
+  }
+ ],
+ "chronic_marker_drugs": {
+  "_note": "Drugs whose presence implies a chronic condition. If none of the claimed diagnoses explains the drug, the claim may be treating an undisclosed (possibly pre-existing) condition.",
+  "pimobendan": [
+   "NVD-CAR-001",
+   "NVD-CAR-002"
+  ],
+  "furosemide": [
+   "NVD-CAR-001",
+   "NVD-CAR-002",
+   "NVD-REN-001"
+  ],
+  "spironolactone": [
+   "NVD-CAR-001",
+   "NVD-CAR-002"
+  ],
+  "benazepril": [
+   "NVD-CAR-001",
+   "NVD-CAR-002",
+   "NVD-REN-001"
+  ],
+  "enalapril": [
+   "NVD-CAR-001",
+   "NVD-CAR-002",
+   "NVD-REN-001"
+  ],
+  "amlodipine": [
+   "NVD-REN-001",
+   "NVD-CAR-002",
+   "NVD-END-004"
+  ],
+  "clopidogrel": [
+   "NVD-CAR-002"
+  ],
+  "levothyroxine": [
+   "NVD-END-003"
+  ],
+  "methimazole": [
+   "NVD-END-004"
+  ],
+  "trilostane": [
+   "NVD-END-002"
+  ],
+  "insulin_glargine": [
+   "NVD-END-001"
+  ],
+  "insulin_lente": [
+   "NVD-END-001"
+  ],
+  "phenobarbital": [
+   "NVD-NEU-002"
+  ],
+  "levetiracetam": [
+   "NVD-NEU-002"
+  ],
+  "zonisamide": [
+   "NVD-NEU-002"
+  ],
+  "bromides": [
+   "NVD-NEU-002"
+  ],
+  "cyclosporine_systemic": [
+   "NVD-DER-001",
+   "NVD-GI-004",
+   "NVD-OPH-003"
+  ],
+  "oclacitinib": [
+   "NVD-DER-001",
+   "NVD-DER-005"
+  ],
+  "lokivetmab": [
+   "NVD-DER-001"
+  ],
+  "cyclosporine_ophthalmic": [
+   "NVD-OPH-003"
+  ],
+  "ursodiol": [
+   "NVD-HEP-001"
+  ],
+  "potassium_citrate": [
+   "NVD-URO-002"
+  ],
+  "chlorambucil": [
+   "NVD-ONC-001",
+   "NVD-GI-004"
+  ]
+ }
+}

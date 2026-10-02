@@ -9,6 +9,8 @@ Structure:
     drugs.py           ← /api/health, /api/drugs/*
     clinical.py        ← /api/breeds, /api/conditions, /api/allergies
     ocr.py             ← /api/ocr/extract-patient
+    claims.py          ← /api/claims/* (claims standardization & adjudication)
+  claims/              ← claims engine (codebook, knowledge, rules, synthetic eval)
   services/
     drug_loader.py     ← PostgreSQL loading, caching, search index
     drug_mapper.py     ← raw JSONL → frontend Drug contract
@@ -36,13 +38,14 @@ from routers.clinical import router as clinical_router
 from routers.medications import router as medications_router
 from routers.ocr import router as ocr_router, get_api_key as ocr_api_key
 from routers.format_mechanism import router as format_router
+from routers.claims import router as claims_router
 from services.drug_loader import get_drug_db
 from services.drug_sync import sync_drug_data
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("nuvovet")
 
-app = FastAPI(title="NuvoVet DUR API", version="1.0.0")
+app = FastAPI(title="NuvoVet API", version="2.0.0")
 
 # ── Routers ───────────────────────────────────────────────────────
 app.include_router(auth_router)
@@ -51,6 +54,7 @@ app.include_router(clinical_router)
 app.include_router(medications_router)
 app.include_router(ocr_router)
 app.include_router(format_router)
+app.include_router(claims_router)
 
 # ── CORS ──────────────────────────────────────────────────────────
 # Comma-separated list, e.g. "https://app.nuvovet.ai,https://nuvovet.vercel.app".
