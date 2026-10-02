@@ -28,6 +28,15 @@ def test_precheck_reports_issues_for_clinic():
     body = r.json()
     assert body["ready_to_submit"] is False
     assert any(i["rule"] == "clinical.species.cat_acetaminophen" for i in body["issues"])
+    # Cat litter is mapped but not covered: the clinic should split it off before the owner files.
+    assert body["blocking_count"] >= 2
+
+
+def test_precheck_clean_claim_is_ready():
+    clean = {**CLAIM, "line_items": CLAIM["line_items"][:2], "prescriptions": []}
+    with TestClient(app) as c:
+        body = c.post("/api/claims/precheck", json=clean).json()
+    assert body["ready_to_submit"] is True
 
 
 def test_demo_batch_is_labelled_synthetic():

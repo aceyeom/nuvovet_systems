@@ -56,10 +56,14 @@ def precheck_claim(claim: Claim):
     result = adjudicate(claim, _default_policy(claim))
     clinic_findings = [f for f in result.findings if f.category in CLINIC_FACING_CATEGORIES
                        and f.rule not in ("coverage.policy_terms_check",)]
-    blocking = [f for f in clinic_findings if f.severity.value != "info" or f.category == "data"]
+    # Items the clinic can fix before the owner files: anything above info, plus unmapped
+    # data and non-covered items mixed into the invoice (better split onto a separate receipt).
+    blocking = [f for f in clinic_findings
+                if f.severity.value != "info" or f.category == "data" or f.rule == "coverage.line_ineligible"]
     return {
         "claim_id": claim.claim_id,
         "ready_to_submit": not blocking,
+        "blocking_count": len(blocking),
         "standardized": {"diagnoses": result.diagnoses, "lines": result.lines, "drugs": result.drugs},
         "issues": clinic_findings,
         "estimated_payable": result.payable,

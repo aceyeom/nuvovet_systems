@@ -14,33 +14,22 @@ const PRODUCTS = {
       num: '01',
       accent: '#1B4FBF',
       accentLight: '#EEF2FC',
-      nameSuffix: '보험',
-      forWhom: '보험사 · 손해사정사 대상',
-      description: '청구 서류를 자동으로 검토하고 이상을 감지합니다.\n심사 시간을 줄이고 리포트를 즉시 생성하세요.',
-      cta: '대시보드 열기',
+      nameSuffix: '청구 심사',
+      forWhom: '펫보험사 · 손해사정 대상',
+      description: '영수증·진료비 내역을 표준 코드로 정형화하고\n보장·임상·가격 규칙으로 심사합니다. 모든 판정에 근거를 붙입니다.',
+      cta: '보험사 콘솔 열기',
       path: '/insurance',
     },
     {
-      key: 'emr',
+      key: 'clinic',
       num: '02',
       accent: '#0E7F6A',
       accentLight: '#EAF6F2',
-      nameSuffix: '진료',
-      forWhom: '동물병원 · 수의사 대상',
-      description: '처방·환자 기록을 한곳에서 관리합니다.\n실시간 약물 상호작용 검토와 처방 템플릿으로 진료를 빠르게 이어가세요.',
-      cta: '시스템 시작',
-      path: '/system',
-    },
-    {
-      key: 'edu',
-      num: '03',
-      accent: '#C46B0A',
-      accentLight: '#FDF3E7',
-      nameSuffix: '아카데미',
-      forWhom: '수의대생 · 예비 수의사 대상',
-      description: '임상 추론을 명시적으로 훈련합니다.\n케이스 기반 2단계 의사결정 + 동료 검토 시스템.',
-      cta: '아카데미 열기',
-      path: '/academy',
+      nameSuffix: '병원',
+      forWhom: '동물병원 · 수의사 대상 (무료)',
+      description: '보호자에게 서류를 드리기 전에 보험 청구를 사전점검하고\n처방 안전성을 함께 확인하세요.',
+      cta: '청구 사전점검',
+      path: '/clinic/claim',
     },
   ],
   en: [
@@ -49,33 +38,22 @@ const PRODUCTS = {
       num: '01',
       accent: '#1B4FBF',
       accentLight: '#EEF2FC',
-      nameSuffix: 'Insurance',
-      forWhom: 'For insurance carriers & adjusters',
-      description: 'Automatically review claims and detect anomalies.\nReduce review time and generate reports instantly.',
-      cta: 'Open dashboard',
+      nameSuffix: 'Claims',
+      forWhom: 'For pet insurers & adjusters',
+      description: 'Standardize vet invoices into coded claims and adjudicate\nwith coverage, clinical and pricing rules — every decision explained.',
+      cta: 'Open insurer console',
       path: '/insurance',
     },
     {
-      key: 'emr',
+      key: 'clinic',
       num: '02',
       accent: '#0E7F6A',
       accentLight: '#EAF6F2',
-      nameSuffix: 'EMR',
-      forWhom: 'For veterinary clinics & vets',
-      description: 'Manage prescriptions and patient records in one place.\nReal-time drug interaction checks and prescription templates.',
-      cta: 'Launch system',
-      path: '/system',
-    },
-    {
-      key: 'edu',
-      num: '03',
-      accent: '#C46B0A',
-      accentLight: '#FDF3E7',
-      nameSuffix: 'Academy',
-      forWhom: 'For vet students & residents',
-      description: 'Train clinical reasoning explicitly.\n2-stage case decisions + peer review system.',
-      cta: 'Open Academy',
-      path: '/academy',
+      nameSuffix: 'Clinic',
+      forWhom: 'For veterinary clinics (free)',
+      description: 'Pre-check insurance claims before they reach the owner,\nand review prescription safety in the same place.',
+      cta: 'Pre-check a claim',
+      path: '/clinic/claim',
     },
   ],
 };
@@ -318,9 +296,9 @@ export default function Start() {
             }}
           >
             {l === 'ko' ? (
-              <>국내 최대<br /><em style={{ fontStyle: 'normal', color: '#1B4FBF' }}>수의 약학 데이터베이스.</em></>
+              <>동물병원과 펫보험을 잇는<br /><em style={{ fontStyle: 'normal', color: '#1B4FBF' }}>임상 데이터 레이어.</em></>
             ) : (
-              <>Korea's largest<br /><em style={{ fontStyle: 'normal', color: '#1B4FBF' }}>veterinary pharmacology database.</em></>
+              <>The clinical data layer<br /><em style={{ fontStyle: 'normal', color: '#1B4FBF' }}>between vet clinics and pet insurers.</em></>
             )}
           </motion.h1>
           <motion.p
@@ -334,8 +312,8 @@ export default function Start() {
             }}
           >
             {l === 'ko'
-              ? '보험사부터 동물병원, 학생까지—\n나에게 맞는 제품을 선택하세요.'
-              : 'From insurers to clinics to students —\nchoose the product that fits you.'}
+              ? '진료 기록을 표준 청구로, 청구를 근거 있는 판정으로.'
+              : 'Clinical records into standard claims, claims into explained decisions.'}
           </motion.p>
         </motion.div>
 
@@ -346,7 +324,8 @@ export default function Start() {
           animate="visible"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            maxWidth: 900,
             gap: 20,
           }}
         >

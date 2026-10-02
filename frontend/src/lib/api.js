@@ -8,7 +8,8 @@
  *   VITE_API_URL  (default: https://nuvovet-systems.onrender.com)
  */
 
-const BASE_URL = import.meta.env.VITE_API_URL || 'https://nuvovet-systems.onrender.com';
+export const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://nuvovet-systems.onrender.com';
+const BASE_URL = API_BASE_URL;
 
 // Module-level auth token — set by AuthContext on login/logout
 let _authToken = null;

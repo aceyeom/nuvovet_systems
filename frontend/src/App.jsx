@@ -11,7 +11,7 @@ import Account from './pages/Account';
 import Dashboard from './pages/Dashboard';
 import Start from './pages/Start';
 import Insurance from './pages/Insurance';
-import Academy from './pages/Academy';
+import ClinicClaim from './pages/ClinicClaim';
 
 function AppRoutes() {
   return (
@@ -19,7 +19,8 @@ function AppRoutes() {
         <Route path="/" element={<Landing />} />
         <Route path="/start" element={<Start />} />
         <Route path="/insurance" element={<Insurance />} />
-        <Route path="/academy" element={<Academy />} />
+        <Route path="/clinic/claim" element={<ClinicClaim />} />
+        <Route path="/academy" element={<Navigate to="/start" replace />} />
         <Route path="/demo" element={<Demo />} />
         <Route path="/dashboard" element={<Account />} />
         <Route path="/analytics" element={<Dashboard />} />

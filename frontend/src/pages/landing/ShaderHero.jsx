@@ -187,13 +187,6 @@ const fadeUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] } },
 };
 
-const stats = [
-  { value: '862', label: { ko: '의약품', en: 'Drugs' } },
-  { value: '9,746', label: { ko: '상호작용 규칙', en: 'Interaction Rules' } },
-  { value: '5', label: { ko: 'DUR 엔진', en: 'DUR Engines' } },
-  { value: '2', label: { ko: '대상 종', en: 'Species' } },
-];
-
 export default function ShaderHero() {
   const navigate = useNavigate();
   const { t, lang } = useI18n();
@@ -242,10 +235,10 @@ export default function ShaderHero() {
       : 'See interactions, dosing, and organ burden the moment a prescription is entered.'
   );
   const stats = [
-    { value: '862', label: t.landing?.statsProducts || (l === 'ko' ? '등록 의약품' : 'Registered Drugs') },
-    { value: '9,746', label: t.landing?.statsRules || (l === 'ko' ? '상호작용 규칙' : 'Interaction Rules') },
-    { value: '5', label: t.landing?.statsEngines || (l === 'ko' ? 'DUR 규칙 엔진' : 'DUR Rule Engines') },
-    { value: '2', label: t.landing?.statsSpecies || (l === 'ko' ? '대상 종 (개·고양이)' : 'Species (Dog & Cat)') },
+    { value: '4', label: l === 'ko' ? '심사 규칙군 (보장·임상·가격·무결성)' : 'Rule families (coverage · clinical · pricing · integrity)' },
+    { value: '190', label: l === 'ko' ? '국내 상품명·성분 별칭' : 'Korean brand & ingredient aliases' },
+    { value: '0', label: l === 'ko' ? '자동 거절 (판정은 심사역이 확정)' : 'Auto-denials (adjusters decide)' },
+    { value: '100%', label: l === 'ko' ? '근거가 붙은 소견' : 'Findings with evidence' },
   ];
 
   return (
@@ -282,7 +275,7 @@ export default function ShaderHero() {
                     backgroundColor: `rgba(255, 255, 255, ${mix(0.04, 0.74, clamp01(transitionProgress * 1.1))})`,
                   }}
                 >
-                  {t.landing?.heroBadge || (l === 'ko' ? 'AI 기반 수의약품 처방점검' : 'AI-Powered Veterinary DUR')}
+                  {t.landing?.heroBadge || (l === 'ko' ? '펫보험 청구 인프라' : 'Pet-insurance claims infrastructure')}
                 </span>
               </motion.div>
 
@@ -295,7 +288,7 @@ export default function ShaderHero() {
               >
                 {l === 'ko' ? (
                   <>
-                    수의 약학의 미래,
+                    {t.landing?.heroTitle || '진료 기록에서'}
                     <br />
                     <span
                       className="bg-clip-text text-transparent"
@@ -303,12 +296,12 @@ export default function ShaderHero() {
                         backgroundImage: `linear-gradient(90deg, ${mixColor([255, 255, 255], [51, 65, 85], clamp01(textProgress * 0.65))} 0%, ${accentColor} 50%, ${mixColor([255, 255, 255], [100, 116, 139], clamp01(textProgress * 0.8))} 100%)`,
                       }}
                     >
-                      지금 여기에
+                      {t.landing?.heroTitleAccent || '근거 있는 보험금까지'}
                     </span>
                   </>
                 ) : (
                   <>
-                    The Future of Veterinary
+                    {t.landing?.heroTitle || 'From veterinary records'}
                     <br />
                     <span
                       className="bg-clip-text text-transparent"
@@ -316,7 +309,7 @@ export default function ShaderHero() {
                         backgroundImage: `linear-gradient(90deg, ${mixColor([255, 255, 255], [51, 65, 85], clamp01(textProgress * 0.65))} 0%, ${accentColor} 50%, ${mixColor([255, 255, 255], [100, 116, 139], clamp01(textProgress * 0.8))} 100%)`,
                       }}
                     >
-                      Pharmacology Is Here
+                      {t.landing?.heroTitleAccent || 'to explained payouts'}
                     </span>
                   </>
                 )}

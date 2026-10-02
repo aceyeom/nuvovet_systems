@@ -22,15 +22,9 @@ const features = [
     illustration: DDIIllustration,
     accentColor: '#6366f1',
     fallback: {
-      label: { ko: '약물 상호작용 검사', en: 'Drug Interaction Screening' },
-      title: {
-        ko: '실시간 다제\n상호작용 검사',
-        en: 'Real-Time Multi-Drug\nInteraction Screening',
-      },
-      desc: {
-        ko: '처방된 모든 약물 쌍에 대해 CYP 효소 프로파일, 동일 계열 중복, QT 연장, 출혈 위험, 세로토닌 증후군을 3단계 심각도로 분류합니다.',
-        en: 'Screens every drug pair for CYP enzyme profiles, therapeutic duplication, QT prolongation, bleeding risk, and serotonin syndrome — classified by 3-tier severity.',
-      },
+      label: { ko: '설명 가능한 심사', en: 'Explainable review' },
+      title: { ko: '모든 판정에\n근거를 붙입니다', en: 'Every decision\ncomes with evidence' },
+      desc: { ko: '자동 승인 · 심사 필요 · 거절 권고. 각 소견에 규칙 ID, 금액 영향, 문헌·벤치마크 근거가 함께 나옵니다. 엔진은 자동 거절하지 않습니다.', en: 'Auto-approve, review, or deny-recommended — each finding carries its rule ID, amount at risk, and literature or benchmark evidence. The engine never auto-denies.' },
     },
   },
   {
@@ -41,15 +35,9 @@ const features = [
     illustration: DosingIllustration,
     accentColor: '#10b981',
     fallback: {
-      label: { ko: '용량 계산', en: 'Dose Calculation' },
-      title: {
-        ko: '체중 기반\n용량 자동 계산',
-        en: 'Weight-Adjusted\nDose Calculation',
-      },
-      desc: {
-        ko: '환자 체중에 맞춰 용량 범위를 자동 조정합니다. 크레아티닌·ALT 수치가 기준을 초과하면 신장·간 조정 계수가 자동 적용됩니다.',
-        en: 'Auto-scales dose ranges to patient weight. When creatinine or ALT values exceed thresholds, renal and hepatic adjustment factors are applied automatically.',
-      },
+      label: { ko: '처방 타당성', en: 'Prescription plausibility' },
+      title: { ko: '한글 상품명부터\n용량까지 해석', en: 'From Korean brand\nnames to doses' },
+      desc: { ko: '아포퀠·베트메딘·소론도 같은 국내 상품명을 성분으로 해석하고, 종별 참고 용량과 비교해 소수점 오기·과다 청구를 찾습니다.', en: 'Resolves Korean product names to ingredients and compares doses with species references to catch decimal-shift errors and inflated quantities.' },
     },
   },
   {
@@ -60,15 +48,9 @@ const features = [
     illustration: OrganIllustration,
     accentColor: '#3b82f6',
     fallback: {
-      label: { ko: '장기 관여도', en: 'Organ Burden' },
-      title: {
-        ko: '장기 관여\n다이어그램',
-        en: 'Organ Involvement\nDiagram',
-      },
-      desc: {
-        ko: '처방 전체에 걸쳐 간, 신장, 심장, 뇌, 혈액의 소실 경로를 매핑합니다. 복합 장기 부담이 임계값을 초과하면 모니터링 우선순위를 표시합니다.',
-        en: 'Maps elimination pathways across liver, kidney, heart, brain, and blood. Surfaces monitoring priorities when combined organ burden exceeds thresholds.',
-      },
+      label: { ko: '기왕증 신호', en: 'Pre-existing signals' },
+      title: { ko: '청구서에 없는\n만성질환 찾기', en: 'Find the condition\nthe claim left out' },
+      desc: { ko: '외이염 청구에 심장약이, 피부염 청구에 갑상선약이 들어 있다면 — 청구 진단으로 설명되지 않는 처방은 미신고 만성질환(기왕증)의 신호입니다.', en: 'A heart drug on an ear-infection claim, a thyroid drug on a skin claim — prescriptions the claimed diagnosis cannot explain signal an undisclosed chronic condition.' },
     },
   },
   {
@@ -79,15 +61,9 @@ const features = [
     illustration: SafetyIllustration,
     accentColor: '#f59e0b',
     fallback: {
-      label: { ko: '환자 안전', en: 'Patient Safety' },
-      title: {
-        ko: '환자 안전\n지능 시스템',
-        en: 'Patient Safety\nIntelligence',
-      },
-      desc: {
-        ko: '종 적합성, 품종별 MDR1 감수성, 알레르기 교차반응, 절대 금기를 다층적으로 검증합니다. 50개 품종 프로필과 73개 알레르기 클래스를 대조합니다.',
-        en: 'Multi-layer verification across species compatibility, breed-specific MDR1 sensitivity, allergy cross-reactions, and absolute contraindications. 50 breed profiles, 73 allergy classes.',
-      },
+      label: { ko: '청구 무결성', en: 'Claim integrity' },
+      title: { ko: '다른 동물,\n중복 청구 탐지', en: 'Wrong animal,\nduplicate claims' },
+      desc: { ko: '고양이 청구의 개 전용 백신, 품종과 맞지 않는 체중, 같은 날 재청구, 보험 개시 전 진료를 규칙으로 걸러냅니다.', en: 'Flags dog-only vaccines on cat claims, weights that do not fit the breed, same-day resubmissions, and care before the policy started.' },
     },
   },
 ];

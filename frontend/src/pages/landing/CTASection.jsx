@@ -40,15 +40,15 @@ export default function CTASection() {
         >
           {l === 'ko' ? (
             <>
-              귀원의 처방을
+              청구 샘플로
               <br />
-              <span className="text-white/50">안전하게</span>
+              <span className="text-white/50">먼저 검증하세요</span>
             </>
           ) : (
             <>
-              Secure Every
+              Validate on
               <br />
-              <span className="text-white/50">Prescription</span>
+              <span className="text-white/50">your own claims first</span>
             </>
           )}
         </motion.h2>
@@ -60,8 +60,8 @@ export default function CTASection() {
           }`}
         >
           {l === 'ko'
-            ? '전체 약물 데이터베이스, 환자 기록 연동, 감사 추적이 포함된 전체 DUR 시스템을 무료로 시작하세요.'
-            : 'Start with the full DUR system including the complete drug database, patient records integration, and audit trails — free.'}
+            ? '과거 청구 1,000~5,000건으로 후향 검증을 진행합니다 — 정형화 정확도, 검토 대상 누수 금액, 오탐률을 리포트로 드립니다.'
+            : 'We run a retrospective study on 1,000–5,000 of your historical claims and report coding accuracy, leakage found, and false-alarm rate.'}
         </motion.p>
 
         <motion.div variants={fadeUp} className="mt-10">
@@ -69,7 +69,7 @@ export default function CTASection() {
             onClick={() => navigate('/start')}
             className="px-10 py-4 rounded-full text-base font-semibold bg-white text-slate-900 hover:bg-white/90 transition-all hover:shadow-lg hover:shadow-white/10"
           >
-            {l === 'ko' ? '무료로 시작하기' : 'Start for Free'}
+            {l === 'ko' ? '데모 열기' : 'Open the demo'}
           </button>
         </motion.div>
       </motion.div>
