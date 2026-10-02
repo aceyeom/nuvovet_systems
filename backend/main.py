@@ -53,10 +53,14 @@ app.include_router(ocr_router)
 app.include_router(format_router)
 
 # ── CORS ──────────────────────────────────────────────────────────
+# Comma-separated list, e.g. "https://app.nuvovet.ai,https://nuvovet.vercel.app".
+# Unset → allow any origin without credentials (local dev only). Auth uses bearer
+# tokens, not cookies, so credentials are never required.
+_cors_origins = [o.strip() for o in (os.getenv("NUVOVET_CORS_ORIGINS") or "").split(",") if o.strip()]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Restrict in production
-    allow_credentials=True,
+    allow_origins=_cors_origins or ["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )

@@ -9,6 +9,7 @@ Patient records are stored per account in PostgreSQL as well.
 import logging
 import os
 import re
+import secrets
 import uuid
 from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, List, Optional
@@ -24,10 +25,13 @@ from pydantic import BaseModel, Field
 logger = logging.getLogger("nuvovet.auth")
 
 # ── Config ────────────────────────────────────────────────────────
-SECRET_KEY = os.environ.get(
-    "NUVOVET_SECRET_KEY",
-    "nuvovet-dev-secret-change-in-production-9Heav2024"
-)
+IS_PRODUCTION = (os.environ.get("NUVOVET_ENV") or "").strip().lower() == "production"
+SECRET_KEY = os.environ.get("NUVOVET_SECRET_KEY") or ""
+if not SECRET_KEY:
+    if IS_PRODUCTION:
+        raise RuntimeError("NUVOVET_SECRET_KEY must be set when NUVOVET_ENV=production")
+    # Per-process dev secret: tokens are invalidated on restart, which is fine locally.
+    SECRET_KEY = secrets.token_urlsafe(48)
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_DAYS = 7
 FREE_PLAN_DAYS = 30
@@ -40,17 +44,21 @@ security = HTTPBearer(auto_error=False)
 
 # ── PostgreSQL helpers ────────────────────────────────────────────
 
-def _get_db_url() -> str:
-    db_url = (
+def _configured_db_url() -> Optional[str]:
+    return (
         os.getenv("DB_INTERNAL_URL")
         or os.getenv("DB_EXTERNAL_URL")
         or os.getenv("DB_URL")
         or os.getenv("DATABASE_URL")
     )
+
+
+def _get_db_url() -> str:
+    db_url = _configured_db_url()
     if not db_url:
-        raise RuntimeError(
-            "데이터베이스 URL이 필요합니다. "
-            "DB_INTERNAL_URL 또는 DB_EXTERNAL_URL(대안: DB_URL, DATABASE_URL)을 설정하세요."
+        raise HTTPException(
+            status_code=503,
+            detail="Account storage unavailable: no database URL configured on the server.",
         )
     return db_url
 
@@ -77,8 +85,11 @@ def _is_valid_identifier(value: str) -> bool:
 
 
 def init_db() -> None:
-    """Initialize account/patient tables and seed a default admin account."""
-    db_url = _get_db_url()
+    """Initialize account/patient tables and, if NUVOVET_ADMIN_PASSWORD is set, seed an admin account."""
+    db_url = _configured_db_url()
+    if not db_url:
+        logger.warning("No database URL configured — account and patient endpoints will return 503.")
+        return
 
     with psycopg2.connect(db_url) as conn:
         with conn.cursor() as cur:
@@ -165,6 +176,9 @@ def init_db() -> None:
                 """
             )
 
+            admin_password = os.environ.get("NUVOVET_ADMIN_PASSWORD")
+            if not admin_password:
+                return
             cur.execute(
                 "SELECT id FROM accounts WHERE username = %s",
                 ("admin",),
@@ -182,7 +196,7 @@ def init_db() -> None:
                     (
                         str(uuid.uuid4()),
                         "admin",
-                        bcrypt.hashpw(b"admin", bcrypt.gensalt(12)).decode(),
+                        bcrypt.hashpw(admin_password.encode(), bcrypt.gensalt(12)).decode(),
                         "free",
                         "active",
                         now,
@@ -190,7 +204,7 @@ def init_db() -> None:
                         trial_end,
                     ),
                 )
-                logger.info("Seeded default admin account (username: admin, password: admin)")
+                logger.info("Seeded admin account from NUVOVET_ADMIN_PASSWORD")
 
 
 # ── Pydantic models ───────────────────────────────────────────────
