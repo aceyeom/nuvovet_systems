@@ -31,3 +31,6 @@ plumb*/
 **/plumbs_output/
 backend/reports/
 **/dosage_false_positive_candidates.json
+
+# Build output of the standalone portfolio (npm run build:portfolio)
+frontend/dist-portfolio/

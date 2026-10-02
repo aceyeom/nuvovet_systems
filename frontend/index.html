@@ -2,14 +2,30 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#ffffff" />
     <meta name="description" content="NUVOVET — Veterinary Drug Utilization Review. Real-time interaction screening for companion animal prescriptions." />
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <script>
+      // Web fonts for the main app. The /dur showcase is self-contained (system
+      // font stack, nothing leaves the page), so a page opened at /dur makes no
+      // font requests to Google Fonts or the jsDelivr CDN.
+      (function () {
+        if (/^\/dur(\/|$)/.test(window.location.pathname)) return;
+        var head = document.head;
+        function link(rel, href, crossOrigin) {
+          var l = document.createElement('link');
+          l.rel = rel;
+          l.href = href;
+          if (crossOrigin) l.crossOrigin = '';
+          head.appendChild(l);
+        }
+        link('preconnect', 'https://fonts.googleapis.com');
+        link('preconnect', 'https://fonts.gstatic.com', true);
+        link('stylesheet', 'https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap');
+        link('stylesheet', 'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+      })();
+    </script>
     <title>nuvovet</title>
   </head>
   <body>

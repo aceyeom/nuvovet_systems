@@ -23,9 +23,15 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false,
-    minify: 'esbuild'
+    // Vite 8 minifies with Oxc by default; 'esbuild' would need the optional esbuild peer.
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'lucide-react']
-  }
+  },
+  // Vitest (npm test → `vitest run`)
+  test: {
+    include: ['src/**/*.test.js'],
+    environment: 'node',
+    passWithNoTests: true,
+  },
 })
