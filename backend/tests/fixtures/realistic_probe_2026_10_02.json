@@ -1,0 +1,456 @@
+{
+ "_meta": {
+  "description": "Realistic receipt lines and diagnosis texts written by the 2026-10-02 adversarial review, outside the codebook tuning loop (none of them were in emr_lines.json or diagnosis_probe.json). The diagnosis set is deliberately adversarial: short or ambiguous synonyms that change coverage (포도막염, 간질성 폐렴, 예방접종 후 반응, 구충 감염증, 심장사상충 검사 음성, 고양이 파보).",
+  "judging": "expected is a code, a list of acceptable codes, or null (must stay unmapped).",
+  "first_pass": {
+   "lines_correct": 39,
+   "lines_total": 46,
+   "diagnoses_correct": 25,
+   "diagnoses_total": 45,
+   "note": "Accuracy of the codebook before this round's fixes (the honest out-of-sample figure)."
+  },
+  "status": "IN-SAMPLE from 2026-10-02: the fixes of that round were made against these strings. Keep them as regressions; only new strings (or real partner receipts) measure accuracy on unseen wording.",
+  "known_misses": {
+   "횡격막 탈장": "NVD-HRN-001 (umbilical/inguinal hernia) via '탈장' — not fixed this round",
+   "안구 이물": "NVD-GI-003 (GI foreign body) via '이물' — not fixed this round",
+   "항문낭 정기 관리": "NVD-DER-006 (anal sacculitis) via '항문낭' — routine care, not fixed this round"
+  },
+  "expectation_changes": {
+   "예방주사(5차)": "PRE-003 → PRE-003 or PRE-015 (species-neutral vaccination code added)",
+   "범백혈구감소증(고양이 파보)": "null → NVD-INF-005 (feline panleukopenia code added)"
+  }
+ },
+ "lines": [
+  {
+   "text": "진찰료-초진(고양이)",
+   "expected": "CON-001"
+  },
+  {
+   "text": "재진 진찰료(경과)",
+   "expected": "CON-002"
+  },
+  {
+   "text": "혈액검사-CBC(ProCyte Dx)",
+   "expected": "LAB-001"
+  },
+  {
+   "text": "혈청화학검사 17종",
+   "expected": "LAB-002"
+  },
+  {
+   "text": "전해질 3종(Na,K,Cl)",
+   "expected": "LAB-003"
+  },
+  {
+   "text": "흉부방사선 촬영 3매",
+   "expected": "IMG-001"
+  },
+  {
+   "text": "복부 초음파(정밀)",
+   "expected": "IMG-002"
+  },
+  {
+   "text": "주사료(피하)",
+   "expected": "TRT-003"
+  },
+  {
+   "text": "정맥 수액 처치 1일",
+   "expected": "TRT-001"
+  },
+  {
+   "text": "입원료(소형견) 2일",
+   "expected": "HOS-001"
+  },
+  {
+   "text": "야간 입원(1일)",
+   "expected": "HOS-001"
+  },
+  {
+   "text": "산소입원(ICU) 1일",
+   "expected": "HOS-002"
+  },
+  {
+   "text": "수술료-슬개골 내측탈구 정복술(좌)",
+   "expected": "SUR-001"
+  },
+  {
+   "text": "마취료-흡입마취(이소플루란)",
+   "expected": "ANE-001"
+  },
+  {
+   "text": "치석제거(초음파 스케일링)",
+   "expected": "DEN-001"
+  },
+  {
+   "text": "발치-소구치(1개)",
+   "expected": "DEN-002"
+  },
+  {
+   "text": "내복약(3일분)",
+   "expected": "RX-001"
+  },
+  {
+   "text": "귀 세정 처치",
+   "expected": "TRT-005"
+  },
+  {
+   "text": "피부 약욕(클로르헥시딘)",
+   "expected": [
+    "RX-002",
+    "TRT-004",
+    null
+   ]
+  },
+  {
+   "text": "약욕 처치",
+   "expected": [
+    "RX-002",
+    "TRT-004",
+    null
+   ]
+  },
+  {
+   "text": "도뇨관 삽입",
+   "expected": "TRT-018"
+  },
+  {
+   "text": "심장사상충 검사(SNAP)",
+   "expected": "LAB-012"
+  },
+  {
+   "text": "종합백신 5차",
+   "expected": "PRE-003"
+  },
+  {
+   "text": "예방주사(5차)",
+   "expected": [
+    "PRE-003",
+    "PRE-015"
+   ]
+  },
+  {
+   "text": "광견병 접종",
+   "expected": "PRE-005"
+  },
+  {
+   "text": "의료 폐기물 처리비",
+   "expected": "ADM-002"
+  },
+  {
+   "text": "진료비 할인(회원)",
+   "expected": "ADM-004"
+  },
+  {
+   "text": "세부내역서 발급비",
+   "expected": "ADM-001"
+  },
+  {
+   "text": "퇴원약(D/C)",
+   "expected": "RX-001"
+  },
+  {
+   "text": "D/C 약 7일",
+   "expected": "RX-001"
+  },
+  {
+   "text": "슬개골 촉진 검사",
+   "expected": [
+    "CON-007",
+    null
+   ]
+  },
+  {
+   "text": "야간 진료 수액",
+   "expected": [
+    "CON-004",
+    "TRT-001"
+   ]
+  },
+  {
+   "text": "영양 수액(비타민)",
+   "expected": "TRT-001"
+  },
+  {
+   "text": "응급 처치료",
+   "expected": [
+    "CON-004",
+    "TRT-004"
+   ]
+  },
+  {
+   "text": "실밥 풀기",
+   "expected": "TRT-004"
+  },
+  {
+   "text": "엘리자베스 카라",
+   "expected": "NON-004"
+  },
+  {
+   "text": "혈액검사(간/신장 수치)",
+   "expected": "LAB-002"
+  },
+  {
+   "text": "CT 판독료(외부)",
+   "expected": [
+    "IMG-004",
+    "LAB-024"
+   ]
+  },
+  {
+   "text": "방광 결석 X-ray 확인",
+   "expected": "IMG-001"
+  },
+  {
+   "text": "마이크로칩 이식",
+   "expected": "PRE-009"
+  },
+  {
+   "text": "레볼루션 투약",
+   "expected": "PRE-007"
+  },
+  {
+   "text": "세레니아 주사",
+   "expected": "TRT-003"
+  },
+  {
+   "text": "안약 처방(타리비드)",
+   "expected": "RX-002"
+  },
+  {
+   "text": "처방식 캔(i/d)",
+   "expected": "NON-003"
+  },
+  {
+   "text": "고양이 스케일링 마취",
+   "expected": [
+    "ANE-001",
+    "DEN-001"
+   ]
+  },
+  {
+   "text": "부분미용(발/위생)",
+   "expected": "NON-001"
+  }
+ ],
+ "diagnoses": [
+  {
+   "text": "출혈성 위장염(HGE)",
+   "expected": "NVD-GI-001"
+  },
+  {
+   "text": "외이도염(양측)",
+   "expected": "NVD-DER-004"
+  },
+  {
+   "text": "말라세지아성 외이염",
+   "expected": [
+    "NVD-DER-003",
+    "NVD-DER-004"
+   ]
+  },
+  {
+   "text": "세균성 방광염",
+   "expected": "NVD-URO-001"
+  },
+  {
+   "text": "요도폐색(수컷 고양이)",
+   "expected": "NVD-URO-003"
+  },
+  {
+   "text": "만성 신장병(IRIS 2기)",
+   "expected": "NVD-REN-001"
+  },
+  {
+   "text": "이첨판 역류(MMVD stage C)",
+   "expected": "NVD-CAR-001"
+  },
+  {
+   "text": "상부호흡기감염(허피스)",
+   "expected": "NVD-RES-002"
+  },
+  {
+   "text": "포도막염",
+   "expected": null
+  },
+  {
+   "text": "포도상구균 감염",
+   "expected": [
+    "NVD-DER-002",
+    null
+   ]
+  },
+  {
+   "text": "간질성 폐렴",
+   "expected": "NVD-RES-003"
+  },
+  {
+   "text": "간질성 신염",
+   "expected": [
+    "NVD-REN-001",
+    null
+   ]
+  },
+  {
+   "text": "예방접종 후 알레르기 반응",
+   "expected": null
+  },
+  {
+   "text": "백신 부작용(안면부종)",
+   "expected": null
+  },
+  {
+   "text": "접종부위 육종",
+   "expected": [
+    "NVD-ONC-001",
+    null
+   ]
+  },
+  {
+   "text": "구충 감염증",
+   "expected": null
+  },
+  {
+   "text": "외상성 고관절 탈구",
+   "expected": [
+    "NVD-TRA-001",
+    null
+   ]
+  },
+  {
+   "text": "고관절 탈구(교통사고)",
+   "expected": [
+    "NVD-TRA-001",
+    null
+   ]
+  },
+  {
+   "text": "심장사상충 검사 음성",
+   "expected": [
+    "NVD-PRE-003",
+    null
+   ]
+  },
+  {
+   "text": "벼룩 진드기 예방",
+   "expected": [
+    "NVD-PRE-003",
+    null
+   ]
+  },
+  {
+   "text": "범백혈구감소증(고양이 파보)",
+   "expected": "NVD-INF-005"
+  },
+  {
+   "text": "심잡음",
+   "expected": "NVD-CAR-001"
+  },
+  {
+   "text": "횡격막 탈장",
+   "expected": [
+    "NVD-TRA-001",
+    null
+   ]
+  },
+  {
+   "text": "안구 이물",
+   "expected": null
+  },
+  {
+   "text": "식이 알러지",
+   "expected": [
+    "NVD-DER-001",
+    null
+   ]
+  },
+  {
+   "text": "모낭충증",
+   "expected": null
+  },
+  {
+   "text": "열사병",
+   "expected": null
+  },
+  {
+   "text": "포도 섭취",
+   "expected": "NVD-TOX-001"
+  },
+  {
+   "text": "요골·척골 골절",
+   "expected": "NVD-ORT-004"
+  },
+  {
+   "text": "경추 디스크",
+   "expected": "NVD-NEU-001"
+  },
+  {
+   "text": "전정기 증후군",
+   "expected": null
+  },
+  {
+   "text": "치은염",
+   "expected": "NVD-DEN-001"
+  },
+  {
+   "text": "신장결석",
+   "expected": "NVD-URO-002"
+  },
+  {
+   "text": "기침 (기관지염)",
+   "expected": [
+    "NVD-RES-002",
+    null
+   ]
+  },
+  {
+   "text": "MPL grade 2",
+   "expected": "NVD-ORT-001"
+  },
+  {
+   "text": "중성화 수술 후 봉합부 감염",
+   "expected": [
+    "NVD-TRA-001",
+    null
+   ]
+  },
+  {
+   "text": "건강검진 중 발견된 심잡음",
+   "expected": "NVD-CAR-001"
+  },
+  {
+   "text": "항문낭 정기 관리",
+   "expected": [
+    "NVD-PRE-004",
+    null
+   ]
+  },
+  {
+   "text": "유선종양",
+   "expected": "NVD-ONC-001"
+  },
+  {
+   "text": "비장 종괴",
+   "expected": "NVD-ONC-001"
+  },
+  {
+   "text": "고양이 염증성 장질환",
+   "expected": "NVD-GI-004"
+  },
+  {
+   "text": "갑상선기능항진증(고양이)",
+   "expected": "NVD-END-004"
+  },
+  {
+   "text": "당뇨",
+   "expected": "NVD-END-001"
+  },
+  {
+   "text": "빈혈",
+   "expected": null
+  },
+  {
+   "text": "아토피 의심, 2차 세균감염",
+   "expected": "NVD-DER-001"
+  }
+ ]
+}

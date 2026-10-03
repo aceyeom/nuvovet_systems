@@ -18,19 +18,13 @@ _DRUG_CACHE: Optional[Dict[str, Any]] = None
 _SEARCH_INDEX: Optional[List[Dict[str, Any]]] = None
 
 
-def _get_db_url() -> str:
-    db_url = (
+def _get_db_url() -> Optional[str]:
+    return (
         os.getenv("DB_INTERNAL_URL")
         or os.getenv("DB_EXTERNAL_URL")
         or os.getenv("DB_URL")
         or os.getenv("DATABASE_URL")
     )
-    if not db_url:
-        raise RuntimeError(
-            "데이터베이스 URL이 필요합니다. "
-            "DB_INTERNAL_URL 또는 DB_EXTERNAL_URL(대안: DB_URL, DATABASE_URL)을 설정하세요."
-        )
-    return db_url
 
 
 def _normalize_drug_record(drug_id: str, full_data: Any) -> Optional[Dict[str, Any]]:
@@ -82,6 +76,9 @@ def _load_all_drugs() -> Dict[str, Any]:
     loaded = 0
     skipped = 0
     db_url = _get_db_url()
+    if not db_url:
+        logger.info("No database URL configured — loading drugs from local JSONL files.")
+        return _load_from_local_jsonl()
 
     try:
         with psycopg2.connect(db_url) as conn:

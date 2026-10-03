@@ -1,0 +1,1614 @@
+{
+ "_meta": {
+  "description": "EMR-style procedure line probe (209 strings) written from EMR_Field_Analysis.md conventions plus common Korean vet billing items, with the code a claims reviewer would assign. Source: 2026-10-02 data-asset audit (/tmp/claude-0/audit/emr_lines.py, emr_rows.json). The codebook additions were tuned on this set, so accuracy here is in-sample (an upper bound); tuning_round2 (formerly 'held_out') was used for fixes too, so nothing here is out-of-sample; see tests/fixtures/realistic_probe_2026_10_02.json and claims.synthetic ALT_* for wording written outside the tuning loop.",
+  "judging": "'expected' is a code, a list of acceptable codes, or null (must stay unmapped). Rows with 'route_to_drug' must stay unmapped by the codebook (or map to a pharmacy code) and resolve to that drug id via claims.knowledge.resolve_drug.",
+  "baseline_v1": {
+   "probe_correct": 93,
+   "probe_missed": 97,
+   "probe_wrong": 16,
+   "probe_drug_rows": 3,
+   "false_positive_correct": 3
+  },
+  "tuning_round2_note": "Renamed from 'held_out' (2026-10-02 review): 170 clinic-style strings written after the codebook merge, in two batches, before any tuning on them. First-pass v2 accuracy: batch 1 93/100, batch 2 69/70 (v1: 70/100 and 54/70). Batch 1 misses were then fixed with rules (generic codes yield to specific ones; CON-004/LAB-022/TRT-002 supersedes) and 2 synonyms, batch 2 with 1 synonym, so these strings are now in-sample too. Only real partner receipts give a true accuracy figure."
+ },
+ "lines": [
+  {
+   "text": "진찰-초진",
+   "expected": "CON-001"
+  },
+  {
+   "text": "진찰-재진",
+   "expected": "CON-002"
+  },
+  {
+   "text": "진찰료(초진)",
+   "expected": "CON-001"
+  },
+  {
+   "text": "진찰-재진(경과관찰)",
+   "expected": "CON-002"
+  },
+  {
+   "text": "진찰-야간진료",
+   "expected": "CON-004"
+  },
+  {
+   "text": "진찰-공휴일진료",
+   "expected": "CON-004"
+  },
+  {
+   "text": "진찰-휴일할증",
+   "expected": "CON-004"
+  },
+  {
+   "text": "진찰-심야할증(22시 이후)",
+   "expected": "CON-004"
+  },
+  {
+   "text": "기본진료비",
+   "expected": [
+    "CON-000",
+    "CON-001",
+    "CON-002"
+   ]
+  },
+  {
+   "text": "진료비",
+   "expected": [
+    "CON-000",
+    "CON-001",
+    "CON-002"
+   ]
+  },
+  {
+   "text": "진찰-전화상담",
+   "expected": "CON-003"
+  },
+  {
+   "text": "진찰-왕진",
+   "expected": "CON-005"
+  },
+  {
+   "text": "진찰-전문의 진료(2차 의뢰)",
+   "expected": "CON-006"
+  },
+  {
+   "text": "검사-CBC",
+   "expected": "LAB-001"
+  },
+  {
+   "text": "검사-혈액검사(CBC)",
+   "expected": "LAB-001"
+  },
+  {
+   "text": "검사-전혈구검사(ProCyte)",
+   "expected": "LAB-001"
+  },
+  {
+   "text": "검사-CBC 판독료",
+   "expected": "LAB-001"
+  },
+  {
+   "text": "검사-혈액화학(Chem17)",
+   "expected": "LAB-002"
+  },
+  {
+   "text": "검사-생화학 10종",
+   "expected": "LAB-002"
+  },
+  {
+   "text": "검사-혈청화학(Catalyst)",
+   "expected": "LAB-002"
+  },
+  {
+   "text": "검사-혈액가스(Blood gas)",
+   "expected": "LAB-015"
+  },
+  {
+   "text": "검사-전해질(Na/K/Cl)",
+   "expected": "LAB-003"
+  },
+  {
+   "text": "검사-혈액응고(PT/aPTT)",
+   "expected": "LAB-016"
+  },
+  {
+   "text": "검사-CRP",
+   "expected": "LAB-017"
+  },
+  {
+   "text": "검사-SAA(고양이 염증)",
+   "expected": "LAB-017"
+  },
+  {
+   "text": "검사-SDMA",
+   "expected": "LAB-018"
+  },
+  {
+   "text": "검사-프럭토사민",
+   "expected": "LAB-019"
+  },
+  {
+   "text": "검사-혈당측정",
+   "expected": "LAB-019"
+  },
+  {
+   "text": "검사-혈당곡선",
+   "expected": "LAB-019"
+  },
+  {
+   "text": "검사-요검사(UA)",
+   "expected": "LAB-004"
+  },
+  {
+   "text": "검사-요침사",
+   "expected": "LAB-004"
+  },
+  {
+   "text": "검사-요비중",
+   "expected": "LAB-004"
+  },
+  {
+   "text": "검사-UPC(요단백/크레아티닌비)",
+   "expected": "LAB-020"
+  },
+  {
+   "text": "검사-분변검사(직접도말)",
+   "expected": "LAB-005"
+  },
+  {
+   "text": "검사-분변 PCR",
+   "expected": "LAB-021"
+  },
+  {
+   "text": "검사-호흡기 PCR 패널",
+   "expected": "LAB-021"
+  },
+  {
+   "text": "검사-피부스크래핑",
+   "expected": "LAB-006"
+  },
+  {
+   "text": "검사-우드램프",
+   "expected": "LAB-006"
+  },
+  {
+   "text": "검사-진균배양(DTM)",
+   "expected": "LAB-008"
+  },
+  {
+   "text": "검사-세침흡인(FNA)",
+   "expected": "LAB-022"
+  },
+  {
+   "text": "검사-조직검사(외부의뢰)",
+   "expected": "LAB-023"
+  },
+  {
+   "text": "검사-외부검사 의뢰",
+   "expected": "LAB-024"
+  },
+  {
+   "text": "검사-알러지검사(IgE)",
+   "expected": "LAB-025"
+  },
+  {
+   "text": "검사-T4",
+   "expected": "LAB-010"
+  },
+  {
+   "text": "검사-fT4",
+   "expected": "LAB-010"
+  },
+  {
+   "text": "검사-LDDS(저용량 덱사메타손 억제시험)",
+   "expected": "LAB-026"
+  },
+  {
+   "text": "검사-ACTH 자극시험",
+   "expected": "LAB-011"
+  },
+  {
+   "text": "검사-담즙산(Bile acid)",
+   "expected": "LAB-027"
+  },
+  {
+   "text": "검사-혈액형검사",
+   "expected": "LAB-028"
+  },
+  {
+   "text": "검사-교차적합시험(Crossmatch)",
+   "expected": "LAB-028"
+  },
+  {
+   "text": "검사-심장사상충(4Dx)",
+   "expected": "LAB-012"
+  },
+  {
+   "text": "검사-SNAP 4Dx Plus",
+   "expected": "LAB-012"
+  },
+  {
+   "text": "검사-파보키트",
+   "expected": "LAB-013"
+  },
+  {
+   "text": "검사-FeLV/FIV 키트",
+   "expected": "LAB-013"
+  },
+  {
+   "text": "검사-cPL",
+   "expected": "LAB-009"
+  },
+  {
+   "text": "검사-Spec cPL",
+   "expected": "LAB-009"
+  },
+  {
+   "text": "검사-NT-proBNP",
+   "expected": "LAB-014"
+  },
+  {
+   "text": "검사-항체가검사(VacciCheck)",
+   "expected": "LAB-029"
+  },
+  {
+   "text": "검사-귀도말",
+   "expected": "LAB-007"
+  },
+  {
+   "text": "검사-비디오이경",
+   "expected": "TRT-012"
+  },
+  {
+   "text": "검사-마취전검사",
+   "expected": "LAB-030"
+  },
+  {
+   "text": "검사-혈압측정",
+   "expected": "TRT-009"
+  },
+  {
+   "text": "검사-심전도(ECG)",
+   "expected": "TRT-010"
+  },
+  {
+   "text": "검사-안압측정",
+   "expected": "TRT-006"
+  },
+  {
+   "text": "검사-쉬르머 눈물검사(STT)",
+   "expected": "TRT-008"
+  },
+  {
+   "text": "검사-형광염색",
+   "expected": "TRT-007"
+  },
+  {
+   "text": "검사-안과검사(슬릿램프)",
+   "expected": "TRT-011"
+  },
+  {
+   "text": "검사-안저검사",
+   "expected": "TRT-011"
+  },
+  {
+   "text": "검사-신경학적 검사",
+   "expected": "CON-007"
+  },
+  {
+   "text": "검사-X-ray(경상)",
+   "expected": "IMG-001"
+  },
+  {
+   "text": "검사-X-ray 2컷",
+   "expected": "IMG-001"
+  },
+  {
+   "text": "방사선-흉부 2view",
+   "expected": "IMG-001"
+  },
+  {
+   "text": "검사-X-ray 추가촬영",
+   "expected": "IMG-001"
+  },
+  {
+   "text": "검사-X-ray 판독료",
+   "expected": "IMG-001"
+  },
+  {
+   "text": "검사-조영촬영(바륨)",
+   "expected": "IMG-001"
+  },
+  {
+   "text": "검사-복부초음파",
+   "expected": "IMG-002"
+  },
+  {
+   "text": "검사-초음파(복부)",
+   "expected": "IMG-002"
+  },
+  {
+   "text": "검사-심장초음파(Echo)",
+   "expected": "IMG-003"
+  },
+  {
+   "text": "검사-CT(조영)",
+   "expected": "IMG-004"
+  },
+  {
+   "text": "검사-MRI(뇌)",
+   "expected": "IMG-005"
+  },
+  {
+   "text": "검사-내시경(위)",
+   "expected": "IMG-006"
+  },
+  {
+   "text": "처치-초음파 가이드 방광천자",
+   "expected": "TRT-019"
+  },
+  {
+   "text": "수액/수혈-정맥수액(1일)",
+   "expected": "TRT-001"
+  },
+  {
+   "text": "처치-수액처치",
+   "expected": "TRT-001"
+  },
+  {
+   "text": "수액/수혈-피하수액",
+   "expected": "TRT-002"
+  },
+  {
+   "text": "수액/수혈-수액세트",
+   "expected": "TRT-001"
+  },
+  {
+   "text": "수액/수혈-수혈(전혈)",
+   "expected": "TRT-013"
+  },
+  {
+   "text": "수액/수혈-수혈(농축적혈구)",
+   "expected": "TRT-013"
+  },
+  {
+   "text": "수액/수혈-혈장",
+   "expected": "TRT-013"
+  },
+  {
+   "text": "처치-IV 카테터 장착",
+   "expected": "TRT-014"
+  },
+  {
+   "text": "처치-혈관확보",
+   "expected": "TRT-014"
+  },
+  {
+   "text": "처치-피하주사",
+   "expected": "TRT-003"
+  },
+  {
+   "text": "처치-근육주사",
+   "expected": "TRT-003"
+  },
+  {
+   "text": "처치-주사(세레니아)",
+   "expected": "TRT-003"
+  },
+  {
+   "text": "처치-항생제 주사",
+   "expected": "TRT-003"
+  },
+  {
+   "text": "처치-드레싱(소)",
+   "expected": "TRT-004"
+  },
+  {
+   "text": "처치-붕대교체",
+   "expected": "TRT-004"
+  },
+  {
+   "text": "처치-소독",
+   "expected": "TRT-004"
+  },
+  {
+   "text": "처치-실밥제거(발사)",
+   "expected": "TRT-004"
+  },
+  {
+   "text": "처치-열상 봉합",
+   "expected": "TRT-015"
+  },
+  {
+   "text": "처치-귀세척",
+   "expected": "TRT-005"
+  },
+  {
+   "text": "처치-항문낭 압출",
+   "expected": "TRT-016"
+  },
+  {
+   "text": "처치-항문낭 세척",
+   "expected": "TRT-016"
+  },
+  {
+   "text": "처치-관장",
+   "expected": "TRT-017"
+  },
+  {
+   "text": "처치-요도카테터(도뇨)",
+   "expected": "TRT-018"
+  },
+  {
+   "text": "처치-방광천자",
+   "expected": "TRT-019"
+  },
+  {
+   "text": "처치-복수천자",
+   "expected": "TRT-019"
+  },
+  {
+   "text": "처치-흉수천자",
+   "expected": "TRT-019"
+  },
+  {
+   "text": "처치-구토유발(최토)",
+   "expected": "TRT-020"
+  },
+  {
+   "text": "처치-위세척",
+   "expected": "TRT-020"
+  },
+  {
+   "text": "처치-산소처치",
+   "expected": "HOS-002"
+  },
+  {
+   "text": "처치-네블라이저",
+   "expected": "TRT-021"
+  },
+  {
+   "text": "처치-레이저치료",
+   "expected": "TRT-022"
+  },
+  {
+   "text": "처치-물리치료(재활)",
+   "expected": "TRT-022"
+  },
+  {
+   "text": "처치-침치료",
+   "expected": "TRT-022"
+  },
+  {
+   "text": "처치-수중런닝머신",
+   "expected": "TRT-022"
+  },
+  {
+   "text": "처치-CPR(심폐소생술)",
+   "expected": "TRT-023"
+  },
+  {
+   "text": "처치-발톱깎기",
+   "expected": "NON-001"
+  },
+  {
+   "text": "처치-넥카라",
+   "expected": "NON-004"
+  },
+  {
+   "text": "처치-안락사",
+   "expected": "ADM-005"
+  },
+  {
+   "text": "마취-호흡마취(30분)",
+   "expected": "ANE-001"
+  },
+  {
+   "text": "마취-호흡마취 추가(30분)",
+   "expected": "ANE-001"
+  },
+  {
+   "text": "마취-진정(덱스메데토미딘)",
+   "expected": "ANE-002"
+  },
+  {
+   "text": "마취-국소마취",
+   "expected": "ANE-003"
+  },
+  {
+   "text": "마취-신경차단(경막외)",
+   "expected": "ANE-003"
+  },
+  {
+   "text": "마취-기관삽관",
+   "expected": "ANE-001"
+  },
+  {
+   "text": "수술-중성화(수컷)",
+   "expected": "PRE-001"
+  },
+  {
+   "text": "수술-중성화(암컷)",
+   "expected": "PRE-002"
+  },
+  {
+   "text": "수술-잠복고환(복강)",
+   "expected": "SUR-008"
+  },
+  {
+   "text": "수술-자궁축농증",
+   "expected": "SUR-009"
+  },
+  {
+   "text": "수술-OHE(자궁축농증)",
+   "expected": "SUR-009"
+  },
+  {
+   "text": "수술-난소자궁적출(자궁축농증)",
+   "expected": "SUR-009"
+  },
+  {
+   "text": "수술-슬개골탈구(MPL) 교정술",
+   "expected": "SUR-001"
+  },
+  {
+   "text": "수술-TPLO",
+   "expected": "SUR-002"
+  },
+  {
+   "text": "수술-이물제거(장절개)",
+   "expected": "SUR-003"
+  },
+  {
+   "text": "수술-방광결석 제거",
+   "expected": "SUR-004"
+  },
+  {
+   "text": "수술-유선종양 절제",
+   "expected": "SUR-005"
+  },
+  {
+   "text": "수술-비장적출",
+   "expected": "SUR-010"
+  },
+  {
+   "text": "수술-담낭절제",
+   "expected": "SUR-011"
+  },
+  {
+   "text": "수술-체리아이 교정",
+   "expected": "SUR-012"
+  },
+  {
+   "text": "수술-백내장(초음파유화술)",
+   "expected": "SUR-013"
+  },
+  {
+   "text": "수술-각막봉합",
+   "expected": "SUR-013"
+  },
+  {
+   "text": "수술-회음부탈장",
+   "expected": "SUR-014"
+  },
+  {
+   "text": "수술-서혜부탈장",
+   "expected": "SUR-014"
+  },
+  {
+   "text": "수술-제대탈장",
+   "expected": "SUR-014"
+  },
+  {
+   "text": "수술-디스크(편측추궁절제)",
+   "expected": "SUR-006"
+  },
+  {
+   "text": "수술-골절(플레이트)",
+   "expected": "SUR-007"
+  },
+  {
+   "text": "수술-대퇴골두절제(FHO)",
+   "expected": "SUR-015"
+  },
+  {
+   "text": "수술-연구개성형(단두종)",
+   "expected": "SUR-016"
+  },
+  {
+   "text": "수술-비공확장술",
+   "expected": "SUR-016"
+  },
+  {
+   "text": "수술-단미",
+   "expected": "NON-006"
+  },
+  {
+   "text": "수술-성대제거",
+   "expected": "NON-006"
+  },
+  {
+   "text": "치과-스케일링",
+   "expected": "DEN-001"
+  },
+  {
+   "text": "치과-발치",
+   "expected": "DEN-002"
+  },
+  {
+   "text": "치과-잔존유치 발치",
+   "expected": "DEN-003"
+  },
+  {
+   "text": "치과-치주치료",
+   "expected": "DEN-004"
+  },
+  {
+   "text": "치과-치과방사선",
+   "expected": "DEN-005"
+  },
+  {
+   "text": "치과-불소도포",
+   "expected": "DEN-001"
+  },
+  {
+   "text": "약제-내복약(7일)",
+   "expected": "RX-001"
+  },
+  {
+   "text": "처방-내복약 1일분",
+   "expected": "RX-001"
+  },
+  {
+   "text": "조제료",
+   "expected": "RX-001"
+  },
+  {
+   "text": "약제-안약(점안액)",
+   "expected": "RX-002"
+  },
+  {
+   "text": "약제-귀약",
+   "expected": "RX-002"
+  },
+  {
+   "text": "약제-외용연고",
+   "expected": "RX-002"
+  },
+  {
+   "text": "약제-처방식(로얄캐닌 유리너리)",
+   "expected": "NON-003"
+  },
+  {
+   "text": "약제-영양제(관절)",
+   "expected": "NON-007"
+  },
+  {
+   "text": "약제-처방사료",
+   "expected": "NON-003"
+  },
+  {
+   "text": "Famotidine Inj.",
+   "expected": null,
+   "route_to_drug": "famotidine"
+  },
+  {
+   "text": "바이트릴 (정)",
+   "expected": null,
+   "route_to_drug": "enrofloxacin"
+  },
+  {
+   "text": "Convenia inj",
+   "expected": null,
+   "route_to_drug": "cefovecin"
+  },
+  {
+   "text": "예방-종합백신(DHPPL)",
+   "expected": "PRE-003"
+  },
+  {
+   "text": "예방-코로나장염 백신",
+   "expected": "PRE-010"
+  },
+  {
+   "text": "예방-켄넬코프",
+   "expected": "PRE-006"
+  },
+  {
+   "text": "예방-인플루엔자백신(CIV)",
+   "expected": "PRE-011"
+  },
+  {
+   "text": "예방-광견병",
+   "expected": "PRE-005"
+  },
+  {
+   "text": "예방-고양이종합백신(FVRCP)",
+   "expected": "PRE-004"
+  },
+  {
+   "text": "예방-고양이백혈병(FeLV) 백신",
+   "expected": "PRE-012"
+  },
+  {
+   "text": "예방-심장사상충예방(하트가드)",
+   "expected": "PRE-007"
+  },
+  {
+   "text": "예방-넥스가드",
+   "expected": "PRE-013"
+  },
+  {
+   "text": "예방-브라벡토",
+   "expected": "PRE-013"
+  },
+  {
+   "text": "예방-구충제(드론탈)",
+   "expected": "PRE-014"
+  },
+  {
+   "text": "예방-마이크로칩",
+   "expected": "PRE-009"
+  },
+  {
+   "text": "입원-소형견(1일)",
+   "expected": "HOS-001"
+  },
+  {
+   "text": "입원-고양이(1일)",
+   "expected": "HOS-001"
+  },
+  {
+   "text": "입원-ICU",
+   "expected": "HOS-002"
+  },
+  {
+   "text": "입원-격리입원(파보)",
+   "expected": "HOS-003"
+  },
+  {
+   "text": "입원-산소방",
+   "expected": "HOS-002"
+  },
+  {
+   "text": "의료폐기물",
+   "expected": "ADM-002"
+  },
+  {
+   "text": "의료폐기물-처리비",
+   "expected": "ADM-002"
+  },
+  {
+   "text": "진단서 발급",
+   "expected": "ADM-001"
+  },
+  {
+   "text": "진료비 세부내역서",
+   "expected": "ADM-001"
+  },
+  {
+   "text": "예방접종증명서",
+   "expected": "ADM-001"
+  },
+  {
+   "text": "보험서류 발급",
+   "expected": "ADM-001"
+  },
+  {
+   "text": "진료확인서",
+   "expected": "ADM-001"
+  },
+  {
+   "text": "부가세",
+   "expected": "ADM-003"
+  },
+  {
+   "text": "VAT",
+   "expected": "ADM-003"
+  },
+  {
+   "text": "할인",
+   "expected": "ADM-004"
+  },
+  {
+   "text": "미용-위생미용",
+   "expected": "NON-001"
+  },
+  {
+   "text": "호텔(1박)",
+   "expected": "NON-002"
+  },
+  {
+   "text": "장례(화장)",
+   "expected": "NON-005"
+  },
+  {
+   "text": "CBC+Chem",
+   "expected": "LAB-001"
+  },
+  {
+   "text": "Chem10 + Lyte4",
+   "expected": "LAB-002"
+  },
+  {
+   "text": "Rad 2V",
+   "expected": "IMG-001"
+  },
+  {
+   "text": "AUS",
+   "expected": "IMG-002"
+  },
+  {
+   "text": "IVF",
+   "expected": "TRT-001"
+  },
+  {
+   "text": "SQ fluids",
+   "expected": "TRT-002"
+  },
+  {
+   "text": "Anal sac expression",
+   "expected": "TRT-016"
+  },
+  {
+   "text": "Nail trim",
+   "expected": "NON-001"
+  },
+  {
+   "text": "Medical waste",
+   "expected": "ADM-002"
+  }
+ ],
+ "false_positive_probe": [
+  {
+   "text": "외부위탁검사",
+   "expected": "LAB-024"
+  },
+  {
+   "text": "검사-위탁검사(IDEXX)",
+   "expected": "LAB-024"
+  },
+  {
+   "text": "Infection control fee",
+   "expected": null
+  },
+  {
+   "text": "Manual expression of anal glands",
+   "expected": "TRT-016"
+  },
+  {
+   "text": "Usual visit",
+   "expected": null
+  },
+  {
+   "text": "Doctor's fee",
+   "expected": null
+  },
+  {
+   "text": "Ectropion surgery",
+   "expected": null
+  },
+  {
+   "text": "Dual-energy CT",
+   "expected": "IMG-004"
+  },
+  {
+   "text": "Hospitalization - ICU",
+   "expected": "HOS-002"
+  },
+  {
+   "text": "Spay - pyometra",
+   "expected": "SUR-009"
+  },
+  {
+   "text": "Ultrasound-guided cystocentesis",
+   "expected": "TRT-019"
+  },
+  {
+   "text": "Phacoemulsification (ultrasonic)",
+   "expected": "SUR-013"
+  },
+  {
+   "text": "수술-초음파 수술기(하모닉)",
+   "expected": null
+  },
+  {
+   "text": "grade 3 MPL",
+   "expected": null
+  },
+  {
+   "text": "because",
+   "expected": null
+  },
+  {
+   "text": "CBC+Chem",
+   "expected": [
+    "LAB-001",
+    "LAB-002"
+   ]
+  }
+ ],
+ "tuning_round2": [
+  {
+   "text": "진찰-초진(야간)",
+   "expected": "CON-004"
+  },
+  {
+   "text": "재진 진료비",
+   "expected": "CON-002"
+  },
+  {
+   "text": "야간할증료",
+   "expected": "CON-004"
+  },
+  {
+   "text": "응급진료비",
+   "expected": "CON-004"
+  },
+  {
+   "text": "검사-혈구검사",
+   "expected": "LAB-001"
+  },
+  {
+   "text": "CBC 검사",
+   "expected": "LAB-001"
+  },
+  {
+   "text": "생화학검사 15종",
+   "expected": "LAB-002"
+  },
+  {
+   "text": "간수치 검사",
+   "expected": "LAB-002"
+  },
+  {
+   "text": "검사-전해질",
+   "expected": "LAB-003"
+  },
+  {
+   "text": "소변검사(스틱)",
+   "expected": "LAB-004"
+  },
+  {
+   "text": "검사-분변(부유법)",
+   "expected": "LAB-005"
+  },
+  {
+   "text": "피부 테이프 검사",
+   "expected": "LAB-006"
+  },
+  {
+   "text": "검사-귀 도말(현미경)",
+   "expected": "LAB-007"
+  },
+  {
+   "text": "세균 배양 검사",
+   "expected": "LAB-008"
+  },
+  {
+   "text": "Snap cPL",
+   "expected": "LAB-009"
+  },
+  {
+   "text": "T4 검사",
+   "expected": "LAB-010"
+  },
+  {
+   "text": "검사-심장사상충 키트",
+   "expected": "LAB-012"
+  },
+  {
+   "text": "파보 키트",
+   "expected": "LAB-013"
+  },
+  {
+   "text": "proBNP",
+   "expected": "LAB-014"
+  },
+  {
+   "text": "검사-SDMA(IDEXX)",
+   "expected": "LAB-018"
+  },
+  {
+   "text": "검사-혈당",
+   "expected": "LAB-019"
+  },
+  {
+   "text": "검사-PCR(호흡기)",
+   "expected": "LAB-021"
+  },
+  {
+   "text": "FNA 세포검사",
+   "expected": "LAB-022"
+  },
+  {
+   "text": "검사-흉부 X-ray 3컷",
+   "expected": "IMG-001"
+  },
+  {
+   "text": "방사선 촬영(복부 2매)",
+   "expected": "IMG-001"
+  },
+  {
+   "text": "복부 초음파 검사",
+   "expected": "IMG-002"
+  },
+  {
+   "text": "심장 초음파",
+   "expected": "IMG-003"
+  },
+  {
+   "text": "CT 촬영(조영)",
+   "expected": "IMG-004"
+  },
+  {
+   "text": "MRI(척추)",
+   "expected": "IMG-005"
+  },
+  {
+   "text": "수액처치(1일)",
+   "expected": "TRT-001"
+  },
+  {
+   "text": "피하수액 처치",
+   "expected": "TRT-002"
+  },
+  {
+   "text": "주사(항구토제)",
+   "expected": "TRT-003"
+  },
+  {
+   "text": "상처 드레싱",
+   "expected": "TRT-004"
+  },
+  {
+   "text": "귀 세척(양쪽)",
+   "expected": "TRT-005"
+  },
+  {
+   "text": "안압 측정",
+   "expected": "TRT-006"
+  },
+  {
+   "text": "형광 염색",
+   "expected": "TRT-007"
+  },
+  {
+   "text": "혈압 측정",
+   "expected": "TRT-009"
+  },
+  {
+   "text": "심전도 검사",
+   "expected": "TRT-010"
+  },
+  {
+   "text": "호흡마취(1시간)",
+   "expected": "ANE-001"
+  },
+  {
+   "text": "진정 처치",
+   "expected": "ANE-002"
+  },
+  {
+   "text": "슬개골 탈구 수술(우측)",
+   "expected": "SUR-001"
+  },
+  {
+   "text": "TPLO 수술",
+   "expected": "SUR-002"
+  },
+  {
+   "text": "이물 제거 수술",
+   "expected": "SUR-003"
+  },
+  {
+   "text": "방광 결석 제거술",
+   "expected": "SUR-004"
+  },
+  {
+   "text": "종양 제거술",
+   "expected": "SUR-005"
+  },
+  {
+   "text": "디스크 수술",
+   "expected": "SUR-006"
+  },
+  {
+   "text": "골절 수술(핀)",
+   "expected": "SUR-007"
+  },
+  {
+   "text": "수컷 중성화",
+   "expected": "PRE-001"
+  },
+  {
+   "text": "암컷 중성화 수술",
+   "expected": "PRE-002"
+  },
+  {
+   "text": "종합백신(DHPPL)",
+   "expected": "PRE-003"
+  },
+  {
+   "text": "고양이 종합백신",
+   "expected": "PRE-004"
+  },
+  {
+   "text": "광견병 예방접종",
+   "expected": "PRE-005"
+  },
+  {
+   "text": "하트가드 플러스",
+   "expected": "PRE-007"
+  },
+  {
+   "text": "건강검진(기본)",
+   "expected": "PRE-008"
+  },
+  {
+   "text": "마이크로칩 삽입",
+   "expected": "PRE-009"
+  },
+  {
+   "text": "스케일링(전악)",
+   "expected": "DEN-001"
+  },
+  {
+   "text": "발치(3개)",
+   "expected": "DEN-002"
+  },
+  {
+   "text": "내복약 5일",
+   "expected": "RX-001"
+  },
+  {
+   "text": "점안액(안약)",
+   "expected": "RX-002"
+  },
+  {
+   "text": "미용(전체)",
+   "expected": "NON-001"
+  },
+  {
+   "text": "호텔 2박",
+   "expected": "NON-002"
+  },
+  {
+   "text": "처방사료 2kg",
+   "expected": "NON-003"
+  },
+  {
+   "text": "넥카라(M)",
+   "expected": "NON-004"
+  },
+  {
+   "text": "진단서",
+   "expected": "ADM-001"
+  },
+  {
+   "text": "입원(중형견) 1일",
+   "expected": "HOS-001"
+  },
+  {
+   "text": "입원-대형견(1일)",
+   "expected": "HOS-001"
+  },
+  {
+   "text": "ICU 입원",
+   "expected": "HOS-002"
+  },
+  {
+   "text": "산소 처치",
+   "expected": "HOS-002"
+  },
+  {
+   "text": "의료폐기물 처리",
+   "expected": "ADM-002"
+  },
+  {
+   "text": "카드 할인",
+   "expected": "ADM-004"
+  },
+  {
+   "text": "VAT 10%",
+   "expected": "ADM-003"
+  },
+  {
+   "text": "안락사 처치",
+   "expected": "ADM-005"
+  },
+  {
+   "text": "개별 화장",
+   "expected": "NON-005"
+  },
+  {
+   "text": "관절 영양제",
+   "expected": "NON-007"
+  },
+  {
+   "text": "항문낭 짜기",
+   "expected": "TRT-016"
+  },
+  {
+   "text": "요도 카테터 장착",
+   "expected": "TRT-018"
+  },
+  {
+   "text": "수혈(농축적혈구 1unit)",
+   "expected": "TRT-013"
+  },
+  {
+   "text": "레이저 치료(재활)",
+   "expected": "TRT-022"
+  },
+  {
+   "text": "내시경 검사",
+   "expected": "IMG-006"
+  },
+  {
+   "text": "넥스가드 스펙트라",
+   "expected": "PRE-007"
+  },
+  {
+   "text": "브라벡토(소형견)",
+   "expected": "PRE-013"
+  },
+  {
+   "text": "구충제",
+   "expected": "PRE-014"
+  },
+  {
+   "text": "격리 입원(파보)",
+   "expected": "HOS-003"
+  },
+  {
+   "text": "치주 치료",
+   "expected": "DEN-004"
+  },
+  {
+   "text": "잔존 유치 발치",
+   "expected": "DEN-003"
+  },
+  {
+   "text": "자궁축농증 수술",
+   "expected": "SUR-009"
+  },
+  {
+   "text": "잠복고환 수술",
+   "expected": "SUR-008"
+  },
+  {
+   "text": "체리아이 수술",
+   "expected": "SUR-012"
+  },
+  {
+   "text": "Ear cytology",
+   "expected": "LAB-007"
+  },
+  {
+   "text": "Urinalysis",
+   "expected": "LAB-004"
+  },
+  {
+   "text": "Abdominal ultrasound",
+   "expected": "IMG-002"
+  },
+  {
+   "text": "Radiographs (2 views)",
+   "expected": "IMG-001"
+  },
+  {
+   "text": "Nail trim",
+   "expected": "NON-001"
+  },
+  {
+   "text": "Recheck exam",
+   "expected": "CON-002"
+  },
+  {
+   "text": "Rabies vaccine",
+   "expected": "PRE-005"
+  },
+  {
+   "text": "Fecal flotation",
+   "expected": "LAB-005"
+  },
+  {
+   "text": "Heartworm test",
+   "expected": "LAB-012"
+  },
+  {
+   "text": "Dental cleaning",
+   "expected": "DEN-001"
+  },
+  {
+   "text": "Euthanasia",
+   "expected": "ADM-005"
+  },
+  {
+   "text": "Cremation",
+   "expected": "NON-005"
+  },
+  {
+   "text": "기본 진찰료",
+   "expected": "CON-000"
+  },
+  {
+   "text": "초진 진찰",
+   "expected": "CON-001"
+  },
+  {
+   "text": "재진(경과)",
+   "expected": "CON-002"
+  },
+  {
+   "text": "전화 상담료",
+   "expected": "CON-003"
+  },
+  {
+   "text": "야간 진료 할증",
+   "expected": "CON-004"
+  },
+  {
+   "text": "혈액 검사 CBC",
+   "expected": "LAB-001"
+  },
+  {
+   "text": "혈액화학 검사(12항목)",
+   "expected": "LAB-002"
+  },
+  {
+   "text": "Electrolytes",
+   "expected": "LAB-003"
+  },
+  {
+   "text": "요 검사(침사 포함)",
+   "expected": "LAB-004"
+  },
+  {
+   "text": "분변 도말검사",
+   "expected": "LAB-005"
+  },
+  {
+   "text": "피부 소파검사",
+   "expected": "LAB-006"
+  },
+  {
+   "text": "이도 도말",
+   "expected": "LAB-007"
+  },
+  {
+   "text": "배양 및 감수성",
+   "expected": "LAB-008"
+  },
+  {
+   "text": "췌장 키트(cPL)",
+   "expected": "LAB-009"
+  },
+  {
+   "text": "갑상선 검사(T4)",
+   "expected": "LAB-010"
+  },
+  {
+   "text": "ACTH 자극 검사",
+   "expected": "LAB-011"
+  },
+  {
+   "text": "4Dx 키트검사",
+   "expected": "LAB-012"
+  },
+  {
+   "text": "디스템퍼 키트",
+   "expected": "LAB-013"
+  },
+  {
+   "text": "심장 바이오마커(NT-proBNP)",
+   "expected": "LAB-014"
+  },
+  {
+   "text": "CRP 검사",
+   "expected": "LAB-017"
+  },
+  {
+   "text": "요단백/크레아티닌",
+   "expected": "LAB-020"
+  },
+  {
+   "text": "조직검사(외부)",
+   "expected": "LAB-023"
+  },
+  {
+   "text": "알레르기 검사(IgE)",
+   "expected": "LAB-025"
+  },
+  {
+   "text": "담즙산 검사(식전/식후)",
+   "expected": "LAB-027"
+  },
+  {
+   "text": "혈액형 검사(DEA 1.1)",
+   "expected": "LAB-028"
+  },
+  {
+   "text": "흉부 방사선(2view)",
+   "expected": "IMG-001"
+  },
+  {
+   "text": "X-Ray 촬영",
+   "expected": "IMG-001"
+  },
+  {
+   "text": "초음파(복부)",
+   "expected": "IMG-002"
+  },
+  {
+   "text": "Echo",
+   "expected": "IMG-003"
+  },
+  {
+   "text": "CT scan",
+   "expected": "IMG-004"
+  },
+  {
+   "text": "정맥수액(24시간)",
+   "expected": "TRT-001"
+  },
+  {
+   "text": "SC fluids",
+   "expected": "TRT-002"
+  },
+  {
+   "text": "근육 주사",
+   "expected": "TRT-003"
+  },
+  {
+   "text": "소독 및 드레싱",
+   "expected": "TRT-004"
+  },
+  {
+   "text": "이도 세척",
+   "expected": "TRT-005"
+  },
+  {
+   "text": "눈물량 검사(STT)",
+   "expected": "TRT-008"
+  },
+  {
+   "text": "ECG",
+   "expected": "TRT-010"
+  },
+  {
+   "text": "안과 검사",
+   "expected": "TRT-011"
+  },
+  {
+   "text": "카테터 장착(IV)",
+   "expected": "TRT-014"
+  },
+  {
+   "text": "상처 봉합",
+   "expected": "TRT-015"
+  },
+  {
+   "text": "마취(호흡)",
+   "expected": "ANE-001"
+  },
+  {
+   "text": "Sedation",
+   "expected": "ANE-002"
+  },
+  {
+   "text": "신경차단 마취",
+   "expected": "ANE-003"
+  },
+  {
+   "text": "입원비(소형견)",
+   "expected": "HOS-001"
+  },
+  {
+   "text": "ICU 1일",
+   "expected": "HOS-002"
+  },
+  {
+   "text": "슬개골 정복술",
+   "expected": "SUR-001"
+  },
+  {
+   "text": "십자인대 수술",
+   "expected": "SUR-002"
+  },
+  {
+   "text": "장절개술(이물)",
+   "expected": "SUR-003"
+  },
+  {
+   "text": "방광절개술",
+   "expected": "SUR-004"
+  },
+  {
+   "text": "종괴 절제",
+   "expected": "SUR-005"
+  },
+  {
+   "text": "Neuter",
+   "expected": "PRE-001"
+  },
+  {
+   "text": "Spay",
+   "expected": "PRE-002"
+  },
+  {
+   "text": "DHPP vaccine",
+   "expected": "PRE-003"
+  },
+  {
+   "text": "FVRCP",
+   "expected": "PRE-004"
+  },
+  {
+   "text": "켄넬코프 백신",
+   "expected": "PRE-006"
+  },
+  {
+   "text": "심장사상충 예방약",
+   "expected": "PRE-007"
+  },
+  {
+   "text": "마이크로칩",
+   "expected": "PRE-009"
+  },
+  {
+   "text": "스케일링",
+   "expected": "DEN-001"
+  },
+  {
+   "text": "발치술",
+   "expected": "DEN-002"
+  },
+  {
+   "text": "조제료(3일)",
+   "expected": "RX-001"
+  },
+  {
+   "text": "안약",
+   "expected": "RX-002"
+  },
+  {
+   "text": "목욕",
+   "expected": "NON-001"
+  },
+  {
+   "text": "위탁(1박)",
+   "expected": "NON-002"
+  },
+  {
+   "text": "로얄캐닌 사료",
+   "expected": "NON-003"
+  },
+  {
+   "text": "배변패드",
+   "expected": "NON-004"
+  },
+  {
+   "text": "소견서 발급",
+   "expected": "ADM-001"
+  },
+  {
+   "text": "의료폐기물 처리비",
+   "expected": "ADM-002"
+  },
+  {
+   "text": "부가세(10%)",
+   "expected": "ADM-003"
+  },
+  {
+   "text": "할인(재방문)",
+   "expected": "ADM-004"
+  },
+  {
+   "text": "장례 서비스",
+   "expected": "NON-005"
+  }
+ ]
+}

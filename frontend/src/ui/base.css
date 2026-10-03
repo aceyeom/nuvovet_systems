@@ -1,0 +1,92 @@
+/*
+ * Global element rules (DESIGN_SYSTEM.md §3.3, §3.9). Everything here sits in @layer base so
+ * every utility wins over it (unlayered rules would beat utilities in Tailwind v4).
+ * Imported by src/index.css (main app) and src/ui/app.css (standalone portfolio build).
+ */
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--border);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--nv-font-sans);
+    font-size: 14px;
+    line-height: 22px;
+    font-feature-settings: "ss06"; /* Pretendard: straight-sided l for 1/l legibility in doses */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  :where(h1, h2, h3, h4, p, li, td, th, label, dt, dd, span, div) {
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+  :where(h1, h2, h3) { text-wrap: balance; }
+  :where(p) { text-wrap: pretty; }
+
+  .num,
+  :where(td.num, th.num) {
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+  }
+  .num,
+  .id,
+  :where(td.num, th.num) {
+    white-space: nowrap;
+  }
+  .id {
+    font-feature-settings: "tnum", "zero";
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+  .mono {
+    font-family: var(--nv-font-mono);
+    font-size: 12px;
+    letter-spacing: 0;
+  }
+  .ledger-total { border-top: 3px double var(--border-strong); }
+  ::selection { background: var(--brand-soft); }
+
+  /* One focus treatment for every control (§3.9). `pre` and contenteditable are listed because
+     Chromium makes a scrolling <pre> or <div> keyboard-focusable without a tabindex; without them it got the
+     browser's 1 px outline (engineering review: code excerpts on /, /insurance/api, how-it-works). */
+  :where(a, button, input, select, textarea, [tabindex], [role="button"], [role="tab"], [role="option"], summary, pre, div, [contenteditable]):focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  :where(input, select, textarea):focus-visible { border-color: var(--ring); }
+  :where(tr) > :where(td, th):first-child :where(a):focus-visible { outline-offset: -2px; }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 100ms !important;
+      transition-duration: 100ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

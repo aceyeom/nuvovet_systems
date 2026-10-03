@@ -1,0 +1,205 @@
+/*
+ * NuvoVet design tokens (DESIGN_SYSTEM.md §3). Plain CSS: no Tailwind directives, no rem
+ * (the EMR widget imports this file with ?inline into shadow roots on host pages that may
+ * change the root font size).
+ *
+ * Light tokens on :root and .nv-scope (widget shadow roots). Dark tokens twice: once for the
+ * system setting when no explicit light theme is chosen, once for an explicit data-theme="dark".
+ * Keep the two dark blocks identical; src/ui/__tests__/contrast.test.js checks that they are.
+ */
+
+:root,
+.nv-scope {
+  color-scheme: light;
+
+  /* Fonts (§2.4). Namespaced so the Tailwind bridge never maps a variable onto itself. */
+  --nv-font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Segoe UI", sans-serif;
+  --nv-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Surfaces */
+  --background: #FFFFFF;
+  --card: var(--background);
+  --popover: #FFFFFF;
+  --surface-raised: var(--popover);
+  --surface-subtle: #F7F8FA;
+  --surface-muted: #F0F2F5;
+  --muted: var(--surface-muted);
+  --secondary: var(--surface-muted);
+  --accent: var(--surface-muted);
+  /* Segmented controls (ToggleGroup / Tabs "segmented"): the selected item is lighter than its track
+     in both themes (in dark, --background is darker than --surface-muted, so it read as a hole). */
+  --segment-track: var(--surface-muted);
+  --segment-active: var(--background);
+  --row-hover: rgb(16 24 40 / 0.04);
+  --row-pressed: rgb(16 24 40 / 0.08);
+  --backdrop: rgb(14 15 17 / 0.56);
+
+  /* Text */
+  --foreground: #16191E;
+  --text-2: #4D5560;
+  --muted-foreground: #646C77;
+  --text-faint: #9AA1AA;
+
+  /* Lines */
+  --border: rgb(16 24 40 / 0.10);
+  --border-strong: rgb(16 24 40 / 0.18);
+  --input: #848B95;
+
+  /* Ink primary */
+  --primary: #16191E;
+  --primary-hover: #30353D;
+  --primary-foreground: #FFFFFF;
+
+  /* Utility accent: links, focus, selection, chart series 1 */
+  --brand: #2457F5;
+  --brand-hover: #1C47D6;
+  --brand-soft: #EDF2FF;
+  --ring: #2457F5;
+
+  --chart-1: #2457F5;
+  --chart-2: #4D5560;
+  --chart-3: #848B95;
+
+  /* Status (§3.1). Severity and decisions only. */
+  --sev-critical: #C8241B;
+  --sev-critical-bg: #FDF0EF;
+  --sev-critical-solid: #C8241B;
+  --on-solid: #FFFFFF;
+  --sev-major: #B84A00;
+  --sev-major-bg: #FDF2E9;
+  --sev-moderate: #8F6200;
+  --sev-moderate-bg: #FBF5E3;
+  --sev-minor: #4D5560;
+  --sev-minor-bg: #F0F2F5;
+  --ok: #1A7F37;
+  --ok-bg: #EEF7EF;
+
+  /* Radius (§3.5). --radius exists for vendored code that still reads it. */
+  --radius: 8px;
+  --nv-radius-sm: 4px;
+  --nv-radius-md: 6px;
+  --nv-radius-lg: 8px;
+  --nv-radius-xl: 12px;
+
+  /* Shadows: floating layers only (§3.6) */
+  --nv-shadow-pop: 0 0 0 1px rgb(16 24 40 / 0.06), 0 1px 2px rgb(16 24 40 / 0.06), 0 4px 12px rgb(16 24 40 / 0.08);
+  --nv-shadow-modal: 0 0 0 1px rgb(16 24 40 / 0.08), 0 2px 4px rgb(16 24 40 / 0.06), 0 16px 48px rgb(16 24 40 / 0.18);
+
+  /* Motion (§3.7) */
+  --dur-1: 100ms;
+  --dur-2: 150ms;
+  --dur-3: 200ms;
+  --dur-4: 250ms;
+  --nv-ease-out: cubic-bezier(0.2, 0, 0, 1);
+  --nv-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --nv-ease-inout: cubic-bezier(0.6, 0, 0.2, 1);
+
+  /* Z-index (§3.8) */
+  --z-sticky: 10;
+  --z-header: 20;
+  --z-sidebar: 30;
+  --z-overlay: 50;
+  --z-toast: 60;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]),
+  .nv-scope:not([data-theme="light"]) {
+    color-scheme: dark;
+    --background: #0E0F11;
+    --card: var(--background);
+    --popover: #1C1E22;
+    --surface-raised: var(--popover);
+    --surface-subtle: #16171A;
+    --surface-muted: #232529;
+    --muted: var(--surface-muted);
+    --secondary: var(--surface-muted);
+    --accent: var(--surface-muted);
+    --segment-track: var(--surface-subtle);
+    --segment-active: var(--surface-muted);
+    --row-hover: rgb(255 255 255 / 0.05);
+    --row-pressed: rgb(255 255 255 / 0.10);
+    --backdrop: rgb(0 0 0 / 0.64);
+    --foreground: #ECEEF1;
+    --text-2: #A9AFB8;
+    --muted-foreground: #8D949E;
+    --text-faint: #5F656E;
+    --border: rgb(255 255 255 / 0.09);
+    --border-strong: rgb(255 255 255 / 0.14);
+    --input: #666D77;
+    --primary: #ECEEF1;
+    --primary-hover: #D5D9DE;
+    --primary-foreground: #0E0F11;
+    --brand: #6E9BFF;
+    --brand-hover: #8DB1FF;
+    --brand-soft: #18213D;
+    --ring: #6E9BFF;
+    --chart-1: #6E9BFF;
+    --chart-2: #A9AFB8;
+    --chart-3: #666D77;
+    --sev-critical: #FF6B5E;
+    --sev-critical-bg: #2A1513;
+    --sev-critical-solid: #C8241B;
+    --on-solid: #FFFFFF;
+    --sev-major: #FF8F3D;
+    --sev-major-bg: #2A1A0E;
+    --sev-moderate: #E3B341;
+    --sev-moderate-bg: #272011;
+    --sev-minor: #A9AFB8;
+    --sev-minor-bg: #232529;
+    --ok: #4AC26B;
+    --ok-bg: #10241A;
+    --nv-shadow-pop: 0 0 0 1px var(--border-strong), 0 1px 2px rgb(0 0 0 / 0.5), 0 4px 12px rgb(0 0 0 / 0.5);
+    --nv-shadow-modal: 0 0 0 1px var(--border-strong), 0 2px 4px rgb(0 0 0 / 0.5), 0 16px 48px rgb(0 0 0 / 0.5);
+  }
+}
+
+:root[data-theme="dark"],
+.nv-scope[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #0E0F11;
+  --card: var(--background);
+  --popover: #1C1E22;
+  --surface-raised: var(--popover);
+  --surface-subtle: #16171A;
+  --surface-muted: #232529;
+  --muted: var(--surface-muted);
+  --secondary: var(--surface-muted);
+  --accent: var(--surface-muted);
+  --segment-track: var(--surface-subtle);
+  --segment-active: var(--surface-muted);
+  --row-hover: rgb(255 255 255 / 0.05);
+  --row-pressed: rgb(255 255 255 / 0.10);
+  --backdrop: rgb(0 0 0 / 0.64);
+  --foreground: #ECEEF1;
+  --text-2: #A9AFB8;
+  --muted-foreground: #8D949E;
+  --text-faint: #5F656E;
+  --border: rgb(255 255 255 / 0.09);
+  --border-strong: rgb(255 255 255 / 0.14);
+  --input: #666D77;
+  --primary: #ECEEF1;
+  --primary-hover: #D5D9DE;
+  --primary-foreground: #0E0F11;
+  --brand: #6E9BFF;
+  --brand-hover: #8DB1FF;
+  --brand-soft: #18213D;
+  --ring: #6E9BFF;
+  --chart-1: #6E9BFF;
+  --chart-2: #A9AFB8;
+  --chart-3: #666D77;
+  --sev-critical: #FF6B5E;
+  --sev-critical-bg: #2A1513;
+  --sev-critical-solid: #C8241B;
+  --on-solid: #FFFFFF;
+  --sev-major: #FF8F3D;
+  --sev-major-bg: #2A1A0E;
+  --sev-moderate: #E3B341;
+  --sev-moderate-bg: #272011;
+  --sev-minor: #A9AFB8;
+  --sev-minor-bg: #232529;
+  --ok: #4AC26B;
+  --ok-bg: #10241A;
+  --nv-shadow-pop: 0 0 0 1px var(--border-strong), 0 1px 2px rgb(0 0 0 / 0.5), 0 4px 12px rgb(0 0 0 / 0.5);
+  --nv-shadow-modal: 0 0 0 1px var(--border-strong), 0 2px 4px rgb(0 0 0 / 0.5), 0 16px 48px rgb(0 0 0 / 0.5);
+}

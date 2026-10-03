@@ -1,0 +1,9 @@
+# Build and QA output (DESIGN_SYSTEM.md §7.7)
+dist/
+dist-portfolio/
+dist-widget/
+qa-shots/
+# shadcn vendoring scratch (scripts/vendor-shadcn.mjs)
+.shadcn-vendor/
+# Local server logs (e.g. a stray serve.log from a preview server)
+*.log

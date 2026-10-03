@@ -1,0 +1,21 @@
+/*
+ * Deliberately hostile global CSS, typical of legacy EMRs (Bootstrap 3 + jQuery UI + resets),
+ * from /tmp/claude-0/uiresearch/stack/host/emr.html and EMR popup spec §7 / §8.3.
+ */
+html { font-size: 62.5% !important; }
+* { box-sizing: content-box !important; font-family: "Comic Sans MS", cursive !important; line-height: 3 !important;
+    letter-spacing: 2px !important; color: red !important; text-transform: uppercase; }
+body { font-size: 22px; background: #EEF; }
+button, input, select { all: unset; background: yellow !important; border: 3px solid magenta !important; padding: 12px !important; }
+div { padding: 7px !important; border: 1px dashed #999 !important; }
+[role=dialog], [role=alertdialog] { display: none !important; }
+[data-state=open] { opacity: .2 !important; }
+.fixed, .flex, .hidden, .rounded-lg, .bg-background, .nv-scope, .nv-gate, .nv-panel { all: unset !important; }
+:root { --background: red; --primary: lime; --radius: 0px; --font-sans: "Comic Sans MS"; --nv-font-sans: "Comic Sans MS"; --foreground: red; }
+* { --primary: lime !important; --border: red !important; --sev-critical-solid: lime !important; --on-solid: red !important; }
+svg { width: 80px !important; height: 80px !important; }
+@font-face { font-family: "Pretendard Variable"; src: local("Comic Sans MS"), local("DejaVu Serif"); }
+@font-face { font-family: "NuvoVet Pretendard Fake"; src: local("Comic Sans MS"); }
+header.sticky { position: sticky; top: 0; z-index: 99999; background: navy; height: 60px; }
+.titlebar { position: sticky; top: 0; z-index: 99999; }
+.filler { height: 1200px; }

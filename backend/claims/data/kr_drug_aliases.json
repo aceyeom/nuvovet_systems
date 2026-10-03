@@ -1,0 +1,389 @@
+{
+ "_meta": {
+  "description": "Korean market brand names and Korean ingredient spellings → canonical drug id. Curated by NuvoVet from Korean product labelling (QIA 동물용의약품 허가 정보 / MFDS 의약품 정보). Brand→ingredient mappings are factual product identifiers.",
+  "review_status": "spot-check against medi.qia.go.kr and nedrug.mfds.go.kr before production; extend from partner claims",
+  "version": "2026.10.1"
+ },
+ "aliases": {
+  "meloxicam": [
+   "멜록시캄",
+   "메타캄",
+   "페트캄"
+  ],
+  "carprofen": [
+   "카프로펜",
+   "리마딜",
+   "카프로딜"
+  ],
+  "firocoxib": [
+   "피로콕시브",
+   "프리비콕스"
+  ],
+  "robenacoxib": [
+   "로베나콕시브",
+   "온시올"
+  ],
+  "grapiprant": [
+   "그라피프란트",
+   "갈리프란트"
+  ],
+  "acetaminophen": [
+   "아세트아미노펜",
+   "타이레놀",
+   "파라세타몰",
+   "paracetamol"
+  ],
+  "tramadol": [
+   "트라마돌",
+   "트리돌",
+   "울트람"
+  ],
+  "gabapentin": [
+   "가바펜틴",
+   "뉴론틴"
+  ],
+  "buprenorphine": [
+   "부프레노르핀",
+   "부프레넥스"
+  ],
+  "butorphanol": [
+   "부토르파놀",
+   "토르부게식"
+  ],
+  "oclacitinib": [
+   "오클라시티닙",
+   "아포퀠",
+   "아포퀼"
+  ],
+  "lokivetmab": [
+   "로키베트맙",
+   "사이토포인트"
+  ],
+  "cyclosporine_systemic": [
+   "사이클로스포린",
+   "시클로스포린",
+   "아토피카",
+   "산디문",
+   "네오랄"
+  ],
+  "cyclosporine_ophthalmic": [
+   "옵티뮨",
+   "사이클로스포린점안",
+   "사이클로스포린안연고",
+   "레스타시스"
+  ],
+  "prednisolone_prednisone": [
+   "프레드니솔론",
+   "프레드니손",
+   "소론도",
+   "소론도정",
+   "prednisolone",
+   "prednisolone tab",
+   "prednisolone tablet",
+   "prednisone"
+  ],
+  "methylprednisolone": [
+   "메틸프레드니솔론",
+   "메드롤",
+   "솔루메드롤",
+   "medrol",
+   "depo-medrol",
+   "solu-medrol"
+  ],
+  "dexamethasone": [
+   "덱사메타손",
+   "덱사"
+  ],
+  "enrofloxacin": [
+   "엔로플록사신",
+   "바이트릴"
+  ],
+  "marbofloxacin": [
+   "마르보플록사신",
+   "마보실",
+   "마보플록사신"
+  ],
+  "amoxicillin_clavulanate": [
+   "아목시실린클라불란산",
+   "클라바목스",
+   "오구멘틴",
+   "아목시클라브",
+   "amoxi-clav",
+   "amoxiclav",
+   "co-amoxiclav",
+   "amoxicillin-clav",
+   "amoxicillin clav",
+   "synulox"
+  ],
+  "amoxicillin": [
+   "아목시실린"
+  ],
+  "cephalexin": [
+   "세팔렉신",
+   "세파렉신",
+   "케플렉스",
+   "릴렉신"
+  ],
+  "cefovecin": [
+   "세포베신",
+   "컨베니아"
+  ],
+  "clindamycin": [
+   "클린다마이신",
+   "안티로브"
+  ],
+  "doxycycline": [
+   "독시사이클린",
+   "비브라마이신"
+  ],
+  "metronidazole": [
+   "메트로니다졸",
+   "후라시닐",
+   "플라질"
+  ],
+  "ivermectin": [
+   "이버멕틴",
+   "하트가드"
+  ],
+  "selamectin": [
+   "셀라멕틴",
+   "레볼루션"
+  ],
+  "afoxolaner": [
+   "아폭솔라너",
+   "넥스가드"
+  ],
+  "fluralaner": [
+   "플루랄라너",
+   "브라벡토"
+  ],
+  "sarolaner": [
+   "사롤라너",
+   "심파리카"
+  ],
+  "milbemycin_oxime": [
+   "밀베마이신",
+   "인터셉터",
+   "밀베맥스"
+  ],
+  "fipronil": [
+   "피프로닐",
+   "프론트라인"
+  ],
+  "praziquantel": [
+   "프라지콴텔",
+   "드론탈",
+   "드론시트"
+  ],
+  "fenbendazole": [
+   "펜벤다졸",
+   "파나쿠어"
+  ],
+  "permethrin": [
+   "퍼메트린",
+   "퍼메스린"
+  ],
+  "maropitant": [
+   "마로피탄트",
+   "세레니아"
+  ],
+  "ondansetron": [
+   "온단세트론",
+   "조프란"
+  ],
+  "metoclopramide": [
+   "메토클로프라미드",
+   "맥페란"
+  ],
+  "famotidine": [
+   "파모티딘",
+   "가스터"
+  ],
+  "omeprazole": [
+   "오메프라졸",
+   "로섹"
+  ],
+  "esomeprazole": [
+   "에스오메프라졸",
+   "넥시움"
+  ],
+  "sucralfate": [
+   "수크랄페이트",
+   "아루사루민"
+  ],
+  "ursodiol": [
+   "우르소데옥시콜산",
+   "우루사",
+   "udca"
+  ],
+  "s_adenosyl_methionine_same": [
+   "사메",
+   "same",
+   "데노실"
+  ],
+  "pimobendan": [
+   "피모벤단",
+   "베트메딘",
+   "피모벤"
+  ],
+  "furosemide": [
+   "푸로세미드",
+   "라식스"
+  ],
+  "spironolactone": [
+   "스피로노락톤",
+   "알닥톤"
+  ],
+  "benazepril": [
+   "베나제프릴",
+   "포르테코",
+   "포르테코르"
+  ],
+  "enalapril": [
+   "에날라프릴",
+   "에나칼",
+   "레니텍"
+  ],
+  "amlodipine": [
+   "암로디핀",
+   "노바스크"
+  ],
+  "clopidogrel": [
+   "클로피도그렐",
+   "플라빅스"
+  ],
+  "phenobarbital": [
+   "페노바르비탈",
+   "페노바비탈",
+   "루미날"
+  ],
+  "levetiracetam": [
+   "레비티라세탐",
+   "케프라"
+  ],
+  "zonisamide": [
+   "조니사마이드",
+   "엑세그란"
+  ],
+  "bromides": [
+   "브롬화칼륨",
+   "포타슘브로마이드",
+   "kbr"
+  ],
+  "levothyroxine": [
+   "레보티록신",
+   "신지로이드",
+   "씬지로이드"
+  ],
+  "methimazole": [
+   "메티마졸",
+   "펠리마졸",
+   "타파졸"
+  ],
+  "trilostane": [
+   "트릴로스탄",
+   "베토릴"
+  ],
+  "insulin_lente": [
+   "카닌슐린",
+   "렌테인슐린"
+  ],
+  "insulin_glargine": [
+   "인슐린글라진",
+   "란투스"
+  ],
+  "insulin_protamine_zinc": [
+   "프로징크",
+   "pzi인슐린"
+  ],
+  "mirtazapine": [
+   "미르타자핀",
+   "레메론"
+  ],
+  "fluoxetine": [
+   "플루옥세틴",
+   "프로작",
+   "레콘사일"
+  ],
+  "trazodone": [
+   "트라조돈",
+   "데지렐",
+   "트리티코"
+  ],
+  "diazepam": [
+   "디아제팜",
+   "바리움"
+  ],
+  "dexmedetomidine": [
+   "덱스메데토미딘",
+   "덱스도미터",
+   "덱세도미터"
+  ],
+  "propofol": [
+   "프로포폴"
+  ],
+  "alfaxalone": [
+   "알팍살론",
+   "알팍산"
+  ],
+  "ketamine": [
+   "케타민"
+  ],
+  "isoflurane": [
+   "이소플루란",
+   "아이소플루란"
+  ],
+  "atropine": [
+   "아트로핀"
+  ],
+  "potassium_citrate": [
+   "구연산칼륨",
+   "유로시트라"
+  ],
+  "chlorambucil": [
+   "클로람부실",
+   "류케란"
+  ],
+  "frunevetmab": [
+   "프루네베트맙",
+   "솔렌시아"
+  ],
+  "selamectin_sarolaner": [
+   "레볼루션플러스",
+   "revolutionplus"
+  ],
+  "prednisolone_ophthalmic": [
+   "prednisolone",
+   "프레드니솔론 점안액",
+   "프레드니솔론 점안제",
+   "pred forte",
+   "pred mild"
+  ],
+  "trimeprazine_prednisolone": [
+   "트리메프라진/프레드니솔론",
+   "trimeprazine/prednisolone",
+   "trimeprazine tartrate, prednisolone",
+   "temaril-p"
+  ]
+ },
+ "combinations": {
+  "_note": "Brand → every active ingredient, for combination products that the QIA registry extract does not list under this brand, or whose curated alias above names only one component. Ingredient facts are from the products' published labels.",
+  "밀베맥스": [
+   "milbemycin_oxime",
+   "praziquantel"
+  ],
+  "심파리카트리오": [
+   "sarolaner",
+   "moxidectin",
+   "pyrantel"
+  ],
+  "브라벡토플러스": [
+   "fluralaner",
+   "moxidectin"
+  ],
+  "어드보킷": [
+   "imidacloprid_systemic",
+   "moxidectin"
+  ]
+ }
+}

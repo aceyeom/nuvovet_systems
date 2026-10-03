@@ -1,0 +1,357 @@
+{
+ "_meta": {
+  "description": "Diagnosis-text probe. false_positive: English strings that the v1 substring matcher mis-coded (routine→UTI, insufficiency→FLUTD, admission→DM, pruritus→URI, fading→FAD) plus realistic English lines; realistic: Korean/English diagnosis strings, including every new v2 code. Written by the implementer alongside the codebook, so in-sample.",
+  "judging": "expected is a code, a list of acceptable codes, or null (must stay unmapped)",
+  "baseline_v1": {
+   "false_positive_correct": 5,
+   "realistic_correct": 40
+  },
+  "counts": {
+   "false_positive": 16,
+   "realistic": 68
+  }
+ },
+ "false_positive": [
+  {
+   "text": "routine checkup",
+   "expected": "NVD-PRE-004"
+  },
+  {
+   "text": "vitamin/iron deficiency",
+   "expected": null
+  },
+  {
+   "text": "hepatic insufficiency",
+   "expected": "NVD-HEP-001"
+  },
+  {
+   "text": "admission for observation",
+   "expected": null
+  },
+  {
+   "text": "pruritus",
+   "expected": "NVD-SYM-005"
+  },
+  {
+   "text": "hypotension during anesthesia",
+   "expected": null
+  },
+  {
+   "text": "fading kitten syndrome",
+   "expected": null
+  },
+  {
+   "text": "MDR1 Deficient",
+   "expected": null
+  },
+  {
+   "text": "Mild hepatic insufficiency",
+   "expected": "NVD-HEP-001"
+  },
+  {
+   "text": "gallstone",
+   "expected": "NVD-HEP-001"
+  },
+  {
+   "text": "masseter myositis",
+   "expected": null
+  },
+  {
+   "text": "Bite wound on left forelimb",
+   "expected": "NVD-TRA-001"
+  },
+  {
+   "text": "post-op recheck",
+   "expected": null
+  },
+  {
+   "text": "suspected UTI",
+   "expected": "NVD-URO-001"
+  },
+  {
+   "text": "ruling out CCL rupture",
+   "expected": "NVD-ORT-002"
+  },
+  {
+   "text": "Hemorrhagic gastroenteritis",
+   "expected": "NVD-GI-001"
+  }
+ ],
+ "realistic": [
+  {
+   "text": "고관절 이형성증",
+   "expected": "NVD-ORT-005"
+  },
+  {
+   "text": "레그페르테스",
+   "expected": "NVD-ORT-006"
+  },
+  {
+   "text": "단두종 기도 증후군",
+   "expected": "NVD-RES-004"
+  },
+  {
+   "text": "면역매개성 용혈성 빈혈(IMHA)",
+   "expected": "NVD-HEM-001"
+  },
+  {
+   "text": "다중심형 림프종",
+   "expected": "NVD-ONC-002"
+  },
+  {
+   "text": "녹내장 (우안)",
+   "expected": "NVD-OPH-005"
+  },
+  {
+   "text": "애디슨병",
+   "expected": "NVD-END-005"
+  },
+  {
+   "text": "심장사상충 감염",
+   "expected": "NVD-INF-002"
+  },
+  {
+   "text": "심장사상충 예방",
+   "expected": "NVD-PRE-003"
+  },
+  {
+   "text": "바베시아 감염증",
+   "expected": "NVD-INF-003"
+  },
+  {
+   "text": "항문낭염",
+   "expected": "NVD-DER-006"
+  },
+  {
+   "text": "잠복고환(좌측 복강)",
+   "expected": "NVD-REP-002"
+  },
+  {
+   "text": "제대탈장",
+   "expected": "NVD-HRN-001"
+  },
+  {
+   "text": "회음부 탈장",
+   "expected": "NVD-HRN-002"
+  },
+  {
+   "text": "잔존유치",
+   "expected": "NVD-DEN-003"
+  },
+  {
+   "text": "체리아이",
+   "expected": "NVD-OPH-006"
+  },
+  {
+   "text": "유루증",
+   "expected": "NVD-OPH-007"
+  },
+  {
+   "text": "FIP 의심",
+   "expected": "NVD-INF-004"
+  },
+  {
+   "text": "고양이 구내염",
+   "expected": "NVD-DEN-004"
+  },
+  {
+   "text": "피부사상균증 (링웜)",
+   "expected": "NVD-DER-007"
+  },
+  {
+   "text": "식욕부진",
+   "expected": "NVD-SYM-001"
+  },
+  {
+   "text": "구토",
+   "expected": "NVD-SYM-002"
+  },
+  {
+   "text": "설사",
+   "expected": "NVD-SYM-003"
+  },
+  {
+   "text": "좌측 후지 파행",
+   "expected": "NVD-SYM-004"
+  },
+  {
+   "text": "소양감",
+   "expected": "NVD-SYM-005"
+  },
+  {
+   "text": "탈모",
+   "expected": "NVD-SYM-006"
+  },
+  {
+   "text": "구토, 설사 (급성 위장염)",
+   "expected": "NVD-GI-001"
+  },
+  {
+   "text": "슬개골 탈구 3기 (좌측)",
+   "expected": "NVD-ORT-001"
+  },
+  {
+   "text": "아토피성 피부염",
+   "expected": "NVD-DER-001"
+  },
+  {
+   "text": "농피증",
+   "expected": "NVD-DER-002"
+  },
+  {
+   "text": "만성 신부전 (CKD 3기)",
+   "expected": "NVD-REN-001"
+  },
+  {
+   "text": "당뇨병성 케톤산증",
+   "expected": "NVD-END-001"
+  },
+  {
+   "text": "쿠싱증후군",
+   "expected": "NVD-END-002"
+  },
+  {
+   "text": "갑상선기능저하증",
+   "expected": "NVD-END-003"
+  },
+  {
+   "text": "기관허탈 2단계",
+   "expected": "NVD-RES-001"
+  },
+  {
+   "text": "켄넬코프",
+   "expected": "NVD-RES-002"
+  },
+  {
+   "text": "폐렴",
+   "expected": "NVD-RES-003"
+  },
+  {
+   "text": "결막염",
+   "expected": "NVD-OPH-001"
+  },
+  {
+   "text": "각막궤양",
+   "expected": "NVD-OPH-002"
+  },
+  {
+   "text": "건성각결막염 (KCS)",
+   "expected": "NVD-OPH-003"
+  },
+  {
+   "text": "백내장",
+   "expected": "NVD-OPH-004"
+  },
+  {
+   "text": "치주염",
+   "expected": "NVD-DEN-001"
+  },
+  {
+   "text": "치아파절",
+   "expected": "NVD-DEN-002"
+  },
+  {
+   "text": "비만세포종",
+   "expected": "NVD-ONC-001"
+  },
+  {
+   "text": "파보장염",
+   "expected": "NVD-INF-001"
+  },
+  {
+   "text": "교상",
+   "expected": "NVD-TRA-001"
+  },
+  {
+   "text": "초콜릿 섭취",
+   "expected": "NVD-TOX-001"
+  },
+  {
+   "text": "예방접종",
+   "expected": "NVD-PRE-001"
+  },
+  {
+   "text": "중성화",
+   "expected": "NVD-PRE-002"
+  },
+  {
+   "text": "건강검진",
+   "expected": "NVD-PRE-004"
+  },
+  {
+   "text": "자궁축농증",
+   "expected": "NVD-REP-001"
+  },
+  {
+   "text": "분리불안",
+   "expected": "NVD-BEH-001"
+  },
+  {
+   "text": "이첨판 폐쇄부전증 (B2)",
+   "expected": "NVD-CAR-001"
+  },
+  {
+   "text": "비대성 심근병증",
+   "expected": "NVD-CAR-002"
+  },
+  {
+   "text": "방광결석",
+   "expected": "NVD-URO-002"
+  },
+  {
+   "text": "특발성 방광염",
+   "expected": "NVD-URO-003"
+  },
+  {
+   "text": "췌장염",
+   "expected": "NVD-GI-002"
+  },
+  {
+   "text": "이물 섭취",
+   "expected": "NVD-GI-003"
+  },
+  {
+   "text": "담낭 점액종",
+   "expected": "NVD-HEP-001"
+  },
+  {
+   "text": "전십자인대 파열",
+   "expected": "NVD-ORT-002"
+  },
+  {
+   "text": "골관절염",
+   "expected": "NVD-ORT-003"
+  },
+  {
+   "text": "대퇴골 골절",
+   "expected": "NVD-ORT-004"
+  },
+  {
+   "text": "추간판 탈출증 (IVDD)",
+   "expected": "NVD-NEU-001"
+  },
+  {
+   "text": "특발성 뇌전증",
+   "expected": "NVD-NEU-002"
+  },
+  {
+   "text": "IBD",
+   "expected": "NVD-GI-004"
+  },
+  {
+   "text": "diarrhea and vomiting",
+   "expected": [
+    "NVD-SYM-002",
+    "NVD-SYM-003"
+   ]
+  },
+  {
+   "text": "Otitis externa",
+   "expected": "NVD-DER-004"
+  },
+  {
+   "text": "Hip dysplasia",
+   "expected": "NVD-ORT-005"
+  }
+ ]
+}

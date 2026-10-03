@@ -1,0 +1,87 @@
+{
+  "src/portfolio/PortfolioApp.jsx": [
+    "max-w-[1200px]"
+  ],
+  "src/portfolio/components/DurPanelPreview.jsx": [
+    "max-w-[360px]",
+    "h-[480px]"
+  ],
+  "src/portfolio/components/OrganMatrix.jsx": [
+    "min-w-[560px]"
+  ],
+  "src/portfolio/components/pages/GoldenTable.jsx": [
+    "min-w-[720px]"
+  ],
+  "src/portfolio/components/pages/PipelineDiagram.jsx": [
+    "max-w-[420px]"
+  ],
+  "src/portfolio/components/report/DocNotFound.jsx": [
+    "max-w-[1200px]"
+  ],
+  "src/portfolio/components/report/ScheduleGrid.jsx": [
+    "max-w-[420px]"
+  ],
+  "src/portfolio/pages/CaseStudyPage.jsx": [
+    "max-w-[1200px]",
+    "max-w-[760px]",
+    "max-w-[880px]"
+  ],
+  "src/portfolio/pages/CasesPage.jsx": [
+    "max-w-[1200px]",
+    "max-w-[720px]"
+  ],
+  "src/portfolio/pages/HandoutPage.jsx": [
+    "max-w-[1200px]",
+    "max-w-[460px]"
+  ],
+  "src/portfolio/pages/HowItWorksPage.jsx": [
+    "max-w-[760px]",
+    "max-w-[1200px]",
+    "min-w-[640px]"
+  ],
+  "src/portfolio/pages/ReportPage.jsx": [
+    "min-w-[560px]",
+    "max-w-[1200px]"
+  ],
+  "src/portfolio/pages/WorkbenchPage.jsx": [
+    "max-w-[760px]",
+    "max-w-[1200px]"
+  ],
+  "src/ui/KitchenSink.jsx": [
+    "h-[200px]",
+    "max-w-[1200px]"
+  ],
+  "src/ui/ext/wp5/MultiCombobox.jsx": [
+    "max-h-[300px]"
+  ],
+  "src/ui/ext/wp5/PortfolioHeader.jsx": [
+    "max-w-[1200px]"
+  ],
+  "src/ui/golden/GoldenDurCard.jsx": [
+    "max-w-[360px]"
+  ],
+  "src/ui/patterns/Combobox.jsx": [
+    "max-h-[400px]"
+  ],
+  "src/ui/primitives/alert-dialog.jsx": [
+    "max-w-[520px]"
+  ],
+  "src/ui/primitives/command.jsx": [
+    "max-h-[300px]"
+  ],
+  "src/ui/primitives/dialog.jsx": [
+    "max-w-[520px]"
+  ],
+  "src/ui/primitives/drawer.jsx": [
+    "w-[100px]"
+  ],
+  "src/ui/primitives/sidebar.jsx": [
+    "w-[2px]"
+  ],
+  "src/ui/primitives/switch.jsx": [
+    "h-[18px]"
+  ],
+  "src/ui/primitives/tooltip.jsx": [
+    "max-w-[280px]"
+  ]
+}

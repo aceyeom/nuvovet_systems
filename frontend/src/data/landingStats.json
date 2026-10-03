@@ -1,0 +1,16 @@
+{
+  "aliases": {
+    "total": 848,
+    "curated": 204,
+    "qia": 661
+  },
+  "findings": {
+    "total": 426,
+    "with_rule_and_explanation": 426,
+    "with_evidence": 125
+  },
+  "params": {
+    "n": 300,
+    "seed": 7
+  }
+}

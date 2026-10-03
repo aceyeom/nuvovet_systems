@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>위젯 데모: 가상 EMR</title>
+<link rel="stylesheet" href="emr.css">
+</head>
+<body>
+<header class="titlebar sticky"><b>데모 차트 (가상 EMR)</b><span>접수</span><span>진료</span><span>수납</span><span class="spacer"></span><span>새봄동물의료센터 (가상) · 수의사 김민서 (가상) · 2026-10-03</span>
+  <nav class="visits"><a href="?visit=V1">V1</a> <a href="?visit=V4">V4</a> <a href="?visit=V7">V7</a> <a href="?visit=V8">V8</a></nav></header>
+<div class="layout">
+  <main id="emr">
+    <section class="box" id="pt" aria-label="환자 정보"></section>
+    <section class="box">
+      <div class="gridwrap">
+        <table>
+          <thead><tr><th>구분</th><th>상품코드</th><th>이름</th><th>단위</th><th>투여량 Qty</th><th>횟수 Tt</th><th>일수 Dy</th><th>경로 Rt</th><th>DUR</th><th></th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="box">
+      <div class="actions"><button type="button" class="primary" id="save">처방 저장</button><button type="button">처방전 출력</button><button type="button">수납으로</button><input id="hostinput" aria-label="메모 (호스트 입력)" placeholder="메모"></div>
+      <ul id="chart" aria-label="진료기록"></ul>
+    </section>
+  </main>
+  <div id="right"><aside id="nv-panel" class="panel-host"></aside></div>
+</div>
+<p class="watermark">가상 EMR · 실제 제품이 아닙니다</p>
+<p id="toast" role="status" hidden></p>
+<script src="../dist-widget/nuvovet-dur.iife.js"></script>
+<script src="emr.js"></script>
+</body>
+</html>

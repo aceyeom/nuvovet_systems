@@ -1,0 +1,135 @@
+/*
+ * Tailwind v4 bridge (DESIGN_SYSTEM.md §2.5). Maps the tokens in tokens.css onto utilities and
+ * wipes Tailwind's default palette, type scale, shadows, radii and unused breakpoints, so a stray
+ * default class (bg-blue-500, text-4xl, shadow-md, rounded-2xl, md:) compiles to nothing.
+ * Checked by src/ui/__tests__/theme-css.test.js.
+ */
+
+/* dark: fires for an explicit data-theme="dark" and for system dark without an attribute. */
+@custom-variant dark {
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not([data-theme="light"]) *, .nv-scope:not([data-theme="light"]) *) {
+      @slot;
+    }
+  }
+  &:where([data-theme="dark"] *, [data-theme="dark"]) {
+    @slot;
+  }
+}
+
+/* touch: coarse pointer at any width (§3.4). */
+@custom-variant touch (@media (pointer: coarse));
+
+@theme inline {
+  --color-*: initial;
+  --text-*: initial;
+  --shadow-*: initial;
+  --radius-*: initial;
+  --breakpoint-md: initial;
+  --breakpoint-2xl: initial;
+  --breakpoint-wide: 1440px;
+
+  --font-sans: var(--nv-font-sans);
+  --font-mono: var(--nv-font-mono);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent); /* shadcn "accent" = hover surface */
+  --color-accent-foreground: var(--foreground);
+  --color-destructive: var(--sev-critical-solid);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-subtle: var(--surface-subtle);
+  --color-segment: var(--segment-track);
+  --color-segment-active: var(--segment-active);
+  --color-row-hover: var(--row-hover);
+  --color-row-pressed: var(--row-pressed);
+  --color-backdrop: var(--backdrop);
+  --color-text-2: var(--text-2);
+  --color-text-faint: var(--text-faint);
+  --color-border-strong: var(--border-strong);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-soft: var(--brand-soft);
+  --color-sev-critical: var(--sev-critical);
+  --color-sev-critical-bg: var(--sev-critical-bg);
+  --color-sev-critical-solid: var(--sev-critical-solid);
+  --color-on-solid: var(--on-solid);
+  --color-sev-major: var(--sev-major);
+  --color-sev-major-bg: var(--sev-major-bg);
+  --color-sev-moderate: var(--sev-moderate);
+  --color-sev-moderate-bg: var(--sev-moderate-bg);
+  --color-sev-minor: var(--sev-minor);
+  --color-sev-minor-bg: var(--sev-minor-bg);
+  --color-ok: var(--ok);
+  --color-ok-bg: var(--ok-bg);
+  --color-sidebar: var(--surface-subtle);
+  --color-sidebar-foreground: var(--foreground);
+  --color-sidebar-accent: var(--accent);
+  --color-sidebar-accent-foreground: var(--foreground);
+  --color-sidebar-border: var(--border);
+  --color-sidebar-ring: var(--ring);
+  --color-sidebar-primary: var(--primary);
+  --color-sidebar-primary-foreground: var(--primary-foreground);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-full: 9999px; /* avatars and switch tracks only; a finite value so radius checks see 9999px */
+
+  /* Type scale (§3.3): only these keys exist. */
+  --text-xs: 12px;
+  --text-xs--line-height: 16px;
+  --text-sm: 13px;
+  --text-sm--line-height: 20px;
+  --text-base: 14px;
+  --text-base--line-height: 22px;
+  --text-lg: 16px;
+  --text-lg--line-height: 24px;
+  --text-xl: 20px;
+  --text-xl--line-height: 28px;
+  --text-2xl: 24px;
+  --text-2xl--line-height: 32px;
+  --text-3xl: 32px;
+  --text-3xl--line-height: 40px;
+  --text-5xl: 48px;
+  --text-5xl--line-height: 56px;
+  --text-6xl: 64px;
+  --text-6xl--line-height: 72px;
+
+  --shadow-pop: var(--nv-shadow-pop);
+  --shadow-modal: var(--nv-shadow-modal);
+
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-inout: cubic-bezier(0.6, 0, 0.2, 1);
+
+  --z-sticky: 10;
+  --z-header: 20;
+  --z-sidebar: 30;
+  --z-overlay: 50;
+  --z-toast: 60;
+
+  /* Skeleton shimmer (§3.7): the only allowed gradient, used only under motion-safe. */
+  --animate-shimmer: nv-shimmer 1.2s linear infinite;
+  @keyframes nv-shimmer {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
+  }
+}

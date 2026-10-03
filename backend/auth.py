@@ -9,6 +9,7 @@ Patient records are stored per account in PostgreSQL as well.
 import logging
 import os
 import re
+import secrets
 import uuid
 from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, List, Optional
@@ -24,15 +25,21 @@ from pydantic import BaseModel, Field
 logger = logging.getLogger("nuvovet.auth")
 
 # ── Config ────────────────────────────────────────────────────────
-SECRET_KEY = os.environ.get(
-    "NUVOVET_SECRET_KEY",
-    "nuvovet-dev-secret-change-in-production-9Heav2024"
-)
+IS_PRODUCTION = (os.environ.get("NUVOVET_ENV") or "").strip().lower() == "production"
+SECRET_KEY = os.environ.get("NUVOVET_SECRET_KEY") or ""
+if not SECRET_KEY:
+    if IS_PRODUCTION:
+        raise RuntimeError("NUVOVET_SECRET_KEY must be set when NUVOVET_ENV=production")
+    # Per-process dev secret: tokens are invalidated on restart, which is fine locally.
+    SECRET_KEY = secrets.token_urlsafe(48)
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_DAYS = 7
 FREE_PLAN_DAYS = 30
 EMAIL_REGEX = re.compile(r"^[^\s@]+@[^\s@]+\.[^\s@]+$")
 USERNAME_REGEX = re.compile(r"^[a-zA-Z0-9_]{3,30}$")
+# Names nobody may sign up with: 'admin' is the seeded operator account, and an unseeded deployment must not
+# let a stranger claim it.
+RESERVED_USERNAMES = frozenset({"admin", "administrator", "root", "system", "nuvovet", "support"})
 
 # ── JWT bearer ────────────────────────────────────────────────────
 security = HTTPBearer(auto_error=False)
@@ -40,17 +47,21 @@ security = HTTPBearer(auto_error=False)
 
 # ── PostgreSQL helpers ────────────────────────────────────────────
 
-def _get_db_url() -> str:
-    db_url = (
+def _configured_db_url() -> Optional[str]:
+    return (
         os.getenv("DB_INTERNAL_URL")
         or os.getenv("DB_EXTERNAL_URL")
         or os.getenv("DB_URL")
         or os.getenv("DATABASE_URL")
     )
+
+
+def _get_db_url() -> str:
+    db_url = _configured_db_url()
     if not db_url:
-        raise RuntimeError(
-            "데이터베이스 URL이 필요합니다. "
-            "DB_INTERNAL_URL 또는 DB_EXTERNAL_URL(대안: DB_URL, DATABASE_URL)을 설정하세요."
+        raise HTTPException(
+            status_code=503,
+            detail="Account storage unavailable: no database URL configured on the server.",
         )
     return db_url
 
@@ -77,8 +88,11 @@ def _is_valid_identifier(value: str) -> bool:
 
 
 def init_db() -> None:
-    """Initialize account/patient tables and seed a default admin account."""
-    db_url = _get_db_url()
+    """Initialize account/patient tables and, if NUVOVET_ADMIN_PASSWORD is set, seed an admin account."""
+    db_url = _configured_db_url()
+    if not db_url:
+        logger.warning("No database URL configured — account and patient endpoints will return 503.")
+        return
 
     with psycopg2.connect(db_url) as conn:
         with conn.cursor() as cur:
@@ -165,11 +179,24 @@ def init_db() -> None:
                 """
             )
 
+            admin_password = os.environ.get("NUVOVET_ADMIN_PASSWORD")
             cur.execute(
-                "SELECT id FROM accounts WHERE username = %s",
+                "SELECT id, password_hash FROM accounts WHERE username = %s",
                 ("admin",),
             )
             admin = cur.fetchone()
+            if admin is not None and _is_legacy_default_password(admin[1]):
+                # Databases seeded before 2026-10 carry admin/admin. Replace it with NUVOVET_ADMIN_PASSWORD, or with
+                # a random secret nobody knows (the account is then unusable until an operator sets the variable).
+                replacement = admin_password or secrets.token_urlsafe(32)
+                cur.execute(
+                    "UPDATE accounts SET password_hash = %s WHERE id = %s",
+                    (bcrypt.hashpw(replacement.encode(), bcrypt.gensalt(12)).decode(), admin[0]),
+                )
+                logger.warning("Replaced the legacy default admin password (%s)",
+                               "from NUVOVET_ADMIN_PASSWORD" if admin_password else "with a random secret")
+            if not admin_password:
+                return
             if admin is None:
                 now = _utcnow()
                 trial_end = now + timedelta(days=FREE_PLAN_DAYS)
@@ -182,7 +209,7 @@ def init_db() -> None:
                     (
                         str(uuid.uuid4()),
                         "admin",
-                        bcrypt.hashpw(b"admin", bcrypt.gensalt(12)).decode(),
+                        bcrypt.hashpw(admin_password.encode(), bcrypt.gensalt(12)).decode(),
                         "free",
                         "active",
                         now,
@@ -190,7 +217,14 @@ def init_db() -> None:
                         trial_end,
                     ),
                 )
-                logger.info("Seeded default admin account (username: admin, password: admin)")
+                logger.info("Seeded admin account from NUVOVET_ADMIN_PASSWORD")
+
+
+def _is_legacy_default_password(password_hash: Optional[str]) -> bool:
+    try:
+        return bool(password_hash) and bcrypt.checkpw(b"admin", password_hash.encode())
+    except ValueError:  # not a bcrypt hash
+        return False
 
 
 # ── Pydantic models ───────────────────────────────────────────────
@@ -421,6 +455,8 @@ def signup(req: SignupRequest):
         raise HTTPException(status_code=400, detail="Username or email is required")
     if not _is_valid_identifier(username):
         raise HTTPException(status_code=400, detail="Please enter a valid email address or username (3–30 alphanumeric characters / underscores)")
+    if username in RESERVED_USERNAMES:
+        raise HTTPException(status_code=400, detail="Username not allowed")
     if not req.password or len(req.password) < 6:
         raise HTTPException(status_code=400, detail="Password must be at least 6 characters")
 
