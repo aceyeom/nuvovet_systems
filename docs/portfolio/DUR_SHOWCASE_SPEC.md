@@ -204,6 +204,8 @@ Case copy (title, clinical question, "engine should catch") is authored in EN an
 
 ## 7. UI
 
+> **Amended 2026-10-03:** the visual system, fonts and tokens of this section and the §9 bundle budget are superseded by [`docs/design/DESIGN_SYSTEM.md`](../design/DESIGN_SYSTEM.md) (§2–§4, §9.3); the values below are historical.
+
 ### Visual system (`styles/portfolio.css`, scoped `.pf-root`)
 
 - **Fonts.** System stack: `Inter, "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", sans-serif`. Use `tabular-nums` for dose tables.
