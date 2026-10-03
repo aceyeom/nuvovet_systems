@@ -10,6 +10,7 @@
 import {
   parseDoseUnit, convertMass, toMg, concentrationMgPerMl, fixFloat, fmtNum, displayMass,
 } from './units.js'
+import { getSource } from '../knowledge/sources.js'
 
 // ── Frequency vocabulary ─────────────────────────────────────────────────────
 
@@ -55,7 +56,7 @@ const FREQ_SYNONYMS = {
  */
 export function normalizeFrequency(raw) {
   if (raw == null || raw === '') {
-    return { id: null, ok: false, raw, note: { en: 'Frequency not entered — daily amounts are not calculated.', ko: '투여 빈도가 입력되지 않아 1일 총량을 계산하지 않습니다.' } }
+    return { id: null, ok: false, raw, note: { en: 'Frequency not entered, so daily amounts are not calculated.', ko: '투여 빈도가 입력되지 않아 1일 총량을 계산하지 않습니다.' } }
   }
   const s = String(raw).trim()
   if (FREQUENCY_BY_ID[s]) return { id: s, ok: true, raw }
@@ -65,7 +66,7 @@ export function normalizeFrequency(raw) {
   if (syn) return { id: syn, ok: true, raw, mappedFrom: s }
   return {
     id: null, ok: false, raw,
-    note: { en: `Frequency “${s}” is not recognised — daily amounts are not calculated.`, ko: `투여 빈도 “${s}”를 인식할 수 없어 1일 총량을 계산하지 않습니다.` },
+    note: { en: `Frequency “${s}” is not recognised, so daily amounts are not calculated.`, ko: `투여 빈도 “${s}”를 인식할 수 없어 1일 총량을 계산하지 않습니다.` },
   }
 }
 
@@ -209,6 +210,9 @@ export function impliedStrength(drug, parsed, route) {
 /** Maximum acceptable difference between delivered and calculated amount before we warn. */
 export const ROUNDING_TOLERANCE = 0.1
 
+/** Relative tolerance on reference-range bounds for amounts typed as mass or volume (EMR rounding). */
+export const BOUND_TOLERANCE = 0.02
+
 export function roundToStep(x, step) {
   return fixFloat(Math.round(x / step) * step)
 }
@@ -257,6 +261,10 @@ function productText(strength) {
   }
   const word = FORM_WORD[strength.form] || { en: strength.form, ko: strength.form }
   const koNoun = { tablet: '정제', chewable: '츄어블', capsule: '캡슐', 'spot-on': '피펫' }[strength.form] || strength.form
+  // A product whose amount is itself a count ("1 pipette") has no mass to state: name the form only.
+  if (toMg(strength.amount?.value, strength.amount?.unit) == null) {
+    return strength.form === 'spot-on' ? { en: 'spot-on pipette', ko: '스팟온 피펫' } : { en: word.en, ko: koNoun }
+  }
   return { en: `${strengthText(strength)} ${word.en}`, ko: `${strengthText(strength)} ${koNoun}` }
 }
 
@@ -430,8 +438,25 @@ function freqList(f) {
  * Compare an entered amount with a protocol range. Converts between per-kg,
  * per-animal and per-m² as needed; compares daily totals when the protocol is
  * stated per day or when the entered frequency differs from the protocol's.
+ *
+ * args.tolerance is the relative allowance on each bound: ROUNDING_TOLERANCE
+ * for count entries (whole/split tablets), BOUND_TOLERANCE otherwise. When the
+ * result is 'within' only because of that allowance, it carries
+ * `tolerated: true` and the strict status. A single administration
+ * (frequency 'once') is never compared with a daily minimum or with a
+ * frequency-derived daily total; a per-day maximum still applies to it.
  */
-export function compareWithProtocol({ protocol, amount, weightKg, species, frequency }) {
+export function compareWithProtocol(args) {
+  const tolerance = args.tolerance ?? BOUND_TOLERANCE
+  const res = compareCore({ ...args, tolerance })
+  if (res.status === 'within' && tolerance > 1e-9) {
+    const strict = compareCore({ ...args, tolerance: 1e-9 })
+    if (strict.status !== 'within') return { ...res, tolerated: true, strictStatus: strict.status }
+  }
+  return res
+}
+
+function compareCore({ protocol, amount, weightKg, species, frequency, tolerance = BOUND_TOLERANCE }) {
   if (!protocol) return { status: 'no_reference', ratio: null, compared: null }
   const pu = parseDoseUnit(protocol.dose.unit)
   if (!pu || !amount?.ok) return { status: 'unit_mismatch', ratio: null, compared: null }
@@ -458,7 +483,7 @@ export function compareWithProtocol({ protocol, amount, weightKg, species, frequ
   const fE = perDayFactor(frequency)
   const protoFreqs = freqList(protocol.frequency)
   const pFactors = protoFreqs.map(perDayFactor).filter((x) => x != null)
-  const eps = 1e-9
+  const eps = Math.max(1e-9, tolerance)
 
   let status = 'within'
   let ratio = max ? fixFloat(value / max) : null
@@ -476,9 +501,9 @@ export function compareWithProtocol({ protocol, amount, weightKg, species, frequ
     const daily = fixFloat(value * fE)
     compared = { value: daily, unit: `${protocol.dose.unit}/day`, per: 'day' }
     ratio = max ? fixFloat(daily / max) : null
-    if (daily < min * (1 - eps)) status = 'below'
+    if (frequency !== 'once' && daily < min * (1 - eps)) status = 'below'
     else if (max != null && daily > max * (1 + eps)) status = 'above'
-    return { status, ratio, compared }
+    return applyCeiling({ status, ratio, compared }, protocol, value, fE, eps)
   }
 
   // Per-dose comparison
@@ -491,7 +516,7 @@ export function compareWithProtocol({ protocol, amount, weightKg, species, frequ
   }
 
   // Daily-exposure check when the entered frequency differs from the protocol's.
-  if (fE != null && pFactors.length && !protoFreqs.includes(frequency)) {
+  if (fE != null && frequency !== 'once' && pFactors.length && !protoFreqs.includes(frequency)) { // D12: one administration is compared per dose
     const daily = value * fE
     const dailyMax = max != null ? max * Math.max(...pFactors) : null
     const dailyMin = min * Math.min(...pFactors)
@@ -504,7 +529,28 @@ export function compareWithProtocol({ protocol, amount, weightKg, species, frequ
       compared = { value: fixFloat(daily), unit: `${protocol.dose.unit}/day`, per: 'day', reason: 'frequency' }
     }
   }
-  return { status, ratio, compared }
+  return applyCeiling({ status, ratio, compared }, protocol, value, fE, eps)
+}
+
+/**
+ * A sourced upper limit for protocols whose range is not a maximum: a
+ * minimum-only label (maropitant) or a starting dose (phenobarbital). Only the
+ * protocol's own source states it (e.g. the highest labelled dose, or the
+ * total loading dose). Above it, the result is 'above' with the ratio to the
+ * ceiling and `compared.reason: 'ceiling'`; below it, nothing changes.
+ * A per-day ceiling counts an unknown schedule as one administration.
+ */
+function applyCeiling(res, protocol, value, fE, eps) {
+  const c = protocol.dose.ceiling
+  if (!c || value == null) return res
+  const perDay = c.per === 'day'
+  const v = perDay ? fixFloat(value * (fE ?? 1)) : value
+  if (!(v > c.value * (1 + eps))) return res
+  return {
+    status: 'above',
+    ratio: fixFloat(v / c.value),
+    compared: { value: v, unit: perDay ? `${protocol.dose.unit}/day` : protocol.dose.unit, per: perDay ? 'day' : 'dose', reason: 'ceiling', ceiling: c.value },
+  }
 }
 
 /**
@@ -543,7 +589,8 @@ export function buildDoseRow({ med, drug, protocol, weightKg, species, frequency
     species,
     strength: usedStrength,
   })
-  const cmp = compareWithProtocol({ protocol, amount, weightKg, species, frequency: frequencyId })
+  const tol = entersProduct && parsedUnit.dimension === 'count' ? ROUNDING_TOLERANCE : BOUND_TOLERANCE
+  const cmp = compareWithProtocol({ protocol, amount, weightKg, species, frequency: frequencyId, tolerance: tol })
 
   // Per day (only for schedules of one or more doses per day).
   const f = FREQUENCY_BY_ID[frequencyId]
@@ -643,26 +690,46 @@ export function buildDoseRow({ med, drug, protocol, weightKg, species, frequency
     // Every listed strength rounds to nothing (e.g. 10 mg from a 50 mg tablet split in halves).
     administration = chosenStrength
       ? {
-          en: `The selected ${productText(chosenStrength).en} cannot deliver ${amountText} — choose another strength, or compound or use a liquid`,
-          ko: `선택한 ${productText(chosenStrength).ko}로는 ${amountText}을 투여할 수 없습니다 — 다른 함량, 조제 또는 액상 제형을 사용하십시오`,
+          en: `The selected ${productText(chosenStrength).en} cannot deliver ${amountText}. Choose another strength, or compound or use a liquid`,
+          ko: `선택한 ${productText(chosenStrength).ko}로는 ${amountText}을 투여할 수 없습니다. 다른 함량, 조제 또는 액상 제형을 사용하십시오`,
         }
       : {
-          en: `No listed strength can deliver ${amountText} — compound or use a liquid`,
-          ko: `등록된 함량으로 ${amountText}을 투여할 수 없습니다 — 조제 또는 액상 제형을 사용하십시오`,
+          en: `No listed strength can deliver ${amountText}. Compound or use a liquid`,
+          ko: `등록된 함량으로 ${amountText}을 투여할 수 없습니다. 조제 또는 액상 제형을 사용하십시오`,
         }
     rounding = { deviation: -1, text: administration }
   } else if (amount.ok) {
     administration = { en: amountText, ko: amountText }
   } else {
-    administration = { en: '—', ko: '—' }
+    administration = { en: '–', ko: '–' }
   }
 
+  // A count entry that is within the reference only because of the rounding
+  // allowance gets a note saying so (spec D1). Deviations up to BOUND_TOLERANCE
+  // are silent, as they are for mass/volume entries (D2), so a tablet that is
+  // 0.1% over a single-value reference does not produce a "+0%" note.
+  const bound = cmp.strictStatus === 'above' ? protocol?.dose.max : protocol?.dose.min
+  const dev = bound && cmp.compared ? cmp.compared.value / bound - 1 : 0
+  if (cmp.tolerated && tol === ROUNDING_TOLERANCE && !rounding && cmp.compared && protocol && Math.abs(dev) > BOUND_TOLERANCE + 1e-9) {
+    const v = cmp.compared.value
+    const u = cmp.compared.unit
+    const sign = dev > 0 ? '+' : '−'
+    const pct = Math.round(Math.abs(dev) * 100)
+    const pu = protocol.dose.unit + ((protocol.dose.per || 'dose') === 'day' ? '/day' : '')
+    const range = protocol.dose.max == null ? `≥ ${fmtNum(protocol.dose.min)} ${pu}`
+      : protocol.dose.max === protocol.dose.min ? `${fmtNum(protocol.dose.min)} ${pu}` : `${fmtNum(protocol.dose.min)}–${fmtNum(protocol.dose.max)} ${pu}`
+    rounding = { deviation: dev, text: {
+      en: `${administration.en} gives ${fmtNum(v)} ${u}, ${sign}${pct}% from the reference ${range}; within the rounding allowance for this product.`,
+      ko: `${administration.ko}: ${fmtNum(v)} ${u.replace('/day', '/일')} (참고 ${range.replace('/day', '/일')}, ${sign}${pct}%). 이 제형의 분할 허용 범위 안입니다.` } }
+  }
   const ref = protocol
     ? {
         min: protocol.dose.min, max: protocol.dose.max, unit: protocol.dose.unit, basis: protocol.dose.basis,
         per: protocol.dose.per || 'dose', frequency: protocol.frequency, route: protocol.route,
         routes: [protocol.route, ...(protocol.altRoutes || [])],
         labelStatus: protocol.labelStatus, source: protocol.source, indication: protocol.indication,
+        phase: protocol.phase || null, jurisdiction: getSource(protocol.source)?.jurisdiction || null,
+        ceiling: protocol.dose.ceiling || null,
       }
     : null
 
@@ -676,8 +743,10 @@ export function buildDoseRow({ med, drug, protocol, weightKg, species, frequency
     route,
     administration,
     rounding,
+    tolerated: Boolean(cmp.tolerated),
     strengthNote,
     strengthId: plan?.strengthId || null,
+    deliveredMg: plan?.deliveredMg ?? null,
     suggestedStrengthId: suggested?.strength?.id || null,
     ref,
     status: amount.ok ? cmp.status : protocol ? 'unit_mismatch' : 'no_reference',

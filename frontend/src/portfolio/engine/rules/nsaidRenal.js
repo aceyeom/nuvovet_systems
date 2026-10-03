@@ -31,7 +31,7 @@ function evaluate(ctx) {
         '고양이: ISFM/AAFP 합의 가이드라인은 위험 평가와 모니터링을 포함한 고양이 NSAID 장기 사용을 다룹니다(Sparkes 2010).'))
       sources.push('sparkes2010')
       if (m.drug.id === 'meloxicam') {
-        why.push(T('US meloxicam label (cats): boxed warning — repeated use has been associated with acute renal failure and death.', '미국 멜록시캄 라벨(고양이): 박스 경고 — 반복 투여가 급성 신부전 및 사망과 관련되었습니다.'))
+        why.push(T('US meloxicam label (cats): boxed warning: repeated use has been associated with acute renal failure and death.', '미국 멜록시캄 라벨(고양이): 박스 경고: 반복 투여가 급성 신부전 및 사망과 관련되었습니다.'))
         sources.push('metacam_label')
       }
     }

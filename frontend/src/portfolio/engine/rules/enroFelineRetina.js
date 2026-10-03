@@ -11,7 +11,7 @@ import { T, enName, koName, fmt } from './util.js'
 
 const RULE = { id: 'ENRO_FELINE_RETINA', version: '1.1.0' }
 
-export const SINGLE_DOSE_OVER_DAILY = T('The frequency was not entered or gives no fixed daily count, so no daily total was calculated — but a single dose already exceeds the daily maximum.',
+export const SINGLE_DOSE_OVER_DAILY = T('The frequency was not entered or gives no fixed daily count, so no daily total was calculated, but a single dose already exceeds the daily maximum.',
   '투여 빈도가 입력되지 않았거나 고정된 1일 횟수가 없어 1일 총량은 계산하지 않았지만, 1회 용량만으로도 1일 최대치를 넘습니다.')
 
 function evaluate(ctx) {

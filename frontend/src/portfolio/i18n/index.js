@@ -5,6 +5,7 @@
  */
 
 import { createContext, createElement, useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { withParticle } from '@/ui/lib/particle'
 import uiEn from './ui.en.js'
 import uiKo from './ui.ko.js'
 import pagesEn from './pages.en.js'
@@ -43,10 +44,17 @@ function langFromHash() {
   }
 }
 
-/** Replace {name} placeholders. */
-function fill(str, vars) {
+const PARTICLE = /\{(\w+)\}\{(은\/는|이\/가|을\/를|과\/와|으로\/로)\}/g
+
+/**
+ * Replace {name} placeholders. A Korean particle right after a placeholder, written
+ * "{name}{으로/로}", is resolved for the inserted word (DESIGN_SYSTEM.md §6.3): "나비로", "초코는".
+ */
+export function fill(str, vars) {
   if (!vars) return str
-  return str.replace(/\{(\w+)\}/g, (m, k) => (vars[k] != null ? String(vars[k]) : m))
+  return str
+    .replace(PARTICLE, (m, k, pair) => (vars[k] != null ? withParticle(String(vars[k]), pair) : m))
+    .replace(/\{(\w+)\}/g, (m, k) => (vars[k] != null ? String(vars[k]) : m))
 }
 
 export function translate(lang, key, vars) {
@@ -81,7 +89,8 @@ export function LangProvider({ children, initial }) {
 
   useEffect(() => {
     try {
-      document.documentElement.lang = lang
+      // a page whose content has a fixed language (the Korean EMR demo) locks it with data-lang-lock
+      document.documentElement.lang = document.documentElement.dataset.langLock || lang
     } catch {
       /* no document (tests) */
     }

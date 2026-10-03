@@ -1,44 +1,45 @@
-import { BookOpen, FileText, ExternalLink } from 'lucide-react'
-import { SOURCES, sourceHref } from '../knowledge/sources.js'
+import { useState } from 'react'
+import { CitationChip as Chip } from '@/ui/patterns/EvidenceTrail'
+import { SOURCES } from '../knowledge/sources.js'
 import { useLang } from '../i18n/index.js'
 import { sourceShort } from './format.js'
 
 /**
- * A citation as a chip. DOI/PMID sources link out (opened only when clicked —
- * nothing is fetched at runtime); labels and guidelines are plain chips.
- * full: show the full "Author Year, Journal" text instead of "Author Year".
+ * A knowledge-base citation as the shared CitationChip (§4.5): outline badge with a BookOpen icon;
+ * hover or focus shows the full cite, the title and the DOI. Nothing is fetched at runtime.
  */
-export default function CitationChip({ id, full = false }) {
-  const { t, lang } = useLang()
+export default function CitationChip({ id }) {
+  const { lang } = useLang()
   const s = SOURCES[id]
   if (!s) return null
-  const href = sourceHref(id)
-  const Icon = s.kind === 'label' ? FileText : BookOpen
-  const text = full ? s.cite : sourceShort(id, lang)
-  const title = [s.cite, s.title, s.doi ? `doi:${s.doi}` : s.pmid ? `PMID ${s.pmid}` : null].filter(Boolean).join(' — ')
-  if (!href) {
-    return (
-      <span className="pf-cite" title={title}>
-        <Icon size={13} aria-hidden="true" />
-        <span>{text}</span>
-      </span>
-    )
-  }
-  return (
-    <a className="pf-cite pf-cite--link" href={href} target="_blank" rel="noopener noreferrer" title={`${title} — ${t('cite.open')}`}>
-      <Icon size={13} aria-hidden="true" />
-      <span>{text}</span>
-      <ExternalLink size={11} aria-hidden="true" className="pf-cite__ext" />
-    </a>
-  )
+  const cite = s.title ? `${s.cite}. ${s.title}` : s.cite
+  return <Chip label={sourceShort(id, lang)} cite={s.pmid && !s.doi ? `${cite} (PMID ${s.pmid})` : cite} doi={s.doi || null} />
 }
 
-export function CitationList({ ids = [], full = false }) {
+/**
+ * Citations of one finding. `max` shows the first `max` chips and a "+N" button that reveals the
+ * rest, so a well-cited finding is not a row of seven chips (design review P2).
+ */
+export function CitationList({ ids = [], max = Infinity, className }) {
+  const { lang } = useLang()
+  const [open, setOpen] = useState(false)
   const list = [...new Set(ids)].filter((id) => SOURCES[id])
   if (!list.length) return null
+  const hidden = open ? 0 : Math.max(0, list.length - max)
+  const shown = hidden ? list.slice(0, max) : list
   return (
-    <span className="pf-cites">
-      {list.map((id) => <CitationChip key={id} id={id} full={full} />)}
+    <span className={className ?? 'inline-flex flex-wrap items-center gap-1'}>
+      {shown.map((id) => <CitationChip key={id} id={id} />)}
+      {hidden ? (
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-label={lang === 'ko' ? `출처 ${hidden}개 더 보기` : `Show ${hidden} more sources`}
+          className="num inline-flex h-6 items-center rounded-sm px-1 text-xs text-text-2 hover:text-foreground hover:underline"
+        >
+          +{hidden}
+        </button>
+      ) : null}
     </span>
   )
 }

@@ -9,14 +9,19 @@
  *   #/case/:id/report        printable report
  *   #/case/:id/handout       owner handout
  *   #/how-it-works           how it works
+ *   #/emr                    EMR demo (opens visit V1)
+ *   #/emr/:visitId           EMR demo for one fictional visit (V1–V10)
  *
  * Case state that differs from the golden case (or any custom case) travels in
  * the hash query as `?s=<base64url JSON>` so a link reproduces the same case.
  */
 
-import { useEffect, useState } from 'react'
+/*
+ * React-free on purpose: emr/cards.js (the widget SDK) imports casePath from here, and the widget
+ * bundle must not pull React in through it. The React hook lives in useHashRoute.js.
+ */
 
-const NAV_EVENT = 'pf:navigate'
+export const NAV_EVENT = 'pf:navigate'
 
 // ── Parsing ──────────────────────────────────────────────────────────────────
 
@@ -44,6 +49,10 @@ export function matchRoute(hash) {
   if (seg.length === 0) name = 'study'
   else if (seg[0] === 'cases' && seg.length === 1) name = 'cases'
   else if (seg[0] === 'how-it-works' && seg.length === 1) name = 'how'
+  else if (seg[0] === 'emr' && seg.length <= 2) {
+    name = 'emr'
+    params.visitId = seg[1] || null
+  }
   else if (seg[0] === 'case' && seg[1]) {
     params.id = seg[1]
     if (seg.length === 2) name = 'workbench'
@@ -51,25 +60,6 @@ export function matchRoute(hash) {
     else if (seg.length === 3 && seg[2] === 'handout') name = 'handout'
   }
   return { name, params, query, path }
-}
-
-function currentHash() {
-  return typeof window === 'undefined' ? '' : window.location.hash
-}
-
-/** Subscribe to the current route. Re-renders on hash changes and on navigate(). */
-export function useHashRoute() {
-  const [route, setRoute] = useState(() => matchRoute(currentHash()))
-  useEffect(() => {
-    const update = () => setRoute(matchRoute(currentHash()))
-    window.addEventListener('hashchange', update)
-    window.addEventListener(NAV_EVENT, update)
-    return () => {
-      window.removeEventListener('hashchange', update)
-      window.removeEventListener(NAV_EVENT, update)
-    }
-  }, [])
-  return route
 }
 
 /**
@@ -148,9 +138,18 @@ export function caseHref(id, view = 'workbench', state = null) {
   return '#' + casePath(id, view, state)
 }
 
+/** EMR demo link for one fictional visit (EMR_DUR_POPUP_SPEC.md §7). */
+export function emrHref(visitId = 'V1') {
+  return `#/emr/${visitId}`
+}
+
+/** Golden case → EMR demo visit (EMR_DUR_POPUP_SPEC.md §7). */
+export const EMR_VISIT_BY_CASE = { choco: 'V1', kongyi: 'V2', nabi: 'V3', mochi: 'V4', daebak: 'V5' }
+
 export const HREF = {
   study: '#/',
   cases: '#/cases',
   how: '#/how-it-works',
   custom: '#/case/custom',
+  emr: '#/emr/V1',
 }

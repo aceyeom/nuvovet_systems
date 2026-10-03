@@ -39,7 +39,9 @@ export function sanitizeInput(raw) {
     .map((m) => ({
       drugId: m.drugId,
       protocolId: strOrNull(m.protocolId),
-      dose: { value: num(m.dose?.value), unit: strOrNull(m.dose?.unit, 16) || 'mg/kg' },
+      // A null dose stays null (an EMR row with no amount per unit, e.g. "포"): the engine then treats the
+      // dose as unknown, which is not the same as an mg/kg dose with a blank value (popup spec §7, E17).
+      dose: m.dose == null ? null : { value: num(m.dose.value), unit: strOrNull(m.dose.unit, 16) || 'mg/kg' },
       route: strOrNull(m.route, 16),
       frequency: strOrNull(m.frequency, 24),
       durationDays: num(m.durationDays),

@@ -1,0 +1,12 @@
+/* Single-file builds (DESIGN_SYSTEM.md §2.4): ONE @font-face pointing at the full variable font.
+   vite.portfolio.config.js subsets it to the glyphs used in the bundle, cuts the weight axis to
+   400–600 (the only weights the showcase sets) and inlines it as a data: URI. The weight range below
+   matches that cut; 700/bolder resolve to 600 (plus synthetic bold where the browser applies it).
+   Imported by src/portfolio/standalone.jsx only (PortfolioApp.jsx never imports fonts). */
+@font-face {
+  font-family: "Pretendard Variable";
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+  src: url("pretendard/dist/web/variable/woff2/PretendardVariable.woff2") format("woff2-variations");
+}

@@ -8,6 +8,18 @@
  *    product label; 'extra-label' = the dose comes from literature/guidelines.
  *  - protocols[].dose.per: 'dose' (default) or 'day' (label/literature states a
  *    total daily amount; the engine then compares the computed daily total).
+ *  - protocols[].dose.max: null when the source states a minimum only (e.g. a
+ *    label "minimum dose"); the engine then never reports "above".
+ *  - protocols[].dose.ceiling: { value, per: 'dose'|'day', source, text } on a
+ *    minimum-only or starting-dose protocol: an upper limit stated by the
+ *    protocol's own source (the highest labelled dose, a total loading dose).
+ *    Above it the dose is checked as an ordinary overdose against the ceiling.
+ *  - protocols[].phase: 'start' when the source gives a starting dose to be
+ *    titrated, not a range; a different dose is reported as a minor titration
+ *    check, never as an overdose.
+ *  - protocols[].repeatPolicy: 'label_single_only' on a single-dose protocol
+ *    whose label permits one administration only (repeats are a finding, not
+ *    "no reference").
  *  - organRisk[organ]: an entry, or an array of entries with a species filter.
  *    A missing organ key means "not assessed" ('na'), never 0.
  *    Levels: 3 labelled warning/contraindication or documented serious toxicity;
@@ -191,8 +203,11 @@ export const DRUGS = [
       { id: 'pb_tab_100', form: 'tablet', amount: { value: 100, unit: 'mg' }, splittable: true, quarter: false },
     ],
     protocols: [
-      { id: 'pb_dog_epilepsy', species: 'dog', indication: T('Idiopathic epilepsy — starting dose', '특발성 뇌전증 — 시작 용량'),
-        dose: { min: 2.5, max: 3, unit: 'mg/kg', basis: 'per_kg' }, route: 'PO', frequency: 'q12h', labelStatus: 'extra-label', source: 'bhatti2015',
+      { id: 'pb_dog_epilepsy', phase: 'start', species: 'dog', indication: T('Idiopathic epilepsy: starting dose', '특발성 뇌전증: 시작 용량'),
+        dose: { min: 2.5, max: 3, unit: 'mg/kg', basis: 'per_kg',
+          ceiling: { value: 20, per: 'day', source: 'bhatti2015',
+            text: T('the whole loading dose given in hospital is 15–20 mg/kg, divided over 24–48 h (IVETF consensus)', '병원에서 주는 부하 용량 전체가 15–20 mg/kg이며 24–48시간에 나누어 줍니다(IVETF 합의문)') } },
+        route: 'PO', frequency: 'q12h', labelStatus: 'extra-label', source: 'bhatti2015',
         note: T('Then tailored to seizure control, adverse effects and serum concentration.', '이후 발작 조절, 부작용, 혈청 농도에 따라 조정합니다.') },
     ],
     pk: {
@@ -231,7 +246,7 @@ export const DRUGS = [
           T('If the dog is already on phenobarbital, check liver function and the serum phenobarbital concentration, and review the antiepileptic plan.', '이미 투여 중이라면 간기능과 혈청 페노바르비탈 농도를 확인하고 항경련 치료 계획을 재검토하십시오.'),
         ],
         alternatives: [T('Potassium bromide (not metabolised by the liver) or levetiracetam (minimal hepatic metabolism), which the IVETF consensus names as options in hepatic dysfunction.',
-          '브롬화칼륨(간에서 대사되지 않음) 또는 레비티라세탐(간 대사가 최소) — IVETF 합의문이 간기능 장애 시 선택지로 제시합니다.')] },
+          '브롬화칼륨(간에서 대사되지 않음) 또는 레비티라세탐(간 대사가 최소): IVETF 합의문이 간기능 장애 시 선택지로 제시합니다.')] },
     ],
   },
 
@@ -246,7 +261,7 @@ export const DRUGS = [
       { id: 'pred_tab_5', form: 'tablet', amount: { value: 5, unit: 'mg' }, splittable: true, quarter: false },
     ],
     protocols: [
-      { id: 'pred_dog_ad', species: 'dog', indication: T('Atopic dermatitis — anti-inflammatory', '아토피 피부염 — 항염증 용량'),
+      { id: 'pred_dog_ad', species: 'dog', indication: T('Atopic dermatitis: anti-inflammatory', '아토피 피부염: 항염증 용량'),
         dose: { min: 0.5, max: 1.0, unit: 'mg/kg', basis: 'per_kg', per: 'day' }, route: 'PO', frequency: 'q24h', labelStatus: 'extra-label', source: 'olivry2015',
         note: T('Guideline: 0.5 mg/kg once or twice daily (0.5–1.0 mg/kg/day), then taper.', '가이드라인: 0.5 mg/kg 1일 1–2회(0.5–1.0 mg/kg/일) 투여 후 감량.') },
     ],
@@ -280,12 +295,12 @@ export const DRUGS = [
     species: ['cat'],
     strengths: [
       { id: 'mmi_tab_2_5', form: 'tablet', amount: { value: 2.5, unit: 'mg' }, splittable: false,
-        note: T('Coated tablet — do not split.', '코팅정 — 분할하지 마십시오.') },
+        note: T('Coated tablet. Do not split.', '코팅정이므로 분할하지 마십시오.') },
       { id: 'mmi_tab_5', form: 'tablet', amount: { value: 5, unit: 'mg' }, splittable: false,
-        note: T('Coated tablet — do not split.', '코팅정 — 분할하지 마십시오.') },
+        note: T('Coated tablet. Do not split.', '코팅정이므로 분할하지 마십시오.') },
     ],
     protocols: [
-      { id: 'mmi_cat_start', species: 'cat', indication: T('Hyperthyroidism — starting dose', '갑상선기능항진증 — 시작 용량'),
+      { id: 'mmi_cat_start', phase: 'start', species: 'cat', indication: T('Hyperthyroidism: starting dose', '갑상선기능항진증: 시작 용량'),
         dose: { min: 2.5, max: 2.5, unit: 'mg', basis: 'per_animal' }, route: 'PO', frequency: 'q12h', labelStatus: 'label', source: 'felimazole_label',
         note: T('Per cat, not per kg. After about 3 weeks, titrate to effect on total T4 (consensus target: lower half of the reference interval).',
           '체중당이 아니라 고양이 1마리당 용량입니다. 약 3주 후 총 T4에 따라 조정합니다(합의 목표: 참고범위 하위 절반).') },
@@ -372,7 +387,10 @@ export const DRUGS = [
     ],
     protocols: [
       { id: 'maro_dog_vomit', species: 'dog', indication: T('Acute vomiting', '급성 구토'),
-        dose: { min: 2, max: 2, unit: 'mg/kg', basis: 'per_kg' }, route: 'PO', frequency: 'q24h', labelStatus: 'label', source: 'cerenia_label',
+        dose: { min: 2, max: null, unit: 'mg/kg', basis: 'per_kg',
+          ceiling: { value: 8, per: 'dose', source: 'cerenia_label',
+            text: T('8 mg/kg (motion sickness) is the highest oral dose on the same label', '같은 라벨의 가장 높은 경구 용량은 8 mg/kg(멀미)입니다') } },
+        route: 'PO', frequency: 'q24h', labelStatus: 'label', source: 'cerenia_label',
         note: T('Label gives 2 mg/kg as the minimum tablet dose.', '라벨은 정제 최소 용량으로 2 mg/kg을 제시합니다.') },
       { id: 'maro_dog_motion', species: 'dog', indication: T('Motion sickness', '멀미'),
         dose: { min: 8, max: 8, unit: 'mg/kg', basis: 'per_kg' }, route: 'PO', frequency: 'q24h', durationDays: 2, labelStatus: 'label', source: 'cerenia_label' },
@@ -381,7 +399,7 @@ export const DRUGS = [
         note: T('Label: 1 mg/kg SC or IV once daily for up to 5 days.', '라벨: 1 mg/kg SC 또는 IV, 1일 1회, 최대 5일.') },
       { id: 'maro_cat_inj', species: 'cat', indication: T('Vomiting (injection)', '구토(주사)'),
         dose: { min: 1, max: 1, unit: 'mg/kg', basis: 'per_kg' }, route: 'SC', altRoutes: ['IV'], frequency: 'q24h', durationDays: 5, labelStatus: 'label', source: 'cerenia_label' },
-      { id: 'maro_cat_ckd_po', species: 'cat', indication: T('CKD-associated vomiting — oral', 'CKD 관련 구토 — 경구'),
+      { id: 'maro_cat_ckd_po', species: 'cat', indication: T('CKD-associated vomiting: oral', 'CKD 관련 구토: 경구'),
         dose: { min: 0.6, max: 2.9, unit: 'mg/kg', basis: 'per_kg' }, route: 'PO', frequency: 'q24h', labelStatus: 'extra-label', source: 'quimby2015', extraSources: ['cerenia_label'],
         note: T('Studied as 4 mg per cat once daily for 2 weeks in cats with IRIS stage 2–3 CKD, which was 0.6–2.9 mg/kg (median 1.1 mg/kg); that range is used here. 1 mg/kg is the labelled feline injectable dose.',
           'IRIS 2–3단계 CKD 고양이에서 고양이당 4 mg 1일 1회, 2주간 연구되었으며 이는 0.6–2.9 mg/kg(중앙값 1.1 mg/kg)에 해당합니다. 여기서는 이 범위를 사용합니다. 1 mg/kg은 고양이 주사제 라벨 용량입니다.') },
@@ -405,7 +423,7 @@ export const DRUGS = [
   {
     id: 'amoxicillin_clavulanate',
     name: T('Amoxicillin–clavulanate', '아목시실린-클라불란산'),
-    aliases: ['Clavamox', '클라바목스', 'Synulox', 'Augmentin', '오구멘틴', 'Amoxiclav', 'co-amoxiclav'],
+    aliases: ['Clavamox', '클라바목스', 'Synulox', 'Augmentin', '오구멘틴', 'Amoxiclav', 'co-amoxiclav', 'Amoxicillin', '아목시실린'],
     class: T('Aminopenicillin + β-lactamase inhibitor', '아미노페니실린 + 베타락탐분해효소 억제제'),
     species: ['dog', 'cat'],
     strengths: [
@@ -415,7 +433,7 @@ export const DRUGS = [
       { id: 'ac_tab_375', form: 'tablet', amount: { value: 375, unit: 'mg' }, splittable: true, quarter: false },
     ],
     protocols: [
-      { id: 'ac_dog_eu', species: 'dog', indication: T('Bacterial infection — standard (EU/UK label)', '세균 감염 — 표준(EU/UK 라벨)'),
+      { id: 'ac_dog_eu', species: 'dog', indication: T('Bacterial infection: standard (EU/UK label)', '세균 감염: 표준(EU/UK 라벨)'),
         dose: { min: 12.5, max: 25, unit: 'mg/kg', basis: 'per_kg' }, route: 'PO', frequency: 'q12h', labelStatus: 'label', source: 'synulox_label',
         note: T('12.5 mg/kg twice daily; may be doubled to 25 mg/kg in refractory cases.', '12.5 mg/kg 1일 2회, 난치성 증례에서는 25 mg/kg까지 2배 증량 가능합니다.') },
       { id: 'ac_dog_us', species: 'dog', indication: T('Skin and soft-tissue infection (US label)', '피부·연부조직 감염(미국 라벨)'),
@@ -446,11 +464,11 @@ export const DRUGS = [
       { id: 'melox_inj_5', form: 'injection', amount: { value: 5, unit: 'mg' }, per: { value: 1, unit: 'mL' }, splittable: false },
     ],
     protocols: [
-      { id: 'melox_dog_oa', species: 'dog', indication: T('Osteoarthritis — maintenance (after 0.2 mg/kg on day 1)', '골관절염 — 유지 용량(1일차 0.2 mg/kg 이후)'),
+      { id: 'melox_dog_oa', species: 'dog', indication: T('Osteoarthritis: maintenance (after 0.2 mg/kg on day 1)', '골관절염: 유지 용량(1일차 0.2 mg/kg 이후)'),
         dose: { min: 0.1, max: 0.1, unit: 'mg/kg', basis: 'per_kg' }, route: 'PO', frequency: 'q24h', labelStatus: 'label', source: 'metacam_label' },
       { id: 'melox_dog_load', species: 'dog', indication: T('Day-1 loading dose', '1일차 부하 용량'),
         dose: { min: 0.2, max: 0.2, unit: 'mg/kg', basis: 'per_kg' }, route: 'PO', frequency: 'once', labelStatus: 'label', source: 'metacam_label' },
-      { id: 'melox_cat_periop', species: 'cat', indication: T('Peri-operative pain — single injection only (US)', '수술 전후 통증 — 단회 주사만(미국)'),
+      { id: 'melox_cat_periop', repeatPolicy: 'label_single_only', species: 'cat', indication: T('Peri-operative pain: single injection only (US)', '수술 전후 통증: 단회 주사만(미국)'),
         dose: { min: 0.3, max: 0.3, unit: 'mg/kg', basis: 'per_kg' }, route: 'SC', frequency: 'once', labelStatus: 'label', source: 'metacam_label' },
     ],
     pk: { pgp: { substrate: false, inhibitor: null }, cyp: { substrateOf: [], inhibits: {}, induces: {} }, renalFraction: null, sources: [] },
@@ -698,7 +716,7 @@ export const DRUGS = [
           '건강한 비글에서 1일 2회 오메프라졸이 시험된 요법 중 사람의 위내 pH 치료 목표에 근접한 유일한 요법이었습니다. 개의 임상 유효 용량은 아직 확립되지 않았습니다.') },
     ],
     pk: { pgp: { substrate: false, inhibitor: null }, cyp: { substrateOf: [], inhibits: {}, induces: {} }, renalFraction: null, sources: [] },
-    flags: { mdr1Sensitive: false, narrowTherapeuticIndex: false, nsaid: false, corticosteroid: false, immunosuppressant: false, serotonergic: false, allergyClass: null, raisesGastricPh: true },
+    flags: { mdr1Sensitive: false, narrowTherapeuticIndex: false, nsaid: false, corticosteroid: false, immunosuppressant: false, serotonergic: false, allergyClass: null, raisesGastricPh: true, acidSuppressant: 'ppi' },
     organRisk: {
       gi: { level: 1, reason: T('Diarrhoea is the most commonly reported PPI adverse effect in dogs, and adverse effects of long-term acid suppression are documented; use only with a clear indication.', '설사는 개에서 가장 흔히 보고되는 PPI 부작용이며, 장기 위산 억제의 부작용도 보고되어 있으므로 명확한 적응증이 있을 때만 사용합니다.'), source: 'marks2018' },
     },
@@ -724,7 +742,7 @@ export const DRUGS = [
         note: T('Doses studied 0.5–1.3 mg/kg q12h (no consensus dose is established); acid suppression is inferior to omeprazole.', '연구된 용량은 0.5–1.3 mg/kg q12h이며(합의된 용량은 없음), 위산 억제 효과는 오메프라졸보다 열등합니다.') },
     ],
     pk: { pgp: { substrate: false, inhibitor: null }, cyp: { substrateOf: [], inhibits: {}, induces: {} }, renalFraction: null, sources: [] },
-    flags: { mdr1Sensitive: false, narrowTherapeuticIndex: false, nsaid: false, corticosteroid: false, immunosuppressant: false, serotonergic: false, allergyClass: null, raisesGastricPh: true },
+    flags: { mdr1Sensitive: false, narrowTherapeuticIndex: false, nsaid: false, corticosteroid: false, immunosuppressant: false, serotonergic: false, allergyClass: null, raisesGastricPh: true, acidSuppressant: 'h2ra' },
     organRisk: {},
     admin: [],
     ownerSigns: [],

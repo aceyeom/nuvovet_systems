@@ -1,3 +1,4 @@
+import { Button } from '@/ui/primitives/button'
 import { useLang } from '../../i18n/index.js'
 import { HREF } from '../../router.js'
 
@@ -5,12 +6,12 @@ import { HREF } from '../../router.js'
 export default function DocNotFound({ id }) {
   const { t } = useLang()
   return (
-    <div className="pf-page">
-      <div className="pf-empty-state">
-        <h1 className="pf-h1">{t('notfound.title')}</h1>
-        <p>{t('wb.notFound', { id })}</p>
-        <a className="pf-btn pf-btn--primary" href={HREF.cases}>{t('notfound.back')}</a>
-      </div>
+    <div className="mx-auto flex max-w-[1200px] flex-col items-start gap-3 px-4 py-16 sm:px-6">
+      <h1 className="text-xl font-semibold text-foreground">{t('notfound.title')}</h1>
+      <p className="text-sm text-text-2">{t('wb.notFound', { id })}</p>
+      <Button asChild>
+        <a href={HREF.cases}>{t('notfound.back')}</a>
+      </Button>
     </div>
   )
 }

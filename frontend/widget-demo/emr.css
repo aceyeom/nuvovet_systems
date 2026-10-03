@@ -1,0 +1,28 @@
+/* Fictional plain-HTML EMR host for the widget demo. Its own generic desktop look, no NuvoVet tokens. */
+html, body { margin: 0; }
+body { font: 13px/1.4 "Malgun Gothic", "Apple SD Gothic Neo", -apple-system, sans-serif; background: #E9ECEF; color: #1F2328; }
+.titlebar { height: 28px; display: flex; align-items: center; gap: 16px; padding: 0 12px; background: #46566B; color: #FFFFFF; font-size: 12px; }
+.titlebar b { font-size: 13px; }
+.titlebar .spacer { flex: 1; }
+.layout { display: flex; min-height: calc(100vh - 28px); }
+#emr { flex: 1 1 auto; min-width: 0; padding: 8px; display: flex; flex-direction: column; gap: 8px; }
+.box { background: #FFFFFF; border: 1px solid #C8CDD2; border-radius: 2px; padding: 8px; }
+#pt .dx { margin-top: 4px; color: #495057; font-size: 12px; }
+#pt input { font: inherit; height: 20px; border: 1px solid #ADB5BD; padding: 0 4px; }
+.gridwrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 12px; }
+th { background: #F1F3F5; text-align: left; font-weight: 600; border-bottom: 1px solid #C8CDD2; padding: 0 6px; height: 26px; white-space: nowrap; }
+td { border-bottom: 1px solid #E1E4E8; padding: 0 6px; height: 26px; white-space: nowrap; }
+td input { font: inherit; width: 52px; height: 20px; border: 1px solid #ADB5BD; padding: 0 4px; }
+td.code { color: #495057; }
+tr.hl td { background: #FFF4CC; }
+.actions { display: flex; gap: 6px; align-items: center; }
+.actions button, td button { font: inherit; height: 26px; padding: 0 10px; background: #F8F9FA; border: 1px solid #ADB5BD; border-radius: 2px; cursor: pointer; }
+td button { height: 20px; padding: 0 6px; }
+.actions button.primary { background: #2F5E9E; border-color: #2F5E9E; color: #FFFFFF; }
+#chart { margin: 4px 0 0; padding-left: 18px; font-size: 12px; color: #495057; }
+#toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); background: #343A40; color: #FFFFFF; padding: 6px 12px; border-radius: 2px; }
+#right { flex: 0 0 360px; width: 360px; display: flex; flex-direction: column; }
+#right .panel-host { flex: 1 1 auto; height: calc(100vh - 28px); position: sticky; top: 0; }
+.watermark { position: fixed; left: 8px; bottom: 6px; font-size: 12px; opacity: 0.6; }
+@media (max-width: 1279px) { #right { display: none; } }

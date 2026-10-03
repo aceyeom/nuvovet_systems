@@ -109,12 +109,34 @@ const HEADLINES = {
   none: { en: 'No problems found by the rules in this prototype — this is not a guarantee of safety', ko: '이 프로토타입의 규칙으로는 문제가 발견되지 않았습니다 — 안전을 보장하지는 않습니다' },
 }
 
+/**
+ * The action line without the severity word (the badge already shows it) and
+ * without a dash. `headline` is kept for the workbench and existing consumers.
+ */
+const ACTIONS = {
+  contraindicated: { en: 'Do not dispense as written', ko: '현재 처방대로 조제하지 마십시오' },
+  major: { en: 'Change the prescription or record why it is intended', ko: '처방을 변경하거나 의도한 이유를 기록하십시오' },
+  moderate: { en: 'Dispense only with the monitoring plan below', ko: '아래 모니터링 계획과 함께 조제하십시오' },
+  minor: { en: 'Note and monitor', ko: '기록하고 관찰하십시오' },
+  none: { en: 'The rules found no problem. This does not mean there is none.', ko: '규칙으로 확인한 문제가 없습니다. 이상이 없다는 뜻은 아닙니다.' },
+}
+
+/**
+ * counts.doseProblems: dose rows above/below the reference or not comparable.
+ * counts.doseChecks: dose rows that need a look: any status other than
+ * within/no_reference, or a rounding note (a "check the amount" line), so a
+ * UI never says "0 dose problems" next to a rounding warning. A group of
+ * summed rows counts once for its status; each row's own rounding note counts.
+ */
 export function computeVerdict(findings, notes, doses) {
-  const counts = { contraindicated: 0, major: 0, moderate: 0, minor: 0, notes: notes.length, doseProblems: 0 }
+  const counts = { contraindicated: 0, major: 0, moderate: 0, minor: 0, notes: notes.length, doseProblems: 0, doseChecks: 0 }
   for (const f of findings) counts[f.severity] = (counts[f.severity] || 0) + 1
-  counts.doseProblems = doses.filter((d) => ['above', 'below', 'unit_mismatch'].includes(d.status)).length
+  // Rows summed into another row (same ingredient, spec D9) share its status: count the group once.
+  const own = doses.filter((d) => d.combinedInto == null)
+  counts.doseProblems = own.filter((d) => ['above', 'below', 'unit_mismatch'].includes(d.status)).length
+  counts.doseChecks = doses.filter((d) => (d.combinedInto == null && !['within', 'no_reference'].includes(d.status)) || d.rounding).length
   const level = findings.length ? findings[0].severity : 'none'
-  return { level, headline: HEADLINES[level], counts }
+  return { level, headline: HEADLINES[level], action: ACTIONS[level], counts }
 }
 
 /**

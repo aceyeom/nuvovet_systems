@@ -16,6 +16,23 @@
 
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+import fs from 'node:fs'
+import path from 'node:path'
+import { subsetFonts } from './scripts/vite-plugin-subset-fonts.js'
+
+// Standalone budget (DESIGN_SYSTEM §9.3: 450 kB gzip for the one file). The showcase sets Pretendard at
+// 400, 500 and 600 only, and its OpenType use is tnum/zero (.num), ss06 (base.css) and case. Keeping
+// the weight axis at 400–600 and only these features (plus the default shaping set) takes the
+// inlined subset from about 158 kB to 100 kB while it stays a variable font with real 500/600.
+// fonts-standalone.css declares the same 400–600 range.
+const FONT_WEIGHTS = { min: 400, max: 600 }
+const FONT_FEATURES = [
+  // default shaping (Latin + Hangul jamo composition)
+  'ccmp', 'locl', 'mark', 'mkmk', 'kern', 'liga', 'calt', 'rlig', 'rvrn', 'ljmo', 'vjmo', 'tjmo',
+  // used by the CSS
+  'tnum', 'zero', 'ss06', 'case',
+]
 
 const ENTRY = 'portfolio.html'
 const OUT_HTML = 'index.html'
@@ -25,6 +42,7 @@ const CSP = [
   "script-src 'unsafe-inline'",
   "style-src 'unsafe-inline'",
   'img-src data:',
+  'font-src data:', // the subset Pretendard is inlined as a data: URI
   "base-uri 'none'",
   "form-action 'none'",
 ].join('; ')
@@ -44,6 +62,36 @@ function servePortfolioAtRoot() {
         if (req.url === '/' || req.url === '/index.html') req.url = `/${ENTRY}`
         next()
       })
+    },
+  }
+}
+
+/**
+ * src/ui/app.css scans only part of src/ui (its `@source not` lines). Fail the build when a bundled
+ * module sits under one of those paths: Tailwind would not have generated its classes.
+ */
+function guardTailwindSources() {
+  const appCss = path.resolve(import.meta.dirname, 'src/ui/app.css')
+  return {
+    name: 'portfolio-guard-tailwind-sources',
+    apply: 'build',
+    generateBundle(_options, bundle) {
+      // Only the size exclusions inside src/ui are guarded; the widget is excluded on purpose (it ships
+      // its own CSS into shadow roots).
+      const uiDir = path.dirname(appCss)
+      const excluded = [...fs.readFileSync(appCss, 'utf8').matchAll(/^@source not "([^"]+)"/gm)]
+        .map((m) => path.resolve(uiDir, m[1]))
+        .filter((x) => x.startsWith(uiDir + path.sep))
+      const bad = new Set()
+      for (const f of Object.values(bundle)) {
+        if (f.type !== 'chunk') continue
+        for (const id of Object.keys(f.modules)) {
+          const file = id.split('?')[0]
+          const hit = excluded.find((x) => file === x || file.startsWith(x + path.sep))
+          if (hit && !/\.css$/.test(file)) bad.add(`${path.relative(import.meta.dirname, file)} (excluded by ${path.relative(import.meta.dirname, hit)})`)
+        }
+      }
+      if (bad.size) this.error(`src/ui/app.css does not scan modules the showcase bundles; remove their @source not line:\n  ${[...bad].join('\n  ')}`)
     },
   }
 }
@@ -106,7 +154,9 @@ function inlineSingleFile() {
 }
 
 export default defineConfig({
-  plugins: [react(), servePortfolioAtRoot(), inlineSingleFile()],
+  // subsetFonts() must run before inlineSingleFile() (both are post generateBundle hooks).
+  plugins: [react(), tailwindcss(), servePortfolioAtRoot(), guardTailwindSources(), subsetFonts({ variationAxes: { wght: FONT_WEIGHTS }, keepFeatures: FONT_FEATURES }), inlineSingleFile()],
+  resolve: { alias: { '@': path.resolve(import.meta.dirname, 'src') } },
   base: './',
   // No public/ copy: the main app's favicon and anatomy images are not part of the showcase.
   publicDir: false,
@@ -116,7 +166,8 @@ export default defineConfig({
     sourcemap: false,
     cssCodeSplit: false,
     modulePreload: { polyfill: false },
-    assetsInlineLimit: 100000,
+    // Fonts are emitted as files so subsetFonts() can cut them down, then inlined as data: URIs.
+    assetsInlineLimit: (file, content) => (file.endsWith('.woff2') ? false : content.length < 100000),
     rolldownOptions: {
       input: ENTRY,
       output: { codeSplitting: false },

@@ -19,8 +19,8 @@ const fq = (pct) => ({
 })
 
 const NOT_REPORTED = {
-  en: 'Not among the breeds with a reported ABCB1-1Δ mutation in the sources used here — the individual dog’s genotype is still unknown.',
-  ko: '여기서 인용한 자료에서 ABCB1-1Δ 변이가 보고된 품종에 포함되지 않습니다 — 개체의 유전자형은 여전히 알 수 없습니다.',
+  en: 'Not among the breeds with a reported ABCB1-1Δ mutation in the sources used here; the individual dog’s genotype is still unknown.',
+  ko: '여기서 인용한 자료에서 ABCB1-1Δ 변이가 보고된 품종에 포함되지 않습니다. 개체의 유전자형은 여전히 알 수 없습니다.',
 }
 
 const CAT_NOTE = {
@@ -105,6 +105,6 @@ export const MDR1_RISK_LABELS = {
   high: { en: 'MDR1 risk: high', ko: 'MDR1 위험: 높음' },
   moderate: { en: 'MDR1 risk: moderate', ko: 'MDR1 위험: 중간' },
   low: { en: 'MDR1: reported (low)', ko: 'MDR1: 보고됨(낮음)' },
-  not_reported: { en: 'MDR1: not reported — genotype unknown', ko: 'MDR1: 보고 없음 — 유전자형 미확인' },
+  not_reported: { en: 'MDR1: not reported, genotype unknown', ko: 'MDR1: 보고 없음, 유전자형 미확인' },
   unknown: { en: 'MDR1: breed unknown', ko: 'MDR1: 품종 미확인' },
 }

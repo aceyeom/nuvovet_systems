@@ -3,7 +3,7 @@ import { parseDoseUnit, convertMass, toMg, displayMass, concentrationMgPerMl, fi
 import {
   computeAmount, bsaM2, MEEH_K, normalizeFrequency, perDayFactor, FREQUENCIES,
   planForStrength, splitStep, fractionLabel, bestStrength, rankStrengths, compareWithProtocol,
-  buildDoseRow, exposure24hPerKg, roundToStep,
+  buildDoseRow, exposure24hPerKg, roundToStep, ROUNDING_TOLERANCE, BOUND_TOLERANCE,
 } from '../dose.js'
 import { getDrug, getProtocol } from '../../knowledge/drugs.js'
 
@@ -305,5 +305,107 @@ describe('dose rows', () => {
     expect(exposure24hPerKg(20, 4, 'q24h')).toBe(5)
     expect(exposure24hPerKg(20, 4, 'q48h')).toBe(5)
     expect(exposure24hPerKg(20, 4, 'prn')).toBeNull()
+  })
+})
+
+describe('bound tolerances and single administrations (popup spec D1, D2, D12, D13, D14)', () => {
+  const row = (drugId, protocolId, value, unit, frequency, weightKg, extra = {}) => {
+    const drug = getDrug(drugId)
+    return buildDoseRow({
+      med: { drugId, protocolId, dose: { value, unit }, route: 'PO', frequency, ...extra },
+      drug, protocol: getProtocol(drugId, protocolId), weightKg, species: extra.species || 'dog', frequencyId: frequency,
+    })
+  }
+
+  it('D1: a count entry within the reference only by the rounding allowance is within, tolerated, with a note (E20)', () => {
+    const r = row('carprofen', 'carp_dog_pain', 2, 'tablet', 'q24h', 11, { strengthId: 'carp_tab_25' })
+    expect(r.status).toBe('within')
+    expect(r.tolerated).toBe(true)
+    expect(r.ratio).toBeCloseTo(1.033, 3)
+    expect(r.rounding.text.ko).toBe('25 mg 정제 2정: 4.55 mg/kg/일 (참고 4.4 mg/kg/일, +3%). 이 제형의 분할 허용 범위 안입니다.')
+    expect(r.rounding.text.en).toBe('2 × 25 mg tablets gives 4.55 mg/kg/day, +3% from the reference 4.4 mg/kg/day; within the rounding allowance for this product.')
+  })
+
+  it('D1: compareWithProtocol reports the strict status behind a tolerated result', () => {
+    const protocol = getProtocol('carprofen', 'carp_dog_pain')
+    const amount = { ok: true, mg: 50, dimension: 'mass' }
+    expect(compareWithProtocol({ protocol, amount, weightKg: 11, species: 'dog', frequency: 'q24h', tolerance: ROUNDING_TOLERANCE }))
+      .toMatchObject({ status: 'within', tolerated: true, strictStatus: 'above' })
+    expect(compareWithProtocol({ protocol, amount, weightKg: 11, species: 'dog', frequency: 'q24h', tolerance: 1e-9 }).status).toBe('above')
+  })
+
+  it('D2: a volume entry within 2% of a bound is within, silently (E06b: meloxicam 0.21 mL at 3.2 kg = 0.984×)', () => {
+    const r = row('meloxicam', 'melox_dog_oa', 0.21, 'mL', 'q24h', 3.2, { strengthId: 'melox_susp_1_5' })
+    expect(r.status).toBe('within')
+    expect(r.tolerated).toBe(true)
+    expect(r.rounding).toBeNull()
+    expect(BOUND_TOLERANCE).toBe(0.02)
+  })
+
+  it('tolerances stay small: 5% above with a mg/kg entry and 11% above with a count entry are still "above"', () => {
+    expect(row('ketoconazole', 'keto_dog_malassezia', 10.5, 'mg/kg', 'q24h', 10).status).toBe('above')
+    const c = row('carprofen', 'carp_dog_pain', 1, 'tablet', 'q24h', 20.4, { strengthId: 'carp_tab_100' })
+    expect(c.status).toBe('above')
+    expect(c.ratio).toBeCloseTo(1.114, 3)
+    expect(c.tolerated).toBe(false)
+  })
+
+  it('D12: one administration is never "below" a daily minimum, but a per-day maximum still applies to it', () => {
+    expect(row('ketoconazole', 'keto_dog_malassezia', 5, 'mg/kg', 'once', 10).status).toBe('within')
+    expect(row('ketoconazole', 'keto_dog_malassezia', 12, 'mg/kg', 'once', 10).status).toBe('above')
+    // E33: the first in-clinic dose of a q12h protocol is compared per dose, not as a daily total
+    const ac = row('amoxicillin_clavulanate', 'ac_dog_eu', 12.5, 'mg/kg', 'once', 30, { strengthId: 'ac_tab_375' })
+    expect(ac.status).toBe('within')
+    expect(ac.compared.per).toBe('dose')
+  })
+
+  it('D13: the dose reference carries the label jurisdiction (US FDA, UK VMD) and null for literature', () => {
+    expect(row('carprofen', 'carp_dog_pain', 4, 'mg/kg', 'q24h', 28).ref.jurisdiction).toBe('US')
+    expect(row('pimobendan', 'pimo_dog_chf', 0.2, 'mg/kg', 'q12h', 3.2).ref.jurisdiction).toBe('US')
+    expect(row('amoxicillin_clavulanate', 'ac_dog_eu', 12.5, 'mg/kg', 'q12h', 30).ref.jurisdiction).toBe('UK')
+    expect(row('ketoconazole', 'keto_dog_malassezia', 10, 'mg/kg', 'q24h', 10).ref.jurisdiction).toBeNull()
+  })
+
+  it('D14: a minimum-only protocol (max null) is never "above" and has no ratio', () => {
+    const hi = row('maropitant', 'maro_dog_vomit', 8, 'mg/kg', 'q24h', 10)
+    expect(hi.status).toBe('within')
+    expect(hi.ratio).toBeNull()
+    expect(hi.ref.max).toBeNull()
+    expect(row('maropitant', 'maro_dog_vomit', 1, 'mg/kg', 'q24h', 10).status).toBe('below')
+    // E37: ½ × 16 mg at 3 kg = 2.67 mg/kg (was 1.33× "above" when the label minimum was encoded as a maximum)
+    const e37 = row('maropitant', 'maro_dog_vomit', 0.5, 'tablet', 'q24h', 3, { strengthId: 'maro_tab_16' })
+    expect(e37.status).toBe('within')
+    expect(e37.ratio).toBeNull()
+  })
+
+  it('D10: the reference carries the protocol phase', () => {
+    expect(row('phenobarbital', 'pb_dog_epilepsy', 2.5, 'mg/kg', 'q12h', 10).ref.phase).toBe('start')
+    expect(row('carprofen', 'carp_dog_pain', 4.4, 'mg/kg', 'q24h', 10).ref.phase).toBeNull()
+  })
+
+  it('exposes deliveredMg of the planned administration', () => {
+    expect(row('enrofloxacin', 'enro_cat', 5, 'mg/kg', 'q24h', 3.5, { species: 'cat', strengthId: 'enro_tab_22_7' }).deliveredMg).toBe(22.7)
+  })
+})
+
+describe('public API additions (popup spec §5.1 item 7)', () => {
+  it('index.js exports the tolerance, split step, exposure helper, hash helpers and ENGINE_VERSION', async () => {
+    const api = await import('../index.js')
+    expect(api.ENGINE_VERSION).toBe('1.2.0')
+    expect(api.BOUND_TOLERANCE).toBe(0.02)
+    expect(api.splitStep).toBe(splitStep)
+    expect(api.exposure24hPerKg).toBe(exposure24hPerKg)
+    expect(api.fnv1a('a')).toBe(0xe40c292c)
+    expect(api.canonicalJson({ b: 1, a: [2, undefined] })).toBe('{"a":[2,null],"b":1}')
+  })
+  it('a count entry 0.1% over a single-value reference is silent (no "+0%" rounding note)', () => {
+    const drug = getDrug('carprofen')
+    const r = buildDoseRow({
+      med: { drugId: 'carprofen', protocolId: 'carp_dog_pain', dose: { value: 1, unit: 'tablet' }, route: 'PO', frequency: 'q24h', strengthId: 'carp_tab_100' },
+      drug, protocol: getProtocol('carprofen', 'carp_dog_pain'), weightKg: 22.7, species: 'dog', frequencyId: 'q24h',
+    })
+    expect(r.status).toBe('within')
+    expect(r.tolerated).toBe(true)
+    expect(r.rounding).toBeNull()
   })
 })

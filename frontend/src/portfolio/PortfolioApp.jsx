@@ -1,16 +1,19 @@
 /**
- * Portfolio DUR showcase — app shell: header, hash router, footer.
- * Self-contained: imports only react, react-dom, lucide-react and files under
- * src/portfolio, so it mounts at /dur in the main app and in the standalone
- * build alike. No network access at runtime.
+ * Portfolio DUR showcase: app shell (header, hash router, footer). DESIGN_SYSTEM.md §5.5.
+ * Imports only react, react-dom, lucide-react, `@/ui/**` and files under src/portfolio, so it mounts at
+ * /dur in the main app and in the standalone build alike. No network access at runtime. Fonts are
+ * loaded by the entry (src/ui/fonts.js in the main app, fonts-standalone.css in the standalone build).
  */
 
-import { Suspense, lazy, useEffect, useLayoutEffect, useRef, useState } from 'react'
-import './styles/portfolio.css'
+import { Suspense, lazy, useEffect, useRef } from 'react'
+import { Button } from '@/ui/primitives/button'
+import { initTheme } from '@/ui/theme'
+import { PortfolioHeader } from '@/ui/ext/wp5/PortfolioHeader'
 import { LangProvider, useLang } from './i18n/index.js'
-import { useHashRoute, HREF } from './router.js'
-import AppHeader, { AppFooter } from './components/AppHeader.jsx'
+import { HREF } from './router.js'
+import { useHashRoute } from './useHashRoute.js'
 import { CASE_BY_ID } from './cases/cases.js'
+import { caseName } from './components/format.js'
 
 const CaseStudyPage = lazy(() => import('./pages/CaseStudyPage.jsx'))
 const CasesPage = lazy(() => import('./pages/CasesPage.jsx'))
@@ -18,28 +21,24 @@ const WorkbenchPage = lazy(() => import('./pages/WorkbenchPage.jsx'))
 const ReportPage = lazy(() => import('./pages/ReportPage.jsx'))
 const HandoutPage = lazy(() => import('./pages/HandoutPage.jsx'))
 const HowItWorksPage = lazy(() => import('./pages/HowItWorksPage.jsx'))
+const EmrDemoPage = lazy(() => import('./pages/EmrDemoPage.jsx'))
 
-const THEME_KEY = 'nuvovet.dur.theme'
-const THEMES = ['system', 'light', 'dark']
-
-function readTheme() {
-  try {
-    const v = window.localStorage.getItem(THEME_KEY)
-    return THEMES.includes(v) ? v : 'system'
-  } catch {
-    return 'system'
-  }
-}
+const NAV = [
+  { key: 'study', href: HREF.study, match: (r) => r.name === 'study' },
+  { key: 'cases', href: HREF.cases, match: (r) => ['cases', 'workbench', 'report', 'handout'].includes(r.name) },
+  { key: 'emr', href: HREF.emr, match: (r) => r.name === 'emr' },
+  { key: 'how', href: HREF.how, match: (r) => r.name === 'how' },
+]
 
 function NotFound() {
   const { t } = useLang()
   return (
-    <div className="pf-page">
-      <div className="pf-empty-state">
-        <h1 className="pf-h1">{t('notfound.title')}</h1>
-        <p>{t('notfound.body')}</p>
-        <a className="pf-btn pf-btn--primary" href={HREF.cases}>{t('notfound.back')}</a>
-      </div>
+    <div className="mx-auto flex max-w-[1200px] flex-col items-start gap-3 px-4 py-16 sm:px-6">
+      <h1 className="text-xl font-semibold text-foreground">{t('notfound.title')}</h1>
+      <p className="text-sm text-text-2">{t('notfound.body')}</p>
+      <Button asChild>
+        <a href={HREF.cases}>{t('notfound.back')}</a>
+      </Button>
     </div>
   )
 }
@@ -56,21 +55,24 @@ function pageFor(route) {
   }
 }
 
+/** document.title per route (§6.5): "NuvoVet DUR · 사례 연구"; parts joined with " · ", never an em dash. */
 function useDocumentTitle(route) {
   const { t, pick } = useLang()
   useEffect(() => {
     const app = t('app.name')
-    let page = ''
-    if (route.name === 'cases') page = t('nav.cases')
-    else if (route.name === 'how') page = t('nav.how')
-    else if (route.name === 'study') page = t('nav.study')
+    let parts = [app]
+    if (route.name === 'emr') parts = [t('nav.emr'), app]
+    else if (route.name === 'cases') parts.push(t('nav.cases'))
+    else if (route.name === 'how') parts.push(t('nav.how'))
+    else if (route.name === 'study') parts.push(t('nav.study'))
     else if (['workbench', 'report', 'handout'].includes(route.name)) {
       const c = CASE_BY_ID[route.params.id]
-      const name = c ? pick(c.name) : t('wb.custom.title')
-      page = route.name === 'report' ? `${name} · ${t('rv.report')}` : route.name === 'handout' ? `${name} · ${t('rv.handout')}` : name
+      parts.push(c ? caseName(c, pick) : t('wb.custom.title'))
+      if (route.name === 'report') parts.push(t('rv.report'))
+      if (route.name === 'handout') parts.push(t('rv.handout'))
     }
     try {
-      document.title = page ? `${page} — ${app}` : app
+      document.title = parts.join(' · ')
     } catch {
       /* no document */
     }
@@ -79,31 +81,14 @@ function useDocumentTitle(route) {
 
 function Shell() {
   const route = useHashRoute()
-  const { t } = useLang()
-  const [theme, setThemeState] = useState(readTheme)
-  const rootRef = useRef(null)
+  const { t, lang, setLang } = useLang()
   const mainRef = useRef(null)
   const lastPath = useRef(route.path)
 
   useDocumentTitle(route)
 
-  const setTheme = (v) => {
-    setThemeState(v)
-    try {
-      window.localStorage.setItem(THEME_KEY, v)
-    } catch {
-      /* storage unavailable: theme lasts for this page view */
-    }
-  }
-
-  // Paint the page background (overscroll areas) with the active surface colour.
-  useLayoutEffect(() => {
-    const el = rootRef.current
-    if (!el) return undefined
-    const prev = document.body.style.backgroundColor
-    document.body.style.backgroundColor = getComputedStyle(el).getPropertyValue('--pf-bg').trim()
-    return () => { document.body.style.backgroundColor = prev }
-  }, [theme])
+  // Re-apply the stored theme; migrates the portfolio's legacy key once (DESIGN_SYSTEM.md §2.6).
+  useEffect(() => { initTheme() }, [])
 
   // Pinch-zoom must never be disabled here, even if the host page's viewport meta does.
   useEffect(() => {
@@ -122,16 +107,50 @@ function Shell() {
     }
   }, [route.path])
 
+  // The EMR demo brings its own 40 px demo bar as page chrome (popup spec §7).
+  if (route.name === 'emr') {
+    return (
+      <div className="min-h-dvh bg-background text-foreground" data-route="emr">
+        <Suspense fallback={<div className="min-h-dvh bg-background" />}>
+          <EmrDemoPage route={route} />
+        </Suspense>
+      </div>
+    )
+  }
+
+  const nav = NAV.map((n) => ({ key: n.key, href: n.href, label: t(`nav.${n.key}`), current: n.match(route) }))
+
   return (
-    <div className="pf-root" ref={rootRef} data-theme={theme === 'system' ? undefined : theme} data-route={route.name}>
-      <button type="button" className="pf-skip" onClick={() => mainRef.current?.focus()}>{t('app.skip')}</button>
-      <AppHeader route={route} theme={theme} onTheme={setTheme} />
-      <main className="pf-main" id="pf-main" ref={mainRef} tabIndex={-1}>
-        <Suspense fallback={<div className="pf-page pf-page--loading" aria-busy="true" />}>
+    <div className="flex min-h-dvh flex-col bg-background text-foreground" data-route={route.name}>
+      <button
+        type="button"
+        onClick={() => mainRef.current?.focus()}
+        className="sr-only z-[var(--z-toast)] rounded-md bg-primary px-3 py-1.5 text-sm text-primary-foreground focus-visible:not-sr-only focus-visible:fixed focus-visible:top-2 focus-visible:left-2"
+      >
+        {t('app.skip')}
+      </button>
+      <PortfolioHeader
+        homeHref={HREF.study}
+        homeLabel={t('app.home')}
+        product={t('app.product')}
+        nav={nav}
+        navLabel={t('nav.label')}
+        marker={t('app.marker')}
+        markerTooltip={t('app.markerTooltip')}
+        lang={lang}
+        onLang={setLang}
+        langLabel={t('lang.label')}
+        settingsLabel={t('app.settings')}
+        themeLabel={t('app.theme')}
+      />
+      <main id="pf-main" ref={mainRef} tabIndex={-1} className="flex-1 outline-none">
+        <Suspense fallback={<div className="min-h-[60dvh] bg-background" aria-busy="true" />}>
           {pageFor(route)}
         </Suspense>
       </main>
-      <AppFooter />
+      <footer className="border-t border-border print:hidden">
+        <p className="mx-auto max-w-[1200px] px-4 py-6 text-xs text-muted-foreground sm:px-6">{t('footer.line')}</p>
+      </footer>
     </div>
   )
 }

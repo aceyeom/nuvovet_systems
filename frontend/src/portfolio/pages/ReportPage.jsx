@@ -1,40 +1,29 @@
 /**
- * Report `#/case/:id/report` — an A4 preview of the clinician report, printed
- * with window.print() on this page (@page A4; the prototype disclaimer repeats
- * in the footer of every printed page).
+ * Report `#/case/:id/report`: an A4 preview of the clinician report, printed with window.print()
+ * on this page (@page A4 in styles/print.css; the prototype disclaimer repeats in the footer of
+ * every printed page). Document design kept, restyled to the shared tokens (§5.5).
  */
 
 import { ClipboardList } from 'lucide-react'
-import '../styles/pages.css'
+import { Button } from '@/ui/primitives/button'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/ui/primitives/tooltip'
+import '../styles/print.css'
 import { useLang } from '../i18n/index.js'
-import { caseHref } from '../router.js'
+import { caseHref, HREF } from '../router.js'
 import { RULES } from '../engine/rules/index.js'
 import { DRUGS } from '../knowledge/drugs.js'
-import { SOURCES, sourceHref } from '../knowledge/sources.js'
-import { SEVERITIES } from '../engine/findings.js'
-import { FREQUENCY_BY_ID } from '../engine/dose.js'
+import { SOURCES } from '../knowledge/sources.js'
 import useCaseResult from '../components/report/useCaseResult.js'
 import { reportId, citedSources } from '../components/report/reportModel.js'
 import PrintSheet from '../components/report/PrintSheet.jsx'
 import DocToolbar from '../components/report/DocToolbar.jsx'
 import PatientFacts from '../components/report/PatientFacts.jsx'
 import DocNotFound from '../components/report/DocNotFound.jsx'
-import { SeverityIcon } from '../components/SeverityTag.jsx'
-import { DoseStatus, LabelStatus } from '../components/DoseTable.jsx'
-import { drugName, drugShort, severityWord, fmtQ, rangeText, unitText, freqShort, sourceShort, amountCheck } from '../components/format.js'
-
-function splitHeadline(text) {
-  const i = text.indexOf(' — ')
-  if (i < 0) return [text, '']
-  const rest = text.slice(i + 3)
-  return [text.slice(0, i), rest.charAt(0).toUpperCase() + rest.slice(1)]
-}
-
-/** Let long rule ids (IMMUNOSUPPRESSION_ADDITIVE) wrap after underscores, not mid-word. */
-function breakable(id) {
-  const parts = id.split('_')
-  return parts.map((p, i) => (i < parts.length - 1 ? <span key={i}>{p}_<wbr /></span> : <span key={i}>{p}</span>))
-}
+import { noteKind } from '../components/NotesList.jsx'
+import { verdictCounts } from '../components/VerdictBanner.jsx'
+import Sev from '../components/Severity.jsx'
+import { DoseStatus, LabelStatus, perDayText } from '../components/dose.jsx'
+import { drugName, drugShort, fmtQ, rangeText, unitText, freqShort, sourceShort, amountCheck, caseName } from '../components/format.js'
 
 function stampText(lang) {
   try {
@@ -44,95 +33,83 @@ function stampText(lang) {
   }
 }
 
+function DocSection({ title, count, children, keep = false }) {
+  return (
+    <section className={`mt-6 flex flex-col gap-3 ${keep ? 'pf-keep' : ''}`}>
+      <h3 className="pf-keep-next flex items-baseline gap-2 border-b border-border-strong pb-1.5 text-base font-semibold text-foreground">
+        {title}
+        {count != null ? <span className="num text-sm font-normal text-muted-foreground">{count}</span> : null}
+      </h3>
+      {children}
+    </section>
+  )
+}
+
 function Verdict({ result, empty }) {
   const { t, pick } = useLang()
-  if (empty) {
-    return (
-      <div className="pf-rverdict pf-tone--none">
-        <SeverityIcon severity="none" size={22} />
-        <div>
-          <p className="pf-rverdict__word">{t('rp.noRx')}</p>
-          <p className="pf-rverdict__counts">{t('rv.noDrugs')}</p>
-        </div>
-      </div>
-    )
-  }
-  const level = result.verdict.level
-  const [head, sub] = splitHeadline(pick(result.verdict.headline))
-  const c = result.verdict.counts
-  const word = level === 'none' ? head : severityWord(level, pick)
-  const parts = SEVERITIES.map((s) => `${c[s]} ${severityWord(s, pick)}`)
-  parts.push(c.notes === 1 ? t('rv.noteCount') : t('rv.notesCount', { n: c.notes }))
-  parts.push(c.doseProblems === 1 ? t('rv.doseProblem') : t('rv.doseProblems', { n: c.doseProblems }))
+  if (empty) return <p className="text-sm text-text-2">{t('rp.noRx')}</p>
+  const counts = verdictCounts(result, t, pick)
   return (
-    <div className={`pf-rverdict pf-tone--${level}`}>
-      <SeverityIcon severity={level} size={22} />
-      <div>
-        <p className="pf-rverdict__word">{word}</p>
-        {sub && <p className="pf-rverdict__sub">{sub}</p>}
-        <p className="pf-rverdict__counts">{parts.join(' · ')}</p>
+    <div className="pf-keep flex flex-col gap-1">
+      <div className="flex flex-wrap items-center gap-2">
+        <Sev level={result.verdict.level} size="md" />
+        <p className="text-sm font-semibold text-foreground">{pick(result.verdict.action)}</p>
       </div>
+      {counts.length ? <p className="text-sm text-text-2">{counts.join(' · ')}</p> : null}
     </div>
   )
 }
 
 /**
- * Findings as blocks (not a 4-column table, which on a 670 px sheet left an
- * empty severity column and wrapped actions at three words a line):
- * severity · title · rule id on one line, then why | what to do side by side,
- * then sources as one footnote line.
+ * Findings as blocks: severity, title and rule id on one line, then why | what to do side by
+ * side, then sources as one footnote line.
  */
 function FindingsList({ result, empty }) {
   const { t, pick, lang } = useLang()
-  if (empty) return <p className="pf-doc__empty">{t('rv.noDrugs')}</p>
-  if (!result.findings.length) {
-    return <p className="pf-doc__empty">{t('rv.noFindings', { n: RULES.length })}</p>
-  }
+  if (empty) return <p className="text-sm text-text-2">{t('rv.noDrugs')}</p>
+  if (!result.findings.length) return <p className="text-sm text-text-2">{t('rv.noFindings', { n: RULES.length })}</p>
   return (
-    <ol className="pf-rfindings">
+    <ol className="flex flex-col divide-y divide-border">
       {result.findings.map((f) => {
         const factors = f.factors.filter((x) => x.kind !== 'drug')
         return (
-          <li key={f.id} className={`pf-rfinding pf-tone--${f.severity}`}>
-            <div className="pf-rfinding__head">
-              <span className="pf-rsev">
-                <SeverityIcon severity={f.severity} size={14} />
-                {severityWord(f.severity, pick)}
-              </span>
-              <p className="pf-rfinding__title">{pick(f.title)}</p>
-              <p className="pf-rfinding__rule">
+          <li key={f.id} className="pf-keep flex flex-col gap-2 py-3 first:pt-0">
+            <div className="flex flex-wrap items-start gap-x-2 gap-y-1">
+              <Sev level={f.severity} />
+              <p className="min-w-0 flex-1 text-sm font-semibold text-foreground">{pick(f.title)}</p>
+              <p className="text-xs text-text-2">
                 {f.trace.rules.map((r, i) => (
-                  <span key={`${r.ruleId}-${i}`} className="pf-dtable__mono">{breakable(r.ruleId)}<span className="pf-rfinding__ver">@{r.ruleVersion}</span></span>
+                  <span key={`${r.ruleId}-${i}`} className="id mr-2 inline-block">{r.ruleId} <span className="text-muted-foreground">v{r.ruleVersion}</span></span>
                 ))}
               </p>
             </div>
-            <p className="pf-rfinding__meta">
+            <p className="text-xs text-text-2">
               {f.drugIds.map((d) => drugShort(d, pick)).join(' + ')}
-              {factors.length > 0 && ` · ${factors.map((x) => pick(x.label)).join(' · ')}`}
+              {factors.length > 0 ? `. ${factors.map((x) => pick(x.label)).join(', ')}` : ''}
             </p>
-            <div className="pf-rfinding__cols">
-              <div>
-                <p className="pf-rfinding__h">{t('fc.why')}</p>
-                <p className="pf-dtable__text">{pick(f.consequence)}</p>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="flex flex-col gap-1">
+                <p className="text-xs text-muted-foreground">{t('fc.why')}</p>
+                <p className="text-sm text-foreground">{pick(f.consequence)}</p>
               </div>
-              <div>
-                <p className="pf-rfinding__h">{t('fc.actions')}</p>
-                <ul className="pf-dlist">
+              <div className="flex flex-col gap-1">
+                <p className="text-xs text-muted-foreground">{t('fc.actions')}</p>
+                <ul className="flex list-disc flex-col gap-0.5 pl-4 text-sm text-foreground">
                   {f.actions.map((a, i) => <li key={i}>{pick(a)}</li>)}
                 </ul>
-                {f.alternatives.length > 0 && (
+                {f.alternatives.length > 0 ? (
                   <>
-                    <p className="pf-rfinding__h pf-rfinding__h--sub">{t('fc.alternatives')}</p>
-                    <ul className="pf-dlist">
+                    <p className="pt-1 text-xs text-muted-foreground">{t('fc.alternatives')}</p>
+                    <ul className="flex list-disc flex-col gap-0.5 pl-4 text-sm text-foreground">
                       {f.alternatives.map((a, i) => <li key={i}>{pick(a)}</li>)}
                     </ul>
                   </>
-                )}
+                ) : null}
               </div>
             </div>
-            <p className="pf-rfinding__src">
+            <p className="text-xs text-muted-foreground">
               {t('fc.evidence')}: {t(`fc.evidence.${f.evidence}`)}
-              {f.sources.length > 0 && ` · ${f.sources.map((x) => sourceShort(x, lang)).join('; ')}`}
+              {f.sources.length > 0 ? `. ${f.sources.map((x) => sourceShort(x, lang)).join('; ')}` : ''}
             </p>
           </li>
         )
@@ -141,89 +118,93 @@ function FindingsList({ result, empty }) {
   )
 }
 
-function perDayCell(row, t, lang) {
-  if (row.perDay) return fmtQ(row.perDay, lang)
-  if (row.frequency === 'once') return t('dc.single')
-  const f = FREQUENCY_BY_ID[row.frequency]
-  if (!f || f.perDay == null || f.perDay < 1) return t('dc.notDaily')
-  return '—'
-}
+const DTH = 'h-8 pr-3 text-left align-bottom text-xs font-medium text-muted-foreground'
+const DTD = 'py-2 pr-3 align-top text-sm'
 
 function DoseRows({ result }) {
   const { t, pick, lang } = useLang()
-  if (!result.doses.length) return <p className="pf-doc__empty">{t('dc.empty')}</p>
+  if (!result.doses.length) return <p className="text-sm text-text-2">{t('dc.empty')}</p>
   return (
-    <table className="pf-dtable pf-dtable--doses">
-      <thead>
-        <tr>
-          <th scope="col">{t('rp.col.drug')}</th>
-          <th scope="col">{t('rp.col.prescribed')}</th>
-          <th scope="col">{t('dc.howToGive')}</th>
-          <th scope="col">{t('dc.reference')}</th>
-          <th scope="col">{t('rp.col.status')}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {result.doses.map((row, i) => {
-          const ref = row.ref
-          const refUnit = ref ? unitText(ref.per === 'day' ? `${ref.unit}/day` : ref.unit, lang) : ''
-          const check = amountCheck(row)
-          return (
-            <tr key={`${row.drugId}-${i}`}>
-              <td data-label={t('rp.col.drug')}>
-                <p className="pf-dtable__strong">{drugName(row.drugId, pick)}</p>
-                {ref?.indication && <p className="pf-dtable__meta">{pick(ref.indication)}</p>}
-                {ref && <LabelStatus status={ref.labelStatus} />}
-              </td>
-              <td data-label={t('rp.col.prescribed')}>
-                <p className="pf-num"><span className="pf-dtable__strong">{fmtQ(row.perDose, lang)}</span> {row.frequency ? freqShort(row.frequency, pick) : ''}</p>
-                <p className="pf-dtable__meta pf-num">{t('dc.perDay')}: {perDayCell(row, t, lang)}</p>
-                <p className="pf-dtable__meta">{pick(row.working)}</p>
-              </td>
-              <td data-label={t('dc.howToGive')}>
-                {check?.kind === 'implausible' ? (
-                  <p className="pf-dtable__warn">{t('dc.implausible')}</p>
-                ) : (
-                  <p className="pf-num">{pick(row.administration)}</p>
-                )}
-                {check?.kind === 'gap' && <p className="pf-dtable__warn">{t('rp.roundingSee')}</p>}
-                {check?.kind === 'range' && <p className="pf-dtable__warn">{t('rp.roundingRange')}</p>}
-              </td>
-              <td data-label={t('dc.reference')}>
-                {ref ? (
-                  <>
-                    <p className="pf-num">{rangeText(ref.min, ref.max, refUnit)}{ref.per !== 'day' ? ` ${t('dc.perDoseUnit')}` : ''}</p>
-                    {ref.source && <p className="pf-dtable__meta">{sourceShort(ref.source, lang)}</p>}
-                  </>
-                ) : (
-                  <p className="pf-dtable__meta">{t('dc.noRef')}</p>
-                )}
-              </td>
-              <td data-label={t('rp.col.status')}><DoseStatus status={row.status} check={Boolean(check?.needsCheck)} /></td>
-            </tr>
-          )
-        })}
-      </tbody>
-    </table>
+    <div className="overflow-x-auto">
+      <table className="w-full min-w-[560px] border-collapse">
+        <colgroup>
+          <col className="w-[22%]" />
+          <col className="w-[24%]" />
+          <col className="w-[22%]" />
+          <col className="w-[18%]" />
+          <col className="w-[14%]" />
+        </colgroup>
+        <thead>
+          <tr className="border-b border-border-strong">
+            <th scope="col" className={DTH}>{t('rp.col.drug')}</th>
+            <th scope="col" className={DTH}>{t('rp.col.prescribed')}</th>
+            <th scope="col" className={DTH}>{t('dc.howToGive')}</th>
+            <th scope="col" className={DTH}>{t('dc.reference')}</th>
+            <th scope="col" className={DTH}>{t('rp.col.status')}</th>
+          </tr>
+        </thead>
+          {result.doses.map((row, i) => {
+            const ref = row.ref
+            const refUnit = ref ? unitText(ref.per === 'day' ? `${ref.unit}/day` : ref.unit, lang) : ''
+            const check = amountCheck(row)
+            return (
+              <tbody key={`${row.drugId}-${i}`} className="pf-keep border-b border-border">
+              <tr>
+                <td className={DTD}>
+                  <p className="font-medium text-foreground">{drugName(row.drugId, pick)}</p>
+                  {ref?.indication ? <p className="text-xs text-text-2">{pick(ref.indication)}</p> : null}
+                  {ref ? <LabelStatus status={ref.labelStatus} /> : null}
+                </td>
+                <td className={DTD}>
+                  <p className="text-foreground"><span className="num text-left font-medium">{fmtQ(row.perDose, lang)}</span> {row.frequency ? freqShort(row.frequency, pick) : ''}</p>
+                  <p className="text-xs text-text-2">{t('dc.perDay')} <span className="num text-left">{perDayText(row, t, lang)}</span></p>
+                </td>
+                <td className={DTD}>
+                  {check?.kind === 'implausible' ? <p className="text-foreground">{t('dc.implausible')}</p> : <p className="text-foreground">{pick(row.administration)}</p>}
+                  {check?.kind === 'gap' ? <p className="text-xs text-text-2">{t('rp.roundingSee')}</p> : null}
+                  {check?.kind === 'range' ? <p className="text-xs text-text-2">{t('rp.roundingRange')}</p> : null}
+                </td>
+                <td className={DTD}>
+                  {ref ? (
+                    <>
+                      <p className="num text-left text-foreground">{rangeText(ref.min, ref.max, refUnit)}{ref.per !== 'day' ? ` ${t('dc.perDoseUnit')}` : ''}</p>
+                      {ref.source ? <p className="text-xs text-text-2">{sourceShort(ref.source, lang)}</p> : null}
+                    </>
+                  ) : (
+                    <p className="text-xs text-text-2">{t('dc.noRefShort')}</p>
+                  )}
+                </td>
+                <td className={DTD}><DoseStatus status={row.status} check={Boolean(check?.needsCheck)} /></td>
+              </tr>
+              {/* The calculation gets its own full-width line instead of three cramped lines in 처방. */}
+              {row.working ? (
+                <tr>
+                  <td aria-hidden="true" />
+                  <td colSpan={4} className="pr-3 pb-2 text-xs text-text-2 tabular-nums">{pick(row.working)}</td>
+                </tr>
+              ) : null}
+              </tbody>
+            )
+          })}
+      </table>
+    </div>
   )
 }
 
-const NOTE_KIND = (n) => (n.category === 'validation' || n.category === 'rounding' ? n.category : n.kind)
-
 function Notes({ result }) {
   const { t, pick } = useLang()
-  if (!result.notes.length) return <p className="pf-doc__empty">{t('rv.noNotes')}</p>
+  if (!result.notes.length) return <p className="text-sm text-text-2">{t('rv.noNotes')}</p>
   return (
-    <ul className="pf-rnotes">
+    <ul className="flex flex-col gap-2">
       {result.notes.map((n) => (
-        <li key={n.id}>
-          <span className="pf-rnotes__box" aria-hidden="true" />
-          <div>
-            <p className="pf-rnotes__meta">
-              {t(`note.kind.${NOTE_KIND(n)}`)}
-              {n.drugIds?.length > 0 && ` · ${n.drugIds.map((d) => drugShort(d, pick)).join(', ')}`}
+        <li key={n.id} className="pf-keep flex items-start gap-2.5">
+          <span className="pf-box mt-1" aria-hidden="true" />
+          <div className="flex flex-col">
+            <p className="text-xs text-muted-foreground">
+              {t(`note.kind.${noteKind(n)}`)}
+              {n.drugIds?.length > 0 ? `, ${n.drugIds.map((d) => drugShort(d, pick)).join(', ')}` : ''}
             </p>
-            <p>{pick(n.text)}</p>
+            <p className="text-sm text-foreground">{pick(n.text)}</p>
           </div>
         </li>
       ))}
@@ -234,16 +215,15 @@ function Notes({ result }) {
 function References({ ids }) {
   if (!ids.length) return null
   return (
-    <ol className="pf-refs">
+    <ol className="flex list-decimal flex-col gap-1 pl-5 text-xs text-text-2">
       {ids.map((id) => {
         const s = SOURCES[id]
-        const href = sourceHref(id)
         return (
-          <li key={id}>
-            <span>{s.cite}</span>
-            {s.title && <span className="pf-refs__title"> — {s.title}</span>}
-            {s.doi && <> · <a href={href} target="_blank" rel="noopener noreferrer">doi:{s.doi}</a></>}
-            {!s.doi && s.pmid && <> · <a href={href} target="_blank" rel="noopener noreferrer">PMID {s.pmid}</a></>}
+          <li key={id} className="pf-keep">
+            <span className="text-foreground">{s.cite}</span>
+            {s.title ? <span>. {s.title}</span> : null}
+            {s.doi ? <span className="id">. doi:{s.doi}</span> : null}
+            {!s.doi && s.pmid ? <span className="id">. PMID {s.pmid}</span> : null}
           </li>
         )
       })}
@@ -251,24 +231,30 @@ function References({ ids }) {
   )
 }
 
+function Line({ label, className = '' }) {
+  return (
+    <div className={`flex min-w-0 flex-col gap-1 ${className}`}>
+      <div className="h-6 border-b border-input" />
+      <span className="text-xs text-muted-foreground">{label}</span>
+    </div>
+  )
+}
+
 function Acknowledgement() {
   const { t } = useLang()
   return (
-    <div className="pf-ack">
-      <p className="pf-ack__lead">{t('rp.ack.lead')}</p>
-      <ul className="pf-ack__opts">
+    <div className="flex flex-col gap-3">
+      <p className="text-sm text-foreground">{t('rp.ack.lead')}</p>
+      <ul className="flex flex-col gap-1.5">
         {['changed', 'dispensed', 'discussed'].map((k) => (
-          <li key={k}><span className="pf-rnotes__box" aria-hidden="true" />{t(`rp.ack.${k}`)}</li>
+          <li key={k} className="flex items-center gap-2.5 text-sm text-foreground"><span className="pf-box" aria-hidden="true" />{t(`rp.ack.${k}`)}</li>
         ))}
       </ul>
-      <div className="pf-ack__lines">
-        <div className="pf-ack__line pf-ack__line--wide"><span>{t('rp.ack.reason')}</span></div>
-        <div className="pf-ack__line pf-ack__line--wide" aria-hidden="true"><span /></div>
-      </div>
-      <div className="pf-ack__sign">
-        <div className="pf-ack__line"><span>{t('rp.ack.clinician')}</span></div>
-        <div className="pf-ack__line"><span>{t('rp.ack.signature')}</span></div>
-        <div className="pf-ack__line pf-ack__line--short"><span>{t('rp.ack.date')}</span></div>
+      <Line label={t('rp.ack.reason')} />
+      <div className="grid grid-cols-[2fr_2fr_1fr] gap-4">
+        <Line label={t('rp.ack.clinician')} />
+        <Line label={t('rp.ack.signature')} />
+        <Line label={t('rp.ack.date')} />
       </div>
     </div>
   )
@@ -282,83 +268,65 @@ export default function ReportPage({ route }) {
 
   const { id, caseDef, input, result, sParam } = data
   const rid = reportId(input)
-  const name = caseDef ? pick(caseDef.name) : t('wb.custom.title')
+  const name = caseDef ? caseName(caseDef, pick) : t('wb.custom.title')
   const edited = Boolean(caseDef && sParam)
   const sources = citedSources(result)
+  const empty = input.meds.length === 0
   const footer = (
-    <div className="pf-docfoot">
-      <strong>{t('doc.footer.disclaimer')}</strong>
+    <div className="flex flex-wrap justify-between gap-x-4 gap-y-1">
+      <span className="font-medium text-foreground">{t('doc.footer.disclaimer')}</span>
       <span>{t('rp.footer', { id: rid })}</span>
     </div>
   )
 
   return (
-    <div className="pf-page pf-docpage">
+    <div className="mx-auto flex max-w-[1200px] flex-col gap-6 px-4 py-6 sm:px-6 lg:py-8 print:block print:p-0">
       <DocToolbar
-        backHref={caseHref(id, 'workbench', sParam)}
-        backLabel={t('doc.backToCase', { name })}
+        crumbs={[{ label: t('nav.cases'), href: HREF.cases }, { label: name, href: caseHref(id, 'workbench', sParam) }, { label: t('rp.title') }]}
         title={t('rp.title')}
-        sub={t('rp.sub')}
       >
-        <a className="pf-btn pf-btn--secondary pf-btn--sm" href={caseHref(id, 'handout', sParam)}>
-          <ClipboardList size={15} aria-hidden="true" />
-          {t('rv.handout')}
-        </a>
+        <Button variant="secondary" size="sm" asChild>
+          <a href={caseHref(id, 'handout', sParam)}>
+            <ClipboardList aria-hidden="true" strokeWidth={1.5} />
+            {t('rv.handout')}
+          </a>
+        </Button>
       </DocToolbar>
 
-      <PrintSheet label={t('rp.title')} footer={footer} className="pf-report">
-        <header className="pf-dochead">
-          <div className="pf-dochead__main">
-            <p className="pf-dochead__eyebrow">{t('app.name')}</p>
-            <h2 className="pf-dochead__title">{t('rp.docTitle')}</h2>
-            <p className="pf-dochead__warn">{t('app.disclaimer')}</p>
+      <PrintSheet label={t('rp.title')} footer={footer}>
+        <header className="pf-keep flex flex-wrap items-start justify-between gap-6 border-b border-border-strong pb-4">
+          <div className="flex flex-col gap-1">
+            <p className="text-xs text-muted-foreground">{t('app.name')}</p>
+            <h2 className="text-2xl font-bold text-foreground">{t('rp.docTitle')}</h2>
           </div>
-          <dl className="pf-dochead__meta">
-            <div><dt>{t('rp.id')}</dt><dd className="pf-mono">{rid}</dd></div>
-            <div><dt>{t('rp.generated')}</dt><dd>{stamp}</dd></div>
-            <div><dt>{t('rp.case')}</dt><dd>{name}{edited ? ` (${t('wb.edited')})` : ''}</dd></div>
-            <div><dt>{t('rp.engine')}</dt><dd>{t('rp.engineValue', { rules: RULES.length, drugs: DRUGS.length })}</dd></div>
+          <dl className="grid grid-cols-[auto_auto] gap-x-4 gap-y-1 text-xs">
+            <dt className="text-muted-foreground">{t('rp.id')}</dt>
+            <dd className="id text-foreground">
+              {/* How the ID is made is a detail for whoever asks, not a note under the document (review P2). */}
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <span tabIndex={0} aria-describedby="rp-id-note" className="cursor-help rounded-sm underline decoration-border-strong decoration-dotted underline-offset-4 print:no-underline">{rid}</span>
+                  </TooltipTrigger>
+                  <TooltipContent side="bottom" className="max-w-72">{t('rp.idNote')}</TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+              <span id="rp-id-note" className="sr-only">{t('rp.idNote')}</span>
+            </dd>
+            <dt className="text-muted-foreground">{t('rp.generated')}</dt><dd className="text-foreground">{stamp}</dd>
+            <dt className="text-muted-foreground">{t('rp.case')}</dt><dd className="text-foreground">{name}{edited ? ` (${t('wb.edited')})` : ''}</dd>
+            <dt className="text-muted-foreground">{t('rp.engine')}</dt><dd className="text-foreground">{t('rp.engineValue', { rules: RULES.length, drugs: DRUGS.length })}</dd>
           </dl>
         </header>
 
-        <section className="pf-docsec">
-          <h3 className="pf-docsec__title">{t('rp.patient')}</h3>
-          <PatientFacts input={input} />
-        </section>
-
-        <section className="pf-docsec">
-          <h3 className="pf-docsec__title">{t('rv.verdict')}</h3>
-          <Verdict result={result} empty={input.meds.length === 0} />
-        </section>
-
-        <section className="pf-docsec">
-          <h3 className="pf-docsec__title">{t('rv.findings')} <span className="pf-docsec__n">{result.findings.length}</span></h3>
-          <FindingsList result={result} empty={input.meds.length === 0} />
-        </section>
-
-        <section className="pf-docsec">
-          <h3 className="pf-docsec__title">{t('dc.title')}</h3>
-          <DoseRows result={result} />
-        </section>
-
-        <section className="pf-docsec">
-          <h3 className="pf-docsec__title">{t('rv.notes')} <span className="pf-docsec__n">{result.notes.length}</span></h3>
-          <Notes result={result} />
-        </section>
-
-        <section className="pf-docsec pf-docsec--keep">
-          <h3 className="pf-docsec__title">{t('rp.ack.title')}</h3>
-          <Acknowledgement />
-        </section>
-
-        {sources.length > 0 && (
-          <section className="pf-docsec">
-            <h3 className="pf-docsec__title">{t('rp.references')}</h3>
-            <References ids={sources} />
-          </section>
-        )}
+        <DocSection title={t('rp.patient')}><PatientFacts input={input} /></DocSection>
+        <DocSection title={t('rv.verdict')}><Verdict result={result} empty={empty} /></DocSection>
+        <DocSection title={t('rv.findings')} count={result.findings.length}><FindingsList result={result} empty={empty} /></DocSection>
+        <DocSection title={t('dc.title')}><DoseRows result={result} /></DocSection>
+        <DocSection title={t('rv.notes')} count={result.notes.length}><Notes result={result} /></DocSection>
+        <DocSection title={t('rp.ack.title')} keep><Acknowledgement /></DocSection>
+        {sources.length > 0 ? <DocSection title={t('rp.references')}><References ids={sources} /></DocSection> : null}
       </PrintSheet>
-      <p className="pf-docnote pf-no-print">{t('rp.idNote')}</p>
     </div>
   )
 }

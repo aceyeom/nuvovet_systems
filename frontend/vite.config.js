@@ -1,18 +1,16 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+import path from 'node:path'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), tailwindcss()],
+  resolve: { alias: { '@': path.resolve(import.meta.dirname, 'src') } },
   server: {
+    // Each agent / developer passes its own --port; the default is the shared dev server.
     port: 5173,
     strictPort: true,
     host: 'localhost',
-    middlewareMode: false,
-    hmr: {
-      protocol: 'ws',
-      host: 'localhost',
-      port: 5173
-    },
     proxy: {
       '/api': {
         target: 'https://nuvovet-systems.onrender.com',
@@ -26,11 +24,11 @@ export default defineConfig({
     // Vite 8 minifies with Oxc by default; 'esbuild' would need the optional esbuild peer.
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'lucide-react']
+    include: ['react', 'react-dom', 'lucide-react'],
   },
   // Vitest (npm test → `vitest run`)
   test: {
-    include: ['src/**/*.test.js'],
+    include: ['src/**/*.test.js', 'scripts/**/*.test.js'],
     environment: 'node',
     passWithNoTests: true,
   },

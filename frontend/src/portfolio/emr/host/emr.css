@@ -1,0 +1,401 @@
+/*
+ * Fictional desktop EMR "데모 차트 (가상 EMR)" (EMR popup spec §2.1, DESIGN_SYSTEM §5.6).
+ * A deliberately plain, generic grey look so the NuvoVet overlay reads as a separate product.
+ * Everything is scoped under .emr-root; no Tailwind, no src/ui, no NuvoVet tokens.
+ * The host stays light in every site theme. Hex values are exempt from the colour lint (§9.4).
+ */
+
+.emr-root {
+  color-scheme: light;
+  --emr-frame: #E9ECEF;
+  --emr-panel: #FFFFFF;
+  --emr-border: #C8CDD2;
+  --emr-rule: #E1E4E8;
+  --emr-tabs: #DDE3EA;
+  --emr-title: #46566B;
+  --emr-grid-head: #F1F3F5;
+  --emr-selected: #DCE8F7;
+  --emr-dur-row: #FFF4CC;
+  --emr-btn: #F8F9FA;
+  --emr-btn-border: #ADB5BD;
+  --emr-primary: #2F5E9E;
+  --emr-text: #1F2328;
+  --emr-muted: #495057;
+  --emr-stale: #B35C00;
+  --emr-focus: #2F5E9E;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--emr-frame);
+  color: var(--emr-text);
+  font-family: "Malgun Gothic", "Apple SD Gothic Neo", -apple-system, sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  letter-spacing: 0;
+  -webkit-font-smoothing: auto;
+}
+.emr-root *, .emr-root *::before, .emr-root *::after { box-sizing: border-box; }
+.emr-root :where(h1, h2, h3, p, ul, ol) { margin: 0; padding: 0; }
+.emr-root :where(ul, ol) { list-style: none; }
+/* Zero-specificity resets (:where) so the component classes below always win. */
+.emr-root :where(button, input, select, textarea) { font: inherit; color: inherit; letter-spacing: 0; }
+.emr-root :focus-visible { outline: 2px solid var(--emr-focus); outline-offset: 1px; }
+.emr-root .emr-num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* Page: demo bar (portfolio chrome) above the host; one screen tall from 1024 px up. */
+.emr-page { display: flex; flex-direction: column; min-height: 100dvh; }
+.emr-page > .emr-root { flex: 1 1 auto; }
+@media (min-width: 1024px) {
+  .emr-page { height: 100dvh; overflow: hidden; }
+  .emr-page > .emr-root { min-height: 0; }
+}
+
+/* ── Controls ──────────────────────────────────────────────────────────────── */
+.emr-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid var(--emr-btn-border);
+  border-radius: 2px;
+  background: var(--emr-btn);
+  color: var(--emr-text);
+  font-size: 13px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.emr-btn:hover { background: #E9ECEF; }
+.emr-btn:active { background: #DEE2E6; }
+.emr-btn[disabled], .emr-btn[aria-disabled="true"] { color: #6C757D; cursor: default; background: var(--emr-btn); }
+.emr-btn-primary { background: var(--emr-primary); border-color: var(--emr-primary); color: #FFFFFF; }
+.emr-btn-primary:hover { background: #284F86; }
+.emr-btn-primary:active { background: #234676; }
+.emr-btn-sm { height: 22px; padding: 0 6px; font-size: 12px; }
+.emr-btn svg { width: 14px; height: 14px; }
+
+.emr-input, .emr-select {
+  height: 22px;
+  padding: 0 4px;
+  border: 1px solid var(--emr-btn-border);
+  border-radius: 2px;
+  background: #FFFFFF;
+  font-size: 12px;
+  min-width: 0;
+}
+.emr-select { padding: 0 2px; }
+/* 2 px focus ring on every field (DESIGN_SYSTEM §3.9; engineering review item 4). */
+.emr-input:focus, .emr-select:focus { border-color: var(--emr-focus); outline: 2px solid var(--emr-focus); outline-offset: 0; }
+.emr-input[type="number"] { -moz-appearance: textfield; }
+.emr-input[type="number"]::-webkit-inner-spin-button,
+.emr-input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+/* Inline chart fields that read as text until hovered or focused. */
+.emr-flat { border-color: transparent; background: transparent; }
+.emr-flat:hover { border-color: var(--emr-btn-border); background: #FFFFFF; }
+.emr-flat:focus { background: #FFFFFF; }
+
+/* ── Frame ─────────────────────────────────────────────────────────────────── */
+.emr-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 28px;
+  flex-shrink: 0;
+  padding: 0 10px;
+  background: var(--emr-title);
+  color: #FFFFFF;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.emr-titlebar .emr-product { font-size: 13px; font-weight: 700; }
+.emr-titlebar .emr-sep { width: 1px; height: 14px; background: #7F8C9D; }
+.emr-menu { display: flex; gap: 2px; }
+.emr-menu span { padding: 2px 8px; border-radius: 2px; color: #E9ECEF; }
+.emr-menu span[aria-current="page"] { background: #FFFFFF; color: var(--emr-title); font-weight: 700; }
+.emr-titlebar .emr-meta { margin-left: auto; overflow: hidden; text-overflow: ellipsis; }
+.emr-titlebar .emr-wait-toggle { display: none; height: 22px; border-color: #7F8C9D; background: transparent; color: #FFFFFF; font-size: 12px; }
+
+.emr-body {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+  gap: 0;
+  padding-bottom: 18px; /* the watermark sits in the grey frame below the columns */
+}
+
+/* ── Waitlist (대기목록) ─────────────────────────────────────────────────────── */
+.emr-wait {
+  flex: 0 0 220px;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  margin: 6px 0 6px 6px;
+  background: var(--emr-panel);
+  border: 1px solid var(--emr-border);
+  border-radius: 2px;
+}
+.emr-wait-head { display: flex; align-items: center; gap: 6px; height: 28px; padding: 0 8px; background: var(--emr-title); color: #FFFFFF; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+.emr-wait-head .emr-wait-close { display: none; margin-left: auto; border-color: #7F8C9D; background: transparent; color: #FFFFFF; }
+.emr-wait-search { padding: 6px; border-bottom: 1px solid var(--emr-rule); }
+.emr-wait-search .emr-input { width: 100%; height: 24px; }
+.emr-tabs { display: flex; gap: 0; padding: 4px 4px 0; background: var(--emr-tabs); border-bottom: 1px solid var(--emr-border); flex-shrink: 0; }
+.emr-tab {
+  height: 24px;
+  padding: 0 10px;
+  border: 1px solid transparent;
+  border-bottom: 0;
+  border-radius: 2px 2px 0 0;
+  background: transparent;
+  color: #343A40;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.emr-tab[aria-selected="true"] { background: #FFFFFF; border-color: var(--emr-border); color: var(--emr-text); font-weight: 700; margin-bottom: -1px; }
+.emr-wait-list { flex: 1 1 auto; min-height: 0; overflow-y: auto; }
+.emr-wait-item {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  align-items: center;
+  gap: 4px;
+  height: 30px;
+  padding: 0 8px;
+  border-bottom: 1px solid var(--emr-rule);
+  color: var(--emr-text);
+  font-size: 12px;
+  text-decoration: none;
+}
+.emr-wait-item:hover { background: #F1F3F5; }
+.emr-wait-item[aria-current="page"] { background: var(--emr-selected); }
+.emr-wait-item .emr-wait-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.emr-wait-item .emr-wait-status { color: var(--emr-muted); }
+.emr-wait-item[aria-current="page"] .emr-wait-status { color: var(--emr-primary); font-weight: 700; }
+.emr-wait-empty { padding: 12px 8px; color: var(--emr-muted); font-size: 12px; }
+.emr-wait-rail { display: none; }
+
+/* ── Chart (centre) ────────────────────────────────────────────────────────── */
+.emr-chart {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  outline: none;
+}
+.emr-box { background: var(--emr-panel); border: 1px solid var(--emr-border); border-radius: 2px; }
+.emr-box-title { display: flex; align-items: center; gap: 8px; height: 26px; padding: 0 8px; background: var(--emr-grid-head); border-bottom: 1px solid var(--emr-border); font-size: 12px; font-weight: 700; }
+
+/* Patient header (2 lines, 13 px) */
+.emr-pt { padding: 6px 8px; font-size: 13px; }
+.emr-pt-line { display: flex; flex-wrap: wrap; align-items: center; column-gap: 6px; row-gap: 2px; min-height: 24px; }
+.emr-pt-line + .emr-pt-line { margin-top: 2px; }
+.emr-pt-name { font-size: 15px; font-weight: 700; }
+/* "·" joins the header facts; the dot that would start a wrapped line is clipped away. */
+.emr-pt-clip { overflow: hidden; padding-left: 4px; margin-left: -4px; }
+.emr-pt-clip > .emr-pt-line { margin-left: -14px; column-gap: 0; }
+.emr-pt-clip > .emr-pt-line > *::before { content: "·"; display: inline-block; width: 14px; text-align: center; color: #868E96; font-weight: 400; }
+.emr-pt-id { white-space: nowrap; }
+.emr-pt-field { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+.emr-pt-field .emr-k { color: var(--emr-muted); }
+.emr-pt-field .emr-input, .emr-pt-field .emr-select { height: 22px; font-size: 13px; }
+.emr-pt .emr-weight { width: 56px; text-align: right; }
+.emr-stale { color: var(--emr-stale); font-weight: 700; }
+.emr-warn { color: var(--emr-stale); }
+.emr-chips { display: inline-flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+.emr-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  height: 22px;
+  padding: 0 2px 0 6px;
+  border: 1px solid var(--emr-border);
+  border-radius: 2px;
+  background: #F8F9FA;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.emr-chip-free { border-style: dashed; }
+.emr-chip .emr-code { color: var(--emr-muted); }
+.emr-chip button { width: 18px; height: 18px; border: 0; background: transparent; color: var(--emr-muted); cursor: pointer; border-radius: 2px; }
+.emr-chip button:hover { background: #E9ECEF; color: var(--emr-text); }
+
+/* S O A P tabs */
+.emr-soap .emr-tabs { padding: 4px 6px 0; }
+.emr-soap-body { padding: 6px 8px; min-height: 56px; font-size: 13px; }
+.emr-soap-body textarea { width: 100%; min-height: 44px; resize: vertical; border: 1px solid var(--emr-btn-border); border-radius: 2px; padding: 4px; font-size: 13px; }
+.emr-dx-add { display: inline-flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+.emr-dx-add .emr-select { max-width: 220px; }
+.emr-dx-add .emr-input { width: 140px; }
+.emr-labs { border-collapse: collapse; font-size: 12px; }
+.emr-labs th, .emr-labs td { height: 24px; padding: 0 10px 0 0; text-align: left; white-space: nowrap; }
+.emr-labs th { color: var(--emr-muted); font-weight: 400; }
+.emr-labs .emr-input { width: 64px; text-align: right; }
+.emr-muted { color: var(--emr-muted); }
+
+/* TX/RX */
+.emr-rx-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 6px 8px; border-bottom: 1px solid var(--emr-rule); }
+.emr-rx-tools .emr-label { font-size: 12px; font-weight: 700; color: var(--emr-muted); }
+.emr-search { position: relative; display: inline-flex; align-items: center; }
+.emr-search .emr-input { width: 260px; height: 24px; padding-left: 22px; font-size: 13px; }
+.emr-search .emr-search-icon { position: absolute; left: 6px; width: 12px; height: 12px; color: #6C757D; pointer-events: none; }
+.emr-listbox {
+  position: absolute;
+  top: 26px;
+  left: 0;
+  z-index: 20;
+  width: 380px;
+  max-height: 280px;
+  overflow-y: auto;
+  background: #FFFFFF;
+  border: 1px solid var(--emr-btn-border);
+  border-radius: 2px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+}
+.emr-option { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; min-height: 26px; padding: 2px 8px; font-size: 12px; cursor: pointer; }
+.emr-option[aria-selected="true"] { background: var(--emr-selected); }
+.emr-option .emr-code { color: var(--emr-muted); }
+.emr-option-empty { padding: 6px 8px; font-size: 12px; color: var(--emr-muted); }
+.emr-filter { height: 24px; min-width: 32px; padding: 0 6px; border: 1px solid var(--emr-btn-border); border-radius: 2px; background: var(--emr-btn); font-size: 12px; cursor: pointer; }
+.emr-filter[aria-pressed="true"] { background: var(--emr-selected); border-color: var(--emr-primary); color: #1D3F6E; font-weight: 700; }
+
+/* Rx grid */
+.emr-gridwrap { overflow-x: auto; overscroll-behavior-x: contain; }
+.emr-grid { border-collapse: separate; border-spacing: 0; width: 100%; min-width: max-content; font-size: 12px; }
+.emr-grid th {
+  position: sticky;
+  top: 0;
+  height: 26px;
+  padding: 0 4px;
+  background: var(--emr-grid-head);
+  border-bottom: 1px solid var(--emr-border);
+  border-right: 1px solid var(--emr-rule);
+  text-align: left;
+  font-weight: 700;
+  white-space: nowrap;
+  color: #343A40;
+}
+.emr-grid td {
+  height: 26px;
+  padding: 0 4px;
+  background: #FFFFFF;
+  border-bottom: 1px solid var(--emr-rule);
+  border-right: 1px solid var(--emr-rule);
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.emr-grid tr[data-selected="true"] td { background: var(--emr-selected); }
+.emr-grid tr[data-dur-hl="true"] td { background: var(--emr-dur-row); }
+.emr-grid .emr-input, .emr-grid .emr-select { height: 20px; font-size: 12px; }
+.emr-grid .emr-w-qty { width: 52px; text-align: right; }
+.emr-grid .emr-w-tt { width: 34px; text-align: right; }
+.emr-grid .emr-w-sig { width: 52px; }
+.emr-grid .emr-w-kind { width: 42px; }
+.emr-grid .emr-w-unit { width: 64px; }
+.emr-grid .emr-w-rt { width: 48px; }
+.emr-grid .emr-w-disp { width: 54px; }
+.emr-grid td.emr-r, .emr-grid th.emr-r { text-align: right; }
+.emr-grid td.emr-code { color: var(--emr-muted); }
+.emr-grid td.emr-name { max-width: 210px; overflow: hidden; text-overflow: ellipsis; }
+.emr-grid td.emr-calc { color: #343A40; }
+/* DUR and delete columns stay visible while the grid scrolls sideways. */
+.emr-grid .emr-col-dur { position: sticky; right: 28px; min-width: 76px; box-shadow: -1px 0 0 var(--emr-border); z-index: 1; }
+.emr-grid .emr-col-del { position: sticky; right: 0; width: 28px; min-width: 28px; text-align: center; z-index: 1; }
+.emr-grid th.emr-col-dur, .emr-grid th.emr-col-del { z-index: 2; }
+.emr-grid td.emr-col-dur { padding: 0 4px; }
+.emr-grid .emr-del { width: 20px; height: 20px; padding: 0; border: 1px solid transparent; border-radius: 2px; background: transparent; color: var(--emr-muted); font-size: 14px; line-height: 1; cursor: pointer; }
+.emr-grid .emr-del:hover { border-color: var(--emr-btn-border); background: var(--emr-btn); color: var(--emr-text); }
+.emr-grid-empty td { height: 52px; color: var(--emr-muted); text-align: center; }
+.emr-grid tfoot td { background: #F8F9FA; font-weight: 700; }
+.emr-root [data-nv-slot] { display: inline-block; vertical-align: middle; min-height: 24px; }
+
+/* 진료기록 footer + action bar */
+.emr-record { padding: 6px 8px; font-size: 12px; color: var(--emr-muted); min-height: 30px; }
+.emr-record li { line-height: 20px; color: var(--emr-text); }
+.emr-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 6px 8px; border-top: 1px solid var(--emr-rule); }
+.emr-actions .emr-skip { margin-left: auto; font-size: 12px; color: var(--emr-primary); background: transparent; border: 0; padding: 0 2px; text-decoration: underline; cursor: pointer; height: 24px; }
+
+/* Right column: the docked NuvoVet panel host (the widget attaches its shadow root here). */
+.emr-dur {
+  flex: 0 0 360px;
+  width: 360px;
+  min-height: 0;
+  height: 100%;
+  display: block;
+  background: #FFFFFF;
+}
+
+/* Watermark (§2.1): printed with the chart. Black at 60 % keeps it ≥ 4.5:1 on the frame. */
+.emr-watermark {
+  position: fixed;
+  left: 8px;
+  bottom: 4px;
+  z-index: 5;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
+  opacity: 0.6;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.emr-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  z-index: 30;
+  transform: translateX(-50%);
+  padding: 6px 12px;
+  border-radius: 2px;
+  background: #343A40;
+  color: #FFFFFF;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+/* ── Responsive (§2.2) ─────────────────────────────────────────────────────── */
+@media (max-width: 1439px) {
+  .emr-root .emr-col-folder { display: none; }
+}
+@media (max-width: 1279px) {
+  .emr-root .emr-col-code, .emr-root .emr-col-price { display: none; }
+  /* Waitlist collapses to a 48 px rail; the list opens over the chart. */
+  .emr-wait { display: none; }
+  .emr-wait-rail { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 0 0 48px; width: 48px; padding-top: 6px; margin: 6px 0 6px 6px; background: var(--emr-panel); border: 1px solid var(--emr-border); border-radius: 2px; }
+  .emr-wait-rail .emr-btn { width: 36px; height: 36px; padding: 0; flex-direction: column; gap: 0; font-size: 12px; line-height: 14px; }
+  .emr-root[data-wait-open="true"] .emr-wait { display: flex; position: absolute; top: 34px; left: 0; bottom: 24px; z-index: 25; box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2); }
+  .emr-root[data-wait-open="true"] .emr-wait-head .emr-wait-close { display: inline-flex; }
+}
+@media (max-width: 1023px) {
+  .emr-wait-rail { display: none; }
+  .emr-titlebar .emr-wait-toggle { display: inline-flex; }
+  .emr-titlebar .emr-menu, .emr-titlebar .emr-sep-menu { display: none; }
+  .emr-root[data-wait-open="true"] .emr-wait { top: 28px; bottom: auto; max-height: 70vh; }
+  /* Leave room for the widget's 48 px bottom sheet bar. */
+  .emr-chart { padding-bottom: 60px; overflow: visible; }
+  .emr-watermark { bottom: 52px; }
+  .emr-toast { bottom: 60px; }
+  .emr-search .emr-input { width: 200px; }
+}
+@media (max-width: 639px) {
+  .emr-titlebar .emr-meta { display: none; }
+  .emr-search { flex: 1 1 100%; }
+  .emr-search .emr-input { width: 100%; }
+  .emr-listbox { width: calc(100vw - 32px); }
+  .emr-actions .emr-skip { margin-left: 0; }
+}
+
+/* ── Print (§3.12): the DUR panel never prints; chart lines and the watermark do ─ */
+@media print {
+  .emr-wait, .emr-wait-rail, .emr-dur, .emr-rx-tools, .emr-actions, .emr-toast, .emr-col-del { display: none !important; }
+  .emr-chart { overflow: visible; }
+  .emr-watermark { position: static; padding: 4px 8px; }
+  nuvovet-dur-overlay { display: none !important; }
+}

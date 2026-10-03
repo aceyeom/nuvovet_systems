@@ -1,0 +1,344 @@
+{
+ "$comment": "Every text colour x background pair a src/ui component can render (DESIGN_SYSTEM.md §3.2). Names are Tailwind colour names from theme.css. Transparent or alpha backgrounds are blended over `over` (default background). kind: text = 4.5:1, large / non-text = 3:1. src/ui/__tests__/contrast.test.js fails on a pair below its threshold and on any combination found in src/ui/** that is missing here.",
+ "pairs": [
+  {
+   "fg": "accent-foreground",
+   "bg": "accent",
+   "kind": "text"
+  },
+  {
+   "fg": "accent-foreground",
+   "bg": "sev-critical-bg",
+   "kind": "text"
+  },
+  {
+   "fg": "brand-hover",
+   "bg": "background",
+   "kind": "text"
+  },
+  {
+   "fg": "brand",
+   "bg": "background",
+   "kind": "text"
+  },
+  {
+   "fg": "card-foreground",
+   "bg": "card",
+   "kind": "text"
+  },
+  {
+   "fg": "foreground",
+   "bg": "background",
+   "kind": "text"
+  },
+  {
+   "fg": "foreground",
+   "bg": "brand-soft",
+   "kind": "text"
+  },
+  {
+   "fg": "foreground",
+   "bg": "muted",
+   "kind": "text"
+  },
+  {
+   "fg": "foreground",
+   "bg": "row-hover",
+   "kind": "text"
+  },
+  {
+   "fg": "foreground",
+   "bg": "row-pressed",
+   "kind": "text"
+  },
+  {
+   "fg": "foreground",
+   "bg": "sev-critical-bg",
+   "kind": "text"
+  },
+  {
+   "fg": "foreground",
+   "bg": "sev-minor-bg",
+   "kind": "text"
+  },
+  {
+   "fg": "foreground",
+   "bg": "sev-moderate-bg",
+   "kind": "text"
+  },
+  {
+   "fg": "muted-foreground",
+   "bg": "accent",
+   "kind": "text"
+  },
+  {
+   "fg": "muted-foreground",
+   "bg": "background",
+   "kind": "text"
+  },
+  {
+   "fg": "muted-foreground",
+   "bg": "row-hover",
+   "kind": "text"
+  },
+  {
+   "fg": "muted-foreground",
+   "bg": "sev-critical-bg",
+   "kind": "text"
+  },
+  {
+   "fg": "muted-foreground",
+   "bg": "subtle",
+   "kind": "text"
+  },
+  {
+   "fg": "ok",
+   "bg": "background",
+   "kind": "text"
+  },
+  {
+   "fg": "ok",
+   "bg": "ok-bg",
+   "kind": "text"
+  },
+  {
+   "fg": "on-solid",
+   "bg": "sev-critical-solid",
+   "kind": "text"
+  },
+  {
+   "fg": "on-solid",
+   "bg": "sev-critical-solid/90",
+   "kind": "text",
+   "note": "destructive button hover"
+  },
+  {
+   "fg": "popover-foreground",
+   "bg": "popover",
+   "kind": "text"
+  },
+  {
+   "fg": "primary-foreground",
+   "bg": "primary",
+   "kind": "text"
+  },
+  {
+   "fg": "primary-foreground",
+   "bg": "primary-foreground/20",
+   "kind": "text",
+   "over": "primary",
+   "note": "Kbd inside a tooltip (on --primary)"
+  },
+  {
+   "fg": "primary-foreground",
+   "bg": "primary-hover",
+   "kind": "text"
+  },
+  {
+   "fg": "primary",
+   "bg": "background",
+   "kind": "non-text",
+   "note": "radio indicator fill (non-text)"
+  },
+  {
+   "fg": "secondary-foreground",
+   "bg": "row-pressed",
+   "kind": "text"
+  },
+  {
+   "fg": "secondary-foreground",
+   "bg": "secondary",
+   "kind": "text"
+  },
+  {
+   "fg": "sev-critical",
+   "bg": "accent",
+   "kind": "text"
+  },
+  {
+   "fg": "sev-critical",
+   "bg": "background",
+   "kind": "text"
+  },
+  {
+   "fg": "sev-critical",
+   "bg": "sev-critical-bg",
+   "kind": "text"
+  },
+  {
+   "fg": "sev-major",
+   "bg": "background",
+   "kind": "text"
+  },
+  {
+   "fg": "sev-major",
+   "bg": "sev-major-bg",
+   "kind": "text"
+  },
+  {
+   "fg": "sev-minor",
+   "bg": "background",
+   "kind": "text"
+  },
+  {
+   "fg": "sev-minor",
+   "bg": "sev-minor-bg",
+   "kind": "text"
+  },
+  {
+   "fg": "sev-moderate",
+   "bg": "background",
+   "kind": "text"
+  },
+  {
+   "fg": "sev-moderate",
+   "bg": "sev-moderate-bg",
+   "kind": "text"
+  },
+  {
+   "fg": "sidebar-accent-foreground",
+   "bg": "background",
+   "kind": "text"
+  },
+  {
+   "fg": "sidebar-accent-foreground",
+   "bg": "sidebar-accent",
+   "kind": "text"
+  },
+  {
+   "fg": "sidebar-foreground/70",
+   "bg": "background",
+   "kind": "text"
+  },
+  {
+   "fg": "sidebar-foreground",
+   "bg": "background",
+   "kind": "text"
+  },
+  {
+   "fg": "sidebar-foreground",
+   "bg": "sidebar",
+   "kind": "text"
+  },
+  {
+   "fg": "sidebar-foreground",
+   "bg": "sidebar-accent",
+   "kind": "text"
+  },
+  {
+   "fg": "text-2",
+   "bg": "background",
+   "kind": "text"
+  },
+  {
+   "fg": "text-2",
+   "bg": "subtle",
+   "kind": "text"
+  },
+  {
+   "fg": "foreground",
+   "bg": "subtle",
+   "kind": "text"
+  },
+  {
+   "fg": "foreground",
+   "bg": "popover",
+   "kind": "text"
+  },
+  {
+   "fg": "text-2",
+   "bg": "popover",
+   "kind": "text"
+  },
+  {
+   "fg": "text-2",
+   "bg": "muted",
+   "kind": "text"
+  },
+  {
+   "fg": "text-2",
+   "bg": "brand-soft",
+   "kind": "text"
+  },
+  {
+   "fg": "text-2",
+   "bg": "row-hover",
+   "kind": "text"
+  },
+  {
+   "fg": "muted-foreground",
+   "bg": "popover",
+   "kind": "text"
+  },
+  {
+   "fg": "muted-foreground",
+   "bg": "muted",
+   "kind": "text"
+  },
+  {
+   "fg": "muted-foreground",
+   "bg": "brand-soft",
+   "kind": "text"
+  },
+  {
+   "fg": "brand",
+   "bg": "brand-soft",
+   "kind": "text"
+  },
+  {
+   "fg": "brand",
+   "bg": "popover",
+   "kind": "text"
+  },
+  {
+   "fg": "brand",
+   "bg": "subtle",
+   "kind": "text"
+  },
+  {
+   "fg": "sev-critical",
+   "bg": "popover",
+   "kind": "text"
+  },
+  {
+   "fg": "sev-major",
+   "bg": "popover",
+   "kind": "text"
+  },
+  {
+   "fg": "sev-moderate",
+   "bg": "popover",
+   "kind": "text"
+  },
+  {
+   "fg": "sev-minor",
+   "bg": "popover",
+   "kind": "text"
+  },
+  {
+   "fg": "ok",
+   "bg": "popover",
+   "kind": "text"
+  },
+  {
+   "fg": "foreground",
+   "bg": "segment-active",
+   "kind": "text"
+  },
+  {
+   "fg": "muted-foreground",
+   "bg": "segment-active",
+   "kind": "text"
+  },
+  {
+   "fg": "foreground",
+   "bg": "segment",
+   "kind": "text"
+  },
+  {
+   "fg": "muted-foreground",
+   "bg": "segment",
+   "kind": "text"
+  }
+ ]
+}

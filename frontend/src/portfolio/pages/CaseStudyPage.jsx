@@ -1,171 +1,78 @@
 /**
- * Case study `#/` — one honest scroll: the problem, what was built and by
- * whom, a live render of case Choco from the real engine, the project's
- * status, and links to the cases and to how it works. No marketing claims:
- * every number on this page is computed from the showcase's own data.
+ * Case study `#/` (DESIGN_SYSTEM.md §5.5): breadcrumb, heading, two lines of lead, one ink button
+ * and a link, a live crop of the EMR DUR panel for visit V1 (초코) beside the problem and what was
+ * built, then the design principles with numbers read from the engine's own data.
  */
 
-import { useMemo } from 'react'
-import { ArrowRight, FlaskConical, Layers, ShieldAlert, Repeat2, Pill, UserRound, Stethoscope } from 'lucide-react'
-import '../styles/pages.css'
+import { Button } from '@/ui/primitives/button'
 import { useLang } from '../i18n/index.js'
-import { HREF, caseHref } from '../router.js'
-import { RULES } from '../engine/rules/index.js'
-import { analyze } from '../engine/engine.js'
+import { HREF } from '../router.js'
+import { RULES, RULE_LAYERS } from '../engine/rules/index.js'
 import { DRUGS } from '../knowledge/drugs.js'
 import { SOURCE_IDS } from '../knowledge/sources.js'
-import { CASES, CASE_BY_ID } from '../cases/cases.js'
-import { Section } from '../components/pages/Prose.jsx'
-import LiveCaseRender from '../components/pages/LiveCaseRender.jsx'
-import VerdictBanner from '../components/VerdictBanner.jsx'
-import SeverityTag from '../components/SeverityTag.jsx'
-import SpeciesGlyph from '../components/SpeciesGlyph.jsx'
-import { drugShort } from '../components/format.js'
-
-const PROBLEM_ICONS = { polypharmacy: Pill, offlabel: Stethoscope, nodur: ShieldAlert }
-const STATUS_ICONS = { prototype: FlaskConical, data: Layers, pivot: Repeat2 }
-
-/**
- * The product on the first screen: a compact, live render of case Choco (the
- * real engine runs on its inputs), linking to its workbench.
- */
-function HeroPreview({ caseId = 'choco' }) {
-  const { t, pick } = useLang()
-  const c = CASE_BY_ID[caseId]
-  const result = useMemo(() => analyze(c.input), [c])
-  const top = result.findings[0] || null
-  const name = pick(c.name)
-  return (
-    <a className="pf-hero__preview" href={caseHref(caseId)}>
-      <span className="pf-hero__pvhead">
-        <span className="pf-livecase__glyph"><SpeciesGlyph species={c.species} size={22} /></span>
-        <span className="pf-hero__pvtitles">
-          <span className="pf-eyebrow">{t('cs.preview.eyebrow')}</span>
-          <span className="pf-hero__pvname">{pick(c.title)}</span>
-        </span>
-      </span>
-      <span className="pf-hero__pvrx">{c.input.meds.map((m) => drugShort(m.drugId, pick)).join(' + ')}</span>
-      <VerdictBanner result={result} compact />
-      {top && (
-        <span className="pf-hero__pvfinding">
-          <SeverityTag severity={top.severity} size="sm" />
-          <span className="pf-hero__pvfindingtitle">{pick(top.title)}</span>
-        </span>
-      )}
-      <span className="pf-hero__pvopen">
-        {t('cs.live.open', { name })}
-        <ArrowRight size={15} aria-hidden="true" />
-      </span>
-    </a>
-  )
-}
+import { CASES } from '../cases/cases.js'
+import DurPanelPreview from '../components/DurPanelPreview.jsx'
+import PageCrumbs from '../components/PageCrumbs.jsx'
 
 export default function CaseStudyPage() {
   const { t } = useLang()
-  const counts = { drugs: DRUGS.length, sources: SOURCE_IDS.length, rules: RULES.length, cases: CASES.length }
+  const layerCount = Object.keys(RULE_LAYERS).filter((l) => RULES.some((r) => r.layer === l)).length
+  const counts = { drugs: DRUGS.length, sources: SOURCE_IDS.length, rules: RULES.length, cases: CASES.length, layers: layerCount }
 
   return (
-    <div className="pf-page pf-prose-page pf-study">
-      <div className="pf-herowrap">
-      <header className="pf-hero">
-        <p className="pf-eyebrow">{t('cs.eyebrow')}</p>
-        <h1 className="pf-hero__title">{t('cs.title')}</h1>
-        <p className="pf-lead">{t('cs.lead')}</p>
-        <p className="pf-statuspill">
-          <FlaskConical size={14} aria-hidden="true" />
-          {t('cs.statusPill')}
-        </p>
-        <div className="pf-cta">
-          <a className="pf-btn pf-btn--primary" href={HREF.cases}>
-            {t('cs.ctaCases')}
-            <ArrowRight size={16} aria-hidden="true" />
+    <div className="mx-auto flex max-w-[1200px] flex-col px-4 py-8 sm:px-6 lg:py-12">
+      <header className="flex max-w-[760px] flex-col gap-4">
+        <PageCrumbs items={[{ label: t('nav.study') }]} />
+        <h1 className="text-3xl font-bold text-foreground">{t('cs.title')}</h1>
+        <p className="text-lg text-text-2">{t('cs.lead')}</p>
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-3 pt-1">
+          <Button size="lg" asChild>
+            <a href={HREF.emr}>{t('cs.ctaEmr')}</a>
+          </Button>
+          <a href={HREF.cases} className="text-sm font-medium text-brand underline-offset-4 hover:text-brand-hover hover:underline">
+            {t('cs.ctaCases', { n: counts.cases })}
           </a>
-          <a className="pf-btn pf-btn--secondary" href={HREF.how}>{t('nav.how')}</a>
         </div>
       </header>
-      <HeroPreview caseId="choco" />
+
+      <div className="mt-10 grid items-start gap-x-16 gap-y-12 lg:grid-cols-[360px_minmax(0,1fr)]">
+        <DurPanelPreview visitId="V1" label={t('cs.panelAlt')} />
+        <div className="flex flex-col gap-10">
+          <section aria-labelledby="cs-problem" className="flex flex-col gap-3">
+            <h2 id="cs-problem" className="text-2xl font-semibold text-foreground">{t('cs.problem.title')}</h2>
+            {['p1', 'p2', 'p3'].map((k) => (
+              <p key={k} className="text-base text-text-2">{t(`cs.problem.${k}`)}</p>
+            ))}
+          </section>
+          <section aria-labelledby="cs-built" className="flex flex-col gap-3">
+            <h2 id="cs-built" className="text-2xl font-semibold text-foreground">{t('cs.built.title')}</h2>
+            <ul className="flex list-disc flex-col gap-2 pl-5 text-base text-text-2">
+              <li>{t('cs.built.engine', { rules: counts.rules })}</li>
+              <li>{t('cs.built.data', { drugs: counts.drugs, sources: counts.sources })}</li>
+              <li>{t('cs.built.emr')}</li>
+              <li>{t('cs.built.docs')}</li>
+              <li>{t('cs.built.tests', { cases: counts.cases })}</li>
+            </ul>
+          </section>
+        </div>
       </div>
 
-      <Section id="problem" title={t('cs.problem.title')} lead={t('cs.problem.lead')}>
-        <ul className="pf-points">
-          {['polypharmacy', 'offlabel', 'nodur'].map((k) => {
-            const Icon = PROBLEM_ICONS[k]
-            return (
-              <li key={k} className="pf-point">
-                <span className="pf-point__icon"><Icon size={18} aria-hidden="true" /></span>
-                <div>
-                  <h3 className="pf-point__title">{t(`cs.problem.${k}.title`)}</h3>
-                  <p className="pf-point__body">{t(`cs.problem.${k}.body`)}</p>
-                </div>
-              </li>
-            )
-          })}
-        </ul>
-      </Section>
-
-      <Section id="built" title={t('cs.built.title')}>
-        <div className="pf-twocol">
-          <div className="pf-card">
-            <h3 className="pf-h3">{t('cs.built.originalTitle')}</h3>
-            <p className="pf-card__body">{t('cs.built.original')}</p>
-            <ul className="pf-bullets">
-              {['review', 'search', 'handout'].map((k) => <li key={k}>{t(`cs.built.original.${k}`)}</li>)}
-            </ul>
-          </div>
-          <div className="pf-card">
-            <h3 className="pf-h3">{t('cs.built.rebuildTitle')}</h3>
-            <p className="pf-card__body">{t('cs.built.rebuild')}</p>
-            <ul className="pf-bullets">
-              <li>{t('cs.built.rebuild.engine', { rules: counts.rules })}</li>
-              <li>{t('cs.built.rebuild.data', { drugs: counts.drugs, sources: counts.sources })}</li>
-              <li>{t('cs.built.rebuild.tests', { cases: counts.cases })}</li>
-              <li>{t('cs.built.rebuild.static')}</li>
-            </ul>
-          </div>
-        </div>
-        <div className="pf-role">
-          <span className="pf-point__icon"><UserRound size={18} aria-hidden="true" /></span>
-          <div>
-            <h3 className="pf-point__title">{t('cs.role.title')}</h3>
-            <p className="pf-point__body">{t('cs.role.body')}</p>
-          </div>
-        </div>
-      </Section>
-
-      <Section id="live" title={t('cs.live.title')} lead={t('cs.live.lead')}>
-        <LiveCaseRender caseId="choco" />
-      </Section>
-
-      <Section id="status" title={t('cs.status.title')}>
-        <ul className="pf-points pf-points--stack">
-          {['prototype', 'data', 'pivot'].map((k) => {
-            const Icon = STATUS_ICONS[k]
-            return (
-              <li key={k} className="pf-point">
-                <span className="pf-point__icon"><Icon size={18} aria-hidden="true" /></span>
-                <div>
-                  <h3 className="pf-point__title">{t(`cs.status.${k}.title`)}</h3>
-                  <p className="pf-point__body">{t(`cs.status.${k}.body`)}</p>
-                </div>
-              </li>
-            )
-          })}
-        </ul>
-      </Section>
-
-      <Section id="learned" title={t('cs.learned.title')}>
-        <ul className="pf-bullets">
-          {['buyer', 'data', 'silence'].map((k) => <li key={k}>{t(`cs.learned.${k}`)}</li>)}
-        </ul>
-      </Section>
-
-      <nav className="pf-cta pf-cta--end" aria-label={t('cs.ctaLabel')}>
-        <a className="pf-btn pf-btn--primary" href={HREF.cases}>
-          {t('cs.ctaCases')}
-          <ArrowRight size={16} aria-hidden="true" />
-        </a>
-        <a className="pf-btn pf-btn--secondary" href={HREF.how}>{t('nav.how')}</a>
-      </nav>
+      <section aria-labelledby="cs-principles" className="mt-16 flex flex-col gap-4 border-t border-border pt-8">
+        <h2 id="cs-principles" className="text-2xl font-semibold text-foreground">{t('cs.principles.title')}</h2>
+        {/* One column of term / one sentence, hairline-separated: not a three-up stat row (review P2). */}
+        <dl className="flex max-w-[880px] flex-col divide-y divide-border border-y border-border">
+          {[
+            [t('cs.principles.rules', { n: counts.rules }), t('cs.principles.rulesBody', { layers: counts.layers })],
+            [t('cs.principles.sources', { n: counts.sources }), t('cs.principles.sourcesBody', { drugs: counts.drugs })],
+            [t('cs.principles.deterministic'), t('cs.principles.deterministicBody')],
+          ].map(([term, body]) => (
+            <div key={term} className="grid gap-x-8 gap-y-1 py-3 sm:grid-cols-[12rem_minmax(0,1fr)]">
+              <dt className="text-sm font-medium text-foreground">{term}</dt>
+              <dd className="text-sm text-text-2">{body}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
     </div>
   )
 }

@@ -1,110 +1,44 @@
-import { FileText, ClipboardList, Activity, Plus } from 'lucide-react'
+import { cn } from '@/ui/cn'
 import { useLang } from '../i18n/index.js'
 import { SEVERITIES } from '../engine/findings.js'
-import { SeverityIcon } from './SeverityTag.jsx'
-import { severityWord, msText } from './format.js'
+import Sev, { VERDICT_TINT } from './Severity.jsx'
+import { severityWord } from './format.js'
 
-function splitHeadline(text) {
-  const i = text.indexOf(' — ')
-  if (i < 0) return [text, '']
-  const rest = text.slice(i + 3)
-  return [text.slice(0, i), rest.charAt(0).toUpperCase() + rest.slice(1)]
+/** Non-zero counts only (§1.2 L11): "금기 1 · 투여량 확인 1". */
+export function verdictCounts(result, t, pick) {
+  const c = result.verdict.counts
+  const parts = SEVERITIES.filter((s) => c[s] > 0).map((s) => `${severityWord(s, pick)} ${c[s]}`)
+  if (c.doseChecks > 0) parts.push(t(c.doseChecks === 1 ? 'rv.doseChecks.one' : 'rv.doseChecks', { n: c.doseChecks }))
+  return parts
 }
 
 /**
- * Verdict: icon + word + headline + real counts + trace.
- * compact: one-line version for the mobile summary bar and the case study.
+ * Verdict summary (§5.5): the one tinted surface of the workbench, with the 28 % border. Badge +
+ * the engine's action line + non-zero counts. `actions` sits on the right (report, handout links).
  */
-export default function VerdictBanner({ result, reportHref, handoutHref, empty = false, compact = false, onAddDrug = null }) {
+export default function VerdictBanner({ result, empty = false, actions = null, emptyAction = null, className }) {
   const { t, pick } = useLang()
   const level = empty ? 'none' : result.verdict.level
-  const counts = result.verdict.counts
-  const [head, sub] = splitHeadline(pick(result.verdict.headline))
-  const word = level === 'none' ? head : severityWord(level, pick)
-  const { trace } = result
-
-  if (compact) {
-    return (
-      <div className={`pf-verdict-compact pf-tone--${level}`}>
-        <SeverityIcon severity={level} size={18} />
-        <strong className="pf-verdict-compact__word">{empty ? t('rv.noDrugs') : level === 'none' ? t('sev.none') : word}</strong>
-        {!empty && (
-          <span className="pf-verdict-compact__counts">
-            {SEVERITIES.filter((s) => counts[s] > 0).map((s) => (
-              <span key={s} className={`pf-count pf-count--${s}`}>
-                <SeverityIcon severity={s} size={12} />
-                {counts[s]}
-              </span>
-            ))}
-          </span>
-        )}
-      </div>
-    )
-  }
-
+  const counts = empty ? [] : verdictCounts(result, t, pick)
   return (
-    <section className={`pf-verdict pf-tone--${level}`} aria-labelledby="pf-verdict-word">
-      <div className="pf-verdict__icon">
-        <SeverityIcon severity={level} size={24} />
-      </div>
-      <div className="pf-verdict__body">
-        <div className="pf-verdict__eyebrow">{t('rv.verdict')}</div>
-        {empty ? (
-          <>
-            <h2 className="pf-verdict__word" id="pf-verdict-word">{t('rv.noDrugs')}</h2>
-            {onAddDrug && (
-              <div>
-                <button type="button" className="pf-btn pf-btn--primary pf-btn--sm pf-verdict__cta" onClick={onAddDrug}>
-                  <Plus size={15} aria-hidden="true" />
-                  {t('rv.addDrug')}
-                </button>
-              </div>
-            )}
-          </>
-        ) : (
-          <>
-            <h2 className="pf-verdict__word" id="pf-verdict-word">{word}</h2>
-            {sub && <p className="pf-verdict__headline">{sub}</p>}
-            <ul className="pf-verdict__counts" aria-label={t('sev.legend')}>
-              {SEVERITIES.map((s) => (
-                <li key={s} className={`pf-count pf-count--${s}${counts[s] ? '' : ' is-zero'}`}>
-                  <SeverityIcon severity={s} size={13} />
-                  <span className="pf-count__n">{counts[s]}</span>
-                  <span>{severityWord(s, pick)}</span>
-                </li>
-              ))}
-              <li className="pf-count pf-count--meta">{counts.notes === 1 ? t('rv.noteCount') : t('rv.notesCount', { n: counts.notes })}</li>
-              <li className={`pf-count pf-count--meta${counts.doseProblems ? ' is-strong' : ''}`}>
-                {counts.doseProblems === 1 ? t('rv.doseProblem') : t('rv.doseProblems', { n: counts.doseProblems })}
-              </li>
-            </ul>
-            <p className="pf-verdict__trace">
-              <Activity size={12} aria-hidden="true" />
-              {t('rv.trace', {
-                pairs: trace.pairsEvaluated === 1 ? t('rv.pair') : t('rv.pairs', { n: trace.pairsEvaluated }),
-                rules: t('rv.rules', { n: trace.rulesEvaluated }),
-                ms: msText(trace.ms, t),
-              })}
-            </p>
-          </>
-        )}
-      </div>
-      {(reportHref || handoutHref) && !empty && (
-        <div className="pf-verdict__actions">
-          {reportHref && (
-            <a className="pf-btn pf-btn--secondary pf-btn--sm" href={reportHref}>
-              <FileText size={15} aria-hidden="true" />
-              {t('rv.report')}
-            </a>
-          )}
-          {handoutHref && (
-            <a className="pf-btn pf-btn--secondary pf-btn--sm" href={handoutHref}>
-              <ClipboardList size={15} aria-hidden="true" />
-              {t('rv.handout')}
-            </a>
-          )}
+    <section
+      aria-labelledby="pf-verdict"
+      data-status={level}
+      className={cn('flex flex-col gap-3 rounded-lg border px-4 py-3 sm:flex-row sm:items-center', VERDICT_TINT[level], className)}
+    >
+      <div className="flex min-w-0 flex-1 flex-col gap-1">
+        <div className="flex flex-wrap items-center gap-2">
+          {empty ? null : <Sev level={level} size="md" />}
+          <h2 id="pf-verdict" className="text-base font-semibold text-foreground">
+            {empty ? t('rv.noDrugs') : pick(result.verdict.action)}
+          </h2>
         </div>
-      )}
+        {counts.length ? <p className="text-sm text-text-2">{counts.join(' · ')}</p> : null}
+      </div>
+      {empty ? emptyAction : actions ? <div className="flex shrink-0 flex-wrap items-center gap-2">{actions}</div> : null}
+      <p className="sr-only" aria-live="polite">
+        {empty ? t('rv.noDrugs') : `${pick(result.verdict.action)}. ${counts.join(', ')}`}
+      </p>
     </section>
   )
 }

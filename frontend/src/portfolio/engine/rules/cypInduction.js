@@ -25,7 +25,7 @@ function evaluate(ctx) {
       const iEn = enName(ind.drug), iKo = koName(ind.drug)
       const sEn = enName(sub.drug), sKo = koName(sub.drug)
       const indication = sub.protocol?.indication
-        ? { en: sub.protocol.indication.en.split(' — ')[0], ko: sub.protocol.indication.ko.split(' — ')[0] }
+        ? { en: sub.protocol.indication.en.split(/: | — /)[0], ko: sub.protocol.indication.ko.split(/: | — /)[0] }
         : null
       const isCsa = sub.drug.id === 'ciclosporin'
 
@@ -55,9 +55,9 @@ function evaluate(ctx) {
         evidence = 'literature'
         actions.push(T('Expect lower ciclosporin exposure. If atopic-dermatitis control worsens after phenobarbital is started or changed, measure a trough ciclosporin blood concentration (TDM) before raising the dose.',
           '사이클로스포린 노출 감소를 예상하십시오. 페노바르비탈 시작·변경 후 아토피 조절이 나빠지면 증량 전에 사이클로스포린 최저 혈중 농도(TDM)를 측정하십시오.'))
-        actions.push(T('If phenobarbital is later stopped, ciclosporin levels can rise again — reassess the dose.', '나중에 페노바르비탈을 중단하면 사이클로스포린 농도가 다시 오를 수 있으므로 용량을 재평가하십시오.'))
-        alternatives.push(T('Oclacitinib — among the most effective oral options for chronic canine atopic dermatitis (Olivry 2015). It is not in this formulary, so its own interactions are not checked here.',
-          '오클라시티닙 — 만성 개 아토피 피부염에 가장 효과적인 경구 선택지 중 하나(Olivry 2015). 이 처방집에 없으므로 자체 상호작용은 여기서 검토되지 않습니다.'))
+        actions.push(T('If phenobarbital is later stopped, ciclosporin levels can rise again; reassess the dose.', '나중에 페노바르비탈을 중단하면 사이클로스포린 농도가 다시 오를 수 있으므로 용량을 재평가하십시오.'))
+        alternatives.push(T('Oclacitinib: among the most effective oral options for chronic canine atopic dermatitis (Olivry 2015). It is not in this formulary, so its own interactions are not checked here.',
+          '오클라시티닙: 만성 개 아토피 피부염에 가장 효과적인 경구 선택지 중 하나(Olivry 2015). 이 처방집에 없으므로 자체 상호작용은 여기서 검토되지 않습니다.'))
         sources.push('olivry2015')
       } else {
         if (sub.drug.pk?.note) why.push(sub.drug.pk.note)

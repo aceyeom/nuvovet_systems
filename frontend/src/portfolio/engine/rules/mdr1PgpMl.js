@@ -59,12 +59,12 @@ function evaluate(ctx) {
     const dKo = koName(drug)
     const doseText = doseKnown
       ? T(`${fmt(perKg)} ${thr.unit} (threshold ${thr.value} ${thr.unit})`, `${fmt(perKg)} ${thr.unit} (기준 ${thr.value} ${thr.unit})`)
-      : T('Dose could not be calculated — treated as high', '용량 계산 불가 — 고용량으로 간주')
+      : T('Dose could not be calculated, treated as high', '용량 계산 불가, 고용량으로 간주')
 
     // ── factors ──
     const factors = []
     if (ctx.breed) {
-      factors.push({ kind: 'breed', id: ctx.breed.id, label: T(`${ctx.breed.en} — MDR1 risk: ${ctx.breed.mdr1.replace('_', ' ')}`, `${ctx.breed.ko[0]} — MDR1 위험: ${ { high: '높음', moderate: '중간', low: '낮음(보고됨)', not_reported: '보고 없음' }[ctx.breed.mdr1] }`) })
+      factors.push({ kind: 'breed', id: ctx.breed.id, label: T(`${ctx.breed.en}: MDR1 risk ${ctx.breed.mdr1.replace('_', ' ')}`, `${ctx.breed.ko[0]}: MDR1 위험 ${ { high: '높음', moderate: '중간', low: '낮음(보고됨)', not_reported: '보고 없음' }[ctx.breed.mdr1] }`) })
     } else {
       factors.push({ kind: 'breed', id: 'unknown', label: T(`Breed not recognised${ctx.breedText ? ` (“${ctx.breedText}”)` : ''}`, `품종 미확인${ctx.breedText ? ` (“${ctx.breedText}”)` : ''}`) })
     }
@@ -78,7 +78,7 @@ function evaluate(ctx) {
     const inhKo = joinKo(inhibitors.map((i) => koName(i.drug)))
     let title
     if (severity === 'contraindicated' && !doseKnown) {
-      title = T(`${dEn} in an MDR1-risk dog — dose not calculable, treated as high`, `MDR1 위험견에게 ${dKo} — 용량 계산 불가, 고용량으로 간주`)
+      title = T(`${dEn} in an MDR1-risk dog: dose not calculable, treated as high`, `MDR1 위험견에게 ${dKo}: 용량 계산 불가, 고용량으로 간주`)
     } else if (severity === 'contraindicated') {
       title = hasInhibitor
         ? T(`High-dose ${lcFirst(dEn)} in an MDR1-risk dog, with a P-gp inhibitor`, `MDR1 위험견에게 고용량 ${dKo} + P-gp 억제제 병용`)
@@ -90,7 +90,7 @@ function evaluate(ctx) {
     } else if (geno === 'unknown' && highDose) {
       title = T(`MDR1 status unknown with high-dose ${lcFirst(dEn)}`, `MDR1 상태 미확인 상태에서 고용량 ${dKo}`)
     } else if (geno === 'clear' && highDose) {
-      title = T(`High-dose ${lcFirst(dEn)} — genotype normal/normal, monitor`, `고용량 ${dKo} — 유전자형 정상/정상, 관찰 필요`)
+      title = T(`High-dose ${lcFirst(dEn)}: genotype normal/normal, monitor`, `고용량 ${dKo}: 유전자형 정상/정상, 관찰 필요`)
     } else {
       title = T(`${dEn} with a P-gp inhibitor (${inhEn})`, `${josa(dKo, '과/와')} P-gp 억제제(${inhKo}) 병용`)
     }
@@ -166,7 +166,7 @@ function evaluate(ctx) {
       actions.push(T('Keep to the labelled preventive dose; avoid access to concentrated large-animal products.', '라벨 예방 용량을 지키고, 고농도 대동물용 제품에 접근하지 않도록 하십시오.'))
     }
     if (highDose) {
-      alternatives.push(T('Isoxazoline (e.g. afoxolaner, fluralaner, sarolaner) — effective for canine demodicosis per the WAVD guideline (Mueller 2020).', '이속사졸린계(예: 아폭솔라너, 플루랄라너, 사롤라너) — WAVD 가이드라인상 개 모낭충증에 효과적(Mueller 2020).'))
+      alternatives.push(T('Isoxazoline (e.g. afoxolaner, fluralaner, sarolaner): effective for canine demodicosis per the WAVD guideline (Mueller 2020).', '이속사졸린계(예: 아폭솔라너, 플루랄라너, 사롤라너): WAVD 가이드라인상 개 모낭충증에 효과적(Mueller 2020).'))
       sources.push('mueller2020')
     }
     alternatives.push(T('ABCB1 (MDR1) genotyping to guide any future macrocyclic lactone use.', '향후 마크로사이클릭 락톤 사용 판단을 위한 ABCB1(MDR1) 유전자 검사.'))
@@ -211,7 +211,7 @@ function lcFirst(s) {
 export default {
   ...RULE,
   layer: 'species_breed',
-  name: T('MDR1 / P-glycoprotein — macrocyclic lactones', 'MDR1 / P-당단백질 — 마크로사이클릭 락톤'),
+  name: T('MDR1 / P-glycoprotein: macrocyclic lactones', 'MDR1 / P-당단백질: 마크로사이클릭 락톤'),
   sources: ['mealey2001', 'mealey2008', 'gramer2010', 'mealeyMeurs2008', 'schrickx2014', 'mueller2020'],
   evaluate,
 }

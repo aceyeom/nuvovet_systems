@@ -120,7 +120,7 @@ describe('DOSE_RANGE wording when a single-dose protocol is repeated', () => {
     expect(acts).toContain('Do not repeat')
     expect(f.actions.map((a) => a.ko).join(' ')).not.toContain('이내로 조정')
     expect(f.consequence.en).not.toContain('Higher exposure')
-    expect(f.factors[0].label.en).toBe('5 mg/kg q12h (protocol: single dose)')
+    expect(f.factors[0].label.en).toBe('5 mg/kg every 12 h (BID); protocol is a single dose')
   })
   it('a repeated dose that is also ≥ 2× the maximum is major', () => {
     const r = analyze(cat({ meds: [{ ...med('meloxicam', 'melox_cat_periop', 0.6, 'mg/kg', 'q24h'), route: 'SC' }] }))
@@ -221,7 +221,7 @@ describe('no "0 × tablet" plans', () => {
   it('tramadol 2 mg/kg for a 5 kg cat: says no listed strength can deliver 10 mg, as a rounding note', () => {
     const r = analyze(cat({ weightKg: 5, meds: [med('tramadol', null, 2, 'mg/kg', 'q12h')] }))
     const d = r.doses[0]
-    expect(d.administration.en).toBe('No listed strength can deliver 10 mg — compound or use a liquid')
+    expect(d.administration.en).toBe('No listed strength can deliver 10 mg. Compound or use a liquid')
     expect(d.administration.ko).toContain('등록된 함량으로')
     expect(r.notes.some((n) => n.id === 'rounding_tramadol_0' && n.text.en.startsWith('No listed strength'))).toBe(true)
   })

@@ -6,7 +6,8 @@
 import { getDrug, getProtocol } from '../knowledge/drugs.js'
 import { BREED_BY_ID } from '../knowledge/breeds.js'
 import { CONDITION_BY_ID, CREATININE_UPPER } from '../knowledge/conditions.js'
-import { normalizeFrequency, buildDoseRow, exposure24hPerKg } from './dose.js'
+import { normalizeFrequency, buildDoseRow, exposure24hPerKg, compareWithProtocol, ROUNDING_TOLERANCE, BOUND_TOLERANCE } from './dose.js'
+import { parseDoseUnit, fixFloat, fmtNum } from './units.js'
 import { resolveBreed } from './search.js'
 import { RULES } from './rules/index.js'
 import { mergeContributions, computeVerdict } from './findings.js'
@@ -80,7 +81,7 @@ export function analyze(caseInput) {
     notes.push({ id: 'species_unsupported', kind: 'administration', category: 'validation', drugIds: [], text: T(`Species “${caseInput.species}” is not supported; the case was checked as a dog. Only dogs and cats are covered.`, `“${caseInput.species}” 종은 지원하지 않아 개로 간주해 검토했습니다. 개와 고양이만 지원합니다.`), sources: [] })
   }
   if (input.weightKg == null) {
-    notes.push({ id: 'weight_missing', kind: 'administration', category: 'validation', drugIds: [], text: T('Body weight missing — per-kg doses cannot be calculated or checked.', '체중이 없어 kg당 용량을 계산·검토할 수 없습니다.'), sources: [] })
+    notes.push({ id: 'weight_missing', kind: 'administration', category: 'validation', drugIds: [], text: T('Body weight missing, so per-kg doses cannot be calculated or checked.', '체중이 없어 kg당 용량을 계산·검토할 수 없습니다.'), sources: [] })
   }
 
   // ── Resolve medications and compute doses ──
@@ -113,6 +114,90 @@ export function analyze(caseInput) {
     })
   })
 
+  // ── Same ingredient on several rows (spec D9) ──
+  // Rows that share route, frequency, duration and protocol and have a computable
+  // mg dose are one regimen split across products: the mg per administration is
+  // summed and dose-checked once, on the first row (the "lead"). Any other
+  // combination goes to DUPLICATE_INGREDIENT via ctx.duplicateGroups.
+  const byDrug = new Map()
+  for (const m of meds) {
+    if (!byDrug.has(m.drug.id)) byDrug.set(m.drug.id, [])
+    byDrug.get(m.drug.id).push(m)
+  }
+  const duplicateGroups = []
+  for (const group of byDrug.values()) {
+    if (group.length < 2) continue
+    const lead = group[0]
+    const same = (f) => group.every((m) => f(m) === f(lead))
+    const summable = group.every((m) => m.doseRow.perDoseMg != null) &&
+      same((m) => m.med.route || null) && same((m) => m.freqId || null) &&
+      same((m) => m.med.durationDays ?? null) && same((m) => m.protocol?.id || null)
+    if (!summable) {
+      duplicateGroups.push(group)
+      continue
+    }
+    const totalMg = fixFloat(group.reduce((s, m) => s + m.doseRow.perDoseMg, 0))
+    const allCount = group.every((m) => parseDoseUnit(m.med.dose?.unit)?.dimension === 'count')
+    const cmp = compareWithProtocol({
+      protocol: lead.protocol,
+      amount: { ok: true, mg: totalMg, dimension: 'mass' },
+      weightKg: input.weightKg,
+      species: input.species,
+      frequency: lead.freqId,
+      tolerance: allCount ? ROUNDING_TOLERANCE : BOUND_TOLERANCE,
+    })
+    for (const m of group) {
+      m.doseRow.combined = { rows: group.length, indexes: group.map((x) => x.index), totalMg }
+      if (lead.protocol) {
+        m.doseRow.status = cmp.status
+        m.doseRow.ratio = cmp.ratio ?? null
+        m.doseRow.compared = cmp.compared || null
+        m.doseRow.tolerated = Boolean(cmp.tolerated)
+      }
+      if (m !== lead) m.combinedInto = m.doseRow.combinedInto = lead.index
+    }
+    lead.amount = { ...lead.amount, mg: totalMg }
+    lead.exposure24hPerKg = exposure24hPerKg(totalMg, input.weightKg, lead.freqId)
+    const total = fmtNum(totalMg, 4)
+    notes.push({
+      id: `combined_${lead.drug.id}`,
+      kind: 'administration',
+      category: 'administration',
+      drugIds: [lead.drug.id],
+      text: T(`${lead.drug.name.en}: ${group.length} rows of the same ingredient were summed to ${total} mg per administration and checked once.`,
+        `${lead.drug.name.ko}: 같은 성분 ${group.length}행을 합산해 1회 ${total} mg으로 한 번 검토했습니다.`),
+      sources: [],
+    })
+  }
+
+  // ── A planned amount must not breach a safety ceiling (spec D15) ──
+  // The entered mg/kg can be within the feline enrofloxacin limit while the
+  // nearest whole-product amount the engine planned is above it. Only for an
+  // engine-planned amount: a count/volume entry is the vet's own amount and is
+  // checked by ENRO_FELINE_RETINA directly.
+  for (const m of meds) {
+    const limit = m.drug.flags?.felineRetinalLimit
+    if (input.species !== 'cat' || !limit || m.combinedInto != null) continue
+    // A summed group (lead row) is planned row by row: its delivered amount is the sum.
+    const rows = m.doseRow.combined ? meds.filter((x) => m.doseRow.combined.indexes.includes(x.index)) : [m]
+    if (rows.some((x) => x.doseRow.deliveredMg == null || ['count', 'volume'].includes(parseDoseUnit(x.med.dose?.unit)?.dimension))) continue
+    const delivered = fixFloat(rows.reduce((sum, x) => sum + x.doseRow.deliveredMg, 0))
+    if (m.exposure24hPerKg == null || m.exposure24hPerKg > limit.value * (1 + 1e-9)) continue // not computable, or the entered dose already breaches
+    const v = exposure24hPerKg(delivered, input.weightKg, m.freqId)
+    if (v == null || v <= limit.value * (1 + 1e-9)) continue
+    m.doseRow.planExceedsCeiling = { valuePerKgDay: v, limit: limit.value }
+    const admin = { en: rows.map((x) => x.doseRow.administration.en).join(' + '), ko: rows.map((x) => x.doseRow.administration.ko).join(' + ') }
+    notes.push({
+      id: `ceiling_plan_${m.drug.id}_${m.index}`,
+      kind: 'administration',
+      category: 'caution',
+      drugIds: [m.drug.id],
+      text: T(`${m.drug.name.en}: the nearest product amount (${admin.en}) gives ${fmtNum(v)} mg/kg/day, above the feline limit of ${limit.value} mg/kg/day. Use another strength or a compounded form; do not round up.`,
+        `${m.drug.name.ko}: 가장 가까운 제품 투여량(${admin.ko})은 ${fmtNum(v)} mg/kg/일로 고양이 한계 ${limit.value} mg/kg/일을 넘습니다. 다른 함량이나 조제 제형을 사용하고 올림하지 마십시오.`),
+      sources: ['baytril_label'],
+    })
+  }
+
   const ctx = {
     input,
     species: input.species,
@@ -124,6 +209,7 @@ export function analyze(caseInput) {
     allergies: new Set(input.allergies),
     kidney: kidneyContext(input),
     meds,
+    duplicateGroups,
   }
 
   // ── Run rules ──

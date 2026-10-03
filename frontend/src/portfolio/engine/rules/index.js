@@ -12,6 +12,8 @@ import CYP_INDUCTION from './cypInduction.js'
 import GASTRIC_PH_AZOLE from './gastricPhAzole.js'
 import NSAID_CORTICOSTEROID from './nsaidCorticosteroid.js'
 import NSAID_DUPLICATE from './nsaidDuplicate.js'
+import DUPLICATE_INGREDIENT from './duplicateIngredient.js'
+import ACID_SUPPRESSANT_DUPLICATE from './acidSuppressantDuplicate.js'
 import SEROTONERGIC from './serotonergic.js'
 import IMMUNOSUPPRESSION_ADDITIVE from './immunosuppressionAdditive.js'
 import NSAID_RENAL from './nsaidRenal.js'
@@ -31,6 +33,8 @@ export const RULES = [
   GASTRIC_PH_AZOLE,
   NSAID_CORTICOSTEROID,
   NSAID_DUPLICATE,
+  DUPLICATE_INGREDIENT,
+  ACID_SUPPRESSANT_DUPLICATE,
   SEROTONERGIC,
   IMMUNOSUPPRESSION_ADDITIVE,
   NSAID_RENAL,

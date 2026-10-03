@@ -1,4 +1,5 @@
 import { History, X } from 'lucide-react'
+import { Button } from '@/ui/primitives/button'
 import { useLang } from '../i18n/index.js'
 import { severityWord, drugShort } from './format.js'
 
@@ -24,10 +25,10 @@ export function describeDiff(diff, t, pick, lang) {
   for (const c of diff.changed) parts.push(t('wc.changed', { name: findingName(c.finding, t, pick), from: sev(c.from), to: sev(c.to) }))
   if (diff.verdictFrom && diff.verdictTo && diff.verdictFrom !== diff.verdictTo) parts.push(t('wc.verdict', { from: sev(diff.verdictFrom), to: sev(diff.verdictTo) }))
   if (!parts.length) parts.push(t('wc.nochange'))
-  return parts.join(' · ')
+  return parts.join('. ')
 }
 
-/** change: { label:{ key, vars }, diff } */
+/** One status line after an edit: what changed in the findings. change: { label:{ key, vars }, diff } */
 export default function WhatChanged({ change, onDismiss }) {
   const { t, pick, lang } = useLang()
   if (!change) return null
@@ -35,17 +36,17 @@ export default function WhatChanged({ change, onDismiss }) {
   for (const [k, v] of Object.entries(change.label.vars || {})) vars[k] = typeof v === 'object' && v ? pick(v) : v
   const label = t(change.label.key, vars)
   return (
-    <div className="pf-changed" role="status">
-      <History size={14} aria-hidden="true" className="pf-changed__icon" />
-      <span className="pf-changed__text">
-        <span className="pf-sr">{t('wc.label')}: </span>
-        <strong>{label}</strong>
-        <span aria-hidden="true">: </span>
+    <div className="flex items-start gap-2 text-sm text-text-2" role="status">
+      <History aria-hidden="true" strokeWidth={1.5} className="mt-0.5 size-4 shrink-0 text-muted-foreground" />
+      <p className="min-w-0 flex-1">
+        <span className="sr-only">{t('wc.label')}: </span>
+        <span className="font-medium text-foreground">{label}</span>
+        <span aria-hidden="true">. </span>
         {describeDiff(change.diff, t, pick, lang)}
-      </span>
-      <button type="button" className="pf-icon-btn pf-icon-btn--sm" onClick={onDismiss} aria-label={t('wc.dismiss')}>
-        <X size={14} aria-hidden="true" />
-      </button>
+      </p>
+      <Button variant="ghost" size="icon-sm" onClick={onDismiss} aria-label={t('wc.dismiss')} className="-my-1">
+        <X aria-hidden="true" strokeWidth={1.5} />
+      </Button>
     </div>
   )
 }

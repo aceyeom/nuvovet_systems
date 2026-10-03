@@ -26,7 +26,7 @@ function evaluate(ctx) {
       problemKey: `renal:${m.drug.id}`,
       drugIds: [m.drug.id],
       factors: ctx.kidney.factors,
-      title: T(`${enName(m.drug)} is mainly cleared by the kidney — adjust for kidney disease`, `${koName(m.drug)}: 주로 신장으로 배설 — 신장병에 맞춰 조정 필요`),
+      title: T(`${enName(m.drug)} is mainly cleared by the kidney: adjust for kidney disease`, `${koName(m.drug)}: 주로 신장으로 배설, 신장병에 맞춰 조정 필요`),
       consequence: T('The drug accumulates, so dose-related effects (for gabapentin: sedation, ataxia) are stronger and last longer.', '약물이 축적되어 용량 관련 효과(가바펜틴의 경우 진정, 운동실조)가 더 강하고 오래갑니다.'),
       why,
       actions: [

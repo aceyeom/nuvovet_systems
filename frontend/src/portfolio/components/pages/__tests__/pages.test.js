@@ -12,7 +12,7 @@ import pagesEn from '../../../i18n/pages.en.js'
 import pagesKo from '../../../i18n/pages.ko.js'
 import { checkCase } from '../goldenCheck.js'
 import { reportId, citedSources } from '../../report/reportModel.js'
-import { buildHandout, ownerAmount, scheduleFor, emergencySigns, watchSigns } from '../../report/handoutModel.js'
+import { buildHandout, ownerAmount, scheduleFor, emergencySigns, watchSigns, dedupe, signCoveredBy, withoutEmergency } from '../../report/handoutModel.js'
 import { OWNER_FOOD, OWNER_CONDITIONS, FREQ_OWNER, ROUTE_TEXT } from '../../report/ownerText.js'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
@@ -44,7 +44,9 @@ describe('page strings (i18n)', () => {
 
   it('every literal t()/tr() key used by the new pages exists in both languages', () => {
     const files = [
-      ...['CaseStudyPage.jsx', 'ReportPage.jsx', 'HandoutPage.jsx', 'HowItWorksPage.jsx'].map((f) => join(ROOT, 'pages', f)),
+      ...['CaseStudyPage.jsx', 'CasesPage.jsx', 'WorkbenchPage.jsx', 'ReportPage.jsx', 'HandoutPage.jsx', 'HowItWorksPage.jsx'].map((f) => join(ROOT, 'pages', f)),
+      join(ROOT, 'PortfolioApp.jsx'),
+      ...readdirSync(join(ROOT, 'components')).filter((f) => f.endsWith('.jsx')).map((f) => join(ROOT, 'components', f)),
       ...readdirSync(join(ROOT, 'components', 'report')).filter((f) => f.endsWith('.jsx')).map((f) => join(ROOT, 'components', 'report', f)),
       ...readdirSync(join(ROOT, 'components', 'pages')).filter((f) => f.endsWith('.jsx')).map((f) => join(ROOT, 'components', 'pages', f)),
     ]
@@ -62,10 +64,7 @@ describe('page strings (i18n)', () => {
 
   it('templated keys used by the pages exist', () => {
     const templated = [
-      ...['polypharmacy', 'offlabel', 'nodur'].flatMap((k) => [`cs.problem.${k}.title`, `cs.problem.${k}.body`]),
-      ...['prototype', 'data', 'pivot'].flatMap((k) => [`cs.status.${k}.title`, `cs.status.${k}.body`]),
-      ...['review', 'search', 'handout'].map((k) => `cs.built.original.${k}`),
-      ...['buyer', 'data', 'silence'].map((k) => `cs.learned.${k}`),
+      ...['p1', 'p2', 'p3'].map((k) => `cs.problem.${k}`),
       ...['input', 'resolve', 'rules', 'merge', 'render'].flatMap((k) => [`hw.step.${k}.title`, `hw.step.${k}.body`]),
       ...['interactions', 'species', 'disease', 'dose', 'notes'].map((k) => `hw.dg.layer.${k}`),
       ...['iver', 'plan', 'prevent', 'mmi'].map((k) => `hw.code.ex.${k}`),
@@ -74,6 +73,7 @@ describe('page strings (i18n)', () => {
       ...['validation', 'coverage', 'silence', 'organ', 'rounding', 'scope', 'copy'].map((k) => `hw.limits.${k}`),
       ...['review', 'pharmacist', 'drugs', 'retro', 'emr'].map((k) => `hw.next.${k}`),
       ...['changed', 'dispensed', 'discussed'].map((k) => `rp.ack.${k}`),
+      ...['study', 'cases', 'emr', 'how'].map((k) => `nav.${k}`),
     ]
     for (const k of templated) {
       expect(DICTS.en[k], `en: ${k}`).toBeTruthy()
@@ -170,11 +170,39 @@ describe('owner handout', () => {
   it('watch signs combine the drug’s owner signs with those of findings about it; emergency signs come from findings', () => {
     const c = CASE_BY_ID.nabi
     const r = analyze(c.input)
-    const mmi = watchSigns('methimazole', r.findings).map((s) => s.en)
-    expect(mmi).toEqual(expect.arrayContaining([...DRUG_BY_ID.methimazole.ownerSigns.map((s) => s.en), ...r.findings[0].ownerSigns.map((s) => s.en)]))
+    const all = [...DRUG_BY_ID.methimazole.ownerSigns, ...r.findings[0].ownerSigns]
+    const mmi = watchSigns('methimazole', r.findings)
+    // Every sign is either listed or covered by a broader listed sign (DESIGN_SYSTEM.md §5.5 dedupe).
+    for (const s of all) expect(mmi.some((m) => m.en === s.en || signCoveredBy(s, m)), s.en).toBe(true)
     expect(emergencySigns(r.findings).map((s) => s.en)).toEqual(r.findings[0].ownerSigns.map((s) => s.en))
     expect(emergencySigns([])).toEqual([])
     expect(handout('nabi').conditions.map((x) => x.id)).toEqual(['hyperthyroidism', 'ckd'])
+  })
+
+  it('dedupe drops a sign contained in another sign for the same drug ("구토" ⊂ "구토 또는 식욕 부진")', () => {
+    const vomit = { en: 'Vomiting', ko: '구토' }
+    const broad = { en: 'Vomiting or not eating', ko: '구토 또는 식욕 부진' }
+    expect(signCoveredBy(vomit, broad)).toBe(true)
+    expect(signCoveredBy(broad, vomit)).toBe(false)
+    expect(dedupe([broad, vomit])).toEqual([broad])
+    expect(dedupe([vomit, broad])).toEqual([broad])
+    // Word for word: a partial word never matches ("Seizure" is not covered by "Seizures").
+    expect(signCoveredBy({ en: 'Seizure', ko: '발작' }, { en: 'Seizures', ko: '발작들' })).toBe(false)
+    const mmi = handout('nabi').meds.find((m) => m.drugId === 'methimazole').signs
+    expect(mmi.map((s) => s.ko)).toContain('구토 또는 식욕 부진')
+    expect(mmi.map((s) => s.ko)).not.toContain('구토')
+  })
+
+  it('emergency signs are not repeated under "Watch for"', () => {
+    for (const cs of CASES) {
+      const h = handout(cs.id)
+      for (const m of h.meds) {
+        for (const s of m.signs) expect(h.emergency.some((e) => signCoveredBy(s, e)), `${cs.id}/${m.drugId}: ${s.en}`).toBe(false)
+      }
+    }
+    // Choco: every ivermectin sign is an emergency sign, so its "Watch for" list is empty.
+    expect(handout('choco').meds.find((m) => m.drugId === 'ivermectin').signs).toEqual([])
+    expect(withoutEmergency([{ en: 'Drooling', ko: '침 흘림' }], [{ en: 'Drooling', ko: '침 흘림' }])).toEqual([])
   })
 
   it('owner wording refers to real drugs, sources and conditions, in both languages', () => {

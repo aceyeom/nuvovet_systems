@@ -71,13 +71,19 @@ describe('formulary', () => {
     }
   })
 
-  it('protocols are well-formed: parseable unit matching the basis, min ≤ max, known frequency, a source', () => {
+  it('protocols are well-formed: parseable unit matching the basis, min ≤ max (or a minimum-only max: null), known frequency, a source', () => {
     for (const d of DRUGS) {
       for (const p of d.protocols) {
         const u = parseDoseUnit(p.dose.unit)
         expect(u, `${p.id} unit`).toBeTruthy()
         expect(u.basis, p.id).toBe(p.dose.basis)
-        expect(p.dose.min, p.id).toBeLessThanOrEqual(p.dose.max)
+        if (p.dose.max === null) expect(p.dose.min, `${p.id}: a minimum-only protocol needs min > 0`).toBeGreaterThan(0)
+        else expect(p.dose.min, p.id).toBeLessThanOrEqual(p.dose.max)
+        if (p.phase != null) expect(['start'], `${p.id} phase`).toContain(p.phase)
+        if (p.repeatPolicy != null) {
+          expect(['label_single_only'], `${p.id} repeatPolicy`).toContain(p.repeatPolicy)
+          expect([].concat(p.frequency), `${p.id}: repeatPolicy only applies to single-dose protocols`).toEqual(['once'])
+        }
         for (const f of [].concat(p.frequency)) expect(FREQUENCY_BY_ID[f], `${p.id} ${f}`).toBeTruthy()
         expect(['label', 'extra-label'], p.id).toContain(p.labelStatus)
         expect(SOURCES[p.source], p.id).toBeTruthy()

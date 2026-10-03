@@ -1,105 +1,117 @@
 import { useMemo, useState } from 'react'
-import { Check, X, RotateCw } from 'lucide-react'
+import { Check, RotateCw, X } from 'lucide-react'
+import { Button } from '@/ui/primitives/button'
 import { useLang } from '../../i18n/index.js'
 import { CASES } from '../../cases/cases.js'
 import { analyze } from '../../engine/engine.js'
 import { caseHref } from '../../router.js'
-import SeverityTag from '../SeverityTag.jsx'
-import { msText, severityWord } from '../format.js'
+import { msText, severityWord, caseName } from '../format.js'
 import { checkCase } from './goldenCheck.js'
 
-function Mark({ pass }) {
+function Mark({ pass, children }) {
   const { t } = useLang()
-  return (
-    <span className={`pf-pass${pass ? ' is-pass' : ' is-fail'}`}>
-      {pass ? <Check size={14} strokeWidth={2.5} aria-hidden="true" /> : <X size={14} strokeWidth={2.5} aria-hidden="true" />}
-      {pass ? t('hw.gold.pass') : t('hw.gold.fail')}
+  return pass ? (
+    <span className="inline-flex items-center gap-1 text-sm text-foreground">
+      <Check aria-hidden="true" strokeWidth={1.5} className="size-3.5 shrink-0" />
+      {children ?? t('hw.gold.pass')}
+    </span>
+  ) : (
+    <span data-status="critical" className="inline-flex items-center gap-1 text-sm font-medium text-sev-critical">
+      <X aria-hidden="true" strokeWidth={1.5} className="size-3.5 shrink-0" />
+      {children ?? t('hw.gold.fail')}
     </span>
   )
 }
 
 function findingList(list, pick) {
   if (!list.length) return null
-  return list.map((f) => `${f.ruleId} · ${severityWord(f.severity, pick)}`)
+  return list.map((f) => `${f.ruleId} ${severityWord(f.severity, pick)}`)
 }
 
-/** Runs analyze() on every golden case in the browser and compares with case.expect. */
+const TH = 'h-8 px-3 text-left align-middle text-xs font-medium whitespace-nowrap text-muted-foreground first:pl-0'
+const TD = 'px-3 py-2.5 align-top text-sm first:pl-0'
+
+/** Runs analyze() on every golden case in the browser and compares the result with case.expect. */
 export default function GoldenTable() {
   const { t, pick } = useLang()
   const [run, setRun] = useState(0)
   const rows = useMemo(() => {
-    // `run` re-executes the engine so the timing column is a fresh measurement.
-    void run
+    void run // re-executes the engine so the timing column is a fresh measurement
     return CASES.map((c) => {
       const result = analyze(c.input)
       return { c, result, check: checkCase(c, result) }
     })
   }, [run])
   const passed = rows.filter((r) => r.check.pass).length
+  const verdictWord = (level) => (level === 'none' ? t('sev.none') : severityWord(level, pick))
 
   return (
-    <div className="pf-gold">
-      <div className="pf-gold__bar">
-        <p className={`pf-gold__summary${passed === rows.length ? ' is-pass' : ' is-fail'}`} aria-live="polite">
-          {passed === rows.length ? <Check size={16} strokeWidth={2.5} aria-hidden="true" /> : <X size={16} strokeWidth={2.5} aria-hidden="true" />}
-          {t('hw.gold.summary', { passed, total: rows.length })}
+    <div className="flex flex-col gap-3">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <p aria-live="polite">
+          <Mark pass={passed === rows.length}>{t('hw.gold.summary', { passed, total: rows.length })}</Mark>
         </p>
-        <button type="button" className="pf-btn pf-btn--ghost pf-btn--sm" onClick={() => setRun((n) => n + 1)}>
-          <RotateCw size={14} aria-hidden="true" />
+        <Button variant="ghost" size="sm" onClick={() => setRun((n) => n + 1)}>
+          <RotateCw aria-hidden="true" strokeWidth={1.5} />
           {t('hw.gold.rerun')}
-        </button>
+        </Button>
       </div>
-      <table className="pf-gtable">
-        <thead>
-          <tr>
-            <th scope="col">{t('hw.gold.case')}</th>
-            <th scope="col">{t('hw.gold.expected')}</th>
-            <th scope="col">{t('hw.gold.actual')}</th>
-            <th scope="col">{t('hw.gold.checks')}</th>
-            <th scope="col">{t('hw.gold.result')}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map(({ c, result, check }) => {
-            const byId = Object.fromEntries(check.checks.map((x) => [x.id, x]))
-            const expected = findingList(c.expect.findings, pick)
-            const actual = findingList(result.findings, pick)
-            return (
-              <tr key={c.id}>
-                <th scope="row" data-label={t('hw.gold.case')}>
-                  <a href={caseHref(c.id)} className="pf-gtable__case">{pick(c.name)}</a>
-                  <span className="pf-gtable__id">{c.id}</span>
-                </th>
-                <td data-label={t('hw.gold.expected')}>
-                  <SeverityTag severity={c.expect.verdict} size="sm" />
-                  <ul className="pf-gtable__list">
-                    {expected ? expected.map((x) => <li key={x}>{x}</li>) : <li className="pf-muted">{t('hw.gold.noFindings')}</li>}
-                  </ul>
-                </td>
-                <td data-label={t('hw.gold.actual')}>
-                  <SeverityTag severity={result.verdict.level} size="sm" />
-                  <ul className="pf-gtable__list">
-                    {actual ? actual.map((x) => <li key={x}>{x}</li>) : <li className="pf-muted">{t('hw.gold.noFindings')}</li>}
-                  </ul>
-                  <span className="pf-gtable__ms">{msText(result.trace.ms, t)}</span>
-                </td>
-                <td data-label={t('hw.gold.checks')}>
-                  <ul className="pf-gtable__checks">
-                    {['verdict', 'findings', 'notes', 'doses'].map((k) => (
-                      <li key={k} className={byId[k].pass ? 'is-pass' : 'is-fail'}>
-                        {byId[k].pass ? <Check size={13} strokeWidth={2.5} aria-hidden="true" /> : <X size={13} strokeWidth={2.5} aria-hidden="true" />}
-                        <span>{byId[k].expectedCount === 0 ? t(`hw.gold.check.${k}None`) : t(`hw.gold.check.${k}`, { n: byId[k].expectedCount ?? 0 })}</span>
-                        <span className="pf-sr">{byId[k].pass ? t('hw.gold.pass') : t('hw.gold.fail')}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </td>
-                <td data-label={t('hw.gold.result')}><Mark pass={check.pass} /></td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[720px]">
+          <thead>
+            <tr className="border-b border-border-strong">
+              <th scope="col" className={TH}>{t('hw.gold.case')}</th>
+              <th scope="col" className={TH}>{t('hw.gold.expected')}</th>
+              <th scope="col" className={TH}>{t('hw.gold.actual')}</th>
+              <th scope="col" className={TH}>{t('hw.gold.checks')}</th>
+              <th scope="col" className={TH}>{t('hw.gold.result')}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map(({ c, result, check }) => {
+              const byId = Object.fromEntries(check.checks.map((x) => [x.id, x]))
+              const expected = findingList(c.expect.findings, pick)
+              const actual = findingList(result.findings, pick)
+              return (
+                <tr key={c.id} className="border-b border-border">
+                  <th scope="row" className={`${TD} text-left font-normal`}>
+                    <a href={caseHref(c.id)} className="font-medium text-brand hover:underline">{caseName(c, pick)}</a>
+                    <span className="id block text-xs text-muted-foreground">{c.id}</span>
+                  </th>
+                  <td className={TD}>
+                    <div className="flex flex-col items-start gap-1">
+                      <span className="text-sm font-medium text-foreground">{verdictWord(c.expect.verdict)}</span>
+                      <ul className="flex flex-col text-xs text-text-2">
+                        {expected ? expected.map((x) => <li key={x} className="id">{x}</li>) : <li>{t('hw.gold.noFindings')}</li>}
+                      </ul>
+                    </div>
+                  </td>
+                  <td className={TD}>
+                    <div className="flex flex-col items-start gap-1">
+                      <span className="text-sm font-medium text-foreground">{verdictWord(result.verdict.level)}</span>
+                      <ul className="flex flex-col text-xs text-text-2">
+                        {actual ? actual.map((x) => <li key={x} className="id">{x}</li>) : <li>{t('hw.gold.noFindings')}</li>}
+                      </ul>
+                      <span className="num text-xs text-muted-foreground">{msText(result.trace.ms, t)}</span>
+                    </div>
+                  </td>
+                  <td className={TD}>
+                    <ul className="flex flex-col gap-0.5">
+                      {['verdict', 'findings', 'notes', 'doses'].map((k) => (
+                        <li key={k} className="text-xs text-text-2">
+                          {byId[k].expectedCount === 0 ? t(`hw.gold.check.${k}None`) : t(`hw.gold.check.${k}`, { n: byId[k].expectedCount ?? 0 })}
+                          {byId[k].pass ? null : <span data-status="critical" className="ml-1 font-medium text-sev-critical">{t('hw.gold.fail')}</span>}
+                        </li>
+                      ))}
+                    </ul>
+                  </td>
+                  <td className={TD}><Mark pass={check.pass} /></td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }

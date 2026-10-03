@@ -138,7 +138,7 @@ export const CASES = [
     title: T('Daebak — negative control', '대박 — 음성 대조'),
     signalment: T('Labrador Retriever · female spayed · 3 y · 30 kg', '래브라도 리트리버 · 중성화 암컷 · 3세 · 30 kg'),
     problems: T('Superficial skin infection; one episode of vomiting', '표재성 피부 감염, 구토 1회'),
-    question: T('Routine antibiotic plus an antiemetic for a healthy young dog — anything to flag?', '건강한 어린 개에게 일반 항생제와 항구토제 — 주의할 점이 있을까요?'),
+    question: T('Routine antibiotic plus an antiemetic for a healthy young dog: anything to flag?', '건강한 어린 개에게 일반 항생제와 항구토제를 함께 줄 때 주의할 점이 있을까요?'),
     shouldCatch: T('Nothing: the engine must stay quiet (at most administration notes).', '없음: 엔진은 조용해야 합니다(투약 안내 정도만).'),
     input: {
       species: 'dog', weightKg: 30, breedId: 'labrador_retriever', breedText: 'Labrador',

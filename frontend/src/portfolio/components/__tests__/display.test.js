@@ -1,6 +1,6 @@
 /**
  * Display rules the workbench, report and handout share (portfolio UX review):
- * a rounded plan is never shown as the instruction beside a green "Within
+ * a plan changed by rounding is never shown as the instruction beside a green "Within
  * range", invalid numbers commit nothing, the organ matrix colours a Finding
  * badge by its severity and folds systems nobody assessed, and new UI strings
  * exist in both languages.
@@ -92,7 +92,7 @@ describe('number formatting and input validation', () => {
     expect(fmtAmount(1200)).toBe('1200')
     expect(fmtAmount(4.1)).toBe('4.1')
     expect(fmtQ({ value: 2399976, unit: 'mg' }, 'en')).toBe('2,399,976 mg')
-    expect(fmtQ(null)).toBe('—')
+    expect(fmtQ(null)).toBe('–')
   })
 
   it('checkNumber: invalid text commits null; a positive field rejects 0 but lets "0." be typed', () => {
@@ -152,8 +152,9 @@ describe('organ matrix', () => {
 
 describe('new UI strings', () => {
   const keys = [
-    'dc.status.check', 'dc.gap', 'dc.gapShort', 'dc.nearest', 'dc.rangeHead', 'dc.planSee', 'dc.implausible', 'dc.calculated',
-    'rx.doseInvalid', 'pt.weightInvalid', 'om.t.notAssessedList', 'om.badgeDesc.interaction', 'rp.roundingRange', 'cs.preview.eyebrow',
+    'dc.status.check', 'dc.gap', 'dc.nearest', 'dc.rangeHead', 'dc.planSee', 'dc.implausible', 'dc.calculated',
+    'rx.doseInvalid', 'pt.weightInvalid', 'om.t.notAssessedList', 'om.badgeDesc.interaction', 'rp.roundingRange',
+    'dc.usLabel', 'dc.startDose', 'rv.doseChecks', 'cases.inEmr', 'om.open', 'wb.brief',
   ]
   it('exist in English and Korean with the same placeholders', () => {
     const ph = (s) => [...String(s).matchAll(/\{(\w+)\}/g)].map((x) => x[1]).sort().join(',')

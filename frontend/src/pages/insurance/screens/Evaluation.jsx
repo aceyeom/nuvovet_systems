@@ -1,81 +1,149 @@
-import React from 'react';
-import { I } from '../icons';
-import { loadEvaluation } from '../claimsApi';
-import { ANOMALY_LABEL, PEND_LABEL, fmtPct, ruleLabel } from '../format';
-import { BarList, Loading, SourceNote, useAsync } from '../ui';
+// 엔진 성능 (DESIGN_SYSTEM.md §5.3): the only screen that shows answer-key labels. One Alert, the
+// confusion matrix (with a footnote for clean claims denied on coverage terms), per-anomaly recall as a
+// compact table with n, then the false-alarm rate with n.
+import { useMemo } from 'react'
+import { Info, TriangleAlert } from 'lucide-react'
+import { Alert, AlertDescription, AlertTitle } from '@/ui/primitives/alert'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/ui/primitives/tooltip'
+import { ProgressBar } from '@/ui/patterns/metrics'
+import { PageHeader } from '@/ui/patterns/PageHeader'
+import { useTitle } from '@/ui/patterns/useTitle'
+import { fmtNum, fmtPct } from '@/ui/lib/format'
+import { ConfusionMatrix } from '@/ui/ext/wp6/ConfusionMatrix'
+import { useConsole } from '../context'
+import { useEvaluation } from '../data/resources'
+import { DECISION_ORDER, confusion } from '../model'
+import { ANOMALY_LABEL } from '../strings.ko.js'
+import { LoadError, Page, PageSkeleton } from './states'
+
+const DECISION_COLS = { auto_approve: '자동 승인', pend: '서류 요청', review: '심사 필요', deny_recommended: '지급 거절 권고' }
+
+function Section({ title, children }) {
+  return (
+    <section className="flex min-w-0 flex-col gap-3">
+      <h2 className="text-lg font-semibold text-foreground">{title}</h2>
+      {children}
+    </section>
+  )
+}
 
 export default function Evaluation() {
-  const { loading, data } = useAsync(loadEvaluation, []);
-  if (loading || !data) return <Loading />;
-  const recall = Object.entries(data.recall_by_anomaly).filter(([, v]) => v.injected > 0);
+  useTitle('엔진 성능', 'nuvovet')
+  const ev = useEvaluation()
+  const { demo, demoState } = useConsole()
+  const matrix = useMemo(
+    () =>
+      demo
+        ? confusion(demo.claims).map((r) => ({ ...r, key: r.label, label: r.label === 'clean' ? '정상 (이상 없음)' : ANOMALY_LABEL[r.label] || r.label }))
+        : [],
+    [demo],
+  )
+
+  if (ev.error || demoState.error) return <LoadError onRetry={ev.error ? ev.reload : demoState.reload} />
+  if (!ev.data || !demo) return <PageSkeleton rows={10} />
+  const data = ev.data
+  const recall = Object.entries(data.recall_by_anomaly || {})
+    .filter(([, v]) => v.injected > 0)
+    .sort((a, b) => b[1].injected - a[1].injected)
+  const falseAlarms = Math.round((data.clean_false_alarm_rate || 0) * data.clean_claims)
+  const cleanAuto = Math.round((data.clean_auto_approve_rate || 0) * data.clean_claims)
+  const cleanDenied = matrix.find((r) => r.key === 'clean')?.deny_recommended || 0
 
   return (
-    <div className="page">
-      <div className="page-header">
-        <div>
-          <h1 className="page-title">엔진 성능</h1>
-          <p className="page-subtitle">라벨이 있는 합성 청구로 측정한 탐지율 · 오탐률</p>
-        </div>
-        <div className="page-header-actions"><SourceNote source={data.source} /></div>
-      </div>
+    <Page>
+      <PageHeader title="엔진 성능" meta={`합성 청구 ${fmtNum(data.claims)}건, 정상 청구 ${fmtNum(data.clean_claims)}건`} />
+      <Alert variant="warning">
+        <TriangleAlert strokeWidth={1.5} />
+        <AlertTitle>합성 데이터로 생성한 정답 라벨 기준입니다.</AlertTitle>
+        <AlertDescription>실제 청구 성능을 뜻하지 않습니다.</AlertDescription>
+      </Alert>
 
-      <div className="card card-pad-sm row gap-8" style={{ marginBottom: 16, fontSize: 12.5, color: 'var(--text-secondary)', alignItems: 'flex-start' }}>
-        <span style={{ color: 'var(--warning)', marginTop: 1 }}><I.AlertCircle size={14} /></span>
-        <span>
-          이 수치는 <b>규칙이 설계대로 작동하는지</b>를 검증할 뿐, 실제 청구에서의 성능을 의미하지 않습니다. 실제 성능은 파트너 보험사의 과거 청구(1,000~5,000건)에
-          대한 후향 검증으로 측정합니다: 정형화 정확도(심사역 대비), 검토 대상으로 분류된 누수 금액, 오탐률, 자동 승인율.
-        </span>
-      </div>
+      <Section title="판정과 정답 라벨">
+        <ConfusionMatrix caption="정답 라벨별 엔진 판정 건수" rows={matrix} columns={DECISION_ORDER.map((k) => ({ key: k, label: DECISION_COLS[k] }))} />
+        <p className="text-xs text-muted-foreground">
+          한 청구에 라벨이 여러 개면 라벨마다 한 번씩 셉니다.
+          {cleanDenied
+            ? ` 정상 청구의 지급 거절 권고 ${fmtNum(cleanDenied)}건은 가격·임상·무결성 소견 없이 보장 제외 같은 상품 조건으로 내려진 판정이라 오탐에 넣지 않습니다.`
+            : null}
+        </p>
+      </Section>
 
-      <div className="stat-grid" style={{ gridTemplateColumns: 'repeat(5, minmax(0, 1fr))' }}>
-        <div className="stat-card"><div className="stat-label">합성 청구</div><div className="stat-value tnum">{data.claims}</div></div>
-        <div className="stat-card"><div className="stat-label">정상 청구</div><div className="stat-value tnum">{data.clean_claims}</div></div>
-        <div className="stat-card"><div className="stat-label">정상 청구 오탐률</div><div className="stat-value tnum">{fmtPct(data.clean_false_alarm_rate)}</div></div>
-        <div className="stat-card"><div className="stat-label">정상 청구 자동 승인율</div><div className="stat-value tnum">{fmtPct(data.clean_auto_approve_rate)}</div></div>
-        <div className="stat-card">
-          <div className="stat-label">서류 요청(대기)율</div><div className="stat-value tnum">{fmtPct(data.pend_rate ?? 0)}</div>
-          <div className="stat-delta"><span className="vs" style={{ marginLeft: 0 }}>정상 청구 {fmtPct(data.clean_pend_rate ?? 0)}</span></div>
-        </div>
-      </div>
-
-      <div className="grid-6040" style={{ marginTop: 16, alignItems: 'start' }}>
-        <div className="card">
-          <div className="card-pad-sm" style={{ borderBottom: '1px solid var(--border)' }}><span className="section-title">이상 유형별 탐지율</span></div>
-          <table className="table">
-            <thead><tr><th>주입한 이상 유형</th><th style={{ textAlign: 'right' }}>주입</th><th style={{ textAlign: 'right' }}>탐지</th><th>재현율</th></tr></thead>
-            <tbody>
-              {recall.map(([k, v]) => (
-                <tr key={k}>
-                  <td style={{ fontSize: 13 }}>
-                    {ANOMALY_LABEL[k] || k}
-                    {['total_only_receipt', 'missing_dx', 'above_threshold_no_cert', 'mixed_basket'].includes(k) && <span className="badge badge-info" style={{ marginLeft: 6, fontSize: 10, padding: '1px 6px' }}>대기</span>}
-                  </td>
-                  <td className="mono tnum" style={{ textAlign: 'right' }}>{v.injected}</td>
-                  <td className="mono tnum" style={{ textAlign: 'right' }}>{v.detected}</td>
-                  <td>
-                    <div className="row gap-8" style={{ alignItems: 'center' }}>
-                      <div style={{ width: 120, height: 6, background: 'var(--bg-canvas)', borderRadius: 3, overflow: 'hidden' }}>
-                        <div style={{ width: `${v.recall * 100}%`, height: '100%', background: v.recall >= 0.9 ? 'var(--accent)' : 'var(--warning)' }} />
-                      </div>
-                      <span className="mono tnum" style={{ fontSize: 12 }}>{fmtPct(v.recall, 0)}</span>
-                    </div>
-                  </td>
+      <div className="grid gap-6 xl:grid-cols-2 xl:gap-0">
+        <Section title="이상 유형별 탐지율">
+          {/* A compact table, not a wall of full bars: only rows under 100 % get a bar (§5.3). */}
+          <div className="xl:pr-6">
+            <table className="w-full text-sm">
+              <caption className="sr-only">이상 유형별 탐지 건수와 탐지율</caption>
+              <thead>
+                <tr className="border-b border-border-strong">
+                  <th scope="col" className="h-8 bg-subtle pr-3 pl-4 text-left text-xs font-medium text-muted-foreground">
+                    유형
+                  </th>
+                  <th scope="col" className="num h-8 bg-subtle px-3 text-xs font-medium whitespace-nowrap text-muted-foreground">
+                    탐지/주입
+                  </th>
+                  <th scope="col" className="h-8 w-40 bg-subtle pr-4 pl-3 text-right text-xs font-medium text-muted-foreground">
+                    탐지율
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <div className="card card-pad">
-          <div className="section-title" style={{ marginBottom: 12 }}>규칙별 발동 횟수</div>
-          <BarList rows={Object.entries(data.rule_hits).slice(0, 12).map(([r, n]) => ({ key: r, label: ruleLabel(r), value: n }))} />
-          {data.pend_reasons && Object.keys(data.pend_reasons).length > 0 && (
-            <>
-              <div className="section-title" style={{ margin: '20px 0 12px' }}>대기 사유 (서류 요청)</div>
-              <BarList color="var(--info)" rows={Object.entries(data.pend_reasons).map(([k, n]) => ({ key: k, label: PEND_LABEL[k] || k, value: n }))} />
-            </>
-          )}
-        </div>
+              </thead>
+              <tbody>
+                {recall.map(([k, v]) => {
+                  const name = ANOMALY_LABEL[k] || k
+                  const full = v.detected >= v.injected
+                  return (
+                    <tr key={k} className="border-b border-border">
+                      <th scope="row" className="h-8 pr-3 pl-4 text-left font-normal text-foreground">
+                        {name}
+                      </th>
+                      <td className={v.injected < 10 ? 'num h-8 px-3 whitespace-nowrap text-muted-foreground' : 'num h-8 px-3 whitespace-nowrap text-text-2'}>
+                        {fmtNum(v.detected)}/{fmtNum(v.injected)}건
+                      </td>
+                      <td className="h-8 pr-4 pl-3">
+                        <span className="flex items-center justify-end gap-2">
+                          {full ? null : <ProgressBar value={v.recall * 100} muted={v.injected < 10} label={`${name} 탐지율 ${fmtPct(v.recall, 0)}`} className="w-20" />}
+                          <span className={full ? 'num w-10 text-right text-text-2' : 'num w-10 text-right font-medium text-foreground'}>{fmtPct(v.recall, 0)}</span>
+                        </span>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+          <p className="text-xs text-muted-foreground">주입 10건 미만 유형은 건수를 흐리게 표시합니다.</p>
+        </Section>
+        <Section title="정상 청구 오탐">
+          <dl className="grid grid-cols-2 gap-x-6 gap-y-4 border-border max-xl:border-t max-xl:pt-6 xl:border-l xl:pl-6">
+            <div className="flex flex-col gap-0.5">
+              <dt className="flex items-center gap-1 text-xs text-muted-foreground">
+                오탐률
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <button type="button" aria-label="오탐률 정의" className="inline-flex size-4 items-center justify-center rounded-sm text-muted-foreground hover:text-foreground">
+                        <Info aria-hidden="true" strokeWidth={1.5} className="size-3.5" />
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent>정상 청구에 가격·임상·무결성 소견(주의 이상)이 붙은 비율입니다. 예방접종 같은 보장 제외 판정은 오탐에 넣지 않습니다.</TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </dt>
+              <dd className="num text-left text-2xl font-semibold text-foreground">{fmtPct(data.clean_false_alarm_rate)}</dd>
+              <dd className="num text-left text-xs text-text-2">
+                정상 {fmtNum(data.clean_claims)}건 중 {fmtNum(falseAlarms)}건
+              </dd>
+            </div>
+            <div className="flex flex-col gap-0.5">
+              <dt className="text-xs text-muted-foreground">정상 청구 자동 승인</dt>
+              <dd className="num text-left text-2xl font-semibold text-foreground">{fmtPct(data.clean_auto_approve_rate)}</dd>
+              <dd className="num text-left text-xs text-text-2">
+                정상 {fmtNum(data.clean_claims)}건 중 {fmtNum(cleanAuto)}건
+              </dd>
+            </div>
+          </dl>
+        </Section>
       </div>
-    </div>
-  );
+    </Page>
+  )
 }

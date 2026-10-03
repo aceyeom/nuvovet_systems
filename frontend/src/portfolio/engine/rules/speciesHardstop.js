@@ -11,6 +11,7 @@
  */
 
 import { T, enName, koName, josa, riskOrgans, SPECIES_TEXT } from './util.js'
+import { FREQUENCY_BY_ID } from '../dose.js'
 
 const RULE = { id: 'SPECIES_HARDSTOP', version: '1.1.0' }
 
@@ -71,7 +72,7 @@ function evaluate(ctx) {
           drugIds: [m.drug.id],
           factors: [
             { kind: 'species', id: ctx.species, label: T(`Species: ${sp.en}`, `종: ${sp.ko}`) },
-            { kind: 'dose', id: `${m.drug.id}_repeat`, label: T(`Repeated: ${m.freqId}`, `반복 투여: ${m.freqId}`) },
+            { kind: 'dose', id: `${m.drug.id}_repeat`, label: T(`Repeated: ${(FREQUENCY_BY_ID[m.freqId]?.label.en || m.freqId).toLowerCase()}`, `반복 투여: ${FREQUENCY_BY_ID[m.freqId]?.label.ko || m.freqId}`) },
           ],
           title: extra.title || T(`${enName(m.drug)} repeated in a ${sp.en}`, `${sp.ko}에게 ${koName(m.drug)} 반복 투여`),
           consequence: extra.consequence || c.text,

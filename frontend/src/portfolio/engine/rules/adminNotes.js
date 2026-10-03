@@ -44,8 +44,8 @@ function evaluate(ctx) {
       id: 'repro_not_checked',
       kind: 'monitoring',
       drugIds: [],
-      text: T('Pregnancy/lactation is recorded, but no rule in this prototype checks reproductive safety — review each drug separately.',
-        '임신/수유 상태가 기록되었지만, 이 프로토타입에는 생식 안전성을 검토하는 규칙이 없습니다 — 약물별로 따로 확인하십시오.'),
+      text: T('Pregnancy/lactation is recorded, but no rule in this prototype checks reproductive safety. Review each drug separately.',
+        '임신/수유 상태가 기록되었지만, 이 프로토타입에는 생식 안전성을 검토하는 규칙이 없습니다. 약물별로 따로 확인하십시오.'),
       sources: [],
     })
   }

@@ -6,7 +6,9 @@
  * one supports). Label sources name the product and the regulator only; no
  * approval numbers are given because they were not independently confirmed.
  *
- * Shape: { [id]: { kind: 'doi'|'pmid'|'label'|'guideline', cite, title?, doi?, pmid?, url?, note? } }
+ * Shape: { [id]: { kind: 'doi'|'pmid'|'label'|'guideline', cite, title?, doi?, pmid?, url?, note?, jurisdiction? } }
+ * jurisdiction ('US' | 'UK') is set on every label source: the regulator whose label the dose
+ * reference comes from (dose cards say so, e.g. "미국 라벨 기준"). It is the cite's own regulator, not a guess.
  */
 
 export const SOURCES = {
@@ -57,7 +59,7 @@ export const SOURCES = {
   mayer2008: {
     kind: 'doi',
     cite: 'Mayer et al. 2008, Vet Dermatol',
-    title: 'Adverse effects of ketoconazole in dogs — a retrospective study',
+    title: 'Adverse effects of ketoconazole in dogs: a retrospective study',
     doi: '10.1111/j.1365-3164.2008.00675.x',
     pmid: '18547382',
   },
@@ -106,6 +108,7 @@ export const SOURCES = {
     title: 'International Veterinary Epilepsy Task Force consensus proposal: medical treatment of canine epilepsy in Europe',
     doi: '10.1186/s12917-015-0464-z',
     pmid: '26316233',
+    note: 'Oral starting dose 2.5–3 mg/kg BID, then tailored; loading dose "15−20 mg/kg IV, IM or PO divided in multiple doses of 3−5 mg/kg over 24−48h".',
   },
   gieger2000: {
     kind: 'doi',
@@ -204,7 +207,7 @@ export const SOURCES = {
   iris2023: {
     kind: 'guideline',
     cite: 'IRIS 2023, Staging of CKD',
-    title: 'International Renal Interest Society — staging of chronic kidney disease (modified 2023)',
+    title: 'International Renal Interest Society: staging of chronic kidney disease (modified 2023)',
     url: 'https://www.iris-kidney.com/iris-staging-system',
     note: 'Not PubMed-indexed. Used only for the creatinine cut-offs that separate IRIS stage 1 from stage 2 (dog 1.4 mg/dL, cat 1.6 mg/dL).',
   },
@@ -324,7 +327,7 @@ export const SOURCES = {
   boswood2016: {
     kind: 'doi',
     cite: 'Boswood et al. 2016, J Vet Intern Med (EPIC)',
-    title: 'Effect of pimobendan in dogs with preclinical myxomatous mitral valve disease and cardiomegaly: the EPIC study — a randomized clinical trial',
+    title: 'Effect of pimobendan in dogs with preclinical myxomatous mitral valve disease and cardiomegaly: the EPIC study: a randomized clinical trial',
     doi: '10.1111/jvim.14586',
     pmid: '27678080',
   },
@@ -361,62 +364,74 @@ export const SOURCES = {
   // ── Product labels (regulator named; approval numbers deliberately omitted)
   heartgard_label: {
     kind: 'label',
-    cite: 'Heartgard (ivermectin) chewables — US FDA-approved label',
+    cite: 'Heartgard (ivermectin) chewables, US FDA-approved label',
+    jurisdiction: 'US',
     note: 'Minimum 6 mcg/kg once monthly, dosed by weight band; label reports no signs of toxicity in ivermectin-sensitive Collies at 10× the recommended dose (60 mcg/kg).',
   },
   atopica_label: {
     kind: 'label',
-    cite: 'Atopica (ciclosporin) — US FDA-approved labels for dogs and cats',
+    cite: 'Atopica (ciclosporin), US FDA-approved labels for dogs and cats',
+    jurisdiction: 'US',
     note: 'Dogs 5 mg/kg once daily (capsule table 3.3–6.7 mg/kg); cats 7 mg/kg once daily (initial dose). Dog field study: vomiting 30.9%, diarrhoea 20.0%.',
   },
   felimazole_label: {
     kind: 'label',
-    cite: 'Felimazole (methimazole) — US FDA-approved label',
+    cite: 'Felimazole (methimazole), US FDA-approved label',
+    jurisdiction: 'US',
     note: 'Starting dose 2.5 mg every 12 hours, titrated on total T4 after 3 weeks; haematology, biochemistry and T4 rechecked at 3 and 6 weeks; hepatopathy, thrombocytopenia and agranulocytosis listed as potentially serious adverse reactions.',
   },
   metacam_label: {
     kind: 'label',
-    cite: 'Metacam (meloxicam) — US FDA-approved labels',
+    cite: 'Metacam (meloxicam), US FDA-approved labels',
+    jurisdiction: 'US',
     note: 'Dogs 0.2 mg/kg on day 1 then 0.1 mg/kg once daily; cats a single 0.3 mg/kg SC injection only (boxed warning on repeated use).',
   },
   rimadyl_label: {
     kind: 'label',
-    cite: 'Rimadyl (carprofen) — US FDA-approved label',
+    cite: 'Rimadyl (carprofen), US FDA-approved label',
+    jurisdiction: 'US',
     note: '4.4 mg/kg per day, once daily or divided twice daily.',
   },
   onsior_label: {
     kind: 'label',
-    cite: 'Onsior (robenacoxib) tablets — US FDA-approved labels',
+    cite: 'Onsior (robenacoxib) tablets, US FDA-approved labels',
+    jurisdiction: 'US',
     note: 'Dogs 2 mg/kg (range 2–4 mg/kg) once daily; cats 1 mg/kg (range 1–2.4 mg/kg, cats ≥ 2.5 kg) once daily; maximum 3 days.',
   },
   cerenia_label: {
     kind: 'label',
-    cite: 'Cerenia (maropitant) — US FDA-approved labels',
+    cite: 'Cerenia (maropitant), US FDA-approved labels',
+    jurisdiction: 'US',
     note: 'Dog tablets minimum 2 mg/kg once daily (acute vomiting), 8 mg/kg for motion sickness; dog injection 1 mg/kg SC or IV once daily for up to 5 days; cat injection 1 mg/kg SC or IV once daily for up to 5 days; caution in hepatic dysfunction (hepatic CYP metabolism).',
   },
   clavamox_label: {
     kind: 'label',
-    cite: 'Clavamox (amoxicillin–clavulanate) — US FDA-approved label',
+    cite: 'Clavamox (amoxicillin–clavulanate), US FDA-approved label',
+    jurisdiction: 'US',
     note: 'Dogs 6.25 mg/lb (13.75 mg/kg) twice daily; cats 62.5 mg twice daily.',
   },
   synulox_label: {
     kind: 'label',
-    cite: 'Synulox (amoxicillin–clavulanate) tablets — UK VMD product SPC',
+    cite: 'Synulox (amoxicillin–clavulanate) tablets, UK VMD product SPC',
+    jurisdiction: 'UK',
     note: '12.5 mg/kg twice daily; may be doubled to 25 mg/kg twice daily in refractory cases.',
   },
   baytril_label: {
     kind: 'label',
-    cite: 'Baytril (enrofloxacin) tablets — US FDA-approved label',
+    cite: 'Baytril (enrofloxacin) tablets, US FDA-approved label',
+    jurisdiction: 'US',
     note: 'Dogs 5–20 mg/kg per day; cats 5 mg/kg per day (feline dose limited after reports of blindness).',
   },
   vetmedin_label: {
     kind: 'label',
-    cite: 'Vetmedin (pimobendan) — US FDA-approved label',
+    cite: 'Vetmedin (pimobendan), US FDA-approved label',
+    jurisdiction: 'US',
     note: 'Total 0.5 mg/kg per day divided into two doses about 12 h apart.',
   },
   reconcile_label: {
     kind: 'label',
-    cite: 'Reconcile (fluoxetine) chewable tablets — US FDA-approved label',
+    cite: 'Reconcile (fluoxetine) chewable tablets, US FDA-approved label',
+    jurisdiction: 'US',
     note: '1–2 mg/kg once daily; contraindicated in dogs with epilepsy or a history of seizures.',
   },
 }

@@ -20,7 +20,7 @@ export const OWNER_FOOD = {
   ketoconazole: { kind: 'with', text: T('Give with a meal.', '식사와 함께 먹이십시오.'), source: 'marks2018' },
   ciclosporin: {
     kind: 'consistent',
-    text: T('Give at the same time every day and keep the same gap from meals every day — for example 2 hours before or 2 hours after a meal.',
+    text: T('Give at the same time every day and keep the same gap from meals every day, for example 2 hours before or 2 hours after a meal.',
       '매일 같은 시간에 먹이고, 식사와의 간격도 매일 같게 유지하십시오. 예: 식사 2시간 전 또는 식사 2시간 후.'),
     source: 'archer2014',
   },
@@ -38,7 +38,7 @@ export const OWNER_FOOD = {
   },
 }
 
-export const FOOD_UNKNOWN = T('No food instruction — ask us if unsure.', '식사 관련 지시 없음 — 궁금하면 문의하십시오.')
+export const FOOD_UNKNOWN = T('No food instruction. Ask us if unsure.', '식사 관련 지시가 없습니다. 궁금하면 병원에 물어보세요.')
 
 export const ROUTE_TEXT = {
   PO: T('By mouth', '입으로 먹입니다'),
@@ -100,7 +100,7 @@ export const OWNER_CONDITIONS = {
       T('Weight loss despite a good appetite', '잘 먹는데도 체중이 줄어듦'),
       T('Restlessness, or vomiting', '안절부절못함 또는 구토'),
     ],
-    tip: T('Blood tests are needed to adjust the dose — keep the recheck appointments.', '용량 조절에는 혈액검사가 필요합니다. 재검 일정을 지켜 주십시오.'),
+    tip: T('Blood tests are needed to adjust the dose, so keep the recheck appointments.', '용량 조절에는 혈액검사가 필요합니다. 재검 일정을 지켜 주십시오.'),
   },
   epilepsy: {
     title: T('Seizures', '발작(뇌전증)'),
@@ -180,5 +180,5 @@ export const OWNER_CONDITIONS = {
 }
 
 /** Always present at the end of the emergency block, findings or not. */
-export const EMERGENCY_GENERIC = T('Collapse, a seizure, trouble breathing — or anything else about your pet that worries you.',
-  '쓰러짐, 발작, 호흡 곤란 — 그 밖에 걱정되는 어떤 변화든.')
+export const EMERGENCY_GENERIC = T('Collapse, a seizure, trouble breathing, or anything else about your pet that worries you.',
+  '쓰러짐, 발작, 호흡 곤란, 그 밖에 걱정되는 모든 변화')

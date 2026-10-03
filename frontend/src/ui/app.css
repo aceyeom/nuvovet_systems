@@ -1,0 +1,42 @@
+/* Tailwind entry for builds that do not load src/index.css (the standalone portfolio build).
+   Same layers as src/index.css; keep them in step. Unlike the main app it only scans what the
+   showcase can render (src/portfolio + the shared UI it imports), so utilities used only by the
+   console, landing and clinic screens stay out of the single file (DESIGN_SYSTEM §9.3 budget).
+
+   The `@source not` list below is checked at build time: vite.portfolio.config.js fails the build if
+   a module under an excluded path ends up in the bundle (its classes would be missing). If that
+   happens, delete the line here. */
+@import "tailwindcss" source(none);
+@import "tw-animate-css";
+@import "./tokens.css";
+@import "./theme.css";
+@import "./base.css";
+@source "../portfolio";
+@source not "../portfolio/emr/widget"; /* the widget ships its own CSS */
+@source "./";
+@source not "./ext/wp6";
+@source not "./ext/wp7";
+@source not "./ext/wp8";
+@source not "./golden";
+@source not "./KitchenSink.jsx";
+@source not "./primitives/alert-dialog.jsx";
+@source not "./primitives/card.jsx";
+@source not "./primitives/chart.jsx";
+@source not "./primitives/drawer.jsx";
+@source not "./primitives/pagination.jsx";
+@source not "./primitives/scroll-area.jsx";
+@source not "./primitives/separator.jsx";
+@source not "./primitives/sheet.jsx";
+@source not "./primitives/sidebar.jsx";
+@source not "./primitives/skeleton.jsx";
+@source not "./primitives/sonner.jsx";
+@source not "./primitives/switch.jsx";
+@source not "./primitives/table.jsx";
+@source not "./patterns/Combobox.jsx";
+@source not "./patterns/DataTable.jsx";
+@source not "./patterns/DescriptionList.jsx";
+@source not "./patterns/EmptyState.jsx";
+@source not "./patterns/Field.jsx";
+@source not "./patterns/Num.jsx";
+@source not "./patterns/PageHeader.jsx";
+@source not "./patterns/metrics.jsx";

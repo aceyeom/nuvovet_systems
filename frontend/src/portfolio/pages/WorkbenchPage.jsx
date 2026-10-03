@@ -1,40 +1,41 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { ArrowLeft, Link as LinkIcon, RotateCcw, Check } from 'lucide-react'
+import { Check, ClipboardList, FileText, Link as LinkIcon, Plus, RotateCcw } from 'lucide-react'
+import { Button } from '@/ui/primitives/button'
+import { Disclosure } from '@/ui/patterns/Disclosure'
 import { useLang } from '../i18n/index.js'
 import { analyze } from '../engine/engine.js'
 import { diffResults } from '../engine/findings.js'
 import { RULES } from '../engine/rules/index.js'
 import { BREED_BY_ID } from '../knowledge/breeds.js'
 import { resolveBreed } from '../engine/search.js'
-import { navigate, casePath, caseHref, HREF } from '../router.js'
+import { navigate, casePath, caseHref, emrHref, EMR_VISIT_BY_CASE, HREF } from '../router.js'
 import { resolveCase, stateParam, sameInput, remapMedsForSpecies } from '../components/caseModel.js'
-import SpeciesGlyph from '../components/SpeciesGlyph.jsx'
 import PatientPanel from '../components/PatientPanel.jsx'
 import RxEditor from '../components/RxEditor.jsx'
 import VerdictBanner from '../components/VerdictBanner.jsx'
 import WhatChanged from '../components/WhatChanged.jsx'
-import FindingCard from '../components/FindingCard.jsx'
+import { FindingList } from '../components/FindingCard.jsx'
 import NotesList from '../components/NotesList.jsx'
 import OrganMatrix from '../components/OrganMatrix.jsx'
-import DoseTable from '../components/DoseTable.jsx'
-import { breedName } from '../components/BreedCombobox.jsx'
+import PageCrumbs from '../components/PageCrumbs.jsx'
+import { caseName, caseSubtitle } from '../components/format.js'
 
-function liveSignalment(input, t, lang) {
-  const breed = input.breedId ? BREED_BY_ID[input.breedId] : input.breedText ? BREED_BY_ID[resolveBreed(input.breedText, input.species)] : null
-  const parts = []
-  parts.push(breed ? breedName(breed, lang) : input.breedText || (input.species === 'cat' ? t('pt.cat') : t('pt.dog')))
-  if (input.sex) parts.push(`${input.sex === 'male' ? t('pt.male') : t('pt.female')}${input.neutered ? ` (${t('pt.neutered')})` : ''}`)
-  if (input.ageYears != null) parts.push(`${input.ageYears} ${t('pt.years')}`)
-  if (input.weightKg != null) parts.push(`${input.weightKg} kg`)
-  return parts.join(' · ')
+function SectionTitle({ id, children, count }) {
+  return (
+    <h2 id={id} className="flex items-baseline gap-2 text-lg font-semibold text-foreground">
+      {children}
+      {count != null ? <span className="num text-sm font-normal text-muted-foreground">{count}</span> : null}
+    </h2>
+  )
 }
 
-function CaseHeader({ resolved, input, edited, onReset }) {
-  const { t, pick, lang } = useLang()
+function CaseHeader({ resolved, id, edited, onReset }) {
+  const { t, pick } = useLang()
   const [copied, setCopied] = useState(null)
   const c = resolved.caseDef
-  const title = c ? pick(c.title) : t('wb.custom.title')
-  const sig = c && !edited ? pick(c.signalment) : liveSignalment(input, t, lang)
+  const title = c ? caseName(c, pick) : t('wb.custom.title')
+  const sub = c ? caseSubtitle(c, pick) : t('wb.custom.sub')
+  const visit = EMR_VISIT_BY_CASE[id]
 
   const copy = async () => {
     try {
@@ -47,89 +48,67 @@ function CaseHeader({ resolved, input, edited, onReset }) {
   }
 
   return (
-    <header className="pf-casehead">
-      <a className="pf-back" href={HREF.cases}>
-        <ArrowLeft size={15} aria-hidden="true" />
-        {t('wb.back')}
-      </a>
-      <div className="pf-casehead__row">
-        <span className="pf-casehead__glyph"><SpeciesGlyph species={input.species} size={28} /></span>
-        <div className="pf-casehead__titles">
-          <h1 className="pf-casehead__title">
+    <header className="flex flex-col gap-3">
+      <PageCrumbs items={[{ label: t('nav.cases'), href: HREF.cases }, { label: title }]} />
+      <div className="flex flex-wrap items-end justify-between gap-3">
+        <div className="flex min-w-0 flex-col gap-1">
+          <h1 className="text-xl font-semibold text-foreground">
             {title}
-            {edited && c && <span className="pf-badge-edited">{t('wb.edited')}</span>}
+            {edited ? <span className="ml-2 align-middle text-xs font-medium text-muted-foreground">{t('wb.edited')}</span> : null}
           </h1>
-          <p className="pf-casehead__sig">{sig}</p>
+          <p className="text-sm text-text-2">{sub}</p>
         </div>
-        <div className="pf-casehead__actions">
-          {edited && (
-            <button type="button" className="pf-btn pf-btn--ghost pf-btn--sm" onClick={onReset}>
-              <RotateCcw size={14} aria-hidden="true" />
+        <div className="flex flex-wrap items-center gap-1">
+          {edited ? (
+            <Button variant="ghost" size="sm" onClick={onReset}>
+              <RotateCcw aria-hidden="true" strokeWidth={1.5} />
               {t('wb.reset')}
-            </button>
-          )}
-          <button type="button" className="pf-btn pf-btn--ghost pf-btn--sm" onClick={copy} aria-live="polite">
-            {copied === 'ok' ? <Check size={14} aria-hidden="true" /> : <LinkIcon size={14} aria-hidden="true" />}
+            </Button>
+          ) : null}
+          <Button variant="ghost" size="sm" onClick={copy} aria-live="polite">
+            {copied === 'ok' ? <Check aria-hidden="true" strokeWidth={1.5} /> : <LinkIcon aria-hidden="true" strokeWidth={1.5} />}
             {copied === 'ok' ? t('wb.copied') : copied === 'fail' ? t('wb.copyFailed') : t('wb.copyLink')}
-          </button>
+          </Button>
+          {visit ? (
+            <Button variant="outline" size="sm" asChild>
+              <a href={emrHref(visit)}>{t('cases.inEmr')}</a>
+            </Button>
+          ) : null}
         </div>
       </div>
       {c ? (
-        <div className="pf-casehead__brief">
-          <div>
-            <div className="pf-eyebrow">{t('wb.question')}</div>
-            <p>{pick(c.question)}</p>
-          </div>
-          <div>
-            <div className="pf-eyebrow">{t('wb.shouldCatch')}</div>
-            <p>{pick(c.shouldCatch)}</p>
-          </div>
-        </div>
-      ) : (
-        <p className="pf-casehead__custom">{t('wb.custom.sub')}</p>
-      )}
+        <Disclosure title={t('wb.brief')} className="max-w-[760px]">
+          <dl className="flex flex-col gap-3 pb-1">
+            <div className="flex flex-col gap-0.5">
+              <dt className="text-xs text-muted-foreground">{t('wb.question')}</dt>
+              <dd className="text-sm text-foreground">{pick(c.question)}</dd>
+            </div>
+            <div className="flex flex-col gap-0.5">
+              <dt className="text-xs text-muted-foreground">{t('wb.shouldCatch')}</dt>
+              <dd className="text-sm text-foreground">{pick(c.shouldCatch)}</dd>
+            </div>
+          </dl>
+        </Disclosure>
+      ) : null}
     </header>
   )
-}
-
-/** True while the element fits in the viewport below the sticky header (so sticky never hides content). */
-function useFitsViewport(ref, deps) {
-  const [fits, setFits] = useState(false)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return undefined
-    const check = () => {
-      const header = parseFloat(getComputedStyle(el).getPropertyValue('--pf-header-h')) || 0
-      setFits(window.innerWidth >= 1200 && el.offsetHeight <= window.innerHeight - header - 32)
-    }
-    check()
-    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(check) : null
-    ro?.observe(el)
-    window.addEventListener('resize', check)
-    return () => { ro?.disconnect(); window.removeEventListener('resize', check) }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, deps)
-  return fits
 }
 
 function Workbench({ id, query }) {
   const { t } = useLang()
   const [resolved] = useState(() => resolveCase(id, query))
   const [input, setInput] = useState(() => resolved.input)
-  const [tab, setTab] = useState(resolved.isCustom ? 'patient' : 'review')
   const [hoverId, setHoverId] = useState(null)
   const [change, setChange] = useState(null)
   const pendingLabel = useRef(null)
   const prevResult = useRef(null)
   const lastWritten = useRef(query.s || null)
-  const doseRef = useRef(null)
-  const doseFits = useFitsViewport(doseRef, [])
 
   // Live recompute: the engine is synchronous and pure, so a memo is enough.
   const result = useMemo(() => analyze(input), [input])
 
-  // "What changed" — diff against the result before the current burst of edits
-  // to the same field (typing "Labrador" is one change, not eight).
+  // "What changed": diff against the result before the current burst of edits to the same
+  // field (typing "Labrador" is one change, not eight).
   const baseline = useRef(null)
   useEffect(() => {
     const prev = prevResult.current
@@ -169,7 +148,7 @@ function Workbench({ id, query }) {
   const applyChange = useCallback((patch, label) => {
     pendingLabel.current = label || null
     setInput((prev) => {
-      let next = { ...prev, ...patch }
+      const next = { ...prev, ...patch }
       if (patch.species && patch.species !== prev.species) {
         const b = prev.breedId ? BREED_BY_ID[prev.breedId] : null
         if (b && b.species !== patch.species) { next.breedId = null; next.breedText = '' }
@@ -189,129 +168,85 @@ function Workbench({ id, query }) {
   const hovered = hoverId ? result.findings.find((f) => f.id === hoverId) : null
   const highlight = hovered ? { drugIds: hovered.drugIds, organs: hovered.organs || [] } : null
   const hlDrugs = highlight?.drugIds || null
-  const edited = sParam != null
+  const edited = sParam != null && !resolved.isCustom
   const hasDrugs = input.meds.length > 0
-  const reportHref = caseHref(id, 'report', sParam)
-  const handoutHref = caseHref(id, 'handout', sParam)
 
-  const tabs = [
-    { id: 'patient', label: t('wb.tabs.patient') },
-    { id: 'rx', label: t('wb.tabs.rx'), count: input.meds.length },
-    { id: 'review', label: t('wb.tabs.review') },
-  ]
+  const focusSearch = () => {
+    const el = document.querySelector('#pf-rx [cmdk-input]')
+    el?.scrollIntoView({ block: 'center' })
+    el?.focus({ preventScroll: true })
+  }
 
   return (
-    <div className="pf-page pf-page--wide pf-wb">
-      <CaseHeader resolved={resolved} input={input} edited={edited && !resolved.isCustom} onReset={reset} />
+    <div className="mx-auto flex max-w-[1200px] flex-col gap-6 px-4 py-6 sm:px-6 lg:py-8">
+      <CaseHeader resolved={resolved} id={id} edited={edited} onReset={reset} />
 
-      <div className="pf-wb-mobilebar">
-        <button type="button" className="pf-wb-mobilebar__verdict" onClick={() => setTab('review')} aria-label={`${t('rv.verdict')} — ${t('wb.tabs.review')}`}>
-          <VerdictBanner result={result} compact empty={!hasDrugs} />
-        </button>
-        <div className="pf-tabs" role="tablist" aria-label={t('wb.tabs.label')}>
-          {tabs.map((x) => (
-            <button
-              key={x.id}
-              type="button"
-              role="tab"
-              id={`pf-tab-${x.id}`}
-              aria-selected={tab === x.id}
-              aria-controls={`pf-panel-${x.id}`}
-              className={tab === x.id ? 'is-on' : ''}
-              onClick={() => setTab(x.id)}
-            >
-              {x.label}
-              {x.count != null && <span className="pf-tabs__n">{x.count}</span>}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className="pf-wb-grid" data-tab={tab}>
-        {/* The prescription (add a drug, edit a dose) comes first: it is the core interaction. */}
-        <div className="pf-wb-side">
-          <section className="pf-panel pf-wb-rx" id="pf-panel-rx" aria-labelledby="pf-h-rx">
-            <h2 className="pf-panel__title" id="pf-h-rx">
-              {t('rx.title')}
-              {hasDrugs && <span className="pf-panel__count">{input.meds.length === 1 ? t('rx.medicationCountOne') : t('rx.medicationCount', { n: input.meds.length })}</span>}
-            </h2>
-            <RxEditor input={input} doses={result.doses} onChange={applyChange} highlightDrugIds={hlDrugs} />
-          </section>
-          <section className="pf-panel pf-wb-patient" id="pf-panel-patient" aria-labelledby="pf-h-patient">
-            <h2 className="pf-panel__title" id="pf-h-patient">{t('pt.title')}</h2>
-            <PatientPanel input={input} onChange={applyChange} />
-          </section>
-        </div>
-
-        <div className="pf-wb-body">
-        <div className="pf-wb-top">
-        <div className="pf-wb-main pf-wb-review" id="pf-panel-review">
-          <p className="pf-live"><span className="pf-live__dot" aria-hidden="true" />{t('wb.live')}</p>
+      <div className="grid gap-x-10 gap-y-8 lg:grid-cols-[300px_minmax(0,1fr)]">
+        <div className="order-1 flex min-w-0 flex-col gap-6 lg:order-2">
           <VerdictBanner
             result={result}
-            reportHref={reportHref}
-            handoutHref={handoutHref}
             empty={!hasDrugs}
-            onAddDrug={() => {
-              setTab('rx')
-              setTimeout(() => {
-                const el = document.querySelector('#pf-panel-rx .pf-search__input')
-                el?.scrollIntoView({ block: 'center', behavior: 'smooth' })
-                el?.focus({ preventScroll: true })
-              }, 0)
-            }}
+            emptyAction={
+              <Button size="sm" onClick={focusSearch}>
+                <Plus aria-hidden="true" strokeWidth={1.5} />
+                {t('rv.addDrug')}
+              </Button>
+            }
+            actions={
+              <>
+                <Button variant="secondary" size="sm" asChild>
+                  <a href={caseHref(id, 'report', sParam)}>
+                    <FileText aria-hidden="true" strokeWidth={1.5} />
+                    {t('rv.report')}
+                  </a>
+                </Button>
+                <Button variant="secondary" size="sm" asChild>
+                  <a href={caseHref(id, 'handout', sParam)}>
+                    <ClipboardList aria-hidden="true" strokeWidth={1.5} />
+                    {t('rv.handout')}
+                  </a>
+                </Button>
+              </>
+            }
           />
           <WhatChanged change={change} onDismiss={() => { setChange(null); baseline.current = null }} />
 
-          {hasDrugs && (
-            <section className="pf-section" aria-labelledby="pf-h-findings">
-              <h2 className="pf-section__title" id="pf-h-findings">
-                {t('rv.findings')}
-                <span className="pf-section__count">{result.findings.length}</span>
-              </h2>
+          <section id="pf-rx" aria-labelledby="pf-h-rx" className="flex flex-col gap-3">
+            <SectionTitle id="pf-h-rx" count={hasDrugs ? input.meds.length : null}>{t('rx.title')}</SectionTitle>
+            <RxEditor input={input} doses={result.doses} notes={result.notes} onChange={applyChange} highlightDrugIds={hlDrugs} />
+          </section>
+
+          {hasDrugs ? (
+            <section aria-labelledby="pf-h-findings" className="flex flex-col gap-3">
+              <SectionTitle id="pf-h-findings" count={result.findings.length}>{t('rv.findings')}</SectionTitle>
               {result.findings.length === 0 ? (
-                <p className="pf-empty">{t('rv.noFindings', { n: RULES.length })}</p>
+                <p className="border-y border-border py-4 text-sm text-text-2">{t('rv.noFindings', { n: RULES.length })}</p>
               ) : (
-                <div className="pf-findings">
-                  {result.findings.map((f) => (
-                    <FindingCard key={f.id} finding={f} onHighlight={setHoverId} highlighted={hoverId === f.id} />
-                  ))}
-                </div>
+                <FindingList findings={result.findings} onHighlight={setHoverId} highlightedId={hoverId} />
               )}
             </section>
-          )}
+          ) : null}
 
-          {hasDrugs && (
-            <section className="pf-section" aria-labelledby="pf-h-notes">
-              <h2 className="pf-section__title" id="pf-h-notes">
-                {t('rv.notes')}
-                <span className="pf-section__count">{result.notes.length}</span>
-              </h2>
-              {result.notes.length > 0 && <p className="pf-section__sub">{t('rv.notesHint')}</p>}
+          {hasDrugs ? (
+            <section aria-labelledby="pf-h-notes" className="flex flex-col gap-3">
+              <SectionTitle id="pf-h-notes" count={result.notes.length}>{t('rv.notes')}</SectionTitle>
               <NotesList notes={result.notes} highlightDrugIds={hlDrugs} />
             </section>
-          )}
+          ) : null}
 
+          {hasDrugs ? (
+            <Disclosure title={t('om.open')} className="border-b border-border pb-2">
+              <div className="pt-2 pb-4">
+                <OrganMatrix matrix={result.organMatrix} highlight={highlight} />
+              </div>
+            </Disclosure>
+          ) : null}
         </div>
 
-        <aside className="pf-wb-dose pf-wb-review" aria-labelledby="pf-h-dose" ref={doseRef} data-sticky={doseFits ? 'true' : 'false'}>
-          <div className="pf-panel pf-wb-dose__panel">
-            <h2 className="pf-panel__title" id="pf-h-dose">{t('dc.title')}</h2>
-            <p className="pf-section__sub">{t('dc.sub')}</p>
-            <DoseTable doses={result.doses} highlightDrugIds={hlDrugs} />
-          </div>
+        <aside aria-labelledby="pf-h-patient" className="order-2 flex min-w-0 flex-col gap-4 lg:order-1">
+          <SectionTitle id="pf-h-patient">{t('pt.title')}</SectionTitle>
+          <PatientPanel input={input} onChange={applyChange} />
         </aside>
-        </div>
-
-        {/* Below findings and dose check, across both columns: wide enough for the grid, and no empty right column. */}
-        {hasDrugs && (
-          <section className="pf-section pf-panel pf-wb-matrix pf-wb-review" aria-labelledby="pf-h-matrix">
-            <h2 className="pf-section__title" id="pf-h-matrix">{t('om.title')}</h2>
-            <p className="pf-section__sub">{t('om.sub')}</p>
-            <OrganMatrix matrix={result.organMatrix} highlight={highlight} />
-          </section>
-        )}
-        </div>
       </div>
     </div>
   )
@@ -323,12 +258,12 @@ export default function WorkbenchPage({ route }) {
   const probe = resolveCase(id, {})
   if (probe.notFound) {
     return (
-      <div className="pf-page">
-        <div className="pf-empty-state">
-          <h1 className="pf-h1">{t('notfound.title')}</h1>
-          <p>{t('wb.notFound', { id })}</p>
-          <a className="pf-btn pf-btn--primary" href={HREF.cases}>{t('notfound.back')}</a>
-        </div>
+      <div className="mx-auto flex max-w-[1200px] flex-col items-start gap-3 px-4 py-16 sm:px-6">
+        <h1 className="text-xl font-semibold text-foreground">{t('notfound.title')}</h1>
+        <p className="text-sm text-text-2">{t('wb.notFound', { id })}</p>
+        <Button asChild>
+          <a href={HREF.cases}>{t('notfound.back')}</a>
+        </Button>
       </div>
     )
   }

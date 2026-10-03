@@ -1,28 +1,26 @@
 import { useId, useMemo, useRef, useState } from 'react'
-import { Layers, User, Zap, X, Grid3x3, Table2 } from 'lucide-react'
+import { X } from 'lucide-react'
+import { cn } from '@/ui/cn'
+import { Button } from '@/ui/primitives/button'
+import { ToggleGroup, ToggleGroupItem } from '@/ui/primitives/toggle-group'
+import { SEVERITY } from '@/ui/patterns/status'
 import { useLang } from '../i18n/index.js'
 import CitationChip from './CitationChip.jsx'
 import { drugShort, sourceShort } from './format.js'
 import { SEVERITIES } from '../engine/findings.js'
 
 /*
- * Organ-system matrix (replaces the old anatomy diagrams).
+ * Organ-system matrix, shown behind the "장기별 위험 보기" disclosure (§5.5).
  *
- * Form: a drug × organ-system grid of ORDINAL flags (0–3) — not magnitudes, so
- * no colour ramp, no sums, no percentages. Each cell is a 3-segment glyph in a
- * single neutral hue (filled count = level); "not assessed" is a quiet hairline
- * dash (hatched only in print and forced colours), never a 0. Systems no
- * prescribed drug was assessed for, with no patient factor or finding, are
- * folded into one summary line instead of a column of empty cells. The only
- * colour is the Finding badge, which takes the severity of the most severe
- * finding involving that system; Patient and Additive badges are neutral (icon
- * + word). Hover and keyboard focus show the same tooltip; Enter/click opens an
- * inline detail panel (and hides the tooltip). A table view is always
- * available, and narrow containers get a stacked list per system instead of
- * the grid.
+ * A drug × organ-system grid of ORDINAL flags (0–3): not magnitudes, so no colour ramp, no sums,
+ * no percentages. Each cell is a 3-segment glyph in ink (filled count = level); "not assessed" is a
+ * quiet hairline dash, never a 0. Systems no prescribed drug was assessed for, with no patient
+ * factor or finding, fold into one line. The only colour is the Finding badge, which takes the
+ * severity of the most severe finding involving that system. Hover and keyboard focus show the
+ * same tooltip; Enter/click opens an inline detail. A table view is always available, and narrow
+ * screens get a stacked list per system instead of the grid.
  */
 
-const BADGE_ICON = { additive: Layers, patient: User, interaction: Zap }
 const BADGE_ORDER = ['interaction', 'patient', 'additive']
 
 function levelKey(level) {
@@ -32,14 +30,16 @@ function levelKey(level) {
 export function LevelGlyph({ level }) {
   if (level === 'na' || level == null) {
     return (
-      <span className="pf-lv pf-lv--na" aria-hidden="true">
-        <span className="pf-lv__dash" />
+      <span aria-hidden="true" className="inline-flex h-2.5 w-9 items-center">
+        <span className="h-px w-full bg-border-strong" />
       </span>
     )
   }
   return (
-    <span className={`pf-lv pf-lv--${level}`} aria-hidden="true">
-      {[1, 2, 3].map((i) => <span key={i} className={`pf-lv__seg${i <= level ? ' is-on' : ''}`} />)}
+    <span aria-hidden="true" className="inline-flex h-2.5 w-9 items-stretch gap-0.5">
+      {[1, 2, 3].map((i) => (
+        <span key={i} className={cn('flex-1 rounded-sm', i <= level ? 'bg-foreground' : 'bg-muted')} />
+      ))}
     </span>
   )
 }
@@ -65,9 +65,8 @@ export function groupBadges(badges) {
 }
 
 /**
- * Columns to draw vs. systems to fold into one "not assessed for any
- * prescribed drug" line: a system is folded when it has no badge and every
- * drug's cell is 'na'.
+ * Columns to draw vs. systems to fold into one "not assessed for any prescribed drug" line: a
+ * system is folded when it has no badge and every drug's cell is 'na'.
  */
 export function splitColumns(matrix) {
   const quiet = matrix.columns.filter((col) => !col.badges?.length && matrix.rows.every((r) => r.cells[col.id].level === 'na'))
@@ -81,15 +80,15 @@ export function tableGroup(col, matrix) {
   return { assessed, notAssessed }
 }
 
+const BADGE_BASE = 'inline-flex h-5 shrink-0 items-center gap-1 rounded-sm border px-1.5 text-xs font-medium whitespace-nowrap'
+
 export function MatrixBadge({ kind, count = 1, severity = null }) {
   const { t } = useLang()
-  const Icon = BADGE_ICON[kind] || Zap
-  const tone = kind === 'interaction' && severity ? ` pf-tone--${severity}` : ''
+  const tinted = kind === 'interaction' && severity && SEVERITY[severity]
   return (
-    <span className={`pf-mbadge pf-mbadge--${kind}${tone}`}>
-      <Icon size={12} strokeWidth={2.25} aria-hidden="true" />
+    <span data-status={tinted ? severity : undefined} className={cn(BADGE_BASE, tinted ? SEVERITY[severity].cls : 'border-border-strong bg-background text-text-2')}>
       <span>{t(`om.badge.${kind}`)}</span>
-      {count > 1 && <span className="pf-mbadge__n">×{count}</span>}
+      {count > 1 ? <span className="num">×{count}</span> : null}
     </span>
   )
 }
@@ -97,24 +96,24 @@ export function MatrixBadge({ kind, count = 1, severity = null }) {
 function Legend() {
   const { t } = useLang()
   return (
-    <div className="pf-mlegend" aria-label={t('om.legend')}>
-      <ul className="pf-mlegend__levels">
+    <div className="grid gap-3 text-xs text-text-2 sm:grid-cols-2" aria-label={t('om.legend')}>
+      <ul className="flex flex-col gap-1.5">
         {[0, 1, 2, 3].map((l) => (
-          <li key={l}>
+          <li key={l} className="flex items-center gap-2">
             <LevelGlyph level={l} />
-            <span><span className="pf-num">{l}</span> · {t(`om.level.${l}`)}</span>
+            <span><span className="num">{l}</span> {t(`om.level.${l}`)}</span>
           </li>
         ))}
-        <li>
+        <li className="flex items-center gap-2">
           <LevelGlyph level="na" />
           <span>{t('om.level.na')}</span>
         </li>
       </ul>
-      <ul className="pf-mlegend__badges">
+      <ul className="flex flex-col gap-1.5">
         {BADGE_ORDER.map((k) => (
-          <li key={k}>
+          <li key={k} className="flex items-start gap-2">
             <MatrixBadge kind={k} />
-            <span>{t(`om.badgeDesc.${k}`)}</span>
+            <span className="pt-0.5">{t(`om.badgeDesc.${k}`)}</span>
           </li>
         ))}
       </ul>
@@ -135,43 +134,43 @@ function CellDetail({ matrix, cols, pos, onClose }) {
   const cell = row ? row.cells[col.id] : null
   const groups = groupBadges(col.badges)
   return (
-    <div className="pf-mdetail" role="region" aria-live="polite" aria-label={`${pick(col.label)}${row ? ` · ${drugShort(row.drugId, pick)}` : ''}`}>
-      <div className="pf-mdetail__head">
-        <div>
-          <div className="pf-mdetail__eyebrow">{pick(col.label)}</div>
-          <div className="pf-mdetail__title">{row ? drugShort(row.drugId, pick) : t('om.patientRow')}</div>
+    <div className="flex flex-col gap-2 border-t border-border pt-3" role="region" aria-live="polite" aria-label={`${pick(col.label)}${row ? `, ${drugShort(row.drugId, pick)}` : ''}`}>
+      <div className="flex items-start gap-2">
+        <div className="flex min-w-0 flex-1 flex-col">
+          <span className="text-xs text-muted-foreground">{pick(col.label)}</span>
+          <span className="text-sm font-semibold text-foreground">{row ? drugShort(row.drugId, pick) : t('om.patientRow')}</span>
         </div>
-        <button type="button" className="pf-icon-btn" onClick={onClose} aria-label={t('om.close')}>
-          <X size={16} aria-hidden="true" />
-        </button>
+        <Button variant="ghost" size="icon-sm" onClick={onClose} aria-label={t('om.close')}>
+          <X aria-hidden="true" strokeWidth={1.5} />
+        </Button>
       </div>
-      {cell && (
-        <div className="pf-mdetail__level">
+      {cell ? (
+        <p className="flex items-center gap-2 text-sm font-medium text-foreground">
           <LevelGlyph level={cell.level} />
-          <strong>{t(`om.level.${levelKey(cell.level)}`)}</strong>
-        </div>
-      )}
-      {cell && <p className="pf-mdetail__text">{cell.reason ? pick(cell.reason) : t('om.notAssessed')}</p>}
-      {cell?.source && <div className="pf-mdetail__src"><CitationChip id={cell.source} full /></div>}
-      {(isPatient || groups.length > 0) && (
-        <div className="pf-mdetail__badges">
-          {groups.length === 0 && <p className="pf-muted">{t('om.noBadges')}</p>}
+          {t(`om.level.${levelKey(cell.level)}`)}
+        </p>
+      ) : null}
+      {cell ? <p className="text-sm text-text-2">{cell.reason ? pick(cell.reason) : t('om.notAssessed')}</p> : null}
+      {cell?.source ? <div><CitationChip id={cell.source} /></div> : null}
+      {isPatient || groups.length > 0 ? (
+        <div className="flex flex-col gap-2">
+          {groups.length === 0 ? <p className="text-sm text-muted-foreground">{t('om.noBadges')}</p> : null}
           {groups.map((g) => (
-            <div key={g.kind} className="pf-mdetail__badge">
+            <div key={g.kind} className="flex flex-col gap-1">
               <MatrixBadge kind={g.kind} count={g.items.length} severity={g.severity} />
-              <ul className="pf-list">
-                {badgeReasons(g, pick).map((r, i) => <li key={i}><span>{r}</span></li>)}
+              <ul className="flex list-disc flex-col gap-0.5 pl-5 text-sm text-text-2">
+                {badgeReasons(g, pick).map((r, i) => <li key={i}>{r}</li>)}
               </ul>
             </div>
           ))}
         </div>
-      )}
+      ) : null}
     </div>
   )
 }
 
-/** Hover/focus tooltip: level word first (the value), then system · drug, reason, source. */
-function Tooltip({ matrix, cols, tip }) {
+/** Hover/focus tooltip: level word first (the value), then system and drug, reason, source. */
+function Tip({ matrix, cols, tip }) {
   const { t, pick, lang } = useLang()
   if (!tip) return null
   const col = cols[tip.c]
@@ -181,26 +180,31 @@ function Tooltip({ matrix, cols, tip }) {
   const cell = row ? row.cells[col.id] : null
   const groups = groupBadges(col.badges)
   return (
-    <div className="pf-mtip" role="tooltip" style={{ left: tip.x, top: tip.y }} data-place={tip.place}>
+    <div
+      role="tooltip"
+      data-floating=""
+      className="pointer-events-none absolute z-[var(--z-overlay)] flex w-72 max-w-[calc(100%-16px)] flex-col gap-1 rounded-lg border border-border bg-popover p-3 text-xs text-text-2 shadow-pop"
+      style={{ left: tip.x, top: tip.y }}
+    >
       {cell ? (
         <>
-          <div className="pf-mtip__value">
+          <span className="flex items-center gap-2 text-sm font-medium text-foreground">
             <LevelGlyph level={cell.level} />
-            <strong>{t(`om.level.${levelKey(cell.level)}`)}</strong>
-          </div>
-          <div className="pf-mtip__where">{pick(col.label)} · {drugShort(row.drugId, pick)}</div>
-          <p className="pf-mtip__text">{cell.reason ? pick(cell.reason) : t('om.notAssessed')}</p>
-          {cell.source && <div className="pf-mtip__src">{sourceShort(cell.source, lang)}</div>}
+            {t(`om.level.${levelKey(cell.level)}`)}
+          </span>
+          <span className="text-muted-foreground">{pick(col.label)}, {drugShort(row.drugId, pick)}</span>
+          <span>{cell.reason ? pick(cell.reason) : t('om.notAssessed')}</span>
+          {cell.source ? <span className="text-muted-foreground">{sourceShort(cell.source, lang)}</span> : null}
         </>
       ) : (
         <>
-          <div className="pf-mtip__where">{pick(col.label)} · {t('om.patientRow')}</div>
-          {groups.length === 0 && <p className="pf-mtip__text">{t('om.noBadges')}</p>}
+          <span className="text-muted-foreground">{pick(col.label)}, {t('om.patientRow')}</span>
+          {groups.length === 0 ? <span>{t('om.noBadges')}</span> : null}
           {groups.map((g) => (
-            <div key={g.kind} className="pf-mtip__badge">
+            <span key={g.kind} className="flex flex-col items-start gap-1">
               <MatrixBadge kind={g.kind} count={g.items.length} severity={g.severity} />
-              <p className="pf-mtip__text">{badgeReasons(g, pick).join(' · ')}</p>
-            </div>
+              <span>{badgeReasons(g, pick).join(' / ')}</span>
+            </span>
           ))}
         </>
       )}
@@ -208,45 +212,45 @@ function Tooltip({ matrix, cols, tip }) {
   )
 }
 
-/** "Not assessed for any prescribed drug: CNS · Heart" — systems with nothing to draw. */
+/** Systems with nothing to draw, in one line. */
 function QuietLine({ quiet }) {
   const { t, pick } = useLang()
   if (!quiet.length) return null
   return (
-    <p className="pf-mquiet">
+    <p className="flex items-center gap-2 text-xs text-muted-foreground">
       <LevelGlyph level="na" />
-      <span>{t('om.quiet', { systems: quiet.map((c) => pick(c.label)).join(' · ') })}</span>
+      <span>{t('om.quiet', { systems: quiet.map((c) => pick(c.label)).join(', ') })}</span>
     </p>
   )
 }
 
+const TH = 'h-8 px-3 text-left align-middle text-xs font-medium whitespace-nowrap text-muted-foreground'
+const TD = 'px-3 py-2 align-top text-sm text-foreground'
+
 /**
- * Table view: one group per system (full-width header row), the patient's
- * flags, one row per drug with an assessed level, and the drugs not assessed
- * collapsed into one muted line.
+ * Table view: one group per system (full-width header row), the patient's flags, one row per drug
+ * with an assessed level, and the drugs not assessed collapsed into one muted line.
  */
 function TableView({ matrix }) {
   const { t, pick } = useLang()
   const { shown, quiet } = splitColumns(matrix)
   return (
-    <div className="pf-mtable-wrap">
-      {shown.length > 0 && (
-        <div className="pf-table-wrap">
-          <table className="pf-mtable">
+    <div className="flex flex-col gap-3">
+      {shown.length > 0 ? (
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[560px]">
             <thead>
-              <tr>
-                <th scope="col">{t('om.t.drug')}</th>
-                <th scope="col">{t('om.t.level')}</th>
-                <th scope="col">{t('om.t.reason')}</th>
-                <th scope="col" className="pf-mtable__srccol">{t('om.t.source')}</th>
+              <tr className="border-b border-border-strong bg-subtle">
+                <th scope="col" className={cn(TH, 'pl-0')}>{t('om.t.drug')}</th>
+                <th scope="col" className={TH}>{t('om.t.level')}</th>
+                <th scope="col" className={TH}>{t('om.t.reason')}</th>
+                <th scope="col" className={TH}>{t('om.t.source')}</th>
               </tr>
             </thead>
-            {shown.map((col) => (
-              <TableGroup key={col.id} col={col} matrix={matrix} t={t} pick={pick} />
-            ))}
+            {shown.map((col) => <TableGroup key={col.id} col={col} matrix={matrix} t={t} pick={pick} />)}
           </table>
         </div>
-      )}
+      ) : null}
       <QuietLine quiet={quiet} />
     </div>
   )
@@ -256,90 +260,92 @@ function TableGroup({ col, matrix, t, pick }) {
   const groups = groupBadges(col.badges)
   const { assessed, notAssessed } = tableGroup(col, matrix)
   return (
-    <tbody className="pf-mtable__group">
-      <tr className="pf-mtable__sys">
-        <th scope="colgroup" colSpan={4}>{pick(col.label)}</th>
+    <tbody>
+      <tr className="border-b border-border">
+        <th scope="colgroup" colSpan={4} className="h-8 pt-3 text-left text-sm font-semibold text-foreground">{pick(col.label)}</th>
       </tr>
-      {groups.length > 0 && (
-        <tr className="pf-mtable__patient">
-          <th scope="row">{t('om.patientRow')}</th>
-          <td colSpan={3}>
-            {groups.map((g) => (
-              <div key={g.kind} className="pf-mtable__badge">
-                <MatrixBadge kind={g.kind} count={g.items.length} severity={g.severity} />
-                <span>{g.items.map((b) => pick(b.reason)).join(' · ')}</span>
-              </div>
-            ))}
+      {groups.length > 0 ? (
+        <tr className="border-b border-border">
+          <th scope="row" className={cn(TD, 'pl-0 text-left font-normal text-text-2')}>{t('om.patientRow')}</th>
+          <td colSpan={3} className={TD}>
+            <div className="flex flex-col gap-1.5">
+              {groups.map((g) => (
+                <div key={g.kind} className="flex flex-wrap items-start gap-2">
+                  <MatrixBadge kind={g.kind} count={g.items.length} severity={g.severity} />
+                  <span className="text-sm text-text-2">{g.items.map((b) => pick(b.reason)).join(' / ')}</span>
+                </div>
+              ))}
+            </div>
           </td>
         </tr>
-      )}
+      ) : null}
       {assessed.map((row) => {
         const cell = row.cells[col.id]
         return (
-          <tr key={row.drugId}>
-            <th scope="row" className="pf-mtable__drug">{drugShort(row.drugId, pick)}</th>
-            <td className="pf-nowrap">
-              <span className="pf-mtable__lv"><LevelGlyph level={cell.level} />{`${cell.level} · ${t(`om.level.${cell.level}`)}`}</span>
+          <tr key={row.drugId} className="border-b border-border">
+            <th scope="row" className={cn(TD, 'pl-0 text-left font-medium')}>{drugShort(row.drugId, pick)}</th>
+            <td className={cn(TD, 'whitespace-nowrap')}>
+              <span className="inline-flex items-center gap-2"><LevelGlyph level={cell.level} />{t(`om.level.${cell.level}`)}</span>
             </td>
-            <td>{cell.reason ? pick(cell.reason) : <span className="pf-muted">—</span>}</td>
-            <td className="pf-mtable__srccol">{cell.source ? <CitationChip id={cell.source} /> : <span className="pf-muted">—</span>}</td>
+            <td className={cn(TD, 'text-text-2')}>{cell.reason ? pick(cell.reason) : '–'}</td>
+            <td className={TD}>{cell.source ? <CitationChip id={cell.source} /> : <span className="text-muted-foreground">–</span>}</td>
           </tr>
         )
       })}
-      {notAssessed.length > 0 && (
-        <tr className="pf-mtable__na">
-          <td colSpan={4}>
-            <span className="pf-mtable__lv">
+      {notAssessed.length > 0 ? (
+        <tr className="border-b border-border">
+          <td colSpan={4} className="py-2 text-xs text-muted-foreground">
+            <span className="inline-flex items-center gap-2">
               <LevelGlyph level="na" />
-              <span>{t('om.t.notAssessedList', { drugs: notAssessed.map((id) => drugShort(id, pick)).join(', ') })}</span>
+              {t('om.t.notAssessedList', { drugs: notAssessed.map((id) => drugShort(id, pick)).join(', ') })}
             </span>
           </td>
         </tr>
-      )}
+      ) : null}
     </tbody>
   )
 }
 
-/** Stacked list per system (narrow containers). Each line expands in place. */
+/** Stacked list per system (narrow screens). Each line expands in place. */
 function StackedView({ matrix, hl }) {
   const { t, pick } = useLang()
   const [open, setOpen] = useState(null)
   const { shown, quiet } = splitColumns(matrix)
   return (
-    <div className="pf-mstack">
+    <div className="flex flex-col gap-4 sm:hidden">
       {shown.map((col) => {
         const groups = groupBadges(col.badges)
         const colHl = hl?.organs?.includes(col.id)
         return (
-          <section key={col.id} className={`pf-mstack__sys${colHl ? ' is-hl' : ''}`}>
-            <header className="pf-mstack__head">
-              <h3>{pick(col.label)}</h3>
-              <div className="pf-mstack__badges">
-                {groups.map((g) => <MatrixBadge key={g.kind} kind={g.kind} count={g.items.length} severity={g.severity} />)}
-              </div>
+          <section key={col.id} className={cn('flex flex-col gap-1.5 border-b border-border pb-3', colHl && 'bg-row-hover')}>
+            <header className="flex flex-wrap items-center gap-2">
+              <h3 className="text-sm font-semibold text-foreground">{pick(col.label)}</h3>
+              {groups.map((g) => <MatrixBadge key={g.kind} kind={g.kind} count={g.items.length} severity={g.severity} />)}
             </header>
-            {groups.length > 0 && (
-              <p className="pf-mstack__reasons">{groups.flatMap((g) => g.items.map((b) => pick(b.reason))).join(' · ')}</p>
-            )}
-            <ul>
+            {groups.length > 0 ? <p className="text-xs text-text-2">{groups.flatMap((g) => g.items.map((b) => pick(b.reason))).join(' / ')}</p> : null}
+            <ul className="flex flex-col">
               {matrix.rows.map((row) => {
                 const cell = row.cells[col.id]
                 const key = `${col.id}:${row.drugId}`
                 const isOpen = open === key
-                const cellHl = colHl && hl?.drugIds?.includes(row.drugId)
                 return (
-                  <li key={row.drugId} className={cellHl ? 'is-hl' : ''}>
-                    <button type="button" className="pf-mstack__line" aria-expanded={isOpen} onClick={() => setOpen(isOpen ? null : key)}>
-                      <span className="pf-mstack__drug">{drugShort(row.drugId, pick)}</span>
+                  <li key={row.drugId}>
+                    <button
+                      type="button"
+                      aria-expanded={isOpen}
+                      onClick={() => setOpen(isOpen ? null : key)}
+                      className="flex h-10 w-full items-center gap-3 rounded-sm text-left text-sm hover:bg-row-hover"
+                    >
+                      <span className="min-w-0 flex-1 truncate text-foreground" data-truncate="" title={drugShort(row.drugId, pick)}>{drugShort(row.drugId, pick)}</span>
                       <LevelGlyph level={cell.level} />
-                      <span className="pf-mstack__word">{t(`om.level.${levelKey(cell.level)}`)}</span>
+                      <span className="w-28 shrink-0 text-xs text-text-2">{t(`om.level.${levelKey(cell.level)}`)}</span>
                     </button>
-                    {isOpen && (
-                      <div className="pf-mstack__detail">
+                    {isOpen ? (
+                      <div className="flex flex-col gap-1 pb-2 text-sm text-text-2">
                         <p>{cell.reason ? pick(cell.reason) : t('om.notAssessed')}</p>
-                        {cell.source && <CitationChip id={cell.source} full />}
+                        {cell.source ? <div><CitationChip id={cell.source} /></div> : null}
                       </div>
-                    )}
+                    ) : null}
                   </li>
                 )
               })}
@@ -354,7 +360,7 @@ function StackedView({ matrix, hl }) {
 
 /**
  * matrix: result.organMatrix
- * highlight: { drugIds:[], organs:[] } | null — from the hovered finding card
+ * highlight: { drugIds:[], organs:[] } | null, from the hovered finding
  */
 export default function OrganMatrix({ matrix, highlight = null }) {
   const { t, pick } = useLang()
@@ -367,36 +373,28 @@ export default function OrganMatrix({ matrix, highlight = null }) {
   const { shown: cols, quiet } = useMemo(() => splitColumns(matrix), [matrix])
   const nRows = matrix.rows.length + 1
   const nCols = cols.length
+  const hl = useMemo(() => (highlight ? { drugIds: highlight.drugIds || [], organs: highlight.organs || [] } : null), [highlight])
 
-  const hl = useMemo(() => {
-    if (!highlight) return null
-    return { drugIds: highlight.drugIds || [], organs: highlight.organs || [] }
-  }, [highlight])
-
-  if (!matrix.rows.length) {
-    return <p className="pf-muted">{t('om.empty')}</p>
-  }
+  if (!matrix.rows.length) return <p className="text-sm text-muted-foreground">{t('om.empty')}</p>
 
   const safeFocus = { r: Math.min(focus.r, nRows - 1), c: Math.max(0, Math.min(focus.c, nCols - 1)) }
   const isSelected = (r, c) => Boolean(selected && selected.r === r && selected.c === c)
 
   const showTip = (r, c, el) => {
-    // The open detail panel already says everything the tooltip would, so never stack the two.
     if (isSelected(r, c)) return
     const wrap = wrapRef.current
     if (!wrap || !el) return
     const w = wrap.getBoundingClientRect()
     const b = el.getBoundingClientRect()
-    const tipW = Math.min(300, w.width - 16)
-    let x = b.left - w.left + b.width / 2 - tipW / 2
-    x = Math.max(8, Math.min(x, w.width - tipW - 8))
-    setTip({ r, c, x, y: b.bottom - w.top + 6, place: 'below' })
+    const tipW = Math.min(288, w.width - 16)
+    let x = b.left - w.left + wrap.scrollLeft + b.width / 2 - tipW / 2
+    x = Math.max(8, Math.min(x, wrap.scrollWidth - tipW - 8))
+    setTip({ r, c, x, y: b.bottom - w.top + 6 })
   }
 
   const focusCell = (r, c) => {
     setFocus({ r, c })
-    const el = wrapRef.current?.querySelector(`[data-pos="${r}-${c}"]`)
-    if (el) el.focus()
+    wrapRef.current?.querySelector(`[data-pos="${r}-${c}"]`)?.focus()
   }
 
   const onKeyDown = (e, r, c) => {
@@ -430,45 +428,42 @@ export default function OrganMatrix({ matrix, highlight = null }) {
     },
     'aria-pressed': isSelected(r, c),
   })
+  const cellBtn = 'flex h-9 w-full min-w-14 items-center justify-center rounded-sm hover:bg-row-hover aria-pressed:bg-brand-soft'
 
   return (
-    <div className="pf-matrix-section">
-      <div className="pf-matrix-toolbar">
-        <div className="pf-seg pf-seg--sm" role="group" aria-label={t('om.view')}>
-          <button type="button" className={view === 'matrix' ? 'is-on' : ''} aria-pressed={view === 'matrix'} onClick={() => setView('matrix')}>
-            <Grid3x3 size={14} aria-hidden="true" />{t('om.view.matrix')}
-          </button>
-          <button type="button" className={view === 'table' ? 'is-on' : ''} aria-pressed={view === 'table'} onClick={() => setView('table')}>
-            <Table2 size={14} aria-hidden="true" />{t('om.view.table')}
-          </button>
-        </div>
-      </div>
+    <div className="flex flex-col gap-4">
+      <ToggleGroup type="single" size="sm" value={view} onValueChange={(v) => v && setView(v)} aria-label={t('om.view')} className="hidden sm:flex">
+        <ToggleGroupItem value="matrix">{t('om.view.matrix')}</ToggleGroupItem>
+        <ToggleGroupItem value="table">{t('om.view.table')}</ToggleGroupItem>
+      </ToggleGroup>
 
       {view === 'table' ? (
-        <TableView matrix={matrix} />
+        <div className="hidden sm:block"><TableView matrix={matrix} /></div>
       ) : (
-        <div className="pf-matrix-host">
-          <div className="pf-matrix-wrap" ref={wrapRef}>
-            {nCols > 0 && (
-              <table className={`pf-matrix${hl?.organs?.length ? ' has-hl' : ''}`} aria-describedby={descId}>
+        <div className="hidden flex-col gap-3 sm:flex">
+          <div className="relative overflow-x-auto" ref={wrapRef}>
+            {nCols > 0 ? (
+              <table className="w-full border-collapse" aria-describedby={descId}>
                 <thead>
-                  <tr>
-                    <th scope="col" className="pf-matrix__corner"><span className="pf-sr">{t('om.drug')}</span></th>
+                  <tr className="border-b border-border-strong">
+                    <th scope="col" className="h-8 w-40 pr-3 text-left"><span className="sr-only">{t('om.drug')}</span></th>
                     {cols.map((col) => (
-                      <th key={col.id} scope="col" className={hl?.organs?.includes(col.id) ? 'is-hl' : ''}>{pick(col.label)}</th>
+                      <th key={col.id} scope="col" className={cn('h-8 px-1 text-center text-xs font-medium whitespace-nowrap text-muted-foreground', hl?.organs?.includes(col.id) && 'text-foreground')}>
+                        {pick(col.label)}
+                      </th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="pf-matrix__patient">
-                    <th scope="row">{t('om.patientRow')}</th>
+                  <tr className="border-b border-border">
+                    <th scope="row" className="pr-3 text-left text-sm font-normal text-text-2">{t('om.patientRow')}</th>
                     {cols.map((col, c) => {
                       const groups = groupBadges(col.badges)
-                      const label = `${pick(col.label)} · ${t('om.patientRow')}: ${groups.length ? groups.map((g) => t(`om.badge.${g.kind}`)).join(', ') : '—'}`
+                      const label = `${pick(col.label)}, ${t('om.patientRow')}: ${groups.length ? groups.map((g) => t(`om.badge.${g.kind}`)).join(', ') : t('om.none')}`
                       return (
-                        <td key={col.id} className={hl?.organs?.includes(col.id) ? 'is-hl' : ''}>
-                          <button type="button" className="pf-mcell pf-mcell--patient" aria-label={label} {...cellProps(0, c)}>
-                            {groups.length === 0 ? <span className="pf-mcell__none" aria-hidden="true" /> : groups.map((g) => <MatrixBadge key={g.kind} kind={g.kind} count={g.items.length} severity={g.severity} />)}
+                        <td key={col.id} className="px-1 py-1">
+                          <button type="button" aria-label={label} className={cn(cellBtn, 'h-auto min-h-9 flex-col gap-1 py-1')} {...cellProps(0, c)}>
+                            {groups.length === 0 ? <span aria-hidden="true" className="h-px w-3 bg-border" /> : groups.map((g) => <MatrixBadge key={g.kind} kind={g.kind} count={g.items.length} severity={g.severity} />)}
                           </button>
                         </td>
                       )
@@ -478,16 +473,15 @@ export default function OrganMatrix({ matrix, highlight = null }) {
                     const r = i + 1
                     const rowHl = hl?.drugIds?.includes(row.drugId)
                     return (
-                      <tr key={row.drugId} className={rowHl ? 'is-hl' : ''}>
-                        <th scope="row" className="pf-matrix__drug">{drugShort(row.drugId, pick)}</th>
+                      <tr key={row.drugId} className={cn('border-b border-border', rowHl && 'bg-row-hover')}>
+                        <th scope="row" className="pr-3 text-left text-sm font-medium whitespace-nowrap text-foreground">{drugShort(row.drugId, pick)}</th>
                         {cols.map((col, c) => {
                           const cell = row.cells[col.id]
-                          const on = rowHl && hl?.organs?.includes(col.id)
                           const lk = levelKey(cell.level)
-                          const label = `${drugShort(row.drugId, pick)}, ${pick(col.label)}: ${lk === 'na' ? t('om.level.na') : `${lk} · ${t(`om.level.${lk}`)}`}`
+                          const label = `${drugShort(row.drugId, pick)}, ${pick(col.label)}: ${lk === 'na' ? t('om.level.na') : `${lk}, ${t(`om.level.${lk}`)}`}`
                           return (
-                            <td key={col.id} className={on ? 'is-hl' : ''}>
-                              <button type="button" className="pf-mcell" aria-label={label} {...cellProps(r, c)}>
+                            <td key={col.id} className="px-1 py-0.5">
+                              <button type="button" aria-label={label} className={cellBtn} {...cellProps(r, c)}>
                                 <LevelGlyph level={cell.level} />
                               </button>
                             </td>
@@ -498,20 +492,19 @@ export default function OrganMatrix({ matrix, highlight = null }) {
                   })}
                 </tbody>
               </table>
-            )}
-            <p id={descId} className="pf-sr">{t('om.keyboard')}</p>
-            <Tooltip matrix={matrix} cols={cols} tip={tip} />
-            <QuietLine quiet={quiet} />
+            ) : null}
+            <p id={descId} className="sr-only">{t('om.keyboard')}</p>
+            <Tip matrix={matrix} cols={cols} tip={tip} />
           </div>
-          {selected && selected.r < nRows && selected.c < nCols && (
+          <QuietLine quiet={quiet} />
+          {selected && selected.r < nRows && selected.c < nCols ? (
             <CellDetail matrix={matrix} cols={cols} pos={selected} onClose={() => setSelected(null)} />
-          )}
-          <StackedView matrix={matrix} hl={hl} />
+          ) : null}
         </div>
       )}
-
+      <StackedView matrix={matrix} hl={hl} />
       <Legend />
-      <p className="pf-matrix-foot">{t('om.footnote')}</p>
+      <p className="text-xs text-muted-foreground">{t('om.footnote')}</p>
     </div>
   )
 }

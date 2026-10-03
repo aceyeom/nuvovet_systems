@@ -1,0 +1,671 @@
+/*
+ * NuvoVet DUR widget CSS (EMR popup spec §3.4). Loaded with ?inline after tokens.css into one
+ * CSSStyleSheet adopted by every shadow root (overlay host, panel host, badge slots).
+ *
+ * Rules: px units only, tokens through var(--…) under .nv-scope, no colour literals, no rem,
+ * no @property, no @import, no "important" flags (host selectors cannot reach into a shadow tree;
+ * only inherited properties cross the boundary and `all: initial` on .nv-scope stops them).
+ * Card values copy the computed values of the golden DUR card (DESIGN_SYSTEM §9.9).
+ */
+
+:host(nuvovet-dur-overlay) {
+  all: initial;
+  position: fixed;
+  inset: 0 auto auto 0;
+  width: 0;
+  height: 0;
+  z-index: 2147483000;
+  contain: none;
+  display: block;
+}
+:host([data-nv-slot]),
+:host(nuvovet-dur-badge) {
+  display: inline-block;
+}
+
+.nv-scope {
+  all: initial;
+  display: block;
+  box-sizing: border-box;
+  /* all: initial resets inherited text and colour-scheme settings; restore the ones the
+     page base (src/ui/base.css) gives every other surface: Korean words never break mid-word,
+     and native radios/checkboxes follow the widget theme, not the OS (design review P0-1/2). */
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  line-break: strict;
+  color-scheme: light;
+  /* Widget stack (§3.4): the namespaced face first, so a host face named "Pretendard Variable" is never used when injected. */
+  --nv-font-sans: "NuvoVet Pretendard", "Pretendard Variable", system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  font: 13px/20px var(--nv-font-sans);
+  font-feature-settings: normal;
+  color: var(--foreground);
+  letter-spacing: 0;
+  text-transform: none;
+  text-align: left;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.nv-scope[data-theme="dark"] { color-scheme: dark; }
+@media (prefers-color-scheme: dark) {
+  .nv-scope:not([data-theme="light"]) { color-scheme: dark; }
+}
+.nv-scope *,
+.nv-scope *::before,
+.nv-scope *::after {
+  box-sizing: border-box;
+}
+:where(.nv-scope) :where(h2, h3, h4, p, ul, ol, li, dl, dt, dd, fieldset, legend, figure, section) {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  color: inherit;
+  list-style: none;
+}
+:where(.nv-scope) :where(button, input, select, textarea) {
+  font: inherit;
+  color: inherit;
+  letter-spacing: 0;
+  margin: 0;
+}
+:where(.nv-scope) svg {
+  display: block;
+  flex-shrink: 0;
+}
+:where(.nv-scope) a {
+  color: var(--brand);
+  text-decoration: none;
+}
+:where(.nv-scope) a:hover {
+  color: var(--brand-hover);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.nv-scope :where(a, button, input, select, textarea, [tabindex], summary):focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+.nv-scope :where(input, select, textarea):focus-visible {
+  border-color: var(--ring);
+}
+.nv-scope :where(a, button, input, select, textarea, [tabindex]):focus:not(:focus-visible) {
+  outline: none;
+}
+:where(.nv-scope) button:not(:disabled) {
+  cursor: pointer;
+}
+.nv-root {
+  all: initial;
+  display: block;
+  width: 0;
+  height: 0;
+}
+.nv-scope.nv-overlay-root {
+  width: 0;
+  height: 0;
+}
+
+/* ── Text helpers ─────────────────────────────────────────────────────────── */
+.nv-muted { color: var(--muted-foreground); }
+.nv-text2 { color: var(--text-2); }
+.nv-id {
+  font-feature-settings: "tnum", "zero";
+  font-weight: 500;
+  white-space: nowrap;
+}
+.nv-num {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.nv-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+.nv-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+.nv-sep { color: var(--muted-foreground); }
+
+/* ── Buttons (golden: Button sm 28 px, default 32 px; 40 px on coarse pointers) ─ */
+.nv-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 10px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--foreground);
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition-property: color, background-color, border-color, opacity;
+  transition-duration: var(--dur-1);
+  transition-timing-function: var(--nv-ease-out);
+}
+.nv-btn svg { width: 16px; height: 16px; }
+.nv-btn:disabled { opacity: 0.5; cursor: default; }
+.nv-btn-md { height: 32px; padding: 0 12px; gap: 8px; }
+.nv-btn-primary { background: var(--primary); color: var(--primary-foreground); }
+.nv-btn-primary:hover:not(:disabled) { background: var(--primary-hover); }
+.nv-btn-secondary { border-color: var(--border); background: var(--secondary); color: var(--foreground); }
+.nv-btn-secondary:hover:not(:disabled) { background: var(--row-pressed); }
+.nv-btn-outline { border-color: var(--input); background: var(--background); color: var(--foreground); }
+.nv-btn-outline:hover:not(:disabled) { background: var(--row-hover); }
+.nv-btn-ghost:hover:not(:disabled) { background: var(--row-hover); }
+.nv-btn-icon { width: 28px; padding: 0; }
+.nv-btn-icon-sm { width: 24px; height: 24px; padding: 0; }
+.nv-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--brand);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+}
+.nv-link-btn:hover { color: var(--brand-hover); text-decoration: underline; text-underline-offset: 3px; }
+@media (pointer: coarse) {
+  .nv-btn, .nv-btn-md { height: 40px; }
+  .nv-btn-icon, .nv-btn-icon-sm { width: 40px; height: 40px; }
+}
+
+/* ── Severity badges (SeverityBadge sm 20 px / md 24 px) ──────────────────── */
+.nv-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  width: fit-content;
+  flex-shrink: 0;
+  height: 20px;
+  padding: 0 6px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition-property: color, background-color, border-color;
+  transition-duration: var(--dur-2);
+}
+.nv-badge svg { width: 14px; height: 14px; }
+.nv-badge-md { height: 24px; padding: 0 8px; }
+.nv-badge[data-status="contraindicated"] { background: var(--sev-critical-solid); color: var(--on-solid); }
+.nv-badge[data-status="major"] { border-color: var(--sev-major); background: var(--sev-major-bg); color: var(--sev-major); }
+.nv-badge[data-status="moderate"] { background: var(--sev-moderate-bg); color: var(--sev-moderate); }
+.nv-badge[data-status="minor"],
+.nv-badge[data-status="incomplete"],
+.nv-badge[data-status="none"],
+.nv-badge[data-status="confirm"],
+.nv-badge[data-status="noref"],
+.nv-badge[data-status="unmapped"] { background: var(--sev-minor-bg); color: var(--sev-minor); }
+.nv-badge[data-status="related"] { border-color: var(--border-strong); background: transparent; color: var(--text-2); }
+.nv-badge[data-status="dash"] { background: transparent; color: var(--muted-foreground); padding: 0 4px; }
+
+/* ── Row badge (host DUR slot): 20 px badge, 24 px hit area ───────────────── */
+.nv-scope.nv-slot { display: inline-block; vertical-align: middle; line-height: 0; }
+.nv-scope.nv-panel-scope { height: 100%; }
+.nv-rowbadge {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 2px 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  line-height: 0;
+}
+.nv-rowbadge:hover .nv-badge { filter: brightness(0.96); }
+/* Slots sit on the host's own (light) row background: a badge with no fill gets the widget surface, so
+   its text keeps its contrast in the dark widget theme too. */
+.nv-slot .nv-badge[data-status="related"],
+.nv-slot .nv-badge[data-status="dash"] { background: var(--popover); }
+
+/* ── Panel (docked 360 px column, drawer 380 px, sheet full width) ───────── */
+.nv-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  background: var(--popover);
+  color: var(--foreground);
+  position: relative;
+}
+.nv-panel-docked { border-left: 1px solid var(--border); }
+.nv-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  flex-shrink: 0;
+  padding: 0 8px 0 12px;
+  border-bottom: 1px solid var(--border);
+}
+.nv-head-title { font-size: 13px; line-height: 20px; font-weight: 600; letter-spacing: 0; }
+.nv-head-meta { margin-left: auto; font-size: 12px; line-height: 16px; color: var(--muted-foreground); }
+.nv-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.nv-section { padding: 12px; border-bottom: 1px solid var(--border); }
+.nv-section:last-child { border-bottom: 0; }
+.nv-verdict { display: flex; flex-direction: column; gap: 8px; }
+.nv-verdict-line { display: flex; align-items: flex-start; gap: 8px; }
+.nv-verdict-line h2 {
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 600;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  padding-top: 2px;
+}
+.nv-verdict-meta { display: flex; align-items: center; gap: 8px; min-height: 24px; font-size: 12px; line-height: 16px; color: var(--text-2); }
+.nv-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  padding: 0 8px;
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  background: var(--background);
+  color: var(--text-2);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.nv-chip:hover { background: var(--row-hover); }
+.nv-chip svg { width: 14px; height: 14px; }
+.nv-verdict-meta .nv-chip { margin-left: auto; }
+.nv-reasons { display: flex; flex-direction: column; gap: 4px; font-size: 12px; line-height: 16px; color: var(--text-2); }
+.nv-empty { padding: 24px 12px; color: var(--muted-foreground); }
+
+.nv-group-title { font-size: 12px; line-height: 16px; font-weight: 600; color: var(--text-2); margin-bottom: 8px; }
+.nv-confirm-list { display: flex; flex-direction: column; gap: 8px; }
+.nv-confirm-item { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; line-height: 16px; color: var(--foreground); }
+.nv-confirm-item > span { flex: 1 1 auto; min-width: 0; padding-top: 4px; }
+.nv-confirm-item .nv-chip,
+.nv-confirm-item .nv-link-btn { flex-shrink: 0; }
+.nv-select {
+  height: 28px;
+  max-width: 100%;
+  padding: 0 8px;
+  border: 1px solid var(--input);
+  border-radius: 6px;
+  background: var(--background);
+  color: var(--foreground);
+  font-size: 12px;
+}
+
+/* ── Card (golden DUR card) ───────────────────────────────────────────────── */
+.nv-cards { display: block; }
+.nv-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  line-height: 20px;
+  scroll-margin-top: 8px;
+}
+.nv-card-wrap:last-child > .nv-card { border-bottom: 0; }
+.nv-card-top { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.nv-card-cat { font-size: 12px; line-height: 16px; font-weight: 500; color: var(--text-2); white-space: nowrap; }
+.nv-card-drugs { margin-left: auto; font-size: 12px; line-height: 16px; color: var(--muted-foreground); }
+.nv-card h3 {
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 600;
+  color: var(--foreground);
+  outline-offset: 2px;
+}
+.nv-clamp2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.nv-consequence { color: var(--text-2); }
+.nv-factors { font-size: 12px; line-height: 16px; color: var(--text-2); }
+.nv-label { font-size: 12px; line-height: 16px; color: var(--muted-foreground); margin-right: 4px; }
+.nv-actions-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 8px; padding-top: 4px; }
+.nv-rec-tag { margin-left: 6px; padding: 0 4px; border-radius: 4px; background: var(--muted); color: var(--text-2); font-size: 12px; line-height: 16px; font-weight: 500; }
+.nv-btn-primary .nv-rec-tag { background: transparent; color: inherit; padding: 0; opacity: 0.85; }
+.nv-trail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 8px;
+  row-gap: 4px;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--text-2);
+}
+.nv-cite {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 20px;
+  padding: 0 6px;
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  background: var(--background);
+  color: var(--text-2);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.nv-cite svg { width: 12px; height: 12px; }
+.nv-gap { font-size: 12px; line-height: 16px; color: var(--muted-foreground); }
+.nv-status-line { font-size: 12px; line-height: 16px; color: var(--text-2); display: flex; align-items: center; gap: 4px; }
+.nv-status-line svg { width: 14px; height: 14px; }
+.nv-details-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  align-self: flex-start;
+  min-height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text-2);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+}
+.nv-details-btn svg { width: 14px; height: 14px; transition: transform var(--dur-2) var(--nv-ease-out); }
+.nv-details-btn[aria-expanded="true"] svg { transform: rotate(90deg); }
+.nv-details { display: flex; flex-direction: column; gap: 8px; padding-left: 18px; font-size: 12px; line-height: 16px; color: var(--text-2); }
+.nv-details h4 { margin: 0 0 2px; font-size: 12px; line-height: 16px; font-weight: 600; color: var(--foreground); }
+.nv-details ul { display: flex; flex-direction: column; gap: 2px; }
+.nv-details li { padding-left: 10px; position: relative; }
+.nv-details li::before { content: "·"; position: absolute; left: 0; color: var(--muted-foreground); }
+.nv-more-btn { padding: 0; border: 0; background: transparent; color: var(--text-2); text-decoration: underline; text-underline-offset: 3px; font-size: 12px; line-height: 16px; font-weight: 500; align-self: flex-start; min-height: 24px; }
+
+/* Collapsed card: one 36 px line */
+.nv-card-collapsed {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: 36px;
+  padding: 0 12px;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  background: transparent;
+  color: var(--foreground);
+  font-size: 13px;
+  line-height: 20px;
+  text-align: left;
+}
+.nv-card-collapsed:hover { background: var(--row-hover); }
+.nv-card-collapsed .nv-sum { flex: 1 1 0; font-weight: 400; }
+.nv-card-collapsed .nv-card-drugs { margin-left: 0; flex: 0 1 auto; max-width: 30%; }
+.nv-card-collapsed svg.nv-chev { width: 16px; height: 16px; color: var(--muted-foreground); }
+.nv-card-wrap:last-child > .nv-card-collapsed { border-bottom: 0; }
+
+/* ── Override form (inline in the card, and in the gate) ──────────────────── */
+.nv-override {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 0 0;
+  border-top: 1px solid var(--border);
+}
+.nv-override legend { font-size: 12px; line-height: 16px; font-weight: 600; color: var(--text-2); margin-bottom: 4px; }
+.nv-radio-list { display: flex; flex-direction: column; gap: 0; }
+.nv-radio {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  min-height: 28px;
+  padding: 4px 0;
+  font-size: 13px;
+  line-height: 20px;
+  cursor: pointer;
+}
+.nv-radio input,
+.nv-check input {
+  width: 16px;
+  height: 16px;
+  margin: 2px 0 0;
+  flex-shrink: 0;
+  accent-color: var(--primary);
+}
+.nv-radio .nv-code { margin-left: auto; padding-left: 8px; font-size: 12px; line-height: 20px; color: var(--muted-foreground); }
+.nv-radio[data-nodata] .nv-code { color: var(--muted-foreground); }
+.nv-field { display: flex; flex-direction: column; gap: 4px; }
+.nv-field-label { display: flex; align-items: baseline; gap: 8px; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--text-2); }
+.nv-textarea {
+  width: 100%;
+  min-height: 56px;
+  padding: 6px 8px;
+  border: 1px solid var(--input);
+  border-radius: 6px;
+  background: var(--background);
+  color: var(--foreground);
+  font-size: 13px;
+  line-height: 20px;
+  resize: vertical;
+}
+.nv-textarea[aria-invalid="true"] { border-color: var(--sev-critical); }
+.nv-check { display: flex; align-items: flex-start; gap: 8px; min-height: 24px; font-size: 13px; line-height: 20px; cursor: pointer; }
+.nv-errors { font-size: 12px; line-height: 16px; color: var(--sev-critical); min-height: 0; }
+.nv-errors:empty { display: none; }
+.nv-hint { font-size: 12px; line-height: 16px; color: var(--muted-foreground); }
+
+/* ── Notes checklist ──────────────────────────────────────────────────────── */
+.nv-disclosure {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: 36px;
+  padding: 0 12px;
+  border: 0;
+  background: transparent;
+  color: var(--foreground);
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 600;
+  text-align: left;
+}
+.nv-disclosure:hover { background: var(--row-hover); }
+.nv-disclosure svg { width: 16px; height: 16px; color: var(--muted-foreground); margin-left: auto; transition: transform var(--dur-2) var(--nv-ease-out); }
+.nv-disclosure[aria-expanded="true"] svg { transform: rotate(90deg); }
+.nv-notes { display: flex; flex-direction: column; gap: 8px; padding: 0 12px 12px; }
+.nv-note { display: flex; gap: 8px; align-items: flex-start; font-size: 12px; line-height: 16px; color: var(--text-2); }
+.nv-note input { width: 16px; height: 16px; margin: 0; flex-shrink: 0; accent-color: var(--primary); }
+.nv-note-drug { font-weight: 600; color: var(--foreground); margin-right: 4px; }
+.nv-note-action { padding: 4px 0 0 24px; }
+.nv-notes-wrap { border-bottom: 1px solid var(--border); }
+
+/* ── Coverage strip ───────────────────────────────────────────────────────── */
+.nv-coverage { display: grid; grid-template-columns: max-content 1fr; column-gap: 12px; row-gap: 4px; font-size: 12px; line-height: 16px; color: var(--muted-foreground); }
+.nv-coverage dt { margin: 0; color: var(--text-2); font-weight: 500; white-space: nowrap; }
+.nv-coverage dd { margin: 0; }
+.nv-foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 8px 12px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  line-height: 16px;
+  flex-shrink: 0;
+}
+.nv-marker {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  padding: 0 6px;
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-2);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+}
+.nv-marker svg { width: 14px; height: 14px; }
+
+/* ── Floating launcher + drawer ───────────────────────────────────────────── */
+.nv-launcher {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 14px 0 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  background: var(--popover);
+  color: var(--foreground);
+  box-shadow: var(--nv-shadow-pop);
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 600;
+  transition-property: color, background-color, border-color;
+  transition-duration: var(--dur-2);
+}
+.nv-launcher svg { width: 16px; height: 16px; }
+/* Same colours as the row badge for the same severity: solid only for 금기 (design review P1-13). */
+.nv-launcher[data-level="contraindicated"] { border-color: var(--sev-critical-solid); background: var(--sev-critical-solid); color: var(--on-solid); }
+.nv-launcher[data-level="major"] { border-color: var(--sev-major); background: var(--sev-major-bg); color: var(--sev-major); }
+.nv-launcher[data-level="moderate"] svg { color: var(--sev-moderate); }
+.nv-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 380px;
+  max-width: 100vw;
+  background: var(--popover);
+  box-shadow: var(--nv-shadow-modal);
+  animation: nv-slide-in var(--dur-4) var(--nv-ease-out);
+}
+.nv-drawer .nv-panel { border-left: 0; }
+
+/* ── Bottom sheet (< 1024 px) ─────────────────────────────────────────────── */
+.nv-sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  max-height: 70vh;
+  background: var(--popover);
+  border-top: 1px solid var(--border-strong);
+  box-shadow: var(--nv-shadow-modal);
+}
+.nv-sheet[data-expanded="true"] { height: 70vh; }
+.nv-sheet-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: 48px;
+  flex-shrink: 0;
+  padding: 0 12px;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  background: transparent;
+  color: var(--foreground);
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 600;
+  text-align: left;
+}
+.nv-sheet-bar svg.nv-chev { margin-left: auto; width: 16px; height: 16px; color: var(--muted-foreground); }
+.nv-sheet[data-expanded="false"] .nv-sheet-bar { border-bottom: 0; }
+.nv-sheet .nv-panel-scope { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+.nv-sheet .nv-panel { min-height: 0; flex: 1 1 auto; }
+
+/* ── Gate dialog (native <dialog>, top layer) ─────────────────────────────── */
+.nv-gate {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: 560px;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 32px);
+  height: fit-content;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: var(--popover);
+  color: var(--foreground);
+  box-shadow: var(--nv-shadow-modal);
+  overflow: hidden;
+  font: 13px/20px var(--nv-font-sans);
+}
+.nv-gate[open] { display: flex; flex-direction: column; animation: nv-zoom-in var(--dur-4) var(--nv-ease-out); }
+.nv-gate::backdrop { background: var(--backdrop); }
+.nv-gate-head { display: flex; flex-direction: column; gap: 4px; padding: 16px 16px 12px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+.nv-gate-title { display: flex; align-items: center; gap: 8px; }
+.nv-gate-title h2 { font-size: 16px; line-height: 24px; font-weight: 600; flex: 1 1 auto; min-width: 0; }
+.nv-gate-id { font-size: 12px; line-height: 16px; color: var(--text-2); }
+.nv-gate-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+.nv-gate-body .nv-card { padding: 12px 16px; }
+.nv-gate-body .nv-card-collapsed { padding: 0 16px; }
+.nv-gate-more { padding: 8px 16px 0; }
+.nv-gate-confirm { padding: 8px 16px; border-top: 1px solid var(--border); font-size: 12px; line-height: 16px; color: var(--text-2); flex-shrink: 0; }
+.nv-gate-foot { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-top: 1px solid var(--border); flex-shrink: 0; }
+.nv-gate-foot .nv-hint { margin-right: auto; }
+.nv-gate-foot .nv-btn-primary { margin-left: auto; }
+
+/* ── Motion (§3.7): opacity and transform only; reduced motion → 100 ms fade ─ */
+@keyframes nv-zoom-in {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes nv-slide-in {
+  from { opacity: 0; transform: translateX(16px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes nv-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nv-gate[open],
+  .nv-drawer { animation: nv-fade-in var(--dur-1) linear; }
+  .nv-details-btn svg,
+  .nv-disclosure svg { transition: none; }
+}
+
+/* ── Print (§3.12): the panel and overlay never print; the host's chart lines and watermark do ─ */
+@media print {
+  :host(nuvovet-dur-overlay) { display: none; }
+  .nv-scope.nv-panel-scope { display: none; }
+}

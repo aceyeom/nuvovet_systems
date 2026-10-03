@@ -196,8 +196,8 @@ export function interpretLab(kind, value, species) {
     return {
       status: 'entered',
       label: {
-        en: 'Recorded — compare with your laboratory’s reference interval',
-        ko: '기록됨 — 검사기관의 참고범위와 비교하십시오',
+        en: 'Recorded. Compare with your laboratory’s reference interval',
+        ko: '기록됨. 검사기관의 참고범위와 비교하십시오',
       },
     }
   }

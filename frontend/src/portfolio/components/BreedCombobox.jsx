@@ -1,112 +1,93 @@
-import { useId, useMemo, useRef } from 'react'
-import { Dna } from 'lucide-react'
+import { useId, useMemo } from 'react'
+import { Autocomplete } from '@/ui/patterns/Autocomplete'
 import { useLang } from '../i18n/index.js'
 import { searchBreeds, resolveBreed } from '../engine/search.js'
 import { BREED_BY_ID, MDR1_RISK_LABELS } from '../knowledge/breeds.js'
-import useCombobox from './useCombobox.js'
 
 export function breedName(breed, lang) {
   if (!breed) return ''
   return lang === 'ko' ? breed.ko[0] : breed.en
 }
 
-export function Mdr1Chip({ breed, species }) {
-  const { pick } = useLang()
-  if (species === 'cat') return null
-  const key = breed ? breed.mdr1 : 'unknown'
-  const strong = key === 'high' || key === 'moderate'
-  return (
-    <span className={`pf-chip pf-chip--mdr1${strong ? ' is-strong' : ''}`}>
-      <Dna size={13} aria-hidden="true" />
-      {pick(MDR1_RISK_LABELS[key])}
-    </span>
-  )
+const fold = (x) => String(x || '').trim().toLowerCase()
+
+/** The breed's names in one UI language (canonical name first, then aliases). */
+function namesIn(breed, lang) {
+  return lang === 'ko' ? breed.ko : [breed.en, ...(breed.enAliases || [])]
 }
 
 /**
- * Breed input with EN/KO alias search (engine/search.js). Free text is kept
- * and resolved by the engine; text that does not resolve stays "unknown".
+ * What to show for a recognised breed in the UI language: the text that was typed when it is one of
+ * the breed's names in that language ("Korean Shorthair", "러프 콜리"), otherwise the canonical name in
+ * that language, so a Korean screen never shows "Rough Collie" (design review P2). `compact` (one-line
+ * signalments) drops a parenthetical qualifier, keeping it instead when it is itself an alias:
+ * "Domestic Shorthair (Korean Shorthair)" → "Korean Shorthair", "Collie (Rough / Smooth)" → "Collie".
+ */
+export function breedLabel(breed, typed, lang, { compact = false } = {}) {
+  if (!breed) return typed || ''
+  const names = namesIn(breed, lang)
+  const hit = typed ? names.find((n) => fold(n) === fold(typed)) : null
+  if (hit) return typed.trim()
+  const name = breedName(breed, lang)
+  if (!compact) return name
+  const m = /^(.*?)\s*\((.*)\)$/.exec(name)
+  if (!m) return name
+  return names.some((n) => fold(n) === fold(m[2])) ? m[2] : m[1]
+}
+
+/**
+ * Breed input with EN/KO alias search (engine/search.js). Free text is kept and resolved by the
+ * engine; text that does not resolve stays "unknown", never "low risk".
  * onChange({ breedId, breedText })
  */
-export default function BreedCombobox({ species, breedId, breedText, onChange, id }) {
+export default function BreedCombobox({ species, breedId, breedText, onChange, label }) {
   const { t, lang, pick } = useLang()
-  const listId = useId()
   const statusId = useId()
-  const inputRef = useRef(null)
-  const text = breedText || (breedId && BREED_BY_ID[breedId] ? breedName(BREED_BY_ID[breedId], lang) : '')
+  const picked = breedId && BREED_BY_ID[breedId] ? BREED_BY_ID[breedId] : null
+  // A recognised breed typed in the other language (a golden case's "Rough Collie" on a Korean
+  // screen) is shown under its name in the UI language; free text is shown as typed.
+  const foreign = picked && breedText && !namesIn(picked, lang).some((n) => fold(n) === fold(breedText))
+    && namesIn(picked, lang === 'ko' ? 'en' : 'ko').some((n) => fold(n) === fold(breedText))
+  const text = foreign ? breedName(picked, lang) : breedText || (picked ? breedName(picked, lang) : '')
   const results = useMemo(() => searchBreeds(text, { species, limit: 8 }), [text, species])
   const selected = breedId && BREED_BY_ID[breedId]?.species === species ? BREED_BY_ID[breedId] : null
   const resolvedId = selected ? selected.id : (text ? resolveBreed(text, species) : null)
   const resolved = resolvedId ? BREED_BY_ID[resolvedId] : null
   const exact = selected && (text === selected.en || selected.ko.includes(text) || (selected.enAliases || []).includes(text))
 
-  const choose = (i) => {
-    const r = results[i]
-    if (!r) return
-    onChange({ breedId: r.breedId, breedText: breedName(r.breed, lang) })
-    cb.setOpen(false)
-    cb.setActive(-1)
-  }
-  const cb = useCombobox({ count: results.length, onSelect: choose })
-  const showList = cb.open && text.trim() && !exact && results.length > 0
-
   let status
   if (!text.trim()) status = t('pt.breedNone')
   else if (resolved && text !== breedName(resolved, lang)) status = t('pt.breedResolved', { name: breedName(resolved, lang) })
   else if (!resolved) status = results.length ? t('pt.breedUnknown') : t('pt.breedNoMatch', { q: text })
   else status = null
+  const mdr1 = species === 'dog' ? pick(MDR1_RISK_LABELS[resolved ? resolved.mdr1 : 'unknown']) : null
+
+  const items = exact
+    ? []
+    : results.map((r) => ({
+        value: r.breedId,
+        label: breedName(r.breed, lang),
+        hint: lang === 'ko' ? r.breed.en : r.breed.ko[0],
+        meta: species === 'dog' ? pick(MDR1_RISK_LABELS[r.breed.mdr1]) : null,
+      }))
 
   return (
-    <div className="pf-combo">
-      <input
-        ref={inputRef}
-        id={id}
-        className="pf-input"
-        type="text"
-        role="combobox"
-        aria-autocomplete="list"
-        aria-expanded={Boolean(showList)}
-        aria-controls={listId}
-        aria-activedescendant={showList && cb.active >= 0 ? `${listId}-${cb.active}` : undefined}
-        aria-describedby={statusId}
-        autoComplete="off"
-        spellCheck="false"
-        placeholder={t('pt.breedPlaceholder')}
+    <div className="flex flex-col gap-1">
+      <Autocomplete
+        label={label}
         value={text}
-        onChange={(e) => {
-          onChange({ breedId: null, breedText: e.target.value })
-          cb.setOpen(true)
-          cb.setActive(-1)
+        onValueChange={(v) => onChange({ breedId: null, breedText: v })}
+        items={items}
+        onSelect={(id) => {
+          const b = BREED_BY_ID[id]
+          if (b) onChange({ breedId: b.id, breedText: breedName(b, lang) })
         }}
-        onFocus={() => cb.setOpen(true)}
-        onBlur={() => setTimeout(() => cb.setOpen(false), 120)}
-        onKeyDown={cb.onKeyDown}
+        placeholder={t('pt.breedPlaceholder')}
+        describedBy={statusId}
       />
-      {showList && (
-        <ul className="pf-listbox" id={listId} role="listbox" aria-label={t('pt.breed')}>
-          {results.map((r, i) => (
-            <li
-              key={r.breedId}
-              id={`${listId}-${i}`}
-              role="option"
-              aria-selected={i === cb.active}
-              className={`pf-option${i === cb.active ? ' is-active' : ''}`}
-              onMouseDown={(e) => { e.preventDefault(); choose(i) }}
-              onMouseEnter={() => cb.setActive(i)}
-            >
-              <span className="pf-option__main">
-                <span className="pf-option__name">{breedName(r.breed, lang)}</span>
-                <span className="pf-option__alt" lang={lang === 'ko' ? 'en' : 'ko'}>{lang === 'ko' ? r.breed.en : r.breed.ko[0]}</span>
-              </span>
-              {species === 'dog' && <span className="pf-option__meta">{pick(MDR1_RISK_LABELS[r.breed.mdr1])}</span>}
-            </li>
-          ))}
-        </ul>
-      )}
-      <div className="pf-field-status" id={statusId}>
-        <Mdr1Chip breed={resolved} species={species} />
-        {status && <span className="pf-field-status__text">{status}</span>}
-      </div>
+      <p id={statusId} className="text-xs text-muted-foreground">
+        {[mdr1, status].filter(Boolean).join('. ')}
+      </p>
     </div>
   )
 }

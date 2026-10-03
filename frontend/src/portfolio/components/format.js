@@ -45,7 +45,7 @@ export function fmtAmount(v, lang = 'en') {
 }
 
 export function fmtQ(q, lang = 'en') {
-  if (!q || q.value == null) return '—'
+  if (!q || q.value == null) return '–'
   return `${fmtAmount(q.value, lang)} ${q.unit}`
 }
 
@@ -72,7 +72,7 @@ function solidUnits(row) {
  * How the "how to give" amount of a dose row may be shown. The engine sets
  * row.rounding when what it would give is not simply the calculated amount;
  * the report flags those rows and the handout leaves a blank for the vet, so
- * the workbench must not present the rounded plan as the instruction either.
+ * the workbench must not present that adjusted plan as the instruction either.
  *
  *   null                 nothing calculated (no dose, no weight…)
  *   { kind: 'ok' }       the plan is the instruction
@@ -104,12 +104,12 @@ export function amountCheck(row) {
 
 export function freqLabel(id, pick) {
   const f = FREQUENCY_BY_ID[id]
-  return f ? pick(f.label) : id || '—'
+  return f ? pick(f.label) : id || '–'
 }
 
 /** Compact frequency code for chips (q12h, q24h …). */
 export function freqCode(id) {
-  return id || '—'
+  return id || '–'
 }
 
 export function sourceCite(id) {
@@ -139,7 +139,7 @@ export function msText(ms, t) {
 }
 
 export function rangeText(min, max, unit) {
-  if (min == null && max == null) return '—'
+  if (min == null && max == null) return '–'
   if (max == null || min === max) return `${fmtNum(min)} ${unit}`
   return `${fmtNum(min)}–${fmtNum(max)} ${unit}`
 }
@@ -196,6 +196,20 @@ export const FREQ_SHORT = {
 }
 
 export function freqShort(id, pick) {
-  return FREQ_SHORT[id] ? pick(FREQ_SHORT[id]) : id || '—'
+  return FREQ_SHORT[id] ? pick(FREQ_SHORT[id]) : id || '–'
 }
 
+
+/** Case name ("Choco" / "초코"). */
+export function caseName(c, pick) {
+  return c ? pick(c.name) : ''
+}
+
+/** The case title without the name, e.g. "Demodicosis treatment in a Rough Collie" (no em dash shown). */
+export function caseSubtitle(c, pick) {
+  if (!c) return ''
+  const title = pick(c.title)
+  const i = title.indexOf(' — ')
+  const rest = i < 0 ? '' : title.slice(i + 3)
+  return rest ? rest.charAt(0).toUpperCase() + rest.slice(1) : ''
+}

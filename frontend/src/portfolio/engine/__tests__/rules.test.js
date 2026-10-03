@@ -20,7 +20,7 @@ describe('rule registry', () => {
   it('has every rule from the spec, each with id, version, bilingual name and valid sources', () => {
     const ids = RULES.map((r) => r.id).sort()
     expect(ids).toEqual([
-      'ADMIN_NOTES', 'ALLERGY_CLASS', 'CYP3A_INHIBITION', 'CYP_INDUCTION', 'DOSE_RANGE', 'DRUG_CONDITION', 'ENRO_FELINE_RETINA',
+      'ACID_SUPPRESSANT_DUPLICATE', 'ADMIN_NOTES', 'ALLERGY_CLASS', 'CYP3A_INHIBITION', 'CYP_INDUCTION', 'DOSE_RANGE', 'DRUG_CONDITION', 'DUPLICATE_INGREDIENT', 'ENRO_FELINE_RETINA',
       'GASTRIC_PH_AZOLE', 'IMMUNOSUPPRESSION_ADDITIVE', 'MDR1_PGP_ML', 'METHIMAZOLE_CKD', 'NSAID_CORTICOSTEROID', 'NSAID_DUPLICATE',
       'NSAID_RENAL', 'RENAL_ADJUST', 'SEROTONERGIC', 'SPECIES_HARDSTOP',
     ])
@@ -264,11 +264,16 @@ describe('DOSE_RANGE', () => {
   it('within range → no finding', () => {
     expect(byRule(analyze(PB(2.5)), 'DOSE_RANGE')).toHaveLength(0)
   })
+  // Phenobarbital's protocol is a starting dose (phase 'start', spec D10), so the
+  // above-max severities are tested on ketoconazole (extra-label, 10 mg/kg/day, q24h).
+  const KETO10 = (v) => makeCase({ weightKg: 10, meds: [med('ketoconazole', 'keto_dog_malassezia', v, 'mg/kg', 'q24h')] })
   it('above max but < 2× → moderate', () => {
-    expect(one(analyze(PB(4)), 'DOSE_RANGE').severity).toBe('moderate')
+    const f = one(analyze(KETO10(12)), 'DOSE_RANGE')
+    expect(f.severity).toBe('moderate')
+    expect(f.why[0].en).toContain('1.2× the maximum')
   })
   it('≥ 2× max → major', () => {
-    const f = one(analyze(PB(6)), 'DOSE_RANGE')
+    const f = one(analyze(KETO10(20)), 'DOSE_RANGE')
     expect(f.severity).toBe('major')
     expect(f.why[0].en).toContain('2× the maximum')
     expect(f.evidence).toBe('literature')
@@ -430,5 +435,147 @@ describe('helpers for the UI: diffResults and caseHash', () => {
     expect(a).toBe(b)
     expect(a).toMatch(/^DUR-[0-9A-F]{8}$/)
     expect(caseHash({ species: 'dog', weightKg: 11, meds: [] })).not.toBe(a)
+  })
+})
+
+describe('same ingredient on several rows (popup spec D9)', () => {
+  const CARP = (value, unit, strengthId, extra = {}) => med('carprofen', 'carp_dog_pain', value, unit, 'q24h', { durationDays: 7, strengthId, ...extra })
+
+  it('rows with the same route, frequency, duration and protocol are summed and checked once (E24: 100 mg + 25 mg = 125 mg, within)', () => {
+    const r = analyze(makeCase({ weightKg: 28, meds: [CARP(1, 'tablet', 'carp_tab_100'), CARP(1, 'tablet', 'carp_tab_25')] }))
+    expect(r.findings).toHaveLength(0)
+    for (const d of r.doses) {
+      expect(d.combined).toEqual({ rows: 2, indexes: [0, 1], totalMg: 125 })
+      expect(d.status).toBe('within')
+      expect(d.ratio).toBeCloseTo(1.015, 3)
+    }
+    expect(r.doses[1].combinedInto).toBe(0)
+    expect(r.doses[0].combinedInto).toBeUndefined()
+    const n = r.notes.find((x) => x.id === 'combined_carprofen')
+    expect(n.text.ko).toBe('카프로펜: 같은 성분 2행을 합산해 1회 125 mg으로 한 번 검토했습니다.')
+  })
+
+  it('a summed total above the reference is one DOSE_RANGE finding with a summed why line (E25: 2 × 4.4 mg/kg → major, 2.0×)', () => {
+    const r = analyze(makeCase({ weightKg: 28, meds: [CARP(4.4, 'mg/kg', 'carp_tab_100'), CARP(4.4, 'mg/kg', 'carp_tab_25')] }))
+    const f = one(r, 'DOSE_RANGE')
+    expect(f.severity).toBe('major')
+    expect(f.drugIds).toEqual(['carprofen'])
+    expect(f.why.some((w) => w.ko === '같은 성분 2행을 합산한 1회 246.4 mg으로 비교했습니다.')).toBe(true)
+    expect(r.doses.map((d) => [d.status, d.ratio, d.combined.totalMg])).toEqual([['above', 2, 246.4], ['above', 2, 246.4]])
+    expect(r.notes.find((x) => x.id === 'combined_carprofen').text.en).toContain('summed to 246.4 mg')
+    expect(byRule(r, 'DUPLICATE_INGREDIENT')).toHaveLength(0)
+    expect(r.verdict.counts.doseProblems).toBe(1) // one group, counted once
+  })
+
+  it('rows that cannot be summed, all repeated → DUPLICATE_INGREDIENT major', () => {
+    const r = analyze(makeCase({ weightKg: 28, meds: [CARP(4.4, 'mg/kg', null, { durationDays: 7 }), CARP(4.4, 'mg/kg', null, { durationDays: 14 })] }))
+    const f = one(r, 'DUPLICATE_INGREDIENT')
+    expect(f).toMatchObject({ severity: 'major', problemKey: 'dup:carprofen', drugIds: ['carprofen'], evidence: 'mechanistic', sources: [] })
+    expect(f.title.ko).toBe('동일 성분 중복: 카프로펜 2행')
+    expect(r.doses.every((d) => d.combined == null)).toBe(true)
+  })
+
+  it('a single administration and a repeated course of the same ingredient → DUPLICATE_INGREDIENT moderate (E26)', () => {
+    const r = analyze(makeCase({ weightKg: 28, meds: [
+      { ...med('meloxicam', null, 0.2, 'mg/kg', 'once', { durationDays: 1, strengthId: 'melox_inj_5' }), route: 'SC' },
+      med('meloxicam', 'melox_dog_oa', 0.1, 'mg/kg', 'q24h', { durationDays: 14, strengthId: 'melox_susp_1_5' }),
+    ] }))
+    expect(r.findings.map((f) => `${f.ruleId}/${f.severity}`)).toEqual(['DUPLICATE_INGREDIENT/moderate'])
+    expect(byRule(r, 'NSAID_DUPLICATE')).toHaveLength(0)
+  })
+
+  it('is registered right after NSAID_DUPLICATE in the pd layer', () => {
+    const ids = RULES.map((r) => r.id)
+    expect(ids.indexOf('DUPLICATE_INGREDIENT')).toBe(ids.indexOf('NSAID_DUPLICATE') + 1)
+    expect(RULE_BY_ID.DUPLICATE_INGREDIENT).toMatchObject({ version: '1.0.0', layer: 'pd' })
+  })
+})
+
+describe('starting-dose protocols (popup spec D10)', () => {
+  const PB = (v) => makeCase({ weightKg: 10, meds: [med('phenobarbital', 'pb_dog_epilepsy', v, 'mg/kg', 'q12h')] })
+  for (const v of [4, 6]) {
+    it(`phenobarbital ${v} mg/kg q12h (above the 2.5–3 mg/kg starting dose) → minor titration check, never an overdose`, () => {
+      const f = one(analyze(PB(v)), 'DOSE_RANGE')
+      expect(f.severity).toBe('minor')
+      expect(f.factors[0].id).toBe('phenobarbital_start_above')
+      expect(f.title.ko).toBe('페노바르비탈: 시작 용량보다 높음 (적정 중인 유지 용량이면 해당 없음)')
+      expect(f.ruleVersion).toBe('1.2.0')
+    })
+  }
+  it('below the starting dose → minor, start_below', () => {
+    const f = one(analyze(PB(1)), 'DOSE_RANGE')
+    expect(f.severity).toBe('minor')
+    expect(f.factors[0].id).toBe('phenobarbital_start_below')
+    expect(f.title.ko).toBe('페노바르비탈: 시작 용량보다 낮음 (적정 중인 유지 용량이면 해당 없음)')
+  })
+  it('methimazole 5 mg q12h refill in a cat with creatinine 2.0 → METHIMAZOLE_CKD moderate + DOSE_RANGE minor (E28)', () => {
+    const r = analyze(makeCase({ species: 'cat', weightKg: 4.1, conditions: ['hyperthyroidism'], labs: { creatinine: 2 },
+      meds: [med('methimazole', 'mmi_cat_start', 2, 'tablet', 'q12h', { strengthId: 'mmi_tab_2_5' })] }))
+    expect(r.verdict.level).toBe('moderate')
+    expect(r.findings.map((f) => `${f.ruleId}/${f.severity}`)).toEqual(['METHIMAZOLE_CKD/moderate', 'DOSE_RANGE/minor'])
+    expect(r.doses[0]).toMatchObject({ status: 'above', ratio: 2 })
+  })
+})
+
+describe('planned amount above the feline enrofloxacin limit (popup spec D15)', () => {
+  it('E23: 5 mg/kg at 3.5 kg is within, but the 22.7 mg tablet plan gives 6.49 mg/kg/day → a ceiling_plan note', () => {
+    const r = analyze(makeCase({ species: 'cat', weightKg: 3.5, meds: [med('enrofloxacin', 'enro_cat', 5, 'mg/kg', 'q24h', { strengthId: 'enro_tab_22_7' })] }))
+    expect(r.findings).toHaveLength(0)
+    expect(r.doses[0].status).toBe('within')
+    expect(r.doses[0].planExceedsCeiling).toEqual({ valuePerKgDay: expect.closeTo(6.486, 3), limit: 5 })
+    const n = r.notes.find((x) => x.id === 'ceiling_plan_enrofloxacin_0')
+    expect(n).toMatchObject({ category: 'caution', drugIds: ['enrofloxacin'], sources: ['baytril_label'] })
+    expect(n.text.ko).toBe('엔로플록사신: 가장 가까운 제품 투여량(22.7 mg 정제 1정)은 6.49 mg/kg/일로 고양이 한계 5 mg/kg/일을 넘습니다. 다른 함량이나 조제 제형을 사용하고 올림하지 마십시오.')
+  })
+  it('no note when the vet entered the product amount, or when the entered dose already breaches (ENRO_FELINE_RETINA covers it)', () => {
+    const counted = analyze(makeCase({ species: 'cat', weightKg: 3.5, meds: [med('enrofloxacin', 'enro_cat', 1, 'tablet', 'q24h', { strengthId: 'enro_tab_22_7' })] }))
+    expect(counted.notes.some((x) => x.id.startsWith('ceiling_plan_'))).toBe(false)
+    expect(one(counted, 'ENRO_FELINE_RETINA').severity).toBe('major')
+    const over = analyze(makeCase({ species: 'cat', weightKg: 3.5, meds: [med('enrofloxacin', 'enro_cat', 10, 'mg/kg', 'q24h', { strengthId: 'enro_tab_22_7' })] }))
+    expect(over.notes.some((x) => x.id.startsWith('ceiling_plan_'))).toBe(false)
+  })
+  it('dogs are unaffected', () => {
+    const r = analyze(makeCase({ weightKg: 3.5, meds: [med('enrofloxacin', 'enro_dog', 5, 'mg/kg', 'q24h', { strengthId: 'enro_tab_22_7' })] }))
+    expect(r.notes.some((x) => x.id.startsWith('ceiling_plan_'))).toBe(false)
+  })
+})
+
+describe('verdict.action and counts.doseChecks (popup spec D8, D17)', () => {
+  const LEVELS = {
+    contraindicated: makeCase({ breedId: 'collie', meds: [IVER_HIGH(), KETO()] }),
+    major: makeCase({ meds: [med('carprofen', 'carp_dog_pain', 4.4, 'mg/kg'), med('meloxicam', 'melox_dog_oa', 0.1, 'mg/kg')] }),
+    moderate: makeCase({ weightKg: 10, meds: [med('ketoconazole', 'keto_dog_malassezia', 12, 'mg/kg')] }),
+    minor: makeCase({ weightKg: 10, meds: [med('phenobarbital', 'pb_dog_epilepsy', 4, 'mg/kg', 'q12h')] }),
+    none: makeCase({ meds: [] }),
+  }
+  const EXPECTED = {
+    contraindicated: { ko: '현재 처방대로 조제하지 마십시오', en: 'Do not dispense as written' },
+    major: { ko: '처방을 변경하거나 의도한 이유를 기록하십시오', en: 'Change the prescription or record why it is intended' },
+    moderate: { ko: '아래 모니터링 계획과 함께 조제하십시오', en: 'Dispense only with the monitoring plan below' },
+    minor: { ko: '기록하고 관찰하십시오', en: 'Note and monitor' },
+    none: { ko: '규칙으로 확인한 문제가 없습니다. 이상이 없다는 뜻은 아닙니다.', en: 'The rules found no problem. This does not mean there is none.' },
+  }
+  for (const [level, input] of Object.entries(LEVELS)) {
+    it(`${level}: the action line has no severity word, no dash and no "안전"`, () => {
+      const v = analyze(input).verdict
+      expect(v.level).toBe(level)
+      expect(v.action).toEqual(EXPECTED[level])
+      expect(v.headline).toBeTruthy() // kept for the workbench
+      for (const t of [v.action.ko, v.action.en]) {
+        expect(t).not.toMatch(/[—–]/)
+        expect(t).not.toContain('안전')
+      }
+      expect(v.action.ko.startsWith('금기') || v.action.ko.startsWith('중대') || v.action.ko.startsWith('주의') || v.action.ko.startsWith('경미')).toBe(false)
+    })
+  }
+  it('doseChecks counts a rounding note even when there is no dose problem (E20)', () => {
+    const r = analyze(makeCase({ weightKg: 11, meds: [med('carprofen', 'carp_dog_pain', 2, 'tablet', 'q24h', { strengthId: 'carp_tab_25' })] }))
+    expect(r.verdict.counts).toMatchObject({ doseProblems: 0, doseChecks: 1 })
+  })
+  it('doseChecks ignores within and no-reference rows without a rounding note', () => {
+    const r = analyze(makeCase({ weightKg: 22.7, meds: [med('phenobarbital', null, 15, 'mg', 'q12h'), med('carprofen', 'carp_dog_pain', 1, 'tablet', 'q24h', { strengthId: 'carp_tab_100' })] }))
+    expect(r.doses.map((d) => d.status)).toEqual(['no_reference', 'within'])
+    expect(r.doses.every((d) => !d.rounding)).toBe(true)
+    expect(r.verdict.counts.doseChecks).toBe(0)
   })
 })

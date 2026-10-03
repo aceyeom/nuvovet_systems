@@ -34,8 +34,8 @@ function evaluate(ctx) {
       let evidence = 'mechanistic'
 
       if (isKetoCsa) {
-        why.push(T('In dogs, ketoconazole reduced ciclosporin clearance dose-dependently — about 85% at 10 mg/kg/day and 92% at 20 mg/kg/day (Myre 1991).',
-          '개에서 케토코나졸은 사이클로스포린 청소율을 용량 의존적으로 낮췄습니다 — 10 mg/kg/일에서 약 85%, 20 mg/kg/일에서 92%(Myre 1991).'))
+        why.push(T('In dogs, ketoconazole reduced ciclosporin clearance dose-dependently: about 85% at 10 mg/kg/day and 92% at 20 mg/kg/day (Myre 1991).',
+          '개에서 케토코나졸은 사이클로스포린 청소율을 용량 의존적으로 낮췄습니다(10 mg/kg/일에서 약 85%, 20 mg/kg/일에서 92%; Myre 1991).'))
         why.push(T('The combination is sometimes used on purpose to cut the ciclosporin dose (by as much as 75%), but individual responses vary widely (Archer 2014).',
           '사이클로스포린 용량을 줄이기 위해(최대 약 75%) 의도적으로 병용하기도 하지만, 개체별 반응 차이가 큽니다(Archer 2014).'))
         actions.push(T('If the combination is intended to spare ciclosporin, reduce the ciclosporin dose and confirm with blood-level monitoring (TDM).',

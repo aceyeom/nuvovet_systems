@@ -1,0 +1,7 @@
+{
+  "useNavigate": [
+    "src/pages/Insurance.jsx"
+  ],
+  "_useNavigate": "Insurance.jsx: the g-then-letter keyboard shortcuts and CommandMenu items (§9.3 exceptions).",
+  "buttons": []
+}

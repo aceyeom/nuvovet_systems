@@ -51,7 +51,7 @@ export function joinKo(list) {
 }
 
 export function drugFactor(drug, roleEn, roleKo) {
-  return { kind: 'drug', id: drug.id, label: T(`${enName(drug)} — ${roleEn}`, `${koName(drug)} — ${roleKo}`) }
+  return { kind: 'drug', id: drug.id, label: T(`${enName(drug)}: ${roleEn}`, `${koName(drug)}: ${roleKo}`) }
 }
 
 export function doseFactor(id, valueText) {

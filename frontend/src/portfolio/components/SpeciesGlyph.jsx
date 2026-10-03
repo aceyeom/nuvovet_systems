@@ -27,7 +27,7 @@ const PATHS = {
 export default function SpeciesGlyph({ species = 'dog', size = 24, label = null, className = '' }) {
   return (
     <svg
-      className={`pf-glyph ${className}`.trim()}
+      className={className || undefined}
       width={size}
       height={size}
       viewBox="0 0 24 24"
