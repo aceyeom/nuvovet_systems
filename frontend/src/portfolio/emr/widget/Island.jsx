@@ -124,6 +124,8 @@ export function Island() {
     return saved ? { x: saved.fx * window.innerWidth, y: saved.y } : null
   })
   const [dragging, setDragging] = useState(false)
+  // True while the shape transitions (content can be wider than the pill for those 520 ms).
+  const [morphing, setMorphing] = useState(false)
   const [hover, setHover] = useState(false)
   const [pulse, setPulse] = useState(false)
 
@@ -148,7 +150,11 @@ export function Island() {
     const measure = () => {
       // Layout size, not the bounding box: the entry animation scales the content.
       const r = { width: el.offsetWidth, height: el.offsetHeight }
-      setSize((p) => (Math.abs(p.w - r.width) < 0.5 && Math.abs(p.h - r.height) < 0.5 ? p : { w: r.width, h: r.height }))
+      setSize((p) => {
+        if (Math.abs(p.w - r.width) < 0.5 && Math.abs(p.h - r.height) < 0.5) return p
+        setMorphing(true)
+        return { w: r.width, h: r.height }
+      })
     }
     measure()
     if (typeof ResizeObserver === 'undefined') return undefined
@@ -156,6 +162,12 @@ export function Island() {
     ro.observe(el)
     return () => ro.disconnect()
   }, [mode])
+
+  useEffect(() => {
+    if (!morphing) return undefined
+    const id = setTimeout(() => setMorphing(false), 600)
+    return () => clearTimeout(id)
+  }, [morphing, size])
 
   // Peek lifetime: closes by itself unless hovered or focused.
   const paused = hover
@@ -271,6 +283,7 @@ export function Island() {
       data-mode={mode}
       data-glow={glow}
       data-dragging={dragging || undefined}
+      data-morphing={morphing || undefined}
       data-pulse={pulse || undefined}
       data-floating=""
       data-brand-surface=""

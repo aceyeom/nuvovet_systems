@@ -249,6 +249,8 @@ function audit(opts) {
     if (!/(hidden|clip)/.test(c.overflowX) && c.textOverflow !== 'ellipsis') continue
     if (srOnly(el) || inHost(el) && el.closest('[data-truncate][title]')) continue
     if (el.matches('[data-truncate][title]') || el.closest('[data-truncate][title]')) continue
+    // Mid-animation shape change (the DUR island morphing between pill, peek and panel).
+    if (el.closest('[data-morphing]')) continue
     if (el.matches('input, select, textarea, svg')) continue
     const own = ownText(el)
     let clippedChild = null

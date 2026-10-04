@@ -37,7 +37,8 @@ const PAIRS = [
 
 async function grab(browser, url, name, pick) {
   const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, colorScheme: 'light' })
-  await ctx.addInitScript(() => { try { localStorage.setItem('nv-theme', 'light') } catch {} })
+  // The production DUR card is read from the EMR demo's docked panel (the demo opens with the island).
+  await ctx.addInitScript(() => { try { localStorage.setItem('nv-theme', 'light'); localStorage.setItem('nv-emr-dur-layout', '"docked"') } catch {} })
   const page = await ctx.newPage()
   await page.goto(url, { waitUntil: 'networkidle' })
   await page.waitForFunction((n) => {
