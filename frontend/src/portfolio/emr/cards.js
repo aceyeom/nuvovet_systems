@@ -187,7 +187,7 @@ export function buildResponse(c, visit, opts = {}) {
       summary: pick(f.title, locale),
       indicator: INDICATOR[f.severity],
       detail: detailMarkdown(f, locale),
-      source: { label: 'NuvoVet DUR', topic: { code: f.ruleId, display: pick(category, locale) } },
+      source: { label: 'nuvovet DUR', topic: { code: f.ruleId, display: pick(category, locale) } },
       overrideReasons: reasonsFor(ruleIds, locale),
       selectionBehavior: 'at-most-one',
       suggestions: cardSuggestions({ base: c, visit, finding: f, maps, locale, cardKey: uuid, rc }),

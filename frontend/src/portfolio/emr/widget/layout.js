@@ -7,6 +7,8 @@
 export function resolveLayout(option, width, panelConnected) {
   const o = option || 'auto'
   if (o === 'sheet') return 'sheet'
+  // Island: a draggable pill that expands in place (EMR demo default). Phones keep the bottom sheet.
+  if (o === 'island') return width < 640 ? 'sheet' : 'island'
   if (o === 'floating') return 'floating'
   if (o === 'docked') return panelConnected ? 'docked' : 'floating'
   if (width < 1024) return 'sheet'

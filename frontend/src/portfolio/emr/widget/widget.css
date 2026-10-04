@@ -575,7 +575,7 @@
 }
 .nv-drawer .nv-panel { border-left: 0; }
 
-/* ── Bottom sheet (< 1024 px) ─────────────────────────────────────────────── */
+/* ── Bottom sheet (< 1024 px): layout here; its island skin is in island.css ─ */
 .nv-sheet {
   position: fixed;
   left: 0;
@@ -606,7 +606,6 @@
   font-weight: 600;
   text-align: left;
 }
-.nv-sheet-bar svg.nv-chev { margin-left: auto; width: 16px; height: 16px; color: var(--muted-foreground); }
 .nv-sheet[data-expanded="false"] .nv-sheet-bar { border-bottom: 0; }
 .nv-sheet .nv-panel-scope { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
 .nv-sheet .nv-panel { min-height: 0; flex: 1 1 auto; }

@@ -1,7 +1,8 @@
 /*
  * Fictional desktop EMR "데모 차트 (가상 EMR)" (EMR popup spec §2.1, DESIGN_SYSTEM §5.6).
- * A deliberately plain, generic grey look so the NuvoVet overlay reads as a separate product.
- * Everything is scoped under .emr-root; no Tailwind, no src/ui, no NuvoVet tokens.
+ * A deliberately plain, generic grey look so the nuvovet overlay reads as a separate product: a
+ * 2000s Win32 clinic program (bevelled text toolbar, square framed photo, square bordered status
+ * cells, no icon set). Everything is scoped under .emr-root; no Tailwind, no src/ui, no brand tokens.
  * The host stays light in every site theme. Hex values are exempt from the colour lint (§9.4).
  */
 
@@ -101,22 +102,92 @@
 .emr-titlebar {
   display: flex;
   align-items: center;
-  gap: 12px;
-  height: 28px;
+  gap: 10px;
+  height: 32px;
   flex-shrink: 0;
   padding: 0 10px;
-  background: var(--emr-title);
+  background: linear-gradient(180deg, #4C5E77, #3E4E64);
+  border-bottom: 1px solid #2F3C4F;
   color: #FFFFFF;
   font-size: 12px;
   white-space: nowrap;
   overflow: hidden;
 }
+/* App icon: a bevelled tile with a blue cross, drawn in CSS. */
+.emr-appicon {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  background: #F4F6F8;
+  border: 1px solid;
+  border-color: #FFFFFF #1F2A38 #1F2A38 #FFFFFF;
+}
+.emr-appicon::before,
+.emr-appicon::after { content: ""; position: absolute; background: #2F5E9E; }
+.emr-appicon::before { left: 3px; right: 3px; top: 6px; height: 4px; }
+.emr-appicon::after { top: 3px; bottom: 3px; left: 6px; width: 4px; }
 .emr-titlebar .emr-product { font-size: 13px; font-weight: 700; }
+.emr-titlebar .emr-product-sub { font-weight: 400; color: #C9D3E0; }
 .emr-titlebar .emr-sep { width: 1px; height: 14px; background: #7F8C9D; }
 .emr-menu { display: flex; gap: 2px; }
 .emr-menu span { padding: 2px 8px; border-radius: 2px; color: #E9ECEF; }
 .emr-menu span[aria-current="page"] { background: #FFFFFF; color: var(--emr-title); font-weight: 700; }
-.emr-titlebar .emr-meta { margin-left: auto; overflow: hidden; text-overflow: ellipsis; }
+.emr-titlebar .emr-meta { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; overflow: hidden; color: #E3E9F1; }
+.emr-meta-sep { width: 1px; height: 12px; background: #7F8C9D; }
+.emr-meta-user { display: inline-flex; align-items: center; gap: 6px; }
+.emr-bell { display: inline-flex; align-items: center; gap: 4px; }
+.emr-bell i { min-width: 16px; height: 16px; padding: 0 4px; border: 1px solid #8E1810; background: #C8241B; color: #FFFFFF; font-size: 12px; font-style: normal; font-weight: 700; line-height: 14px; text-align: center; }
+
+/* Toolbar (decorative): bevelled text buttons in etched groups; the island sits in its free middle. */
+.emr-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 46px;
+  flex-shrink: 0;
+  padding: 0 8px;
+  background: #E3E7EB;
+  border-top: 1px solid #FFFFFF;
+  border-bottom: 1px solid #A9B0B8;
+  overflow: hidden;
+}
+.emr-tool {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 52px;
+  height: 28px;
+  padding: 0 10px;
+  border: 1px solid;
+  border-color: #FFFFFF #7D858F #7D858F #FFFFFF;
+  border-radius: 0;
+  background: #EEF0F3;
+  box-shadow: inset -1px -1px 0 #C2C8CF;
+  color: #1F2328;
+  font-size: 12px;
+  line-height: 14px;
+  white-space: nowrap;
+  cursor: default;
+}
+.emr-tool:hover { background: #F6F7F9; }
+.emr-tool-sep { width: 2px; height: 26px; margin: 0 4px; border-left: 1px solid #9AA2AC; border-right: 1px solid #FFFFFF; flex-shrink: 0; }
+.emr-tool-spacer { flex: 1 1 auto; min-width: 380px; }
+/* Status panes: sunken cells. */
+.emr-tool-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  padding: 0 8px;
+  border: 1px solid;
+  border-color: #8C949D #FFFFFF #FFFFFF #8C949D;
+  background: #F4F6F8;
+  color: var(--emr-muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+.emr-tool-stat b { color: var(--emr-text); font-weight: 700; }
 .emr-titlebar .emr-wait-toggle { display: none; height: 22px; border-color: #7F8C9D; background: transparent; color: #FFFFFF; font-size: 12px; }
 
 .emr-body {
@@ -129,8 +200,8 @@
 
 /* ── Waitlist (대기목록) ─────────────────────────────────────────────────────── */
 .emr-wait {
-  flex: 0 0 220px;
-  width: 220px;
+  flex: 0 0 248px;
+  width: 248px;
   display: flex;
   flex-direction: column;
   min-height: 0;
@@ -159,22 +230,33 @@
 .emr-tab[aria-selected="true"] { background: #FFFFFF; border-color: var(--emr-border); color: var(--emr-text); font-weight: 700; margin-bottom: -1px; }
 .emr-wait-list { flex: 1 1 auto; min-height: 0; overflow-y: auto; }
 .emr-wait-item {
+  position: relative;
   display: grid;
-  grid-template-columns: 40px 1fr auto;
+  grid-template-columns: 34px 1fr auto;
   align-items: center;
-  gap: 4px;
-  height: 30px;
-  padding: 0 8px;
+  gap: 8px;
+  min-height: 50px;
+  padding: 6px 8px;
   border-bottom: 1px solid var(--emr-rule);
   color: var(--emr-text);
   font-size: 12px;
   text-decoration: none;
 }
-.emr-wait-item:hover { background: #F1F3F5; }
+.emr-wait-item:hover { background: #F4F6F8; }
 .emr-wait-item[aria-current="page"] { background: var(--emr-selected); }
-.emr-wait-item .emr-wait-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.emr-wait-item .emr-wait-status { color: var(--emr-muted); }
-.emr-wait-item[aria-current="page"] .emr-wait-status { color: var(--emr-primary); font-weight: 700; }
+.emr-wait-item[aria-current="page"]::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--emr-primary); }
+.emr-wait-photo { outline: 1px solid var(--emr-border); outline-offset: -1px; }
+.emr-wait-main { display: flex; flex-direction: column; min-width: 0; gap: 1px; }
+.emr-wait-item .emr-wait-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 700; font-size: 12.5px; }
+.emr-wait-item .emr-wait-name .emr-muted { font-weight: 400; font-size: 12px; }
+.emr-wait-reason { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--emr-muted); font-size: 12px; }
+.emr-wait-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; font-size: 12px; color: var(--emr-muted); }
+.emr-wait-item .emr-wait-status { padding: 0 5px; border: 1px solid #C8CDD2; border-radius: 2px; background: #F4F6F8; color: #495057; font-size: 12px; line-height: 16px; white-space: nowrap; }
+.emr-wait-item[data-state="active"] .emr-wait-status { border-color: #234676; background: var(--emr-primary); color: #FFFFFF; font-weight: 700; }
+.emr-wait-item[data-state="billing"] .emr-wait-status { border-color: #D9A441; background: #FFF1D6; color: #7A4900; }
+.emr-wait-item[data-state="reserved"] .emr-wait-status { border-color: #93B9A0; background: #E8F3EC; color: #22573A; }
+.emr-wait-count { margin-left: auto; font-weight: 400; color: #D5DCE5; }
+.emr-wait-head .emr-wait-close + .emr-wait-count, .emr-wait-count + .emr-wait-close { margin-left: 6px; }
 .emr-wait-empty { padding: 12px 8px; color: var(--emr-muted); font-size: 12px; }
 .emr-wait-rail { display: none; }
 
@@ -193,15 +275,72 @@
 .emr-box { background: var(--emr-panel); border: 1px solid var(--emr-border); border-radius: 2px; }
 .emr-box-title { display: flex; align-items: center; gap: 8px; height: 26px; padding: 0 8px; background: var(--emr-grid-head); border-bottom: 1px solid var(--emr-border); font-size: 12px; font-weight: 700; }
 
-/* Patient header (2 lines, 13 px) */
-.emr-pt { padding: 6px 8px; font-size: 13px; }
-.emr-pt-line { display: flex; flex-wrap: wrap; align-items: center; column-gap: 6px; row-gap: 2px; min-height: 24px; }
-.emr-pt-line + .emr-pt-line { margin-top: 2px; }
-.emr-pt-name { font-size: 15px; font-weight: 700; }
-/* "·" joins the header facts; the dot that would start a wrapped line is clipped away. */
-.emr-pt-clip { overflow: hidden; padding-left: 4px; margin-left: -4px; }
-.emr-pt-clip > .emr-pt-line { margin-left: -14px; column-gap: 0; }
-.emr-pt-clip > .emr-pt-line > *::before { content: "·"; display: inline-block; width: 14px; text-align: center; color: #868E96; font-weight: 400; }
+/* Patient header: photo, signalment, flags, insurance, vitals strip */
+.emr-pt { padding: 0; font-size: 13px; }
+.emr-pt-main { display: flex; align-items: flex-start; gap: 12px; padding: 8px 10px 6px; }
+/* Passport-style frame around the square photo. */
+.emr-pt-photo { display: block; flex-shrink: 0; padding: 2px; background: #FFFFFF; border: 1px solid var(--emr-border); line-height: 0; }
+.emr-pt-info { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+/* The signalment fields are separated by space alone (no '·': a wrapped line never ends on one). */
+.emr-pt-title { column-gap: 12px; }
+.emr-pt-flags { column-gap: 6px; row-gap: 4px; }
+/* Status cells: a square bordered key | value pair (MDR1, 알레르기, 만성, 보험). */
+.emr-cell {
+  display: inline-flex;
+  align-items: stretch;
+  height: 22px;
+  border: 1px solid var(--emr-border);
+  border-radius: 2px;
+  background: #FFFFFF;
+  font-size: 12px;
+  line-height: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.emr-cell-k { padding: 0 6px; border-right: 1px solid var(--emr-border); background: #F1F3F5; color: var(--emr-muted); font-weight: 700; }
+.emr-cell-v { padding: 0 7px; color: var(--emr-text); }
+.emr-cell .emr-select { height: 20px; border: 0; border-radius: 0; background: #FFFFFF; font-size: 12px; font-weight: 700; }
+.emr-cell .emr-select:focus { outline-offset: -2px; }
+.emr-cell[data-tone="warn"] { border-color: #D9A441; }
+.emr-cell[data-tone="warn"] .emr-cell-k { border-right-color: #D9A441; background: #FFE9B8; color: #6E3C00; }
+.emr-cell[data-tone="warn"] .emr-select { color: #8A4B00; }
+.emr-cell[data-tone="danger"] { border-color: #D98B8B; }
+.emr-cell[data-tone="danger"] .emr-cell-k { border-right-color: #D98B8B; background: #FAD9D9; color: #8C1515; }
+.emr-cell[data-tone="danger"] .emr-cell-v { color: #A61B1B; font-weight: 700; }
+.emr-cell[data-tone="info"] { border-color: #9DB4D3; }
+.emr-cell[data-tone="info"] .emr-cell-k { border-right-color: #9DB4D3; background: #DDE8F6; color: #1D3F6E; }
+.emr-cell[data-tone="ok"] { border-color: #93B9A0; }
+.emr-cell[data-tone="ok"] .emr-cell-k { border-right-color: #93B9A0; background: #DDEFE3; color: #22573A; }
+.emr-cell[data-tone="ok"] .emr-cell-v { color: #22573A; font-weight: 700; }
+.emr-pt-side { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; padding-top: 2px; }
+.emr-ins { height: 24px; line-height: 22px; }
+.emr-visitinfo { font-size: 12px; color: var(--emr-muted); }
+.emr-vitals {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  padding: 5px 10px;
+  border-top: 1px solid var(--emr-rule);
+  background: #F8FAFB;
+  font-size: 12px;
+}
+.emr-cc { flex: 1 1 260px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.emr-cc .emr-k, .emr-vital .emr-k { margin-right: 4px; color: var(--emr-muted); }
+.emr-vitals-row { display: inline-flex; align-items: center; gap: 4px 0; flex-wrap: wrap; }
+.emr-vital { display: inline-flex; align-items: center; gap: 2px; padding: 0 10px; white-space: nowrap; }
+.emr-vital:first-child { padding-left: 0; }
+.emr-vital + .emr-vital { border-left: 1px solid var(--emr-border); }
+.emr-vital b { font-weight: 700; }
+.emr-unit { color: var(--emr-muted); margin-left: 1px; }
+.emr-flag { margin-left: 3px; padding: 0 3px; border-radius: 2px; background: #FDECEC; color: #A61B1B; font-size: 12px; font-weight: 800; line-height: 14px; }
+.emr-vital[data-flag] b { color: #A61B1B; }
+.emr-spark path { stroke: #4C6A93; }
+.emr-spark circle { fill: #4C6A93; }
+.emr-spark[data-trend="down"] path { stroke: #B35C00; }
+.emr-spark[data-trend="down"] circle { fill: #B35C00; }
+.emr-pt-line { display: flex; flex-wrap: wrap; align-items: center; column-gap: 14px; row-gap: 2px; min-height: 24px; }
+.emr-pt-name { font-size: 17px; font-weight: 800; letter-spacing: -0.01em; }
 .emr-pt-id { white-space: nowrap; }
 .emr-pt-field { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
 .emr-pt-field .emr-k { color: var(--emr-muted); }
@@ -229,8 +368,8 @@
 
 /* S O A P tabs */
 .emr-soap .emr-tabs { padding: 4px 6px 0; }
-.emr-soap-body { padding: 6px 8px; min-height: 56px; font-size: 13px; }
-.emr-soap-body textarea { width: 100%; min-height: 44px; resize: vertical; border: 1px solid var(--emr-btn-border); border-radius: 2px; padding: 4px; font-size: 13px; }
+.emr-soap-body { padding: 8px 10px; min-height: 64px; font-size: 13px; }
+.emr-soap-body textarea { width: 100%; min-height: 54px; resize: vertical; border: 1px solid var(--emr-btn-border); border-radius: 2px; padding: 5px 6px; font-size: 13px; line-height: 1.5; }
 .emr-dx-add { display: inline-flex; gap: 4px; align-items: center; flex-wrap: wrap; }
 .emr-dx-add .emr-select { max-width: 220px; }
 .emr-dx-add .emr-input { width: 140px; }
@@ -239,6 +378,15 @@
 .emr-labs th { color: var(--emr-muted); font-weight: 400; }
 .emr-labs .emr-input { width: 64px; text-align: right; }
 .emr-muted { color: var(--emr-muted); }
+.emr-labflag { margin-left: 4px; padding: 0 3px; border-radius: 2px; background: #FDECEC; color: #A61B1B; font-size: 12px; font-weight: 800; }
+.emr-history { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: start; }
+.emr-timeline { position: relative; display: flex; flex-direction: column; gap: 6px; padding-left: 14px; font-size: 12px; }
+.emr-timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 1px; background: var(--emr-border); }
+.emr-timeline li { position: relative; display: grid; grid-template-columns: 84px auto 1fr; gap: 8px; align-items: baseline; }
+.emr-timeline li::before { content: ""; position: absolute; left: -13px; top: 5px; width: 7px; height: 7px; background: #FFFFFF; border: 1px solid #7F8C9D; }
+.emr-timeline li[data-now]::before { background: var(--emr-primary); border-color: var(--emr-primary); }
+.emr-timeline b { font-weight: 700; white-space: nowrap; }
+.emr-vax td[data-overdue] { color: #B35C00; font-weight: 700; }
 
 /* TX/RX */
 .emr-rx-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 6px 8px; border-bottom: 1px solid var(--emr-rule); }
@@ -363,29 +511,68 @@
 /* ── Responsive (§2.2) ─────────────────────────────────────────────────────── */
 @media (max-width: 1439px) {
   .emr-root .emr-col-folder { display: none; }
+  .emr-tool-stat { display: none; }
+}
+/* Toolbar buttons drop out by data-min (EmrApp TOOLBAR) so the centred island keeps the middle free. */
+@media (max-width: 1679px) {
+  .emr-toolbar [data-min="1680"] { display: none; }
+}
+@media (max-width: 1439px) {
+  .emr-toolbar [data-min="1440"] { display: none; }
+}
+@media (max-width: 1279px) {
+  .emr-toolbar [data-min="1280"] { display: none; }
+  .emr-tool-spacer { min-width: 0; }
+  .emr-history { grid-template-columns: 1fr; }
 }
 @media (max-width: 1279px) {
   .emr-root .emr-col-code, .emr-root .emr-col-price { display: none; }
   /* Waitlist collapses to a 48 px rail; the list opens over the chart. */
   .emr-wait { display: none; }
   .emr-wait-rail { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 0 0 48px; width: 48px; padding-top: 6px; margin: 6px 0 6px 6px; background: var(--emr-panel); border: 1px solid var(--emr-border); border-radius: 2px; }
-  .emr-wait-rail .emr-btn { width: 36px; height: 36px; padding: 0; flex-direction: column; gap: 0; font-size: 12px; line-height: 14px; }
-  .emr-root[data-wait-open="true"] .emr-wait { display: flex; position: absolute; top: 34px; left: 0; bottom: 24px; z-index: 25; box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2); }
+  .emr-wait-rail .emr-btn { width: 36px; height: 36px; padding: 0; flex-direction: column; gap: 0; font-size: 12px; line-height: 14px; border-color: #FFFFFF #7D858F #7D858F #FFFFFF; border-radius: 0; background: #EEF0F3; }
+  .emr-root[data-wait-open="true"] .emr-wait { display: flex; position: absolute; top: 78px; left: 0; bottom: 24px; z-index: 25; box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2); }
   .emr-root[data-wait-open="true"] .emr-wait-head .emr-wait-close { display: inline-flex; }
 }
 @media (max-width: 1023px) {
+  .emr-toolbar [data-min="1024"] { display: none; }
+  .emr-titlebar .emr-meta-clinic, .emr-titlebar .emr-meta-clinic + .emr-meta-sep { display: none; }
   .emr-wait-rail { display: none; }
   .emr-titlebar .emr-wait-toggle { display: inline-flex; }
   .emr-titlebar .emr-menu, .emr-titlebar .emr-sep-menu { display: none; }
-  .emr-root[data-wait-open="true"] .emr-wait { top: 28px; bottom: auto; max-height: 70vh; }
-  /* Leave room for the widget's 48 px bottom sheet bar. */
-  .emr-chart { padding-bottom: 60px; overflow: visible; }
-  .emr-watermark { bottom: 52px; }
-  .emr-toast { bottom: 60px; }
+  .emr-root[data-wait-open="true"] .emr-wait { top: 72px; bottom: auto; max-height: 70vh; }
+  /* The page scrolls here. The watermark stays in view as a strip on the frame colour, full width with
+     a top hairline: on the floor of the frame, or right above the widget's bottom sheet when the DUR
+     shows as one (data-dur-layout="sheet"; the collapsed sheet is a 14 px grabber band + a 46 px bar).
+     It never sits over a row: the chart ends the strip (25 px) + the sheet + a margin lower, so its last
+     rows scroll clear of both. */
+  .emr-root { --emr-sheet-h: 60px; }
+  .emr-body { padding-bottom: 0; }
+  .emr-chart { padding-bottom: 40px; overflow: visible; }
+  .emr-root[data-dur-layout="sheet"] .emr-chart { padding-bottom: calc(var(--emr-sheet-h) + 40px); }
+  .emr-watermark {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 4px 12px;
+    border-top: 1px solid var(--emr-border);
+    background: var(--emr-frame);
+    color: rgb(0 0 0 / 0.6);
+    opacity: 1;
+  }
+  .emr-root[data-dur-layout="sheet"] .emr-watermark { bottom: var(--emr-sheet-h); }
+  .emr-toast { bottom: 36px; }
+  .emr-root[data-dur-layout="sheet"] .emr-toast { bottom: calc(var(--emr-sheet-h) + 36px); }
   .emr-search .emr-input { width: 200px; }
 }
 @media (max-width: 639px) {
   .emr-titlebar .emr-meta { display: none; }
+  /* Wrapped vitals: no rule at the start of a line. */
+  .emr-vitals-row { gap: 4px 14px; }
+  .emr-vital, .emr-vital:first-child { padding: 0; }
+  .emr-vital + .emr-vital { border-left: 0; }
+  .emr-pt-side { display: none; }
+  .emr-pt-main { gap: 8px; }
   .emr-search { flex: 1 1 100%; }
   .emr-search .emr-input { width: 100%; }
   .emr-listbox { width: calc(100vw - 32px); }
@@ -394,7 +581,7 @@
 
 /* ── Print (§3.12): the DUR panel never prints; chart lines and the watermark do ─ */
 @media print {
-  .emr-wait, .emr-wait-rail, .emr-dur, .emr-rx-tools, .emr-actions, .emr-toast, .emr-col-del { display: none !important; }
+  .emr-wait, .emr-wait-rail, .emr-dur, .emr-rx-tools, .emr-actions, .emr-toast, .emr-col-del, .emr-toolbar { display: none !important; }
   .emr-chart { overflow: visible; }
   .emr-watermark { position: static; padding: 4px 8px; }
   nuvovet-dur-overlay { display: none !important; }

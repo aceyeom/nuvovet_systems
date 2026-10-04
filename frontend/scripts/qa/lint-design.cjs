@@ -15,7 +15,13 @@ const path = require('path')
 const ROOT = path.resolve(__dirname, '../..')
 const SRC = path.join(ROOT, 'src')
 const rel = (f) => path.relative(ROOT, f).split(path.sep).join('/')
-const EXCLUDE = [/^src\/portfolio\/emr\/host\//, /^src\/ui\/tokens\.css$/, /^src\/portfolio\/styles\/print\.css$/, /__tests__\//, /\.test\.js$/]
+// The brand layer (src/brand) and the landing (src/pages/landing) are the expressive marketing surface:
+// product colours, gradients, glass and 3D are their point, so the console's visual rules do not apply.
+// The DUR island's stylesheet sits beside widget.css and is exempt the same way.
+const EXCLUDE = [
+  /^src\/portfolio\/emr\/host\//, /^src\/ui\/tokens\.css$/, /^src\/portfolio\/styles\/print\.css$/, /__tests__\//, /\.test\.js$/,
+  /^src\/brand\//, /^src\/pages\/landing\//, /^src\/portfolio\/emr\/widget\/island\.css$/,
+]
 const arbitraryAllow = JSON.parse(fs.readFileSync(path.join(__dirname, 'arbitrary-allowlist.json'), 'utf8'))
 const navAllow = JSON.parse(fs.readFileSync(path.join(__dirname, 'nav-allowlist.json'), 'utf8'))
 

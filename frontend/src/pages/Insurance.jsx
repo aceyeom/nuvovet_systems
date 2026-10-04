@@ -213,6 +213,7 @@ export default function Insurance() {
         LinkComponent={RouterLink}
         homeTo="/insurance"
         product={PRODUCT}
+        brand="claims"
         breadcrumb={<Crumbs pathname={pathname} demo={demo} />}
         onOpenCommand={() => setCmdOpen(true)}
         marker={<EnvironmentMarker label={ENV_LABEL} tooltip={demo ? ENV_TOOLTIP[demo.source] : ENV_TOOLTIP.snapshot} />}

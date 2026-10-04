@@ -22,6 +22,8 @@ async function suite(browser, BASE, tag, report, opts = {}) {
   async function open(visit, o = {}) {
     const ctx = await browser.newContext({ viewport: { width: o.w || 1440, height: o.h || 900 }, acceptDownloads: true, hasTouch: !!o.touch, colorScheme: o.site === 'dark' ? 'dark' : 'light' })
     await ctx.addInitScript((site) => { try { localStorage.setItem('nv-theme', site || 'light') } catch {} }, o.site || 'light')
+    // The checks below were written for the docked panel; the island has its own block (K). Default is docked.
+    await ctx.addInitScript((l) => { try { localStorage.setItem('nv-emr-dur-layout', JSON.stringify(l)); localStorage.removeItem('nv-island-pos') } catch {} }, o.layout || 'docked')
     if (o.init) await ctx.addInitScript(o.init)
     const page = await ctx.newPage()
     page.logs = []
@@ -159,7 +161,9 @@ async function suite(browser, BASE, tag, report, opts = {}) {
     const st = await state(page)
     const rows = await page.evaluate(() => window.__emr.visit().rows.map((r) => r.rowId))
     ok('C accepting "이버멕틴 삭제" removes the row, clears the card, logs one accepted', rows.join() === 'rx-2' && !st.cards.some((c) => c.rule === 'MDR1_PGP_ML') && st.log.filter((x) => x === 'accepted').length === 1, { rows, log: st.log })
-    const [dl] = await Promise.all([page.waitForEvent('download'), page.click('button:has-text("기록 내보내기")')])
+    // Export lives in the demo bar's ⋯ menu.
+    await page.click('[data-emr="demo-bar"] button[aria-label="데모 설정"]')
+    const [dl] = await Promise.all([page.waitForEvent('download'), page.click('[role="menuitem"]:has-text("기록 내보내기")')])
     const file = path.join(OUTD, 'export.json')
     await dl.saveAs(file)
     const json = JSON.parse(fs.readFileSync(file, 'utf8'))
@@ -395,6 +399,55 @@ async function suite(browser, BASE, tag, report, opts = {}) {
     ok('widget dark: host stays light', bg === 'rgb(233, 236, 239)', bg)
     await shot(w.page, 'v1-widget-dark-1440')
     await w.ctx.close()
+  }
+
+  // K. DUR island (EMR default): peeks the new finding by itself, expands in place, Esc collapses, drags,
+  //    the dock button hands the panel back to the host, and the guide strip ticks its steps off.
+  {
+    const { ctx, page } = await open('V1', { layout: 'island' })
+    const isl = (sel) => page.evaluate((q) => {
+      const r = document.querySelector('nuvovet-dur-overlay')?.shadowRoot
+      const el = r?.querySelector('.nv-island')
+      return el ? { mode: el.dataset.mode, glow: el.dataset.glow, text: (q ? r.querySelector(q) : el)?.textContent || '', rect: el.getBoundingClientRect().toJSON() } : null
+    }, sel || null)
+    const first = await isl()
+    ok('island: no docked column, island present', first && !(await page.$('#nv-panel')), first)
+    ok('island: peeks the contraindication on open', first?.mode === 'peek' && first.glow === 'contraindicated' && /MDR1/.test(first.text), first)
+    await shot(page, 'island-peek-1440')
+    await page.evaluate(() => document.querySelector('nuvovet-dur-overlay').shadowRoot.querySelector('.nv-island-x').click())
+    await sleep(700)
+    const compact = await isl()
+    ok('island: dismiss folds it into the pill', compact?.mode === 'compact' && compact.rect.height <= 48, compact)
+    await page.evaluate(() => document.querySelector('nuvovet-dur-overlay').shadowRoot.querySelector('.nv-island-pill').click())
+    await sleep(700)
+    const open1 = await isl('[data-nv="verdict"]')
+    ok('island: click expands the full panel in place', open1?.mode === 'expanded' && /조제하지/.test(open1.text), open1)
+    await shot(page, 'island-expanded-1440')
+    await page.keyboard.press('Escape')
+    await sleep(600)
+    ok('island: Esc collapses', (await isl())?.mode === 'compact')
+    const before = (await isl()).rect
+    const box = { x: before.x + before.width / 2, y: before.y + before.height / 2 }
+    await page.mouse.move(box.x, box.y)
+    await page.mouse.down()
+    await page.mouse.move(box.x - 300, box.y + 260, { steps: 8 })
+    await page.mouse.up()
+    await sleep(600)
+    const after = (await isl()).rect
+    ok('island: drags anywhere and stays compact', Math.abs(after.x - (before.x - 300)) < 12 && Math.abs(after.y - (before.y + 260)) < 12 && (await isl()).mode === 'compact', { before, after })
+    const saved = await page.evaluate(() => localStorage.getItem('nv-island-pos'))
+    ok('island: position remembered', !!saved, saved)
+    await page.locator('[data-nv-slot="rx-1"]').evaluate((el) => el.shadowRoot.querySelector('button').click())
+    await sleep(700)
+    const viaBadge = await isl()
+    ok('island: row badge opens the island on the card', viaBadge?.mode === 'expanded', viaBadge)
+    const guide = await page.evaluate(() => [...document.querySelectorAll('[data-emr="guide"] li')].map((li) => li.dataset.state))
+    ok('guide strip: review and island steps ticked', guide[0] === 'done' && guide[1] === 'done', guide)
+    await page.evaluate(() => [...document.querySelector('nuvovet-dur-overlay').shadowRoot.querySelectorAll('.nv-island button')].find((b) => /오른쪽 패널에 고정/.test(b.getAttribute('aria-label') || ''))?.click())
+    await sleep(600)
+    ok('island: dock button moves the review to the right column', !!(await page.$('#nv-panel')) && !(await isl()), await page.evaluate(() => localStorage.getItem('nv-emr-dur-layout')))
+    ok('island: no console errors', page.logs.length === 0, page.logs)
+    await ctx.close()
   }
 }
 

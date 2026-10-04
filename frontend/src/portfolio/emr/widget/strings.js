@@ -8,8 +8,8 @@
 
 export const STRINGS = {
   ko: {
-    'panel.title': 'NuvoVet DUR',
-    'panel.region': 'NuvoVet DUR 처방 검토',
+    'panel.title': 'nuvovet DUR',
+    'panel.region': 'nuvovet DUR 처방 검토',
     'panel.rules': '규칙 {n}개',
     'panel.empty': '처방을 입력하면 검토합니다',
     'panel.minimise': '검토 패널 접기', // (widget)
@@ -36,6 +36,7 @@ export const STRINGS = {
     'card.inputs': '입력값', // (widget)
     'card.rule': '규칙', // (widget)
     'card.evidence': '근거',
+    'card.moreSources': '외 {n}', // (widget) references beyond the first three, after the trail
     'card.mechanistic': '기전 근거 (인용 연구 없음)',
     'card.jurisdiction.US': '미국 라벨 기준',
     'card.jurisdiction.UK': '영국 라벨 기준',
@@ -88,11 +89,19 @@ export const STRINGS = {
     'live.none': '처방 검토: 규칙상 문제 없음', // (widget)
     'live.incomplete': '처방 검토: 검토 불완전', // (widget)
     'count.n': '{label} {n}건', // (widget)
-    'sheet.label': 'NuvoVet DUR 처방 검토', // (widget)
+    'sheet.label': 'nuvovet DUR 처방 검토', // (widget)
+    'island.label': 'nuvovet DUR 아일랜드', // (widget) island
+    'island.hint': '클릭하면 펼칩니다. 끌어서 원하는 곳에 두십시오.', // (widget) island
+    'island.details': '전체 검토', // (widget) island
+    'island.dismiss': '알림 닫기', // (widget) island
+    'island.collapse': '아일랜드로 접기', // (widget) island
+    'island.dock': '오른쪽 패널에 고정', // (widget) island
+    'island.undock': '아일랜드로 띄우기', // (widget) island
+    'island.resolved': '경고가 모두 해결되었습니다', // (widget) island
   },
   en: {
-    'panel.title': 'NuvoVet DUR',
-    'panel.region': 'NuvoVet DUR prescription review',
+    'panel.title': 'nuvovet DUR',
+    'panel.region': 'nuvovet DUR prescription review',
     'panel.rules': '{n} rules',
     'panel.empty': 'Add a prescription to start the review',
     'panel.minimise': 'Collapse the review panel',
@@ -119,6 +128,7 @@ export const STRINGS = {
     'card.inputs': 'Inputs',
     'card.rule': 'Rule',
     'card.evidence': 'Evidence',
+    'card.moreSources': '+{n} more', // (widget)
     'card.mechanistic': 'Mechanistic rationale (no study cited)',
     'card.jurisdiction.US': 'US label',
     'card.jurisdiction.UK': 'UK label',
@@ -171,7 +181,15 @@ export const STRINGS = {
     'live.none': 'Prescription review: no rule findings',
     'live.incomplete': 'Prescription review: incomplete',
     'count.n': '{n} {label}',
-    'sheet.label': 'NuvoVet DUR prescription review',
+    'sheet.label': 'nuvovet DUR prescription review',
+    'island.label': 'nuvovet DUR island',
+    'island.hint': 'Click to expand. Drag to move it anywhere.',
+    'island.details': 'Full review',
+    'island.dismiss': 'Dismiss',
+    'island.collapse': 'Collapse to island',
+    'island.dock': 'Dock to the right panel',
+    'island.undock': 'Float as island',
+    'island.resolved': 'All alerts resolved',
   },
 }
 

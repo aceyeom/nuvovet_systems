@@ -11,6 +11,7 @@ import { Panel } from './Panel.jsx'
 import { RowBadge } from './RowBadge.jsx'
 import { Launcher, Drawer, Sheet } from './Launcher.jsx'
 import { GateDialog } from './GateDialog.jsx'
+import { Island } from './Island.jsx'
 import { liveSentence } from './strings.js'
 
 const Ctx = createContext(null)
@@ -63,6 +64,7 @@ export function WidgetApp({ ctl }) {
           </>
         ) : null}
         {layout === 'sheet' ? <Sheet /> : null}
+        {layout === 'island' ? <Island /> : null}
         <GateDialog />
       </div>
       {layout === 'docked' && ui.panelRoot

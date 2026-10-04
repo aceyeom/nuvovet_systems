@@ -77,15 +77,23 @@ async function runOne(browser, route, v, base, sbase, report) {
     await settle(page, route)
     const res = await page.evaluate(audit, { kind: route.kind, skipHost: route.kind === 'emr' })
     await page.screenshot({ path: path.join(dir, `${v.id}.png`), fullPage: true })
-    for (const k of CHECKS) report.check(`${tag} ${k}`, !(res[k] && res[k].length), res[k])
+    const BRAND_EXEMPT = ['colour', 'fontSizes', 'radius', 'shadow']
+    for (const k of CHECKS) {
+      if (route.brand && BRAND_EXEMPT.includes(k)) continue
+      report.check(`${tag} ${k}`, !(res[k] && res[k].length), res[k])
+    }
     if (res.koreanOverwide) report.info(`${tag} koreanOverwide (word wider than its container)`, res.koreanOverwide)
     if (route.kind !== 'widget') {
       const f = await fontCheck(page, route)
-      report.check(`${tag} fonts: Pretendard Variable loaded and used`, f.loaded && f.sampled >= 1 && f.bad.length === 0, f)
+      // Brand routes set display copy in the brand display face: the FontFace "nuvovet Display" (src/brand/displayFont.js),
+      // which CDP reports by the font file's own family name (MaruBuri Regular / SemiBold). Everything else is Pretendard.
+      const bad = route.brand ? f.bad.map((x) => x.filter((n) => !/^(nuvovet Display|MaruBuri|Pretendard Variable)/.test(n))).filter((x) => x.length) : f.bad
+      report.check(`${tag} fonts: Pretendard Variable loaded and used`, f.loaded && f.sampled >= 1 && bad.length === 0, f)
     }
     if (route.id === 'landing' && v.id === '1440-light') {
       const l = await page.evaluate(landingLayout)
-      report.check(`${tag} landing: hero crop top ≤ 520 px`, l.cropTop !== null && l.cropTop <= 520, l.cropTop)
+      const stageTop = await page.evaluate(() => { window.scrollTo(0, 0); return document.querySelector('.lp-stage')?.getBoundingClientRect().top ?? null })
+      report.check(`${tag} landing: product stage starts in the first screen (top ≤ 720 px)`, stageTop !== null && stageTop <= 720, stageTop)
       report.check(`${tag} landing: no stat strip`, l.strips.length === 0, l.strips)
     }
   } catch (e) {
@@ -95,6 +103,39 @@ async function runOne(browser, route, v, base, sbase, report) {
   report.check(`${tag} console: zero errors and warnings`, logs.length === 0, logs)
   report.check(`${tag} network: no external requests`, foreign.length === 0, foreign)
   await ctx.close()
+}
+
+/**
+ * The hero intro is seen without a scroll on tablets and small laptops: the laptop reaches its lit state
+ * (`.lr[data-state=on]`) within 4 s of load, at sizes where the closed device starts low in the first screen.
+ */
+const INTRO_VIEWPORTS = [[1024, 768], [1180, 820], [1024, 600], [800, 600]]
+async function introCheck(browser, base, report) {
+  // Warm the dev server first: on a fresh server Vite transforms the landing's modules on the first request
+  // (≈1.5 s here), which would be charged to whichever viewport happens to load first. The 4 s is the
+  // page's own intro (lazy chunk, frame decode, lid, power-on), not the dev server's first compile.
+  {
+    const ctx = await browser.newContext({ viewport: { width: INTRO_VIEWPORTS[0][0], height: INTRO_VIEWPORTS[0][1] } })
+    const page = await ctx.newPage()
+    await page.goto(base + '/', { waitUntil: 'load', timeout: 60000 }).catch(() => {})
+    await page.waitForSelector('.lr[data-state="on"]', { timeout: 20000 }).catch(() => {})
+    await ctx.close()
+  }
+  for (const [w, h] of INTRO_VIEWPORTS) {
+    const ctx = await browser.newContext({ viewport: { width: w, height: h } })
+    const page = await ctx.newPage()
+    const tag = `landing ${w}x${h}`
+    try {
+      await page.goto(base + '/', { waitUntil: 'load', timeout: 30000 })
+      const t0 = Date.now()
+      const ok = await page.waitForSelector('.lr[data-state="on"]', { timeout: 4000 }).then(() => true, () => false)
+      const st = await page.evaluate(() => ({ state: document.querySelector('.lr')?.dataset.state, scrollY: window.scrollY }))
+      report.check(`${tag} hero: the laptop powers on within 4 s without a scroll`, ok && st.scrollY === 0, { ...st, ms: Date.now() - t0 })
+    } catch (e) {
+      report.check(`${tag} hero: loaded`, false, e.message.slice(0, 300))
+    }
+    await ctx.close()
+  }
 }
 
 async function main() {
@@ -111,6 +152,7 @@ async function main() {
   for (const r of routes) for (const v of variants) queue.push([r, v])
   const t0 = Date.now()
   try {
+    if (routes.some((r) => r.id === 'landing') && !vOnly) await introCheck(browser, dev.base, report)
     await Promise.all(Array.from({ length: jobs }, async () => {
       while (queue.length) {
         const [r, v] = queue.shift()

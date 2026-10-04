@@ -1,0 +1,34 @@
+/* PhotoCredits (src/brand/PhotoCredits.jsx): a quiet text list. Pretendard 12/18, muted, hairline underlines. */
+@layer theme, base, components, utilities;
+@layer components {
+  .nvb-credits {
+    font-family: var(--nvb-font-text);
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 400;
+    color: var(--nvb-credits-fg, var(--nvb-muted));
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+  .nvb-credits-note { margin: 0 0 20px; max-width: 46em; }
+  .nvb-credits-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    columns: 3 280px;
+    column-gap: 32px;
+  }
+  .nvb-credits-list li { break-inside: avoid; margin: 0 0 6px; }
+  .nvb-credits-use { color: var(--nvb-credits-link, var(--nvb-ink-2)); font-weight: 500; }
+  .nvb-credits a {
+    color: var(--nvb-credits-link, var(--nvb-ink-2));
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--nvb-rule-strong);
+  }
+  /* a licence name never breaks ("CC BY 2.0" stays one piece) */
+  .nvb-credits a[rel~="license"] { white-space: nowrap; }
+  .nvb-credits a:hover { color: var(--nvb-ink); text-decoration-color: currentColor; }
+  .nvb-credits a:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; border-radius: 2px; }
+}

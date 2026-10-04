@@ -3,7 +3,7 @@
  * drawer, or inside the bottom sheet. Passive: it never moves focus on check(); focus moves only
  * on a user action in the widget (badge click → card heading, chip → group).
  *
- *   header 40 px     NuvoVet DUR   규칙 18개 · 14:32:05   [–] / [×]
+ *   header 40 px     nuvovet DUR   규칙 18개 · 14:32:05   [–] / [×]
  *   verdict row      SeverityBadge md + engine verdict.action; counts; "검토 불완전 N" chip
  *   확인 필요         row / visit reasons with [행으로 이동] and fix-chart chips
  *   cards            hairline-separated; 금기/중대 expanded, others one 36 px line
@@ -13,7 +13,7 @@
  */
 
 import { useEffect, useId, useRef } from 'react'
-import { ChevronDown, CircleCheck, CircleDashed, Info, Minus, Plus, X } from 'lucide-react'
+import { ChevronDown, ChevronUp, CircleCheck, CircleDashed, GripVertical, Info, Minus, PanelRightOpen, Plus, X } from 'lucide-react'
 import { getProtocol } from '../../knowledge/drugs.js'
 import { Card, CollapsedCard } from './Card.jsx'
 import { CoverageStrip } from './CoverageStrip.jsx'
@@ -131,7 +131,20 @@ function Verdict({ response, locale, dur, confirm, onIncompleteChip }) {
   )
 }
 
-export function Panel({ mode }) {
+/** "nuvovet DUR": the product word in its own span, so the island skin can set it in the DUR tone
+ *  (as on the compact island and the sheet bar). The text content stays "nuvovet DUR". */
+function BrandTitle({ text }) {
+  const sp = text.lastIndexOf(' ')
+  if (sp < 1) return text
+  return (
+    <>
+      {text.slice(0, sp + 1)}
+      <span className="nv-head-product">{text.slice(sp + 1)}</span>
+    </>
+  )
+}
+
+export function Panel({ mode, onCollapse, onResetPos }) {
   const { ctl, dur, s, ui, locale } = useWidget()
   const rootRef = useRef(null)
   const groupRef = useRef(null)
@@ -163,17 +176,39 @@ export function Panel({ mode }) {
     if (mode === 'drawer') {
       e.stopPropagation()
       ctl.setUi({ drawerOpen: false })
+    } else if (mode === 'island') {
+      e.stopPropagation()
+      onCollapse?.()
     } else if (mode === 'sheet') {
       e.stopPropagation()
       ctl.setUi({ sheetExpanded: false })
     }
   }
 
+  const dockable = Boolean(ui.island?.dockable)
   const headerButton =
-    mode === 'docked' ? (
-      <button type="button" className="nv-btn nv-btn-ghost nv-btn-icon" aria-expanded={!minimised} aria-controls={bodyId} aria-label={t(locale, minimised ? 'panel.expand' : 'panel.minimise')} onClick={() => ctl.setUi({ minimised: !minimised })}>
-        {minimised ? <Plus {...ic(16)} /> : <Minus {...ic(16)} />}
-      </button>
+    mode === 'island' ? (
+      <>
+        {dockable ? (
+          <button type="button" className="nv-btn nv-btn-ghost nv-btn-icon" aria-label={t(locale, 'island.dock')} title={t(locale, 'island.dock')} onClick={() => ctl.emit({ type: 'layout-request', layout: 'docked' })}>
+            <PanelRightOpen {...ic(16)} />
+          </button>
+        ) : null}
+        <button type="button" className="nv-btn nv-btn-ghost nv-btn-icon" aria-expanded="true" aria-controls={bodyId} aria-label={t(locale, 'island.collapse')} title={t(locale, 'island.collapse')} onClick={onCollapse} data-nv="island-collapse">
+          <ChevronUp {...ic(16)} />
+        </button>
+      </>
+    ) : mode === 'docked' ? (
+      <>
+        {dockable ? (
+          <button type="button" className="nv-btn nv-btn-ghost nv-btn-icon" aria-label={t(locale, 'island.undock')} title={t(locale, 'island.undock')} onClick={() => ctl.emit({ type: 'layout-request', layout: 'island' })}>
+            <PanelRightOpen {...ic(16)} style={{ transform: 'scaleX(-1)' }} />
+          </button>
+        ) : null}
+        <button type="button" className="nv-btn nv-btn-ghost nv-btn-icon" aria-expanded={!minimised} aria-controls={bodyId} aria-label={t(locale, minimised ? 'panel.expand' : 'panel.minimise')} onClick={() => ctl.setUi({ minimised: !minimised })}>
+          {minimised ? <Plus {...ic(16)} /> : <Minus {...ic(16)} />}
+        </button>
+      </>
     ) : mode === 'drawer' ? (
       <button type="button" className="nv-btn nv-btn-ghost nv-btn-icon" aria-label={t(locale, 'panel.close')} onClick={() => ctl.setUi({ drawerOpen: false })} data-nv="close">
         <X {...ic(16)} />
@@ -191,8 +226,13 @@ export function Panel({ mode }) {
 
   return (
     <aside ref={rootRef} className={`nv-panel nv-panel-${mode}`} role="region" aria-label={t(locale, 'panel.region')} onKeyDown={onKeyDown} data-nv-panel={mode}>
-      <div className="nv-head">
-        <span className="nv-head-title">{t(locale, 'panel.title')}</span>
+      <div className="nv-head" data-nv-drag={mode === 'island' ? 'head' : undefined}>
+        {mode === 'island' ? (
+          <span className="nv-island-headgrip" aria-hidden="true" title={t(locale, 'island.hint')} onDoubleClick={onResetPos}>
+            <GripVertical {...ic(14)} />
+          </span>
+        ) : null}
+        <span className="nv-head-title"><BrandTitle text={t(locale, 'panel.title')} /></span>
         <span className="nv-head-meta nv-num">
           {t(locale, 'panel.rules', { n: ext?.rulesCount ?? 18 })}
           {ui.checkedAt ? ` · ${fmtTime(ui.checkedAt)}` : ''}

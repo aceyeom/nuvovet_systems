@@ -1,9 +1,9 @@
 /** UI 문구(한국어). 임상 문구는 지식 베이스와 규칙 데이터에 있습니다. */
 export default {
   // App shell
-  'app.name': 'NuvoVet DUR',
+  'app.name': 'nuvovet DUR',
   'app.product': 'DUR 데모',
-  'app.home': 'NuvoVet DUR 사례 연구',
+  'app.home': 'nuvovet DUR 사례 연구',
   'app.skip': '본문으로 건너뛰기',
   'app.marker': '교육용 프로토타입',
   'app.markerTooltip': '교육용 프로토타입입니다. 임상 검증을 거치지 않았으며 진료에 사용하지 마십시오. 모든 검토는 이 브라우저 안에서만 실행됩니다.',

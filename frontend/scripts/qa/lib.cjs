@@ -113,7 +113,9 @@ class Report {
  */
 const STANDALONE = 'file://' + path.join(ROOT, 'dist-portfolio/index.html')
 const ROUTES = [
-  { id: 'landing', path: '/', kind: 'marketing' },
+  // brand: the landing is the expressive brand surface (src/brand); the console's §9.7 style budgets
+  // (neutral colour, radius, shadow, type-size count, Pretendard only) do not apply to it.
+  { id: 'landing', path: '/', kind: 'marketing', brand: true },
   { id: 'ins-overview', path: '/insurance', kind: 'app' },
   { id: 'ins-claims', path: '/insurance/claims', kind: 'app' },
   { id: 'ins-claims-sel', path: '/insurance/claims?sel=SYN-2026-00220', kind: 'app' },
@@ -160,6 +162,24 @@ const ACTS = {
   },
 }
 
+/**
+ * The DUR island at rest: no shape morph (`data-morphing`) and no entrance or re-check fade running, for
+ * 450 ms in a row. A later check (the EMR fills the prescription after the first response) can open a peek
+ * after the first response; audits and screenshots read the island's resting state, not a frame of its
+ * 370 ms fade-in (contrast is measured through the opacity chain).
+ */
+async function islandAtRest(page) {
+  await page.waitForFunction(() => {
+    const r = document.querySelector('nuvovet-dur-overlay')?.shadowRoot
+    if (!r) return true
+    const busy = !!r.querySelector('[data-morphing]') ||
+      r.getAnimations().some((a) => a.playState === 'running' && /^nv-island-(in|recheck)$/.test(a.animationName || ''))
+    const now = performance.now()
+    if (busy || !window.__qaIslandQuiet) window.__qaIslandQuiet = busy ? 0 : now
+    return !busy && now - window.__qaIslandQuiet >= 450
+  }, null, { timeout: 5000, polling: 50 }).catch(() => {})
+}
+
 /** Waits until the route has rendered (fonts ready, lazy chunks in, widget checked). */
 async function settle(page, route) {
   await page.waitForLoadState('load').catch(() => {})
@@ -175,6 +195,7 @@ async function settle(page, route) {
   }
   await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {})
   await sleep(400)
+  if (route.kind === 'emr') await islandAtRest(page)
   if (route.act) await ACTS[route.act](page)
 }
 
@@ -189,6 +210,9 @@ function isForeign(route, url, base, sbase) {
 }
 
 /** Ignorable console noise from the dev server only (Vite client connection lines are debug, not warnings). */
-const NOISE = [/\[vite\] (connecting|connected)/, /Download the React DevTools/]
+// net::ERR_* lines are load failures the browser reports for blocked or unreachable hosts on an offline or proxied
+// box. The app fetches nothing from other hosts (patient photos are bundled, src/brand/pets.js) and isForeign()
+// fails any such request, so these lines add nothing.
+const NOISE = [/\[vite\] (connecting|connected)/, /Download the React DevTools/, /Failed to load resource: net::ERR_(TUNNEL_CONNECTION_FAILED|NAME_NOT_RESOLVED|INTERNET_DISCONNECTED|CONNECTION_REFUSED|PROXY_CONNECTION_FAILED|BLOCKED_BY_CLIENT)/]
 
 module.exports = { ROOT, OUT, PORT, STATIC_PORT, API, STANDALONE, playwright, arg, flag, sleep, get, devServer, staticServer, Report, ROUTES, ACTS, routeUrl, settle, isForeign, NOISE }

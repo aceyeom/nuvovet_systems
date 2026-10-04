@@ -25,6 +25,8 @@ function audit(opts) {
   }
   walk(document)
   const parentOf = (el) => el.parentElement || (el.getRootNode() instanceof ShadowRoot ? el.getRootNode().host : null)
+  // The brand layer (src/brand: lockups, the EMR demo guide, the DUR island) has its own colours and shapes.
+  const BRAND = '[data-brand-surface]'
   const closestDeep = (el, sel) => {
     for (let e = el; e; e = parentOf(e)) if (e.matches && e.matches(sel)) return e
     return null
@@ -181,8 +183,9 @@ function audit(opts) {
     const hostText = inHost(p)
     if (kind === 'widget' && hostText) continue
     // min size (§9.2 / T3)
-    if (fs < 12 && !p.closest('svg[aria-hidden="true"]')) add('minSize', { el: describe(p), fontSize: c.fontSize })
-    if (!hostText) sizes.set(c.fontSize, (sizes.get(c.fontSize) || 0) + 1)
+    // A [role="img"] subtree is a picture (e.g. the landing's scaled screen replays), not running text.
+    if (fs < 12 && !p.closest('svg[aria-hidden="true"]') && !p.closest('[role="img"]')) add('minSize', { el: describe(p), fontSize: c.fontSize })
+    if (!hostText && !closestDeep(p, BRAND)) sizes.set(c.fontSize, (sizes.get(c.fontSize) || 0) + 1)
     // letter case (§9.7.7)
     if (c.textTransform === 'uppercase') add('letterCase', { el: describe(p), textTransform: 'uppercase' })
     if (HANGUL.test(n.textContent) && c.letterSpacing !== 'normal' && parseFloat(c.letterSpacing) > 0) add('letterCase', { el: describe(p), letterSpacing: c.letterSpacing })
@@ -246,6 +249,8 @@ function audit(opts) {
     if (!/(hidden|clip)/.test(c.overflowX) && c.textOverflow !== 'ellipsis') continue
     if (srOnly(el) || inHost(el) && el.closest('[data-truncate][title]')) continue
     if (el.matches('[data-truncate][title]') || el.closest('[data-truncate][title]')) continue
+    // Mid-animation shape change (the DUR island morphing between pill, peek and panel).
+    if (el.closest('[data-morphing]')) continue
     if (el.matches('input, select, textarea, svg')) continue
     const own = ownText(el)
     let clippedChild = null
@@ -264,7 +269,7 @@ function audit(opts) {
 
   // ── §9.7 element budgets ───────────────────────────────────────────────────
   // "a link" includes the design system's link-styled controls: Button variant="link" and the widget's .nv-link-btn
-  const ALLOWED_COLOUR = '[data-status], a, [data-variant="link"], .nv-link-btn, :focus-visible, [aria-selected="true"], [aria-current], [data-chart], [class*="recharts"]'
+  const ALLOWED_COLOUR = '[data-status], a, [data-variant="link"], .nv-link-btn, :focus-visible, [aria-selected="true"], [aria-current], [data-chart], [class*="recharts"], [data-brand-surface]'
   const RADII = new Set([0, 4, 6, 8, 12])
   const radiusOk = (v) => {
     if (v.endsWith('%')) return v === '50%' || v === '0%'
@@ -296,12 +301,12 @@ function audit(opts) {
         if (ch > 0.04) { add('colour', { el: describe(el), prop, value: val, chroma: Math.round(ch * 1000) / 1000 }); break }
       }
     }
-    // radius
-    for (const k of ['borderTopLeftRadius', 'borderTopRightRadius', 'borderBottomRightRadius', 'borderBottomLeftRadius']) {
+    // radius (the brand layer, [data-brand-surface], keeps its own shapes)
+    if (!closestDeep(el, BRAND)) for (const k of ['borderTopLeftRadius', 'borderTopRightRadius', 'borderBottomRightRadius', 'borderBottomLeftRadius']) {
       if (!radiusOk(c[k])) { add('radius', { el: describe(el), [k]: c[k] }); break }
     }
     // shadow
-    if (c.boxShadow && c.boxShadow !== 'none' && !closestDeep(el, '[data-radix-popper-content-wrapper], [role=dialog], [role=alertdialog], [data-sonner-toast], [data-sonner-toaster], [data-floating], dialog')) {
+    if (c.boxShadow && c.boxShadow !== 'none' && !closestDeep(el, '[data-radix-popper-content-wrapper], [role=dialog], [role=alertdialog], [data-sonner-toast], [data-sonner-toaster], [data-floating], dialog, [data-brand-surface]')) {
       add('shadow', { el: describe(el), boxShadow: c.boxShadow.slice(0, 80) })
     }
     // nesting

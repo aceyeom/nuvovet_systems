@@ -1,0 +1,292 @@
+/*
+ * EMR demo chrome (portfolio, not the fictional EMR): the demo bar (DemoBar.jsx, .nvd-*) and the guide
+ * strip under it (GuideCoach.jsx, .nvg-*). Both follow the site theme through the console tokens
+ * (src/ui/tokens.css), with light fallbacks. Typography only: text controls, hairlines, a CSS close
+ * mark and a CSS check stroke. No icons, pills, dots or gradients. The EMR below stays light.
+ */
+
+/* ── Demo bar ─────────────────────────────────────────────────────────────── */
+.nvd {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 40px;
+  flex-shrink: 0;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--border, rgb(16 24 40 / 0.10));
+  background: var(--background, #FFFFFF);
+  color: var(--foreground, #16191E);
+  font-family: var(--nvb-font-text, "Pretendard Variable", Pretendard, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif);
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.nvd :focus-visible { outline: 2px solid var(--foreground, #16191E); outline-offset: 2px; border-radius: 4px; }
+.nvd-brand { display: flex; align-items: center; flex-shrink: 1; min-width: 0; margin: 0; font: inherit; }
+.nvd-home { display: flex; align-items: center; height: 32px; min-width: 0; color: inherit; text-decoration: none; }
+.nvd-visit { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.nvd-label { color: var(--muted-foreground, #646C77); font-weight: 500; }
+.nvd-select {
+  height: 28px;
+  max-width: 132px;
+  padding: 0 6px;
+  border: 1px solid var(--border-strong, rgb(16 24 40 / 0.18));
+  border-radius: 6px;
+  background: var(--background, #FFFFFF);
+  color: var(--foreground, #16191E);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+.nvd-select:hover { border-color: var(--input, #848B95); }
+.nvd-end { display: flex; align-items: stretch; align-self: stretch; gap: 20px; margin-left: auto; flex-shrink: 0; }
+.nvd-end > * { align-self: center; }
+.nvd-rule { width: 1px; height: 16px; background: var(--border-strong, rgb(16 24 40 / 0.18)); }
+.nvd-group { display: flex; align-items: stretch; align-self: stretch; gap: 18px; }
+.nvd-group > * { align-self: center; }
+
+/* Text controls: ink-2, ink on hover; a pressed/selected one is ink 600. */
+.nvd-text {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text-2, #4D5560);
+  font: inherit;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 120ms ease;
+}
+.nvd-text:hover { color: var(--foreground, #16191E); }
+.nvd-text[aria-pressed="true"] { color: var(--foreground, #16191E); font-weight: 600; }
+.nvd-link {
+  color: var(--foreground, #16191E);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+  text-decoration-color: var(--border-strong, rgb(16 24 40 / 0.18));
+}
+.nvd-link:hover { text-decoration-color: currentColor; }
+
+/* DUR 표시: two words; the chosen one is ink with a 1.5 px ink hairline on the bar's bottom edge. */
+.nvd-seg { display: flex; align-items: stretch; align-self: stretch; gap: 12px; }
+.nvd-seg > .nvd-label { align-self: center; }
+.nvd-seg-items { display: flex; align-items: stretch; gap: 0; }
+.nvd-seg-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  align-self: stretch;
+  padding: 0 8px;
+  border: 0;
+  background: transparent;
+  color: var(--muted-foreground, #646C77);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 120ms ease;
+}
+.nvd-seg-item + .nvd-seg-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 13px;
+  bottom: 13px;
+  width: 1px;
+  background: var(--border-strong, rgb(16 24 40 / 0.18));
+}
+.nvd-seg-item:hover { color: var(--foreground, #16191E); }
+.nvd-seg-item[data-state="on"] { color: var(--foreground, #16191E); font-weight: 600; }
+.nvd-seg-item[data-state="on"]::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: -1px;
+  height: 1.5px;
+  background: var(--foreground, #16191E);
+}
+.nvd-seg-item:focus-visible { outline-offset: -6px; }
+
+/* Settings menu: radio items mark the choice with weight and a CSS check stroke (no dot). */
+.nvd-radio svg { display: none; }
+.nvd-radio[data-state="checked"] { font-weight: 600; }
+.nvd-radio[data-state="checked"]::before {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 50%;
+  width: 9px;
+  height: 5px;
+  margin-top: -4px;
+  border-left: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(-45deg);
+}
+
+@media (min-width: 1280px) {
+  .nvd-menu-credits { display: none; }
+}
+@media (max-width: 1279px) {
+  .nvd-credits, .nvd-seg > .nvd-label { display: none; }
+}
+@media (max-width: 1023px) {
+  .nvd-wide { display: none; }
+  .nvd-end { gap: 14px; }
+}
+@media (max-width: 639px) {
+  .nvd { gap: 10px; padding: 0 12px; }
+  /* The 환자 label stays the select's accessible name, visually hidden. */
+  .nvd-visit .nvd-label { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  .nvd-select { max-width: 104px; }
+}
+
+/* ── Guide strip ──────────────────────────────────────────────────────────── */
+.nvg {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  height: 38px;
+  flex-shrink: 0;
+  padding: 0 8px 0 16px;
+  background: var(--surface-subtle, #F7F8FA);
+  box-shadow: inset 0 -1px 0 var(--border, rgb(16 24 40 / 0.10));
+  color: var(--foreground, #16191E);
+  font-family: var(--nvb-font-text, "Pretendard Variable", Pretendard, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif);
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.nvg-title { display: inline-flex; align-items: baseline; gap: 8px; flex-shrink: 0; }
+.nvg-title b { font-weight: 600; }
+.nvg-count { color: var(--text-2, #4D5560); font-weight: 500; font-variant-numeric: tabular-nums; }
+.nvg-steps { display: flex; align-items: stretch; align-self: stretch; gap: 18px; margin: 0; padding: 0; list-style: none; flex-shrink: 0; }
+.nvg-steps li {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  color: var(--muted-foreground, #646C77);
+  font-weight: 500;
+}
+.nvg-steps li[data-state="done"] { color: var(--text-2, #4D5560); }
+.nvg-steps li[data-state="done"]::before {
+  content: "";
+  width: 8px;
+  height: 4px;
+  margin: 0 8px 3px 1px;
+  border-left: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(-45deg);
+}
+.nvg-steps li[data-state="current"] { color: var(--foreground, #16191E); font-weight: 600; }
+.nvg-steps li[data-state="current"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.5px;
+  background: var(--nvb-lk-dur, #28553B);
+}
+.nvg-now {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  padding-left: 22px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-2, #4D5560);
+}
+.nvg-now::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  bottom: 2px;
+  width: 1px;
+  background: var(--border-strong, rgb(16 24 40 / 0.18));
+}
+.nvg-hint { flex: 0 1 auto; min-width: 0; max-width: 320px; margin: 0; overflow: hidden; text-overflow: ellipsis; color: var(--text-2, #4D5560); }
+.nvg-hint span { margin-right: 8px; color: var(--foreground, #16191E); font-weight: 600; }
+.nvg-next {
+  flex-shrink: 0;
+  color: var(--foreground, #16191E);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+  text-decoration-color: var(--border-strong, rgb(16 24 40 / 0.18));
+  transition: text-decoration-color 120ms ease;
+}
+.nvg-next:hover { text-decoration-color: currentColor; }
+.nvg-close {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin-left: -6px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-2, #4D5560);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.nvg-close:hover { background: var(--row-hover, rgb(16 24 40 / 0.04)); color: var(--foreground, #16191E); }
+/* Close: two crossed hairlines. */
+.nvg-x { position: relative; width: 11px; height: 11px; }
+.nvg-x::before,
+.nvg-x::after {
+  content: "";
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  top: 4.75px;
+  height: 1.5px;
+  border-radius: 1px;
+  background: currentColor;
+  transform: rotate(45deg);
+}
+.nvg-x::after { transform: rotate(-45deg); }
+.nvg :focus-visible { outline: 2px solid var(--foreground, #16191E); outline-offset: 2px; border-radius: 4px; }
+
+@media (max-width: 1439px) {
+  .nvg-hint { display: none; }
+}
+@media (max-width: 1199px) {
+  .nvg-steps li:not([data-state="current"]) { display: none; }
+}
+/* Narrow: the strip grows a second line for the instruction (13 px, ink-2), under the step label, so a
+   phone visitor still reads what to do. */
+@media (max-width: 767px) {
+  .nvg { flex-wrap: wrap; align-content: flex-start; column-gap: 14px; row-gap: 0; height: auto; min-height: 38px; padding-left: 12px; }
+  .nvg-steps { flex: 1 1 auto; min-width: 0; height: 38px; }
+  .nvg-steps li[data-state="current"] { min-width: 0; overflow: hidden; }
+  .nvg-now {
+    order: 10;
+    flex: 1 0 100%;
+    padding: 6px 28px 10px 0;
+    overflow: visible;
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    color: var(--text-2, #4D5560);
+    font-size: 13px;
+    line-height: 19px;
+  }
+  .nvg-now::before { display: none; }
+}
+@media print {
+  .nvd, .nvg { display: none; }
+}

@@ -1,9 +1,9 @@
 /** UI chrome strings (English). Clinical text lives in the knowledge/rule data. */
 export default {
   // App shell
-  'app.name': 'NuvoVet DUR',
+  'app.name': 'nuvovet DUR',
   'app.product': 'DUR demo',
-  'app.home': 'NuvoVet DUR case study',
+  'app.home': 'nuvovet DUR case study',
   'app.skip': 'Skip to content',
   'app.marker': 'Educational prototype',
   'app.markerTooltip': 'Educational prototype, not clinically validated. Do not use for patient care. Every check runs in this browser only.',

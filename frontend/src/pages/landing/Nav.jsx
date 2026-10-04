@@ -1,18 +1,18 @@
-// Landing nav (DESIGN_SYSTEM.md §5.1): 56 px, sticky, a hairline once the page has scrolled.
-// 파일럿 문의 appears only when CONTACT_EMAIL is non-empty; then 콘솔 데모 열기 drops to secondary.
+/**
+ * Landing nav: a full-width white bar, 64 px, with a hairline under it once the page scrolls (no glass,
+ * no float). Left the master wordmark; right the section links as plain text, the Claims console as a
+ * text link and the EMR demo as the one solid button. On phones the links fold into a plain sheet behind
+ * a CSS-drawn menu glyph (two hairlines; two crossed hairlines to close).
+ */
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Button } from '@/ui/primitives/button'
-import { Logo } from '@/ui/patterns/Logo'
-import { cn } from '@/ui/cn'
+import { BrandLockup } from '@/brand/Brand'
 import { CONTACT_EMAIL, useI18n } from '../../i18n'
-
-const NAV_LINK = 'rounded-sm text-text-2 transition-colors duration-100 hover:text-foreground'
 
 function useScrolled() {
   const [scrolled, setScrolled] = useState(false)
   useEffect(() => {
-    const update = () => setScrolled(window.scrollY > 0)
+    const update = () => setScrolled(window.scrollY > 4)
     update()
     window.addEventListener('scroll', update, { passive: true })
     return () => window.removeEventListener('scroll', update)
@@ -24,40 +24,53 @@ export function Nav() {
   const { t } = useI18n()
   const n = t.landing.nav
   const scrolled = useScrolled()
+  const [open, setOpen] = useState(false)
+  useEffect(() => {
+    if (!open) return undefined
+    const onKey = (e) => { if (e.key === 'Escape') setOpen(false) }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open])
+  const close = () => setOpen(false)
+  const links = [
+    ['#dur', n.dur],
+    ['#claims', n.claims],
+    ['#integration', n.integration],
+    ['#security', n.security],
+  ]
   return (
-    <header
-      className={cn(
-        'sticky top-0 z-[var(--z-header)] h-14 border-b bg-background transition-colors duration-100',
-        scrolled ? 'border-border' : 'border-transparent',
-      )}
-    >
-      <div className="mx-auto flex h-full max-w-300 items-center gap-8 px-4 max-sm:gap-4 sm:px-6">
-        <Link to="/" aria-label={n.home} className="rounded-sm">
-          <Logo size={20} />
+    <header className="lp-nav" data-scrolled={scrolled || undefined} data-open={open || undefined}>
+      <div className="lp-container lp-nav-bar">
+        <Link to="/" aria-label={n.home} className="lp-nav-home" onClick={close}>
+          <BrandLockup height={22} />
         </Link>
-        <nav aria-label={n.label} className="flex min-w-0 flex-1 items-center gap-6 text-sm">
-          <a href="#example" className={cn(NAV_LINK, 'max-sm:hidden')}>
-            {n.product}
-          </a>
-          <a href="#integration" className={cn(NAV_LINK, 'max-sm:hidden')}>
-            {n.integration}
-          </a>
-          <a href="#security" className={cn(NAV_LINK, 'max-sm:hidden')}>
-            {n.security}
-          </a>
-          {CONTACT_EMAIL ? (
-            <a href={`mailto:${CONTACT_EMAIL}`} className={cn(NAV_LINK, 'max-sm:hidden')}>
-              {n.pilot}
-            </a>
-          ) : null}
-          <Link to="/dur" className="rounded-sm text-muted-foreground transition-colors duration-100 hover:text-foreground">
-            {n.dur}
-          </Link>
+        <nav aria-label={n.label} className="lp-nav-links">
+          {links.map(([href, label]) => <a key={href} href={href} className="lp-nav-link">{label}</a>)}
+          {CONTACT_EMAIL ? <a href={`mailto:${CONTACT_EMAIL}`} className="lp-nav-link">{n.pilot}</a> : null}
         </nav>
-        <Button asChild variant={CONTACT_EMAIL ? 'secondary' : 'default'}>
-          <Link to="/insurance">{n.console}</Link>
-        </Button>
+        <div className="lp-nav-end">
+          <Link to="/insurance" className="lp-nav-link lp-nav-console">{n.claimsCta}</Link>
+          <Link to="/dur#/emr/V1" className="nvb-btn lp-nav-btn">{n.durCta}</Link>
+          <button
+            type="button"
+            className="lp-nav-menu"
+            aria-label={open ? n.menuClose : n.menu}
+            aria-expanded={open}
+            aria-controls="lp-nav-sheet"
+            onClick={() => setOpen((o) => !o)}
+          >
+            <span className={open ? 'nvb-close' : 'nvb-menu'} aria-hidden="true" />
+          </button>
+        </div>
       </div>
+      {open ? (
+        <nav id="lp-nav-sheet" aria-label={n.label} className="lp-nav-sheet">
+          <div className="lp-container">
+            {links.map(([href, label]) => <a key={href} href={href} onClick={close}>{label}</a>)}
+            <Link to="/insurance" onClick={close}>{n.claimsCta}</Link>
+          </div>
+        </nav>
+      ) : null}
     </header>
   )
 }

@@ -7,8 +7,14 @@
     <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0E0F11" media="(prefers-color-scheme: dark)" />
     <meta name="description" content="동물병원 진료 기록을 펫보험 청구 데이터로 정형화하고, 근거와 함께 심사합니다." />
-    <link rel="icon" type="image/png" href="/favicon.png" />
+    <!-- Master monogram; product routes swap #nv-favicon to /favicon-dur.svg or /favicon-claims.svg (useBrandFavicon). -->
+    <link id="nv-favicon" rel="icon" type="image/svg+xml" href="/favicon-master.svg" />
+    <link rel="alternate icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <script>(function(){try{var t=localStorage.getItem('nv-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}})();</script>
+    <!-- Landing only: fetch the hero's closed-laptop poster (the LCP image) while the app script loads; the
+         same file and media split as LaptopRender's <picture>, so the browser reuses it. -->
+    <script>(function(){if(location.pathname!=='/')return;var l=document.createElement('link');l.rel='preload';l.as='image';l.type='image/webp';l.setAttribute('fetchpriority','high');l.href='/render/laptop/seq-'+(matchMedia('(min-width: 640px)').matches?'2200':'1000')+'/frame-00.webp';document.head.appendChild(l);})();</script>
     <title>nuvovet</title>
   </head>
   <body>

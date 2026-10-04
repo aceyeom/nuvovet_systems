@@ -8,14 +8,18 @@
  * (`data-level`): solid red only for 금기, the amber major tint for 중대. It never opens anything
  * or moves focus by itself.
  * Drawer: 380 px over the host's right edge; focus trap only while open; Esc closes and returns
- * focus to the launcher. Sheet: role="dialog", not modal; 48 px bar with the verdict, expands to
- * 70 vh; Esc collapses.
+ * focus to the launcher.
+ * Sheet: the island's mobile form, in the island's material (graphite, 18 px top radius, a CSS
+ * grabber; island.css). role="dialog", not modal. The collapsed bar reads like the compact island:
+ * the severity word and its tabular count in the dark severity tone ("금기 1"), the engine's summary,
+ * "nuvovet DUR" (no badge, no icon). It expands to 70 vh with the review panel in the island skin;
+ * opening it is reported like expanding the island ({ type: 'island-open', layout: 'sheet' }); Esc
+ * collapses.
  */
 
 import { useEffect, useId, useRef } from 'react'
-import { ChevronUp } from 'lucide-react'
 import { Panel } from './Panel.jsx'
-import { Badge, SEV_ICON, ic, topSeverity } from './parts.jsx'
+import { SEV_ICON, ic, topSeverity } from './parts.jsx'
 import { severityWord, t } from './strings.js'
 import { focusables, trapTab } from './focus.js'
 import { useWidget } from './WidgetApp.jsx'
@@ -103,6 +107,8 @@ export function Sheet() {
   const barRef = useRef(null)
   const expanded = ui.sheetExpanded
   const { label, level } = summaryLabel(s.response, locale)
+  const severe = level && level !== 'none' && level !== 'incomplete'
+  const summary = severe ? s.response?.extension?.verdict?.action : null
   useEffect(() => {
     sheetBarEl = barRef.current
   })
@@ -121,19 +127,29 @@ export function Sheet() {
       setTimeout(() => sheetBarEl?.focus(), 0)
     }
   }
+  const open = () => {
+    ctl.setUi({ sheetExpanded: true })
+    ctl.emit({ type: 'island-open', layout: 'sheet' })
+  }
   return (
-    <section className="nv-sheet" role="dialog" aria-modal="false" aria-label={t(locale, 'sheet.label')} data-expanded={expanded ? 'true' : 'false'} data-floating="" onKeyDown={onKeyDown}>
+    <section
+      className="nv-scope nv-sheet"
+      data-theme="dark"
+      lang={locale}
+      role="dialog"
+      aria-modal="false"
+      aria-label={t(locale, 'sheet.label')}
+      data-expanded={expanded ? 'true' : 'false'}
+      data-level={level || 'idle'}
+      data-floating=""
+      data-brand-surface=""
+      onKeyDown={onKeyDown}
+    >
       {!expanded ? (
-        <button ref={barRef} type="button" className="nv-sheet-bar" aria-expanded="false" aria-controls={id} onClick={() => ctl.setUi({ sheetExpanded: true })}>
-          {level && level !== 'none' && level !== 'incomplete' ? (
-            <>
-              <Badge status={level} locale={locale} />
-              <span className="nv-truncate">{s.response?.extension?.verdict?.action || t(locale, 'launcher', { label })}</span>
-            </>
-          ) : (
-            <span className="nv-truncate">{t(locale, 'launcher', { label })}</span>
-          )}
-          <ChevronUp className="nv-chev" {...ic(16)} />
+        <button ref={barRef} type="button" className="nv-sheet-bar" aria-expanded="false" aria-controls={id} onClick={open}>
+          <span className="nv-sheet-status">{label}</span>
+          {summary ? <span className="nv-sheet-sum nv-truncate" data-truncate="" title={summary}>{summary}</span> : null}
+          <span className="nv-sheet-brand" aria-hidden="true">nuvovet <span>DUR</span></span>
         </button>
       ) : (
         <div id={id} className="nv-panel-scope">

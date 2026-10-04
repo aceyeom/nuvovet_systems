@@ -17,6 +17,17 @@
  * ── Public API (§3.2): the SDK core's, with these widget additions ──
  *   mount({ panel?, badgeSlot? }) · check(request) · gate(request) · setLocale · setTheme · unmount
  *   addEventListener(fn) → unsubscribe   same events as options.onEvent
+ *   setLayout(layout)                    'auto' | 'docked' | 'floating' | 'sheet' | 'island'
+ *   setContext({ rowId })                the host's focused row: the island peeks at that row's finding
+ *   setIsland({ top?, dockable? })       island options after creation
+ *
+ * ── Island (layout: 'island', island.jsx) ──
+ *   options.island = { top?: px, dockable?: boolean }   start position (centre-top) and the dock button
+ *   A dark pill that is dragged anywhere (position kept in localStorage), peeks open by itself when a
+ *   check brings a new finding (or clears the last one), and expands in place into the full panel.
+ *   { type: 'layout-request', layout: 'docked' | 'island' }   dock / undock buttons; the host decides
+ *   { type: 'island-open', layout? } · { type: 'reveal', rowId, uuid }   the vet opened the review: the island
+ *     expanded, or (layout: 'sheet') the mobile sheet (host analytics / guides)
  *
  * ── Events the UI adds to the core's (§3.2 DurEvent) ──
  *   { type: 'focus-row', rowId, highlight: true, rowIds }   hover/focus on a card: highlight its rows
@@ -33,6 +44,7 @@ import { createRoot } from 'react-dom/client'
 import { createDur, SDK_VERSION } from '../sdk.js'
 import tokensCss from '@/ui/tokens.css?inline'
 import widgetCss from './widget.css?inline'
+import islandCss from './island.css?inline'
 import { registerWidgetFont } from './fonts.js'
 import { deepActiveElement, restoreFocus } from './focus.js'
 import { WidgetApp } from './WidgetApp.jsx'
@@ -47,7 +59,7 @@ function styleSheet() {
   try {
     if (typeof CSSStyleSheet !== 'undefined' && 'replaceSync' in CSSStyleSheet.prototype) {
       const s = new CSSStyleSheet()
-      s.replaceSync(`${tokensCss}\n${widgetCss}`)
+      s.replaceSync(`${tokensCss}\n${widgetCss}\n${islandCss}`)
       sharedSheet = s
       return s
     }
@@ -68,7 +80,7 @@ function adopt(root) {
   if (!root.querySelector('style[data-nv-style]')) {
     const st = document.createElement('style')
     st.setAttribute('data-nv-style', '')
-    st.textContent = `${tokensCss}\n${widgetCss}`
+    st.textContent = `${tokensCss}\n${widgetCss}\n${islandCss}`
     root.prepend(st)
   }
 }
@@ -127,8 +139,16 @@ export function createDurWidget(options = {}) {
       expanded: {}, // card uuid → boolean (user choice; default: blocking cards expanded)
       reveal: null, // { uuid, rowId, seq } badge click → expand, scroll, focus
       checkedAt: null,
+      // Island (layout 'island'): compact | expanded, a transient peek, the "checking" pulse.
+      islandOpen: false,
+      peek: null, // { kind: 'finding' | 'resolved' | 'row', uuid?, rowId?, seq }
+      checking: 0, // seq of the latest check (the pill pulses once per check)
+      island: { top: 12, dockable: false, ...(options.island || {}) },
     },
   }
+  let peekSeq = 0
+  const seenByEncounter = new Map() // encounterId → Set(ackKey) of findings already shown
+  let lastContextRow = null
   const emitChange = () => { for (const fn of subs) fn() }
   const setUi = (patch) => {
     snap = { ...snap, ui: { ...snap.ui, ...(typeof patch === 'function' ? patch(snap.ui) : patch) } }
@@ -210,6 +230,26 @@ export function createDurWidget(options = {}) {
     setUi({ slots: next })
   }
 
+  /** Island peek: a new finding (severity moderate or higher), or the last finding cleared. */
+  function notePeek(response) {
+    const ext = response?.extension
+    if (!ext) return
+    const enc = ext.encounterId || ''
+    const seen = seenByEncounter.get(enc)
+    const keys = (response.cards || []).map((k) => k.extension.ackKey || k.uuid)
+    seenByEncounter.set(enc, new Set(keys))
+    const fresh = (response.cards || []).filter((k) => !(seen && seen.has(k.extension.ackKey || k.uuid)) && k.extension.severity !== 'minor')
+    if (fresh.length) {
+      peekSeq += 1
+      setUi({ peek: { kind: 'finding', uuid: fresh[0].uuid, seq: peekSeq } })
+    } else if (seen && seen.size && !keys.length) {
+      peekSeq += 1
+      setUi({ peek: { kind: 'resolved', seq: peekSeq } })
+    } else if (snap.ui.peek?.uuid && !(response.cards || []).some((k) => k.uuid === snap.ui.peek.uuid)) {
+      setUi({ peek: null })
+    }
+  }
+
   /** Internal controller the React tree uses. */
   const ctl = {
     core,
@@ -230,10 +270,13 @@ export function createDurWidget(options = {}) {
     /** Badge click: open the surface that shows the panel, expand the card, scroll and focus it. */
     reveal(rowId, uuid) {
       seq += 1
+      forward({ type: 'reveal', rowId: rowId || null, uuid: uuid || null })
       setUi((u) => ({
         reveal: { rowId, uuid, seq },
         drawerOpen: true,
         sheetExpanded: true,
+        islandOpen: true,
+        peek: null,
         minimised: false,
         expanded: uuid ? { ...u.expanded, [uuid]: true } : u.expanded,
       }))
@@ -258,9 +301,33 @@ export function createDurWidget(options = {}) {
     check(request) {
       ensureOverlay()
       const response = core.check(request)
-      setUi({ checkedAt: new Date() })
+      setUi((u) => ({ checkedAt: new Date(), checking: u.checking + 1 }))
       acquireSlots(Object.keys(response.extension.rowStatus || {}))
+      notePeek(response)
       return response
+    },
+
+    setLayout(layout) {
+      core.setLayout(layout)
+      if (layout !== 'island') setUi({ islandOpen: false, peek: null })
+    },
+
+    /** Island options after creation, e.g. a new default `top` when the host's chrome changes height. */
+    setIsland(opts = {}) {
+      setUi((u) => ({ island: { ...u.island, ...opts } }))
+    },
+
+    /** The host's focused row: the island peeks at that row's first finding (once per row change). */
+    setContext({ rowId } = {}) {
+      if (rowId === lastContextRow) return
+      lastContextRow = rowId || null
+      if (!rowId || snap.ui.islandOpen) return
+      const st = core.getState().response?.extension?.rowStatus?.[rowId]
+      const uuid = st?.cardUuids?.[0]
+      if (!uuid) return
+      if (snap.ui.peek && snap.ui.peek.kind === 'finding') return
+      peekSeq += 1
+      setUi({ peek: { kind: 'row', rowId, uuid, seq: peekSeq } })
     },
 
     gate(request) {

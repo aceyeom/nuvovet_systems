@@ -1,0 +1,98 @@
+/*
+ * LaptopRender (see LaptopRender.jsx). `.lr-cam` holds every layer: while the lid is closed it may be
+ * scaled down from its top edge (the camera pulled back so the closed device clears the fold), and it
+ * pushes back in to full size as the lid opens. Layers, bottom to top:
+ *   .lr-poster  closed-lid frame (first paint)      .lr-canvas  the lid-opening sequence
+ *   .lr-open    final frame, screen area black       .lr-screen  1200 × 750 DOM in the glass (matrix3d)
+ *   .lr-glare   the glass reflection, over the DOM
+ * State lives in [data-state]: closed → opening → open → on. Reduced motion shows the open state from
+ * the first paint (the component also starts in "on"); [data-intro=skipped] goes closed → open → on
+ * without the sequence.
+ */
+.lr {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--lr-aspect, 2200 / 1760);
+  isolation: isolate;
+  transform-origin: 50% 40%;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.lr-cam {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 0;
+}
+
+/* The closed device's box (moves with the camera): the intro plays once it is on screen. */
+.lr-sentinel { position: absolute; pointer-events: none; visibility: hidden; }
+
+.lr-layer,
+.lr-layer > img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.lr-layer > img { object-fit: contain; }
+
+.lr-poster { z-index: 0; }
+.lr-canvas { z-index: 1; visibility: hidden; }
+.lr-open { z-index: 2; visibility: hidden; }
+.lr-glare { z-index: 4; visibility: hidden; pointer-events: none; opacity: var(--lr-glare, 0.55); }
+
+.lr-screen {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  overflow: hidden;
+  transform-origin: 0 0;
+  background: var(--lr-off, #000);
+  pointer-events: none;
+  visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.lr-screen-content {
+  width: 100%;
+  height: 100%;
+  animation: lr-power 300ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.lr[data-state='open'] .lr-screen-content { opacity: 0; animation: none; }
+
+/* A skipped intro (short viewport, see LaptopRender): the open laptop fades in over the poster. */
+.lr[data-intro='skipped'] .lr-open,
+.lr[data-intro='skipped'] .lr-screen,
+.lr[data-intro='skipped'] .lr-glare { animation: lr-in 360ms ease-out both; }
+
+@keyframes lr-in {
+  from { opacity: 0; }
+}
+
+@keyframes lr-power {
+  from { opacity: 0; filter: brightness(0.6); }
+  to { opacity: 1; filter: none; }
+}
+
+.lr[data-state='opening'] .lr-canvas { visibility: visible; }
+.lr[data-state='opening'] .lr-poster,
+.lr[data-state='open'] .lr-poster,
+.lr[data-state='on'] .lr-poster { visibility: hidden; }
+.lr[data-state='open'] .lr-open,
+.lr[data-state='on'] .lr-open,
+.lr[data-state='open'] .lr-screen,
+.lr[data-state='on'] .lr-screen,
+.lr[data-state='open'] .lr-glare,
+.lr[data-state='on'] .lr-glare { visibility: visible; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lr, .lr-cam { transform: none !important; }
+  .lr .lr-poster, .lr .lr-canvas { visibility: hidden; }
+  .lr .lr-open, .lr .lr-screen, .lr .lr-glare { visibility: visible; }
+  .lr-screen-content { animation: none; }
+}

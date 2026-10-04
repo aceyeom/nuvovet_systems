@@ -1,111 +1,112 @@
 /**
  * Demo bar (EMR popup spec §2.2, DESIGN_SYSTEM §5.6): portfolio chrome above the fictional EMR,
- * 40 px, NuvoVet tokens, follows the site theme. It carries the screen's one DUR disclaimer
- * (교육용 프로토타입), the visit switcher, the hint, the widget's theme and locale (the host stays
- * Korean and light), "방문 초기화", "기록 내보내기" and the link back to the case.
- *
- * Below 1024 px the bar stays one 40 px row (engineering review item 9): logo, visit switcher,
- * the disclaimer marker and a "설정" menu holding the widget theme and language, the two demo
- * actions and the case link.
+ * 40 px, follows the site theme. Left: the nuvovet DUR lockup and the patient switcher. Right: the
+ * screen's one DUR disclaimer (교육용 프로토타입), how the DUR is shown (아일랜드 | 패널), the demo
+ * guide, "방문 초기화", "사진 출처", one "설정" menu (widget theme and language, log export) and the
+ * case link. Text controls only: no icons; the chosen layout carries an ink hairline (guide.css).
+ * Below 1024 px everything but the patient switcher and the marker moves into the "설정" menu, so
+ * the bar stays one 40 px row.
  */
 
-import { Download, Ellipsis, RotateCcw } from 'lucide-react'
-import { Button } from '@/ui/primitives/button'
+import { ToggleGroup } from 'radix-ui'
+import { BrandLockup } from '@/brand/Brand'
 import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuRadioGroup,
   DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger,
 } from '@/ui/primitives/dropdown-menu'
-import { ToggleGroup, ToggleGroupItem } from '@/ui/primitives/toggle-group'
 import { EnvironmentMarker } from '@/ui/patterns/EnvironmentMarker'
-import { LangToggle } from '@/ui/patterns/LangToggle'
-import { Logo } from '@/ui/patterns/Logo'
+import './guide.css'
 
 const MARKER_TOOLTIP = '교육용 프로토타입입니다. 임상 검증을 거치지 않았으며 진료에 사용하지 마십시오. 모든 검토는 이 브라우저 안에서만 실행됩니다.'
+/** Photo credits live on the landing footer (src/brand/PhotoCredits.jsx). */
+const CREDITS_HREF = '/#credits'
 
-export function DemoBar({ visits, currentId, onVisit, hint, widgetTheme, onWidgetTheme, locale, onLocale, onReset, onExport, caseHref, caseLabel }) {
+/**
+ * The offline standalone build (its CSP allows data: images only) has no landing to link to and shows
+ * no credited photo (only the CC0 나비), so it drops the "사진 출처" link.
+ */
+function hasSiteCredits() {
+  try {
+    const csp = document.querySelector('meta[http-equiv="Content-Security-Policy"]')?.getAttribute('content') || ''
+    return !/img-src\s+data:\s*(;|$)/.test(csp)
+  } catch {
+    return true
+  }
+}
+
+export function DemoBar({ visits, currentId, onVisit, widgetTheme, onWidgetTheme, locale, onLocale, onReset, onExport, caseHref, caseLabel, durLayout = 'island', onDurLayout, guideOpen, onGuide }) {
+  const credits = hasSiteCredits()
   return (
-    <div
-      className="flex h-10 shrink-0 flex-nowrap items-center gap-x-2 border-b border-border bg-background px-3 text-sm text-foreground print:hidden sm:px-4 lg:gap-x-4"
-      data-emr="demo-bar"
-    >
-      <h1 className="flex shrink-0 items-center">
-        <a href="#/" className="flex h-8 items-center rounded-sm" aria-label="NuvoVet DUR 데모: 사례 연구로">
-          <Logo product="DUR 데모" />
+    <div className="nvd" data-emr="demo-bar">
+      <h1 className="nvd-brand">
+        <a href="#/" className="nvd-home" aria-label="nuvovet DUR EMR 데모: 사례 연구로">
+          <BrandLockup product="dur" height={16} suffix="EMR 데모" className="nvb-compact-sm" />
         </a>
       </h1>
-      <label className="flex shrink-0 items-center gap-2">
-        <span className="sr-only text-text-2 sm:not-sr-only">방문</span>
-        <select
-          className="h-7 max-w-28 rounded-md border border-input bg-background px-2 text-sm text-foreground sm:max-w-none"
-          value={currentId}
-          onChange={(e) => onVisit(e.target.value)}
-          data-emr="visit-select"
-        >
+      <label className="nvd-visit">
+        <span className="nvd-label">환자</span>
+        <select className="nvd-select" value={currentId} onChange={(e) => onVisit(e.target.value)} data-emr="visit-select">
           {visits.map((v) => (
             <option key={v.id} value={v.id}>{v.id} {v.name}</option>
           ))}
         </select>
       </label>
-      {hint ? (
-        <p className="hidden min-w-0 truncate text-text-2 xl:block" title={`시도: ${hint}`}>
-          <span className="font-medium text-foreground">시도</span> {hint}
-        </p>
-      ) : null}
-      <div className="ml-auto flex shrink-0 items-center">
+      <div className="nvd-end">
         <EnvironmentMarker label="교육용 프로토타입" tooltip={MARKER_TOOLTIP} />
-      </div>
-      <div className="flex shrink-0 items-center lg:hidden">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button type="button" variant="ghost" size="icon-sm" aria-label="데모 설정">
-              <Ellipsis aria-hidden="true" strokeWidth={1.5} />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-56">
-            <DropdownMenuLabel>위젯 테마</DropdownMenuLabel>
-            <DropdownMenuRadioGroup value={widgetTheme} onValueChange={(v) => v && onWidgetTheme(v)}>
-              <DropdownMenuRadioItem value="light">라이트</DropdownMenuRadioItem>
-              <DropdownMenuRadioItem value="dark">다크</DropdownMenuRadioItem>
-            </DropdownMenuRadioGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuLabel>위젯 언어</DropdownMenuLabel>
-            <DropdownMenuRadioGroup value={locale} onValueChange={(v) => v && onLocale(v)}>
-              <DropdownMenuRadioItem value="ko" lang="ko">한국어</DropdownMenuRadioItem>
-              <DropdownMenuRadioItem value="en" lang="en">English</DropdownMenuRadioItem>
-            </DropdownMenuRadioGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onSelect={onReset}><RotateCcw aria-hidden="true" strokeWidth={1.5} />방문 초기화</DropdownMenuItem>
-            <DropdownMenuItem onSelect={onExport}><Download aria-hidden="true" strokeWidth={1.5} />기록 내보내기</DropdownMenuItem>
-            <DropdownMenuItem asChild><a href={caseHref}>{caseLabel}</a></DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </div>
-      <div className="hidden items-center gap-2 lg:flex">
-        <span className="flex items-center gap-1.5">
-          <span className="text-xs text-text-2" id="emr-widget-theme">위젯</span>
-          <ToggleGroup
+        <span className="nvd-rule nvd-wide" aria-hidden="true" />
+        <span className="nvd-seg nvd-wide">
+          <span className="nvd-label" id="emr-dur-layout">DUR 표시</span>
+          <ToggleGroup.Root
             type="single"
-            size="sm"
-            value={widgetTheme}
-            onValueChange={(v) => v && onWidgetTheme(v)}
-            aria-labelledby="emr-widget-theme"
+            className="nvd-seg-items"
+            value={durLayout}
+            onValueChange={(v) => v && onDurLayout?.(v)}
+            aria-labelledby="emr-dur-layout"
           >
-            <ToggleGroupItem value="light" className="px-2 text-xs">라이트</ToggleGroupItem>
-            <ToggleGroupItem value="dark" className="px-2 text-xs">다크</ToggleGroupItem>
-          </ToggleGroup>
+            <ToggleGroup.Item value="island" className="nvd-seg-item" title="화면 위에 떠 있는 아일랜드: 끌어서 옮길 수 있습니다">아일랜드</ToggleGroup.Item>
+            <ToggleGroup.Item value="docked" className="nvd-seg-item" title="오른쪽 360 px 패널에 고정 (1280 px 이상)">패널</ToggleGroup.Item>
+          </ToggleGroup.Root>
         </span>
-        <LangToggle value={locale} onChange={onLocale} label="위젯 언어" />
-        <Button type="button" variant="ghost" size="sm" onClick={onReset} title="이 방문의 처방과 DUR 확인 기록을 처음 상태로 되돌립니다">
-          <RotateCcw aria-hidden="true" strokeWidth={1.5} />
-          방문 초기화
-        </Button>
-        <Button type="button" variant="ghost" size="sm" onClick={onExport} title="DUR 확인 기록을 JSON 파일로 내려받습니다">
-          <Download aria-hidden="true" strokeWidth={1.5} />
-          기록 내보내기
-        </Button>
-        <Button asChild variant="outline" size="sm">
-          <a href={caseHref}>{caseLabel}</a>
-        </Button>
+        <span className="nvd-rule nvd-wide" aria-hidden="true" />
+        <span className="nvd-group">
+          <button type="button" className="nvd-text nvd-wide" onClick={onGuide} aria-pressed={Boolean(guideOpen)} title="데모 가이드를 보이거나 숨깁니다">가이드</button>
+          <button type="button" className="nvd-text nvd-wide" onClick={onReset} title="이 방문의 처방과 DUR 확인 기록을 처음 상태로 되돌립니다">방문 초기화</button>
+          {credits ? <a className="nvd-text nvd-wide nvd-credits" href={CREDITS_HREF} title="환자 사진의 출처와 라이선스">사진 출처</a> : null}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button type="button" className="nvd-text" aria-label="데모 설정">설정</button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-56">
+              <div className="lg:hidden">
+                <DropdownMenuLabel>DUR 표시</DropdownMenuLabel>
+                <DropdownMenuRadioGroup value={durLayout} onValueChange={(v) => v && onDurLayout?.(v)}>
+                  <DropdownMenuRadioItem value="island" className="nvd-radio">아일랜드</DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="docked" className="nvd-radio">오른쪽 패널</DropdownMenuRadioItem>
+                </DropdownMenuRadioGroup>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onSelect={() => onGuide?.()}>{guideOpen ? '가이드 숨기기' : '가이드 보기'}</DropdownMenuItem>
+                <DropdownMenuItem onSelect={onReset}>방문 초기화</DropdownMenuItem>
+                <DropdownMenuSeparator />
+              </div>
+              <DropdownMenuLabel>위젯 테마</DropdownMenuLabel>
+              <DropdownMenuRadioGroup value={widgetTheme} onValueChange={(v) => v && onWidgetTheme(v)}>
+                <DropdownMenuRadioItem value="light" className="nvd-radio">라이트</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="dark" className="nvd-radio">다크</DropdownMenuRadioItem>
+              </DropdownMenuRadioGroup>
+              <DropdownMenuSeparator />
+              <DropdownMenuLabel>위젯 언어</DropdownMenuLabel>
+              <DropdownMenuRadioGroup value={locale} onValueChange={(v) => v && onLocale(v)}>
+                <DropdownMenuRadioItem value="ko" lang="ko" className="nvd-radio">한국어</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="en" lang="en" className="nvd-radio">English</DropdownMenuRadioItem>
+              </DropdownMenuRadioGroup>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onSelect={onExport}>DUR 확인 기록 내보내기</DropdownMenuItem>
+              {credits ? <DropdownMenuItem asChild className="nvd-menu-credits"><a href={CREDITS_HREF}>사진 출처</a></DropdownMenuItem> : null}
+              <DropdownMenuItem asChild className="lg:hidden"><a href={caseHref}>{caseLabel}</a></DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </span>
+        <a className="nvd-text nvd-link nvd-wide" href={caseHref}>{caseLabel}</a>
       </div>
     </div>
   )

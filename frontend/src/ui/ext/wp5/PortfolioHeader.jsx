@@ -22,14 +22,22 @@ import {
   DropdownMenuTrigger,
 } from '@/ui/primitives/dropdown-menu'
 import { Logo } from '@/ui/patterns/Logo'
+import { BrandLockup, PRODUCTS, useBrandFavicon } from '@/brand/Brand'
 import { EnvironmentMarker } from '@/ui/patterns/EnvironmentMarker'
 import { LangToggle } from '@/ui/patterns/LangToggle'
 import { ThemeMenuItems, ThemeToggle } from '@/ui/patterns/ThemeToggle'
+
+/** The lockup already names the product: "DUR 데모" next to `nuvovet DUR` becomes "데모". */
+function brandSuffix(brand, product) {
+  const name = PRODUCTS[brand]?.name
+  return name && typeof product === 'string' && product.startsWith(`${name} `) ? product.slice(name.length + 1) : product
+}
 
 export function PortfolioHeader({
   homeHref,
   homeLabel,
   product,
+  brand,
   nav,
   navLabel,
   marker,
@@ -41,6 +49,7 @@ export function PortfolioHeader({
   themeLabel = '화면 테마',
   className,
 }) {
+  useBrandFavicon(brand)
   return (
     <header
       className={cn(
@@ -50,7 +59,7 @@ export function PortfolioHeader({
     >
       <div className="mx-auto flex max-w-[1200px] flex-wrap items-center gap-x-6 gap-y-1 px-4 py-2 sm:px-6 lg:h-14 lg:flex-nowrap lg:py-0">
         <a href={homeHref} aria-label={homeLabel} className="flex h-10 shrink-0 items-center rounded-sm">
-          <Logo product={product} />
+          {brand ? <BrandLockup product={brand} height={18} suffix={brandSuffix(brand, product)} /> : <Logo product={product} />}
         </a>
         <nav aria-label={navLabel} className="order-last -mx-2 flex w-full min-w-0 items-center gap-1 overflow-x-auto lg:order-none lg:mx-0 lg:w-auto lg:flex-1">
           {nav.map((n) => (
