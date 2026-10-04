@@ -1,7 +1,8 @@
 /*
  * Fictional desktop EMR "데모 차트 (가상 EMR)" (EMR popup spec §2.1, DESIGN_SYSTEM §5.6).
- * A deliberately plain, generic grey look so the NuvoVet overlay reads as a separate product.
- * Everything is scoped under .emr-root; no Tailwind, no src/ui, no NuvoVet tokens.
+ * A deliberately plain, generic grey look so the nuvovet overlay reads as a separate product: a
+ * 2000s Win32 clinic program (bevelled text toolbar, square framed photo, square bordered status
+ * cells, no icon set). Everything is scoped under .emr-root; no Tailwind, no src/ui, no brand tokens.
  * The host stays light in every site theme. Hex values are exempt from the colour lint (§9.4).
  */
 
@@ -112,8 +113,20 @@
   white-space: nowrap;
   overflow: hidden;
 }
-.emr-appicon { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 4px; background: #E9F0F8; color: #3E4E64; flex-shrink: 0; }
-.emr-appicon svg { width: 14px; height: 14px; }
+/* App icon: a bevelled tile with a blue cross, drawn in CSS. */
+.emr-appicon {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  background: #F4F6F8;
+  border: 1px solid;
+  border-color: #FFFFFF #1F2A38 #1F2A38 #FFFFFF;
+}
+.emr-appicon::before,
+.emr-appicon::after { content: ""; position: absolute; background: #2F5E9E; }
+.emr-appicon::before { left: 3px; right: 3px; top: 6px; height: 4px; }
+.emr-appicon::after { top: 3px; bottom: 3px; left: 6px; width: 4px; }
 .emr-titlebar .emr-product { font-size: 13px; font-weight: 700; }
 .emr-titlebar .emr-product-sub { font-weight: 400; color: #C9D3E0; }
 .emr-titlebar .emr-sep { width: 1px; height: 14px; background: #7F8C9D; }
@@ -121,48 +134,60 @@
 .emr-menu span { padding: 2px 8px; border-radius: 2px; color: #E9ECEF; }
 .emr-menu span[aria-current="page"] { background: #FFFFFF; color: var(--emr-title); font-weight: 700; }
 .emr-titlebar .emr-meta { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; overflow: hidden; color: #E3E9F1; }
-.emr-titlebar .emr-meta svg { width: 13px; height: 13px; flex-shrink: 0; }
 .emr-meta-sep { width: 1px; height: 12px; background: #7F8C9D; }
 .emr-meta-user { display: inline-flex; align-items: center; gap: 6px; }
-.emr-avatar { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 999px; background: #8FB3E8; color: #13243D; font-size: 12px; font-weight: 700; }
-.emr-bell { position: relative; display: grid; place-items: center; width: 22px; height: 22px; }
-.emr-bell { margin-right: 6px; }
-.emr-bell i { position: absolute; top: -3px; right: -6px; min-width: 16px; height: 16px; padding: 0 4px; border-radius: 8px; background: #C8241B; color: #FFFFFF; font-size: 12px; font-style: normal; font-weight: 700; line-height: 16px; text-align: center; }
+.emr-bell { display: inline-flex; align-items: center; gap: 4px; }
+.emr-bell i { min-width: 16px; height: 16px; padding: 0 4px; border: 1px solid #8E1810; background: #C8241B; color: #FFFFFF; font-size: 12px; font-style: normal; font-weight: 700; line-height: 14px; text-align: center; }
 
-/* Toolbar (decorative): the island sits in its free middle. */
+/* Toolbar (decorative): bevelled text buttons in etched groups; the island sits in its free middle. */
 .emr-toolbar {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 3px;
   height: 46px;
   flex-shrink: 0;
   padding: 0 8px;
-  background: linear-gradient(180deg, #FBFCFD, #EEF1F4);
-  border-bottom: 1px solid var(--emr-border);
+  background: #E3E7EB;
+  border-top: 1px solid #FFFFFF;
+  border-bottom: 1px solid #A9B0B8;
   overflow: hidden;
 }
 .emr-tool {
   display: inline-flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1px;
   min-width: 52px;
-  height: 40px;
-  padding: 0 4px;
-  border: 1px solid transparent;
-  border-radius: 3px;
-  color: #3A4656;
+  height: 28px;
+  padding: 0 10px;
+  border: 1px solid;
+  border-color: #FFFFFF #7D858F #7D858F #FFFFFF;
+  border-radius: 0;
+  background: #EEF0F3;
+  box-shadow: inset -1px -1px 0 #C2C8CF;
+  color: #1F2328;
   font-size: 12px;
   line-height: 14px;
   white-space: nowrap;
   cursor: default;
 }
-.emr-tool svg { width: 18px; height: 18px; color: #4C6A93; }
-.emr-tool:hover { border-color: #C8CDD2; background: #FFFFFF; }
+.emr-tool:hover { background: #F6F7F9; }
+.emr-tool-sep { width: 2px; height: 26px; margin: 0 4px; border-left: 1px solid #9AA2AC; border-right: 1px solid #FFFFFF; flex-shrink: 0; }
 .emr-tool-spacer { flex: 1 1 auto; min-width: 380px; }
-.emr-tool-text { flex-direction: row; gap: 6px; min-width: 0; font-size: 12px; }
-.emr-tool-text svg { width: 15px; height: 15px; }
+/* Status panes: sunken cells. */
+.emr-tool-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  padding: 0 8px;
+  border: 1px solid;
+  border-color: #8C949D #FFFFFF #FFFFFF #8C949D;
+  background: #F4F6F8;
+  color: var(--emr-muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+.emr-tool-stat b { color: var(--emr-text); font-weight: 700; }
 .emr-titlebar .emr-wait-toggle { display: none; height: 22px; border-color: #7F8C9D; background: transparent; color: #FFFFFF; font-size: 12px; }
 
 .emr-body {
@@ -219,16 +244,17 @@
 }
 .emr-wait-item:hover { background: #F4F6F8; }
 .emr-wait-item[aria-current="page"] { background: var(--emr-selected); }
-.emr-wait-item[aria-current="page"]::before { content: ""; position: absolute; left: 0; top: 6px; bottom: 6px; width: 3px; border-radius: 0 2px 2px 0; background: var(--emr-primary); }
+.emr-wait-item[aria-current="page"]::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--emr-primary); }
+.emr-wait-photo { outline: 1px solid var(--emr-border); outline-offset: -1px; }
 .emr-wait-main { display: flex; flex-direction: column; min-width: 0; gap: 1px; }
 .emr-wait-item .emr-wait-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 700; font-size: 12.5px; }
 .emr-wait-item .emr-wait-name .emr-muted { font-weight: 400; font-size: 12px; }
 .emr-wait-reason { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--emr-muted); font-size: 12px; }
 .emr-wait-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; font-size: 12px; color: var(--emr-muted); }
-.emr-wait-item .emr-wait-status { padding: 0 5px; border-radius: 2px; background: #EEF1F4; color: #495057; font-size: 12px; line-height: 16px; white-space: nowrap; }
-.emr-wait-item[data-state="active"] .emr-wait-status { background: var(--emr-primary); color: #FFFFFF; font-weight: 700; }
-.emr-wait-item[data-state="billing"] .emr-wait-status { background: #FFF1D6; color: #8A5300; }
-.emr-wait-item[data-state="reserved"] .emr-wait-status { background: #E8F3EC; color: #2B6B43; }
+.emr-wait-item .emr-wait-status { padding: 0 5px; border: 1px solid #C8CDD2; border-radius: 2px; background: #F4F6F8; color: #495057; font-size: 12px; line-height: 16px; white-space: nowrap; }
+.emr-wait-item[data-state="active"] .emr-wait-status { border-color: #234676; background: var(--emr-primary); color: #FFFFFF; font-weight: 700; }
+.emr-wait-item[data-state="billing"] .emr-wait-status { border-color: #D9A441; background: #FFF1D6; color: #7A4900; }
+.emr-wait-item[data-state="reserved"] .emr-wait-status { border-color: #93B9A0; background: #E8F3EC; color: #22573A; }
 .emr-wait-count { margin-left: auto; font-weight: 400; color: #D5DCE5; }
 .emr-wait-head .emr-wait-close + .emr-wait-count, .emr-wait-count + .emr-wait-close { margin-left: 6px; }
 .emr-wait-empty { padding: 12px 8px; color: var(--emr-muted); font-size: 12px; }
@@ -252,31 +278,42 @@
 /* Patient header: photo, signalment, flags, insurance, vitals strip */
 .emr-pt { padding: 0; font-size: 13px; }
 .emr-pt-main { display: flex; align-items: flex-start; gap: 12px; padding: 8px 10px 6px; }
-.emr-pt-photo { border: 1px solid var(--emr-border); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08); }
+/* Passport-style frame around the square photo. */
+.emr-pt-photo { display: block; flex-shrink: 0; padding: 2px; background: #FFFFFF; border: 1px solid var(--emr-border); line-height: 0; }
 .emr-pt-info { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
 .emr-pt-title { column-gap: 6px; }
 .emr-pt-sep { color: #6C757D; }
 .emr-pt-flags { column-gap: 6px; row-gap: 4px; }
-.emr-alert {
+/* Status cells: a square bordered key | value pair (MDR1, 알레르기, 만성, 보험). */
+.emr-cell {
   display: inline-flex;
-  align-items: center;
-  gap: 4px;
+  align-items: stretch;
   height: 22px;
-  padding: 0 7px;
-  border-radius: 11px;
+  border: 1px solid var(--emr-border);
+  border-radius: 2px;
+  background: #FFFFFF;
   font-size: 12px;
-  font-weight: 700;
+  line-height: 20px;
   white-space: nowrap;
+  overflow: hidden;
 }
-.emr-alert svg { width: 13px; height: 13px; }
-.emr-alert[data-tone="warn"] { background: #FFF1D6; color: #8A4B00; border: 1px solid #F3C77A; }
-.emr-alert[data-tone="warn"] .emr-select { height: 18px; border-color: #E5B45F; background: #FFFBF2; font-size: 12px; }
-.emr-alert[data-tone="danger"] { background: #FDECEC; color: #A61B1B; border: 1px solid #F1B5B5; }
-.emr-alert[data-tone="info"] { background: #EAF1FB; color: #24467A; border: 1px solid #C3D5EE; font-weight: 600; }
+.emr-cell-k { padding: 0 6px; border-right: 1px solid var(--emr-border); background: #F1F3F5; color: var(--emr-muted); font-weight: 700; }
+.emr-cell-v { padding: 0 7px; color: var(--emr-text); }
+.emr-cell .emr-select { height: 20px; border: 0; border-radius: 0; background: #FFFFFF; font-size: 12px; font-weight: 700; }
+.emr-cell .emr-select:focus { outline-offset: -2px; }
+.emr-cell[data-tone="warn"] { border-color: #D9A441; }
+.emr-cell[data-tone="warn"] .emr-cell-k { border-right-color: #D9A441; background: #FFE9B8; color: #6E3C00; }
+.emr-cell[data-tone="warn"] .emr-select { color: #8A4B00; }
+.emr-cell[data-tone="danger"] { border-color: #D98B8B; }
+.emr-cell[data-tone="danger"] .emr-cell-k { border-right-color: #D98B8B; background: #FAD9D9; color: #8C1515; }
+.emr-cell[data-tone="danger"] .emr-cell-v { color: #A61B1B; font-weight: 700; }
+.emr-cell[data-tone="info"] { border-color: #9DB4D3; }
+.emr-cell[data-tone="info"] .emr-cell-k { border-right-color: #9DB4D3; background: #DDE8F6; color: #1D3F6E; }
+.emr-cell[data-tone="ok"] { border-color: #93B9A0; }
+.emr-cell[data-tone="ok"] .emr-cell-k { border-right-color: #93B9A0; background: #DDEFE3; color: #22573A; }
+.emr-cell[data-tone="ok"] .emr-cell-v { color: #22573A; font-weight: 700; }
 .emr-pt-side { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; padding-top: 2px; }
-.emr-ins { display: inline-flex; align-items: center; gap: 5px; height: 24px; padding: 0 8px; border: 1px solid var(--emr-border); border-radius: 2px; background: #F8F9FA; color: var(--emr-muted); font-size: 12px; white-space: nowrap; }
-.emr-ins svg { width: 14px; height: 14px; }
-.emr-ins[data-on] { border-color: #A9C9B4; background: #EEF7F1; color: #2B6B43; font-weight: 700; }
+.emr-ins { height: 24px; line-height: 22px; }
 .emr-visitinfo { font-size: 12px; color: var(--emr-muted); }
 .emr-vitals {
   display: flex;
@@ -290,9 +327,10 @@
 }
 .emr-cc { flex: 1 1 260px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .emr-cc .emr-k, .emr-vital .emr-k { margin-right: 4px; color: var(--emr-muted); }
-.emr-vitals-row { display: inline-flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.emr-vital { display: inline-flex; align-items: center; gap: 2px; white-space: nowrap; }
-.emr-vital svg { width: 13px; height: 13px; margin-right: 3px; color: #6C7A8C; }
+.emr-vitals-row { display: inline-flex; align-items: center; gap: 4px 0; flex-wrap: wrap; }
+.emr-vital { display: inline-flex; align-items: center; gap: 2px; padding: 0 10px; white-space: nowrap; }
+.emr-vital:first-child { padding-left: 0; }
+.emr-vital + .emr-vital { border-left: 1px solid var(--emr-border); }
 .emr-vital b { font-weight: 700; }
 .emr-unit { color: var(--emr-muted); margin-left: 1px; }
 .emr-flag { margin-left: 3px; padding: 0 3px; border-radius: 2px; background: #FDECEC; color: #A61B1B; font-size: 12px; font-weight: 800; line-height: 14px; }
@@ -345,7 +383,7 @@
 .emr-timeline { position: relative; display: flex; flex-direction: column; gap: 6px; padding-left: 14px; font-size: 12px; }
 .emr-timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 1px; background: var(--emr-border); }
 .emr-timeline li { position: relative; display: grid; grid-template-columns: 84px auto 1fr; gap: 8px; align-items: baseline; }
-.emr-timeline li::before { content: ""; position: absolute; left: -13px; top: 5px; width: 7px; height: 7px; border-radius: 999px; background: #FFFFFF; border: 1.5px solid #7F8C9D; }
+.emr-timeline li::before { content: ""; position: absolute; left: -13px; top: 5px; width: 7px; height: 7px; background: #FFFFFF; border: 1px solid #7F8C9D; }
 .emr-timeline li[data-now]::before { background: var(--emr-primary); border-color: var(--emr-primary); }
 .emr-timeline b { font-weight: 700; white-space: nowrap; }
 .emr-vax td[data-overdue] { color: #B35C00; font-weight: 700; }
@@ -473,12 +511,17 @@
 /* ── Responsive (§2.2) ─────────────────────────────────────────────────────── */
 @media (max-width: 1439px) {
   .emr-root .emr-col-folder { display: none; }
-  .emr-tool-text { display: none; }
+  .emr-tool-stat { display: none; }
+}
+/* Toolbar buttons drop out by data-min (EmrApp TOOLBAR) so the centred island keeps the middle free. */
+@media (max-width: 1679px) {
+  .emr-toolbar [data-min="1680"] { display: none; }
+}
+@media (max-width: 1439px) {
+  .emr-toolbar [data-min="1440"] { display: none; }
 }
 @media (max-width: 1279px) {
-  .emr-tool { min-width: 40px; }
-  .emr-tool span { display: none; }
-  .emr-toolbar { height: 40px; }
+  .emr-toolbar [data-min="1280"] { display: none; }
   .emr-tool-spacer { min-width: 0; }
   .emr-history { grid-template-columns: 1fr; }
 }
@@ -487,11 +530,12 @@
   /* Waitlist collapses to a 48 px rail; the list opens over the chart. */
   .emr-wait { display: none; }
   .emr-wait-rail { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 0 0 48px; width: 48px; padding-top: 6px; margin: 6px 0 6px 6px; background: var(--emr-panel); border: 1px solid var(--emr-border); border-radius: 2px; }
-  .emr-wait-rail .emr-btn { width: 36px; height: 36px; padding: 0; flex-direction: column; gap: 0; font-size: 12px; line-height: 14px; }
+  .emr-wait-rail .emr-btn { width: 36px; height: 36px; padding: 0; flex-direction: column; gap: 0; font-size: 12px; line-height: 14px; border-color: #FFFFFF #7D858F #7D858F #FFFFFF; border-radius: 0; background: #EEF0F3; }
   .emr-root[data-wait-open="true"] .emr-wait { display: flex; position: absolute; top: 78px; left: 0; bottom: 24px; z-index: 25; box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2); }
   .emr-root[data-wait-open="true"] .emr-wait-head .emr-wait-close { display: inline-flex; }
 }
 @media (max-width: 1023px) {
+  .emr-toolbar [data-min="1024"] { display: none; }
   .emr-titlebar .emr-meta-clinic, .emr-titlebar .emr-meta-clinic + .emr-meta-sep { display: none; }
   .emr-wait-rail { display: none; }
   .emr-titlebar .emr-wait-toggle { display: inline-flex; }
@@ -505,6 +549,10 @@
 }
 @media (max-width: 639px) {
   .emr-titlebar .emr-meta { display: none; }
+  /* Wrapped vitals: no rule at the start of a line. */
+  .emr-vitals-row { gap: 4px 14px; }
+  .emr-vital, .emr-vital:first-child { padding: 0; }
+  .emr-vital + .emr-vital { border-left: 0; }
   .emr-pt-side { display: none; }
   .emr-pt-main { gap: 8px; }
   .emr-search { flex: 1 1 100%; }

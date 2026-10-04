@@ -1,0 +1,13 @@
+{
+  "name": "nuvovet-render",
+  "private": true,
+  "type": "module",
+  "description": "Offline render pipeline for the landing laptop (frames, glare, manifest). Not part of the app bundle.",
+  "scripts": {
+    "render": "node render.mjs"
+  },
+  "dependencies": {
+    "sharp": "0.35.5",
+    "three": "0.186.1"
+  }
+}

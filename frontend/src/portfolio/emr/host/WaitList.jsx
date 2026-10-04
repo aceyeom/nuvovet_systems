@@ -5,7 +5,6 @@
  */
 
 import { useState } from 'react'
-import { ListOrdered } from 'lucide-react'
 import { PetAvatar } from '@/brand/PetAvatar'
 import { SPECIES_KO } from './calc.js'
 import { RECEPTION, RECEPTION_STATE } from './clinical.js'
@@ -80,7 +79,7 @@ export function WaitList({ visits, currentId, hrefFor, open, onClose, onNavigate
         ) : entries.map((e) => (
           <li key={e.id}>
             <a className="emr-wait-item" href={hrefFor(e.id)} aria-current={e.active ? 'page' : undefined} onClick={onNavigate} data-state={e.state}>
-              <PetAvatar id={e.no} species={e.speciesCode} size={34} alt="" className="emr-wait-photo" />
+              <PetAvatar id={e.no} species={e.speciesCode} size={34} shape="square" alt="" className="emr-wait-photo" />
               <span className="emr-wait-main">
                 <span className="emr-wait-name" data-truncate="" title={`${e.name} · ${e.species} · ${e.breed}`}>{e.name} <span className="emr-muted">{e.species} · {e.breed}</span></span>
                 <span className="emr-wait-reason" data-truncate="" title={e.reason}>{e.reason}</span>
@@ -102,7 +101,7 @@ export function WaitRail({ onOpen, open }) {
   return (
     <div className="emr-wait-rail">
       <button type="button" className="emr-btn" aria-label="대기목록 열기" aria-expanded={open} onClick={onOpen} title="대기목록">
-        <ListOrdered aria-hidden="true" strokeWidth={1.75} />
+        <span aria-hidden="true">대기</span>
       </button>
     </div>
   )

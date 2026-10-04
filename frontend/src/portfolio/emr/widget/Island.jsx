@@ -1,11 +1,16 @@
 /**
- * DUR Island (`layout: 'island'`): the review lives in a dark pill the vet can drag anywhere on the
- * EMR. It has three shapes and morphs between them in place:
+ * DUR Island (`layout: 'island'`): the review lives in one graphite instrument the vet can drag
+ * anywhere on the EMR. It has three shapes and morphs between them in place:
  *
- *   compact    [● DUR │ ⛔ 금기 1 · 이버멕틴 + 케토코나졸  ⠿]     always visible, pulses on every check
- *   peek       the new finding (severity ≥ 주의) with its recommended action and a countdown; also a
- *              green "모두 해결됨" after the last finding is cleared, and the focused row's finding
+ *   compact    [nuvovet DUR │ 금기 1  이버멕틴 + 케토코나졸  ▮]   always visible; the status word dips once
+ *              on every check
+ *   peek       the new finding (severity ≥ 주의) with its recommended action and a countdown hairline;
+ *              also "경고가 모두 해결되었습니다" after the last finding is cleared, and the focused row's
+ *              finding
  *   expanded   the full review panel (Panel mode="island"), dock button when the host allows it
+ *
+ * Status is a severity word and a tabular count in the severity tone: no orb, no glow, no icon set.
+ * The grabber and the close mark are drawn in CSS (island.css).
  *
  * Passive like the panel: a peek never takes focus and closes by itself (paused while hovered or
  * focused). Position: drag the pill or the panel header; Alt+arrow keys move it; double-click the
@@ -13,11 +18,10 @@
  */
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { CircleCheck, GripVertical, ListChecks, X } from 'lucide-react'
 import { Panel } from './Panel.jsx'
-import { Badge, SEV_ICON, fmtTime, ic } from './parts.jsx'
+import { fmtTime } from './parts.jsx'
 import { summaryLabel } from './Launcher.jsx'
-import { t } from './strings.js'
+import { severityWord, t } from './strings.js'
 import { useWidget } from './WidgetApp.jsx'
 
 const POS_KEY = 'nv-island-pos'
@@ -51,11 +55,11 @@ function PeekFinding({ card, kind, locale, dur, ctl, paused, ms }) {
   return (
     <div className="nv-island-peek" data-kind={kind}>
       <div className="nv-island-peek-top">
-        <Badge status={ext.severity} locale={locale} />
+        <span className="nv-island-sev" data-level={ext.severity}>{severityWord(locale, ext.severity)}</span>
         <span className="nv-island-cat">{ext.category}</span>
         <span className="nv-island-drugs nv-truncate" title={ext.drugNames.join(' + ')}>{ext.drugNames.join(' + ')}</span>
         <button type="button" className="nv-island-x" aria-label={t(locale, 'island.dismiss')} onClick={() => ctl.setUi({ peek: null })}>
-          <X {...ic(14)} />
+          <span className="nv-island-xmark" aria-hidden="true" />
         </button>
       </div>
       <p className="nv-island-sum">{card.summary}</p>
@@ -73,7 +77,6 @@ function PeekFinding({ card, kind, locale, dur, ctl, paused, ms }) {
           </button>
         ) : null}
         <button type="button" className="nv-island-btn" onClick={() => ctl.reveal(rowId, card.uuid)}>
-          <ListChecks {...ic(14)} />
           {t(locale, 'island.details')}
         </button>
         {rowId ? (
@@ -88,7 +91,7 @@ function PeekFinding({ card, kind, locale, dur, ctl, paused, ms }) {
 function PeekResolved({ locale, ui, ext, paused, ms }) {
   return (
     <div className="nv-island-peek nv-island-resolved" data-kind="resolved">
-      <span className="nv-island-ok"><CircleCheck {...ic(18)} /></span>
+      <span className="nv-island-ok" aria-hidden="true" />
       <span className="nv-island-resolved-text">
         <strong>{t(locale, 'island.resolved')}</strong>
         <span>{t(locale, 'panel.rules', { n: ext?.rulesCount ?? 18 })}{ui.checkedAt ? ` · ${fmtTime(ui.checkedAt)}` : ''}</span>
@@ -135,7 +138,7 @@ export function Island() {
     return () => window.removeEventListener('resize', on)
   }, [])
 
-  // The orb rings once per check.
+  // The status word dips once per check (the only sign of a re-check in the compact shape).
   useEffect(() => {
     if (!ui.checking) return undefined
     setPulse(true)
@@ -271,7 +274,6 @@ export function Island() {
     }
   }
 
-  const Icon = level && SEV_ICON[level] ? SEV_ICON[level] : null
   const drugs = top && ['contraindicated', 'major', 'moderate', 'minor'].includes(level) ? top.extension.drugNames.join(' + ') : null
 
   return (
@@ -307,17 +309,11 @@ export function Island() {
             title={t(locale, 'island.hint')}
             onClick={() => { if (!suppressClick.current) expand() }}
           >
-            <span className="nv-island-orb" aria-hidden="true" />
-            <span className="nv-island-brand">DUR</span>
+            <span className="nv-island-brand" aria-hidden="true">nuvovet <span>DUR</span></span>
             <span className="nv-island-div" aria-hidden="true" />
-            <span className="nv-island-status" data-level={level || undefined}>
-              {Icon ? <Icon {...ic(15)} /> : null}
-              {label}
-            </span>
+            <span className="nv-island-status" data-level={level || undefined}>{label}</span>
             {drugs ? <span className="nv-island-ctx nv-truncate">{drugs}</span> : null}
-            <span className="nv-island-grip" aria-hidden="true" onDoubleClick={resetPos}>
-              <GripVertical {...ic(14)} />
-            </span>
+            <span className="nv-island-grip" aria-hidden="true" onDoubleClick={resetPos} />
           </button>
         ) : mode === 'peek' ? (
           <div className="nv-island-peekwrap" data-nv-drag="peek" role="status" aria-live="off">

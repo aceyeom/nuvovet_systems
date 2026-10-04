@@ -15,7 +15,7 @@ import { DescriptionList } from '@/ui/patterns/DescriptionList'
 import { Disclosure } from '@/ui/patterns/Disclosure'
 import { EnvironmentMarker } from '@/ui/patterns/EnvironmentMarker'
 import { EvidenceRow, EvidenceTrail } from '@/ui/patterns/EvidenceTrail'
-import { BrandLockup } from '@/brand/Brand'
+import { BrandLockup, useBrandFavicon } from '@/brand/Brand'
 import { PageHeader } from '@/ui/patterns/PageHeader'
 import { ThemeToggle } from '@/ui/patterns/ThemeToggle'
 import { FindingSeverity, StatusText } from '@/ui/patterns/status'
@@ -70,10 +70,11 @@ function presetForm(i) {
 // ── Page chrome ──────────────────────────────────────────────────
 
 function ClinicHeader() {
+  useBrandFavicon('claims')
   return (
     <header className="flex h-12 items-center justify-between gap-3 border-b border-border bg-background px-6 max-sm:px-4 print:hidden">
       <Link to="/" className="min-w-0 rounded-sm">
-        <BrandLockup product="claims" size="sm" suffix={<><span className="max-sm:hidden">병원용 </span>청구 사전 점검</>} />
+        <BrandLockup product="claims" height={18} className="nvb-compact-sm" suffix={<><span className="max-sm:hidden">병원용 </span>청구 사전 점검</>} />
       </Link>
       <div className="flex shrink-0 items-center gap-2">
         <EnvironmentMarker label="합성 데이터" tooltip={ENV_TOOLTIP} />

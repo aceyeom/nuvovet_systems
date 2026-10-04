@@ -1,6 +1,6 @@
 /**
  * The fictional Korean veterinary EMR "데모 차트 (가상 EMR)" (EMR popup spec §2) with the
- * NuvoVet DUR overlay mounted through its public SDK, exactly as a third-party EMR would:
+ * nuvovet DUR overlay mounted through its public SDK, exactly as a third-party EMR would:
  *
  *   const dur = createDurWidget({ locale, theme, layout: 'auto', fonts: 'inherit', marker: false, user, links, onEvent })
  *   dur.mount({ panel: the right-column <div> (≥ 1280 px only), badgeSlot: rowId → <span data-nv-slot> })
@@ -17,10 +17,7 @@
  */
 
 import './emr.css'
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import {
-  Bell, CalendarDays, ClipboardList, FileText, FlaskConical, Hospital, Pill, Printer, Receipt, Search, Stethoscope, Syringe, UserPlus,
-} from 'lucide-react'
+import { Fragment, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { createDurWidget } from '../widget/index.jsx'
 import { VISIT_IDS, VISIT_HINTS, VISIT_GOLDEN, loadVisit } from '../fixtures.js'
 import { navigate } from '../../router.js'
@@ -53,16 +50,15 @@ function writeStore(storage, key, value) {
   try { window[storage].setItem(key, JSON.stringify(value)) } catch { /* storage blocked */ }
 }
 
-/** Decorative EMR toolbar (the fictional product's other screens are not part of the demo). */
+/**
+ * Decorative EMR toolbar (the fictional product's other screens are not part of the demo): bevelled
+ * text buttons in etched groups, like a 2000s Win32 clinic program. `min` is the narrowest viewport
+ * (px) that shows a button (emr.css), so the centred island always keeps its room in the row.
+ */
 const TOOLBAR = [
-  { icon: UserPlus, label: '신규접수' },
-  { icon: Search, label: '환자검색' },
-  { icon: Stethoscope, label: '진료' },
-  { icon: FlaskConical, label: '검사의뢰' },
-  { icon: Pill, label: '처방' },
-  { icon: Syringe, label: '백신' },
-  { icon: FileText, label: '진단서' },
-  { icon: Receipt, label: '수납' },
+  [{ label: '신규접수' }, { label: '환자검색' }],
+  [{ label: '진료', min: 1024 }, { label: '검사의뢰', min: 1440 }, { label: '처방', min: 1280 }, { label: '백신', min: 1440 }],
+  [{ label: '진단서', min: 1680 }, { label: '수납', min: 1680 }],
 ]
 
 function useClock() {
@@ -499,7 +495,7 @@ export default function EmrApp({ visitId, query = {} }) {
         onKeyDown={(e) => { if (e.key === 'Escape' && waitOpen) closeWait() }}
       >
         <header className="emr-titlebar">
-          <span className="emr-appicon" aria-hidden="true"><Hospital strokeWidth={2} /></span>
+          <span className="emr-appicon" aria-hidden="true" />
           <span className="emr-product">데모 차트 <span className="emr-product-sub">(가상 EMR)</span></span>
           <span className="emr-sep emr-sep-menu" aria-hidden="true" />
           <span className="emr-menu" aria-label="메뉴">
@@ -514,20 +510,24 @@ export default function EmrApp({ visitId, query = {} }) {
           <span className="emr-meta">
             <span className="emr-meta-clinic">새봄동물의료센터 (가상)</span>
             <span className="emr-meta-sep" aria-hidden="true" />
-            <CalendarDays aria-hidden="true" strokeWidth={1.75} />
             <span className="emr-num">{visit.date} {clock}</span>
             <span className="emr-meta-sep" aria-hidden="true" />
-            <span className="emr-meta-user"><span className="emr-avatar" aria-hidden="true">김</span>수의사 {USER.display}</span>
-            <span className="emr-bell" aria-hidden="true"><Bell strokeWidth={1.75} /><i>3</i></span>
+            <span className="emr-meta-user">수의사 {USER.display}</span>
+            <span className="emr-bell" aria-hidden="true">알림 <i className="emr-num">3</i></span>
           </span>
         </header>
         <div className="emr-toolbar" aria-hidden="true" title="가상 EMR 메뉴: 데모에서는 동작하지 않습니다">
-          {TOOLBAR.map(({ icon: Icon, label }) => (
-            <span key={label} className="emr-tool"><Icon strokeWidth={1.6} /><span>{label}</span></span>
+          {TOOLBAR.map((group, gi) => (
+            <Fragment key={gi}>
+              {gi ? <span className="emr-tool-sep" data-min={Math.min(...group.map((b) => b.min || 0)) || undefined} /> : null}
+              {group.map(({ label, min }) => (
+                <span key={label} className="emr-tool" data-min={min}>{label}</span>
+              ))}
+            </Fragment>
           ))}
           <span className="emr-tool-spacer" />
-          <span className="emr-tool emr-tool-text"><ClipboardList strokeWidth={1.6} /><span>오늘 내원 {visitsList.length}</span></span>
-          <span className="emr-tool emr-tool-text"><Printer strokeWidth={1.6} /><span>출력 대기 0</span></span>
+          <span className="emr-tool-stat">오늘 내원 <b className="emr-num">{visitsList.length}</b></span>
+          <span className="emr-tool-stat">출력 대기 <b className="emr-num">0</b></span>
         </div>
         <div className="emr-body">
           <WaitList visits={visitsList} currentId={visitId} hrefFor={hrefFor} open={waitOpen} onClose={() => closeWait()} onNavigate={() => closeWait({ restore: false })} />

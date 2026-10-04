@@ -1,14 +1,24 @@
 /**
- * PetAvatar: a patient's photo with a designed fallback (species glyph on a warm tint) that shows
- * while the photo loads and stays when it cannot load (offline build, blocked CDN, broken id).
+ * PetAvatar: a patient's photo (src/brand/pets.js), with the pet's first syllable on a neutral tile behind
+ * it. The tile shows while the photo loads and stays when there is no photo (the offline standalone build
+ * carries only 나비; an unknown chart number has none).
+ *
+ *   <PetAvatar id="1042" size={34} shape="square" />        EMR legacy thumbnail (2 px corners)
+ *   <PetAvatar id="1042" size={44} shape="round" name="초코" />
+ *
+ * Props: id (chart number), species (only for an unknown id), name (overrides the record's name for the
+ * label and the initial), size (px, default 40), shape 'round' (default) | 'square' ('rounded', 6 px, is
+ * still accepted), ring (1.5 px outline in the product ink), className, style, alt (the accessible name;
+ * alt="" makes it decorative; default "<name> 사진").
+ * srcset offers the 320 px file (every size up to 160 CSS px at 2x) and the 640 px one for larger or denser.
+ * Styles: .nvb-pet in src/brand/brand.css.
  */
-import { useEffect, useState } from 'react'
-import { Cat, Dog } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
 import { petFor } from './pets.js'
 import './brand.css'
 
-/** The offline standalone build ships a CSP that only allows data: images: never request a remote photo there. */
-const remoteBlocked = (() => {
+/** A page whose CSP allows only data: images (the offline standalone build) never requests a file. */
+const dataOnly = (() => {
   try {
     const csp = document.querySelector('meta[http-equiv="Content-Security-Policy"]')?.getAttribute('content') || ''
     return /img-src\s+data:\s*(;|$)/.test(csp)
@@ -16,15 +26,25 @@ const remoteBlocked = (() => {
     return false
   }
 })()
-const usable = (src) => Boolean(src) && (!remoteBlocked || src.startsWith('data:'))
+const usable = (src) => Boolean(src) && (!dataOnly || src.startsWith('data:'))
+
+/** The first syllable (or letter) of a name: 초코 → 초. */
+const initialOf = (name) => (name ? Array.from(String(name).trim())[0] || '' : '')
 
 export function PetAvatar({ id, species, name, size = 40, shape = 'round', ring = false, className, style, alt }) {
   const pet = petFor(id, species)
   const photo = usable(pet.photo) ? pet.photo : null
+  const thumb = photo && usable(pet.thumb) ? pet.thumb : null
   const [state, setState] = useState(photo ? 'loading' : 'none')
-  useEffect(() => { setState(photo ? 'loading' : 'none') }, [photo])
-  const Glyph = pet.species === 'cat' ? Cat : Dog
-  const label = alt ?? (name || pet.name ? `${name || pet.name} 사진` : undefined)
+  const img = useRef(null)
+  useEffect(() => {
+    // A cached photo can finish before React attaches onLoad.
+    if (photo && img.current?.complete && img.current.naturalWidth > 0) setState('loaded')
+    else setState(photo ? 'loading' : 'none')
+  }, [photo])
+  const shown = name || pet.name
+  const label = alt ?? (shown ? `${shown} 사진` : undefined)
+  const px = typeof size === 'number' ? size : null
   return (
     <span
       className={`nvb-pet${className ? ` ${className}` : ''}`}
@@ -32,20 +52,24 @@ export function PetAvatar({ id, species, name, size = 40, shape = 'round', ring 
       data-ring={ring || undefined}
       data-loaded={state === 'loaded' || undefined}
       role={label ? 'img' : undefined}
-      aria-label={label}
+      aria-label={label || undefined}
       aria-hidden={label ? undefined : 'true'}
-      style={{ width: size, height: size, '--nvb-pet-bg': pet.tone.bg, '--nvb-pet-fg': pet.tone.fg, '--nvb-pet-pos': pet.pos, ...style }}
+      style={{ width: size, height: size, '--nvb-pet-pos': pet.pos, ...style }}
     >
       <span className="nvb-pet-fallback" aria-hidden="true">
-        <Glyph />
+        {initialOf(shown)}
       </span>
       {photo && state !== 'error' ? (
         <img
-          src={photo}
+          ref={img}
+          src={thumb || photo}
+          srcSet={thumb ? `${thumb} 320w, ${photo} 640w` : undefined}
+          sizes={thumb ? (px ? `${px}px` : '160px') : undefined}
+          width={px || undefined}
+          height={px || undefined}
           alt=""
           loading="lazy"
           decoding="async"
-          referrerPolicy="no-referrer"
           draggable="false"
           onLoad={() => setState('loaded')}
           onError={() => setState('error')}

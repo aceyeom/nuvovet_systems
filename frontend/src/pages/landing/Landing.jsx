@@ -2,7 +2,6 @@
 // products in the hero; below it, a role chooser and one section per product in its own colour.
 // Claims figures are read at runtime from heroClaim.json, so `/` never loads the 2.4 MB snapshot.
 // Korean only; the page is light by design (the brand layer does not follow the console theme).
-import '@fontsource-variable/geist'
 import './landing.css'
 import { useTitle } from '@/ui/patterns/useTitle'
 import heroClaim from '../insurance/preview/heroClaim.json'

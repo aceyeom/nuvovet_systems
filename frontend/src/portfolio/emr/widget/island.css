@@ -1,68 +1,85 @@
 /*
  * DUR Island (Island.jsx). Loaded after widget.css into the same constructed sheet.
- * The island is always dark (data-theme="dark" on its own .nv-scope), like a hardware island: a
- * black pill whose glow takes the colour of the highest severity. Width/height are set inline from
- * the measured content and transition with a slight overshoot, so the three shapes morph in place.
+ * One instrument in one material: a graphite body (#111318) with a 1 px inner top highlight and a neutral
+ * layered shadow. No coloured glow, no breathing, no orb. Severity is a word and a tabular count in the
+ * dark severity tones; the grabber, the close mark and the resolved check are drawn here in CSS.
+ * Width/height are set inline from the measured content and transition with a slight overshoot, so the
+ * three shapes morph in place (the only motion besides the countdown hairline and the re-check dip).
+ * data-glow stays on the root as the severity hook (QA and host code read it); it only sets --nv-sev.
  * Colour literals are allowed here (lint-design skips this file like widget.css).
  */
 
 .nv-scope.nv-island {
-  --nv-island-bg: #0B0F17;
-  --nv-island-bg-2: #141A26;
-  --nv-island-line: rgba(255, 255, 255, 0.08);
-  --nv-island-text: #F2F5FA;
-  --nv-island-dim: #9AA4B6;
-  --nv-island-teal: #2CC4A8;
-  --nv-glow: #5B6B85;
+  --nv-island-bg: #111318;
+  --nv-island-line: rgba(255, 255, 255, 0.10);
+  --nv-island-text: #ECEEF1;
+  --nv-island-strong: #F4F5F7;
+  --nv-island-dim: #A3AAB4;
+  --nv-island-muted: #8D949E;
+  --nv-island-dur: #8DCBA4;
+  --nv-sev: #C2C8D0;
+  /* The review panel inside the expanded shape reads the console tokens: retint them to the same material. */
+  --background: #111318;
+  --card: #111318;
+  --popover: #1A1D23;
+  --surface-raised: #1A1D23;
+  --surface-subtle: #16191E;
+  --surface-muted: #20242B;
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.15);
+  --row-hover: rgba(255, 255, 255, 0.06);
+  --row-pressed: rgba(255, 255, 255, 0.10);
+  --ring: #ECEEF1;
+  --brand: #ECEEF1;
+  --brand-hover: #FFFFFF;
+
   position: fixed;
   z-index: 5;
   display: block;
   transform: translateX(-50%);
   overflow: hidden;
-  border-radius: 22px;
+  border-radius: 20px;
   background: var(--nv-island-bg);
   color: var(--nv-island-text);
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.07),
-    0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
-    0 18px 40px -12px rgba(4, 8, 16, 0.55),
-    0 0 0 1px color-mix(in srgb, var(--nv-glow) 35%, transparent),
-    0 0 28px -4px color-mix(in srgb, var(--nv-glow) 55%, transparent);
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
+    0 0 0 1px rgba(9, 11, 15, 0.55),
+    0 1px 2px 0 rgba(9, 11, 15, 0.18),
+    0 6px 14px -4px rgba(9, 11, 15, 0.26),
+    0 20px 40px -14px rgba(9, 11, 15, 0.34);
   transition:
     width 520ms cubic-bezier(0.32, 1.22, 0.42, 1),
     height 520ms cubic-bezier(0.32, 1.22, 0.42, 1),
     border-radius 420ms cubic-bezier(0.2, 0.9, 0.3, 1),
     left 380ms cubic-bezier(0.2, 0.9, 0.3, 1),
     top 380ms cubic-bezier(0.2, 0.9, 0.3, 1),
-    box-shadow 600ms ease;
+    box-shadow 240ms ease;
   touch-action: none;
   user-select: none;
   -webkit-user-select: none;
 }
-.nv-scope.nv-island[data-mode="peek"] { border-radius: 26px; }
-.nv-scope.nv-island[data-mode="expanded"] { border-radius: 24px; user-select: text; -webkit-user-select: text; touch-action: auto; }
+.nv-scope.nv-island[data-mode="peek"] { border-radius: 18px; }
+.nv-scope.nv-island[data-mode="expanded"] { border-radius: 18px; user-select: text; -webkit-user-select: text; touch-action: auto; }
 .nv-scope.nv-island[data-dragging] {
-  transition: width 520ms cubic-bezier(0.32, 1.22, 0.42, 1), height 520ms cubic-bezier(0.32, 1.22, 0.42, 1), box-shadow 300ms ease;
+  transition: width 520ms cubic-bezier(0.32, 1.22, 0.42, 1), height 520ms cubic-bezier(0.32, 1.22, 0.42, 1), box-shadow 200ms ease;
   cursor: grabbing;
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.1),
-    0 28px 60px -12px rgba(4, 8, 16, 0.6),
-    0 0 36px -2px color-mix(in srgb, var(--nv-glow) 65%, transparent);
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
+    0 0 0 1px rgba(9, 11, 15, 0.55),
+    0 2px 4px 0 rgba(9, 11, 15, 0.18),
+    0 12px 24px -6px rgba(9, 11, 15, 0.32),
+    0 32px 56px -18px rgba(9, 11, 15, 0.40);
 }
-.nv-island[data-glow="contraindicated"] { --nv-glow: #FF4D4F; }
-.nv-island[data-glow="major"] { --nv-glow: #FF8A3D; }
-.nv-island[data-glow="moderate"] { --nv-glow: #F5B83D; }
+/* Severity tones on graphite (text only). */
+.nv-island[data-glow="contraindicated"] { --nv-sev: #FF8A80; }
+.nv-island[data-glow="major"] { --nv-sev: #FFB37A; }
+.nv-island[data-glow="moderate"] { --nv-sev: #F2CC6B; }
+.nv-island[data-glow="none"] { --nv-sev: #8DCBA4; }
 .nv-island[data-glow="minor"],
-.nv-island[data-glow="none"] { --nv-glow: #2CC4A8; }
-.nv-island[data-glow="incomplete"] { --nv-glow: #9AA4B6; }
+.nv-island[data-glow="incomplete"],
+.nv-island[data-glow="idle"] { --nv-sev: #C2C8D0; }
 
-/* Critical findings breathe until they are handled. */
-.nv-island[data-glow="contraindicated"][data-mode="compact"],
-.nv-island[data-glow="major"][data-mode="compact"] { animation: nv-island-breathe 2.4s ease-in-out infinite; }
-@keyframes nv-island-breathe {
-  0%, 100% { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.07), 0 18px 40px -12px rgba(4, 8, 16, 0.55), 0 0 0 1px color-mix(in srgb, var(--nv-glow) 35%, transparent), 0 0 22px -6px color-mix(in srgb, var(--nv-glow) 50%, transparent); }
-  50% { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.07), 0 18px 40px -12px rgba(4, 8, 16, 0.55), 0 0 0 1px color-mix(in srgb, var(--nv-glow) 70%, transparent), 0 0 34px 0 color-mix(in srgb, var(--nv-glow) 70%, transparent); }
-}
+.nv-island :focus-visible { outline: 2px solid var(--nv-island-text); outline-offset: 2px; }
 
 .nv-island-inner {
   position: absolute;
@@ -70,27 +87,27 @@
   left: 50%;
   transform: translateX(-50%);
   width: max-content;
-  animation: nv-island-in 420ms cubic-bezier(0.2, 0.9, 0.3, 1) both;
-  animation-delay: 70ms;
+  animation: nv-island-in 280ms cubic-bezier(0.2, 0.9, 0.3, 1) both;
+  animation-delay: 90ms;
 }
 .nv-island[data-mode="expanded"] .nv-island-inner { width: 432px; max-width: calc(100vw - 16px); }
 .nv-island[data-mode="peek"] .nv-island-inner { width: 404px; max-width: calc(100vw - 16px); }
-/* Blur and scale only: the shape itself morphs, so the content never has to fade from transparent. */
+/* The shape morphs; the content settles inside it (no blur). */
 @keyframes nv-island-in {
-  from { filter: blur(6px); transform: translateX(-50%) scale(0.96); }
-  to { filter: blur(0); transform: translateX(-50%) scale(1); }
+  from { opacity: 0; transform: translateX(-50%) scale(0.985); }
+  to { opacity: 1; transform: translateX(-50%) scale(1); }
 }
 
-/* ── Compact pill ─────────────────────────────────────────────────────────── */
+/* ── Compact ──────────────────────────────────────────────────────────────── */
 .nv-island-pill {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
+  gap: 10px;
   height: 40px;
   max-width: 460px;
-  padding: 0 8px 0 13px;
+  padding: 0 6px 0 16px;
   border: 0;
-  border-radius: 22px;
+  border-radius: 20px;
   background: transparent;
   color: var(--nv-island-text);
   font-size: 13px;
@@ -98,56 +115,51 @@
   font-weight: 600;
   cursor: grab;
 }
-.nv-island-pill:focus-visible { outline: 2px solid var(--nv-island-teal); outline-offset: -3px; }
-.nv-island-orb {
-  position: relative;
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  background: var(--nv-glow);
-  box-shadow: 0 0 10px 1px color-mix(in srgb, var(--nv-glow) 80%, transparent);
-  flex-shrink: 0;
-}
-.nv-island-orb::after {
-  content: "";
-  position: absolute;
-  inset: -5px;
-  border-radius: 999px;
-  border: 2px solid var(--nv-glow);
-  opacity: 0;
-}
-.nv-island[data-pulse] .nv-island-orb::after { animation: nv-island-ping 700ms cubic-bezier(0, 0, 0.2, 1); }
-@keyframes nv-island-ping {
-  from { transform: scale(0.6); opacity: 0.9; }
-  to { transform: scale(1.9); opacity: 0; }
-}
+.nv-island-pill:focus-visible { outline-offset: -4px; border-radius: 20px; }
 .nv-island-brand {
   font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  color: var(--nv-island-teal);
+  line-height: 16px;
+  font-weight: 600;
+  color: var(--nv-island-text);
+  white-space: nowrap;
 }
-.nv-island-div { width: 1px; height: 16px; background: var(--nv-island-line); }
-.nv-island-status { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
-.nv-island-status svg { width: 15px; height: 15px; }
-.nv-island-status[data-level="contraindicated"] { color: #FF6B6B; }
-.nv-island-status[data-level="major"] { color: #FF9A55; }
-.nv-island-status[data-level="moderate"] { color: #F7C35C; }
-.nv-island-status[data-level="none"] { color: #5FD9C1; }
+.nv-island-brand span { color: var(--nv-island-dur); }
+.nv-island-div { width: 1px; height: 14px; background: rgba(255, 255, 255, 0.14); flex-shrink: 0; }
+.nv-island-status {
+  color: var(--nv-sev);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+/* One dip per check: the status was re-read. */
+.nv-island[data-pulse] .nv-island-status { animation: nv-island-recheck 700ms ease-out; }
+@keyframes nv-island-recheck {
+  from { opacity: 0.35; }
+  to { opacity: 1; }
+}
 .nv-island-ctx {
   max-width: 220px;
   font-weight: 500;
   color: var(--nv-island-dim);
 }
+/* Grabber: a short rounded bar (28 × 4), the same mark as the landing's island. */
 .nv-island-grip {
   display: grid;
   place-items: center;
-  width: 22px;
+  width: 40px;
   height: 28px;
-  border-radius: 8px;
-  color: #5E687C;
+  flex-shrink: 0;
 }
-.nv-island-pill:hover .nv-island-grip { color: var(--nv-island-dim); background: rgba(255, 255, 255, 0.05); }
+.nv-island-grip::before,
+.nv-island-headgrip::before {
+  content: "";
+  width: 28px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.28);
+  transition: background-color 150ms ease;
+}
+.nv-island-pill:hover .nv-island-grip::before,
+.nv-island .nv-head:hover .nv-island-headgrip::before { background: rgba(255, 255, 255, 0.46); }
 
 /* ── Peek ─────────────────────────────────────────────────────────────────── */
 .nv-island-peekwrap { cursor: grab; }
@@ -155,105 +167,127 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 14px 16px 16px;
+  gap: 6px;
+  padding: 14px 16px 20px 18px;
 }
-.nv-island-peek-top { display: flex; align-items: center; gap: 8px; min-width: 0; }
-.nv-island-cat { font-size: 12px; line-height: 16px; color: var(--nv-island-dim); white-space: nowrap; }
-.nv-island-drugs { flex: 1 1 auto; font-size: 12px; line-height: 16px; color: var(--nv-island-text); text-align: right; font-weight: 600; }
+.nv-island-peek-top { display: flex; align-items: center; gap: 10px; min-width: 0; min-height: 24px; }
+.nv-island-sev {
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 700;
+  color: var(--nv-sev);
+  white-space: nowrap;
+}
+.nv-island-sev[data-level="contraindicated"] { color: #FF8A80; }
+.nv-island-sev[data-level="major"] { color: #FFB37A; }
+.nv-island-sev[data-level="moderate"] { color: #F2CC6B; }
+.nv-island-sev[data-level="minor"] { color: #C2C8D0; }
+.nv-island-cat { font-size: 12px; line-height: 16px; color: var(--nv-island-muted); white-space: nowrap; }
+.nv-island-drugs { flex: 1 1 auto; font-size: 12px; line-height: 16px; color: var(--nv-island-dim); text-align: right; font-weight: 500; }
 .nv-island-x {
+  position: relative;
   display: grid;
   place-items: center;
   width: 24px;
   height: 24px;
+  margin-right: -4px;
   border: 0;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--nv-island-dim);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--nv-island-muted);
   flex-shrink: 0;
+  transition: background-color 150ms ease, color 150ms ease;
 }
-.nv-island-x:hover { background: rgba(255, 255, 255, 0.12); color: var(--nv-island-text); }
+.nv-island-x:hover { background: rgba(255, 255, 255, 0.08); color: var(--nv-island-text); }
+/* Close: two crossed hairlines. */
+.nv-island-xmark { position: relative; width: 11px; height: 11px; }
+.nv-island-xmark::before,
+.nv-island-xmark::after {
+  content: "";
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  top: 4.75px;
+  height: 1.5px;
+  border-radius: 1px;
+  background: currentColor;
+  transform: rotate(45deg);
+}
+.nv-island-xmark::after { transform: rotate(-45deg); }
 .nv-island-sum {
+  margin-top: 2px;
   font-size: 15px;
   line-height: 22px;
-  font-weight: 650;
-  color: var(--nv-island-text);
-  letter-spacing: -0.01em;
+  font-weight: 600;
+  color: var(--nv-island-strong);
+  letter-spacing: -0.005em;
   text-wrap: pretty;
 }
 .nv-island-factors { font-size: 12px; line-height: 17px; color: var(--nv-island-dim); }
-.nv-island-factors span { margin-right: 6px; color: #C9D1DE; font-weight: 600; }
-.nv-island-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+.nv-island-factors span { margin-right: 6px; color: #D3D7DD; font-weight: 600; }
+.nv-island-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 8px; }
 .nv-island-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  height: 30px;
+  height: 32px;
   padding: 0 12px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background: transparent;
   color: var(--nv-island-text);
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 13px;
+  line-height: 18px;
   font-weight: 600;
   white-space: nowrap;
-  transition: background-color 150ms ease, border-color 150ms ease;
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
 }
-.nv-island-btn svg { width: 14px; height: 14px; }
-.nv-island-btn:hover { background: rgba(255, 255, 255, 0.12); }
-.nv-island-btn-primary { border-color: transparent; background: #F2F5FA; color: #0B0F17; }
-.nv-island-btn-primary:hover { background: #FFFFFF; }
-.nv-island-btn-ghost { border-color: transparent; background: transparent; color: var(--nv-island-dim); }
+.nv-island-btn:hover { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.22); }
+.nv-island-btn-primary { border-color: transparent; background: #F2F4F7; color: #111318; }
+.nv-island-btn-primary:hover { border-color: transparent; background: #FFFFFF; }
+.nv-island-btn-ghost { padding: 0 6px; border-color: transparent; color: var(--nv-island-dim); font-weight: 500; }
+.nv-island-btn-ghost:hover { border-color: transparent; background: transparent; color: var(--nv-island-text); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+/* 권장: a quiet word after a hairline, inside the primary action. */
 .nv-island-rec {
-  height: 18px;
-  padding: 0 6px;
-  border-radius: 999px;
-  background: #CDF5EC;
-  color: #0B6B5D;
+  margin-left: 10px;
+  padding-left: 10px;
+  border-left: 1px solid rgba(17, 19, 24, 0.18);
+  color: #4D5560;
   font-size: 12px;
-  line-height: 18px;
-  font-weight: 700;
+  line-height: 16px;
+  font-weight: 500;
 }
 .nv-island-timer {
   position: absolute;
-  left: 16px;
+  left: 18px;
   right: 16px;
-  bottom: 6px;
-  height: 2px;
-  border-radius: 2px;
-  background: color-mix(in srgb, var(--nv-glow) 85%, transparent);
+  bottom: 8px;
+  height: 1.5px;
+  background: color-mix(in srgb, var(--nv-sev) 60%, transparent);
   transform-origin: left center;
   animation-name: nv-island-countdown;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
-  opacity: 0.7;
 }
 @keyframes nv-island-countdown {
   from { transform: scaleX(1); }
   to { transform: scaleX(0); }
 }
-.nv-island-resolved { flex-direction: row; align-items: center; gap: 12px; padding: 12px 18px 14px 12px; }
+.nv-island-resolved { flex-direction: row; align-items: center; gap: 14px; padding: 14px 20px 18px 22px; }
+.nv-island-resolved .nv-island-timer { left: 22px; right: 20px; }
 .nv-island[data-mode="peek"] .nv-island-inner:has(.nv-island-resolved) { width: 340px; }
+/* A small check stroke. */
 .nv-island-ok {
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 999px;
-  background: rgba(44, 196, 168, 0.16);
-  color: #5FD9C1;
+  width: 13px;
+  height: 7px;
+  margin: 0 1px 4px 2px;
+  border-left: 1.5px solid var(--nv-island-dur);
+  border-bottom: 1.5px solid var(--nv-island-dur);
+  transform: rotate(-45deg);
   flex-shrink: 0;
-  animation: nv-island-pop 520ms cubic-bezier(0.32, 1.4, 0.4, 1) both;
-}
-.nv-island-ok svg { width: 20px; height: 20px; }
-@keyframes nv-island-pop {
-  from { transform: scale(0.4); }
-  to { transform: scale(1); }
 }
 .nv-island-resolved-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.nv-island-resolved-text strong { font-size: 14px; line-height: 20px; font-weight: 650; }
-.nv-island-resolved-text span { font-size: 12px; line-height: 16px; color: var(--nv-island-dim); font-variant-numeric: tabular-nums; }
+.nv-island-resolved-text strong { font-size: 14px; line-height: 20px; font-weight: 600; color: var(--nv-island-strong); }
+.nv-island-resolved-text span { font-size: 12px; line-height: 16px; color: var(--nv-island-muted); font-variant-numeric: tabular-nums; }
 
 /* ── Expanded: the full panel inside the island ───────────────────────────── */
 .nv-island-panel {
@@ -267,19 +301,24 @@
   min-height: 0;
   background: transparent;
 }
-.nv-island .nv-head { height: 46px; padding: 0 8px 0 10px; border-bottom-color: var(--nv-island-line); cursor: grab; }
-.nv-island .nv-head-title { color: var(--nv-island-teal); font-weight: 750; }
-.nv-island-headgrip { display: grid; place-items: center; width: 18px; color: #5E687C; }
-.nv-island .nv-body { scrollbar-width: thin; scrollbar-color: #2A3243 transparent; }
+.nv-island .nv-head { position: relative; height: 46px; padding: 0 8px 0 12px; border-bottom-color: var(--nv-island-line); cursor: grab; }
+.nv-island .nv-head-title { color: var(--nv-island-text); font-size: 13px; font-weight: 600; }
+.nv-island .nv-head-meta { color: var(--nv-island-muted); }
+/* In the expanded shape the grabber sits centred on the top edge, like a sheet's. */
+.nv-island-headgrip { position: absolute; top: 0; left: 50%; display: grid; place-items: center; width: 56px; height: 12px; transform: translateX(-50%); }
+.nv-island-headgrip svg { display: none; }
+.nv-island .nv-body { scrollbar-width: thin; scrollbar-color: #2C313A transparent; }
 .nv-island .nv-foot { border-top-color: var(--nv-island-line); }
+.nv-island .nv-foot a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; text-decoration-color: rgba(255, 255, 255, 0.32); }
+.nv-island .nv-foot a:hover { text-decoration-color: currentColor; }
 .nv-island .nv-section,
 .nv-island .nv-card-wrap { border-color: var(--nv-island-line); }
 
 @media (prefers-reduced-motion: reduce) {
   .nv-scope.nv-island { transition: none; animation: none; }
   .nv-island-inner { animation: nv-fade-in var(--dur-1) linear both; }
-  .nv-island-timer, .nv-island-ok { animation-duration: 0ms; }
-  .nv-island[data-pulse] .nv-island-orb::after { animation: none; }
+  .nv-island-timer { animation-duration: 0ms; }
+  .nv-island[data-pulse] .nv-island-status { animation: none; }
 }
 
 @media print {

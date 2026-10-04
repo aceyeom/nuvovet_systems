@@ -362,10 +362,7 @@ async function emrSuite(browser, base, ref) {
   }))
   check(`${tag} 7 focus: Esc closes, inert lifted, focus back on 처방 저장`, !esc.open && !esc.inert && esc.active === 'save', esc)
   const origin = new URL(base.startsWith('file') ? 'file:///' : base).origin
-  // The demo EMR (the host, not the widget) hot-links its patient photos; those requests and their load
-  // failures on an offline box belong to the host page.
-  const hostPhoto = (u) => /^https:\/\/images\.unsplash\.com\//.test(u)
-  const foreign = requests.filter((u) => !(base.startsWith('file') ? u.startsWith('file:') : u.startsWith(origin)) && !u.startsWith('data:') && !hostPhoto(u))
+  const foreign = requests.filter((u) => !(base.startsWith('file') ? u.startsWith('file:') : u.startsWith(origin)) && !u.startsWith('data:'))
   check(`${tag} 10 network: only same-origin / data: requests`, foreign.length === 0, foreign)
   const appLogs = logs.filter((l) => !/Failed to load resource: net::ERR_/.test(l))
   check(`${tag} 11 console: zero errors and warnings`, appLogs.length === 0, appLogs)

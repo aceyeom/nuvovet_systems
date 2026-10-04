@@ -1,200 +1,245 @@
 /*
- * nuvovet brand layer: the expressive marketing / demo surface that sits on top of the clinical
- * design system (src/ui/tokens.css). Two products, two colours, one master brand:
- *
- *   nuvovet          ink + a cobalt-to-teal blend of the two product colours
- *   nuvovet DUR      teal   (clinic side: prescription review inside the EMR)
- *   nuvovet Claims   cobalt (insurer side: claim adjudication)
- *
- * Everything is namespaced --nvb-* / .nvb-* so it never collides with the console tokens. Product
- * surfaces set data-product="dur" | "claims" and read the generic --nvb-p-* aliases.
- * This layer is exempt from the console's colour/gradient lint (scripts/qa/lint-design.cjs).
+ * nuvovet brand layer: the landing, the lockups, the EMR demo chrome and the island sit on these tokens.
+ * Ink on white paper. Two families: the display face (MaruBuri, registered as "nuvovet Display" by
+ * src/brand/displayFont.js; static copy only) and Pretendard Variable for text, UI and data.
+ * Product colour appears only on the product name in a lockup and as the 1.5 px active-tab hairline.
+ * No gradients, glows, dots or chips. Namespaced --nvb-* / .nvb-* so it never collides with the console
+ * tokens (src/ui/tokens.css). Brand elements carry data-brand-surface, which exempts them from the console
+ * style budgets (scripts/qa/pagecheck.cjs); this folder is exempt from scripts/qa/lint-design.cjs.
+ * Spec: docs/design/DESIGN_SYSTEM.md "Brand layer".
  */
 
 :root {
-  --nvb-ink: #0A1220;
-  --nvb-ink-2: #141E31;
-  --nvb-ink-3: #24304A;
-  --nvb-slate: #5A6478;
-  --nvb-slate-2: #677083;
-  --nvb-line: rgba(10, 18, 32, 0.08);
-  --nvb-line-2: rgba(10, 18, 32, 0.14);
-  --nvb-mist: #EEF2F8;
-  --nvb-canvas: #F7F9FC;
-  --nvb-white: #FFFFFF;
+  --nvb-ink: #16191E;
+  --nvb-ink-2: #4D5560;
+  --nvb-muted: #646C77;
+  --nvb-faint: #8A919B; /* non-text only: rules, disabled glyphs */
+  --nvb-paper: #FFFFFF;
+  --nvb-paper-2: #F6F7F9; /* studio band, alternate section */
+  --nvb-rule: rgb(16 24 40 / 0.10);
+  --nvb-rule-strong: rgb(16 24 40 / 0.18);
 
-  /* nuvovet DUR: teal */
-  --nvb-dur-50: #EAFBF7;
-  --nvb-dur-100: #CDF5EC;
-  --nvb-dur-200: #9DEAD9;
-  --nvb-dur-300: #5FD9C1;
-  --nvb-dur-400: #2CC4A8;
-  --nvb-dur-500: #10A88E;
-  --nvb-dur-600: #098773;
-  --nvb-dur-700: #0B6B5D;
-  --nvb-dur-900: #06322C;
+  /* Product inks: the product name in lockups, the favicon tile, the active-tab hairline. */
+  --nvb-dur-ink: #28553B;
+  --nvb-claims-ink: #1D3C6E;
+  /* The same roles on dark surfaces (the island, a flat #16191E band). */
+  --nvb-ink-on-dark: #ECEEF1;
+  --nvb-dur-ink-on-dark: #8DCBA4;
+  --nvb-claims-ink-on-dark: #9DBCEE;
 
-  /* nuvovet Claims: cobalt */
-  --nvb-claims-50: #EEF2FF;
-  --nvb-claims-100: #DCE3FF;
-  --nvb-claims-200: #B9C7FF;
-  --nvb-claims-300: #8DA2FF;
-  --nvb-claims-400: #6380FF;
-  --nvb-claims-500: #3F5EFB;
-  --nvb-claims-600: #2E46DC;
-  --nvb-claims-700: #2536AE;
-  --nvb-claims-900: #121B57;
-
-  /* Clinical signal colours used in illustrations (the console keeps its own severity tokens). */
-  --nvb-crit: #E5484D;
-  --nvb-crit-soft: #FFECEC;
-  --nvb-major: #F76B15;
-  --nvb-major-soft: #FFF0E5;
-  --nvb-mod: #F2A10D;
-  --nvb-mod-soft: #FFF6E0;
-  --nvb-ok: #12A57B;
-  --nvb-ok-soft: #E3F8F0;
-
-  --nvb-blend: linear-gradient(120deg, var(--nvb-claims-500) 0%, #2B8BE0 48%, var(--nvb-dur-400) 100%);
-
-  --nvb-font-display: "Geist Variable", "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+  --nvb-font-display: "nuvovet Display", "MaruBuri", "Noto Serif KR", "AppleMyungjo", serif;
   --nvb-font-text: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
 
-  --nvb-ease-spring: cubic-bezier(0.32, 1.28, 0.4, 1);
+  --nvb-btn-hover: #30353D;
+  --nvb-radius-control: 6px; /* buttons, inputs */
+  --nvb-radius-device: 12px; /* the most a device-like surface gets; photos and sections are square */
+  --nvb-hairline: 1.5px; /* active-tab / progress line */
   --nvb-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* A product surface reads its ink through one alias. */
 [data-product="dur"] {
-  --nvb-p-50: var(--nvb-dur-50);
-  --nvb-p-100: var(--nvb-dur-100);
-  --nvb-p-200: var(--nvb-dur-200);
-  --nvb-p-300: var(--nvb-dur-300);
-  --nvb-p-400: var(--nvb-dur-400);
-  --nvb-p-500: var(--nvb-dur-500);
-  --nvb-p-600: var(--nvb-dur-600);
-  --nvb-p-700: var(--nvb-dur-700);
-  --nvb-p-900: var(--nvb-dur-900);
+  --nvb-p-ink: var(--nvb-dur-ink);
+  --nvb-p-ink-on-dark: var(--nvb-dur-ink-on-dark);
 }
 [data-product="claims"] {
-  --nvb-p-50: var(--nvb-claims-50);
-  --nvb-p-100: var(--nvb-claims-100);
-  --nvb-p-200: var(--nvb-claims-200);
-  --nvb-p-300: var(--nvb-claims-300);
-  --nvb-p-400: var(--nvb-claims-400);
-  --nvb-p-500: var(--nvb-claims-500);
-  --nvb-p-600: var(--nvb-claims-600);
-  --nvb-p-700: var(--nvb-claims-700);
-  --nvb-p-900: var(--nvb-claims-900);
+  --nvb-p-ink: var(--nvb-claims-ink);
+  --nvb-p-ink-on-dark: var(--nvb-claims-ink-on-dark);
 }
 
-/* ── Lockup: [mark] nuvovet ╰ Product ───────────────────────────────────── */
-.nvb-lockup {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  white-space: nowrap;
-  /* Follows the console theme where one is set (--foreground), ink otherwise. */
-  color: var(--foreground, var(--nvb-ink));
-  font-family: var(--nvb-font-display);
-  line-height: 1;
+/*
+ * Lockup colours follow the console theme (same selectors as src/ui/tokens.css), so the default 'ink' tone
+ * reads on a dark console and resets inside a light-forced scope such as the landing (.nv-scope[data-theme=light]).
+ */
+:root,
+.nv-scope {
+  --nvb-lk-word: #16191E;
+  --nvb-lk-dur: #28553B;
+  --nvb-lk-claims: #1D3C6E;
+  --nvb-lk-suffix: #646C77;
 }
-.nvb-lockup[data-tone="light"] { color: #FFFFFF; }
-.nvb-mark { display: block; flex-shrink: 0; width: 26px; height: 26px; }
-.nvb-lockup[data-size="sm"] .nvb-mark { width: 22px; height: 22px; }
-.nvb-lockup[data-size="lg"] .nvb-mark { width: 32px; height: 32px; }
-.nvb-word {
-  font-size: 19px;
-  font-weight: 650;
-  letter-spacing: -0.04em;
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]),
+  .nv-scope:not([data-theme="light"]) {
+    --nvb-lk-word: #ECEEF1;
+    --nvb-lk-dur: #8DCBA4;
+    --nvb-lk-claims: #9DBCEE;
+    --nvb-lk-suffix: #8D949E;
+  }
 }
-.nvb-lockup[data-size="sm"] .nvb-word { font-size: 16px; }
-.nvb-lockup[data-size="lg"] .nvb-word { font-size: 23px; }
-.nvb-branch {
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-  margin-left: -2px;
-}
-.nvb-branch svg { width: 12px; height: 18px; color: var(--nvb-p-400, var(--nvb-slate-2)); }
-.nvb-product {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  height: 24px;
-  padding: 0 8px 0 7px;
-  border: 1px solid color-mix(in srgb, var(--nvb-p-500) 28%, transparent);
-  border-radius: 6px;
-  /* Mixed with the surface and text colours so the tag reads in light and dark themes alike. */
-  background: color-mix(in srgb, var(--nvb-p-500) 13%, var(--background, #FFFFFF));
-  color: color-mix(in srgb, var(--nvb-p-600) 60%, var(--foreground, #0A1220));
-  font-size: 13px;
-  font-weight: 650;
-  letter-spacing: -0.01em;
-}
-.nvb-product::before {
-  content: "";
-  width: 7px;
-  height: 7px;
-  border-radius: 2px;
-  background: var(--nvb-p-500);
-  transform: rotate(45deg);
-}
-.nvb-lockup[data-size="sm"] .nvb-product { height: 21px; font-size: 12px; padding: 0 8px 0 7px; }
-.nvb-lockup[data-size="lg"] .nvb-product { height: 28px; font-size: 15px; padding: 0 11px 0 10px; }
-.nvb-lockup[data-tone="light"] .nvb-product {
-  background: color-mix(in srgb, var(--nvb-p-400) 18%, transparent);
-  color: var(--nvb-p-200);
-}
-.nvb-lockup .nvb-suffix {
-  font-family: var(--nvb-font-text);
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--muted-foreground, var(--nvb-slate));
-  letter-spacing: 0;
-}
-.nvb-lockup[data-tone="light"] .nvb-suffix { color: rgba(255, 255, 255, 0.6); }
-
-/* ── Pet avatar: real photo, designed fallback when the image cannot load ─ */
-.nvb-pet {
-  position: relative;
-  display: inline-grid;
-  place-items: center;
-  flex-shrink: 0;
-  overflow: hidden;
-  border-radius: 999px;
-  background: var(--nvb-pet-bg, linear-gradient(140deg, #F3E3CF, #E2C29C));
-  color: var(--nvb-pet-fg, #6B4A26);
-  isolation: isolate;
-}
-.nvb-pet[data-shape="rounded"] { border-radius: 28%; }
-.nvb-pet img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: var(--nvb-pet-pos, 50% 40%);
-  opacity: 0;
-  transition: opacity 400ms ease;
-}
-.nvb-pet[data-loaded="true"] img { opacity: 1; }
-.nvb-pet-fallback {
-  display: grid;
-  place-items: center;
-  width: 100%;
-  height: 100%;
-  font-family: var(--nvb-font-text);
-  font-weight: 700;
-}
-.nvb-pet-fallback svg { width: 46%; height: 46%; stroke-width: 1.6; opacity: 0.85; }
-.nvb-pet[data-loaded="true"] .nvb-pet-fallback { opacity: 0; }
-.nvb-pet[data-ring="true"] {
-  box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px var(--nvb-p-400, var(--nvb-dur-400));
+:root[data-theme="dark"],
+.nv-scope[data-theme="dark"] {
+  --nvb-lk-word: #ECEEF1;
+  --nvb-lk-dur: #8DCBA4;
+  --nvb-lk-claims: #9DBCEE;
+  --nvb-lk-suffix: #8D949E;
 }
 
-/* Phones: the lockup keeps the mark and the product pill only (e.g. the EMR demo bar). */
-@media (max-width: 639px) {
-  .nvb-lockup.nvb-compact-sm .nvb-word,
-  .nvb-lockup.nvb-compact-sm .nvb-suffix { display: none; }
-  .nvb-lockup.nvb-compact-sm .nvb-branch svg { display: none; }
+/*
+ * Component rules sit in Tailwind's `components` layer: they beat the preflight (base) and lose to utility
+ * classes, so a caller's `hidden` / `max-sm:hidden` still works on a lockup. The statement below only
+ * repeats Tailwind's own layer order (harmless where Tailwind is not loaded, e.g. a widget shadow root).
+ */
+@layer theme, base, components, utilities;
+
+@layer components {
+  /* ── Lockup: nuvovet DUR  suffix ──────────────────────────────────────────── */
+  /* Height, the svg size and its bottom margin are set inline by BrandLockup (pixel-fitted geometry). */
+  .nvb-lockup {
+    display: inline-flex;
+    align-items: baseline; /* the svg's bottom edge is the serif-feet line: the suffix sits on it */
+    gap: 10px;
+    max-width: 100%; /* in a tight row the suffix gives way (ellipsis); the mark never shrinks */
+    white-space: nowrap;
+    vertical-align: baseline;
+    line-height: 16px;
+  }
+  .nvb-lockup-mark {
+    display: block;
+    flex: none;
+    overflow: visible;
+  }
+  .nvb-lockup-word { fill: var(--nvb-lk-word); }
+  .nvb-lockup[data-product="dur"] .nvb-lockup-product { fill: var(--nvb-lk-dur); }
+  .nvb-lockup[data-product="claims"] .nvb-lockup-product { fill: var(--nvb-lk-claims); }
+  .nvb-lockup[data-tone="light"] .nvb-lockup-word { fill: var(--nvb-ink-on-dark); }
+  .nvb-lockup[data-tone="light"][data-product="dur"] .nvb-lockup-product { fill: var(--nvb-dur-ink-on-dark); }
+  .nvb-lockup[data-tone="light"][data-product="claims"] .nvb-lockup-product { fill: var(--nvb-claims-ink-on-dark); }
+  .nvb-lockup[data-tone="mono"] .nvb-lockup-mark path { fill: currentColor; }
+
+  .nvb-lockup .nvb-suffix {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: var(--nvb-font-text);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0;
+    color: var(--nvb-lk-suffix);
+  }
+  .nvb-lockup[data-tone="light"] .nvb-suffix { color: #A9AFB8; }
+  .nvb-lockup[data-tone="mono"] .nvb-suffix { color: inherit; }
+
+  /* Phones: drop the suffix (e.g. the EMR demo bar); the lockup itself always stays whole. */
+  @media (max-width: 639px) {
+    .nvb-lockup.nvb-compact-sm .nvb-suffix { display: none; }
+  }
+
+  @media (forced-colors: active) {
+    .nvb-lockup-mark path { fill: CanvasText; }
+  }
+
+  /* Monogram (favicon / app icon). */
+  .nvb-mark { display: block; flex: none; }
+
+  /* ── Type scale (integer px; display face for static copy only) ──────────── */
+  .nvb-d1 { font: 400 64px/76px var(--nvb-font-display); letter-spacing: -0.02em; color: var(--nvb-ink); }
+  .nvb-d2 { font: 400 40px/52px var(--nvb-font-display); letter-spacing: -0.015em; color: var(--nvb-ink); }
+  .nvb-d3 { font: 600 28px/38px var(--nvb-font-display); letter-spacing: -0.01em; color: var(--nvb-ink); }
+  .nvb-lead { font: 400 19px/32px var(--nvb-font-text); color: var(--nvb-ink-2); }
+  .nvb-body { font: 400 16px/26px var(--nvb-font-text); color: var(--nvb-ink-2); }
+  .nvb-ui { font: 500 14px/20px var(--nvb-font-text); }
+  .nvb-label { font: 500 13px/20px var(--nvb-font-text); color: var(--nvb-muted); }
+  .nvb-caption { font: 500 12px/16px var(--nvb-font-text); color: var(--nvb-muted); }
+  :where(.nvb-d1, .nvb-d2, .nvb-d3, .nvb-lead, .nvb-body, .nvb-ui, .nvb-label, .nvb-caption) { word-break: keep-all; overflow-wrap: break-word; }
+  :where(.nvb-d1, .nvb-d2, .nvb-d3) { text-wrap: balance; font-style: normal; }
+  @media (max-width: 1023px) {
+    .nvb-d1 { font-size: 52px; line-height: 64px; }
+    .nvb-d2 { font-size: 34px; line-height: 46px; }
+  }
+  @media (max-width: 639px) {
+    .nvb-d1 { font-size: 36px; line-height: 46px; }
+    .nvb-d2 { font-size: 28px; line-height: 38px; letter-spacing: -0.01em; }
+    .nvb-d3 { font-size: 22px; line-height: 32px; letter-spacing: 0; }
+    .nvb-lead { font-size: 17px; line-height: 28px; }
+  }
+
+  /* ── Actions: a solid ink button and a text link. No icons, arrows or shadows. ── */
+  .nvb-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    padding: 0 18px;
+    border: 0;
+    border-radius: var(--nvb-radius-control);
+    background: var(--nvb-ink);
+    color: #FFFFFF;
+    font: 600 15px/1 var(--nvb-font-text);
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 120ms ease;
+  }
+  .nvb-btn:hover { background: var(--nvb-btn-hover); }
+  .nvb-btn:focus-visible,
+  .nvb-link:focus-visible { outline: 2px solid var(--nvb-ink); outline-offset: 3px; }
+  .nvb-link {
+    color: var(--nvb-ink);
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 5px;
+    text-decoration-color: var(--nvb-rule-strong);
+    transition: text-decoration-color 120ms ease;
+  }
+  .nvb-link:hover { text-decoration-color: currentColor; }
+
+  /* ── Three CSS-drawn glyphs (1.5 px strokes, currentColor) instead of an icon set ── */
+  .nvb-menu { display: inline-block; width: 18px; height: 8px; border-block: 1.5px solid currentColor; }
+  .nvb-close { position: relative; display: inline-block; width: 14px; height: 14px; }
+  .nvb-close::before,
+  .nvb-close::after {
+    content: "";
+    position: absolute;
+    left: -1px;
+    right: -1px;
+    top: 6.25px;
+    height: 1.5px;
+    background: currentColor;
+    transform: rotate(45deg);
+  }
+  .nvb-close::after { transform: rotate(-45deg); }
+  .nvb-grabber { display: inline-block; width: 28px; height: 4px; border-radius: 2px; background: currentColor; opacity: 0.35; }
+
+  /* ── Pet avatar (PetAvatar.jsx): a real photo; the fallback is the first syllable on a neutral tile ── */
+  .nvb-pet {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 999px;
+    background: var(--nvb-pet-bg, #F0F2F5);
+    color: var(--nvb-pet-fg, var(--nvb-ink-2));
+    container-type: size;
+    isolation: isolate;
+  }
+  .nvb-pet[data-shape="square"] { border-radius: 2px; }
+  .nvb-pet[data-shape="rounded"] { border-radius: 6px; }
+  .nvb-pet img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: var(--nvb-pet-pos, 50% 40%);
+    opacity: 0;
+    transition: opacity 240ms ease;
+  }
+  .nvb-pet[data-loaded="true"] img { opacity: 1; }
+  .nvb-pet-fallback {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    font-family: var(--nvb-font-text);
+    font-size: 42cqmin;
+    font-weight: 600;
+    line-height: 1;
+  }
+  .nvb-pet-fallback svg { width: 46%; height: 46%; } /* until PetAvatar drops its species glyph */
+  .nvb-pet[data-loaded="true"] .nvb-pet-fallback { opacity: 0; }
+  .nvb-pet[data-ring="true"] { outline: 1.5px solid var(--nvb-p-ink, var(--nvb-ink)); outline-offset: 2px; }
 }

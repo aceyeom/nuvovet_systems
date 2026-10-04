@@ -8,8 +8,8 @@
 
 export const STRINGS = {
   ko: {
-    'panel.title': 'NuvoVet DUR',
-    'panel.region': 'NuvoVet DUR 처방 검토',
+    'panel.title': 'nuvovet DUR',
+    'panel.region': 'nuvovet DUR 처방 검토',
     'panel.rules': '규칙 {n}개',
     'panel.empty': '처방을 입력하면 검토합니다',
     'panel.minimise': '검토 패널 접기', // (widget)
@@ -88,8 +88,8 @@ export const STRINGS = {
     'live.none': '처방 검토: 규칙상 문제 없음', // (widget)
     'live.incomplete': '처방 검토: 검토 불완전', // (widget)
     'count.n': '{label} {n}건', // (widget)
-    'sheet.label': 'NuvoVet DUR 처방 검토', // (widget)
-    'island.label': 'NuvoVet DUR 아일랜드', // (widget) island
+    'sheet.label': 'nuvovet DUR 처방 검토', // (widget)
+    'island.label': 'nuvovet DUR 아일랜드', // (widget) island
     'island.hint': '클릭하면 펼칩니다. 끌어서 원하는 곳에 두십시오.', // (widget) island
     'island.details': '전체 검토', // (widget) island
     'island.dismiss': '알림 닫기', // (widget) island
@@ -99,8 +99,8 @@ export const STRINGS = {
     'island.resolved': '경고가 모두 해결되었습니다', // (widget) island
   },
   en: {
-    'panel.title': 'NuvoVet DUR',
-    'panel.region': 'NuvoVet DUR prescription review',
+    'panel.title': 'nuvovet DUR',
+    'panel.region': 'nuvovet DUR prescription review',
     'panel.rules': '{n} rules',
     'panel.empty': 'Add a prescription to start the review',
     'panel.minimise': 'Collapse the review panel',
@@ -179,8 +179,8 @@ export const STRINGS = {
     'live.none': 'Prescription review: no rule findings',
     'live.incomplete': 'Prescription review: incomplete',
     'count.n': '{n} {label}',
-    'sheet.label': 'NuvoVet DUR prescription review',
-    'island.label': 'NuvoVet DUR island',
+    'sheet.label': 'nuvovet DUR prescription review',
+    'island.label': 'nuvovet DUR island',
     'island.hint': 'Click to expand. Drag to move it anywhere.',
     'island.details': 'Full review',
     'island.dismiss': 'Dismiss',

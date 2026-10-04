@@ -1,13 +1,13 @@
 /**
- * Patient header of the fictional EMR (EMR popup spec §2.3): photo, signalment, alert chips,
- * insurance and a vitals strip (clinical.js, display only). Field names follow
+ * Patient header of the fictional EMR (EMR popup spec §2.3): photo, signalment, status cells,
+ * insurance and a vitals strip (clinical.js, display only). Legacy look on purpose: a square framed
+ * photo, square bordered key/value cells (MDR1, 알레르기, 만성, 보험) and labels without icons. Field names follow
  * EMR_Field_Analysis.md. The fields a vet corrects during a visit (종, 품종, 체중, 특이사항 /
  * MDR1, 알레르기) are editable in place; every change re-checks (order-select, §3.5), and the
  * widget's "차트 수정" (fix-chart) focuses them through `fieldRefs`.
  */
 
 import { useEffect, useId, useState } from 'react'
-import { Activity, HeartPulse, ShieldCheck, ShieldOff, Thermometer, TriangleAlert, Wind } from 'lucide-react'
 import { PetAvatar } from '@/brand/PetAvatar'
 import { ALLERGY_CLASSES, ALLERGY_BY_ID } from '../../knowledge/allergyClasses.js'
 import { MDR1_OPTIONS, SEX_KO, SPECIES_KO, SPECIES_OPTIONS, ageText, weightStaleDays } from './calc.js'
@@ -121,10 +121,9 @@ function Sparkline({ values }) {
   )
 }
 
-function Vital({ icon: Icon, label, value, unit, flag }) {
+function Vital({ label, value, unit, flag }) {
   return (
     <span className="emr-vital" data-flag={flag || undefined}>
-      {Icon ? <Icon aria-hidden="true" strokeWidth={1.75} /> : null}
       <span className="emr-k">{label}</span>
       <b className="emr-num">{value}</b>
       {unit ? <span className="emr-unit">{unit}</span> : null}
@@ -167,7 +166,9 @@ export function PatientHeader({ visit, fieldRefs, onPatient }) {
   return (
     <section className="emr-box emr-pt" aria-label="환자 정보" data-emr="patient">
       <div className="emr-pt-main">
-        <PetAvatar id={p.id} species={p.species} name={p.name} size={68} shape="rounded" className="emr-pt-photo" />
+        <span className="emr-pt-photo">
+          <PetAvatar id={p.id} species={p.species} name={p.name} size={64} shape="square" />
+        </span>
         <div className="emr-pt-info">
           <div className="emr-pt-line emr-pt-title">
             <span className="emr-pt-id"><span className="emr-pt-name">{p.name}</span> <span className="emr-num emr-muted">#{p.id}</span></span>
@@ -210,9 +211,8 @@ export function PatientHeader({ visit, fieldRefs, onPatient }) {
             <span className="emr-pt-field">
               <span className="emr-k">특이</span>
               {mdr1Remark ? (
-                <span className="emr-alert" data-tone="warn">
-                  <TriangleAlert aria-hidden="true" strokeWidth={2} />
-                  MDR1
+                <span className="emr-cell" data-tone="warn">
+                  <span className="emr-cell-k">MDR1</span>
                   {mdr1Select}
                 </span>
               ) : <span>{p.remarks || '없음'}</span>}
@@ -224,17 +224,17 @@ export function PatientHeader({ visit, fieldRefs, onPatient }) {
               </span>
             ) : null}
             {allergyLabels.map((a) => (
-              <span key={a} className="emr-alert" data-tone="danger"><TriangleAlert aria-hidden="true" strokeWidth={2} />알레르기 {a}</span>
+              <span key={a} className="emr-cell" data-tone="danger"><span className="emr-cell-k">알레르기</span><span className="emr-cell-v">{a}</span></span>
             ))}
             {chronic.map((d) => (
-              <span key={d.code} className="emr-alert" data-tone="info">{d.display}</span>
+              <span key={d.code} className="emr-cell" data-tone="info"><span className="emr-cell-k">만성</span><span className="emr-cell-v">{d.display}</span></span>
             ))}
           </div>
         </div>
         <div className="emr-pt-side">
-          <span className="emr-ins" data-on={insured || undefined}>
-            {insured ? <ShieldCheck aria-hidden="true" strokeWidth={1.75} /> : <ShieldOff aria-hidden="true" strokeWidth={1.75} />}
-            <span>{info?.insurance?.plan || '보험 정보 없음'}</span>
+          <span className="emr-cell emr-ins" data-tone={insured ? 'ok' : undefined}>
+            <span className="emr-cell-k">보험</span>
+            <span className="emr-cell-v">{info?.insurance?.plan || '정보 없음'}</span>
           </span>
           {rec ? (
             <span className="emr-visitinfo emr-num">접수 {rec.time} · {rec.room} · {SPECIES_KO[p.species] ?? ''} 재진</span>
@@ -245,10 +245,10 @@ export function PatientHeader({ visit, fieldRefs, onPatient }) {
         <div className="emr-vitals" aria-label="활력징후">
           <span className="emr-cc" title={info.complaint}><span className="emr-k">주호소</span>{info.complaint}</span>
           <span className="emr-vitals-row">
-            <Vital icon={Thermometer} label="체온" value={v.temp.toFixed(1)} unit="°C" flag={vitalFlag(p.species, 'temp', v.temp)} />
-            <Vital icon={HeartPulse} label="심박" value={v.hr} unit="bpm" flag={vitalFlag(p.species, 'hr', v.hr)} />
-            <Vital icon={Wind} label="호흡" value={v.rr} unit="/분" flag={vitalFlag(p.species, 'rr', v.rr)} />
-            <Vital icon={Activity} label="BCS" value={`${v.bcs}/9`} />
+            <Vital label="체온" value={v.temp.toFixed(1)} unit="°C" flag={vitalFlag(p.species, 'temp', v.temp)} />
+            <Vital label="심박" value={v.hr} unit="bpm" flag={vitalFlag(p.species, 'hr', v.hr)} />
+            <Vital label="호흡" value={v.rr} unit="/분" flag={vitalFlag(p.species, 'rr', v.rr)} />
+            <Vital label="BCS" value={`${v.bcs}/9`} />
             <span className="emr-vital"><span className="emr-k">체중 추이</span><Sparkline values={info.weights} /></span>
           </span>
         </div>

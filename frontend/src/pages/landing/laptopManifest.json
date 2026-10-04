@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "widths": [
+    2200
+  ],
+  "sizes": {
+    "2200": [
+      2200,
+      1760
+    ]
+  },
+  "aspect": 1.25,
+  "frames": 24,
+  "durationMs": 1200,
+  "poster": "closed",
+  "files": {
+    "frame": "seq-{w}/frame-{nn}.webp",
+    "open": "open-{w}.webp",
+    "glare": "glare-{w}.webp"
+  },
+  "screen": {
+    "w": 1200,
+    "h": 750,
+    "tl": [
+      0.15208,
+      0.040496
+    ],
+    "tr": [
+      0.84792,
+      0.040496
+    ],
+    "br": [
+      0.84792,
+      0.58412
+    ],
+    "bl": [
+      0.15208,
+      0.58412
+    ],
+    "off": "#000001"
+  }
+}
