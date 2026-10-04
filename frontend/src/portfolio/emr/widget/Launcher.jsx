@@ -148,7 +148,7 @@ export function Sheet() {
       {!expanded ? (
         <button ref={barRef} type="button" className="nv-sheet-bar" aria-expanded="false" aria-controls={id} onClick={open}>
           <span className="nv-sheet-status">{label}</span>
-          {summary ? <span className="nv-sheet-sum nv-truncate">{summary}</span> : null}
+          {summary ? <span className="nv-sheet-sum nv-truncate" data-truncate="" title={summary}>{summary}</span> : null}
           <span className="nv-sheet-brand" aria-hidden="true">nuvovet <span>DUR</span></span>
         </button>
       ) : (

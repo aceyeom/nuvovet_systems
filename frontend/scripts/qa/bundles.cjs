@@ -1,9 +1,12 @@
 /*
  * DESIGN_SYSTEM.md §9.3 bundle budgets (gzip), measured from the real builds:
- *   main entry ≤ 180 kB; /insurance route chunks excluding recharts ≤ 160 kB; recharts lazy in its own
+ *   main entry ≤ 180 kB; /insurance route chunks excluding recharts ≤ 164 kB; recharts lazy in its own
  *   chunk; `/` route ≤ 135 kB and never includes claimsDemoSnapshot.json; standalone ≤ 480 kB; widget IIFE ≤ 250 kB.
- *   (`/` was 120 kB before the brand landing: motion + number-flow drive its 3D hero and replays. The standalone
- *   was 450 kB before the EMR demo gained its chart content, patient photo, island and guide.)
+ *   (`/` was 120 kB before the brand landing: the rendered-laptop hero and its motion replays add the rest. The standalone
+ *   was 450 kB before the EMR demo gained its chart content, patient photo, island and guide. /insurance was
+ *   160 kB while the console sidebar's lockup was text (Pretendard "nuvovet" + a gradient tile); the brand layer
+ *   draws it as outlined MaruBuri paths, src/brand/brandMarks.generated.js ≈ 3 kB gzip plus ≈ 0.4 kB of lockup
+ *   geometry in Brand.jsx, so the budget carries those 4 kB and nothing else.)
  *
  * "Route chunks" are the JS files the browser actually requests for that route (served from dist/ with an
  * SPA fallback), minus the main entry's static closure. Requires `npm run build`, `build:portfolio`, `build:widget`.
@@ -83,7 +86,7 @@ async function main() {
     }
     const insRoute = [...ins].filter((f) => !main.has(f) && !rechartsChunks.includes(f) && !/^claimsDemoSnapshot-/.test(f))
     const insGz = sum(insRoute)
-    report.check('/insurance route chunks excluding recharts (and the data snapshot) ≤ 160 kB gzip', insGz <= 160 * 1024, `${kB(insGz)} kB: ${insRoute.join(', ')}`)
+    report.check('/insurance route chunks excluding recharts (and the data snapshot) ≤ 164 kB gzip', insGz <= 164 * 1024, `${kB(insGz)} kB: ${insRoute.join(', ')}`)
     const snap = [...ins].filter((f) => /^claimsDemoSnapshot-/.test(f))
     if (snap.length) report.info('/insurance also loads the data snapshot chunk (data, not code)', `${kB(sum(snap))} kB gzip`)
 

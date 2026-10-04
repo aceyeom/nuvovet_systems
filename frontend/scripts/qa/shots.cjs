@@ -111,6 +111,16 @@ async function runOne(browser, route, v, base, sbase, report) {
  */
 const INTRO_VIEWPORTS = [[1024, 768], [1180, 820], [1024, 600], [800, 600]]
 async function introCheck(browser, base, report) {
+  // Warm the dev server first: on a fresh server Vite transforms the landing's modules on the first request
+  // (≈1.5 s here), which would be charged to whichever viewport happens to load first. The 4 s is the
+  // page's own intro (lazy chunk, frame decode, lid, power-on), not the dev server's first compile.
+  {
+    const ctx = await browser.newContext({ viewport: { width: INTRO_VIEWPORTS[0][0], height: INTRO_VIEWPORTS[0][1] } })
+    const page = await ctx.newPage()
+    await page.goto(base + '/', { waitUntil: 'load', timeout: 60000 }).catch(() => {})
+    await page.waitForSelector('.lr[data-state="on"]', { timeout: 20000 }).catch(() => {})
+    await ctx.close()
+  }
   for (const [w, h] of INTRO_VIEWPORTS) {
     const ctx = await browser.newContext({ viewport: { width: w, height: h } })
     const page = await ctx.newPage()

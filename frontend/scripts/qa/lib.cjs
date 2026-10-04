@@ -162,6 +162,24 @@ const ACTS = {
   },
 }
 
+/**
+ * The DUR island at rest: no shape morph (`data-morphing`) and no entrance or re-check fade running, for
+ * 450 ms in a row. A later check (the EMR fills the prescription after the first response) can open a peek
+ * after the first response; audits and screenshots read the island's resting state, not a frame of its
+ * 370 ms fade-in (contrast is measured through the opacity chain).
+ */
+async function islandAtRest(page) {
+  await page.waitForFunction(() => {
+    const r = document.querySelector('nuvovet-dur-overlay')?.shadowRoot
+    if (!r) return true
+    const busy = !!r.querySelector('[data-morphing]') ||
+      r.getAnimations().some((a) => a.playState === 'running' && /^nv-island-(in|recheck)$/.test(a.animationName || ''))
+    const now = performance.now()
+    if (busy || !window.__qaIslandQuiet) window.__qaIslandQuiet = busy ? 0 : now
+    return !busy && now - window.__qaIslandQuiet >= 450
+  }, null, { timeout: 5000, polling: 50 }).catch(() => {})
+}
+
 /** Waits until the route has rendered (fonts ready, lazy chunks in, widget checked). */
 async function settle(page, route) {
   await page.waitForLoadState('load').catch(() => {})
@@ -177,6 +195,7 @@ async function settle(page, route) {
   }
   await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {})
   await sleep(400)
+  if (route.kind === 'emr') await islandAtRest(page)
   if (route.act) await ACTS[route.act](page)
 }
 

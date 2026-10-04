@@ -1192,7 +1192,7 @@ Output in `frontend/qa-shots/` (gitignored).
 - **Zero console errors and warnings** on every route (`console`, `pageerror`).
 - **No external requests:** for `/dur*`, the standalone file and the widget hostile host, anything not `localhost:<port>`, `file://` or `data:` fails; for the main app any host other than `localhost` fails (API calls go to `localhost:8000`).
 - **Navigation is links:** on each route, every visible `button`/`[role=button]` (max 40 per route) is clicked in a fresh page; if the URL path changes and the element is not inside an `<a href>`, fail — except form-submit buttons, CommandMenu items and keyboard handlers listed in `scripts/qa/nav-allowlist.json`.
-- **Bundle budgets** (gzip): main entry ≤ 180 kB; `/insurance` route chunks excluding recharts ≤ 160 kB; recharts lazy in its own chunk; `/` route ≤ 120 kB and never includes `claimsDemoSnapshot.json`; standalone `dist-portfolio/index.html` ≤ 450 kB; widget IIFE ≤ 250 kB.
+- **Bundle budgets** (gzip): main entry ≤ 180 kB; `/insurance` route chunks excluding recharts ≤ 164 kB; recharts lazy in its own chunk; `/` route ≤ 135 kB and never includes `claimsDemoSnapshot.json`; standalone `dist-portfolio/index.html` ≤ 480 kB; widget IIFE ≤ 250 kB. (Raised from 160 / 120 / 450 by the brand layer, §4.9: the outlined wordmark on the console sidebar, the rendered landing and the EMR demo's content; `scripts/qa/bundles.cjs` records each reason.)
 
 ### 9.4 Static checks (`scripts/qa/lint-design.cjs`)
 
