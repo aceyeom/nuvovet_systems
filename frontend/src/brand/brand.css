@@ -1,0 +1,200 @@
+/*
+ * nuvovet brand layer: the expressive marketing / demo surface that sits on top of the clinical
+ * design system (src/ui/tokens.css). Two products, two colours, one master brand:
+ *
+ *   nuvovet          ink + a cobalt-to-teal blend of the two product colours
+ *   nuvovet DUR      teal   (clinic side: prescription review inside the EMR)
+ *   nuvovet Claims   cobalt (insurer side: claim adjudication)
+ *
+ * Everything is namespaced --nvb-* / .nvb-* so it never collides with the console tokens. Product
+ * surfaces set data-product="dur" | "claims" and read the generic --nvb-p-* aliases.
+ * This layer is exempt from the console's colour/gradient lint (scripts/qa/lint-design.cjs).
+ */
+
+:root {
+  --nvb-ink: #0A1220;
+  --nvb-ink-2: #141E31;
+  --nvb-ink-3: #24304A;
+  --nvb-slate: #5A6478;
+  --nvb-slate-2: #677083;
+  --nvb-line: rgba(10, 18, 32, 0.08);
+  --nvb-line-2: rgba(10, 18, 32, 0.14);
+  --nvb-mist: #EEF2F8;
+  --nvb-canvas: #F7F9FC;
+  --nvb-white: #FFFFFF;
+
+  /* nuvovet DUR: teal */
+  --nvb-dur-50: #EAFBF7;
+  --nvb-dur-100: #CDF5EC;
+  --nvb-dur-200: #9DEAD9;
+  --nvb-dur-300: #5FD9C1;
+  --nvb-dur-400: #2CC4A8;
+  --nvb-dur-500: #10A88E;
+  --nvb-dur-600: #098773;
+  --nvb-dur-700: #0B6B5D;
+  --nvb-dur-900: #06322C;
+
+  /* nuvovet Claims: cobalt */
+  --nvb-claims-50: #EEF2FF;
+  --nvb-claims-100: #DCE3FF;
+  --nvb-claims-200: #B9C7FF;
+  --nvb-claims-300: #8DA2FF;
+  --nvb-claims-400: #6380FF;
+  --nvb-claims-500: #3F5EFB;
+  --nvb-claims-600: #2E46DC;
+  --nvb-claims-700: #2536AE;
+  --nvb-claims-900: #121B57;
+
+  /* Clinical signal colours used in illustrations (the console keeps its own severity tokens). */
+  --nvb-crit: #E5484D;
+  --nvb-crit-soft: #FFECEC;
+  --nvb-major: #F76B15;
+  --nvb-major-soft: #FFF0E5;
+  --nvb-mod: #F2A10D;
+  --nvb-mod-soft: #FFF6E0;
+  --nvb-ok: #12A57B;
+  --nvb-ok-soft: #E3F8F0;
+
+  --nvb-blend: linear-gradient(120deg, var(--nvb-claims-500) 0%, #2B8BE0 48%, var(--nvb-dur-400) 100%);
+
+  --nvb-font-display: "Geist Variable", "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+  --nvb-font-text: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+
+  --nvb-ease-spring: cubic-bezier(0.32, 1.28, 0.4, 1);
+  --nvb-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-product="dur"] {
+  --nvb-p-50: var(--nvb-dur-50);
+  --nvb-p-100: var(--nvb-dur-100);
+  --nvb-p-200: var(--nvb-dur-200);
+  --nvb-p-300: var(--nvb-dur-300);
+  --nvb-p-400: var(--nvb-dur-400);
+  --nvb-p-500: var(--nvb-dur-500);
+  --nvb-p-600: var(--nvb-dur-600);
+  --nvb-p-700: var(--nvb-dur-700);
+  --nvb-p-900: var(--nvb-dur-900);
+}
+[data-product="claims"] {
+  --nvb-p-50: var(--nvb-claims-50);
+  --nvb-p-100: var(--nvb-claims-100);
+  --nvb-p-200: var(--nvb-claims-200);
+  --nvb-p-300: var(--nvb-claims-300);
+  --nvb-p-400: var(--nvb-claims-400);
+  --nvb-p-500: var(--nvb-claims-500);
+  --nvb-p-600: var(--nvb-claims-600);
+  --nvb-p-700: var(--nvb-claims-700);
+  --nvb-p-900: var(--nvb-claims-900);
+}
+
+/* ── Lockup: [mark] nuvovet ╰ Product ───────────────────────────────────── */
+.nvb-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  /* Follows the console theme where one is set (--foreground), ink otherwise. */
+  color: var(--foreground, var(--nvb-ink));
+  font-family: var(--nvb-font-display);
+  line-height: 1;
+}
+.nvb-lockup[data-tone="light"] { color: #FFFFFF; }
+.nvb-mark { display: block; flex-shrink: 0; width: 26px; height: 26px; }
+.nvb-lockup[data-size="sm"] .nvb-mark { width: 22px; height: 22px; }
+.nvb-lockup[data-size="lg"] .nvb-mark { width: 32px; height: 32px; }
+.nvb-word {
+  font-size: 19px;
+  font-weight: 650;
+  letter-spacing: -0.04em;
+}
+.nvb-lockup[data-size="sm"] .nvb-word { font-size: 16px; }
+.nvb-lockup[data-size="lg"] .nvb-word { font-size: 23px; }
+.nvb-branch {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: -2px;
+}
+.nvb-branch svg { width: 12px; height: 18px; color: var(--nvb-p-400, var(--nvb-slate-2)); }
+.nvb-product {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 24px;
+  padding: 0 8px 0 7px;
+  border: 1px solid color-mix(in srgb, var(--nvb-p-500) 28%, transparent);
+  border-radius: 6px;
+  /* Mixed with the surface and text colours so the tag reads in light and dark themes alike. */
+  background: color-mix(in srgb, var(--nvb-p-500) 13%, var(--background, #FFFFFF));
+  color: color-mix(in srgb, var(--nvb-p-600) 60%, var(--foreground, #0A1220));
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+.nvb-product::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--nvb-p-500);
+  transform: rotate(45deg);
+}
+.nvb-lockup[data-size="sm"] .nvb-product { height: 21px; font-size: 12px; padding: 0 8px 0 7px; }
+.nvb-lockup[data-size="lg"] .nvb-product { height: 28px; font-size: 15px; padding: 0 11px 0 10px; }
+.nvb-lockup[data-tone="light"] .nvb-product {
+  background: color-mix(in srgb, var(--nvb-p-400) 18%, transparent);
+  color: var(--nvb-p-200);
+}
+.nvb-lockup .nvb-suffix {
+  font-family: var(--nvb-font-text);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted-foreground, var(--nvb-slate));
+  letter-spacing: 0;
+}
+.nvb-lockup[data-tone="light"] .nvb-suffix { color: rgba(255, 255, 255, 0.6); }
+
+/* ── Pet avatar: real photo, designed fallback when the image cannot load ─ */
+.nvb-pet {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--nvb-pet-bg, linear-gradient(140deg, #F3E3CF, #E2C29C));
+  color: var(--nvb-pet-fg, #6B4A26);
+  isolation: isolate;
+}
+.nvb-pet[data-shape="rounded"] { border-radius: 28%; }
+.nvb-pet img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--nvb-pet-pos, 50% 40%);
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.nvb-pet[data-loaded="true"] img { opacity: 1; }
+.nvb-pet-fallback {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  font-family: var(--nvb-font-text);
+  font-weight: 700;
+}
+.nvb-pet-fallback svg { width: 46%; height: 46%; stroke-width: 1.6; opacity: 0.85; }
+.nvb-pet[data-loaded="true"] .nvb-pet-fallback { opacity: 0; }
+.nvb-pet[data-ring="true"] {
+  box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px var(--nvb-p-400, var(--nvb-dur-400));
+}
+
+/* Phones: the lockup keeps the mark and the product pill only (e.g. the EMR demo bar). */
+@media (max-width: 639px) {
+  .nvb-lockup.nvb-compact-sm .nvb-word,
+  .nvb-lockup.nvb-compact-sm .nvb-suffix { display: none; }
+  .nvb-lockup.nvb-compact-sm .nvb-branch svg { display: none; }
+}

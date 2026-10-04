@@ -77,15 +77,22 @@ async function runOne(browser, route, v, base, sbase, report) {
     await settle(page, route)
     const res = await page.evaluate(audit, { kind: route.kind, skipHost: route.kind === 'emr' })
     await page.screenshot({ path: path.join(dir, `${v.id}.png`), fullPage: true })
-    for (const k of CHECKS) report.check(`${tag} ${k}`, !(res[k] && res[k].length), res[k])
+    const BRAND_EXEMPT = ['colour', 'fontSizes', 'radius', 'shadow']
+    for (const k of CHECKS) {
+      if (route.brand && BRAND_EXEMPT.includes(k)) continue
+      report.check(`${tag} ${k}`, !(res[k] && res[k].length), res[k])
+    }
     if (res.koreanOverwide) report.info(`${tag} koreanOverwide (word wider than its container)`, res.koreanOverwide)
     if (route.kind !== 'widget') {
       const f = await fontCheck(page, route)
-      report.check(`${tag} fonts: Pretendard Variable loaded and used`, f.loaded && f.sampled >= 1 && f.bad.length === 0, f)
+      // Brand routes set Latin display type in Geist (Hangul falls through to Pretendard in the same stack).
+      const bad = route.brand ? f.bad.map((x) => x.filter((n) => !/^(Geist|Pretendard Variable)/.test(n))).filter((x) => x.length) : f.bad
+      report.check(`${tag} fonts: Pretendard Variable loaded and used`, f.loaded && f.sampled >= 1 && bad.length === 0, f)
     }
     if (route.id === 'landing' && v.id === '1440-light') {
       const l = await page.evaluate(landingLayout)
-      report.check(`${tag} landing: hero crop top ≤ 520 px`, l.cropTop !== null && l.cropTop <= 520, l.cropTop)
+      const stageTop = await page.evaluate(() => { window.scrollTo(0, 0); return document.querySelector('.lp-stage')?.getBoundingClientRect().top ?? null })
+      report.check(`${tag} landing: product stage starts in the first screen (top ≤ 720 px)`, stageTop !== null && stageTop <= 720, stageTop)
       report.check(`${tag} landing: no stat strip`, l.strips.length === 0, l.strips)
     }
   } catch (e) {

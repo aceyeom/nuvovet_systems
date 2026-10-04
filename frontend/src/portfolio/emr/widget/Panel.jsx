@@ -13,7 +13,7 @@
  */
 
 import { useEffect, useId, useRef } from 'react'
-import { ChevronDown, CircleCheck, CircleDashed, Info, Minus, Plus, X } from 'lucide-react'
+import { ChevronDown, ChevronUp, CircleCheck, CircleDashed, GripVertical, Info, Minus, PanelRightOpen, Plus, X } from 'lucide-react'
 import { getProtocol } from '../../knowledge/drugs.js'
 import { Card, CollapsedCard } from './Card.jsx'
 import { CoverageStrip } from './CoverageStrip.jsx'
@@ -131,7 +131,7 @@ function Verdict({ response, locale, dur, confirm, onIncompleteChip }) {
   )
 }
 
-export function Panel({ mode }) {
+export function Panel({ mode, onCollapse, onResetPos }) {
   const { ctl, dur, s, ui, locale } = useWidget()
   const rootRef = useRef(null)
   const groupRef = useRef(null)
@@ -163,17 +163,39 @@ export function Panel({ mode }) {
     if (mode === 'drawer') {
       e.stopPropagation()
       ctl.setUi({ drawerOpen: false })
+    } else if (mode === 'island') {
+      e.stopPropagation()
+      onCollapse?.()
     } else if (mode === 'sheet') {
       e.stopPropagation()
       ctl.setUi({ sheetExpanded: false })
     }
   }
 
+  const dockable = Boolean(ui.island?.dockable)
   const headerButton =
-    mode === 'docked' ? (
-      <button type="button" className="nv-btn nv-btn-ghost nv-btn-icon" aria-expanded={!minimised} aria-controls={bodyId} aria-label={t(locale, minimised ? 'panel.expand' : 'panel.minimise')} onClick={() => ctl.setUi({ minimised: !minimised })}>
-        {minimised ? <Plus {...ic(16)} /> : <Minus {...ic(16)} />}
-      </button>
+    mode === 'island' ? (
+      <>
+        {dockable ? (
+          <button type="button" className="nv-btn nv-btn-ghost nv-btn-icon" aria-label={t(locale, 'island.dock')} title={t(locale, 'island.dock')} onClick={() => ctl.emit({ type: 'layout-request', layout: 'docked' })}>
+            <PanelRightOpen {...ic(16)} />
+          </button>
+        ) : null}
+        <button type="button" className="nv-btn nv-btn-ghost nv-btn-icon" aria-expanded="true" aria-controls={bodyId} aria-label={t(locale, 'island.collapse')} title={t(locale, 'island.collapse')} onClick={onCollapse} data-nv="island-collapse">
+          <ChevronUp {...ic(16)} />
+        </button>
+      </>
+    ) : mode === 'docked' ? (
+      <>
+        {dockable ? (
+          <button type="button" className="nv-btn nv-btn-ghost nv-btn-icon" aria-label={t(locale, 'island.undock')} title={t(locale, 'island.undock')} onClick={() => ctl.emit({ type: 'layout-request', layout: 'island' })}>
+            <PanelRightOpen {...ic(16)} style={{ transform: 'scaleX(-1)' }} />
+          </button>
+        ) : null}
+        <button type="button" className="nv-btn nv-btn-ghost nv-btn-icon" aria-expanded={!minimised} aria-controls={bodyId} aria-label={t(locale, minimised ? 'panel.expand' : 'panel.minimise')} onClick={() => ctl.setUi({ minimised: !minimised })}>
+          {minimised ? <Plus {...ic(16)} /> : <Minus {...ic(16)} />}
+        </button>
+      </>
     ) : mode === 'drawer' ? (
       <button type="button" className="nv-btn nv-btn-ghost nv-btn-icon" aria-label={t(locale, 'panel.close')} onClick={() => ctl.setUi({ drawerOpen: false })} data-nv="close">
         <X {...ic(16)} />
@@ -191,7 +213,12 @@ export function Panel({ mode }) {
 
   return (
     <aside ref={rootRef} className={`nv-panel nv-panel-${mode}`} role="region" aria-label={t(locale, 'panel.region')} onKeyDown={onKeyDown} data-nv-panel={mode}>
-      <div className="nv-head">
+      <div className="nv-head" data-nv-drag={mode === 'island' ? 'head' : undefined}>
+        {mode === 'island' ? (
+          <span className="nv-island-headgrip" aria-hidden="true" title={t(locale, 'island.hint')} onDoubleClick={onResetPos}>
+            <GripVertical {...ic(14)} />
+          </span>
+        ) : null}
         <span className="nv-head-title">{t(locale, 'panel.title')}</span>
         <span className="nv-head-meta nv-num">
           {t(locale, 'panel.rules', { n: ext?.rulesCount ?? 18 })}

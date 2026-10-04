@@ -1,13 +1,17 @@
 /**
- * Patient header of the fictional EMR (EMR popup spec §2.3), two 13 px lines. Field names follow
+ * Patient header of the fictional EMR (EMR popup spec §2.3): photo, signalment, alert chips,
+ * insurance and a vitals strip (clinical.js, display only). Field names follow
  * EMR_Field_Analysis.md. The fields a vet corrects during a visit (종, 품종, 체중, 특이사항 /
  * MDR1, 알레르기) are editable in place; every change re-checks (order-select, §3.5), and the
  * widget's "차트 수정" (fix-chart) focuses them through `fieldRefs`.
  */
 
 import { useEffect, useId, useState } from 'react'
+import { Activity, HeartPulse, ShieldCheck, ShieldOff, Thermometer, TriangleAlert, Wind } from 'lucide-react'
+import { PetAvatar } from '@/brand/PetAvatar'
 import { ALLERGY_CLASSES, ALLERGY_BY_ID } from '../../knowledge/allergyClasses.js'
-import { MDR1_OPTIONS, SEX_KO, SPECIES_OPTIONS, ageText, weightStaleDays } from './calc.js'
+import { MDR1_OPTIONS, SEX_KO, SPECIES_KO, SPECIES_OPTIONS, ageText, weightStaleDays } from './calc.js'
+import { RECEPTION, clinicalFor, vitalFlag } from './clinical.js'
 
 function WeightField({ patient, visitDate, inputRef, onChange }) {
   const kg = patient.weight?.kg
@@ -97,9 +101,43 @@ function textWidth(text) {
   return Math.min(320, Math.max(96, Math.ceil(wide * 13 + (t.length - wide) * 7.6 + 14)))
 }
 
+/** Weight trend (oldest → today) as a 64 × 20 sparkline. */
+function Sparkline({ values }) {
+  if (!values || values.length < 2) return null
+  const w = 64
+  const h = 20
+  const lo = Math.min(...values)
+  const hi = Math.max(...values)
+  const span = hi - lo || 1
+  const pts = values.map((v, i) => [(i / (values.length - 1)) * (w - 4) + 2, h - 3 - ((v - lo) / span) * (h - 6)])
+  const d = pts.map(([x, y], i) => `${i ? 'L' : 'M'}${x.toFixed(1)} ${y.toFixed(1)}`).join(' ')
+  const down = values[values.length - 1] < values[0]
+  const [lx, ly] = pts[pts.length - 1]
+  return (
+    <svg className="emr-spark" data-trend={down ? 'down' : 'up'} width={w} height={h} viewBox={`0 0 ${w} ${h}`} aria-hidden="true">
+      <path d={d} fill="none" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx={lx} cy={ly} r="2.2" />
+    </svg>
+  )
+}
+
+function Vital({ icon: Icon, label, value, unit, flag }) {
+  return (
+    <span className="emr-vital" data-flag={flag || undefined}>
+      {Icon ? <Icon aria-hidden="true" strokeWidth={1.75} /> : null}
+      <span className="emr-k">{label}</span>
+      <b className="emr-num">{value}</b>
+      {unit ? <span className="emr-unit">{unit}</span> : null}
+      {flag ? <span className="emr-flag">{flag === 'high' ? 'H' : 'L'}</span> : null}
+    </span>
+  )
+}
+
 export function PatientHeader({ visit, fieldRefs, onPatient }) {
   const p = visit.patient
   const dog = p.species === 'Canine'
+  const info = clinicalFor(visit.id)
+  const rec = RECEPTION[visit.id]
   // A remark that records the genotype ("MDR1 미검사") is the coded MDR1 field itself (§4.1).
   const mdr1Remark = /^MDR1\b/.test(p.remarks || '')
   const mdr1Select = (
@@ -121,61 +159,100 @@ export function PatientHeader({ visit, fieldRefs, onPatient }) {
     onPatient({ mdr1: value, remarks })
   }
 
+  const chronic = (visit.diagnoses || []).filter((d) => /URO-010|CAR-005|END-003|NEU-001/.test(d.code))
+  const allergyLabels = (p.allergies || []).map((a) => (a.code ? ALLERGY_BY_ID[a.code]?.label.ko ?? a.code : a.text))
+  const insured = info?.insurance?.status === '가입'
+  const v = info?.vitals
+
   return (
     <section className="emr-box emr-pt" aria-label="환자 정보" data-emr="patient">
-      <div className="emr-pt-clip">
-      <div className="emr-pt-line">
-        <span className="emr-pt-id"><span className="emr-pt-name">{p.name}</span> <span className="emr-num">#{p.id}</span></span>
-        <span className="emr-pt-field">
-          <select
-            ref={fieldRefs.species}
-            className="emr-select emr-flat"
-            aria-label="종"
-            value={p.species ?? ''}
-            onChange={(e) => onPatient({ species: e.target.value })}
-            data-emr="species"
-          >
-            {SPECIES_OPTIONS.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
-          </select>
-        </span>
-        <span className="emr-pt-field">
-          <input
-            ref={fieldRefs.breed}
-            className="emr-input emr-flat emr-breed"
-            style={{ width: textWidth(p.breed) }}
-            type="text"
-            aria-label="품종"
-            value={p.breed ?? ''}
-            onChange={(e) => onPatient({ breed: e.target.value })}
-            data-emr="breed"
-          />
-        </span>
-        <span>{SEX_KO[p.sex] ?? (p.sex || '미상')}</span>
-        <span className="emr-num">{ageText(p.birthDate, visit.date)} ({p.birthDate})</span>
-        <Allergies allergies={p.allergies || []} inputRef={fieldRefs.allergies} onChange={(allergies) => onPatient({ allergies })} />
-      </div>
-      <div className="emr-pt-line">
-        <WeightField patient={p} visitDate={visit.date} inputRef={fieldRefs.weight} onChange={(weight) => onPatient({ weight })} />
-        <span className="emr-pt-field"><span className="emr-k">보호자</span>{p.guardian || ''}</span>
-        <span className="emr-pt-field"><span className="emr-k">담당의</span>김민서</span>
-        <span className="emr-pt-field">
-          <span className="emr-k">특이</span>
-          {mdr1Remark ? (
-            <>
-              <span className="emr-warn" aria-hidden="true">⚠</span>
-              <span>MDR1</span>
-              {mdr1Select}
-            </>
-          ) : <span>{p.remarks || '없음'}</span>}
-        </span>
-        {dog && !mdr1Remark ? (
-          <span className="emr-pt-field">
-            <span className="emr-k">MDR1</span>
-            {mdr1Select}
+      <div className="emr-pt-main">
+        <PetAvatar id={p.id} species={p.species} name={p.name} size={68} shape="rounded" className="emr-pt-photo" />
+        <div className="emr-pt-info">
+          <div className="emr-pt-line emr-pt-title">
+            <span className="emr-pt-id"><span className="emr-pt-name">{p.name}</span> <span className="emr-num emr-muted">#{p.id}</span></span>
+            <span className="emr-pt-field">
+              <select
+                ref={fieldRefs.species}
+                className="emr-select emr-flat"
+                aria-label="종"
+                value={p.species ?? ''}
+                onChange={(e) => onPatient({ species: e.target.value })}
+                data-emr="species"
+              >
+                {SPECIES_OPTIONS.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
+              </select>
+            </span>
+            <span className="emr-pt-field">
+              <input
+                ref={fieldRefs.breed}
+                className="emr-input emr-flat emr-breed"
+                style={{ width: textWidth(p.breed) }}
+                type="text"
+                aria-label="품종"
+                value={p.breed ?? ''}
+                onChange={(e) => onPatient({ breed: e.target.value })}
+                data-emr="breed"
+              />
+            </span>
+            <span className="emr-pt-sep" aria-hidden="true">·</span>
+            <span>{SEX_KO[p.sex] ?? (p.sex || '미상')}</span>
+            <span className="emr-pt-sep" aria-hidden="true">·</span>
+            <span className="emr-num">{ageText(p.birthDate, visit.date)} <span className="emr-muted">({p.birthDate})</span></span>
+          </div>
+          <div className="emr-pt-line">
+            <WeightField patient={p} visitDate={visit.date} inputRef={fieldRefs.weight} onChange={(weight) => onPatient({ weight })} />
+            <span className="emr-pt-field"><span className="emr-k">보호자</span>{p.guardian || ''} <span className="emr-muted emr-num">010-****-{p.id}</span></span>
+            <span className="emr-pt-field"><span className="emr-k">담당의</span>김민서</span>
+            <Allergies allergies={p.allergies || []} inputRef={fieldRefs.allergies} onChange={(allergies) => onPatient({ allergies })} />
+          </div>
+          <div className="emr-pt-line emr-pt-flags">
+            <span className="emr-pt-field">
+              <span className="emr-k">특이</span>
+              {mdr1Remark ? (
+                <span className="emr-alert" data-tone="warn">
+                  <TriangleAlert aria-hidden="true" strokeWidth={2} />
+                  MDR1
+                  {mdr1Select}
+                </span>
+              ) : <span>{p.remarks || '없음'}</span>}
+            </span>
+            {dog && !mdr1Remark ? (
+              <span className="emr-pt-field">
+                <span className="emr-k">MDR1</span>
+                {mdr1Select}
+              </span>
+            ) : null}
+            {allergyLabels.map((a) => (
+              <span key={a} className="emr-alert" data-tone="danger"><TriangleAlert aria-hidden="true" strokeWidth={2} />알레르기 {a}</span>
+            ))}
+            {chronic.map((d) => (
+              <span key={d.code} className="emr-alert" data-tone="info">{d.display}</span>
+            ))}
+          </div>
+        </div>
+        <div className="emr-pt-side">
+          <span className="emr-ins" data-on={insured || undefined}>
+            {insured ? <ShieldCheck aria-hidden="true" strokeWidth={1.75} /> : <ShieldOff aria-hidden="true" strokeWidth={1.75} />}
+            <span>{info?.insurance?.plan || '보험 정보 없음'}</span>
           </span>
-        ) : null}
+          {rec ? (
+            <span className="emr-visitinfo emr-num">접수 {rec.time} · {rec.room} · {SPECIES_KO[p.species] ?? ''} 재진</span>
+          ) : null}
+        </div>
       </div>
-      </div>
+      {info ? (
+        <div className="emr-vitals" aria-label="활력징후">
+          <span className="emr-cc" title={info.complaint}><span className="emr-k">주호소</span>{info.complaint}</span>
+          <span className="emr-vitals-row">
+            <Vital icon={Thermometer} label="체온" value={v.temp.toFixed(1)} unit="°C" flag={vitalFlag(p.species, 'temp', v.temp)} />
+            <Vital icon={HeartPulse} label="심박" value={v.hr} unit="bpm" flag={vitalFlag(p.species, 'hr', v.hr)} />
+            <Vital icon={Wind} label="호흡" value={v.rr} unit="/분" flag={vitalFlag(p.species, 'rr', v.rr)} />
+            <Vital icon={Activity} label="BCS" value={`${v.bcs}/9`} />
+            <span className="emr-vital"><span className="emr-k">체중 추이</span><Sparkline values={info.weights} /></span>
+          </span>
+        </div>
+      ) : null}
     </section>
   )
 }

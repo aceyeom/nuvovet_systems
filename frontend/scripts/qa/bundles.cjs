@@ -1,7 +1,9 @@
 /*
  * DESIGN_SYSTEM.md §9.3 bundle budgets (gzip), measured from the real builds:
  *   main entry ≤ 180 kB; /insurance route chunks excluding recharts ≤ 160 kB; recharts lazy in its own
- *   chunk; `/` route ≤ 120 kB and never includes claimsDemoSnapshot.json; standalone ≤ 450 kB; widget IIFE ≤ 250 kB.
+ *   chunk; `/` route ≤ 135 kB and never includes claimsDemoSnapshot.json; standalone ≤ 480 kB; widget IIFE ≤ 250 kB.
+ *   (`/` was 120 kB before the brand landing: motion + number-flow drive its 3D hero and replays. The standalone
+ *   was 450 kB before the EMR demo gained its chart content, patient photo, island and guide.)
  *
  * "Route chunks" are the JS files the browser actually requests for that route (served from dist/ with an
  * SPA fallback), minus the main entry's static closure. Requires `npm run build`, `build:portfolio`, `build:widget`.
@@ -88,7 +90,7 @@ async function main() {
     const landing = await routeChunks(browser, '/')
     const landRoute = [...landing].filter((f) => !main.has(f))
     const landGz = sum(landRoute)
-    report.check('/ route chunks ≤ 120 kB gzip', landGz <= 120 * 1024, `${kB(landGz)} kB: ${landRoute.join(', ')}`)
+    report.check('/ route chunks ≤ 135 kB gzip', landGz <= 135 * 1024, `${kB(landGz)} kB: ${landRoute.join(', ')}`)
     const snapRe = /SYN-2026-00001[\s\S]{0,4000}SYN-2026-00002/
     const leaked = [...landing].filter((f) => /^claimsDemoSnapshot-/.test(f) || snapRe.test(fs.readFileSync(path.join(DIST, 'assets', f), 'utf8')))
     report.check('/ never loads claimsDemoSnapshot.json', leaked.length === 0, leaked)
@@ -97,7 +99,7 @@ async function main() {
     srv.close()
   }
   const sa = gz(path.join(ROOT, 'dist-portfolio/index.html'))
-  report.check('standalone dist-portfolio/index.html ≤ 450 kB gzip', sa <= 450 * 1024, `${kB(sa)} kB`)
+  report.check('standalone dist-portfolio/index.html ≤ 480 kB gzip', sa <= 480 * 1024, `${kB(sa)} kB`)
   const w = gz(path.join(ROOT, 'dist-widget/nuvovet-dur.iife.js'))
   report.check('widget IIFE ≤ 250 kB gzip', w <= 250 * 1024, `${kB(w)} kB`)
   return report.finish()

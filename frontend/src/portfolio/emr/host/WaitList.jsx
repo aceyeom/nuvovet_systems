@@ -6,10 +6,9 @@
 
 import { useState } from 'react'
 import { ListOrdered } from 'lucide-react'
+import { PetAvatar } from '@/brand/PetAvatar'
 import { SPECIES_KO } from './calc.js'
-
-/** Fictional reception times for the demo visits. */
-const TIMES = { V1: '09:10', V2: '09:25', V3: '09:40', V4: '10:05', V5: '10:20', V6: '10:45', V7: '11:00', V8: '11:30', V9: '13:40', V10: '14:05' }
+import { RECEPTION, RECEPTION_STATE } from './clinical.js'
 
 const TABS = [
   { key: 'wait', label: '대기' },
@@ -37,14 +36,24 @@ export function WaitList({ visits, currentId, hrefFor, open, onClose, onNavigate
   const [tab, setTab] = useState('wait')
   const query = q.trim()
   const entries = visits
-    .map((v) => ({ id: v.id, time: TIMES[v.id] ?? '', name: v.patient.name, no: v.patient.id, species: SPECIES_KO[v.patient.species] ?? '', active: v.id === currentId }))
-    .filter((e) => (tab === 'active' ? e.active : tab === 'pay' ? false : true))
+    .map((v) => {
+      const r = RECEPTION[v.id] || {}
+      const active = v.id === currentId
+      const state = active ? 'active' : r.state === 'active' ? 'waiting' : r.state || 'waiting'
+      return {
+        id: v.id, time: r.time ?? '', name: v.patient.name, no: v.patient.id, speciesCode: v.patient.species,
+        species: SPECIES_KO[v.patient.species] ?? '', breed: String(v.patient.breed || '').split('/').pop(),
+        reason: r.reason || '', wait: r.wait || 0, active, state,
+      }
+    })
+    .filter((e) => (tab === 'active' ? e.active : tab === 'pay' ? e.state === 'billing' : true))
     .filter((e) => !query || e.name.includes(query) || e.no.includes(query.replace(/^#/, '')))
 
   return (
     <nav className="emr-wait" aria-label="대기목록" data-open={open || undefined}>
       <div className="emr-wait-head">
         <span>대기목록</span>
+        <span className="emr-wait-count emr-num">{visits.length}명</span>
         <button type="button" className="emr-btn emr-btn-sm emr-wait-close" onClick={onClose}>닫기</button>
       </div>
       <div className="emr-wait-search">
@@ -70,10 +79,16 @@ export function WaitList({ visits, currentId, hrefFor, open, onClose, onNavigate
           <li className="emr-wait-empty">{tab === 'pay' ? '수납 대기 환자가 없습니다' : '검색 결과가 없습니다'}</li>
         ) : entries.map((e) => (
           <li key={e.id}>
-            <a className="emr-wait-item" href={hrefFor(e.id)} aria-current={e.active ? 'page' : undefined} onClick={onNavigate}>
-              <span className="emr-num">{e.time}</span>
-              <span className="emr-wait-name">{e.name} <span className="emr-muted">{e.species}</span></span>
-              <span className="emr-wait-status">{e.active ? '진료중' : '대기'}</span>
+            <a className="emr-wait-item" href={hrefFor(e.id)} aria-current={e.active ? 'page' : undefined} onClick={onNavigate} data-state={e.state}>
+              <PetAvatar id={e.no} species={e.speciesCode} size={34} alt="" className="emr-wait-photo" />
+              <span className="emr-wait-main">
+                <span className="emr-wait-name" data-truncate="" title={`${e.name} · ${e.species} · ${e.breed}`}>{e.name} <span className="emr-muted">{e.species} · {e.breed}</span></span>
+                <span className="emr-wait-reason" data-truncate="" title={e.reason}>{e.reason}</span>
+              </span>
+              <span className="emr-wait-meta">
+                <span className="emr-num">{e.time}</span>
+                <span className="emr-wait-status">{RECEPTION_STATE[e.state] ?? '대기'}{e.state === 'waiting' && e.wait ? <span className="emr-num"> {e.wait}분</span> : null}</span>
+              </span>
             </a>
           </li>
         ))}

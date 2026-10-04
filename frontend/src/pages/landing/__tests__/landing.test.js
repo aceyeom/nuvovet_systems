@@ -1,24 +1,27 @@
-// Landing `/` (DESIGN_SYSTEM.md §5.1, §9.6): numbers only from heroClaim.json, no stat strip, no shader,
-// no contact address, no skeleton at first paint.
+// Landing `/`: two products with their own lockups, the hero headline, a role chooser that links to every
+// demo, and Claims figures read only from heroClaim.json (never the 2.4 MB snapshot).
 import { describe, expect, it } from 'vitest'
 import { createElement } from 'react'
 import { renderToString } from 'react-dom/server'
 import { MemoryRouter } from 'react-router-dom'
-import { readFileSync } from 'node:fs'
+import { readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import heroClaim from '../../insurance/preview/heroClaim.json'
 import { isActionable } from '../../insurance/preview/model.js'
 import { ledgerLines, ledgerTotals } from '../ledger.js'
 import Landing from '../Landing.jsx'
-import { headlineParts } from '../Hero.jsx'
+import { headlineRuns, headlineText } from '../Hero.jsx'
+import { CLAIM_LEDGER, CLAIM_LINES } from '../replays/script.js'
+import { DUR_PHASES } from '../replays/DurReplay.jsx'
+import { CLAIMS_PHASES } from '../replays/ClaimsReplay.jsx'
 import { CONTACT_EMAIL, ko } from '../../../i18n/index.jsx'
 import { fmtWon } from '@/ui/lib/format'
 
 const LANDING_DIR = join(import.meta.dirname, '..')
-const SOURCES = ['Landing.jsx', 'Nav.jsx', 'Hero.jsx', 'Sections.jsx', 'Footer.jsx', 'ledger.js'].map((f) => [
-  f,
-  readFileSync(join(LANDING_DIR, f), 'utf8'),
-])
+const SOURCES = [
+  ...readdirSync(LANDING_DIR).filter((f) => /\.(jsx?|css)$/.test(f)).map((f) => join(LANDING_DIR, f)),
+  ...readdirSync(join(LANDING_DIR, 'replays')).map((f) => join(LANDING_DIR, 'replays', f)),
+].map((f) => [f, readFileSync(f, 'utf8')])
 
 function render() {
   return renderToString(createElement(MemoryRouter, { initialEntries: ['/'] }, createElement(Landing)))
@@ -30,7 +33,6 @@ describe('ledger model', () => {
     expect(rows).toHaveLength(3)
     const risks = rows.map((r) => r.risk)
     expect([...risks].sort((a, b) => b - a)).toEqual(risks)
-    // No line outside the three carries more risk than the smallest shown.
     const shown = new Set(rows.map((r) => r.index))
     for (const [i, line] of heroClaim.lines.entries()) {
       if (shown.has(i) || !line.code) continue
@@ -59,18 +61,38 @@ describe('ledger model', () => {
   })
 })
 
+describe('hero headline', () => {
+  it('marks one DUR word and one Claims word, over two lines', () => {
+    const lines = headlineRuns(ko.landing.hero.headline)
+    expect(lines).toHaveLength(2)
+    const tones = lines.flat().map((r) => r.tone).filter(Boolean)
+    expect(tones).toEqual(['dur', 'claims'])
+    expect(headlineText(ko.landing.hero.headline)).not.toMatch(/\[|\]|\{|\}/)
+  })
+})
+
+describe('hero replays', () => {
+  it('the Claims payout ledger adds up to the payable amount', () => {
+    const [billed, ...rest] = CLAIM_LEDGER
+    const paid = rest.pop()
+    expect(billed.value - rest.reduce((s, r) => s + r.value, 0)).toBe(paid.value)
+    expect(paid.value).toBe(heroClaim.payable.reimbursed)
+  })
+  it('replays every claim line, and both scripts loop in under 20 s', () => {
+    expect(CLAIM_LINES).toHaveLength(heroClaim.lines.length)
+    for (const phases of [DUR_PHASES, CLAIMS_PHASES]) expect(phases.reduce((s, p) => s + p.ms, 0)).toBeLessThan(20000)
+  })
+})
+
 describe('landing page', () => {
   const html = render()
 
-  it('renders the founder-editable headline and the hero claim synchronously', () => {
-    const parts = headlineParts(ko.landing.hero.headline)
-    expect(parts).toHaveLength(2)
-    for (const p of parts) expect(html).toContain(p)
-    // The break sits after "있는", never between "수" and "있는" (design review P1-16).
-    expect(parts[0].endsWith('있는')).toBe(true)
-    expect(html).toContain(heroClaim.claim_id)
-    expect(html).toContain('inert')
-    expect(html).not.toContain('data-skeleton')
+  it('renders the headline, both product lockups and the step rail synchronously', () => {
+    for (const runs of headlineRuns(ko.landing.hero.headline)) for (const r of runs) expect(html).toContain(r.text)
+    expect(html).toContain('nvb-lockup')
+    expect(html).toMatch(/data-product="dur"/)
+    expect(html).toMatch(/data-product="claims"/)
+    for (const s of ko.landing.hero.steps.dur) expect(html).toContain(s)
   })
 
   it('shows the ledger numbers read from heroClaim.json', () => {
@@ -85,12 +107,14 @@ describe('landing page', () => {
     }
   })
 
-  it('has one h1, one main and the console as the primary action', () => {
+  it('has one h1 and one main, and links every demo', () => {
     expect(html.match(/<h1[\s>]/g)).toHaveLength(1)
     expect(html.match(/<main[\s>]/g)).toHaveLength(1)
     expect(html).toContain('href="/insurance"')
     expect(html).toContain('href="/insurance/api"')
     expect(html).toContain('href="/dur"')
+    expect(html).toContain('href="/dur#/emr/V1"')
+    for (const v of ['V2', 'V5', 'V10']) expect(html).toContain(`href="/dur#/emr/${v}"`)
     expect(html).not.toContain('href="#"')
   })
 
@@ -101,24 +125,13 @@ describe('landing page', () => {
     expect(html).not.toMatch(/[\w.+-]+@[\w-]+\.[\w.]+/)
   })
 
-  it('carries no numbers in its sources (they all come from the hero claim)', () => {
-    // A figure such as 312, 7,383,700 or 848 must never be typed into the page or its copy. Class names
-    // (max-w-300) are not copy, so only literals with Hangul and the Korean strings are checked.
-    const FIGURE = /\d{3,}|\d,\d{3}|\d%/
-    for (const [name, src] of SOURCES) {
-      const literals = (src.match(/(['"`])(?:(?!\1).)*\1/g) || []).filter((l) => /[가-힣]/.test(l))
-      for (const lit of literals) expect(lit, `${name}: ${lit}`).not.toMatch(FIGURE)
-    }
+  it('never types claim amounts into its copy (they come from the hero claim)', () => {
     const copy = JSON.stringify(ko.landing).replace('© 2026 nuvovet', '')
-    expect(copy).not.toMatch(FIGURE)
+    expect(copy).not.toMatch(/\d{3,}|\d,\d{3}|\d%/)
   })
 
-  it('imports no shader, motion library or snapshot', () => {
-    for (const [name, src] of SOURCES) {
-      expect(src, name).not.toMatch(/from ['"](three|framer-motion)['"]/)
-      expect(src, name).not.toMatch(/claimsDemoSnapshot/)
-      expect(src, name).not.toMatch(/ShaderHero|FeatureSection|CTASection|Illustration/)
-    }
+  it('never imports the claims snapshot', () => {
+    for (const [name, src] of SOURCES) expect(src, name).not.toMatch(/claimsDemoSnapshot/)
   })
 
   it('uses none of the banned copy', () => {

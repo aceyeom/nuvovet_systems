@@ -133,6 +133,7 @@ function Shell() {
         homeHref={HREF.study}
         homeLabel={t('app.home')}
         product={t('app.product')}
+        brand="dur"
         nav={nav}
         navLabel={t('nav.label')}
         marker={t('app.marker')}

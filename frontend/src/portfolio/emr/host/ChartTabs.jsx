@@ -8,16 +8,49 @@
 import { CONDITION_BY_ID } from '../../knowledge/conditions.js'
 import { CONDITION_MAP } from '../conditionMap.js'
 import { LAB_INFO } from './calc.js'
+import { clinicalFor } from './clinical.js'
 import { tabKeys } from './WaitList.jsx'
 
 export const CHART_TABS = [
-  { key: 'S', label: 'S', title: '주관적 소견' },
-  { key: 'O', label: 'O', title: '객관적 소견' },
-  { key: 'A', label: 'A', title: '평가 (진단명)' },
-  { key: 'P', label: 'P', title: '계획' },
+  { key: 'S', label: 'S 주관', title: '주관적 소견' },
+  { key: 'O', label: 'O 객관', title: '객관적 소견' },
+  { key: 'A', label: 'A 진단', title: '평가 (진단명)' },
+  { key: 'P', label: 'P 계획', title: '계획' },
   { key: 'labs', label: '검사결과', title: '검사결과' },
-  { key: 'history', label: '이력', title: '이력' },
+  { key: 'history', label: '이력·백신', title: '이력' },
 ]
+
+/** Earlier visits (timeline) and vaccinations, display only (clinical.js). */
+function History({ visit }) {
+  const info = clinicalFor(visit.id)
+  if (!info) return <p className="emr-muted">이전 방문 기록 없음</p>
+  return (
+    <div className="emr-history" data-emr="history">
+      <ol className="emr-timeline" aria-label="이전 방문">
+        <li data-now="">
+          <span className="emr-num">{visit.date}</span>
+          <b>오늘 진료</b>
+          <span className="emr-muted">{info.complaint}</span>
+        </li>
+        {info.history.map((h) => (
+          <li key={h.date + h.title}>
+            <span className="emr-num">{h.date}</span>
+            <b>{h.title}</b>
+            <span className="emr-muted">{h.detail}</span>
+          </li>
+        ))}
+      </ol>
+      <table className="emr-labs emr-vax" aria-label="예방접종">
+        <thead><tr><th scope="col">예방접종</th><th scope="col">접종일</th><th scope="col">다음 예정</th></tr></thead>
+        <tbody>
+          {info.vaccines.map((x) => (
+            <tr key={x.name}><td>{x.name}</td><td className="emr-num">{x.date}</td><td className="emr-num" data-overdue={/지남/.test(x.due) || undefined}>{x.due}</td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}
 
 const DX_OPTIONS = Object.entries(CONDITION_MAP).map(([code, id]) => ({ code, display: CONDITION_BY_ID[id]?.label.ko ?? code }))
 
@@ -70,6 +103,13 @@ function Diagnoses({ visit, refs, onDiagnoses }) {
   )
 }
 
+/** 'H' when a creatinine value is above the reference cut-off shown in the 참고 column. */
+function labFlag(l, species) {
+  const ref = LAB_INFO[l.code]?.ref?.[species]
+  const m = /<\s*([\d.]+)/.exec(ref || '')
+  return m && l.value !== '' && Number(l.value) >= Number(m[1])
+}
+
 function Labs({ visit, refs, onLabs }) {
   const labs = visit.patient.labs || []
   const species = visit.patient.species
@@ -102,7 +142,7 @@ function Labs({ visit, refs, onLabs }) {
                       onChange={(e) => set(i, { value: e.target.value })}
                     />
                   </td>
-                  <td>{l.unit}</td>
+                  <td>{l.unit}{labFlag(l, species) ? <span className="emr-labflag">H</span> : null}</td>
                   <td className="emr-muted">{info.ref[species] ?? ''}</td>
                   <td>
                     <button type="button" className="emr-btn emr-btn-sm" aria-label={`검사 삭제: ${info.name}`} onClick={() => onLabs(labs.filter((_, j) => j !== i))}>삭제</button>
@@ -128,7 +168,7 @@ function Labs({ visit, refs, onLabs }) {
 }
 
 export function ChartTabs({ visit, tab, onTab, refs, onDiagnoses, onLabs, onNote }) {
-  const notes = visit.notes || {}
+  const notes = { ...(clinicalFor(visit.id)?.notes || {}), ...(visit.notes || {}) }
   return (
     <section className="emr-box emr-soap" aria-label="진료 기록">
       <div className="emr-tabs" role="tablist" aria-label="진료 기록 탭" onKeyDown={(e) => tabKeys(e, CHART_TABS.map((t) => t.key), tab, onTab)}>
@@ -152,7 +192,7 @@ export function ChartTabs({ visit, tab, onTab, refs, onDiagnoses, onLabs, onNote
       <div className="emr-soap-body" role="tabpanel" id="emr-tabpanel" aria-labelledby={`emr-tab-${tab}`}>
         {tab === 'A' ? <Diagnoses visit={visit} refs={refs} onDiagnoses={onDiagnoses} /> : null}
         {tab === 'labs' ? <Labs visit={visit} refs={refs} onLabs={onLabs} /> : null}
-        {tab === 'history' ? <p className="emr-muted">이전 방문 기록 없음: 데모에는 이번 방문만 있습니다.</p> : null}
+        {tab === 'history' ? <History visit={visit} /> : null}
         {['S', 'O', 'P'].includes(tab) ? (
           <textarea
             aria-label={CHART_TABS.find((t) => t.key === tab).title}

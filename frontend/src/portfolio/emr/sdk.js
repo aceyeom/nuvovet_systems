@@ -306,6 +306,12 @@ export function createDur(options = {}) {
       notify()
     },
 
+    /** 'auto' | 'docked' | 'floating' | 'sheet' | 'island' (widget layout; the core only stores it). */
+    setLayout(layout) {
+      state.layout = layout || 'auto'
+      notify()
+    },
+
     getLog(encounterId) {
       return log.forEncounter(encounterId)
     },

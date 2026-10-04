@@ -113,7 +113,9 @@ class Report {
  */
 const STANDALONE = 'file://' + path.join(ROOT, 'dist-portfolio/index.html')
 const ROUTES = [
-  { id: 'landing', path: '/', kind: 'marketing' },
+  // brand: the landing is the expressive brand surface (src/brand); the console's §9.7 style budgets
+  // (neutral colour, radius, shadow, type-size count, Pretendard only) do not apply to it.
+  { id: 'landing', path: '/', kind: 'marketing', brand: true },
   { id: 'ins-overview', path: '/insurance', kind: 'app' },
   { id: 'ins-claims', path: '/insurance/claims', kind: 'app' },
   { id: 'ins-claims-sel', path: '/insurance/claims?sel=SYN-2026-00220', kind: 'app' },
@@ -181,6 +183,8 @@ async function settle(page, route) {
 /** Which requests are foreign for a route (§9.3 "No external requests"). */
 function isForeign(route, url, base, sbase) {
   if (url.startsWith('data:') || url.startsWith('blob:')) return false
+  // Patient photos are hot-linked from the Unsplash CDN by design (src/brand/pets.js); images only.
+  if (/^https:\/\/images\.unsplash\.com\//.test(url)) return false
   if (route.file) return !url.startsWith('file:')
   if (route.staticHost) return !url.startsWith(sbase)
   const u = new URL(url)
@@ -189,6 +193,8 @@ function isForeign(route, url, base, sbase) {
 }
 
 /** Ignorable console noise from the dev server only (Vite client connection lines are debug, not warnings). */
-const NOISE = [/\[vite\] (connecting|connected)/, /Download the React DevTools/]
+// Network failures of the hot-linked patient photos (images.unsplash.com) where the CDN is unreachable, e.g.
+// an offline or proxied CI box; PetAvatar falls back to its species glyph, so they are not app errors.
+const NOISE = [/\[vite\] (connecting|connected)/, /Download the React DevTools/, /Failed to load resource: net::ERR_(TUNNEL_CONNECTION_FAILED|NAME_NOT_RESOLVED|INTERNET_DISCONNECTED|CONNECTION_REFUSED|PROXY_CONNECTION_FAILED|BLOCKED_BY_CLIENT)/]
 
 module.exports = { ROOT, OUT, PORT, STATIC_PORT, API, STANDALONE, playwright, arg, flag, sleep, get, devServer, staticServer, Report, ROUTES, ACTS, routeUrl, settle, isForeign, NOISE }

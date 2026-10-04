@@ -1,25 +1,31 @@
-// Landing `/` (DESIGN_SYSTEM.md §5.1): built around the live product UI. No stat strip, no shader, no
-// illustrations. Every number is read at runtime from heroClaim.json (WP6), so `/` never loads the
-// 2.4 MB snapshot. Korean only; the page follows the system theme and has no toggle.
+// Landing `/`: the expressive brand surface (src/brand, landing.css). A 3D laptop replays both
+// products in the hero; below it, a role chooser and one section per product in its own colour.
+// Claims figures are read at runtime from heroClaim.json, so `/` never loads the 2.4 MB snapshot.
+// Korean only; the page is light by design (the brand layer does not follow the console theme).
+import '@fontsource-variable/geist'
+import './landing.css'
 import { useTitle } from '@/ui/patterns/useTitle'
-import { heroClaim } from '../insurance/preview/index.js'
+import heroClaim from '../insurance/preview/heroClaim.json'
 import { useI18n } from '../../i18n'
 import Nav from './Nav'
 import Hero from './Hero'
-import { IntegrationSection, LedgerSection, PilotBand, SecuritySection } from './Sections'
+import { Band, ChooserSection, ClaimsSection, DurSection, IntegrationSection, PilotBand, SecuritySection } from './Sections'
 import Footer from './Footer'
 
 export default function Landing() {
   const { t } = useI18n()
   useTitle(t.landing.title)
   return (
-    <div className="min-h-dvh bg-background text-foreground">
+    <div className="lp nv-scope" data-theme="light">
       <Nav />
       <main>
-        <Hero claim={heroClaim} />
-        <LedgerSection claim={heroClaim} />
+        <Hero />
+        <ChooserSection />
+        <DurSection />
+        <ClaimsSection claim={heroClaim} />
         <IntegrationSection />
         <SecuritySection />
+        <Band />
         <PilotBand />
       </main>
       <Footer />

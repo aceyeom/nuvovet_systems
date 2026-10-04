@@ -28,6 +28,7 @@ import {
   useSidebar,
 } from '@/ui/primitives/sidebar'
 import { Logo } from '@/ui/patterns/Logo'
+import { BrandLockup } from '@/brand/Brand'
 import { fmtNum } from '@/ui/lib/format'
 import { isMac } from './CommandMenu'
 
@@ -98,7 +99,7 @@ function CommandTrigger({ onOpen }) {
   )
 }
 
-export function AppShell({ nav, activeId, footer = [], LinkComponent, homeTo = '/', product, breadcrumb, onOpenCommand, marker, themeToggle, userMenu, children }) {
+export function AppShell({ nav, activeId, footer = [], LinkComponent, homeTo = '/', product, brand, breadcrumb, onOpenCommand, marker, themeToggle, userMenu, children }) {
   const groups = []
   for (const item of nav) {
     const key = item.group || ''
@@ -111,7 +112,11 @@ export function AppShell({ nav, activeId, footer = [], LinkComponent, homeTo = '
       <Sidebar collapsible="icon" aria-label="주 메뉴">
         <SidebarHeader className="h-12 justify-center px-4 group-data-[collapsible=icon]:px-2">
           <LinkComponent to={homeTo} className="flex min-w-0 items-center rounded-sm" aria-label={`nuvovet ${product || ''}`.trim()}>
-            <Logo product={product} className="group-data-[collapsible=icon]:hidden" />
+            {brand ? (
+              <BrandLockup product={brand} size="sm" className="group-data-[collapsible=icon]:hidden" />
+            ) : (
+              <Logo product={product} className="group-data-[collapsible=icon]:hidden" />
+            )}
             <span aria-hidden="true" className="hidden w-8 text-center text-lg font-bold tracking-[-0.03em] text-foreground group-data-[collapsible=icon]:inline">
               n
             </span>
