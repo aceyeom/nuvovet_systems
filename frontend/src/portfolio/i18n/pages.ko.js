@@ -35,7 +35,7 @@ export default {
   'rp.ack.signature': '서명',
   'rp.ack.date': '날짜',
   'rp.references': '참고문헌',
-  'rp.footer': '보고서 {id}, NuvoVet DUR 교육용 프로토타입',
+  'rp.footer': '보고서 {id}, nuvovet DUR 교육용 프로토타입',
   'rp.idNote': '보고서 ID는 사례 입력값의 해시입니다. 같은 입력은 항상 같은 ID가 되고, 하나라도 바꾸면 새 ID가 됩니다.',
 
   // Owner handout
@@ -78,7 +78,7 @@ export default {
 
   // Case study
   'cs.title': '동물 처방 검토 엔진',
-  'cs.lead': 'NuvoVet DUR은 환자 정보와 처방을 함께 검토하고 경고마다 근거를 보여 줍니다. 규칙 모델, 엔진, 진료 화면을 제가 설계했습니다. 교육용 프로토타입이며, 회사는 이후 펫보험 청구 심사로 방향을 바꿨습니다.',
+  'cs.lead': 'nuvovet DUR은 환자 정보와 처방을 함께 검토하고 경고마다 근거를 보여 줍니다. 규칙 모델, 엔진, 진료 화면을 제가 설계했습니다. 교육용 프로토타입이며, 회사는 이후 펫보험 청구 심사로 방향을 바꿨습니다.',
   'cs.ctaEmr': 'EMR 데모 열기',
   'cs.ctaCases': '사례 {n}개 보기',
   'cs.panelAlt': '방문 V1(초코)의 DUR 패널: 러프 콜리에게 고용량 이버멕틴과 케토코나졸을 함께 처방해 금기로 판정된 화면',

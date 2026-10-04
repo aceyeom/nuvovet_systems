@@ -4,12 +4,19 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 /**
  * Steps through `phases` ([{ id, ms }]) while `playing`; loops. Returns the current index, id,
  * the loop count and `reached(id)` (true once that phase has started in this loop).
+ *   start  the phase to begin on (a reduced-motion still holds its key frame there)
+ *   onEnd  called when the last phase ends; return true to stop there (the caller moves on),
+ *          anything else loops back to the first phase
+ * A pause restarts the current phase from its beginning when play resumes.
  */
-export function usePhases(phases, { playing = true, start = 0 } = {}) {
+export function usePhases(phases, { playing = true, start = 0, onEnd } = {}) {
   const [state, setState] = useState({ i: start, cycle: 0 })
+  const endRef = useRef(onEnd)
+  endRef.current = onEnd
   useEffect(() => {
     if (!playing) return undefined
     const id = setTimeout(() => {
+      if (state.i + 1 >= phases.length && endRef.current?.() === true) return
       setState((s) => (s.i + 1 < phases.length ? { ...s, i: s.i + 1 } : { i: 0, cycle: s.cycle + 1 }))
     }, phases[state.i].ms)
     return () => clearTimeout(id)
@@ -21,6 +28,13 @@ export function usePhases(phases, { playing = true, start = 0 } = {}) {
     cycle: state.cycle,
     reached: (id) => phases.findIndex((p) => p.id === id) <= index,
   }
+}
+
+/** Calls the latest `fn(...args)` whenever `deps` change (callbacks from the hero may change identity). */
+export function useReport(fn, args) {
+  const ref = useRef(fn)
+  ref.current = fn
+  useEffect(() => { ref.current?.(...args) }, args) // eslint-disable-line react-hooks/exhaustive-deps
 }
 
 /** Types `text` one character at a time while `active`; resets when `active` turns false. */

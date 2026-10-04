@@ -187,7 +187,7 @@ describe('card building (§8.2)', () => {
         for (const k of res(id, locale).cards) {
           expect(k.summary.length).toBeGreaterThan(0)
           expect([...k.summary].length).toBeLessThanOrEqual(140)
-          expect(k.source.label).toBe('NuvoVet DUR')
+          expect(k.source.label).toBe('nuvovet DUR')
           expect(k.source.topic.code).toBe(k.extension.ruleIds[0])
           expect(k.source.topic.display).toBeTruthy()
           expect(k.extension.blocking).toBe(['contraindicated', 'major'].includes(k.extension.severity))

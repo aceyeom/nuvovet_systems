@@ -1,18 +1,18 @@
 /**
- * Landing nav: a floating glass bar. Left the master lockup; in the middle the two products as
- * coloured sub-brand links plus 연동 / 보안; right one call to action per product. On phones the
- * links fold into a sheet.
+ * Landing nav: a full-width white bar, 64 px, with a hairline under it once the page scrolls (no glass,
+ * no float). Left the master wordmark; right the section links as plain text, the Claims console as a
+ * text link and the EMR demo as the one solid button. On phones the links fold into a plain sheet behind
+ * a CSS-drawn menu glyph (two hairlines; two crossed hairlines to close).
  */
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Menu, X } from 'lucide-react'
 import { BrandLockup } from '@/brand/Brand'
 import { CONTACT_EMAIL, useI18n } from '../../i18n'
 
 function useScrolled() {
   const [scrolled, setScrolled] = useState(false)
   useEffect(() => {
-    const update = () => setScrolled(window.scrollY > 8)
+    const update = () => setScrolled(window.scrollY > 4)
     update()
     window.addEventListener('scroll', update, { passive: true })
     return () => window.removeEventListener('scroll', update)
@@ -25,32 +25,52 @@ export function Nav() {
   const n = t.landing.nav
   const scrolled = useScrolled()
   const [open, setOpen] = useState(false)
-  const links = (
-    <>
-      <a href="#dur" className="lp-navlink" data-product="dur" onClick={() => setOpen(false)}><span className="lp-navdot" />{n.dur}</a>
-      <a href="#claims" className="lp-navlink" data-product="claims" onClick={() => setOpen(false)}><span className="lp-navdot" />{n.claims}</a>
-      <a href="#start" className="lp-navlink" onClick={() => setOpen(false)}>{n.how}</a>
-      <a href="#integration" className="lp-navlink" onClick={() => setOpen(false)}>{n.integration}</a>
-      <a href="#security" className="lp-navlink" onClick={() => setOpen(false)}>{n.security}</a>
-      {CONTACT_EMAIL ? <a href={`mailto:${CONTACT_EMAIL}`} className="lp-navlink">{n.pilot}</a> : null}
-    </>
-  )
+  useEffect(() => {
+    if (!open) return undefined
+    const onKey = (e) => { if (e.key === 'Escape') setOpen(false) }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open])
+  const close = () => setOpen(false)
+  const links = [
+    ['#dur', n.dur],
+    ['#claims', n.claims],
+    ['#integration', n.integration],
+    ['#security', n.security],
+  ]
   return (
-    <header className="lp-nav-wrap" data-scrolled={scrolled || undefined}>
-      <div className="lp-nav">
-        <Link to="/" aria-label={n.home} className="lp-nav-home">
-          <BrandLockup size="sm" />
+    <header className="lp-nav" data-scrolled={scrolled || undefined} data-open={open || undefined}>
+      <div className="lp-container lp-nav-bar">
+        <Link to="/" aria-label={n.home} className="lp-nav-home" onClick={close}>
+          <BrandLockup height={22} />
         </Link>
-        <nav aria-label={n.label} className="lp-nav-links">{links}</nav>
-        <div className="lp-nav-cta">
-          <Link to="/dur#/emr/V1" className="lp-btn lp-btn-sm" data-product="dur">{n.durCta}</Link>
-          <Link to="/insurance" className="lp-btn lp-btn-sm" data-product="claims">{n.claimsCta}</Link>
-          <button type="button" className="lp-nav-menu" aria-label={n.menu} aria-expanded={open} onClick={() => setOpen((o) => !o)}>
-            {open ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
+        <nav aria-label={n.label} className="lp-nav-links">
+          {links.map(([href, label]) => <a key={href} href={href} className="lp-nav-link">{label}</a>)}
+          {CONTACT_EMAIL ? <a href={`mailto:${CONTACT_EMAIL}`} className="lp-nav-link">{n.pilot}</a> : null}
+        </nav>
+        <div className="lp-nav-end">
+          <Link to="/insurance" className="lp-nav-link lp-nav-console">{n.claimsCta}</Link>
+          <Link to="/dur#/emr/V1" className="nvb-btn lp-nav-btn">{n.durCta}</Link>
+          <button
+            type="button"
+            className="lp-nav-menu"
+            aria-label={open ? n.menuClose : n.menu}
+            aria-expanded={open}
+            aria-controls="lp-nav-sheet"
+            onClick={() => setOpen((o) => !o)}
+          >
+            <span className={open ? 'nvb-close' : 'nvb-menu'} aria-hidden="true" />
           </button>
         </div>
       </div>
-      {open ? <nav aria-label={n.label} className="lp-nav-sheet">{links}</nav> : null}
+      {open ? (
+        <nav id="lp-nav-sheet" aria-label={n.label} className="lp-nav-sheet">
+          <div className="lp-container">
+            {links.map(([href, label]) => <a key={href} href={href} onClick={close}>{label}</a>)}
+            <Link to="/insurance" onClick={close}>{n.claimsCta}</Link>
+          </div>
+        </nav>
+      ) : null}
     </header>
   )
 }

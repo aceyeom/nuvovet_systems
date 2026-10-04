@@ -1,5 +1,6 @@
-// Landing `/`: two products with their own lockups, the hero headline, a role chooser that links to every
-// demo, and Claims figures read only from heroClaim.json (never the 2.4 MB snapshot).
+// Landing `/`: two products with their own lockups, the two-line hero headline in one ink, an index that links
+// to every demo, Claims figures read only from heroClaim.json (never the 2.4 MB snapshot), and no icon set
+// on the brand surface (landing and src/brand).
 import { describe, expect, it } from 'vitest'
 import { createElement } from 'react'
 import { renderToString } from 'react-dom/server'
@@ -10,7 +11,7 @@ import heroClaim from '../../insurance/preview/heroClaim.json'
 import { isActionable } from '../../insurance/preview/model.js'
 import { ledgerLines, ledgerTotals } from '../ledger.js'
 import Landing from '../Landing.jsx'
-import { headlineRuns, headlineText } from '../Hero.jsx'
+import { headlineLines } from '../Hero.jsx'
 import { CLAIM_LEDGER, CLAIM_LINES } from '../replays/script.js'
 import { DUR_PHASES } from '../replays/DurReplay.jsx'
 import { CLAIMS_PHASES } from '../replays/ClaimsReplay.jsx'
@@ -18,10 +19,13 @@ import { CONTACT_EMAIL, ko } from '../../../i18n/index.jsx'
 import { fmtWon } from '@/ui/lib/format'
 
 const LANDING_DIR = join(import.meta.dirname, '..')
-const SOURCES = [
-  ...readdirSync(LANDING_DIR).filter((f) => /\.(jsx?|css)$/.test(f)).map((f) => join(LANDING_DIR, f)),
-  ...readdirSync(join(LANDING_DIR, 'replays')).map((f) => join(LANDING_DIR, 'replays', f)),
-].map((f) => [f, readFileSync(f, 'utf8')])
+const BRAND_DIR = join(import.meta.dirname, '../../../brand')
+/** Every source file under `dir` (recursively), tests excluded. */
+const sourcesIn = (dir) => readdirSync(dir, { recursive: true })
+  .filter((f) => /\.(jsx?|mjs|css)$/.test(f) && !/__tests__|\.test\./.test(f))
+  .map((f) => join(dir, f))
+const SOURCES = sourcesIn(LANDING_DIR).map((f) => [f, readFileSync(f, 'utf8')])
+const BRAND_SOURCES = sourcesIn(BRAND_DIR).map((f) => [f, readFileSync(f, 'utf8')])
 
 function render() {
   return renderToString(createElement(MemoryRouter, { initialEntries: ['/'] }, createElement(Landing)))
@@ -62,12 +66,10 @@ describe('ledger model', () => {
 })
 
 describe('hero headline', () => {
-  it('marks one DUR word and one Claims word, over two lines', () => {
-    const lines = headlineRuns(ko.landing.hero.headline)
-    expect(lines).toHaveLength(2)
-    const tones = lines.flat().map((r) => r.tone).filter(Boolean)
-    expect(tones).toEqual(['dur', 'claims'])
-    expect(headlineText(ko.landing.hero.headline)).not.toMatch(/\[|\]|\{|\}/)
+  it('is two lines in one ink: no tone markup', () => {
+    const h = ko.landing.hero.headline
+    expect(headlineLines(h)).toHaveLength(2)
+    expect(h).not.toMatch(/\[\[|\]\]|\{\{|\}\}/)
   })
 })
 
@@ -87,8 +89,8 @@ describe('hero replays', () => {
 describe('landing page', () => {
   const html = render()
 
-  it('renders the headline, both product lockups and the step rail synchronously', () => {
-    for (const runs of headlineRuns(ko.landing.hero.headline)) for (const r of runs) expect(html).toContain(r.text)
+  it('renders the headline, both product lockups and the step labels synchronously', () => {
+    for (const line of headlineLines(ko.landing.hero.headline)) expect(html).toContain(line)
     expect(html).toContain('nvb-lockup')
     expect(html).toMatch(/data-product="dur"/)
     expect(html).toMatch(/data-product="claims"/)
@@ -112,7 +114,8 @@ describe('landing page', () => {
     expect(html.match(/<main[\s>]/g)).toHaveLength(1)
     expect(html).toContain('href="/insurance"')
     expect(html).toContain('href="/insurance/api"')
-    expect(html).toContain('href="/dur"')
+    // the case study opens in the landing's language (Korean), not /dur's English default
+    expect(html).toContain('href="/dur#/?lang=ko"')
     expect(html).toContain('href="/dur#/emr/V1"')
     for (const v of ['V2', 'V5', 'V10']) expect(html).toContain(`href="/dur#/emr/${v}"`)
     expect(html).not.toContain('href="#"')
@@ -132,6 +135,19 @@ describe('landing page', () => {
 
   it('never imports the claims snapshot', () => {
     for (const [name, src] of SOURCES) expect(src, name).not.toMatch(/claimsDemoSnapshot/)
+  })
+
+  it('uses no icon set on the brand surface (landing and src/brand)', () => {
+    expect(SOURCES.length).toBeGreaterThan(5)
+    expect(BRAND_SOURCES.length).toBeGreaterThan(5)
+    for (const [name, src] of [...SOURCES, ...BRAND_SOURCES]) {
+      expect(src, name).not.toMatch(/from\s+['"]lucide-react['"]|import\(\s*['"]lucide-react['"]|require\(\s*['"]lucide-react['"]/)
+    }
+  })
+
+  it('links the photo credits from the footer (#credits)', () => {
+    expect(html).toContain('id="credits"')
+    expect(html).toContain('nvb-credits')
   })
 
   it('uses none of the banned copy', () => {

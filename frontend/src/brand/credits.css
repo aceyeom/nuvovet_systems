@@ -10,7 +10,7 @@
     word-break: keep-all;
     overflow-wrap: anywhere;
   }
-  .nvb-credits-note { margin: 0 0 12px; max-width: 46em; }
+  .nvb-credits-note { margin: 0 0 20px; max-width: 46em; }
   .nvb-credits-list {
     list-style: none;
     margin: 0;
@@ -27,6 +27,8 @@
     text-underline-offset: 3px;
     text-decoration-color: var(--nvb-rule-strong);
   }
+  /* a licence name never breaks ("CC BY 2.0" stays one piece) */
+  .nvb-credits a[rel~="license"] { white-space: nowrap; }
   .nvb-credits a:hover { color: var(--nvb-ink); text-decoration-color: currentColor; }
   .nvb-credits a:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; border-radius: 2px; }
 }

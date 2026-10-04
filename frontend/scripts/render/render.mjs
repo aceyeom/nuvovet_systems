@@ -2,7 +2,8 @@
 /*
  * Offline render of the landing laptop → frontend/public/render/laptop/.
  *
- *   cd frontend/scripts/render && npm install && node render.mjs            full set (both widths, ~1.5 h on SwiftShader)
+ *   cd frontend/scripts/render && npm install && node render.mjs            full set (2200 stills, 1440 sequence,
+ *                                                                           1000 both; ~1 h on SwiftShader)
  *   node render.mjs --widths 1000                                           one width
  *   node render.mjs --only 3-13                                             re-render some sequence frames, then encode
  *   node render.mjs --encode-only                                           WebP + manifests from the cache only
@@ -20,13 +21,19 @@
  * src/studio.js (environment), src/nearfield.js (near-field soft cards), src/occlusion.js (analytic
  * ground shadow + lid occlusion), src/core.js (jittered accumulation, tone mapping), src/receipt.js.
  *
- * Outputs (per width w):
+ * Outputs (per width w; STILLS = 2200, 1000 and MOTION = 1440, 1000 below):
  *   seq-{w}/frame-00..NN.webp   lid-opening sequence, transparent, screen off (black glass); the
- *                               in-between frames carry baked motion blur (SHUTTER)
- *   open-{w}.webp               final pose, the screen area without reflections (the DOM covers it)
- *   glare-{w}.webp              the glass reflection over the screen area (white, alpha = reflection)
- *   manifest.json               widths, frames, aspect, exact screen corners (normalised, top-left origin)
- *   receipt-{w}.webp            (--receipt) opaque still-life for the Claims chapter, 3:2
+ *                               in-between frames from 10° on carry baked motion blur (SHUTTER; the first
+ *                               ones stay sharp, see BLUR_FROM_DEG and scene.js setLid). The MOTION widths
+ *                               hold every frame; seq-2200 holds only frame-00, the closed poster
+ *   open-{w}.webp               (STILLS) final pose, the screen area without reflections (the DOM covers it)
+ *   glare-{w}.webp              (STILLS) the glass reflection over the screen area (white, alpha = reflection)
+ *   manifest.json               widths (stills), motion (sequence widths), frames, aspect, the closed and
+ *                               open alpha boxes, exact screen corners (normalised, top-left origin)
+ *   receipt-{w}.webp            (--receipt) opaque still-life for the Claims chapter, 3:2. Not shipped: at
+ *                               the paper's 8° yaw (src/receipt.js YAW) the right column drops ~1.3 rows
+ *                               across the width, so values read against the row above. Straighten it
+ *                               (YAW ≈ 2°) or set the values next to their labels before placing it.
  * and src/pages/landing/laptopManifest.json, the subset LaptopRender.jsx imports.
  */
 import http from 'node:http'
@@ -46,25 +53,43 @@ const CACHE = process.env.RENDER_CACHE || path.join(os.tmpdir(), 'nuvovet-render
 
 /* ------------------------------------------------------------------ settings */
 export const LOOK = {
-  view: { elev: 19, yaw: 0, dist: 13, lateral: 0, rise: 0, aspect: 1.25, margin: { l: 0.02, r: 0.02, t: 0.02, b: 0.05 } },
-  openDeg: 109, // = 90 + elev: the panel is parallel to the sensor, so the screen is an exact rectangle
+  // a three-quarter view: the camera swings 12° round to the right and slides a little to the side, so the
+  // lid and deck read as volumes with a diagonal falloff (dead-front read as a flat CG elevation). The
+  // screen is then a slight trapezoid; the manifest's corners are projected exactly and the page lays
+  // the DOM into it with a homography, so nothing else changes.
+  view: { elev: 19, yaw: 12, dist: 13, lateral: 0.5, rise: 0, aspect: 1.25, margin: { l: 0.02, r: 0.02, t: 0.02, b: 0.05 } },
+  openDeg: 109, // = 90 + elev: the panel faces the camera's pitch (only the yaw tilts it)
 }
 const SIZES = {
-  2200: { ss: 2, samples: 16, samplesSeq: 10, quality: { seq: 62, rest: 80, alpha: 80, glare: 70 } },
+  2200: { ss: 2, samples: 16, samplesSeq: 10, quality: { seq: 52, rest: 80, alpha: 75, glare: 70 } },
+  1440: { ss: 2, samples: 16, samplesSeq: 10, quality: { seq: 60, rest: 80, alpha: 80, glare: 70 } },
   1000: { ss: 2.5, samples: 16, samplesSeq: 10, quality: { seq: 66, rest: 82, alpha: 85, glare: 70 } },
 }
+// What the page loads (LaptopRender.jsx):
+//   STILLS — the closed poster (seq-{w}/frame-00), open and glare: crisp at rest on 2× screens;
+//   MOTION — the whole lid sequence, at the widths the canvas plays it at (≤ 1.25 × CSS px, ≤ ~1420 px).
+// A width in only one list renders only what that list needs (2200: three stills; 1440: the sequence).
+const STILLS = [2200, 1000]
+const MOTION = [1440, 1000]
+const WIDTHS = [...new Set([...STILLS, ...MOTION])].sort((a, b) => b - a).join(',')
+/** Sequence frames rendered and shipped for a width: all for a motion width, the poster otherwise. */
+const framesFor = (w, n) => (MOTION.includes(w) ? Array.from({ length: n }, (_, k) => k) : STILLS.includes(w) ? [0] : [])
 const FRAMES = 24
 const DURATION_MS = 1200
 // motion blur: each in-between frame integrates the lid over this fraction of the frame interval
-// (a 180° shutter); fast frames get more samples so the blur stays smooth (≈ one sample per 4.5 px of
-// travel of the lid's top edge)
-const SHUTTER = 0.5
+// (a ~110° shutter: at 180° the fastest frames smeared the lid's top edge into a translucent ghost over
+// the page); fast frames get more samples so the blur stays smooth (≈ one sample per 4.5 px of travel
+// of the lid's top edge)
+const SHUTTER = 0.3
 function blurSamples(range, width, base) {
   const travelPx = (Math.abs(range[1] - range[0]) * Math.PI) / 180 * 2.03 * ((width * 0.7) / 3.1)
   return Math.max(base, Math.min(32, Math.ceil(travelPx / 4.5)))
 }
 // ease-out spacing (cubic-bezier 0.3, 0, 0.25, 1): a short lift, then a long, soft settle
 const EASE = [0.3, 0, 0.25, 1]
+// no motion blur on the first degrees: the lid barely moves there, and a blurred frame smeared the
+// debossed monogram into "||" (frames 1–3 are 0.8°, 3.6° and 8.7°)
+const BLUR_FROM_DEG = 10
 
 /* ------------------------------------------------------------------ args */
 const argv = process.argv.slice(2)
@@ -221,46 +246,78 @@ async function receipt(page) {
   }
 }
 
+/** Normalised alpha bounding box [x0, y0, x1, y1] of a cached render (alpha > 50 %). */
+async function alphaBox(file) {
+  const { data, info } = await sharp(file).ensureAlpha().extractChannel(3).raw().toBuffer({ resolveWithObject: true })
+  let x0 = info.width
+  let y0 = info.height
+  let x1 = -1
+  let y1 = -1
+  for (let y = 0; y < info.height; y++) {
+    for (let x = 0; x < info.width; x++) {
+      if (data[y * info.width + x] <= 128) continue
+      if (x < x0) x0 = x
+      if (x > x1) x1 = x
+      if (y < y0) y0 = y
+      if (y > y1) y1 = y
+    }
+  }
+  const r = (v) => +v.toFixed(4)
+  return [r(x0 / info.width), r(y0 / info.height), r((x1 + 1) / info.width), r((y1 + 1) / info.height)]
+}
+
 /** Step 2 of the full set: WebP + manifests from the lossless cache (see main). */
 async function encodeAll(widths) {
-  widths = widths || arg('widths', '2200,1000').split(',').map(Number)
+  widths = widths || arg('widths', WIDTHS).split(',').map(Number)
   const meta = JSON.parse(fs.readFileSync(path.join(CACHE, 'meta.json'), 'utf8'))
   fs.mkdirSync(OUT_DIR, { recursive: true })
   const manifestPath = path.join(OUT_DIR, 'manifest.json')
   const prev = fs.existsSync(manifestPath) ? JSON.parse(fs.readFileSync(manifestPath, 'utf8')) : {}
   const bytes = { ...(prev.bytes || {}) }
-  const fromCache = (name, width) => sharp(path.join(CACHE, `${name}-${width}.png`))
+  const cached = (name, width) => path.join(CACHE, `${name}-${width}.png`)
+  const heightOf = (w) => Math.round(w / meta.view.aspect)
+  const webp = (q, alpha) => ({ quality: q, alphaQuality: alpha, effort: 6, smartSubsample: true })
   for (const width of widths) {
     const S = SIZES[width] || SIZES[2200]
+    const frames = framesFor(width, meta.frames)
     const dir = path.join(OUT_DIR, `seq-${width}`)
     fs.mkdirSync(dir, { recursive: true })
     for (const f of fs.readdirSync(dir)) fs.unlinkSync(path.join(dir, f))
     let total = 0
     let largest = 0
-    for (let k = 0; k < meta.frames; k++) {
+    for (const k of frames) {
       const name = `frame-${String(k).padStart(2, '0')}`
       const file = path.join(dir, `${name}.webp`)
       const q = k === 0 || k === meta.frames - 1 ? S.quality.rest : S.quality.seq
-      await fromCache(name, width).webp({ quality: q, alphaQuality: S.quality.alpha, effort: 6, smartSubsample: true }).toFile(file)
+      await sharp(cached(name, width)).webp(webp(q, S.quality.alpha)).toFile(file)
       const size = fs.statSync(file).size
       total += size
       largest = Math.max(largest, size)
     }
     bytes[`seq-${width}`] = total
-    bytes[`seq-${width}-largest`] = largest
-    const openFile = path.join(OUT_DIR, `open-${width}.webp`)
-    await fromCache('open', width).webp({ quality: S.quality.rest, alphaQuality: S.quality.alpha, effort: 6, smartSubsample: true }).toFile(openFile)
-    bytes[`open-${width}`] = fs.statSync(openFile).size
-    const glareFile = path.join(OUT_DIR, `glare-${width}.webp`)
-    bytes[`glare-${width}`] = await encodeGlare(path.join(CACHE, `glare-${width}.png`), glareFile, S.quality.glare)
-    console.log(`encoded ${width}: seq ${(total / 1024).toFixed(0)} KB (largest ${(largest / 1024).toFixed(1)} KB), open ${(bytes[`open-${width}`] / 1024).toFixed(1)} KB, glare ${(bytes[`glare-${width}`] / 1024).toFixed(1)} KB`)
+    if (frames.length > 1) bytes[`seq-${width}-largest`] = largest
+    else delete bytes[`seq-${width}-largest`]
+    let rest = ''
+    if (STILLS.includes(width)) {
+      const openFile = path.join(OUT_DIR, `open-${width}.webp`)
+      await sharp(cached('open', width)).webp(webp(S.quality.rest, S.quality.alpha)).toFile(openFile)
+      bytes[`open-${width}`] = fs.statSync(openFile).size
+      const glareFile = path.join(OUT_DIR, `glare-${width}.webp`)
+      bytes[`glare-${width}`] = await encodeGlare(cached('glare', width), glareFile, S.quality.glare)
+      rest = `, open ${(bytes[`open-${width}`] / 1024).toFixed(1)} KB, glare ${(bytes[`glare-${width}`] / 1024).toFixed(1)} KB`
+    }
+    console.log(`encoded ${width}: ${frames.length} frame(s) ${(total / 1024).toFixed(0)} KB (largest ${(largest / 1024).toFixed(1)} KB)${rest}`)
   }
+  const big = Math.max(...STILLS)
+  const boxes = { closed: await alphaBox(cached('frame-00', big)), open: await alphaBox(cached('open', big)) }
   const corners = meta.corners
-  const allWidths = [...new Set([...(prev.widths || []), ...widths])].sort((x, y) => y - x)
+  const stills = [...STILLS].sort((x, y) => y - x)
+  const motion = [...MOTION].sort((x, y) => y - x)
   const manifest = {
-    version: 1,
-    widths: allWidths,
-    sizes: Object.fromEntries(allWidths.map((w) => [w, [w, Math.round(w / meta.view.aspect)]])),
+    version: 2,
+    widths: stills,
+    motion,
+    sizes: Object.fromEntries([...new Set([...stills, ...motion])].map((w) => [w, [w, heightOf(w)]])),
     aspect: meta.view.aspect,
     frames: meta.frames,
     durationMs: DURATION_MS,
@@ -268,6 +325,7 @@ async function encodeAll(widths) {
     angles: meta.angles,
     poster: 'closed',
     files: { frame: 'seq-{w}/frame-{nn}.webp', open: 'open-{w}.webp', glare: 'glare-{w}.webp' },
+    boxes,
     screen: {
       w: 1200,
       h: 750,
@@ -282,9 +340,9 @@ async function encodeAll(widths) {
   }
   fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n')
   // the runtime component imports the fields it needs from a copy beside it (public/ can't be imported)
-  const { version, widths: ws, sizes, aspect, frames: n, durationMs, poster, files, screen } = manifest
-  fs.writeFileSync(SRC_MANIFEST, JSON.stringify({ version, widths: ws, sizes, aspect, frames: n, durationMs, poster, files, screen }, null, 2) + '\n')
-  console.log('manifest', JSON.stringify(manifest.screen))
+  const { version, widths: ws, motion: mw, sizes, aspect, frames: n, durationMs, poster, files, screen } = manifest
+  fs.writeFileSync(SRC_MANIFEST, JSON.stringify({ version, widths: ws, motion: mw, sizes, aspect, frames: n, durationMs, poster, files, boxes, screen }, null, 2) + '\n')
+  console.log('manifest', JSON.stringify(manifest.screen), JSON.stringify(boxes))
 }
 
 /* ------------------------------------------------------------------ main */
@@ -369,7 +427,7 @@ async function main() {
   } else {
     // full set: 1) render every image to a lossless cache at its final size, 2) encode WebP from it.
     // `--encode-only` repeats step 2 (e.g. to try other WebP qualities) without rendering.
-    const widths = arg('widths', '2200,1000').split(',').map(Number)
+    const widths = arg('widths', WIDTHS).split(',').map(Number)
     const frames = Number(arg('frames', FRAMES))
     const ease = bezier(EASE)
     const angles = Array.from({ length: frames }, (_, k) => +(view.openDeg * ease(k / (frames - 1))).toFixed(3))
@@ -386,25 +444,26 @@ async function main() {
           await raw(shot).resize(width, height, { kernel: 'lanczos3', fit: 'fill' }).png({ compressionLevel: 3 }).toFile(path.join(CACHE, `${name}-${width}.png`))
         }
         const only = arg('only') ? arg('only').split('-').map(Number) : null
-        for (let k = 0; k < frames; k++) {
+        for (const k of framesFor(width, frames)) {
           if (only && (k < only[0] || k > only[1])) continue
           // the closed poster and the final frame are seen at rest: more samples, no motion blur
           const rest = k === 0 || k === frames - 1
           const tk = k / (frames - 1)
           const half = SHUTTER / (frames - 1) / 2
-          const shutter = rest ? null : [view.openDeg * ease(Math.max(0, tk - half)), view.openDeg * ease(Math.min(1, tk + half))]
-          const samples = rest ? S.samples : blurSamples(shutter, width, S.samplesSeq)
+          const sharp = rest || angles[k] < BLUR_FROM_DEG
+          const shutter = sharp ? null : [view.openDeg * ease(Math.max(0, tk - half)), view.openDeg * ease(Math.min(1, tk + half))]
+          const samples = rest ? S.samples : sharp ? S.samplesSeq : blurSamples(shutter, width, S.samplesSeq)
           const { shot, ms } = await shoot({ width, ss: S.ss, samples, openDeg: angles[k], shutter })
           await save(shot, `frame-${String(k).padStart(2, '0')}`)
           console.log(`render ${width} frame ${k} ${angles[k]}° ${samples} samples ${ms} ms`)
         }
-        if (!arg('only')) {
+        if (!arg('only') && STILLS.includes(width)) {
           const { shot, ms } = await shoot({ width, ss: S.ss, samples: S.samples, openDeg: view.openDeg, mode: 'open' })
           await save(shot, 'open')
           meta.off = await screenOffColour(shot, corners)
           console.log(`render ${width} open ${ms} ms, screen off ${meta.off}`)
         }
-        if (!arg('only')) {
+        if (!arg('only') && STILLS.includes(width)) {
           const { shot, ms } = await shoot({ width, ss: S.ss, samples: S.samples, openDeg: view.openDeg, mode: 'glare' })
           await save(shot, 'glare')
           console.log(`render ${width} glare ${ms} ms`)

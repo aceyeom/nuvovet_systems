@@ -17,15 +17,16 @@ const { PI } = Math
 
 /** Near-field soft cards (see nearfield.js). size [w, h]; they face `target`; gradY = [top, bottom]. */
 export const CARDS = [
-  // low sweep behind the laptop: the gradient across the closed lid and the deck
-  { pos: [0, 1.5, -3.6], size: [7, 2.4], target: [0, 0.2, 0], intensity: 3, feather: 0.35, gradY: [0.25, 1] },
+  // low sweep behind the laptop: the gradient across the closed lid and the deck, falling off to the right
+  { pos: [-0.6, 1.5, -3.6], size: [7, 2.4], target: [0, 0.2, 0], intensity: 3, feather: 0.35, gradY: [0.25, 1], gradX: [1.7, 0.2] },
   // soft glare across the black glass, from the upper left
   { pos: [-2.6, 3.2, 5], size: [5, 3.5], target: [0, 1, -0.5], intensity: 0.5, feather: 0.6, gradX: [1, 0.2], gradY: [1, 0.3], groups: ['glass'] },
-  // overhead strip in front: the front chamfers and edges
-  { pos: [0, 3.5, 2.2], size: [6, 0.8], target: [0, 0, 0], intensity: 4, feather: 0.4 },
-  // side strips: the side chamfers
-  { pos: [-3.2, 1.2, 0.2], size: [0.5, 3], target: [0, 0.4, 0], intensity: 5, feather: 0.4 },
-  { pos: [3.2, 1.2, 0.2], size: [0.5, 3], target: [0, 0.4, 0], intensity: 3.5, feather: 0.4 },
+  // overhead strip in front: the front chamfers, a streak bright at the left that dies out to the right
+  // (the strip faces back, so its gradX is mirrored)
+  { pos: [-1.2, 3.5, 2.2], size: [5, 0.8], target: [0, 0, 0], intensity: 5.5, feather: 0.4, gradX: [0, 1.6] },
+  // side strips: the side chamfers (key side brighter)
+  { pos: [-3.2, 1.2, 0.2], size: [0.5, 3], target: [0, 0.4, 0], intensity: 5.5, feather: 0.4 },
+  { pos: [3.2, 1.2, 0.2], size: [0.5, 3], target: [0, 0.4, 0], intensity: 2.6, feather: 0.4 },
 ]
 
 const scene = new THREE.Scene()
@@ -36,9 +37,15 @@ let VIEW = null
 const MODE_MATS = {}
 const STATE = {
   exposure: 2,
-  shadow: { strength: 0.85, tint: [0.02, 0.02, 0.02] },
-  ground: { keyWeight: 0.92, key: [0, 1, -0.15], keySpread: 18 },
+  shadow: { strength: 1, tint: [0.02, 0.02, 0.02] },
+  // core: a tight, dark contact line where the deck meets the floor, reaching just past the outline so it
+  // shows under the front lip (occlusion.js bakeGround)
+  ground: { keyWeight: 0.92, key: [0, 1, -0.15], keySpread: 18, core: { weight: 0.95, r: 0.013, inset: -0.006 } },
   deckAO: { lift: 0.5, grad: 0.25, specWeight: 0.7 },
+  // the screen glass mirrors the floor (below the horizon) at this fraction: the half-open lid stays dark
+  // glass instead of a pale ghost (16–60°) and a flat grey slab (65–95°). The open pose (109°) mirrors
+  // the space above the horizon, so the open frame and the glare overlay are unchanged.
+  glassFlag: 0.1,
 }
 
 /* ------------------------------------------------------------------ ground shadow catcher */
@@ -49,14 +56,17 @@ const groundMat = new THREE.ShaderMaterial({
     strength: { value: 0.6 },
     tint: { value: new THREE.Vector3() },
     box: { value: new THREE.Vector4(GROUND.x0, GROUND.x1, GROUND.z0, GROUND.z1) },
-    // elliptical fade around the footprint, so no shadow reaches the image edges (rx, rz, cz, inner)
-    fade: { value: new THREE.Vector4(DIM.W / 2 + 0.6, DIM.DEPTH / 2 + 0.75, -0.2, 0.7) },
+    // superelliptical (power 4) fade around the footprint, so no shadow reaches the image edges (rx, rz,
+    // cz, inner): full strength along the front edge, falling off only past the corners and the sides
+    fade: { value: new THREE.Vector4(DIM.W / 2 + 0.08, DIM.DEPTH / 2 + 0.75, -0.2, 0.78) },
   },
   vertexShader: 'uniform vec4 box; varying vec2 vUv; varying vec2 vW; void main(){ vec4 w = modelMatrix * vec4(position, 1.0); vW = w.xz; vUv = vec2((w.x - box.x) / (box.y - box.x), (box.w - w.z) / (box.w - box.z)); gl_Position = projectionMatrix * viewMatrix * w; }',
   fragmentShader: `uniform sampler2D map; uniform float strength; uniform vec3 tint; uniform vec4 fade; varying vec2 vUv; varying vec2 vW;
     void main(){
       float edge = smoothstep(0.0, 0.06, vUv.x) * smoothstep(1.0, 0.94, vUv.x) * smoothstep(0.0, 0.06, vUv.y) * smoothstep(1.0, 0.94, vUv.y);
-      float e = length(vec2(vW.x / fade.x, (vW.y - fade.z) / fade.y));
+      vec2 q = abs(vec2(vW.x / fade.x, (vW.y - fade.z) / fade.y));
+      q *= q;
+      float e = sqrt(sqrt(dot(q, q)));
       edge *= 1.0 - smoothstep(fade.w, 1.0, e);
       float s = texture2D(map, vUv).a * strength * edge;
       gl_FragColor = vec4(tint, s);
@@ -105,6 +115,22 @@ function corners(openDeg = VIEW.openDeg) {
   return project(camera, VIEW, L.screenCorners())
 }
 
+/* ------------------------------------------------------------------ lid */
+/**
+ * The lid's reflections in the first degrees of opening. Tilting the outer lid by a few degrees swings
+ * its mirror direction across the studio's brightest band, so frames 1–3 would brighten abruptly (a
+ * flash while the lid has barely moved; the band sits between ~4° and ~12° of tilt). Below HOLD_DEG the
+ * outer lid is shaded as if it had opened only θ·(θ/HOLD_DEG)⁶ (0.8° and 3.6° → 0°, 8.7° → 1.3°, then
+ * exact): the sequence steps over the band between frames 3 and 4, where the lid moves fast and frame 4
+ * is motion-blurred. Geometry, occlusion and shadows always use the true angle.
+ */
+const HOLD_DEG = 12
+function setLid(deg) {
+  L.setOpen(deg)
+  const eff = deg < HOLD_DEG ? deg * (deg / HOLD_DEG) ** 6 : deg
+  nfUniforms.nfHold.value = ((deg - eff) * PI) / 180
+}
+
 /* ------------------------------------------------------------------ render */
 function applyMode(mode) {
   L.panel.material = mode === 'open' ? MODE_MATS.panelOpen : mode === 'glare' ? MODE_MATS.panelGlare : MATS.panel
@@ -119,7 +145,7 @@ async function render(cfg) {
   const { width, ss = 2, samples = 16, openDeg, mode = 'beauty', name, shadow = {}, shutter = null } = cfg
   const W = Math.round(width * ss)
   const H = Math.round(W / VIEW.aspect)
-  L.setOpen(openDeg)
+  setLid(openDeg)
   camera.updateMatrixWorld(true)
   if (mode !== 'glare') {
     updateDeckAO(MATS.deckAO, L.pivot, camera.position, STATE.deckAO)
@@ -132,9 +158,9 @@ async function render(cfg) {
   scene.environment = MATS.envMap
   applyMode(mode)
   nfUniforms.nfViewInv.value.copy(camera.matrixWorld)
-  const beforeSample = shutter ? (i) => L.setOpen(shutter[0] + ((shutter[1] - shutter[0]) * (i + 0.5)) / samples) : null
+  const beforeSample = shutter ? (i) => setLid(shutter[0] + ((shutter[1] - shutter[0]) * (i + 0.5)) / samples) : null
   const buf = accumulate({ scene, camera, view: VIEW, W, H, samples, exposure: cfg.exposure ?? STATE.exposure, beforeSample })
-  L.setOpen(openDeg)
+  setLid(openDeg)
   applyMode('beauty')
   const tRender = performance.now() - t0 - tBake
   await post(name, W, H, buf)
@@ -157,7 +183,7 @@ async function init(cfg = {}) {
   MATS.deckAO = makeDeckAO()
   MATS.deckAOKeys = MATS.deckAO.clone()
   MATS.deckAOKeys.channel = 1
-  for (const m of [MATS.alu, MATS.chamfer, MATS.dark, MATS.pad]) {
+  for (const m of [MATS.alu, MATS.chamfer, MATS.dark, MATS.well, MATS.pad]) {
     m.aoMap = MATS.deckAO
     m.aoMapIntensity = 1
   }
@@ -166,8 +192,9 @@ async function init(cfg = {}) {
   MODE_MATS.panelOpen.specularIntensity = 0
   MODE_MATS.panelGlare = MATS.panel.clone()
   MODE_MATS.panelGlare.color.set(0x000000)
-  for (const m of [MATS.alu, MATS.chamfer, MATS.lidAlu, MATS.lidChamfer, MATS.pad, MATS.keys, MATS.hinge, MATS.inlay]) withNearField(m, 'body')
-  for (const m of [MATS.glass, MATS.panel, MODE_MATS.panelOpen, MODE_MATS.panelGlare]) withNearField(m, 'glass')
+  for (const m of [MATS.alu, MATS.chamfer, MATS.pad, MATS.keys, MATS.hinge]) withNearField(m, 'body')
+  for (const m of [MATS.lidAlu, MATS.lidChamfer, MATS.inlay]) withNearField(m, 'body', { hold: true })
+  for (const m of [MATS.glass, MATS.panel, MODE_MATS.panelOpen, MODE_MATS.panelGlare]) withNearField(m, 'glass', { flag: STATE.glassFlag })
   setCards(cfg.cards || CARDS)
   update({ ...cfg, studio: undefined, cards: undefined })
   return { ...glInfo(), dim: DIM, monogram: Boolean(monogram) }

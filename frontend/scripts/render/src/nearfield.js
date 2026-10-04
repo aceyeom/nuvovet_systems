@@ -19,6 +19,9 @@ export const nfUniforms = {
   nfG: { value: Array.from({ length: NF_MAX }, () => new THREE.Vector4(1, 1, 1, 1)) },
   nfViewInv: { value: new THREE.Matrix4() },
   nfGain: { value: 1 },
+  // lid "reflection hold" (radians): materials hooked with { hold: true } shade as if the lid were this
+  // much closer to shut (a rotation of the normal about the hinge axis, world x). See scene.js setLid.
+  nfHold: { value: 0 },
 }
 
 const HEADER = /* glsl */ `
@@ -32,6 +35,7 @@ uniform vec4 nfG[NF_MAX];
 uniform mat4 nfViewInv;
 uniform float nfGain;
 uniform float nfOn[NF_MAX];
+uniform float nfHold;
 vec3 nearField( vec3 p, vec3 r, float rough ) {
   vec3 acc = vec3( 0.0 );
   float a = rough * rough;
@@ -60,6 +64,17 @@ vec3 nearField( vec3 p, vec3 r, float rough ) {
 }
 `
 
+const HOLD = /* glsl */ `
+#ifdef NF_HOLD
+{
+  vec3 k = normalize( ( viewMatrix * vec4( 1.0, 0.0, 0.0, 0.0 ) ).xyz );
+  float c = cos( nfHold );
+  float s = sin( nfHold );
+  geometryNormal = normalize( geometryNormal * c + cross( k, geometryNormal ) * s + k * dot( k, geometryNormal ) * ( 1.0 - c ) );
+}
+#endif
+`
+
 const INJECT = /* glsl */ `
 #include <lights_fragment_maps>
 #if defined( RE_IndirectSpecular )
@@ -67,6 +82,12 @@ const INJECT = /* glsl */ `
   vec3 nfP = ( nfViewInv * vec4( geometryPosition, 1.0 ) ).xyz;
   vec3 nfN = normalize( ( nfViewInv * vec4( geometryNormal, 0.0 ) ).xyz );
   vec3 nfD = normalize( nfP - cameraPosition );
+  #ifdef NF_FLAG
+    // the screen glass: what it mirrors below the horizon is the laptop's own deck and a black flag on
+    // the floor in front (a product-photography trick), not the white sweep. Without it the half-open
+    // lid mirrors the bright floor at grazing incidence and reads as a pale ghost, then a grey slab.
+    radiance *= mix( NF_FLAG, 1.0, smoothstep( -0.15, 0.1, reflect( nfD, nfN ).y ) );
+  #endif
   radiance += nearField( nfP, reflect( nfD, nfN ), material.roughness ) * nfGain;
   #ifdef USE_CLEARCOAT
     vec3 nfNc = normalize( ( nfViewInv * vec4( geometryClearcoatNormal, 0.0 ) ).xyz );
@@ -79,19 +100,23 @@ const INJECT = /* glsl */ `
 /**
  * Hook a MeshStandard/Physical material up to the shared near-field cards.
  * `only`: optional list of card names this material reflects (default: every card without `only` of its own).
+ * `flag`: scale the environment reflection by this for rays pointing below the horizon (screen glass).
  */
-export function withNearField(material, group = 'body') {
+export function withNearField(material, group = 'body', { hold = false, flag = null } = {}) {
   const on = { value: new Array(NF_MAX).fill(0) }
   material.userData.nfGroup = group
   material.userData.nfOn = on
   registry.add(material)
+  if (hold) material.defines = { ...(material.defines || {}), NF_HOLD: '' }
+  // flag: the environment reflection's floor (0..1) for rays below the horizon (glass; see INJECT)
+  if (flag != null) material.defines = { ...(material.defines || {}), NF_FLAG: Number(flag).toFixed(3) }
   material.onBeforeCompile = (shader) => {
     Object.assign(shader.uniforms, nfUniforms, { nfOn: on })
     shader.fragmentShader = shader.fragmentShader
       .replace('void main() {', HEADER + '\nvoid main() {')
-      .replace('#include <lights_fragment_maps>', INJECT)
+      .replace('#include <lights_fragment_maps>', HOLD + INJECT)
   }
-  material.customProgramCacheKey = () => 'nearfield-v1'
+  material.customProgramCacheKey = () => `nearfield-v2${hold ? '-hold' : ''}${flag != null ? `-flag${flag}` : ''}`
   material.needsUpdate = true
   return material
 }

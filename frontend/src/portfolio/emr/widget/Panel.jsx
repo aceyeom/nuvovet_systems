@@ -3,7 +3,7 @@
  * drawer, or inside the bottom sheet. Passive: it never moves focus on check(); focus moves only
  * on a user action in the widget (badge click → card heading, chip → group).
  *
- *   header 40 px     NuvoVet DUR   규칙 18개 · 14:32:05   [–] / [×]
+ *   header 40 px     nuvovet DUR   규칙 18개 · 14:32:05   [–] / [×]
  *   verdict row      SeverityBadge md + engine verdict.action; counts; "검토 불완전 N" chip
  *   확인 필요         row / visit reasons with [행으로 이동] and fix-chart chips
  *   cards            hairline-separated; 금기/중대 expanded, others one 36 px line
@@ -131,6 +131,19 @@ function Verdict({ response, locale, dur, confirm, onIncompleteChip }) {
   )
 }
 
+/** "nuvovet DUR": the product word in its own span, so the island skin can set it in the DUR tone
+ *  (as on the compact island and the sheet bar). The text content stays "nuvovet DUR". */
+function BrandTitle({ text }) {
+  const sp = text.lastIndexOf(' ')
+  if (sp < 1) return text
+  return (
+    <>
+      {text.slice(0, sp + 1)}
+      <span className="nv-head-product">{text.slice(sp + 1)}</span>
+    </>
+  )
+}
+
 export function Panel({ mode, onCollapse, onResetPos }) {
   const { ctl, dur, s, ui, locale } = useWidget()
   const rootRef = useRef(null)
@@ -219,7 +232,7 @@ export function Panel({ mode, onCollapse, onResetPos }) {
             <GripVertical {...ic(14)} />
           </span>
         ) : null}
-        <span className="nv-head-title">{t(locale, 'panel.title')}</span>
+        <span className="nv-head-title"><BrandTitle text={t(locale, 'panel.title')} /></span>
         <span className="nv-head-meta nv-num">
           {t(locale, 'panel.rules', { n: ext?.rulesCount ?? 18 })}
           {ui.checkedAt ? ` · ${fmtTime(ui.checkedAt)}` : ''}

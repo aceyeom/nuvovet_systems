@@ -34,7 +34,7 @@ const COLUMNS = [
   { key: 'disp', label: '조제', title: DEMO_ADDITION },
   { key: 'total', label: '전체', cls: 'emr-r', title: CALC_TITLE },
   { key: 'price', label: '금액', cls: 'emr-r emr-col-price', title: '가상 단가' },
-  { key: 'dur', label: 'DUR', cls: 'emr-col-dur', title: 'NuvoVet DUR 검토 결과' },
+  { key: 'dur', label: 'DUR', cls: 'emr-col-dur', title: 'nuvovet DUR 검토 결과' },
   { key: 'del', label: '', cls: 'emr-col-del', sr: '삭제' },
 ]
 

@@ -267,11 +267,25 @@
 @media (max-width: 1199px) {
   .nvg-steps li:not([data-state="current"]) { display: none; }
 }
+/* Narrow: the strip grows a second line for the instruction (13 px, ink-2), under the step label, so a
+   phone visitor still reads what to do. */
 @media (max-width: 767px) {
-  .nvg { gap: 14px; padding-left: 12px; }
-  .nvg-now { display: none; }
-  .nvg-steps { flex: 1 1 auto; min-width: 0; }
+  .nvg { flex-wrap: wrap; align-content: flex-start; column-gap: 14px; row-gap: 0; height: auto; min-height: 38px; padding-left: 12px; }
+  .nvg-steps { flex: 1 1 auto; min-width: 0; height: 38px; }
   .nvg-steps li[data-state="current"] { min-width: 0; overflow: hidden; }
+  .nvg-now {
+    order: 10;
+    flex: 1 0 100%;
+    padding: 6px 28px 10px 0;
+    overflow: visible;
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    color: var(--text-2, #4D5560);
+    font-size: 13px;
+    line-height: 19px;
+  }
+  .nvg-now::before { display: none; }
 }
 @media print {
   .nvd, .nvg { display: none; }

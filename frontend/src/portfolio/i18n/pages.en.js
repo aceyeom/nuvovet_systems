@@ -36,7 +36,7 @@ export default {
   'rp.ack.signature': 'Signature',
   'rp.ack.date': 'Date',
   'rp.references': 'References',
-  'rp.footer': 'Report {id}, NuvoVet DUR educational prototype',
+  'rp.footer': 'Report {id}, nuvovet DUR educational prototype',
   'rp.idNote': 'The report ID is a hash of the case inputs: the same inputs always give the same ID, and any edit gives a new one.',
 
   // Owner handout
@@ -79,7 +79,7 @@ export default {
 
   // Case study
   'cs.title': 'A prescription review engine for veterinary clinics',
-  'cs.lead': 'NuvoVet DUR checks a prescription against the patient and explains each warning with its source. I designed the rules, the engine and the clinic interface. It is a prototype; the company has since moved to pet-insurance claims.',
+  'cs.lead': 'nuvovet DUR checks a prescription against the patient and explains each warning with its source. I designed the rules, the engine and the clinic interface. It is a prototype; the company has since moved to pet-insurance claims.',
   'cs.ctaEmr': 'Open the EMR demo',
   'cs.ctaCases': 'See the {n} cases',
   'cs.panelAlt': 'The DUR panel for visit V1, Choco: high-dose ivermectin with ketoconazole in a Rough Collie is contraindicated.',

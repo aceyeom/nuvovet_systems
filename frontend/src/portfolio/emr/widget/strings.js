@@ -36,6 +36,7 @@ export const STRINGS = {
     'card.inputs': '입력값', // (widget)
     'card.rule': '규칙', // (widget)
     'card.evidence': '근거',
+    'card.moreSources': '외 {n}', // (widget) references beyond the first three, after the trail
     'card.mechanistic': '기전 근거 (인용 연구 없음)',
     'card.jurisdiction.US': '미국 라벨 기준',
     'card.jurisdiction.UK': '영국 라벨 기준',
@@ -127,6 +128,7 @@ export const STRINGS = {
     'card.inputs': 'Inputs',
     'card.rule': 'Rule',
     'card.evidence': 'Evidence',
+    'card.moreSources': '+{n} more', // (widget)
     'card.mechanistic': 'Mechanistic rationale (no study cited)',
     'card.jurisdiction.US': 'US label',
     'card.jurisdiction.UK': 'UK label',

@@ -130,10 +130,10 @@ export function makeGroundTexture() {
 
 /**
  * Ground darkness (alpha) per texel, row 0 = front (z1), column 0 = left (x0).
- * cfg: { key: [x, y, z], keySpread (deg), keyWeight, sky: n, keyN: n, minElev }
+ * cfg: { key: [x, y, z], keySpread (deg), keyWeight, sky: n, keyN: n, minElev, core: { weight, r, inset } }
  */
 export function bakeGround(tex, pivot, cfg = {}) {
-  const { key = [0.05, 1, -0.18], keySpread = 28, keyWeight = 0.55, skyN = 192, keyN = 128, minElev = 3 } = cfg
+  const { key = [0.05, 1, -0.18], keySpread = 28, keyWeight = 0.55, skyN = 192, keyN = 128, minElev = 3, core = { weight: 0.65, r: 0.02, inset: 0.005 } } = cfg
   const hit = makeOccluder(pivot)
   const sky = hemisphere(skyN, minElev)
   const keyDirs = cone(keyN, key, keySpread)
@@ -184,7 +184,15 @@ export function bakeGround(tex, pivot, cfg = {}) {
         a += tmp[jj * nx + i] * w[k + R]
         ws += w[k + R]
       }
-      const v = a / ws
+      let v = a / ws
+      // contact core: the ground right at the deck's bottom plate (inset from the outline) sees almost
+      // nothing of the room. Analytic, so it stays tight (the sampled terms above are blurred).
+      if (core && core.weight > 0) {
+        const z = z1 - ((j + 0.5) / nz) * (z1 - z0)
+        const x = x0 + ((i + 0.5) / nx) * (x1 - x0)
+        const d = max(0, sdDeck(x, z) + core.inset)
+        v = 1 - (1 - v) * (1 - core.weight * Math.exp(-d / core.r))
+      }
       const kk = (j * nx + i) * 4
       data[kk] = data[kk + 1] = data[kk + 2] = 0
       data[kk + 3] = Math.round(min(1, v) * 255)

@@ -1,168 +1,146 @@
 /**
- * Landing sections below the hero. Each product owns a section in its colour (DUR teal, Claims
- * cobalt); the chooser above them sends each kind of visitor straight to the right demo.
- * Claims figures come only from the hero claim model (heroClaim.json).
+ * Landing sections below the hero, in reading order:
+ *   IndexSection     어디서부터 볼까요: three hairline rows (who · what · one sentence · a text link)
+ *   DurChapter       #dur: copy and the four behaviours beside 초코's portrait; the island in its three
+ *                    states (real UI, IslandMock); the patient index of the ten demo visits
+ *   ClaimsChapter    #claims: a photograph beside the copy and one key figure; the worked ledger
+ *   IntegrationSection #integration, SecuritySection #security, Closing (and PilotBand, only with a contact)
+ * Typography carries the page: MaruBuri for the voice (static copy only), Pretendard for text and data.
+ * No cards, icons, dots or entrance animations. Claims figures come only from the hero claim model
+ * (heroClaim.json), never from ko.js.
  */
-import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useInView, useReducedMotion } from 'motion/react'
-import { ArrowRight, ArrowUpRight, Braces, Building2, Check, LockKeyhole, Scale, Stethoscope } from 'lucide-react'
-import { BrandLockup, BrandMark } from '@/brand/Brand'
+import { BrandLockup } from '@/brand/Brand'
 import { PetAvatar } from '@/brand/PetAvatar'
+import { PHOTOS } from '@/brand/photos'
 import { CodeBlock } from '@/ui/patterns/CodeBlock'
 import { fmtNum, fmtWon } from '@/ui/lib/format'
 import { ClaimLedger } from '@/ui/ext/wp8/ClaimLedger'
-import { ADJUDICATE_REQUEST_BODY, ADJUDICATE_RESPONSE_BODY, REQUEST_JSON_OPTIONS } from '../insurance/apiExamples.js'
+import { ADJUDICATE_REQUEST_BODY, ADJUDICATE_RESPONSE_BODY } from '../insurance/apiExamples.js'
 import { CONTACT_EMAIL, useI18n } from '../../i18n'
 import { ledgerLines, ledgerTotals } from './ledger.js'
 import { IslandMock } from './replays/IslandMock.jsx'
 import { GALLERY, SEVERITY_WORD } from './replays/script.js'
 
-const ROLE_ICON = { vet: Stethoscope, insurer: Building2, dev: Braces }
+/** A display title whose `\n` marks the wide-screen line break (each line wraps on its own below that). */
+export function Lines({ text }) {
+  return String(text).split('\n').map((line, i) => (
+    <span key={i} className="lp-line">
+      {i > 0 ? ' ' : null}
+      {line}
+    </span>
+  ))
+}
 
-function Reveal({ children, className, delay = 0, as = 'div', ...rest }) {
-  const reduce = useReducedMotion()
-  const M = motion[as]
+function Photo({ photo, caption, className, sizes }) {
   return (
-    <M
-      className={className}
-      initial={reduce ? false : { y: 36, scale: 0.985 }}
-      whileInView={{ y: 0, scale: 1 }}
-      viewport={{ once: true, margin: '0px 0px -80px 0px' }}
-      transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
-      {...rest}
-    >
-      {children}
-    </M>
+    <figure className={`lp-photo${className ? ` ${className}` : ''}`}>
+      <img src={photo.src} width={photo.width} height={photo.height} alt={photo.alt} sizes={sizes} loading="lazy" decoding="async" />
+      {caption ? <figcaption className="nvb-caption">{caption}</figcaption> : null}
+    </figure>
   )
 }
 
-function SectionHead({ eyebrow, title, lead, product, id }) {
-  return (
-    <Reveal className="lp-head" data-product={product || undefined}>
-      {eyebrow ? <p className="lp-kicker">{product ? <BrandLockup product={product} size="sm" /> : null}<span>{eyebrow}</span></p> : null}
-      <h2 id={id} className="lp-h2">{title}</h2>
-      {lead ? <p className="lp-sublead">{lead}</p> : null}
-    </Reveal>
-  )
-}
-
-export function ChooserSection() {
+export function IndexSection() {
   const { t } = useI18n()
-  const C = t.landing.chooser
+  const X = t.landing.index
   return (
-    <section id="start" aria-labelledby="start-title" className="lp-section lp-chooser">
-      <div className="lp-container">
-        <SectionHead eyebrow={C.eyebrow} title={C.title} id="start-title" />
-        <div className="lp-roles">
-          {C.roles.map((r, i) => {
-            const Icon = ROLE_ICON[r.key]
-            return (
-              <Reveal key={r.key} className="lp-role" data-product={r.product || 'master'} delay={i * 0.08}>
-                <div className="lp-role-top">
-                  <span className="lp-role-icon"><Icon size={20} strokeWidth={1.75} aria-hidden="true" /></span>
-                  {r.product ? <BrandLockup product={r.product} size="sm" /> : <span className="lp-role-api"><BrandMark />API · SDK</span>}
-                </div>
-                <p className="lp-role-who">{r.who}</p>
-                <h3>{r.title}</h3>
-                <ul>
-                  {r.points.map((p) => <li key={p}><Check size={15} strokeWidth={2.5} aria-hidden="true" />{p}</li>)}
-                </ul>
-                <Link to={r.href} className="lp-role-cta">
-                  {r.cta}
-                  <ArrowRight size={16} strokeWidth={2} aria-hidden="true" />
-                </Link>
-              </Reveal>
-            )
-          })}
-        </div>
+    <section aria-labelledby="index-title" className="lp-section lp-index">
+      <div className="lp-container lp-index-grid">
+        <h2 id="index-title" className="lp-index-title nvb-d3">{X.title}</h2>
+        <ul className="lp-index-rows">
+          {X.rows.map((r) => (
+            <li key={r.key} className="lp-index-row">
+              <p className="lp-index-who nvb-label">{r.who}</p>
+              <div className="lp-index-body">
+                <h3 className="lp-index-what">{r.what}</h3>
+                <p className="nvb-body">{r.text}</p>
+              </div>
+              <Link to={r.href} className="nvb-link lp-index-link">{r.link}</Link>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   )
 }
 
-const PLAY_STATES = ['idle', 'checking', 'alert', 'resolved', 'open']
+const ISLAND_STATES = ['idle', 'alert', 'resolved']
 
-function IslandPlayground() {
-  const { t } = useI18n()
-  const P = t.landing.dur.playground
-  const ref = useRef(null)
-  const inView = useInView(ref, { margin: '-120px' })
-  const [state, setState] = useState('idle')
-  const [auto, setAuto] = useState(true)
-  useEffect(() => {
-    if (!auto || !inView) return undefined
-    const id = setTimeout(() => setState((s) => PLAY_STATES[(PLAY_STATES.indexOf(s) + 1) % PLAY_STATES.length]), state === 'alert' || state === 'open' ? 3200 : 1700)
-    return () => clearTimeout(id)
-  }, [state, auto, inView])
-  return (
-    <div className="lp-play" ref={ref}>
-      <div className="lp-play-screen" aria-hidden="true">
-        <div className="lp-play-bar"><span /><span /><span /></div>
-        <div className="lp-play-tools">{Array.from({ length: 7 }, (_, i) => <i key={i} />)}</div>
-        <div className="lp-play-island"><IslandMock state={state} /></div>
-        <div className="lp-play-rows">{Array.from({ length: 6 }, (_, i) => <i key={i} style={{ width: `${88 - i * 9}%` }} />)}</div>
-      </div>
-      <div className="lp-play-controls" role="group" aria-label={P.label}>
-        {PLAY_STATES.map((s) => (
-          <button key={s} type="button" aria-pressed={state === s} onClick={() => { setState(s); setAuto(false) }}>{P.states[s]}</button>
-        ))}
-      </div>
-    </div>
-  )
-}
-
-export function DurSection() {
+export function DurChapter() {
   const { t } = useI18n()
   const D = t.landing.dur
+  const P = D.patients
   return (
-    <section id="dur" aria-labelledby="dur-title" className="lp-section lp-product" data-product="dur">
-      <div className="lp-container">
-        <SectionHead eyebrow={D.eyebrow} title={D.title} lead={D.lead} product="dur" id="dur-title" />
-        <div className="lp-dur-grid">
-          <Reveal className="lp-dur-play"><IslandPlayground /></Reveal>
-          <div className="lp-features">
-            {D.features.map((f, i) => (
-              <Reveal key={f.title} className="lp-feature" delay={i * 0.06}>
-                <span className="lp-feature-n">{String(i + 1).padStart(2, '0')}</span>
-                <div>
-                  <h3>{f.title}</h3>
-                  <p>{f.text}</p>
-                </div>
-              </Reveal>
+    <section id="dur" aria-labelledby="dur-title" className="lp-chapter lp-dur" data-product="dur">
+      <div className="lp-container lp-split">
+        <div className="lp-split-text">
+          <BrandLockup product="dur" height={18} className="lp-chapter-mark" />
+          <h2 id="dur-title" className="nvb-d2"><Lines text={D.title} /></h2>
+          <p className="nvb-lead lp-chapter-lead">{D.lead}</p>
+          <dl className="lp-defs">
+            {D.behaviours.map((b) => (
+              <div key={b.term}>
+                <dt>{b.term}</dt>
+                <dd>{b.text}</dd>
+              </div>
             ))}
-          </div>
+          </dl>
         </div>
-        <Reveal className="lp-gallery-head">
-          <h3>{D.patients.title}</h3>
-          <p>{D.patients.lead}</p>
-        </Reveal>
-        <div className="lp-gallery">
-          {GALLERY.map((g, i) => (
-            <Reveal key={g.visit} delay={(i % 5) * 0.05}>
-              <Link to={`/dur#/emr/${g.visit}`} className="lp-pet" data-tone={g.tone}>
-                <PetAvatar id={g.id} size={56} shape="rounded" name={g.name} />
-                <span className="lp-pet-body">
-                  <b>{g.name}<span>{g.sp}</span></b>
-                  <span className="lp-pet-story">{g.story}</span>
-                </span>
-                <span className="lp-pet-sev">{SEVERITY_WORD[g.tone]}</span>
-              </Link>
-            </Reveal>
-          ))}
+        <Photo photo={PHOTOS.chocoPortrait} caption={D.photoCaption} className="lp-split-photo lp-photo-portrait" sizes="(min-width: 1024px) 420px, 100vw" />
+      </div>
+
+      <div className="lp-studio">
+        <div className="lp-container">
+          <h3 id="island-states" className="lp-studio-title nvb-label">{D.island.label}</h3>
+          <ol className="lp-states">
+            {ISLAND_STATES.map((s, i) => (
+              <li key={s} className="lp-state" data-state={s}>
+                <div className="lp-state-ui" aria-hidden="true"><IslandMock state={s} still /></div>
+                <p className="lp-state-caption"><span className="lp-state-n">{i + 1}</span>{D.island.states[s]}</p>
+              </li>
+            ))}
+          </ol>
         </div>
-        <Reveal className="lp-section-cta">
-          <Link to="/dur#/emr/V1" className="lp-btn" data-product="dur">
-            {D.cta}
-            <ArrowUpRight size={16} strokeWidth={2} aria-hidden="true" />
-          </Link>
-        </Reveal>
+      </div>
+
+      <div className="lp-container lp-patients">
+        <div className="lp-patients-head">
+          <h3 className="nvb-d3">{P.title}</h3>
+          <p className="nvb-body">{P.lead}</p>
+        </div>
+        <table className="lp-ptable">
+          <caption className="sr-only">{P.caption}</caption>
+          <thead>
+            <tr>
+              <th scope="col">{P.cols.patient}</th>
+              <th scope="col">{P.cols.visit}</th>
+              <th scope="col">{P.cols.result}</th>
+              <th scope="col"><span className="sr-only">{P.cols.open}</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            {GALLERY.map((g) => (
+              <tr key={g.visit} data-tone={g.tone}>
+                <td className="lp-pt-who">
+                  <PetAvatar id={g.id} size={44} shape="square" alt="" />
+                  <span className="lp-pt-name"><b>{g.name}</b><span>{g.sp}</span></span>
+                </td>
+                <td className="lp-pt-story">{g.story}</td>
+                <td className="lp-pt-sev"><span data-tone={g.tone}>{SEVERITY_WORD[g.tone]}</span></td>
+                <td className="lp-pt-open">
+                  <Link to={`/dur#/emr/${g.visit}`} className="nvb-link" aria-label={`${g.name} ${P.open}`}>{P.open}</Link>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </section>
   )
 }
 
-export function ClaimsSection({ claim }) {
+export function ClaimsChapter({ claim }) {
   const { t } = useI18n()
   const C = t.landing.claims
   const L = t.landing.ledger
@@ -186,63 +164,134 @@ export function ClaimsSection({ claim }) {
     })),
   }))
   return (
-    <section id="claims" aria-labelledby="claims-title" className="lp-section lp-product" data-product="claims">
-      <div className="lp-container">
-        <SectionHead eyebrow={C.eyebrow} title={C.title} lead={C.lead} product="claims" id="claims-title" />
-        <Reveal className="lp-ledger-stats">
-          <div><span>{L.totals.billed}</span><b>{fmtWon(totals.billed)}</b></div>
-          <div data-accent=""><span>{L.totals.reimbursed}</span><b>{fmtWon(totals.reimbursed)}</b></div>
-          <div><span>{L.totals.findings}</span><b>{L.findingsCount(fmtNum(totals.findings))}</b></div>
-        </Reveal>
-        <Reveal className="lp-ledger-card">
-          <div className="lp-ledger-head">
-            <h3 id="example">{L.title}</h3>
-            <p>{L.lead(fmtNum(claim.lines.length), fmtNum(lines.length))}</p>
+    <section id="claims" aria-labelledby="claims-title" className="lp-chapter lp-claims" data-product="claims">
+      <div className="lp-container lp-split lp-split-rev">
+        <Photo photo={PHOTOS.kittenHands} caption={C.photoCaption} className="lp-split-photo lp-photo-wide" sizes="(min-width: 1024px) 560px, 100vw" />
+        <div className="lp-split-text">
+          <BrandLockup product="claims" height={18} className="lp-chapter-mark" />
+          <h2 id="claims-title" className="nvb-d2"><Lines text={C.title} /></h2>
+          <p className="nvb-lead lp-chapter-lead">{C.lead}</p>
+          <div className="lp-keyfig">
+            <p className="nvb-label">{C.figure.label}</p>
+            <p className="lp-keyfig-value">{fmtWon(totals.reimbursed)}</p>
+            <p className="nvb-caption">{C.figure.caption(fmtWon(totals.billed))}</p>
           </div>
-          <ClaimLedger
-            caption={L.caption(claim.claim_id)}
-            columns={L.cols}
-            rows={rows}
-            empty={L.noFinding}
-            noCode={L.noCode}
-            totals={[
-              { key: 'billed', label: L.totals.billed, value: fmtWon(totals.billed) },
-              { key: 'reimbursed', label: L.totals.reimbursed, value: fmtWon(totals.reimbursed) },
-              { key: 'findings', label: L.totals.findings, value: L.findingsCount(fmtNum(totals.findings)) },
-            ]}
-          />
-          <p className="lp-ledger-note">{L.sample(fmtNum(claim.claimsCount))} · {claim.claim_id}</p>
-        </Reveal>
-        <Reveal className="lp-section-cta">
-          <Link to="/insurance" className="lp-btn" data-product="claims">
-            {C.cta}
-            <ArrowUpRight size={16} strokeWidth={2} aria-hidden="true" />
-          </Link>
-        </Reveal>
+        </div>
+      </div>
+
+      <div className="lp-container lp-ledger">
+        <div className="lp-ledger-head">
+          <h3 id="example" className="nvb-d3">{L.title}</h3>
+          <p className="nvb-body">{L.lead(fmtNum(claim.lines.length), fmtNum(lines.length))}</p>
+        </div>
+        <ClaimLedger
+          className="lp-ledger-table"
+          caption={L.caption(claim.claim_id)}
+          columns={L.cols}
+          rows={rows}
+          empty={L.noFinding}
+          noCode={L.noCode}
+          totals={[
+            { key: 'billed', label: L.totals.billed, value: fmtWon(totals.billed) },
+            { key: 'reimbursed', label: L.totals.reimbursed, value: fmtWon(totals.reimbursed) },
+            { key: 'findings', label: L.totals.findings, value: L.findingsCount(fmtNum(totals.findings)) },
+          ]}
+        />
+        <div className="lp-ledger-foot">
+          <p className="nvb-caption">{L.sample(fmtNum(claim.claimsCount))} · <span className="lp-id">{claim.claim_id}</span></p>
+          <Link to="/insurance" className="nvb-link">{C.cta}</Link>
+        </div>
       </div>
     </section>
   )
+}
+
+/**
+ * The Claims sample in the 연동 section: a short request that is still a whole, valid body (closing
+ * braces, every required field) and the matching part of the engine's answer, both cut from the API
+ * page's SYN-2026-00220 example (numbers from data). Objects of plain values that fit stay on one line,
+ * so neither tab needs an inner scroll.
+ */
+function compactJson(value, { width = 66, maxItems = Infinity } = {}) {
+  const pad = (d) => '  '.repeat(d)
+  const flat = (v) => v === null || typeof v !== 'object'
+  // monospace columns: a Hangul syllable takes two
+  const cols = (str) => [...str].reduce((n, c) => n + (/[\u3131-\uD7A3]/.test(c) ? 2 : 1), 0)
+  const walk = (v, d, lead) => {
+    if (flat(v)) return JSON.stringify(v)
+    if (Array.isArray(v)) {
+      const shown = v.slice(0, maxItems)
+      const lines = shown.map((x, i) => `${pad(d + 1)}${walk(x, d + 1, pad(d + 1))}${i < shown.length - 1 || v.length > shown.length ? ',' : ''}`)
+      if (v.length > shown.length) lines.push(`${pad(d + 1)}// 외 ${v.length - shown.length}개`)
+      return `[\n${lines.join('\n')}\n${pad(d)}]`
+    }
+    const keys = Object.keys(v)
+    if (keys.every((k) => flat(v[k]))) {
+      const one = `{ ${keys.map((k) => `${JSON.stringify(k)}: ${JSON.stringify(v[k])}`).join(', ')} }`
+      if (cols(lead + one) + 1 <= width) return one
+    }
+    const lines = keys.map((k, i) => {
+      const head = `${pad(d + 1)}${JSON.stringify(k)}: `
+      return `${head}${walk(v[k], d + 1, head)}${i < keys.length - 1 ? ',' : ''}`
+    })
+    return `{\n${lines.join('\n')}\n${pad(d)}}`
+  }
+  return walk(value, 0, '')
+}
+
+const SAMPLE_CLAIM = ADJUDICATE_REQUEST_BODY.claim
+const SAMPLE_FIRST = [SAMPLE_CLAIM.line_items[0], SAMPLE_CLAIM.line_items.find((l) => l.description.includes('장절개술'))].filter(Boolean)
+const SAMPLE_LINES = [...SAMPLE_FIRST, ...SAMPLE_CLAIM.line_items.filter((l) => !SAMPLE_FIRST.includes(l))]
+const SAMPLE_REQUEST_BODY = {
+  claim: {
+    claim_id: SAMPLE_CLAIM.claim_id,
+    visit_date: SAMPLE_CLAIM.visit_date,
+    clinic: { clinic_id: SAMPLE_CLAIM.clinic.clinic_id, region: SAMPLE_CLAIM.clinic.region },
+    patient: { patient_id: SAMPLE_CLAIM.patient.patient_id, species: SAMPLE_CLAIM.patient.species },
+    // the visit fee and the surgery the first finding is about (both quantity 1, the default) first,
+    // the rest summarised
+    line_items: SAMPLE_LINES.map(({ description, unit_price }) => ({ description, unit_price })),
+    invoice_total: SAMPLE_CLAIM.invoice_total,
+  },
+  policy: { policy_id: ADJUDICATE_REQUEST_BODY.policy.policy_id, start_date: ADJUDICATE_REQUEST_BODY.policy.start_date },
+}
+/**
+ * The two tabs, laid out for a column `width` monospace columns wide (66 beside the DUR column, 44 on a
+ * phone). The excerpt shows a `// 외 N개` line; 복사 copies the whole body as valid JSON.
+ */
+const sampleTabs = (I, width) => [
+  { value: 'request', label: I.tabs.request, code: compactJson(SAMPLE_REQUEST_BODY, { width, maxItems: 2 }), copy: JSON.stringify(SAMPLE_REQUEST_BODY, null, 2) },
+  { value: 'response', label: I.tabs.response, code: compactJson(SAMPLE_RESPONSE_BODY, { width, maxItems: 1 }), copy: JSON.stringify(SAMPLE_RESPONSE_BODY, null, 2) },
+]
+const R = ADJUDICATE_RESPONSE_BODY
+const SAMPLE_RESPONSE_BODY = {
+  claim_id: R.claim_id,
+  decision: R.decision,
+  confidence: R.confidence,
+  payable: { billed: R.payable.billed, deductible: R.payable.deductible, reimbursed: R.payable.reimbursed, capped_by: R.payable.capped_by },
+  findings: R.findings.map(({ rule, item_ref }) => ({ rule, item_ref })),
 }
 
 export function IntegrationSection() {
   const { t } = useI18n()
   const I = t.landing.integration
   return (
-    <section id="integration" aria-labelledby="integration-title" className="lp-section lp-dark">
+    <section id="integration" aria-labelledby="integration-title" className="lp-section lp-integration">
       <div className="lp-container">
-        <SectionHead eyebrow={I.eyebrow} title={I.title} lead={I.lead} id="integration-title" />
+        <div className="lp-section-head">
+          <h2 id="integration-title" className="nvb-d2"><Lines text={I.title} /></h2>
+          <p className="nvb-lead">{I.lead}</p>
+        </div>
         <div className="lp-int-grid">
-          <Reveal className="lp-int-card" data-product="claims">
-            <p className="lp-int-title"><BrandLockup product="claims" size="sm" tone="light" /><span className="lp-method">{I.method}</span><code>{I.path}</code></p>
-            <CodeBlock
-              className="lp-codeblock min-w-0 [&_pre]:max-h-80 [&_pre]:overflow-y-auto"
-              jsonOptions={REQUEST_JSON_OPTIONS}
-              tabs={[
-                { value: 'request', label: I.tabs.request, json: ADJUDICATE_REQUEST_BODY },
-                { value: 'response', label: I.tabs.response, json: ADJUDICATE_RESPONSE_BODY },
-              ]}
-            />
-            <dl className="lp-int-points">
+          <div className="lp-int-col" data-product="claims">
+            <div className="lp-int-title">
+              <BrandLockup product="claims" height={18} />
+              <code className="lp-endpoint">{I.method} {I.path}</code>
+            </div>
+            {/* one layout per column width (the other is display: none), so JSON never wraps mid-object */}
+            <CodeBlock className="lp-code lp-code-wide min-w-0" tabs={sampleTabs(I, 66)} />
+            <CodeBlock className="lp-code lp-code-narrow min-w-0" tabs={sampleTabs(I, 44)} />
+            <dl className="lp-defs lp-defs-compact">
               {I.points.map((p) => (
                 <div key={p.label}>
                   <dt>{p.label}</dt>
@@ -250,26 +299,36 @@ export function IntegrationSection() {
                 </div>
               ))}
             </dl>
-            <Link to="/insurance/api" className="lp-int-link">{I.link}<ArrowUpRight size={15} aria-hidden="true" /></Link>
-          </Reveal>
-          <Reveal className="lp-int-card" data-product="dur" delay={0.08}>
-            <p className="lp-int-title"><BrandLockup product="dur" size="sm" tone="light" /><span className="lp-method">SDK</span><code>nuvovet-dur.js</code></p>
-            <pre className="lp-snippet"><code>
+            <Link to="/insurance/api" className="nvb-link">{I.link}</Link>
+          </div>
+          <div className="lp-int-col" data-product="dur">
+            <div className="lp-int-title">
+              <BrandLockup product="dur" height={18} />
+              <code className="lp-endpoint">{I.durFile}</code>
+            </div>
+            {/* set to 38 columns: it fits a phone without wrapping and ends level with the Claims sample */}
+            <pre className="lp-snippet" tabIndex={0} aria-label={I.durFile}><code>
               <span className="c">{'// EMR 화면에 한 번'}</span>{'\n'}
-              <span className="k">const</span> dur = NuvoVetDUR.<span className="f">create</span>({'{'}{'\n'}
-              {'  '}layout: <span className="s">&apos;island&apos;</span>,{'\n'}
-              {'  '}island: {'{'} top: <span className="n">78</span>, dockable: <span className="k">true</span> {'}'},{'\n'}
-              {'  '}onEvent: (e) =&gt; emr.<span className="f">apply</span>(e),{'\n'}
-              {'}'}){'\n'}
-              dur.<span className="f">mount</span>({'{'} badgeSlot: (rowId) =&gt; emr.<span className="f">cell</span>(rowId) {'}'}){'\n\n'}
+              {'const dur = NuvoVetDUR.create({\n'}
+              {"  layout: 'island',\n"}
+              {'  island: { top: 78, dockable: true },\n'}
+              {'  onEvent: (e) => emr.apply(e),\n'}
+              {'})\n'}
+              {'dur.mount({\n'}
+              {'  badgeSlot: (rowId) => emr.cell(rowId),\n'}
+              {'})\n\n'}
               <span className="c">{'// 처방이 바뀔 때마다'}</span>{'\n'}
-              dur.<span className="f">check</span>(<span className="f">toCdsRequest</span>(visit, <span className="s">&apos;order-select&apos;</span>)){'\n\n'}
+              {'dur.check(\n'}
+              {"  toCdsRequest(visit, 'order-select'),\n"}
+              {')\n\n'}
               <span className="c">{'// 저장 버튼에서'}</span>{'\n'}
-              <span className="k">const</span> {'{'} proceed {'}'} = <span className="k">await</span> dur.<span className="f">gate</span>(<span className="f">toCdsRequest</span>(visit, <span className="s">&apos;order-sign&apos;</span>))
+              {'const { proceed } = await dur.gate(\n'}
+              {"  toCdsRequest(visit, 'order-sign'),\n"}
+              {')'}
             </code></pre>
-            <p className="lp-int-lead">{I.durLead}</p>
-            <Link to="/dur#/emr/V1" className="lp-int-link">EMR 데모에서 보기<ArrowUpRight size={15} aria-hidden="true" /></Link>
-          </Reveal>
+            <p className="nvb-body">{I.durLead}</p>
+            <Link to="/dur#/emr/V1" className="nvb-link">{I.durLink}</Link>
+          </div>
         </div>
       </div>
     </section>
@@ -279,44 +338,40 @@ export function IntegrationSection() {
 export function SecuritySection() {
   const { t } = useI18n()
   const S = t.landing.security
-  const icons = [LockKeyhole, Scale]
   return (
     <section id="security" aria-labelledby="security-title" className="lp-section lp-security">
-      <div className="lp-container">
-        <SectionHead eyebrow={S.eyebrow} title={S.title} id="security-title" />
-        <div className="lp-sec-grid">
-          {S.columns.map((c, i) => {
-            const Icon = icons[i] || LockKeyhole
-            return (
-              <Reveal key={c.title} className="lp-sec-card" delay={i * 0.08}>
-                <h3><span><Icon size={18} strokeWidth={1.75} aria-hidden="true" /></span>{c.title}</h3>
-                <ul>
-                  {c.items.map((item) => <li key={item}>{item}</li>)}
-                </ul>
-              </Reveal>
-            )
-          })}
+      <div className="lp-container lp-security-grid">
+        <h2 id="security-title" className="nvb-d2"><Lines text={S.title} /></h2>
+        <div className="lp-security-cols">
+          {S.columns.map((c) => (
+            <div key={c.title}>
+              <h3 className="lp-security-head">{c.title}</h3>
+              <ul className="lp-rules">
+                {c.items.map((item) => <li key={item}>{item}</li>)}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
     </section>
   )
 }
 
-export function Band() {
+export function Closing() {
   const { t } = useI18n()
-  const B = t.landing.band
-  const n = t.landing.hero.products
+  const C = t.landing.closing
   return (
-    <section aria-labelledby="band-title" className="lp-band">
-      <div className="lp-container lp-band-inner">
-        <Reveal>
-          <h2 id="band-title" className="lp-h2">{B.title}</h2>
-          <p className="lp-sublead">{B.lead}</p>
-        </Reveal>
-        <Reveal className="lp-band-ctas" delay={0.1}>
-          <Link to="/dur#/emr/V1" className="lp-btn lp-btn-lg" data-product="dur">{n.dur.cta}<ArrowUpRight size={17} aria-hidden="true" /></Link>
-          <Link to="/insurance" className="lp-btn lp-btn-lg" data-product="claims">{n.claims.cta}<ArrowUpRight size={17} aria-hidden="true" /></Link>
-        </Reveal>
+    <section aria-labelledby="closing-title" className="lp-section lp-closing">
+      <div className="lp-container lp-closing-grid">
+        <div className="lp-closing-text">
+          <h2 id="closing-title" className="nvb-d2"><Lines text={C.title} /></h2>
+          <p className="nvb-lead">{C.lead}</p>
+          <div className="lp-actions">
+            <Link to="/dur#/emr/V1" className="nvb-btn">{C.primary}</Link>
+            <Link to="/insurance" className="nvb-link">{C.secondary}</Link>
+          </div>
+        </div>
+        <Photo photo={PHOTOS.dogHighkey} className="lp-closing-photo" sizes="(min-width: 1024px) 560px, 100vw" />
       </div>
     </section>
   )
@@ -330,8 +385,8 @@ export function PilotBand() {
   return (
     <section aria-labelledby="pilot-title" className="lp-section">
       <div className="lp-container">
-        <h2 id="pilot-title" className="lp-h2">{P.title}</h2>
-        <a href={`mailto:${CONTACT_EMAIL}`} className="lp-btn lp-btn-lg">{P.button}</a>
+        <h2 id="pilot-title" className="nvb-d2">{P.title}</h2>
+        <a href={`mailto:${CONTACT_EMAIL}`} className="nvb-btn">{P.button}</a>
       </div>
     </section>
   )

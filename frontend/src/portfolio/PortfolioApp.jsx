@@ -55,7 +55,7 @@ function pageFor(route) {
   }
 }
 
-/** document.title per route (§6.5): "NuvoVet DUR · 사례 연구"; parts joined with " · ", never an em dash. */
+/** document.title per route (§6.5): "nuvovet DUR · 사례 연구"; parts joined with " · ", never an em dash. */
 function useDocumentTitle(route) {
   const { t, pick } = useLang()
   useEffect(() => {

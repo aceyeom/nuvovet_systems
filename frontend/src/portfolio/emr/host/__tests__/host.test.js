@@ -14,6 +14,7 @@ import { createDur } from '../../sdk.js'
 import { check } from '../../adapter.js'
 import { buildResponse, blockingCards } from '../../cards.js'
 import { PRODUCTS } from '../../productMap.js'
+import { guideProgress, GUIDE_STEPS } from '../GuideCoach.jsx'
 
 const memoryLog = () => createDur({ storage: null })
 
@@ -136,5 +137,20 @@ describe('new row ids are never reused (review F2)', async () => {
     // rx-1 was deleted, but rx-2 had been issued: never hand out rx-1 or rx-2 again.
     expect(nextRowId([], 2)).toBe('rx-3')
     expect(nextRowId([{ rowId: 'rx-5' }], 2)).toBe('rx-6')
+  })
+})
+
+describe('demo guide progress (GuideCoach)', () => {
+  const states = (done) => {
+    const { isDone, current } = guideProgress(done)
+    return GUIDE_STEPS.map((s, i) => (isDone(s, i) ? 'done' : s.key === current?.key ? 'current' : 'todo'))
+  }
+  it('starts on the first step', () => {
+    expect(states({})).toEqual(['current', 'todo', 'todo', 'todo'])
+  })
+  it('never ticks a later step off before an earlier one (expanding the island also shows the results)', () => {
+    expect(states({ island: true })).toEqual(['done', 'done', 'current', 'todo'])
+    expect(states({ sign: true })).toEqual(['done', 'done', 'done', 'done'])
+    expect(guideProgress({ sign: true }).current).toBeNull()
   })
 })

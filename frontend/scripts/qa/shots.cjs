@@ -105,6 +105,29 @@ async function runOne(browser, route, v, base, sbase, report) {
   await ctx.close()
 }
 
+/**
+ * The hero intro is seen without a scroll on tablets and small laptops: the laptop reaches its lit state
+ * (`.lr[data-state=on]`) within 4 s of load, at sizes where the closed device starts low in the first screen.
+ */
+const INTRO_VIEWPORTS = [[1024, 768], [1180, 820], [1024, 600], [800, 600]]
+async function introCheck(browser, base, report) {
+  for (const [w, h] of INTRO_VIEWPORTS) {
+    const ctx = await browser.newContext({ viewport: { width: w, height: h } })
+    const page = await ctx.newPage()
+    const tag = `landing ${w}x${h}`
+    try {
+      await page.goto(base + '/', { waitUntil: 'load', timeout: 30000 })
+      const t0 = Date.now()
+      const ok = await page.waitForSelector('.lr[data-state="on"]', { timeout: 4000 }).then(() => true, () => false)
+      const st = await page.evaluate(() => ({ state: document.querySelector('.lr')?.dataset.state, scrollY: window.scrollY }))
+      report.check(`${tag} hero: the laptop powers on within 4 s without a scroll`, ok && st.scrollY === 0, { ...st, ms: Date.now() - t0 })
+    } catch (e) {
+      report.check(`${tag} hero: loaded`, false, e.message.slice(0, 300))
+    }
+    await ctx.close()
+  }
+}
+
 async function main() {
   const only = arg('--routes', null)
   const vOnly = arg('--variants', null)
@@ -119,6 +142,7 @@ async function main() {
   for (const r of routes) for (const v of variants) queue.push([r, v])
   const t0 = Date.now()
   try {
+    if (routes.some((r) => r.id === 'landing') && !vOnly) await introCheck(browser, dev.base, report)
     await Promise.all(Array.from({ length: jobs }, async () => {
       while (queue.length) {
         const [r, v] = queue.shift()

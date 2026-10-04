@@ -62,16 +62,24 @@ export const STUDIO_DEFAULT = {
   top: [0.035, 0.035, 0.035],
   horizon: [0.14, 0.14, 0.14],
   floor: [0.75, 0.75, 0.75],
+  // The key comes from the upper left: every box is a little brighter on its left half, a big soft box
+  // sits up and to the left in front, and the left strip outshines the right one, so the lid and the deck
+  // fall off from left to right instead of carrying one flat vertical gradient.
+  // (gradX is in the box's texture space: a box facing back towards the laptop from the front is
+  // mirrored, so its [left, right] reads [right, left] in the picture.)
   boxes: [
-    // big overhead softbox, a little behind: the sheen on the deck and the closed lid
-    { size: [8, 5], pos: [0, 7, -1.2], intensity: 3.2, feather: 0.3, gradY: [1, 0.45], gradX: [0.7, 1] },
+    // big overhead softbox, a little behind and to the left: the sheen on the deck and the closed lid
+    { size: [8, 5], pos: [-1.2, 7, -1.2], intensity: 3.0, feather: 0.3, gradY: [1, 0.45], gradX: [0.55, 1] },
     // back wall softbox at low elevation: the gradient across horizontal surfaces seen at ~20°
-    { size: [12, 3.6], pos: [0, 2.6, -9], intensity: 3, feather: 0.3, gradY: [1, 0.35] },
-    // left and right strips: long highlights down the edges and corners
-    { size: [1.1, 7], pos: [-7, 2.5, -0.6], intensity: 5, feather: 0.3 },
-    { size: [1.1, 7], pos: [7, 2.5, -0.6], intensity: 3.6, feather: 0.3 },
-    // high front card: the front chamfers
-    { size: [10, 2.6], pos: [0, 8.5, 3.2], intensity: 5, feather: 0.3 },
+    { size: [12, 3.6], pos: [0, 2.6, -9], intensity: 3, feather: 0.3, gradY: [1, 0.35], gradX: [0.6, 1.1] },
+    // left (key side) and right (fill) strips: long highlights down the edges and corners
+    { size: [1.1, 7], pos: [-7, 2.5, -0.6], intensity: 5.5, feather: 0.3 },
+    { size: [1.1, 7], pos: [7, 2.5, -0.6], intensity: 2.8, feather: 0.3 },
+    // high front card: a little light on the front chamfers everywhere (kept low: an environment box
+    // lights a straight chamfer evenly; the streak along it comes from the near-field strip, scene.js)
+    { size: [10, 2.6], pos: [0, 8.5, 3.2], intensity: 1.8, feather: 0.3, gradX: [0.5, 1] },
+    // the key: a large soft box up and to the left, in front
+    { size: [7, 7], pos: [-7, 6, 4], intensity: 1.4, feather: 0.45 },
     // big card behind the camera, brighter at the top-left: what the black glass shows
     { size: [16, 8], pos: [-1.5, 3.4, 11], intensity: 0.7, feather: 0.45, gradY: [1, 0.15], gradX: [1, 0.4] },
   ],

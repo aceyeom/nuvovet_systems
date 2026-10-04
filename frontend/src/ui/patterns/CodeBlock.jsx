@@ -28,22 +28,45 @@ export function formatJson(value, { maxItems = Infinity, indent = 2, more = (n) 
   return walk(value, 0)
 }
 
+/** A run of Korean words (with the spaces and figures between them, e.g. "야간 응급 진찰", "외 7개"). */
+const HANGUL_RUN = /[\u1100-\u11FF\u3130-\u318F\uAC00-\uD7A3]+(?: +[0-9]*[\u1100-\u11FF\u3130-\u318F\uAC00-\uD7A3]+)*/g
+
+/**
+ * The code with each Hangul run in a `span.cb-ko`, so a page can set Korean in a text face (no
+ * monospace face carries Hangul, and a monospace word space between Hangul words reads as a gap).
+ * Unstyled by default; the text is unchanged.
+ */
+function markHangul(text) {
+  const out = []
+  let last = 0
+  for (const m of text.matchAll(HANGUL_RUN)) {
+    if (m.index > last) out.push(text.slice(last, m.index))
+    out.push(<span key={m.index} className="cb-ko">{m[0]}</span>)
+    last = m.index + m[0].length
+  }
+  if (last < text.length) out.push(text.slice(last))
+  return out
+}
+
 /**
  * CodeBlock (§4.5): bg-subtle rounded-lg border, .mono 12 px, a ghost copy button, optional tabs.
  * Pass `code` (string), `json` (a value, pretty-printed with formatJson; `jsonOptions` passed on), or
- * `tabs` = [{ value, label, code | json }]. Long lines scroll sideways inside the block (thin visible
+ * `tabs` = [{ value, label, code | json, copy? }]. `copy` (or `copyText` without tabs) is what the copy
+ * button puts on the clipboard when it differs from the text shown, e.g. the whole, valid JSON behind
+ * an excerpt cut with a `// 외 N개` line. Long lines scroll sideways inside the block (thin visible
  * scrollbar); `wrap` soft-wraps them instead. The scrolling <pre> is focusable (tabIndex 0, named by
  * `title` or the tab label) so it gets the §3.9 2 px focus outline rather than the browser's 1 px one.
  */
-export function CodeBlock({ code, json, jsonOptions, tabs, title, wrap = false, className, ...props }) {
+export function CodeBlock({ code, json, jsonOptions, tabs, title, copyText, wrap = false, className, ...props }) {
   const [tab, setTab] = useState(tabs?.[0]?.value)
   const [copied, setCopied] = useState(false)
   const toText = (c, j) => (j !== undefined ? formatJson(j, jsonOptions) : c ?? '')
   const active = tabs ? tabs.find((t) => t.value === tab) : null
   const current = tabs ? (active ? toText(active.code, active.json) : '') : toText(code, json)
+  const clip = (tabs ? active?.copy : copyText) ?? current
   const copy = async () => {
     try {
-      await navigator.clipboard.writeText(current)
+      await navigator.clipboard.writeText(clip)
       setCopied(true)
       setTimeout(() => setCopied(false), 1500)
     } catch {
@@ -81,7 +104,7 @@ export function CodeBlock({ code, json, jsonOptions, tabs, title, wrap = false, 
           'focus-visible:outline-offset-[-2px]',
         )}
       >
-        <code>{current}</code>
+        <code>{markHangul(current)}</code>
       </pre>
     </div>
   )

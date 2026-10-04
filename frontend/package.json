@@ -17,7 +17,6 @@
     "restyle:ui": "node scripts/restyle-shadcn.mjs"
   },
   "dependencies": {
-    "@number-flow/react": "0.6.2",
     "@tailwindcss/vite": "4.3.3",
     "@tanstack/react-table": "9.2.4",
     "class-variance-authority": "0.7.1",

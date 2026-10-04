@@ -101,6 +101,13 @@ function textWidth(text) {
   return Math.min(320, Math.max(96, Math.ceil(wide * 13 + (t.length - wide) * 7.6 + 14)))
 }
 
+/** A select as wide as its chosen label plus the arrow (a native select sizes to its longest option). */
+function selectWidth(label) {
+  const t = String(label || '')
+  const wide = (t.match(/[\u3131-\uD7A3]/g) || []).length
+  return Math.ceil(wide * 13 + (t.length - wide) * 7.6 + 26)
+}
+
 /** Weight trend (oldest → today) as a 64 × 20 sparkline. */
 function Sparkline({ values }) {
   if (!values || values.length < 2) return null
@@ -177,6 +184,7 @@ export function PatientHeader({ visit, fieldRefs, onPatient }) {
                 ref={fieldRefs.species}
                 className="emr-select emr-flat"
                 aria-label="종"
+                style={{ width: selectWidth(SPECIES_OPTIONS.find((o) => o.value === (p.species ?? ''))?.label) }}
                 value={p.species ?? ''}
                 onChange={(e) => onPatient({ species: e.target.value })}
                 data-emr="species"
@@ -196,9 +204,7 @@ export function PatientHeader({ visit, fieldRefs, onPatient }) {
                 data-emr="breed"
               />
             </span>
-            <span className="emr-pt-sep" aria-hidden="true">·</span>
             <span>{SEX_KO[p.sex] ?? (p.sex || '미상')}</span>
-            <span className="emr-pt-sep" aria-hidden="true">·</span>
             <span className="emr-num">{ageText(p.birthDate, visit.date)} <span className="emr-muted">({p.birthDate})</span></span>
           </div>
           <div className="emr-pt-line">

@@ -26,7 +26,8 @@
  *   A dark pill that is dragged anywhere (position kept in localStorage), peeks open by itself when a
  *   check brings a new finding (or clears the last one), and expands in place into the full panel.
  *   { type: 'layout-request', layout: 'docked' | 'island' }   dock / undock buttons; the host decides
- *   { type: 'island-open' } · { type: 'reveal', rowId, uuid }   the vet opened the review (host analytics / guides)
+ *   { type: 'island-open', layout? } · { type: 'reveal', rowId, uuid }   the vet opened the review: the island
+ *     expanded, or (layout: 'sheet') the mobile sheet (host analytics / guides)
  *
  * ── Events the UI adds to the core's (§3.2 DurEvent) ──
  *   { type: 'focus-row', rowId, highlight: true, rowIds }   hover/focus on a card: highlight its rows

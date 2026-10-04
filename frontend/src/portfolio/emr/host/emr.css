@@ -281,8 +281,8 @@
 /* Passport-style frame around the square photo. */
 .emr-pt-photo { display: block; flex-shrink: 0; padding: 2px; background: #FFFFFF; border: 1px solid var(--emr-border); line-height: 0; }
 .emr-pt-info { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
-.emr-pt-title { column-gap: 6px; }
-.emr-pt-sep { color: #6C757D; }
+/* The signalment fields are separated by space alone (no '·': a wrapped line never ends on one). */
+.emr-pt-title { column-gap: 12px; }
 .emr-pt-flags { column-gap: 6px; row-gap: 4px; }
 /* Status cells: a square bordered key | value pair (MDR1, 알레르기, 만성, 보험). */
 .emr-cell {
@@ -541,10 +541,28 @@
   .emr-titlebar .emr-wait-toggle { display: inline-flex; }
   .emr-titlebar .emr-menu, .emr-titlebar .emr-sep-menu { display: none; }
   .emr-root[data-wait-open="true"] .emr-wait { top: 72px; bottom: auto; max-height: 70vh; }
-  /* Leave room for the widget's 48 px bottom sheet bar. */
-  .emr-chart { padding-bottom: 60px; overflow: visible; }
-  .emr-watermark { bottom: 52px; }
-  .emr-toast { bottom: 60px; }
+  /* The page scrolls here. The watermark stays in view as a strip on the frame colour, full width with
+     a top hairline: on the floor of the frame, or right above the widget's bottom sheet when the DUR
+     shows as one (data-dur-layout="sheet"; the collapsed sheet is a 14 px grabber band + a 46 px bar).
+     It never sits over a row: the chart ends the strip (25 px) + the sheet + a margin lower, so its last
+     rows scroll clear of both. */
+  .emr-root { --emr-sheet-h: 60px; }
+  .emr-body { padding-bottom: 0; }
+  .emr-chart { padding-bottom: 40px; overflow: visible; }
+  .emr-root[data-dur-layout="sheet"] .emr-chart { padding-bottom: calc(var(--emr-sheet-h) + 40px); }
+  .emr-watermark {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 4px 12px;
+    border-top: 1px solid var(--emr-border);
+    background: var(--emr-frame);
+    color: rgb(0 0 0 / 0.6);
+    opacity: 1;
+  }
+  .emr-root[data-dur-layout="sheet"] .emr-watermark { bottom: var(--emr-sheet-h); }
+  .emr-toast { bottom: 36px; }
+  .emr-root[data-dur-layout="sheet"] .emr-toast { bottom: calc(var(--emr-sheet-h) + 36px); }
   .emr-search .emr-input { width: 200px; }
 }
 @media (max-width: 639px) {

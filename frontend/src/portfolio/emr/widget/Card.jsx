@@ -224,7 +224,7 @@ export function Card({ card, locale, dur, mode = 'panel', ack, coverage, onColla
                 {s.short}
               </span>
             ))}
-            {sources.length > 3 ? <span className="nv-muted">+{sources.length - 3}</span> : null}
+            {sources.length > 3 ? <span className="nv-muted nv-cite-more">{t(locale, 'card.moreSources', { n: sources.length - 3 })}</span> : null}
           </>
         )}
         {ext.jurisdiction === 'US' || ext.jurisdiction === 'UK' ? (

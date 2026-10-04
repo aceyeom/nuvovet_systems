@@ -26,11 +26,11 @@ export const PHOTO_CREDITS = [
     file: 'src/brand/pets/choco.webp',
     files: ['src/brand/pets/choco.webp', 'src/brand/pets/choco-320.webp', 'src/brand/photos/choco-portrait.webp'],
     use: '초코 · 러프 콜리',
-    subject: 'rough collie, head and shoulders',
-    title: 'Lassie, July 29, 2006',
-    author: 'Kevin Long',
-    authorUrl: 'https://www.flickr.com/people/kevinlong/',
-    flickr: 'https://www.flickr.com/photos/kevinlong/256060907',
+    subject: 'rough collie, frontal head and ruff',
+    title: 'Simba - RIP',
+    author: 'David Russo',
+    authorUrl: 'https://www.flickr.com/people/daverusso88/',
+    flickr: 'https://www.flickr.com/photos/daverusso88/16505494282',
     ...CC_BY_2,
     changes: CHANGES,
   },
@@ -180,22 +180,9 @@ export const PHOTO_CREDITS = [
     ...CC_BY_2,
     changes: CHANGES,
   },
-  {
-    key: 'black-cat',
-    file: 'src/brand/photos/black-cat.webp',
-    files: ['src/brand/photos/black-cat.webp'],
-    use: '소개 사진 · 검은 고양이',
-    subject: 'black cat on pale stone',
-    title: 'p-8566',
-    author: 'kuhnmi',
-    authorUrl: 'https://www.flickr.com/people/31176607@N05/',
-    flickr: 'https://www.flickr.com/photos/31176607@N05/14148417762',
-    ...CC_BY_2,
-    changes: CHANGES,
-  },
 ].map((c) => ({ ...c, source: c.source || c.flickr }))
 
-/** The credit for one photo key (a patient key such as 'choco', or an editorial key such as 'black-cat'). */
+/** The credit for one photo key (a patient key such as 'choco', or an editorial key such as 'kitten-hands'). */
 export function creditFor(key) {
   return PHOTO_CREDITS.find((c) => c.key === key) || null
 }

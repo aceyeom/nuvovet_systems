@@ -9,7 +9,8 @@
  * Colour literals are allowed here (lint-design skips this file like widget.css).
  */
 
-.nv-scope.nv-island {
+/* The material, shared by the island and its mobile form, the bottom sheet (.nv-sheet, Launcher.jsx). */
+.nv-scope:is(.nv-island, .nv-sheet) {
   --nv-island-bg: #111318;
   --nv-island-line: rgba(255, 255, 255, 0.10);
   --nv-island-text: #ECEEF1;
@@ -32,7 +33,8 @@
   --ring: #ECEEF1;
   --brand: #ECEEF1;
   --brand-hover: #FFFFFF;
-
+}
+.nv-scope.nv-island {
   position: fixed;
   z-index: 5;
   display: block;
@@ -70,16 +72,16 @@
     0 12px 24px -6px rgba(9, 11, 15, 0.32),
     0 32px 56px -18px rgba(9, 11, 15, 0.40);
 }
-/* Severity tones on graphite (text only). */
-.nv-island[data-glow="contraindicated"] { --nv-sev: #FF8A80; }
-.nv-island[data-glow="major"] { --nv-sev: #FFB37A; }
-.nv-island[data-glow="moderate"] { --nv-sev: #F2CC6B; }
-.nv-island[data-glow="none"] { --nv-sev: #8DCBA4; }
+/* Severity tones on graphite (text only). The sheet carries the level as data-level. */
+:is(.nv-island[data-glow="contraindicated"], .nv-sheet[data-level="contraindicated"]) { --nv-sev: #FF8A80; }
+:is(.nv-island[data-glow="major"], .nv-sheet[data-level="major"]) { --nv-sev: #FFB37A; }
+:is(.nv-island[data-glow="moderate"], .nv-sheet[data-level="moderate"]) { --nv-sev: #F2CC6B; }
+:is(.nv-island[data-glow="none"], .nv-sheet[data-level="none"]) { --nv-sev: #8DCBA4; }
 .nv-island[data-glow="minor"],
 .nv-island[data-glow="incomplete"],
 .nv-island[data-glow="idle"] { --nv-sev: #C2C8D0; }
 
-.nv-island :focus-visible { outline: 2px solid var(--nv-island-text); outline-offset: 2px; }
+:is(.nv-island, .nv-sheet) :focus-visible { outline: 2px solid var(--nv-island-text); outline-offset: 2px; }
 
 .nv-island-inner {
   position: absolute;
@@ -301,18 +303,96 @@
   min-height: 0;
   background: transparent;
 }
-.nv-island .nv-head { position: relative; height: 46px; padding: 0 8px 0 12px; border-bottom-color: var(--nv-island-line); cursor: grab; }
-.nv-island .nv-head-title { color: var(--nv-island-text); font-size: 13px; font-weight: 600; }
-.nv-island .nv-head-meta { color: var(--nv-island-muted); }
+:is(.nv-island, .nv-sheet) .nv-head { position: relative; height: 46px; padding: 0 8px 0 12px; border-bottom-color: var(--nv-island-line); }
+.nv-island .nv-head { cursor: grab; }
+:is(.nv-island, .nv-sheet) .nv-head-title { color: var(--nv-island-text); font-size: 13px; font-weight: 600; }
+:is(.nv-island, .nv-sheet) .nv-head-product { color: var(--nv-island-dur); }
+:is(.nv-island, .nv-sheet) .nv-head-meta { color: var(--nv-island-muted); }
 /* In the expanded shape the grabber sits centred on the top edge, like a sheet's. */
 .nv-island-headgrip { position: absolute; top: 0; left: 50%; display: grid; place-items: center; width: 56px; height: 12px; transform: translateX(-50%); }
 .nv-island-headgrip svg { display: none; }
-.nv-island .nv-body { scrollbar-width: thin; scrollbar-color: #2C313A transparent; }
-.nv-island .nv-foot { border-top-color: var(--nv-island-line); }
-.nv-island .nv-foot a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; text-decoration-color: rgba(255, 255, 255, 0.32); }
-.nv-island .nv-foot a:hover { text-decoration-color: currentColor; }
-.nv-island .nv-section,
-.nv-island .nv-card-wrap { border-color: var(--nv-island-line); }
+:is(.nv-island, .nv-sheet) .nv-body { scrollbar-width: thin; scrollbar-color: #2C313A transparent; }
+:is(.nv-island, .nv-sheet) .nv-foot { border-top-color: var(--nv-island-line); }
+:is(.nv-island, .nv-sheet) .nv-foot a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; text-decoration-color: rgba(255, 255, 255, 0.32); }
+:is(.nv-island, .nv-sheet) .nv-foot a:hover { text-decoration-color: currentColor; }
+:is(.nv-island, .nv-sheet) :is(.nv-section, .nv-card-wrap) { border-color: var(--nv-island-line); }
+/* Same voice as the peek: a severity is its coloured word (no filled badge, no glyph) and the references
+   are plain text, "근거 Mealey 2001 · Mealey 2008 · Gramer 2010 외 4" (no bordered chips, no book icon). */
+:is(.nv-island, .nv-sheet) .nv-badge { height: auto; padding: 0; border: 0; background: transparent; font-weight: 700; color: var(--nv-island-text); }
+:is(.nv-island, .nv-sheet) .nv-badge-md { font-size: 13px; line-height: 18px; }
+:is(.nv-island, .nv-sheet) .nv-badge svg { display: none; }
+:is(.nv-island, .nv-sheet) .nv-badge[data-status="contraindicated"] { color: #FF8A80; }
+:is(.nv-island, .nv-sheet) .nv-badge[data-status="major"] { color: #FFB37A; }
+:is(.nv-island, .nv-sheet) .nv-badge[data-status="moderate"] { color: #F2CC6B; }
+:is(.nv-island, .nv-sheet) .nv-badge[data-status="none"] { color: #8DCBA4; }
+:is(.nv-island, .nv-sheet) .nv-badge:is([data-status="minor"], [data-status="incomplete"], [data-status="confirm"], [data-status="noref"], [data-status="unmapped"]) { color: #C2C8D0; }
+:is(.nv-island, .nv-sheet) .nv-badge:is([data-status="related"], [data-status="dash"]) { font-weight: 500; color: var(--nv-island-dim); }
+:is(.nv-island, .nv-sheet) .nv-cite { height: auto; padding: 0; border: 0; border-radius: 0; background: transparent; color: var(--nv-island-dim); }
+:is(.nv-island, .nv-sheet) .nv-cite svg { display: none; }
+/* citations read as a list: "Mealey 2001, Mealey 2008, Gramer 2010 외 4". The comma hangs on the item
+   before it (no gap: the hidden icon's flex gap is dropped), so a wrapped line never starts or ends on a
+   loose separator; each citation stays whole (nowrap, base rule). */
+:is(.nv-island, .nv-sheet) .nv-cite { gap: 0; }
+:is(.nv-island, .nv-sheet) .nv-cite:has(+ .nv-cite)::after { content: ","; color: var(--nv-island-muted); }
+
+/* ── The bottom sheet (< 1024 px): the island's mobile form ─────────────────
+   Same material and voice as the island: graphite, an 18 px top radius, a neutral layered shadow, a CSS
+   grabber. Collapsed, the bar reads like the compact island ("금기 1" in the severity tone, the summary,
+   the product name); expanded, the review panel wears the island skin above. */
+.nv-scope.nv-sheet {
+  border-top: 0;
+  border-radius: 18px 18px 0 0;
+  background: var(--nv-island-bg);
+  color: var(--nv-island-text);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
+    0 0 0 1px rgba(9, 11, 15, 0.55),
+    0 -2px 6px -2px rgba(9, 11, 15, 0.16),
+    0 -14px 32px -12px rgba(9, 11, 15, 0.32);
+  overflow: hidden;
+  padding-top: 14px;
+}
+.nv-scope.nv-sheet::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  width: 28px;
+  height: 4px;
+  margin-left: -14px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.28);
+  pointer-events: none;
+}
+.nv-sheet .nv-sheet-bar {
+  gap: 10px;
+  height: 46px;
+  padding: 0 16px 4px;
+  border: 0;
+  color: var(--nv-island-text);
+  font-size: 14px;
+  line-height: 20px;
+}
+.nv-sheet-status {
+  flex-shrink: 0;
+  font-weight: 700;
+  color: var(--nv-sev);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.nv-sheet-sum { flex: 1 1 auto; min-width: 0; font-weight: 600; color: var(--nv-island-strong); }
+.nv-sheet-brand {
+  flex-shrink: 0;
+  margin-left: auto;
+  padding-left: 12px;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+  color: var(--nv-island-muted);
+  white-space: nowrap;
+}
+.nv-sheet-brand span { color: var(--nv-island-dur); }
+.nv-sheet .nv-panel { background: transparent; border: 0; }
 
 @media (prefers-reduced-motion: reduce) {
   .nv-scope.nv-island { transition: none; animation: none; }

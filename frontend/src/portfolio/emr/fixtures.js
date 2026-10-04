@@ -134,16 +134,20 @@ const HOST_PATIENT = {
   '1733': { guardian: '한○○', remarks: '' },
 }
 
-/** Demo-bar hint per visit (§2.6). */
+/**
+ * Guide-strip hint per visit (§2.6): what to try on this patient, and the guide step it belongs to.
+ * The strip shows it only while that step is the current one (or once the guide is finished), so it
+ * never asks for a later step than the instruction beside it.
+ */
 export const VISIT_HINTS = {
-  V1: '처방 저장을 눌러 보세요',
-  V2: '사이클로스포린 행을 삭제해 보세요',
-  V3: '마로피탄트 조제를 가루로 바꿔 보세요',
-  V4: '처방 저장을 눌러 보세요',
-  V5: '체중을 지워 보세요',
-  V6: '멜록시캄을 mL 0.21로 바꿔 보세요',
-  V7: '프레드니솔론을 삭제해 보세요',
-  V8: '멜록시캄 일수를 3으로 바꿔 보세요',
+  V1: { step: 'sign', text: '처방 저장을 눌러 보세요' },
+  V2: { step: 'fix', text: '사이클로스포린 행을 삭제해 보세요' },
+  V3: { step: 'fix', text: '마로피탄트 조제를 가루로 바꿔 보세요' },
+  V4: { step: 'sign', text: '처방 저장을 눌러 보세요' },
+  V5: { step: 'fix', text: '체중을 지워 보세요' },
+  V6: { step: 'fix', text: '멜록시캄을 mL 0.21로 바꿔 보세요' },
+  V7: { step: 'fix', text: '프레드니솔론을 삭제해 보세요' },
+  V8: { step: 'fix', text: '멜록시캄 일수를 3으로 바꿔 보세요' },
   V9: null,
   V10: null,
 }

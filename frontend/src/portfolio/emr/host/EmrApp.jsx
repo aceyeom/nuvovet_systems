@@ -135,6 +135,9 @@ export default function EmrApp({ visitId, query = {} }) {
   const width = useViewportWidth()
   const clock = useClock()
   const docked = width >= 1280 && durLayout === 'docked'
+  // Where the widget shows itself at this width (the SDK's layout rule, mirrored): the host's mobile
+  // watermark strip sits right above the bottom sheet, and on the frame's floor when there is none.
+  const durView = durLayout === 'island' ? (width < 640 ? 'sheet' : 'island') : width < 1024 ? 'sheet' : docked ? 'docked' : 'floating'
 
   const rootRef = useRef(null)
   const durRef = useRef(null)
@@ -492,6 +495,7 @@ export default function EmrApp({ visitId, query = {} }) {
         ref={rootRef}
         lang="ko"
         data-wait-open={waitOpen || undefined}
+        data-dur-layout={durView}
         onKeyDown={(e) => { if (e.key === 'Escape' && waitOpen) closeWait() }}
       >
         <header className="emr-titlebar">
