@@ -39,7 +39,7 @@ function makeOccluder(pivot) {
   const e = inv.elements
   const y0 = DIM.FEET + 0.004
   const y1 = DIM.FEET + DIM.BASE_H
-  const lidY0 = -DIM.HINGE_R
+  const lidY0 = DIM.HINGE_OFF
   const lidY1 = DIM.HINGE_OFF + DIM.LID_H
   const hingeHalf = (DIM.W - 2 * DIM.R - 0.06) / 2
   /** true if the ray o + t d (t > 0) hits the laptop. o = [x, y, z], d = [x, y, z] (unit). */
@@ -55,7 +55,7 @@ function makeOccluder(pivot) {
         }
       }
     }
-    // lid (plane z' = 0 in pivot space)
+    // lid (plane z' = LID_Z in pivot space: the lid hangs behind the hinge axis)
     const lx = e[0] * ox + e[4] * oy + e[8] * oz + e[12]
     const ly = e[1] * ox + e[5] * oy + e[9] * oz + e[13]
     const lz = e[2] * ox + e[6] * oy + e[10] * oz + e[14]
@@ -63,7 +63,7 @@ function makeOccluder(pivot) {
     const ddy = e[1] * dx + e[5] * dy + e[9] * dz
     const ddz = e[2] * dx + e[6] * dy + e[10] * dz
     if (abs(ddz) > 1e-9) {
-      const t = -lz / ddz
+      const t = -(lz - DIM.LID_Z) / ddz
       if (t > 0) {
         const px = lx + ddx * t
         const py = ly + ddy * t

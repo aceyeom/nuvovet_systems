@@ -25,7 +25,9 @@ export const CLAIMS_PHASES = [
   { id: 'payout', ms: 2300 },
   { id: 'decide', ms: 2900 },
 ]
-const STEP_OF = { receive: 0, code: 1, rules: 2, payout: 3, decide: 4 }
+/** The hero step (0–4) each phase belongs to. */
+export const CLAIMS_STEP_OF = { receive: 0, code: 1, rules: 2, payout: 3, decide: 4 }
+const STEP_OF = CLAIMS_STEP_OF
 const STILL = CLAIMS_PHASES.length - 1
 const NAV = [['개요'], ['청구 심사', '135', true], ['병원 리스크'], ['진료비 벤치마크'], ['엔진 성능'], ['API 연동']]
 const SEV = { critical: '높음', warning: '주의' }

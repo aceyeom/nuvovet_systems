@@ -1,13 +1,12 @@
-// Brand layer: the outlined lockups (API, attributes, pixel-fitted geometry), the monogram, the tokens and
-// the build-time subset of the display face (served as a data: URL under vitest by the Vite plugin).
+// Brand layer: the outlined lockups (API, attributes, pixel-fitted geometry), the monogram and the tokens.
+// The serif lives in the outlined marks only: no display web font is loaded anywhere.
 import { describe, expect, it } from 'vitest'
 import { createElement } from 'react'
 import { renderToString } from 'react-dom/server'
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { BrandLockup, BrandMark, PRODUCTS, lockupGeometry } from '../Brand.jsx'
 import { FRAME } from '../brandMarks.generated.js'
-import { DISPLAY_FAMILY, DISPLAY_FONT_SOURCES, registerDisplayFont } from '../displayFont.js'
 
 const BRAND_DIR = join(import.meta.dirname, '..')
 const ROOT = join(BRAND_DIR, '../..')
@@ -81,21 +80,16 @@ describe('BrandMark', () => {
   })
 })
 
-describe('display face', () => {
-  it('is subset by the Vite plugin and served as data: URLs outside builds', () => {
-    expect(DISPLAY_FAMILY).toBe('nuvovet Display')
-    for (const w of ['400', '600']) {
-      const src = DISPLAY_FONT_SOURCES[w]
-      expect(src.startsWith('data:font/woff2;base64,')).toBe(true)
-      const bytes = Buffer.from(src.slice(src.indexOf(',') + 1), 'base64')
-      expect(bytes.subarray(0, 4).toString('latin1')).toBe('wOF2')
-      // the full MaruBuri files are 820–890 kB; the subset to the brand copy is a fraction of that
-      expect(bytes.length).toBeLessThan(120 * 1024)
+describe('display type', () => {
+  it('ships no display web font: the serif is outlined in the marks, text is Pretendard', () => {
+    const css = read('brand.css')
+    expect(css).not.toMatch(/--nvb-font-display|nuvovet Display|MaruBuri-|\.nvb-d[123]\b/)
+    for (const f of ['displayFont.js', 'fonts/MaruBuri-Regular.woff2', 'fonts/MaruBuri-SemiBold.woff2']) {
+      expect(existsSync(join(BRAND_DIR, f)), f).toBe(false)
     }
-  })
-
-  it('does nothing without a DOM', () => {
-    expect(registerDisplayFont()).toEqual([])
+    // the outlines were drawn from MaruBuri (OFL-1.1): its licence stays beside them
+    expect(existsSync(join(BRAND_DIR, 'fonts/OFL.txt'))).toBe(true)
+    expect(readFileSync(join(ROOT, 'vite.config.js'), 'utf8')).not.toMatch(/display-font|displayFontSubset/)
   })
 })
 
@@ -108,13 +102,13 @@ describe('tokens and dependencies', () => {
       'dur-ink': '#28553B', 'claims-ink': '#1D3C6E', 'ink-on-dark': '#ECEEF1', 'dur-ink-on-dark': '#8DCBA4', 'claims-ink-on-dark': '#9DBCEE',
     })) expect(css).toContain(`--nvb-${k}: ${v};`)
     expect(css).toContain('--nvb-rule: rgb(16 24 40 / 0.10);')
-    expect(css).toContain('--nvb-font-display: "nuvovet Display", "MaruBuri", "Noto Serif KR", "AppleMyungjo", serif;')
+    expect(css).toContain('--nvb-font-text: "Pretendard Variable", Pretendard,')
   })
 
   it('has no gradients, blends, colour scales, dots or Geist', () => {
     expect(css).not.toMatch(/gradient\(|--nvb-blend|--nvb-(dur|claims)-\d|::before\s*\{[^}]*border-radius|backdrop-filter|Geist/)
     expect(css).not.toMatch(/nvb-branch|nvb-product\b/)
-    for (const f of ['Brand.jsx', 'displayFont.js', 'brand.css']) expect(read(f)).not.toMatch(/lucide-react|@fontsource/)
+    for (const f of ['Brand.jsx', 'brand.css']) expect(read(f)).not.toMatch(/lucide-react|@fontsource/)
   })
 
   it('no longer depends on Geist', () => {

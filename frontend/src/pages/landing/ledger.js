@@ -32,3 +32,17 @@ export function ledgerTotals(claim) {
     findings: (claim.findings || []).filter(isActionable).length,
   }
 }
+
+/**
+ * How the billed amount becomes the payable one, as ledger steps: 청구 − 자기부담 공제 − 보장 비율 외 부담
+ * − 연간 한도 초과 = 지급 예정. A deduction of 0 is left out; the steps always add up to `reimbursed`.
+ */
+export function payoutSteps(claim) {
+  const p = claim.payable || {}
+  const deductions = [
+    { key: 'deductible', value: p.deductible },
+    { key: 'copay', value: p.copay_amount },
+    { key: 'limit', value: p.limit_reduction },
+  ].filter((d) => d.value > 0)
+  return [{ key: 'billed', value: p.billed }, ...deductions, { key: 'reimbursed', value: p.reimbursed, total: true }]
+}

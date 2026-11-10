@@ -14,6 +14,9 @@
  *
  * props: playing, still (reduced motion: hold the alert frame), onStep(i) (the hero's step labels, 0–4),
  *        onPhase(index, cycle), onEnd() (see usePhases)
+ *        figure: the DUR chapter's annotated picture: the alert frame, held, on a shorter screen
+ *        (.rp[data-figure]), the island still, no cursor, and four numbered callouts (.rp-pin) on the
+ *        island (1, 2), the row's DUR cell (3) and 처방 저장 (4), matching the chapter's legend
  */
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
@@ -34,7 +37,9 @@ export const DUR_PHASES = [
   { id: 'compact', ms: 900 },
   { id: 'save', ms: 2100 },
 ]
-const STEP_OF = { open: 0, type: 0, add: 1, check: 1, alert: 2, click: 3, resolve: 3, compact: 4, save: 4 }
+/** The hero step (0–4) each phase belongs to. */
+export const DUR_STEP_OF = { open: 0, type: 0, add: 1, check: 1, alert: 2, click: 3, resolve: 3, compact: 4, save: 4 }
+const STEP_OF = DUR_STEP_OF
 const STILL = DUR_PHASES.findIndex((p) => p.id === 'alert')
 const TOOLS = [['신규접수', '환자검색'], ['진료', '검사의뢰', '처방', '백신']]
 const COLS = ['폴더명', '구분', '이름', '단위', '투여량', '계산량', '횟수', '일수', '경로', '전체', '금액', 'DUR']
@@ -44,7 +49,7 @@ const NUM = new Set(['투여량', '횟수', '일수', '전체', '금액'])
  * A grid row. No layout animation: a removed row fades out in place and then unmounts, and the rows
  * below move up at once, as a legacy grid redraws (a layout-animated row slid over the 진료기록 line).
  */
-function Row({ row, badge, hl }) {
+function Row({ row, badge, hl, pin }) {
   return (
     <motion.tr
       initial={{ opacity: 0, backgroundColor: '#E8F3EC' }}
@@ -63,7 +68,8 @@ function Row({ row, badge, hl }) {
       <td><span className="rp-sel">{row.rt}</span></td>
       <td className="rp-r">{row.total}</td>
       <td className="rp-r">{row.price}</td>
-      <td>
+      <td className={pin ? 'rp-pinned' : undefined}>
+        {pin ? <i className="rp-pin" data-at="cell">{pin}</i> : null}
         {badge === 'crit' ? <span className="rp-badge" data-tone="crit">금기</span>
           : badge === 'rel' ? <span className="rp-badge" data-tone="rel">관련 ≈</span>
             : <span className="rp-badge" data-tone="dash">–</span>}
@@ -72,7 +78,8 @@ function Row({ row, badge, hl }) {
   )
 }
 
-export function DurReplay({ playing = true, still = false, onStep, onPhase, onEnd }) {
+export function DurReplay({ playing = true, still: stillProp = false, figure = false, onStep, onPhase, onEnd }) {
+  const still = stillProp || figure
   const root = useRef(null)
   const { index, phase, reached, cycle } = usePhases(DUR_PHASES, { playing: playing && !still, start: still ? STILL : 0, onEnd })
   const typing = phase === 'type'
@@ -105,7 +112,7 @@ export function DurReplay({ playing = true, still = false, onStep, onPhase, onEn
   const total = shown > 1 ? '36,400원' : '29,400원'
 
   return (
-    <div className="rp rp-emr" ref={root}>
+    <div className="rp rp-emr" ref={root} data-figure={figure || undefined}>
       <div className="rp-title">
         <span className="rp-appicon" />
         <b>데모 차트</b><span className="rp-dim">(가상 EMR)</span>
@@ -195,14 +202,16 @@ export function DurReplay({ playing = true, still = false, onStep, onPhase, onEn
               <tbody>
                 <AnimatePresence initial={false} onExitComplete={() => setShown(rows.length)}>
                   {rows.map((r) => (
-                    <Row key={r.id} row={r} badge={alerting ? (r.id === 'ivm' ? 'crit' : 'rel') : 'dash'} hl={alerting} />
+                    <Row key={r.id} row={r} badge={alerting ? (r.id === 'ivm' ? 'crit' : 'rel') : 'dash'} hl={alerting} pin={figure && r.id === 'ivm' ? 3 : null} />
                   ))}
                 </AnimatePresence>
               </tbody>
             </table>
             <div className="rp-record">진료기록 · 처방 {shown}건 · 합계 <b>{total}</b></div>
             <div className="rp-actions">
-              <span className="rp-btn rp-btn-primary" data-target="save" data-pressed={phase === 'save' || undefined}>처방 저장</span>
+              <span className="rp-btn rp-btn-primary rp-pinned" data-target="save" data-pressed={phase === 'save' || undefined}>
+                처방 저장{figure ? <i className="rp-pin" data-at="corner">4</i> : null}
+              </span>
               <span className="rp-btn">처방전 출력</span>
               <span className="rp-btn">eVET 전송</span>
               <span className="rp-btn" data-off="">수납으로</span>
@@ -212,7 +221,8 @@ export function DurReplay({ playing = true, still = false, onStep, onPhase, onEn
       </div>
       <span className="rp-watermark">가상 EMR · 실제 제품이 아닙니다</span>
       <div className="rp-island-slot">
-        <IslandMock state={islandState === 'idle' && alerting ? 'alertCompact' : islandState} pressed={phase === 'click'} />
+        <IslandMock state={islandState === 'idle' && alerting ? 'alertCompact' : islandState} pressed={phase === 'click'} still={figure} />
+        {figure ? <><i className="rp-pin" data-at="island-start">1</i><i className="rp-pin" data-at="island-end">2</i></> : null}
       </div>
       <AnimatePresence>
         {phase === 'save' ? (

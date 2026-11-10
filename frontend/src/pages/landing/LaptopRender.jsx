@@ -4,40 +4,37 @@
  *   <LaptopRender label="…" playing onPowered={fn} className="…">{screenContent}</LaptopRender>
  *
  * - First paint: the closed-lid frame as a plain <picture> (no skeleton, SSR-safe).
- * - Fit: the frame is composed for the open laptop, so the closed device sits in its lower 40 %. When
+ * - Fit: the frame is composed for the open laptop, so the closed device sits in its lower third. When
  *   that would put the closed device below the fold, the whole render starts scaled down from its top
  *   edge (the "camera" is pulled back) until the closed device is in view, and pushes back in to full
- *   size while the lid opens: the opening is always seen, and the screen ends large (on a viewport
- *   that would cut the open device at the hinge it settles at ZOOM_END_MIN, so the keyboard shows
- *   above the fold; see endScale). When even a
- *   ZOOM_MIN pull-back would not bring it into view (a short viewport), the intro is skipped and the
- *   laptop is shown open and lit (the open frame fades in, then the screen powers on).
+ *   size while the lid opens: the opening is always seen, and the screen ends at full size (the page
+ *   sizes the laptop so that its open screen fits the first view). When even a ZOOM_MIN pull-back
+ *   would not bring it into view (a short viewport), the intro is skipped and the laptop is shown open
+ *   and lit (the open frame fades in, then the screen powers on).
  * - The lid sequence starts loading as soon as the stage is near the viewport (the first frames with a
  *   preload hint) and plays once the closed device itself is in view (60 % of it, or 20 % for 600 ms)
  *   and the first frames are decoded;
  *   later frames stream in during playback (the clock holds if one is late). Frames are drawn one at a
  *   time (nearest frame; the in-between frames carry their own motion blur), at most 1.25 × CSS px.
  * - Then the open frame is shown and a 1200 × 750 `.lr-screen` element is laid exactly into the glass
- *   with a CSS matrix3d computed from the manifest's projected screen corners (a homography, so it
- *   stays exact for any camera). The screen powers on (black → content, 300 ms) and `onPowered` fires.
- *   The glass reflection (`glare`) sits above the DOM.
+ *   from the manifest's projected screen corners (a homography, so it stays exact for any camera). The
+ *   render is a front elevation with the panel parallel to the sensor, so the mapping is a plain 2D
+ *   scale and the screen's text is rasterised at its final size (a tilted camera would give a
+ *   matrix3d). The screen powers on (black → content, 300 ms) and `onPowered` fires. The glass
+ *   reflection (`glare`) sits above the DOM; the screen's top corners are rounded like the panel's.
  * - Reduced motion: the open frame and the content immediately, at full size.
  * - `playing` = false holds the intro (the laptop stays closed until it becomes true).
  * The screen keeps role="img" + aria-label; its content is inert (the replays are pictures, not UI).
  */
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { preload } from 'react-dom'
-import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
+import { useReducedMotion } from 'motion/react'
 import manifest from './laptopManifest.json'
 import './laptop.css'
 
 export const SCREEN_W = manifest.screen.w
 export const SCREEN_H = manifest.screen.h
-/**
- * The open device's box in the frame, normalised [x0, y0, x1, y1]. The three-quarter render is not
- * centred in its frame, so a page that lines the device up with its grid reads it from here (the hero:
- * --lr-x0 / --lr-w / --lr-cx on the stage).
- */
+/** The open device's box in the frame, normalised [x0, y0, x1, y1] (the device is centred in it). */
 export const DEVICE_BOX = manifest.boxes?.open || [0.08, 0.021, 0.92, 0.9585]
 
 const BASE = `${import.meta.env.BASE_URL || '/'}render/laptop/`
@@ -57,13 +54,6 @@ const ZOOM_MS = manifest.durationMs + 300
  * full size, as with reduced motion, so the first screen shows the product instead of white paper.
  */
 const ZOOM_MIN = 0.3
-/**
- * Where the camera may settle: on a viewport that cuts the open device at the hinge (1440 × 900: the
- * fold falls right under the screen), it ends a little pulled back, so the fold crops the keyboard and
- * the picture reads as a product shot rather than a floating screen. Never further than this (the
- * screen's content has to stay legible), 1 when the whole device already fits.
- */
-const ZOOM_END_MIN = 0.9
 /** The intro starts when this much of the closed device is on screen, or LOOSE of it for LOOSE_MS. */
 const VIEW_MIN = 0.6
 const LOOSE = 0.2
@@ -106,8 +96,9 @@ function bezier(x1, y1, x2, y2) {
 const zoomEase = bezier(0.42, 0, 0.18, 1)
 
 /**
- * CSS matrix3d that maps an element of size sw × sh (origin top-left) onto the quad
- * [tl, tr, br, bl] (pixel coordinates in the container). Square → quad homography (Heckbert).
+ * CSS transform that maps an element of size sw × sh (origin top-left) onto the quad
+ * [tl, tr, br, bl] (pixel coordinates in the container). Square → quad homography (Heckbert): a 2D
+ * `matrix()` when the quad is a parallelogram (the front-elevation render), a `matrix3d()` otherwise.
  */
 export function homography([tl, tr, br, bl], sw, sh) {
   const [x0, y0] = tl
@@ -131,6 +122,9 @@ export function homography([tl, tr, br, bl], sw, sh) {
   const b = x3 - x0 + h * x3
   const d = y1 - y0 + g * y1
   const e = y3 - y0 + h * y3
+  if (Math.abs(g) < 1e-7 && Math.abs(h) < 1e-7) {
+    return `matrix(${[a / sw, d / sw, b / sh, e / sh, x0, y0].map((v) => +v.toFixed(9)).join(',')})`
+  }
   const m = [a / sw, d / sw, 0, g / sw, b / sh, e / sh, 0, h / sh, 0, 0, 1, 0, x0, y0, 0, 1]
   return `matrix3d(${m.map((v) => +v.toFixed(9)).join(',')})`
 }
@@ -161,20 +155,6 @@ export function fitScale(el) {
   const h = el.offsetHeight
   if (!h || r.top >= vh || r.bottom <= 0) return 1
   return Math.min(1, (vh - FOLD_GAP - r.top) / (h * CLOSED[3]))
-}
-
-/**
- * The camera's resting scale (see ZOOM_END_MIN): enough to bring the open device's front edge to the
- * fold, clamped to [ZOOM_END_MIN, 1].
- */
-export function endScale(el) {
-  if (!el || typeof window === 'undefined') return 1
-  const r = el.getBoundingClientRect()
-  const vh = window.innerHeight || document.documentElement.clientHeight
-  const h = el.offsetHeight
-  if (!h || r.top >= vh || r.bottom <= 0) return 1
-  const need = (vh - FOLD_GAP - r.top) / (h * DEVICE_BOX[3])
-  return need >= 1 ? 1 : Math.max(ZOOM_END_MIN, need)
 }
 
 /** Decode one frame into a bitmap pre-scaled to the canvas (playback never resamples a big image). */
@@ -221,7 +201,6 @@ export function LaptopRender({ label, playing = true, onPowered, className, chil
   const stateRef = useRef(state)
   stateRef.current = state
   const zoomRef = useRef(1) // the camera's starting scale (see fitScale)
-  const [rest, setRest] = useState(null) // { z, pull }: the camera's resting scale, and the layout it frees
   const [skip, setSkip] = useState(false) // the intro cannot be seen from here: open and lit instead
   const skipRef = useRef(false)
   const [near, setNear] = useState(false) // the stage is close: start loading
@@ -390,10 +369,6 @@ export function LaptopRender({ label, playing = true, onPowered, className, chil
     let restReady = false
     const z0 = zoomRef.current
     const cam = camRef.current
-    // the resting scale; the stage gives back the height it frees below the device (the content under
-    // it is below the fold when this applies, so nothing visible moves)
-    const z1 = endScale(rootRef.current)
-    if (z1 < 1) setRest({ z: z1, pull: Math.round((1 - z1) * (rootRef.current?.offsetHeight || 0)) })
     // the rest pose must be decoded before the canvas hands over to it (no blank frame)
     Promise.all([openRef.current, glareRef.current].map((img) => img?.decode?.().catch(() => {}))).then(() => { restReady = true })
     canvas.width = s.cw
@@ -422,8 +397,8 @@ export function LaptopRender({ label, playing = true, onPowered, className, chil
       }
       if (!lidDone) draw(Math.min(LAST, Math.round(f)))
       const z = Math.min(1, (now - t0) / ZOOM_MS)
-      if (cam && (z0 < 1 || z1 < 1)) {
-        const k = z < 1 ? z0 + (z1 - z0) * zoomEase(z) : z1
+      if (cam && z0 < 1) {
+        const k = z < 1 ? z0 + (1 - z0) * zoomEase(z) : 1
         cam.style.transform = k < 1 ? `scale(${k})` : ''
       }
       if (!lidDone && f >= LAST && restReady) {
@@ -457,19 +432,14 @@ export function LaptopRender({ label, playing = true, onPowered, className, chil
     return () => clearTimeout(t)
   }, [state, reduce])
 
-  // A quiet scroll response: 1 → 1.03 as the stage leaves the viewport.
-  const { scrollYProgress } = useScroll({ target: rootRef, offset: ['end end', 'end start'] })
-  const scale = useTransform(scrollYProgress, [0, 1], reduce ? [1, 1] : [1, 1.03])
-
   const [x0, y0, x1, y1] = CLOSED
   return (
-    <motion.div
+    <div
       ref={rootRef}
       className={['lr', className].filter(Boolean).join(' ')}
       data-state={state}
       data-intro={skip ? 'skipped' : undefined}
-      data-rest={rest ? rest.z : undefined}
-      style={{ scale, marginBottom: rest ? -rest.pull : undefined, '--lr-aspect': `${manifest.sizes[BIG][0]} / ${manifest.sizes[BIG][1]}`, '--lr-off': manifest.screen.off }}
+      style={{ '--lr-aspect': `${manifest.sizes[BIG][0]} / ${manifest.sizes[BIG][1]}`, '--lr-off': manifest.screen.off }}
     >
       <div ref={camRef} className="lr-cam">
         <Picture kind="frame" className="lr-layer lr-poster" priority imgRef={posterRef} />
@@ -491,7 +461,7 @@ export function LaptopRender({ label, playing = true, onPowered, className, chil
           style={{ left: `${x0 * 100}%`, top: `${y0 * 100}%`, width: `${(x1 - x0) * 100}%`, height: `${(y1 - y0) * 100}%` }}
         />
       </div>
-    </motion.div>
+    </div>
   )
 }
 
