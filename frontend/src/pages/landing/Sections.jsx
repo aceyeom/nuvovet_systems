@@ -82,7 +82,8 @@ const CROPS = [
 
 /**
  * The annotated EMR: the DUR replay held on its alert frame, scaled to the column. It is a picture
- * (role="img", inert), like the laptop's screen.
+ * (role="img", inert), like the laptop's screen; a narrower crop marks itself with data-crop (the QA's
+ * clipped-text check skips a picture that is cropped on purpose).
  */
 function EmrFigure({ label }) {
   const ref = useRef(null)
@@ -99,7 +100,15 @@ function EmrFigure({ label }) {
   const crop = CROPS.find((c) => width >= c.min) || CROPS[0]
   const k = width / crop.w
   return (
-    <div ref={ref} className="lp-emr" role="img" aria-label={label} data-pins={crop.pins || undefined} style={{ aspectRatio: `${crop.w} / ${crop.h}` }}>
+    <div
+      ref={ref}
+      className="lp-emr"
+      role="img"
+      aria-label={label}
+      data-pins={crop.pins || undefined}
+      data-crop={crop.w < FIG.w || undefined}
+      style={{ aspectRatio: `${crop.w} / ${crop.h}` }}
+    >
       <div className="lp-emr-canvas" inert style={{ width: FIG.w, height: FIG.h, transform: `scale(${+k.toFixed(5)}) translate(${-crop.x}px, ${-crop.y}px)` }}>
         <DurReplay figure />
       </div>

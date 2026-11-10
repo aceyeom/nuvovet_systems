@@ -251,6 +251,9 @@ function audit(opts) {
     if (el.matches('[data-truncate][title]') || el.closest('[data-truncate][title]')) continue
     // Mid-animation shape change (the DUR island morphing between pill, peek and panel).
     if (el.closest('[data-morphing]')) continue
+    // A picture of UI that is cropped on purpose (the landing's annotated EMR on a phone): it is one
+    // image with an accessible name (role="img"), not text to read, and declares the crop with data-crop.
+    if (el.closest('[role="img"][data-crop]')) continue
     if (el.matches('input, select, textarea, svg')) continue
     const own = ownText(el)
     let clippedChild = null

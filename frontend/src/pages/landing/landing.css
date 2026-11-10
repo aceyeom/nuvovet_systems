@@ -465,7 +465,7 @@
 }
 .lp .lp-code-narrow { display: none; }
 /* The copy control as a word, not a glyph (the button keeps its accessible name). */
-.lp .lp-code button[aria-label] { width: auto; margin-right: -8px; padding: 0 8px; color: var(--lp-ink-2); font: 500 13px/20px var(--nvb-font-text); }
+.lp .lp-code button[aria-label] { width: auto; margin-right: -4px; padding: 0 8px; color: var(--lp-ink-2); font: 500 13px/20px var(--nvb-font-text); }
 .lp .lp-code button[aria-label] svg { display: none; }
 .lp .lp-code button[aria-label]::after { content: "복사"; }
 .lp .lp-code button[aria-label]:has(.lucide-check)::after { content: "복사됨"; }
@@ -621,6 +621,8 @@
   /* two code panels on a small laptop: 12 px code keeps the Claims sample's 66 columns inside its
      panel (same 20 px lines, so the two blocks still end level) */
   .lp .lp-code pre, .lp-snippet { font-size: 12px; }
+  .lp-int-title, .lp-int-foot { padding-left: 16px; padding-right: 16px; }
+  .lp-int-body { padding-left: 16px; padding-right: 16px; }
   .lp-calc-cell { padding-left: 34px; }
   .lp-calc-cell::before { width: 34px; }
   .lp-calc-cell dd { font-size: 17px; }
@@ -637,6 +639,11 @@
   .lp-state-caption { max-width: 330px; margin-top: 0; }
 }
 
+/* The two code panels sit side by side only where the Claims sample's 66 columns fit a panel. */
+@media (max-width: 1099px) {
+  .lp-int-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
 @media (max-width: 1023px) {
   .lp-nav-links, .lp-nav-ghost { display: none; }
   .lp-nav-end { margin-left: auto; gap: 12px; }
@@ -649,7 +656,6 @@
   .lp-head-aside .lp-lead { max-width: 32em; }
   .lp-stage { padding: 24px 24px 28px; }
   .lp-legend { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .lp-int-grid { grid-template-columns: minmax(0, 1fr); }
   .lp-controls-head, .lp-controls-cols { grid-column: 1 / -1; }
   .lp-footer-brand, .lp-footer-cols { grid-column: 1 / -1; }
   .lp-footer-cols { max-width: 420px; }
