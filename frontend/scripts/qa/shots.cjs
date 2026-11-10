@@ -85,10 +85,8 @@ async function runOne(browser, route, v, base, sbase, report) {
     if (res.koreanOverwide) report.info(`${tag} koreanOverwide (word wider than its container)`, res.koreanOverwide)
     if (route.kind !== 'widget') {
       const f = await fontCheck(page, route)
-      // Brand routes set display copy in the brand display face: the FontFace "nuvovet Display" (src/brand/displayFont.js),
-      // which CDP reports by the font file's own family name (MaruBuri Regular / SemiBold). Everything else is Pretendard.
-      const bad = route.brand ? f.bad.map((x) => x.filter((n) => !/^(nuvovet Display|MaruBuri|Pretendard Variable)/.test(n))).filter((x) => x.length) : f.bad
-      report.check(`${tag} fonts: Pretendard Variable loaded and used`, f.loaded && f.sampled >= 1 && bad.length === 0, f)
+      // Every route sets its text in Pretendard, brand routes included (their serif is outlined in the lockups, not a font).
+      report.check(`${tag} fonts: Pretendard Variable loaded and used`, f.loaded && f.sampled >= 1 && f.bad.length === 0, f)
     }
     if (route.id === 'landing' && v.id === '1440-light') {
       const l = await page.evaluate(landingLayout)

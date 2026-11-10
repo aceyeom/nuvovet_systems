@@ -3,7 +3,7 @@
  * scaled down from its top edge (the camera pulled back so the closed device clears the fold), and it
  * pushes back in to full size as the lid opens. Layers, bottom to top:
  *   .lr-poster  closed-lid frame (first paint)      .lr-canvas  the lid-opening sequence
- *   .lr-open    final frame, screen area black       .lr-screen  1200 × 750 DOM in the glass (matrix3d)
+ *   .lr-open    final frame, screen area black       .lr-screen  1200 × 750 DOM in the glass (transform)
  *   .lr-glare   the glass reflection, over the DOM
  * State lives in [data-state]: closed → opening → open → on. Reduced motion shows the open state from
  * the first paint (the component also starts in "on"); [data-intro=skipped] goes closed → open → on
@@ -14,7 +14,6 @@
   width: 100%;
   aspect-ratio: var(--lr-aspect, 2200 / 1760);
   isolation: isolate;
-  transform-origin: 50% 40%;
   user-select: none;
   -webkit-user-select: none;
 }
@@ -50,6 +49,8 @@
   top: 0;
   z-index: 3;
   overflow: hidden;
+  /* the panel's top corners follow the lid's (concentric: lid radius less the bezel); its bottom is square */
+  border-radius: 18px 18px 0 0;
   transform-origin: 0 0;
   background: var(--lr-off, #000);
   pointer-events: none;
@@ -91,7 +92,7 @@
 .lr[data-state='on'] .lr-glare { visibility: visible; }
 
 @media (prefers-reduced-motion: reduce) {
-  .lr, .lr-cam { transform: none !important; }
+  .lr-cam { transform: none !important; }
   .lr .lr-poster, .lr .lr-canvas { visibility: hidden; }
   .lr .lr-open, .lr .lr-screen, .lr .lr-glare { visibility: visible; }
   .lr-screen-content { animation: none; }

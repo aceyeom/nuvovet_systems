@@ -1,7 +1,10 @@
 /**
- * Landing footer: the wordmark and its note, two text columns (DUR, Claims), the photo credits
- * (id="credits"; the EMR demo's "사진 출처" links here) and the copyright. Text only.
+ * Landing footer: the wordmark and its note, two link columns (DUR, Claims), then the base row with
+ * the copyright and the photo credits. The credits are a disclosure (id="credits"): the list of the
+ * demo patients' photographs is one click away without filling the footer. The EMR demo's "사진 출처"
+ * links to /#credits, so the disclosure opens itself when the page arrives on, or moves to, that hash.
  */
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { BrandLockup } from '@/brand/Brand'
 import { PhotoCredits } from '@/brand/PhotoCredits'
@@ -10,12 +13,23 @@ import { useI18n } from '../../i18n'
 export default function Footer() {
   const { t, lang } = useI18n()
   const f = t.landing.footer
+  const credits = useRef(null)
+  useEffect(() => {
+    const open = () => {
+      if (window.location.hash !== '#credits' || !credits.current) return
+      credits.current.open = true
+      credits.current.scrollIntoView({ block: 'start' })
+    }
+    open()
+    window.addEventListener('hashchange', open)
+    return () => window.removeEventListener('hashchange', open)
+  }, [])
   return (
     <footer className="lp-footer">
       <div className="lp-container">
         <div className="lp-footer-top">
           <div className="lp-footer-brand">
-            <BrandLockup height={20} />
+            <BrandLockup height={22} />
             <p>{f.note}</p>
           </div>
           <nav aria-label={f.label} className="lp-footer-cols">
@@ -32,11 +46,13 @@ export default function Footer() {
             </div>
           </nav>
         </div>
-        <section id="credits" aria-labelledby="credits-title" className="lp-credits">
-          <h2 id="credits-title" className="lp-footer-head">{f.credits}</h2>
-          <PhotoCredits />
-        </section>
-        <p className="lp-footer-base">{f.copyright}</p>
+        <div className="lp-footer-base">
+          <p>{f.copyright}</p>
+          <details ref={credits} id="credits" className="lp-credits">
+            <summary>{f.credits}</summary>
+            <PhotoCredits />
+          </details>
+        </div>
       </div>
     </footer>
   )

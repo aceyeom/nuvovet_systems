@@ -2,9 +2,10 @@
  * The nuvovet laptop: an original 14-inch-class design built procedurally.
  * Units: 1 = 10 cm. Deck bottom rests on feet at y = FEET; +z points at the viewer.
  *
- * Graphite anodised aluminium (bead-blasted, polished diamond-cut chamfers on every edge),
- * thin black glass bezel, slim deck with an undercut base, Korean keyboard (2-beolsik legends)
- * in a recessed well, large glass trackpad, hinge barrel, MaruBuri "n" inlay on the lid.
+ * Silver anodised aluminium (bead-blasted, a fine polished chamfer on every edge), edge-to-edge black
+ * glass with thin bezels, slim deck with an undercut base, black Korean keyboard (2-beolsik legends)
+ * in a black recessed well, large glass trackpad, a drop hinge (the open lid stands behind the deck's
+ * back wall, so the glass meets the deck in a straight line), MaruBuri "n" inlay on the lid.
  */
 import * as THREE from 'three'
 import { arc, barrel, cap, loft, mergeWithGroups, rrPath } from './geometry.js'
@@ -13,24 +14,33 @@ const { PI } = Math
 
 export const DIM = (() => {
   const W = 3.1
-  const R = 0.16
-  const BASE_H = 0.122
+  // plan corner radius of the deck and the lid (10.5 mm: a notebook, not a tablet)
+  const R = 0.105
+  const BASE_H = 0.112
   const FEET = 0.008
-  const LID_T = 0.048
-  const SIDE_BEZEL = 0.064
-  const TOP_BEZEL = 0.066
-  const CHIN = 0.104
+  const LID_T = 0.042
+  // black glass around the active area: thin at the sides and the top; the chin is mostly hidden,
+  // because the lid drops behind the deck when it opens (see LID_Z)
+  const SIDE_BEZEL = 0.046
+  const TOP_BEZEL = 0.052
+  const CHIN = 0.142
   const SW = W - 2 * SIDE_BEZEL
   const SH = SW * (750 / 1200)
   const LID_H = CHIN + SH + TOP_BEZEL
   const GAP = 0.0032
-  const HINGE_R = 0.027
-  const HINGE_OFF = 0.03
-  const PIVOT_IN = 0.034
-  const DEPTH = PIVOT_IN + HINGE_OFF + LID_H + 0.002
-  const PIV_Y = FEET + BASE_H + GAP + LID_T / 2
+  const HINGE_R = 0.024
+  // The hinge axis sits inside the deck, PIVOT_IN from its back edge and LID_DROP below the closed lid's
+  // mid-plane. Closed, the lid lies flush on the deck (its back edge on the deck's back edge); open, the
+  // lid's plane is LID_DROP behind the axis, so it rises from behind the deck's back wall and its lower
+  // ~8 mm (bottom edge and corners) are out of sight, as on a real clamshell.
+  const PIVOT_IN = 0.03
+  const LID_DROP = 0.06
+  const HINGE_OFF = -PIVOT_IN
+  const LID_Z = -LID_DROP
+  const DEPTH = LID_H + 0.002
+  const PIV_Y = FEET + BASE_H + GAP + LID_T / 2 - LID_DROP
   const PIV_Z = -DEPTH / 2 + PIVOT_IN
-  return { W, R, BASE_H, FEET, LID_T, SIDE_BEZEL, TOP_BEZEL, CHIN, SW, SH, LID_H, GAP, HINGE_R, HINGE_OFF, PIVOT_IN, DEPTH, PIV_Y, PIV_Z }
+  return { W, R, BASE_H, FEET, LID_T, SIDE_BEZEL, TOP_BEZEL, CHIN, SW, SH, LID_H, GAP, HINGE_R, HINGE_OFF, PIVOT_IN, LID_DROP, LID_Z, DEPTH, PIV_Y, PIV_Z }
 })()
 
 /** Deck plan → 0..1 (v = 0 at the front edge). Used by every deck part for the lid AO map. */
@@ -96,9 +106,9 @@ function legendTexture(layout, font) {
   c.width = cw
   c.height = ch
   const g = c.getContext('2d')
-  g.fillStyle = '#1b1c1e'
+  g.fillStyle = '#222325'
   g.fillRect(0, 0, cw, ch)
-  const ink = '#c9ccd1'
+  const ink = '#f0f1f3'
   g.fillStyle = ink
   g.strokeStyle = ink
   g.textBaseline = 'alphabetic'
@@ -171,7 +181,7 @@ function legendTexture(layout, font) {
  * upper-left ones, so it reads recessed into the lid rather than printed on it. Canvas "up" is towards
  * the hinge (the glyph is upright for a viewer in front of the closed laptop). style 'flat' = alpha only.
  */
-function monogramTextures(d, { style = 'deboss', rim = 10, floor = [46, 47, 50], lit = [196, 198, 202], shade = [22, 23, 25] } = {}) {
+function monogramTextures(d, { style = 'deboss', rim = 10, floor = [128, 130, 134], lit = [246, 247, 248], shade = [72, 74, 78] } = {}) {
   const S = 1024
   const c = document.createElement('canvas')
   c.width = S
@@ -243,7 +253,7 @@ function wellTexture(layout, wellZ, opts = {}) {
   c.height = ch
   // a CPU canvas: the blur filter on the GPU (SwiftShader) path takes minutes
   const g = c.getContext('2d', { willReadFrequently: true })
-  g.fillStyle = opts.color || '#44484e'
+  g.fillStyle = opts.color || '#1c1d1f'
   g.fillRect(0, 0, cw, ch)
   const px = (x) => (x + DIM.W / 2) * PX
   const pz = (z) => (z + DIM.DEPTH / 2) * PX
@@ -301,7 +311,7 @@ export function makeMaterials(opts = {}) {
   const grain = (opts.aluGrain ?? 0.12) > 0 ? grainTexture(opts.aluGrain ?? 0.12) : null
   const alu = new THREE.MeshPhysicalMaterial({
     name: 'alu',
-    color: new THREE.Color(opts.aluColor || '#4c4d50'),
+    color: new THREE.Color(opts.aluColor || '#8a8c90'),
     metalness: 1,
     // the grain map scales roughness down by up to 2 × aluGrain: lift the base so the mean stays put
     roughness: (opts.aluRough ?? 0.38) / (1 - (grain ? opts.aluGrain ?? 0.12 : 0)),
@@ -309,7 +319,7 @@ export function makeMaterials(opts = {}) {
   })
   const chamfer = new THREE.MeshPhysicalMaterial({
     name: 'chamfer',
-    color: new THREE.Color(opts.chamferColor || '#b0b1b4'),
+    color: new THREE.Color(opts.chamferColor || '#d0d1d4'),
     metalness: 1,
     roughness: 0.12,
   })
@@ -327,7 +337,7 @@ export function makeMaterials(opts = {}) {
   })
   const pad = new THREE.MeshPhysicalMaterial({
     name: 'pad',
-    color: new THREE.Color(opts.padColor || '#3c3d40'),
+    color: new THREE.Color(opts.padColor || '#787a7e'),
     metalness: 0.5,
     roughness: 0.28,
     clearcoat: 0.35,
@@ -404,7 +414,7 @@ export function buildLaptop({ mats, font = 'Pretendard', monogram }) {
   const wellW = layout.KW + 2 * WELL_PAD
   const wellD = layout.KD + 2 * WELL_PAD
   const wellR = 0.026
-  const wellZ = -D.DEPTH / 2 + 0.118 + wellD / 2
+  const wellZ = -D.DEPTH / 2 + 0.125 + wellD / 2
   const WELL_DEPTH = 0.0105
   const WELL_CH = 0.0026
   const wellWalls = loft(wellW, wellD, wellR, [
@@ -416,9 +426,9 @@ export function buildLaptop({ mats, font = 'Pretendard', monogram }) {
 
   // trackpad
   const padW = 1.24
-  const padD = 0.71
+  const padD = 0.7
   const padR = 0.045
-  const padZ = wellZ + wellD / 2 + 0.082 + padD / 2
+  const padZ = wellZ + wellD / 2 + 0.075 + padD / 2
   const GROOVE = 0.0032
   const PAD_CH = 0.0018
   const padCut = loft(padW + 2 * GROOVE, padD + 2 * GROOVE, padR + GROOVE, [
@@ -504,6 +514,11 @@ export function buildLaptop({ mats, font = 'Pretendard', monogram }) {
   pivot.name = 'lidPivot'
   pivot.position.set(0, D.PIV_Y, D.PIV_Z)
   root.add(pivot)
+  // every lid part hangs LID_DROP off the hinge axis (see DIM)
+  const lid = new THREE.Group()
+  lid.name = 'lidBody'
+  lid.position.z = D.LID_Z
+  pivot.add(lid)
   const T = D.LID_T
   const LCH = 0.006
   const lidProfile = [
@@ -524,7 +539,7 @@ export function buildLaptop({ mats, font = 'Pretendard', monogram }) {
   lidGeo.applyMatrix4(toLid)
   const lidMesh = new THREE.Mesh(lidGeo, [mats.lidAlu, mats.lidChamfer, mats.dark])
   lidMesh.name = 'lid'
-  pivot.add(lidMesh)
+  lid.add(lidMesh)
 
   // black glass (whole front, inside the aluminium rim)
   const RIM = 0.0125
@@ -533,20 +548,20 @@ export function buildLaptop({ mats, font = 'Pretendard', monogram }) {
   const glass = new THREE.Mesh(glassGeo, mats.glass)
   glass.position.z = T / 2 + 0.0004
   glass.name = 'glass'
-  pivot.add(glass)
+  lid.add(glass)
 
   // active area (panel), coplanar with the glass via polygon offset
   const panelY = D.HINGE_OFF + D.CHIN + D.SH / 2
   const panel = new THREE.Mesh(new THREE.PlaneGeometry(D.SW, D.SH), mats.panel)
   panel.position.set(0, panelY, T / 2 + 0.0004)
   panel.name = 'panel'
-  pivot.add(panel)
+  lid.add(panel)
 
   // camera
   const cam = new THREE.Mesh(new THREE.CircleGeometry(0.0072, 32), mats.lens)
   cam.position.set(0, D.HINGE_OFF + D.LID_H - D.TOP_BEZEL / 2, T / 2 + 0.0004)
   cam.name = 'webcam'
-  pivot.add(cam)
+  lid.add(cam)
 
   // lid back inlay: MaruBuri "n", upright for a viewer in front of the closed laptop
   if (monogram) {
@@ -558,7 +573,7 @@ export function buildLaptop({ mats, font = 'Pretendard', monogram }) {
     inlay.rotation.x = PI
     inlay.position.set(0, D.HINGE_OFF + D.LID_H * 0.5, -T / 2 - 0.0003)
     inlay.name = 'inlay'
-    pivot.add(inlay)
+    lid.add(inlay)
   }
 
   const setOpen = (deg) => {

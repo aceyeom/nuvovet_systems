@@ -53,36 +53,6 @@ const ko = {
       caption: '가상 환자와 합성 청구로 만든 화면입니다. 실제 진료 기록이 아닙니다.',
     },
 
-    index: {
-      title: '어디서부터 볼까요',
-      rows: [
-        {
-          key: 'vet',
-          who: '수의사·동물병원',
-          what: '진료 중에 처방이 검토되는 과정',
-          text: '가상 EMR에서 환자 10마리의 처방을 직접 고치고, 아일랜드가 띄우는 경고와 권장 조치를 확인합니다.',
-          link: 'EMR 데모 열기',
-          href: '/dur#/emr/V1',
-        },
-        {
-          key: 'insurer',
-          who: '펫보험사·심사자',
-          what: '청구 한 건이 심사되는 과정',
-          text: '합성 청구 대기열에서 항목별 표준 코드와 지역\u00a0수가\u00a0백분위, 지급 계산과 그 근거를 봅니다.',
-          link: 'Claims 콘솔 열기',
-          href: '/insurance',
-        },
-        {
-          key: 'dev',
-          who: 'EMR 벤더·개발자',
-          what: '우리 시스템에 붙이는 방법',
-          text: 'DUR은 스크립트와 CDS Hooks 형식 요청으로, Claims는 청구 JSON 한 건으로 연결합니다.',
-          link: 'API 문서 보기',
-          href: '/insurance/api',
-        },
-      ],
-    },
-
     dur: {
       title: 'EMR 위에 떠 있는 검토자.',
       lead: 'nuvovet\u00a0DUR은 EMR 화면을 가리지 않는 작은 아일랜드로 삽니다. 처방이 바뀔 때마다 다시 검토하고, 필요한 순간에만 스스로 펼쳐집니다.',
@@ -92,7 +62,13 @@ const ko = {
         { term: '행마다 결과가 붙습니다', text: '처방 표의 DUR 칸을 누르면 그 경고로 바로 이동합니다.' },
         { term: '저장 전에 한 번 더', text: '금기나 중대 경고가 남아 있으면 저장 전에 확인하고, 예외 사유를 진료기록에 남깁니다.' },
       ],
-      photoCaption: '초코 · 러프 콜리 · 4세. MDR1 미검사 상태에서 이버멕틴 고용량이 처방되면 아일랜드가 먼저 알립니다.',
+      cta: 'EMR 데모 열기',
+      study: '사례 연구 보기',
+      // 주석이 붙은 EMR 그림. 번호는 위 behaviours의 순서와 같습니다.
+      figure: {
+        label: '가상 EMR의 처방 화면 위에 nuvovet DUR 아일랜드가 금기 경고를 펼친 모습',
+        caption: '초코 · 러프 콜리 · 4세. MDR1 미검사 상태에서 이버멕틴 고용량이 처방되면 아일랜드가 먼저 알립니다.',
+      },
       island: {
         label: '아일랜드의 세 가지 상태',
         states: {
@@ -113,12 +89,23 @@ const ko = {
     claims: {
       title: '영수증 한 장이\n근거 있는 판정이 되기까지.',
       lead: '자유 입력된 진료 항목을 표준 코드로 바꾸고, 보장, 임상, 수가, 무결성 규칙으로 심사합니다. 엔진은 자동으로 거절하지 않고, 심사자에게 근거를 넘깁니다.',
-      figure: {
-        label: '지급 예정 금액',
-        caption: (billed) => `청구 ${billed}에서 자기부담과 연간 한도를 뺀 금액입니다.`,
-      },
-      photoCaption: '청구서 한 장 뒤에는 늘 한 마리의 환자가 있습니다.',
       cta: 'Claims 콘솔 열기',
+      api: 'API 문서 보기',
+      meta: {
+        clinic: '병원',
+        patient: '환자',
+        diagnosis: '진단',
+        clinicValue: (name, region) => `${name} (${region})`,
+        patientValue: (breed, age) => `${breed}, ${age}세`,
+      },
+      decision: {
+        auto_approve: '자동 승인',
+        pend: '서류 요청',
+        review: '심사자 검토 필요',
+        deny_recommended: '지급 거절 권고',
+      },
+      calc: '지급 계산',
+      engine: (version) => `엔진 버전 ${version}`,
     },
 
     ledger: {
@@ -131,6 +118,13 @@ const ko = {
       noCode: '코드 없음',
       noFinding: '소견 없음',
       totals: { billed: '청구', reimbursed: '지급 예정', findings: '소견' },
+      payout: {
+        billed: '청구 금액',
+        deductible: '자기부담 공제',
+        copay: '보장 비율 외 부담',
+        limit: '연간 한도 초과',
+        reimbursed: '지급 예정',
+      },
       findingsCount: (n) => `${n}건`,
       sample: (claims) => `합성 데이터 ${claims}건 중 1건`,
     },
@@ -141,7 +135,11 @@ const ko = {
       method: 'POST',
       path: '/api/claims/adjudicate',
       durFile: 'nuvovet-dur.js',
-      durLead: 'EMR의 처방 변경을 CDS Hooks 형식으로 보내면, 아일랜드와 행 배지가 화면에 붙습니다.',
+      durPoints: [
+        { label: '설치', text: '스크립트를 EMR 화면에 한 번 올리면 아일랜드와 행 배지가 붙습니다.' },
+        { label: '검토', text: '처방이 바뀔 때마다 CDS Hooks 형식으로 요청을 보냅니다.' },
+        { label: '저장', text: '저장 버튼에서 남은 경고를 확인하고, 진행 여부를 돌려받습니다.' },
+      ],
       points: [
         { label: '요청', text: '청구 원문과 약관 조건을 JSON으로 보냅니다.' },
         { label: '응답', text: '판정, 소견별 규칙 ID와 금액 영향, 지급 계산을 돌려받습니다.' },
@@ -154,6 +152,15 @@ const ko = {
 
     security: {
       title: '판정은 규칙이,\n결정은 사람이.',
+      // 왼쪽 카드: 심사 예시 청구의 소견 한 건을 응답에 담기는 그대로 보여 줍니다 (값은 heroClaim.json).
+      evidence: {
+        label: '소견 한 건에 붙는 근거',
+        rule: '규칙 ID',
+        item: '대상 항목',
+        basis: '근거',
+        impact: '금액 영향',
+        engine: '엔진 버전',
+      },
       columns: [
         {
           title: '데이터 처리',
@@ -178,8 +185,16 @@ const ko = {
     closing: {
       title: '두 화면 모두,\n지금 바로 눌러 볼 수 있습니다.',
       lead: '가입도 설치도 필요 없습니다. 모든 데이터는 가상이거나 합성입니다.',
-      primary: 'EMR 데모 열기',
-      secondary: 'Claims 콘솔 보기',
+      doors: {
+        dur: {
+          line: '가상 EMR에서 환자 10마리의 처방을 직접 고치고, 아일랜드가 띄우는 경고와 권장 조치를 확인합니다.',
+          cta: 'EMR 데모 열기',
+        },
+        claims: {
+          line: '합성 청구 대기열에서 항목별 표준 코드와 지역\u00a0수가\u00a0백분위, 지급 계산과 그 근거를 봅니다.',
+          cta: 'Claims 콘솔 열기',
+        },
+      },
     },
 
     // Rendered only when CONTACT_EMAIL is non-empty (contact.js).

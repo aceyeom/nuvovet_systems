@@ -1,5 +1,5 @@
-// Brand photographs: the bundled patient portraits (pets.js), the editorial photos, their credits
-// (credits.js / PhotoCredits) and PetAvatar's photo-or-initial rendering.
+// Brand photographs: the bundled patient portraits (pets.js), their credits (credits.js / PhotoCredits)
+// and PetAvatar's photo-or-initial rendering. The site ships no other photographs.
 import { describe, expect, it } from 'vitest'
 import { createElement } from 'react'
 import { renderToString } from 'react-dom/server'
@@ -9,13 +9,12 @@ import { PETS, petFor } from '../pets.js'
 import { PHOTO_CREDITS, creditFor } from '../credits.js'
 import { PetAvatar } from '../PetAvatar.jsx'
 import { PhotoCredits } from '../PhotoCredits.jsx'
-import { PHOTOS } from '../photos.js'
 
 const BRAND_DIR = join(import.meta.dirname, '..')
 const FRONTEND = join(BRAND_DIR, '../..')
 const webps = (dir) => readdirSync(join(BRAND_DIR, dir)).filter((f) => f.endsWith('.webp')).map((f) => `src/brand/${dir}/${f}`)
 const size = (repoPath) => statSync(join(FRONTEND, repoPath)).size
-const SHIPPED = [...webps('pets'), ...webps('photos')]
+const SHIPPED = webps('pets')
 const CHARTS = ['1042', '0877', '1310', '1455', '0921', '1502', '0650', '1388', '1620', '1733']
 
 describe('patient photos (pets.js)', () => {
@@ -44,8 +43,7 @@ describe('patient photos (pets.js)', () => {
       const b = size(f)
       if (f.endsWith('/nabi.webp')) expect(b, f).toBeLessThanOrEqual(9000)
       else expect(b, f).toBeGreaterThan(6000)
-      if (f.includes('/pets/')) expect(b, f).toBeLessThanOrEqual(45 * 1024)
-      else expect(b, f).toBeLessThanOrEqual(160 * 1024)
+      expect(b, f).toBeLessThanOrEqual(45 * 1024)
     }
   })
 })
@@ -62,20 +60,16 @@ function webpSize(buf) {
   throw new Error(`not a WebP: ${kind}`)
 }
 
-describe('editorial photos (photos.js)', () => {
-  it('states the real size of each file and credits it', () => {
-    for (const [name, p] of Object.entries(PHOTOS)) {
-      const file = readdirSync(join(BRAND_DIR, 'photos')).find((f) => p.src.includes(f.replace('.webp', '')))
-      expect(file, name).toBeTruthy()
-      expect(webpSize(readFileSync(join(BRAND_DIR, 'photos', file))), name).toEqual([p.width, p.height])
-      expect(creditFor(p.credit), name).toBeTruthy()
-      expect(p.alt, name).toMatch(/[가-힣]/)
-    }
+describe('portrait sizes', () => {
+  it('ships each portrait at 640 and 320 px square, and nothing but portraits', () => {
     for (const id of CHARTS.filter((c) => c !== '1310')) {
       const f = join(BRAND_DIR, 'pets', `${PETS[id].key}.webp`)
       expect(webpSize(readFileSync(f)), id).toEqual([640, 640])
       expect(webpSize(readFileSync(f.replace('.webp', '-320.webp'))), id).toEqual([320, 320])
     }
+    // the landing is built on product UI: no editorial photographs, so nothing else to credit
+    expect(existsSync(join(BRAND_DIR, 'photos'))).toBe(false)
+    expect(existsSync(join(BRAND_DIR, 'photos.js'))).toBe(false)
   })
 })
 
@@ -95,7 +89,7 @@ describe('credits (credits.js)', () => {
         expect(c.source).toBe(c.flickr)
       }
     }
-    expect(creditFor('choco').files).toContain('src/brand/photos/choco-portrait.webp')
+    expect(creditFor('choco').files).toEqual(['src/brand/pets/choco.webp', 'src/brand/pets/choco-320.webp'])
     expect(creditFor('nope')).toBeNull()
   })
 

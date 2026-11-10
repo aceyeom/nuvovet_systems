@@ -18,14 +18,16 @@ Two products under one master brand, each with its own colour (`frontend/src/bra
 
 | Route | Product | What it does |
 |---|---|---|
-| `/` | both | Landing: a 3D laptop replays each product (EMR + DUR island, Claims adjudication), role chooser, one section per product |
+| `/` | both | Landing: a rendered laptop opens and replays each product (EMR + DUR island, Claims adjudication); one chapter per product built on live product UI (the annotated EMR, the island's states, the ten demo patients; one worked claim with its payout); integration, controls |
 | `/dur#/emr/V1` | DUR | Fictional EMR with the DUR overlay: the **DUR island** (draggable pill that peeks open on new findings, expands into the full review, docks into a side panel), row badges, the save gate, a guided 4-step demo strip; 10 fictional patients |
 | `/dur` | DUR | Case studies, workbench, printable report and owner handout for the same engine |
 | `/insurance` | Claims | Claims console on the live engine: review queue, live claim composer, clinic risk, fee benchmarks, engine performance, API docs |
 | `/clinic/claim` | Claims | Free clinic-side pre-check with receipt-photo extraction |
 
-Patient photos: 나비 is a bundled CC0 photo (scikit-image's "Chelsea"); the other patients' photos are
-hot-linked from the Unsplash CDN (`frontend/src/brand/pets.js`), with a species-glyph fallback offline.
+Patient photos are bundled (`frontend/src/brand/pets/`, mapped in `pets.js`): 나비 is CC0 (scikit-image's
+"Chelsea"), the other nine are CC BY 2.0 and credited in the landing footer (`/#credits`, `credits.js`).
+The landing ships no other photographs. The laptop is rendered offline by `frontend/scripts/render`
+(`node render.mjs`, about an hour on software WebGL; `--resume` continues an interrupted run).
 
 ## How the claims engine works
 

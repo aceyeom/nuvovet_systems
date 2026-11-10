@@ -36,7 +36,8 @@ let MATS = null
 let VIEW = null
 const MODE_MATS = {}
 const STATE = {
-  exposure: 2,
+  // silver aluminium under the same studio: 1.35 keeps the closed lid a mid grey with a visible sweep
+  exposure: 1.35,
   shadow: { strength: 1, tint: [0.02, 0.02, 0.02] },
   // core: a tight, dark contact line where the deck meets the floor, reaching just past the outline so it
   // shows under the front lip (occlusion.js bakeGround)

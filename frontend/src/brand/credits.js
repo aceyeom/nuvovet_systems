@@ -1,5 +1,5 @@
 /**
- * Credits for every photograph the site ships (src/brand/pets/*.webp, src/brand/photos/*.webp).
+ * Credits for every photograph the site ships: the demo patients' portraits (src/brand/pets/*.webp).
  * Rendered by PhotoCredits (the landing footer, #credits; the EMR demo links there as "사진 출처").
  *
  * The CC BY 2.0 photos were published on Flickr by their authors and reached us through Google's Open
@@ -24,7 +24,7 @@ export const PHOTO_CREDITS = [
   {
     key: 'choco',
     file: 'src/brand/pets/choco.webp',
-    files: ['src/brand/pets/choco.webp', 'src/brand/pets/choco-320.webp', 'src/brand/photos/choco-portrait.webp'],
+    files: ['src/brand/pets/choco.webp', 'src/brand/pets/choco-320.webp'],
     use: '초코 · 러프 콜리',
     subject: 'rough collie walking toward the camera on grass',
     title: 'Happy Rough Collie',
@@ -153,36 +153,9 @@ export const PHOTO_CREDITS = [
     ...CC_BY_2,
     changes: CHANGES,
   },
-  {
-    key: 'dog-highkey',
-    file: 'src/brand/photos/dog-highkey.webp',
-    files: ['src/brand/photos/dog-highkey.webp'],
-    use: '소개 사진 · 흰 바닥의 강아지',
-    subject: 'small black-and-white dog, high-key black and white',
-    title: '菲菲小姐隨影 IX',
-    titleLang: 'zh-Hant',
-    author: 'Alan Wat',
-    authorUrl: 'https://www.flickr.com/people/alanwat/',
-    flickr: 'https://www.flickr.com/photos/alanwat/20239945366',
-    ...CC_BY_2,
-    changes: CHANGES,
-  },
-  {
-    key: 'kitten-hands',
-    file: 'src/brand/photos/kitten-hands.webp',
-    files: ['src/brand/photos/kitten-hands.webp'],
-    use: '소개 사진 · 손 안의 아기 고양이',
-    subject: 'sleeping white kitten held in two hands',
-    title: 'Bundle',
-    author: 'Liv Estberger',
-    authorUrl: 'https://www.flickr.com/people/7521408@N07/',
-    flickr: 'https://www.flickr.com/photos/7521408@N07/2697539697',
-    ...CC_BY_2,
-    changes: CHANGES,
-  },
 ].map((c) => ({ ...c, source: c.source || c.flickr }))
 
-/** The credit for one photo key (a patient key such as 'choco', or an editorial key such as 'kitten-hands'). */
+/** The credit for one photo key (a patient key such as 'choco'). */
 export function creditFor(key) {
   return PHOTO_CREDITS.find((c) => c.key === key) || null
 }

@@ -1,7 +1,7 @@
 /**
- * Landing nav: a full-width white bar, 64 px, with a hairline under it once the page scrolls (no glass,
- * no float). Left the master wordmark; right the section links as plain text, the Claims console as a
- * text link and the EMR demo as the one solid button. On phones the links fold into a plain sheet behind
+ * Landing nav: a full-width white bar with a hairline under it once the page scrolls (no glass, no
+ * float). Left the master wordmark and the section links; right the two demos: the Claims console as an
+ * outline button and the EMR demo as the solid one. On phones the links fold into a plain sheet behind
  * a CSS-drawn menu glyph (two hairlines; two crossed hairlines to close).
  */
 import { useEffect, useState } from 'react'
@@ -42,14 +42,14 @@ export function Nav() {
     <header className="lp-nav" data-scrolled={scrolled || undefined} data-open={open || undefined}>
       <div className="lp-container lp-nav-bar">
         <Link to="/" aria-label={n.home} className="lp-nav-home" onClick={close}>
-          <BrandLockup height={22} />
+          <BrandLockup height={24} />
         </Link>
         <nav aria-label={n.label} className="lp-nav-links">
           {links.map(([href, label]) => <a key={href} href={href} className="lp-nav-link">{label}</a>)}
           {CONTACT_EMAIL ? <a href={`mailto:${CONTACT_EMAIL}`} className="lp-nav-link">{n.pilot}</a> : null}
         </nav>
         <div className="lp-nav-end">
-          <Link to="/insurance" className="lp-nav-link lp-nav-console">{n.claimsCta}</Link>
+          <Link to="/insurance" className="lp-btn-ghost lp-nav-ghost">{n.claimsCta}</Link>
           <Link to="/dur#/emr/V1" className="nvb-btn lp-nav-btn">{n.durCta}</Link>
           <button
             type="button"

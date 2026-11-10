@@ -6,6 +6,8 @@
  *                                                                           1000 both; ~1 h on SwiftShader)
  *   node render.mjs --widths 1000                                           one width
  *   node render.mjs --only 3-13                                             re-render some sequence frames, then encode
+ *   node render.mjs --resume                                                continue an interrupted full set: images
+ *                                                                           already in the cache are kept, the rest rendered
  *   node render.mjs --encode-only                                           WebP + manifests from the cache only
  *   node render.mjs --still 0,109 --width 1100 --ss 1 --samples 4 --out a.png --sheet s.png   look-dev stills
  *        (--mode beauty|open|glare, --variants '[{…}]' --rows for A/B rows, --cfg '{…}' look overrides)
@@ -53,12 +55,12 @@ const CACHE = process.env.RENDER_CACHE || path.join(os.tmpdir(), 'nuvovet-render
 
 /* ------------------------------------------------------------------ settings */
 export const LOOK = {
-  // a three-quarter view: the camera swings 12° round to the right and slides a little to the side, so the
-  // lid and deck read as volumes with a diagonal falloff (dead-front read as a flat CG elevation). The
-  // screen is then a slight trapezoid; the manifest's corners are projected exactly and the page lays
-  // the DOM into it with a homography, so nothing else changes.
-  view: { elev: 19, yaw: 12, dist: 13, lateral: 0.5, rise: 0, aspect: 1.25, margin: { l: 0.02, r: 0.02, t: 0.02, b: 0.05 } },
-  openDeg: 109, // = 90 + elev: the panel faces the camera's pitch (only the yaw tilts it)
+  // a front elevation through a long lens (3 m away): the device is symmetric in the frame and the deck
+  // tapers only slightly, as in product photography. With the lid at 90 + elev the panel is parallel to
+  // the sensor, so the screen projects to an exact rectangle and the page's DOM sits in it unresampled
+  // (the manifest still carries the four projected corners; LaptopRender places the screen from them).
+  view: { elev: 17, yaw: 0, dist: 30, lateral: 0, rise: 0, aspect: 1.25, margin: { l: 0.02, r: 0.02, t: 0.02, b: 0.05 } },
+  openDeg: 107, // = 90 + elev: the panel faces the camera
 }
 const SIZES = {
   2200: { ss: 2, samples: 16, samplesSeq: 10, quality: { seq: 52, rest: 80, alpha: 75, glare: 70 } },
@@ -440,12 +442,18 @@ async function main() {
       for (const width of widths) {
         const S = SIZES[width] || SIZES[2200]
         const height = Math.round(width / view.aspect)
+        // written under a temporary name and renamed, so an interrupted run never leaves a cut-off image
         const save = async (shot, name) => {
-          await raw(shot).resize(width, height, { kernel: 'lanczos3', fit: 'fill' }).png({ compressionLevel: 3 }).toFile(path.join(CACHE, `${name}-${width}.png`))
+          const file = path.join(CACHE, `${name}-${width}.png`)
+          await raw(shot).resize(width, height, { kernel: 'lanczos3', fit: 'fill' }).png({ compressionLevel: 3 }).toFile(`${file}.tmp`)
+          fs.renameSync(`${file}.tmp`, file)
         }
+        // --resume: keep what an interrupted run already rendered (same scene and view, so it is identical)
+        const done = (name) => has('resume') && fs.existsSync(path.join(CACHE, `${name}-${width}.png`))
         const only = arg('only') ? arg('only').split('-').map(Number) : null
         for (const k of framesFor(width, frames)) {
           if (only && (k < only[0] || k > only[1])) continue
+          if (done(`frame-${String(k).padStart(2, '0')}`)) continue
           // the closed poster and the final frame are seen at rest: more samples, no motion blur
           const rest = k === 0 || k === frames - 1
           const tk = k / (frames - 1)
@@ -457,13 +465,14 @@ async function main() {
           await save(shot, `frame-${String(k).padStart(2, '0')}`)
           console.log(`render ${width} frame ${k} ${angles[k]}° ${samples} samples ${ms} ms`)
         }
-        if (!arg('only') && STILLS.includes(width)) {
+        if (!arg('only') && STILLS.includes(width) && !(done('open') && meta.off)) {
           const { shot, ms } = await shoot({ width, ss: S.ss, samples: S.samples, openDeg: view.openDeg, mode: 'open' })
           await save(shot, 'open')
           meta.off = await screenOffColour(shot, corners)
+          fs.writeFileSync(metaPath, JSON.stringify(meta, null, 2))
           console.log(`render ${width} open ${ms} ms, screen off ${meta.off}`)
         }
-        if (!arg('only') && STILLS.includes(width)) {
+        if (!arg('only') && STILLS.includes(width) && !done('glare')) {
           const { shot, ms } = await shoot({ width, ss: S.ss, samples: S.samples, openDeg: view.openDeg, mode: 'glare' })
           await save(shot, 'glare')
           console.log(`render ${width} glare ${ms} ms`)

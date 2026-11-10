@@ -1,12 +1,13 @@
 /*
  * nuvovet brand layer: the landing, the lockups, the EMR demo chrome and the island sit on these tokens.
- * Ink on white paper. Two families: the display face (MaruBuri, registered as "nuvovet Display" by
- * src/brand/displayFont.js; static copy only) and Pretendard Variable for text, UI and data.
- * Product colour appears only on the product name in a lockup and as the 1.5 px active-tab hairline.
- * No gradients, glows, dots or chips. Namespaced --nvb-* / .nvb-* so it never collides with the console
- * tokens (src/ui/tokens.css). Brand elements carry data-brand-surface, which exempts them from the console
- * style budgets (scripts/qa/pagecheck.cjs); this folder is exempt from scripts/qa/lint-design.cjs.
- * Spec: docs/design/DESIGN_SYSTEM.md "Brand layer".
+ * Ink on white paper. One text family, Pretendard Variable, for headlines, text, UI and data; the serif
+ * (MaruBuri) lives only in the outlined marks (Brand.jsx), so no display web font is loaded. A surface
+ * sets its own type scale on these tokens (the landing: src/pages/landing/landing.css).
+ * Product colour appears on the product name in a lockup, as replay progress and on the two closing
+ * doors of the landing. No gradients, glows, dots or chips. Namespaced --nvb-* / .nvb-* so it never
+ * collides with the console tokens (src/ui/tokens.css). Brand elements carry data-brand-surface, which
+ * exempts them from the console style budgets (scripts/qa/pagecheck.cjs); this folder is exempt from
+ * scripts/qa/lint-design.cjs. Spec: docs/design/DESIGN_SYSTEM.md "Brand layer".
  */
 
 :root {
@@ -27,7 +28,6 @@
   --nvb-dur-ink-on-dark: #8DCBA4;
   --nvb-claims-ink-on-dark: #9DBCEE;
 
-  --nvb-font-display: "nuvovet Display", "MaruBuri", "Noto Serif KR", "AppleMyungjo", serif;
   --nvb-font-text: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
 
   --nvb-btn-hover: #30353D;
@@ -133,29 +133,7 @@
   /* Monogram (favicon / app icon). */
   .nvb-mark { display: block; flex: none; }
 
-  /* ── Type scale (integer px; display face for static copy only) ──────────── */
-  .nvb-d1 { font: 400 64px/76px var(--nvb-font-display); letter-spacing: -0.02em; color: var(--nvb-ink); }
-  .nvb-d2 { font: 400 40px/52px var(--nvb-font-display); letter-spacing: -0.015em; color: var(--nvb-ink); }
-  .nvb-d3 { font: 600 28px/38px var(--nvb-font-display); letter-spacing: -0.01em; color: var(--nvb-ink); }
-  .nvb-lead { font: 400 19px/32px var(--nvb-font-text); color: var(--nvb-ink-2); }
-  .nvb-body { font: 400 16px/26px var(--nvb-font-text); color: var(--nvb-ink-2); }
-  .nvb-ui { font: 500 14px/20px var(--nvb-font-text); }
-  .nvb-label { font: 500 13px/20px var(--nvb-font-text); color: var(--nvb-muted); }
-  .nvb-caption { font: 500 12px/16px var(--nvb-font-text); color: var(--nvb-muted); }
-  :where(.nvb-d1, .nvb-d2, .nvb-d3, .nvb-lead, .nvb-body, .nvb-ui, .nvb-label, .nvb-caption) { word-break: keep-all; overflow-wrap: break-word; }
-  :where(.nvb-d1, .nvb-d2, .nvb-d3) { text-wrap: balance; font-style: normal; }
-  @media (max-width: 1023px) {
-    .nvb-d1 { font-size: 52px; line-height: 64px; }
-    .nvb-d2 { font-size: 34px; line-height: 46px; }
-  }
-  @media (max-width: 639px) {
-    .nvb-d1 { font-size: 36px; line-height: 46px; }
-    .nvb-d2 { font-size: 28px; line-height: 38px; letter-spacing: -0.01em; }
-    .nvb-d3 { font-size: 22px; line-height: 32px; letter-spacing: 0; }
-    .nvb-lead { font-size: 17px; line-height: 28px; }
-  }
-
-  /* ── Actions: a solid ink button and a text link. No icons, arrows or shadows. ── */
+  /* ── Action: a solid ink button. No icons, arrows or shadows. ───────────── */
   .nvb-btn {
     display: inline-flex;
     align-items: center;
@@ -173,18 +151,7 @@
     transition: background-color 120ms ease;
   }
   .nvb-btn:hover { background: var(--nvb-btn-hover); }
-  .nvb-btn:focus-visible,
-  .nvb-link:focus-visible { outline: 2px solid var(--nvb-ink); outline-offset: 3px; }
-  .nvb-link {
-    color: var(--nvb-ink);
-    font-weight: 500;
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 5px;
-    text-decoration-color: var(--nvb-rule-strong);
-    transition: text-decoration-color 120ms ease;
-  }
-  .nvb-link:hover { text-decoration-color: currentColor; }
+  .nvb-btn:focus-visible { outline: 2px solid var(--nvb-ink); outline-offset: 3px; }
 
   /* ── Three CSS-drawn glyphs (1.5 px strokes, currentColor) instead of an icon set ── */
   .nvb-menu { display: inline-block; width: 18px; height: 8px; border-block: 1.5px solid currentColor; }
